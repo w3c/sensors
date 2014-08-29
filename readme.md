@@ -2,7 +2,7 @@
 
 ## Instances
 
-- `Sensor.*` constructors accept an "options object" that may contain device specific options, but must accept an optional `frequency` property whose value is in hz and controls the number of sensor readings to perform per second. (TODO: determine a reasonable default value for `frequency`)
+- `Sensor.*` constructors accept an "options object" that may contain device specific options, but must accept an optional `frequency` property. The `frequency` property's value is in hz and controls the number of sensor read cycles per second. (TODO: determine a reasonable default value for `frequency`)
 ```js
 // One read cycle per second
 var light = new Sensor.AmbientLight({ frequency: 1 });
