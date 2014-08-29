@@ -233,13 +233,17 @@ try {
 }
 
 var temp = new Sensor.Temperature({ unit: "C" });
-console.log("temp", temp);
+// This will be `null` until the platform has 
+// delivered a reading from the sensor
+console.log("temp", temp.value);
 
 temp.onchange = function() {
   console.log("temp change", this.value);
 };
 
 var light = new Sensor.Light();
+// This will be `null` until the platform has 
+// delivered a reading from the sensor
 console.log("light", light);
 
 light.onchange = function() {
@@ -247,6 +251,8 @@ light.onchange = function() {
 };
 
 var prox = new Sensor.Proximity();
+// This will be `null` until the platform has 
+// delivered a reading from the sensor
 console.log("prox", prox);
 
 prox.onchange = function() {
