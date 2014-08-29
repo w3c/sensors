@@ -2,8 +2,15 @@
 
 ## Values
 
+#### The `value` property of a `Sensor.*` instance
+
 - `null` until platform delivers first reading from device—this is very important. 
 - `null` if device is disconnected
+
+#### A One Time Request for a `Sensor.*`'s current value
+
+- Promise resolves to current `value` or `null` 
+- Promise rejected if no permission, for those sensors requiring permission.
 
 ## Events
 
