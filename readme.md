@@ -1,5 +1,17 @@
 # Sensor API Unification Sketch
 
+## Instances
+
+- `Sensor.*` constructors accept an "options object" that may contain device specific options, but must accept an optional `frequency` property whose value is in hz and controls the number of sensor readings to perform per second. (TODO: determine a reasonable default value for `frequency`)
+```js
+// One read cycle per second
+var light = new Sensor.AmbientLight({ frequency: 1 });
+
+// 100 read cycles per second (ie. every 10ms)
+var light = new Sensor.AmbientLight({ frequency: 100 });
+```
+
+
 ## Values
 
 #### The `value` property of a `Sensor.*` instance
@@ -198,7 +210,7 @@
       var changeRecord;
 
       // This is only to simulate the behaviour of a controlled frequency
-      if (now >= (sensor.timestamp + state.frequency) || state.value === null) {
+      if (now >= (sensor.timestamp + (1000 / state.frequency)) || state.value === null) {
         sensor.timestamp = now;
 
         state.value = totallyMadeUpValue;
