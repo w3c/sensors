@@ -35,13 +35,13 @@ proximity.onchange = function() {
 
 #### A One Time Request for a `Sensor.*`'s current value
 
-A completely initialized `Sensor.*` instance is not necessary for cases where the application only needs to get the current value of a given sensor one time. For these cases, a static `currentValue()` method will return a `Promise` that resolves to either the sensor's current value, or null. The `Promise` is rejected if there are not sufficient permissions.
+A completely initialized `Sensor.*` instance is not necessary for cases where the application only needs to get the current value of a given sensor one time. For these cases, a static `requestValue()` method will return a `Promise` that resolves to either the sensor's current value, or null. The `Promise` is rejected if there are not sufficient permissions.
 
 - Promise resolves to current `value` or `null` 
 - Promise rejected if no permission, for those sensors requiring permission.
 
 ```js
-Sensor.Temperature.currentValue()
+Sensor.Temperature.requestValue()
   .then(data => display(data)).catch(error => log(error));
 ```
 
@@ -316,7 +316,7 @@ requestAnimationFrame(function frame() {
 
 // No need for instances in the one-time and done case:
 //
-Sensor.Temperature.currentValue().then(data => ...);
+Sensor.Temperature.requestValue().then(data => ...);
 
 
 ```
