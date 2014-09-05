@@ -2,25 +2,25 @@
 
 ## Instances
 
-- `Sensor.*` constructors accept an "options object" that may contain device specific options, but must accept an optional `frequency` property. The `frequency` property's value is in hz and controls the number of sensor read cycles per second. (TODO: determine a reasonable default value for `frequency`)
+- `sensors.*` constructors accept an "options object" that may contain device specific options, but must accept an optional `frequency` property. The `frequency` property's value is in hz and controls the number of sensor read cycles per second. (TODO: determine a reasonable default value for `frequency`)
 ```js
 // One read cycle per second
-var light = new Sensor.AmbientLight({ frequency: 1 });
+var light = new sensors.AmbientLight({ frequency: 1 });
 
 // 100 read cycles per second (ie. every 10ms)
-var light = new Sensor.AmbientLight({ frequency: 100 });
+var light = new sensors.AmbientLight({ frequency: 100 });
 ```
 
 
 ## Values
 
-#### The `value` property of a `Sensor.*` instance
+#### The `value` property of a `sensors.*` instance
 
 - `null` until platform delivers first reading from device—this is very important. 
 - `null` if device is disconnected
 
 ```js
-var proximity = new Sensor.Proximity();
+var proximity = new sensors.Proximity();
 var previous = proximity.value;
 
 proximity.onchange = function() {
@@ -33,15 +33,15 @@ proximity.onchange = function() {
 
 
 
-#### A One Time Request for a `Sensor.*`'s current value
+#### A One Time Request for a `sensors.*`'s current value
 
-A completely initialized `Sensor.*` instance is not necessary for cases where the application only needs to get the current value of a given sensor one time. For these cases, a static `requestValue()` method will return a `Promise` that resolves to either the sensor's current value, or null. The `Promise` is rejected if there are not sufficient permissions.
+A completely initialized `sensors.*` instance is not necessary for cases where the application only needs to get the current value of a given sensor one time. For these cases, a static `requestValue()` method will return a `Promise` that resolves to either the sensor's current value, or null. The `Promise` is rejected if there are not sufficient permissions.
 
 - Promise resolves to current `value` or `null` 
 - Promise rejected if no permission, for those sensors requiring permission.
 
 ```js
-Sensor.Temperature.requestValue()
+sensors.Temperature.requestValue()
   .then(data => display(data)).catch(error => log(error));
 ```
 
@@ -62,10 +62,8 @@ Sensor.Temperature.requestValue()
   // The WeakMap is used to represent a backing state mechanism.
   var priv = new WeakMap();
 
-  function Sensor(opts, key) {
-    if (key !== priv) {
-      throw new Error("Illegal Constructor");
-    }
+  // Private Base Class for all Sensors
+  function Sensor(opts) {
 
     priv.set(this, {
       value: null,
@@ -93,17 +91,17 @@ Sensor.Temperature.requestValue()
   };
 
   /*
-      Sensor.Temperature
+      Temperature
 
       Celcius, Fahrenheit
 
       @param opts object { unit: C | F }
    */
 
-  Sensor.Temperature = function(opts) {
+  function Temperature(opts) {
     opts = opts || {};
     Sensor.call(this, {
-      range: Sensor.Temperature.C.slice(),
+      range: Temperature.C.slice(),
       frequency: opts.frequency
     }, priv);
 
@@ -114,7 +112,7 @@ Sensor.Temperature.requestValue()
     this.unit(unit);
   };
 
-  Object.defineProperties(Sensor.Temperature, {
+  Object.defineProperties(Temperature, {
     C: {
       value: [-40, 150],
       writable: false,
@@ -129,11 +127,13 @@ Sensor.Temperature.requestValue()
     }
   });
 
-  Sensor.Temperature.prototype = Object.create(Sensor.prototype, {
-    constructor: Sensor.Temperature,
+  Temperature.prototype = Object.create(Sensor.prototype, {
+    constructor: {
+      value: Temperature
+    },
     unit: {
       value: function(unit) {
-        var range = Sensor.Temperature[(unit + "").toUpperCase() || "C"];
+        var range = Temperature[(unit + "").toUpperCase() || "C"];
 
         if (range === void 0) {
           throw new Error("Invalid Temperature unit");
@@ -152,14 +152,14 @@ Sensor.Temperature.requestValue()
   });
 
   /*
-      Sensor.Light
+      AmbientLight
 
       Lux
 
       @param opts object { range: [ lower, upper ] }
    */
 
-  Sensor.Light = function(opts) {
+  function AmbientLight(opts) {
     opts = opts || {};
     Sensor.call(this, {
       range: [0, 100000],
@@ -167,19 +167,21 @@ Sensor.Temperature.requestValue()
     }, priv);
   };
 
-  Sensor.Light.prototype = Object.create(Sensor.prototype, {
-    constructor: Sensor.Light
+  AmbientLight.prototype = Object.create(Sensor.prototype, {
+    constructor: {
+      value: AmbientLight
+    }
   });
 
   /*
-      Sensor.Proximity
+      Proximity
 
-      cm
+      Centimeters
 
       @param opts object { range: [ lower, upper ] }
    */
 
-  Sensor.Proximity = function(opts) {
+  function Proximity(opts) {
     opts = opts || {};
     Sensor.call(this, {
       //  5 feet, in cm
@@ -188,13 +190,19 @@ Sensor.Temperature.requestValue()
     }, priv);
   };
 
-  Sensor.Proximity.prototype = Object.create(Sensor.prototype, {
-    constructor: Sensor.Proximity
+  Proximity.prototype = Object.create(Sensor.prototype, {
+    constructor: {
+      value: Proximity
+    }
   });
 
 
   // Expose the Sensor API.
-  (window || global).Sensor = Sensor;
+  (window || global).sensors = {
+    AmbientLight: AmbientLight,
+    Proximity: Proximity,
+    Temperature: Temperature,
+  };
 
 
 
@@ -218,6 +226,7 @@ Sensor.Temperature.requestValue()
   //
   //
   var sensors = [];
+
   setInterval(function() {
     sensors.forEach(function(registered) {
       var sensor = registered.device;
@@ -265,8 +274,8 @@ try {
   console.log(e.message === "Illegal Constructor");
 }
 
-var temp = new Sensor.Temperature({ unit: "C" });
-// This will be `null` until the platform has 
+var temp = new sensors.Temperature({ unit: "C" });
+// This will be `null` until the platform has
 // delivered a reading from the sensor
 console.log("temp", temp.value);
 
@@ -274,8 +283,8 @@ temp.onchange = function() {
   console.log("temp change", this.value);
 };
 
-var light = new Sensor.Light();
-// This will be `null` until the platform has 
+var light = new sensors.Light();
+// This will be `null` until the platform has
 // delivered a reading from the sensor
 console.log("light", light);
 
@@ -283,8 +292,8 @@ light.onchange = function() {
   console.log("light change", this.value);
 };
 
-var prox = new Sensor.Proximity();
-// This will be `null` until the platform has 
+var prox = new sensors.Proximity();
+// This will be `null` until the platform has
 // delivered a reading from the sensor
 console.log("prox", prox);
 
@@ -316,7 +325,6 @@ requestAnimationFrame(function frame() {
 
 // No need for instances in the one-time and done case:
 //
-Sensor.Temperature.requestValue().then(data => ...);
-
+sensors.Temperature.requestValue().then(data => ...);
 
 ```
