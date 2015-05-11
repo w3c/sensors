@@ -31,20 +31,6 @@ proximity.onchange = function() {
 };
 ```
 
-
-
-#### A One Time Request for a `sensors.*`'s current value
-
-A completely initialized `sensors.*` instance is not necessary for cases where the application only needs to get the current value of a given sensor one time. For these cases, a static `requestValue()` method will return a `Promise` that resolves to either the sensor's current value, or null. The `Promise` is rejected if there are not sufficient permissions.
-
-- Promise resolves to current `value` or `null` 
-- Promise rejected if no permission, for those sensors requiring permission.
-
-```js
-sensors.Temperature.requestValue()
-  .then(data => display(data)).catch(error => log(error));
-```
-
 ## Events
 
 - `connect` event when device is connected. 
@@ -322,9 +308,3 @@ requestAnimationFrame(function frame() {
     console.log("cm: ", prox.value);
   }
 });
-
-// No need for instances in the one-time and done case:
-//
-sensors.Temperature.requestValue().then(data => ...);
-
-```
