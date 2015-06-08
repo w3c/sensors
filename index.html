@@ -90,21 +90,15 @@ API
 
 <div class=issue data-number=8></div>
 
-### <dfn>SensorIdentifier</dfn>
 
-<pre class="idl">
-typedef (Symbol or URL or USVString) SensorIdentifier;
-</pre>
 
-<div class=issue title="Should WoT URL-based identification be addressed here?"></div>
-<div class=issue title="Should pin-based identification be addressed here?"></div>
 
 ### The <dfn>Sensor</dfn> Interface
 
 <pre class="idl">
 [Constructor(SensorInit sensorInitDict), Exposed=(Window,Worker)]
 interface Sensor : EventTarget {
-  static Promise&lt;sequence&lt;SensorIdentifier&gt;&gt; getAll();
+  static Promise&lt;sequence&lt;DOMString&gt;&gt; getAll();
   readonly attribute float frequency;
   readonly attribute SensorReading? value;
   [TreatNonObjectAsNull] attribute EventHandler onerror;
@@ -113,7 +107,7 @@ interface Sensor : EventTarget {
 
 dictionary SensorInit {
   float? frequency;
-  SensorIdentifier? identifier;
+  DOMString? identifier;
 };
 </pre>
 
@@ -121,7 +115,7 @@ dictionary SensorInit {
 
 <div class=issue data-number=26></div>
 
-Returns a promise which resolves to an array of <a title="SensorIdentifier">SensorIdentifiers</a> representing all available local sensors.
+Returns a promise which resolves to an array of DOMStrings representing the identifier of all available local sensors.
 
 <div class=issue data-number=28></div>
 <div class=issue data-number=7></div>
@@ -177,7 +171,7 @@ The following are the <a>event handlers</a> (and their corresponding <a>event ha
 <pre class="idl">
 interface SensorReading {
   readonly attribute DOMTimeStamp timestamp;
-  readonly attribute SensorIdentifier sensor;
+  readonly attribute DOMString sensorIdentifier;
 };
 </pre>
 
@@ -185,9 +179,9 @@ interface SensorReading {
 
 Returns the time at which the data was <a>read from the sensor</a> in the number of milliseconds that passed since 00:00:00 UTC on 1 January 1970.
 
-### <dfn>SensorReading.sensor</dfn>
+### <dfn>SensorReading.sensorIdentifier</dfn>
 
-Returns the SensorIdentifier of the sensor the reading is taken from.
+Returns the identifier of the sensor the reading is taken from.
 
 ### Low level Sensor API
 
