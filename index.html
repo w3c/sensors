@@ -82,6 +82,126 @@ Security and privacy considerations
 <div class=issue data-number=14></div>
 <div class=issue data-number=20></div>
 
+
+Dependencies
+------------
+
+The <a href="https://dom.spec.whatwg.org/#interface-eventtarget"><dfn>EventTarget</dfn></a> interface is defined in the DOM Standard [[!WHATWG-DOM]].
+
+The <a href="http://dev.w3.org/html5/spec/webappapis.html#eventhandler"><dfn>EventHandler</dfn></a> interface represents callback used for event handlers as defined in the HTML5 specification [[!HTML5]].
+
+The terms <a href="http://dev.w3.org/html5/spec/webappapis.html#event-handlers"><dfn>event handlers</dfn></a> and <a href="http://dev.w3.org/html5/spec/webappapis.html#event-handler-event-type"><dfn>event handler event types</dfn></a> are defined in the HTML5 specification [[!HTML5]].
+
+<div class=issue data-number=21></div>
+
+API
+---
+
+<div class=issue data-number=8></div>
+
+### <dfn>SensorIdentifier</dfn>
+
+<pre class="idl">
+typedef (Symbol or URL or USVString) SensorIdentifier;
+</pre>
+
+<div class=issue title="Should WoT URL-based identification be addressed here?"></div>
+<div class=issue title="Should pin-based identification be addressed here?"></div>
+
+### The <dfn>Sensor</dfn> Interface
+
+<pre class="idl">
+[Constructor(SensorInit sensorInitDict), Exposed=(Window,Worker)]
+interface Sensor : EventTarget {
+  static Promise&lt;sequence&lt;SensorIdentifier&gt;&gt; getAll();
+  readonly attribute float frequency;
+  readonly attribute SensorReading? value;
+  [TreatNonObjectAsNull] attribute EventHandler onerror;
+  [TreatNonObjectAsNull] attribute EventHandler onchange;
+};
+
+dictionary SensorInit {
+  float? frequency;
+  SensorIdentifier? identifier;
+};
+</pre>
+
+#### <dfn>Sensor.getAll</dfn>
+
+<div class=issue data-number=26></div>
+
+Returns a promise which resolves to an array of <a>SensorIdentifiers<a> representing all available local sensors.
+
+<div class=issue data-number=28></div>
+<div class=issue data-number=7></div>
+
+#### <dfn>Sensor.frequency</dfn>
+
+<div class=issue data-number=4></div>
+<div class=issue data-number=6></div>
+<div class=issue data-number=23></div>
+
+#### <dfn>Sensor.value</dfn>
+
+<div class=issue data-number=2></div>
+<div class=issue data-number=13></div>
+
+#### <dfn>Sensor.onerror</dfn>
+
+#### <dfn>Sensor.onchange</dfn>
+
+#### Event handlers
+
+The following are the <a>event handlers</a> (and their corresponding <a>event handler event types</a>) that MUST be supported as attributes by the objects implementing the <a>Sensor</a> interface:
+
+<table class="simple">
+  <thead>
+    <tr>
+      <th>event handler</th>
+      <th>event handler event type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><code>onchange</code></strong></td>
+      <td><code>change</code></td>
+    </tr>
+    <tr>
+      <td><strong><code>onerror</code></strong></td>
+      <td><code>error</code></td>
+    </tr>
+  </tbody>
+</table>
+
+#### <dfn>SensorInit.treshold</dfn>
+
+<div class=issue data-number=25></div>
+
+#### <dfn>SensorInit.wakeup</dfn>
+
+<div class=issue data-number=15></div>
+
+### <dfn>SensorReading</dfn>
+
+<pre class="idl">
+interface SensorReading {
+  readonly attribute DOMTimeStamp timestamp;
+  readonly attribute SensorIdentifier sensor;
+};
+</pre>
+
+### <dfn>SensorReading.timestamp</dfn>
+
+Returns the time at which the data was <a>read from the sensor</a> in the number of milliseconds that passed since 00:00:00 UTC on 1 January 1970.
+
+### <dfn>SensorReading.sensor</dfn>
+
+Returns the SensorIdentifier of the sensor the reading is taken from.
+
+### Low level Sensor API
+
+<div class=issue data-number=24></div>
+
 Extensibility
 -------------
 
