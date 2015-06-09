@@ -101,8 +101,8 @@ interface Sensor : EventTarget {
   static Promise&lt;sequence&lt;DOMString&gt;&gt; getAll();
   readonly attribute float frequency;
   readonly attribute SensorReading? value;
-  [TreatNonObjectAsNull] attribute EventHandler onerror;
-  [TreatNonObjectAsNull] attribute EventHandler onchange;
+  attribute EventHandler onerror;
+  attribute EventHandler onchange;
 };
 
 dictionary SensorInit {
