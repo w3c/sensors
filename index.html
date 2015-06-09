@@ -99,14 +99,14 @@ API
 [Constructor(SensorInit sensorInitDict), Exposed=(Window,Worker)]
 interface Sensor : EventTarget {
   static Promise&lt;sequence&lt;DOMString&gt;&gt; getAll();
-  readonly attribute float frequency;
+  readonly attribute double frequency;
   readonly attribute SensorReading? value;
   attribute EventHandler onerror;
   attribute EventHandler onchange;
 };
 
 dictionary SensorInit {
-  float? frequency;
+  double? frequency;
   DOMString? identifier;
 };
 </pre>
