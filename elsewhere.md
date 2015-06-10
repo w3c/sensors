@@ -12,10 +12,40 @@ Related conversations, posts, etc.
 
 ## Posts
 
-* [Web Sensor API: Raw and Uncut](http://smus.com/web-sensor-api/), Boris Smus.
+* [Web Sensor API: Raw and Uncut][201], Boris Smus.
+* [Byte Sources: Introduction][202], [Reading from Files][203], [Reading from Sockets][204], Domenic Denicola.
+
+[201]: http://smus.com/web-sensor-api/
+[202]: https://blog.domenic.me/byte-sources-introduction/
+[203]: https://blog.domenic.me/reading-from-files/
+[204]: https://blog.domenic.me/reading-from-sockets/
 
 ## Documents
 
 * The [Extensible Web Report Card on Sensors][301], maintained by W3C TAG.
+* [Exposing Sensors in JS][302], a presentation by @timvolodine
 
 [301]: https://extensiblewebreportcard.org/#toc-28
+[302]: https://www.w3.org/2008/geolocation/wiki/images/6/69/TPAC-sensors.pdf
+
+## Related Specs
+
+* [DeviceOrientation Event Specification][401]
+* [Screen Orientation API][402] (for terminology around sensor discovery).
+* [Proximity Events][403]
+* [The Permissions API][404]
+* [Geofencing API][405]
+
+[401]: http://w3c.github.io/deviceorientation/spec-source-orientation.html
+[402]: http://w3c.github.io/screen-orientation/
+[403]: https://dvcs.w3.org/hg/dap/raw-file/default/proximity/Overview.src.html
+[404]: https://w3c.github.io/permissions/
+[405]: http://www.w3.org/TR/geofencing/
+
+## Related Implementations
+
+* [Johnny-Five][501]
+* [Android Sensors][502]
+
+[501]: https://github.com/rwaldron/johnny-five/wiki/Sensor
+[502]: https://source.android.com/devices/halref/sensors_8h.html
