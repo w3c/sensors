@@ -134,9 +134,9 @@ sensors.matchAll({ type: "proximity", position: "rear" }).then(function(sensors)
 
 ### The <dfn>Sensor</dfn> Interface
 
-The `Sensor` interface is a lightweight object that represents an actual physical sensor. Concrete sensor implementation will need to subclass this.
+The `Sensor` interface is a lightweight object that represents an actual physical sensor. Concrete sensor implementation will need to subclass it.
 
-If no `identifier` is given, the Constructor uses the identifier of the default sensor of that type. This is to the catter for the common case of having a single sensor of a given type on a device.
+If no `identifier` is given, the Constructor uses the identifier of the default sensor of that type. This is to the cater to the common case of having a single sensor of a given type on a device.
 
 <pre class="example highlight javascript">
 
@@ -184,7 +184,7 @@ obs.onchange = dostuff;
 
 ### The <dfn>SensorObserver</dfn> Interface
 
-The `SensorObserver` interface's role is to observe the changes in a given sensor at regular inetervals and emit events when those value change in a consumer-configurable way.
+The `SensorObserver` interface's role is to observe the changes in a given sensor at regular intervals and emit events when those value change in a consumer-configurable way.
 
 <pre class="idl">
 [Constructor(Sensor sensor, optional SensorObserverOptions sensorObserverOptions), Exposed=(Window,Worker)]
@@ -236,7 +236,7 @@ Returns the related <a>Sensor</a> object.
 
 #### <dfn>SensorObserver.timeout</dfn>
 
-<div class=issue data-number=#44></div>
+<div class=issue data-number=44></div>
 
 #### <dfn>SensorObserver.wakeup</dfn>
 
@@ -296,7 +296,7 @@ The following are the <a>event handlers</a> (and their corresponding <a>event ha
 
 ### The <dfn>SensorReading</dfn> Interface
 
-Represents the values of a sensor a given point in time.
+Represents the values of a sensor at a given point in time.
 
 <pre class="idl">
 interface SensorReading {
