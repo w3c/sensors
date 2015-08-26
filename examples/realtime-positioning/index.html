@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset=utf-8 />
+        <title>Realtime Positioning</title>
+        <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+        <script src="https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.js"></script>
+        <link href="https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.css" rel="stylesheet" />
+        <link href="./style.css" rel="stylesheet" />
+        <script src="./map.js"></script>
+    </head>
+    <body>
+        <div id="map"></div>
+        <p id="info_box"></p>
+        <script>    
+            function onsuccess(position) {
+                var coords = [position.coords.latitude, position.coords.longitude];
+                updateMap(null, coords);
+            }
+            
+            function onerror(e) {
+                updateMap(e);
+            }
+            
+            navigator.geolocation.watchPosition(onsuccess, onerror, {
+                enableHighAccuracy: true, 
+                maximumAge: 0, 
+                timeout: Infinity
+            });
+        </script>
+    </body>
+</html>
