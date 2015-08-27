@@ -46,6 +46,22 @@
             githubAPI: "https://api.github.com/repos/w3c/sensors"
         };
     </script>
+        <style>
+        .phone {
+            box-sizing: border-box;
+            background-image: url('./examples/phone-frame.png');
+            height: 803px;
+            width: 382px;
+            padding: 115px 29px 120px 33px;
+        }
+        
+        .phone iframe {
+            box-sizing: border-box;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+        </style>
   </head>
   <body>
 <section id=abstract>
@@ -58,15 +74,20 @@
 Displaying the position of a vehicle on a map in real time
 ----------------------------------------------------------
 
-<iframe src="./examples/realtime-positioning/index.html" width="100%" height="350px" frameBorder=0></iframe>
+In this use case, a vehicule is positioned on a map in real time using the device's default geolocation sensor.
 
-<pre class=example><code data-include="./examples/realtime-positioning/index.js"></code></pre>
+<div class="phone">
+    <iframe src="./examples/realtime-positioning/index.html" frameBorder=0 scrolling=no></iframe>
+</div>
+
+<pre class="example highlight" data-include="./examples/realtime-positioning/index.js" data-include-sync=yup></pre>
 
 
 Relying on cached data in a battery- or CPU-contrained environment
 -----------------------------------------------------------------
-
-
+<div class="phone">
+    <iframe src="./examples/cached-data/index.html" frameBorder=0 scrolling=no></iframe>
+</div>
 
 Head-tracking
 -------------
