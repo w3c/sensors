@@ -1,0 +1,29 @@
+html, body { height: 100%; margin: 0; padding: 0; }
+input { box-sizing: border-box; width: 100%; }
+form {
+    font-family: helvetica;
+    font-size: 10px;
+    color: #999;
+    margin: 10px;
+    max-width: 500px;
+}
+
+#msg {
+    padding: 10px;
+    color: #000;
+    font-size: 12px;
+}
+.error {
+    border: 1px solid #F00;
+    background-color: #F99;
+}
+
+.success {
+    border: 1px solid #3c3;
+    background-color: #CfC;
+}
+
+.info {
+    border: 1px solid #ccc;
+    background-color: #eee;
+}
