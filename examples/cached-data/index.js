@@ -21,6 +21,7 @@ function start() {
     window.getItAnyway = getItAnyway;
     
     function cacheFetch() {
+        updateMsg("info", "Fetching your cached geolocation to prefill the form…");
         navigator.geolocation.getCurrentPosition(oncachehit, oncachemiss, {
             enableHighAccuracy: true, 
             maximumAge: 60 * 1000, // 1 minute
