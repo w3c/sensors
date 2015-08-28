@@ -7,5 +7,7 @@ The bulk of the work happens on [Github Issues][1]. [Contributions][2] are welco
 
 You'll find the latest editor’s draft here: https://w3c.github.io/sensors/
 
+A usecase document is also in the works. It available here: https://w3c.github.io/sensors/usecases.html
+
 [1]: https://github.com/w3c/sensors/issues
 [2]: ./contributing.md
