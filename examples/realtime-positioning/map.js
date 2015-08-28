@@ -39,6 +39,7 @@ function infoBox(element_id) {
         lines.push(err ? "Error: " + err.message : "");
         lines.push("Last update: <span id=last_update>" + displayTimeInterval() + "</span> ago");
         lines.push("Update count: " + update_count);
+        lines.push("<a style='float: right;' href=''>refresh</a>");
         document.getElementById(element_id).innerHTML = lines.join("<br>");
     }
     
