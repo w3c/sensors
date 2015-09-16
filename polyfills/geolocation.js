@@ -1,6 +1,6 @@
 "use strict";
 window.sensors = window.sensors || {};
-window.sensors.Geolocation = window.sensors.geolocation || function (options) {
+window.sensors.Geolocation = window.sensors.Geolocation || function (options) {
     var self = this;
     
     function onchange(position) {
