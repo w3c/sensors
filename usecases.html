@@ -46,22 +46,11 @@
             githubAPI: "https://api.github.com/repos/w3c/sensors"
         };
     </script>
-        <style>
-        .phone {
-            box-sizing: border-box;
-            background-image: url('./examples/phone-frame.png');
-            height: 803px;
-            width: 382px;
-            padding: 115px 29px 120px 33px;
+    <style>
+        body {
+            max-width: 50em;
         }
-        
-        .phone iframe {
-            box-sizing: border-box;
-            height: 100%;
-            width: 100%;
-            overflow: hidden;
-        }
-        </style>
+    </style>
   </head>
   <body>
 <section id=abstract>
@@ -71,32 +60,62 @@
 <section id=sotd>
 </section>
 
-Displaying the position of a vehicle on a map in real time
-----------------------------------------------------------
+Introduction
+------------
 
-In this use case, a vehicule is positioned on a map in real time using the device's default geolocation sensor.
+Sensor data is increasingly used in Web application development, especially on mobile devices where new sensors are added regularly. Exposing those to the Web has so far been both slow-paced and ad-hoc. The goal of the Generic Sensor API is to promote consistency across sensor APIs and increase the pace at which they can be Web applications by simplifying both the specification and implementation processes.
 
-<div class="phone">
-    <iframe src="./examples/realtime-positioning/index.html" frameBorder=0 scrolling=no></iframe>
+There are plenty of different kinds of sensors cattering to plenty more use cases with various performance requirements. The purpose of this document is to describe the minimum number of use cases in order to build an exhaustive list of all requirements with which to inform the design of a Generic Sensor API.
+
+<div class=note>
+Some of the examples and use cases in this document rely on sensors that have already been specified by this or other Working Groups. While the editor feels these would be great candidates for building atop the Generic Sensor API, their inclusion in this document does not imply that the relevant Working Groups have given their agreement to do so or a planning to.
 </div>
 
-<pre title="Proposed Syntax" class="example highlight" data-include="./examples/realtime-positioning/proposal.js" data-include-sync=yup></pre>
+Use Cases
+---------
+
+### Displaying the position of the user on a map in real time
+
+In this use case, the user's location is positioned on a map in real time using the device's default geolocation sensor. The users' position is represented on the map by a circle the size of which depends on the accuracy of the data provided by the geolocation sensor. When no signal is available, the circle is greyed-out. 
+
+An [example application is available online](https://w3c.github.io/sensors/examples/realtime-positioning/index.html) (best-viewed with a device equipped with a geolocation sensor). Its [source code](https://github.com/w3c/sensors/tree/gh-pages/examples/cached-data) can be found in the same repository as this document.
+
+<!--
+    TODO Add screenshots
+-->
+
+Using the current Geolocation API [[geolocation-API]], the application code to tap into the sensor looks like this:
 
 <pre title="Current Syntax" class="example highlight" data-include="./examples/realtime-positioning/index.js" data-include-sync=yup></pre>
 
+Using the proposed Gerneric Sensor API, application level code would be modified like so:
 
-Relying on cached data in a battery- or CPU-contrained environment
------------------------------------------------------------------
-<div class="phone">
-    <iframe src="./examples/cached-data/index.html" frameBorder=0 scrolling=no></iframe>
-</div>
+<pre title="Proposed Syntax" class="example highlight" data-include="./examples/realtime-positioning/proposal.js" data-include-sync=yup></pre>
 
-Head-tracking
--------------
+#### Further improvements
 
+It is worth noting that the current syntax doesn't of the Geolocation API doesn't allow for a number of performance optimizations that require awareness of domain constraints and/or application-level code.
 
+In our particular example application, the frequency at which the Geloocation API must be queried and its precision requirements vary greatly depending on the zoom factor of the map and the speed at which the user is driving.
+
+The more zoomed out we are, the lower our accuracy and frequency requirments become.
+
+The faster the user is moving (for example if they are driving a car), the higher the frequency requirements (as per the [Nyquist–Shannon sampling theorem](https://en.wikipedia.org/wiki/Nyquist%E2%80%93Shannon_sampling_theorem)).
+
+#### Requirements
+
+### Relying on cached data in a battery- or CPU-contrained environment
+
+### Head-tracking
+
+### Turn by turn navigation
+
+### Podometer
 
 <div class=issue data-number=12></div>
+
+### Promimity sensors
+
 
 
 <section id=acknowledgements>
@@ -104,7 +123,7 @@ Head-tracking
 Acknowledgements
 ----------------
 
-The following people have greatly contributed to this specification through extensive discussions on GitHub: <span id=gh-commenters></span>.
+The following people have greatly contributed to this document through extensive discussions on GitHub: <span id=gh-commenters></span>.
 
 We'd also like to thank <span id=gh-contributors></span> for their editorial input.
 
