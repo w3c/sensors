@@ -1,6 +1,6 @@
 function onsuccess(position) {
     var coords = [position.coords.latitude, position.coords.longitude];
-    updateMap(null, coords);
+    updateMap(null, coords, position.coords.accuracy);
 }
 
 function onerror(e) {

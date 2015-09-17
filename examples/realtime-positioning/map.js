@@ -3,8 +3,16 @@ function map(element_id, info_box_id, token) {
     var map = null;
     L.mapbox.accessToken = token;
     var updateInfoBox = infoBox(info_box_id);
-    return function updateMap(err, coords) {
-        updateInfoBox(err, coords);
+    
+    function resolution(latitude, zoomLevel) {
+        var PI = Math.PI;
+        var EARTH_CIRC = 6378137;
+        return (Math.cos(latitude * PI/180) * 2 * PI * EARTH_CIRC) / (256 * Math.pow(2, zoomLevel));
+    }
+    
+    return function updateMap(err, coords, accuracy) {
+        var ZOOM_LEVEL = 17;
+        updateInfoBox(err, coords, accuracy);
         if (err) {
             if (marker) {
                 marker.setStyle({ color: "#999" });
@@ -13,7 +21,7 @@ function map(element_id, info_box_id, token) {
             if (map) {
                 map.panTo(coords);
             } else {
-                map = L.mapbox.map(element_id, 'mapbox.streets').setView(coords, 18);
+                map = L.mapbox.map(element_id, 'mapbox.streets').setView(coords, ZOOM_LEVEL);
             }
             if (marker) {
                 marker.setLatLng(coords);
@@ -21,6 +29,7 @@ function map(element_id, info_box_id, token) {
                 marker = L.circleMarker(coords)
                 map.addLayer(marker);
             }
+            marker.setRadius(accuracy / resolution(coords[0], ZOOM_LEVEL));
             marker.setStyle({ color: "#03f" });
         }
     };
@@ -30,12 +39,13 @@ function infoBox(element_id) {
     var update_count = 0;
     var last_updated;
     
-    function updateInfoBox(err, coords) {
+    function updateInfoBox(err, coords, accuracy) {
         last_updated = Date.now();
         update_count++;
         var lines = [];
         lines.push("Lat: " + (coords ? coords[0] : "…"));
         lines.push("Lng: " + (coords ? coords[1] : "…"));
+        lines.push("Precision: " + (accuracy || "…"));
         lines.push(err ? "Error: " + err.message : "");
         lines.push("Last update: <span id=last_update>" + displayTimeInterval() + "</span> ago");
         lines.push("Update count: " + update_count);

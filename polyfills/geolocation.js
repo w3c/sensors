@@ -8,7 +8,8 @@ window.sensors.Geolocation = window.sensors.Geolocation || function (options) {
             self.onchange({ // TODO use real events
                 data: {
                     latitude: position.coords.latitude,
-                    longitude: position.coords.longitude
+                    longitude: position.coords.longitude,
+                    accuracy: position.coords.accuracy
                 }
             });
         }
