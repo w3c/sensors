@@ -22,17 +22,15 @@ function start() {
     
     function cacheFetch() {
         updateMsg("info", "Fetching your cached geolocation to prefill the form…");
-        sensors.Geolocation.requestData({
-            fromCache: true,
-            maximumAge: 60 * 1000 // 1 minute
-        }).then(function(data) {
-            if (data) oncachehit(data);
-            else oncachemiss();
-        }, oncachemiss);
+        navigator.geolocation.getCurrentPosition(oncachehit, oncachemiss, {
+            enableHighAccuracy: true, 
+            maximumAge: 60 * 1000, // 1 minute
+            timeout: 0 // instant timeout to only get data from the cache
+        });
     }
     
-    function oncachehit(coords) {
-        getAddress(coords, function(err, address) {
+    function oncachehit(position) {
+        getAddress(position.coords, function(err, address) {
             if (err) return msg.error(err);
             updateForm(address);
             msg.cacheHit();
