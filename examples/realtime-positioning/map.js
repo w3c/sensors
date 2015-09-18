@@ -1,6 +1,7 @@
 function map(element_id, info_box_id, token) {
     var marker = null;
     var map = null;
+    var MIN_CIRCLE_SIZE = 10;
     L.mapbox.accessToken = token;
     var updateInfoBox = infoBox(info_box_id);
     
@@ -8,6 +9,11 @@ function map(element_id, info_box_id, token) {
         var PI = Math.PI;
         var EARTH_CIRC = 6378137;
         return (Math.cos(latitude * PI/180) * 2 * PI * EARTH_CIRC) / (256 * Math.pow(2, zoomLevel));
+    }
+    
+    function circleRadius(accuracy, latitude, zoomLevel) {
+        var res = resolution(latitude, zoomLevel)
+        return Math.max(accuracy / res, MIN_CIRCLE_SIZE);
     }
     
     return function updateMap(err, coords, accuracy) {
@@ -22,6 +28,12 @@ function map(element_id, info_box_id, token) {
                 map.panTo(coords);
             } else {
                 map = L.mapbox.map(element_id, 'mapbox.streets').setView(coords, ZOOM_LEVEL);
+                map.on("zoomend", function() {
+                    if (marker) {
+                        var r = circleRadius(accuracy, coords[0], map.getZoom());
+                        marker.setRadius(r);
+                    }
+                });
             }
             if (marker) {
                 marker.setLatLng(coords);
@@ -29,7 +41,8 @@ function map(element_id, info_box_id, token) {
                 marker = L.circleMarker(coords)
                 map.addLayer(marker);
             }
-            marker.setRadius(accuracy / resolution(coords[0], ZOOM_LEVEL));
+            var r = circleRadius(accuracy, coords[0], map.getZoom());
+            marker.setRadius(r);
             marker.setStyle({ color: "#03f" });
         }
     };
