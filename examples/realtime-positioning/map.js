@@ -6,9 +6,8 @@ function map(element_id, info_box_id, token) {
     var updateInfoBox = infoBox(info_box_id);
     
     function resolution(latitude, zoomLevel) {
-        var PI = Math.PI;
         var EARTH_CIRC = 6378137;
-        return (Math.cos(latitude * PI/180) * 2 * PI * EARTH_CIRC) / (256 * Math.pow(2, zoomLevel));
+        return Math.cos(latitude * PI/180) * 2 * Math.PI * EARTH_CIRC) / (256 * Math.pow(2, zoomLevel);
     }
     
     function circleRadius(accuracy, latitude, zoomLevel) {
@@ -58,7 +57,7 @@ function infoBox(element_id) {
         var lines = [];
         lines.push("Lat: " + (coords ? coords[0] : "…"));
         lines.push("Lng: " + (coords ? coords[1] : "…"));
-        lines.push("Precision: " + (accuracy || "…"));
+        lines.push("Accuracy: " + ((accuracy + "m") || "…"));
         lines.push(err ? "Error: " + err.message : "");
         lines.push("Last update: <span id=last_update>" + displayTimeInterval() + "</span> ago");
         lines.push("Update count: " + update_count);
