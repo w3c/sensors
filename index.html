@@ -83,6 +83,8 @@ The <a href="http://dev.w3.org/html5/spec/webappapis.html#eventhandler"><dfn>Eve
 
 The terms <a href="http://dev.w3.org/html5/spec/webappapis.html#event-handlers"><dfn>event handlers</dfn></a> and <a href="http://dev.w3.org/html5/spec/webappapis.html#event-handler-event-type"><dfn>event handler event types</dfn></a> are defined in the HTML5 specification [[!HTML5]].
 
+The <a href="http://w3c.github.io/hr-time/#dom-domhighrestimestamp"><dfn>DOMHighResTimeStamp</dfn></a> type and the <a href="http://w3c.github.io/hr-time/#time-origin"><dfn>time origin</dfn></a> concept are defined in the High Resolution Time Specification [[!hr-time]].
+
 API
 ---
 
@@ -280,17 +282,14 @@ Represents the values of a sensor at a given point in time.
 
 <pre class="idl">
 interface SensorReading {
-  readonly attribute DOMTimeStamp timestamp;
+  readonly attribute DOMHighResTimeStamp timeStamp;
   readonly attribute sensor SensorInfo;
 };
 </pre>
 
-#### <dfn>SensorReading.timestamp</dfn>
+#### <dfn>SensorReading.timeStamp</dfn>
 
-Returns the time at which the data was <a>read from the sensor</a> in the number of milliseconds that passed since 00:00:00 UTC on 1 January 1970.
-
-<div class=issue data-number=43></div>
-
+Returns a timestamp of the time at which the data was <a>read from the sensor</a> expressed in milliseconds that passed since the <a>time origin</a>.
 
 #### <dfn>SensorReading.sensor</dfn>
 
