@@ -90,54 +90,178 @@ API
 
 <div class=issue data-number=8></div>
 
+### The <dfn>Sensors</dfn> Interface
 
-
-
-### The <dfn>Sensor</dfn> Interface
+The <a>Sensors</a> interface represents a container for a list of <a>Sensor</a> objects. It is exposed on Window and Workers as the `Window.sensors` and `WorkerGlobalScope.sensors` attribute respectively.
 
 <pre class="idl">
-[Constructor(SensorInit sensorInitDict), Exposed=(Window,Worker)]
-interface Sensor : EventTarget {
-  static Promise&lt;sequence&lt;DOMString&gt;&gt; getAll();
-  readonly attribute double frequency;
-  readonly attribute SensorReading? value;
-  attribute EventHandler onerror;
-  attribute EventHandler onchange;
+[Constructor, Exposed=(Window,Worker)]
+interface Sensors {
+  Promise&lt;sequence&lt;Sensor&gt;&gt; matchAll(optional MatchAllOptions options);
 };
 
-dictionary SensorInit {
-  double? frequency;
-  DOMString? identifier;
+partial interface Window {
+  [SameObject] readonly attribute Sensors sensors;
+};
+
+partial interface WorkerGlobalScope {
+  [SameObject] readonly attribute Sensors sensors;
+};
+
+dictionary MatchAllOptions {
+  DOMString type;
 };
 </pre>
 
-#### <dfn>Sensor.getAll</dfn>
+#### <dfn>Sensors.matchAll</dfn>
 
 <div class=issue data-number=26></div>
 
-Returns a promise which resolves to an array of DOMStrings representing the identifier of all available local sensors.
+Returns a promise which resolves to an array of <a>Sensor</a> objects representing all available local(?) sensors.
 
 <div class=issue data-number=28></div>
 <div class=issue data-number=7></div>
 
-#### <dfn>Sensor.frequency</dfn>
+<pre class="example highlight">
+sensors.matchAll({ type: "proximity", position: "rear" }).then(function(sensors) {
+    var sensor = sensors[0];
+    if (!sensor) return;
+    // sensor.consructor === ProximitySensor;
+    var obs = new SensorObserver(sensor, { /* ... */ });
+    obs.onchange = dostuff;
+});
+</pre>
+
+### The <dfn>Sensor</dfn> Interface
+
+The `Sensor` interface is a lightweight object that represents an actual physical sensor. Concrete sensor implementation will need to subclass it.
+
+If no `identifier` is given, the Constructor uses the identifier of the default sensor of that type. This is to the cater to the common case of having a single sensor of a given type on a device.
+
+<pre class="example highlight javascript">
+
+let sensor = new GeolocationSensor();
+sensor.isDefault; // returns true;
+
+</pre>
+
+<pre class="idl">
+[Constructor(optional DOMString identifier, optional SensorInit sensorInitDic), Exposed=(Window,Worker)]
+interface Sensor {
+    readonly attribute DOMString identifier;
+    readonly attribute boolean isDefault;
+    SensorObserver getObserver(optional SensorObserverOptions sensorObserverOptions);
+};
+
+dictionary SensorInit {
+  boolean isDefault;
+};
+</pre>
+
+#### <dfn>Sensor.identifier</dnf>
+
+Returns the identifier of the sensor. This is an opaque DOMString.
+
+#### <dfn>Sensor.isDefault</dnf>
+
+Returns true if the sensor is the default sensor of that type on the device, false otherwise.
+
+#### <dfn>Sensor.getObserver</dnf>
+
+Returns a new <a>SensorObserver</a> object attached to this particular sensor.
+
+<p class=ednote>Not sure if this is really necessary.</p>
+
+<pre class="example highlight">
+let obs = new GeolocationSensor().getObserver({ frequency: 60 });
+obs.onchange = dostuff;
+
+// Equivalent to:
+let sensor = new GeolocationSensor();
+let obs = new SensorObserver(sensor, { frequency: 60 });
+obs.onchange = dostuff;
+</pre>
+
+### The <dfn>SensorObserver</dfn> Interface
+
+The `SensorObserver` interface's role is to observe the changes in a given sensor at regular intervals and emit events when those value change in a consumer-configurable way.
+
+<pre class="idl">
+[Constructor(Sensor sensor, optional SensorObserverOptions sensorObserverOptions), Exposed=(Window,Worker)]
+interface SensorObserver : EventTarget {
+  readonly attribute double frequency;
+  readonly attribute boolean batch;
+  readonly attribute Sensor sensor;
+  readonly attribute TresholdCallback? treshold; 
+  readonly attribute double timeout; 
+  readonly attribute booelan wakeup; 
+  readonly attribute SensorReading? value;
+  readonly attribute SensorReading[]? values;
+  attribute EventHandler onerror;
+  attribute EventHandler onchange;
+  // would that cover all cases?
+  attribute EventHandler oncalibration;
+  // needed?
+  attribute EventHandler onconnect;
+  attribute EventHandler ondisconnect;
+};
+
+dictionary SensorObserverOptions {
+  double? frequency;
+  boolean? batch = false;
+  TresholdCallback? treshold;
+  double? timeout;
+};
+
+callback TresholdCallback = boolean (SensorReading currentValue, SensorReading newValue);
+</pre>
+
+#### <dfn>SensorObserver.frequency</dfn>
 
 <div class=issue data-number=4></div>
 <div class=issue data-number=6></div>
 <div class=issue data-number=23></div>
 
-#### <dfn>Sensor.value</dfn>
+#### <dfn>SensorObserver.batch</dfn>
 
+Returns true if <a>batch mode</a> was requested, false otherwise.
+
+#### <dfn>SensorObserver.sensor</dfn>
+
+Returns the related <a>Sensor</a> object.
+
+#### <dfn>SensorObserver.treshold</dfn>
+
+<div class=issue data-number=25></div>
+
+#### <dfn>SensorObserver.timeout</dfn>
+
+<div class=issue data-number=44></div>
+
+#### <dfn>SensorObserver.wakeup</dfn>
+
+<div class=issue data-number=15></div>
+
+#### <dfn>SensorObserver.value</dfn>
 <div class=issue data-number=2></div>
+
+#### <dfn>SensorObserver.values</dfn>
+
 <div class=issue data-number=13></div>
 
-#### <dfn>Sensor.onerror</dfn>
+#### <dfn>SensorObserver.onerror</dfn>
 
-#### <dfn>Sensor.onchange</dfn>
+#### <dfn>SensorObserver.onchange</dfn>
+
+#### <dfn>SensorObserver.oncalibration</dfn>
+
+#### <dfn>SensorObserver.onconnect</dfn>
+
+#### <dfn>SensorObserver.ondisconnect</dfn>
 
 #### Event handlers
 
-The following are the <a>event handlers</a> (and their corresponding <a>event handler event types</a>) that MUST be supported as attributes by the objects implementing the <a>Sensor</a> interface:
+The following are the <a>event handlers</a> (and their corresponding <a>event handler event types</a>) that MUST be supported as attributes by the objects implementing the <a>SensorObserver</a> interface:
 
 <table class="simple">
   <thead>
@@ -155,33 +279,42 @@ The following are the <a>event handlers</a> (and their corresponding <a>event ha
       <td><strong><code>onerror</code></strong></td>
       <td><code>error</code></td>
     </tr>
+    <tr>
+      <td><strong><code>oncalibration</code></strong></td>
+      <td><code>calibration</code></td>
+    </tr>
+    <tr>
+      <td><strong><code>onconnect</code></strong></td>
+      <td><code>connect</code></td>
+    </tr>
+    <tr>
+      <td><strong><code>ondisconnect</code></strong></td>
+      <td><code>disconnect</code></td>
+    </tr>
   </tbody>
 </table>
 
-#### <dfn>SensorInit.treshold</dfn>
+### The <dfn>SensorReading</dfn> Interface
 
-<div class=issue data-number=25></div>
-
-#### <dfn>SensorInit.wakeup</dfn>
-
-<div class=issue data-number=15></div>
-
-### <dfn>SensorReading</dfn>
+Represents the values of a sensor at a given point in time.
 
 <pre class="idl">
 interface SensorReading {
   readonly attribute DOMTimeStamp timestamp;
-  readonly attribute DOMString sensorIdentifier;
+  readonly attribute sensor Sensor;
 };
 </pre>
 
-### <dfn>SensorReading.timestamp</dfn>
+#### <dfn>SensorReading.timestamp</dfn>
 
 Returns the time at which the data was <a>read from the sensor</a> in the number of milliseconds that passed since 00:00:00 UTC on 1 January 1970.
 
-### <dfn>SensorReading.sensorIdentifier</dfn>
+<div class=issue data-number=43></div>
 
-Returns the identifier of the sensor the reading is taken from.
+
+#### <dfn>SensorReading.sensor</dfn>
+
+Returns the sensor object the reading is taken from.
 
 ### Low level Sensor API
 
