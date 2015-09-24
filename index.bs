@@ -47,7 +47,27 @@ urlPrefix: https://w3c.github.io/webappsec/specs/powerfulfeatures/; spec: powerf
 Introduction {#intro}
 =====================
 
-Introduction here.
+Increasingly, sensor data is used in application development to
+enable new use cases such a geolocation,
+counting steps or head-tracking.
+This is especially true on mobile devices where new sensors are added regularly.
+It is also increasinly common in networked objects
+which are part of the Internet of Things.
+
+Exposing sensor data to the Web
+has so far been both slow-paced and ad-hoc.
+Few sensors are already exposed to the Web.
+When they are, it is often in ways that limit their possible use cases
+(for example by exposing abstractions that are too high level
+and which don't perform well enough).
+APIs also vary greatlty from one sensor to the next
+which increases the cognitive burden of authors and slows development.
+
+The goal of the Generic Sensor API is to
+promote consistency across sensor APIs,
+enable advanced use cases thanks to performant low-level APIs, 
+and increase the pace at which new sensors can be exposed to the Web
+by simplifying the specification and implementation processes.
 
 Use Cases
 =========
