@@ -1,0 +1,295 @@
+<pre class="metadata">
+Title: Generic Sensor API
+Status: ED
+Level: 1
+ED: https://w3c.github.io/sensors/
+Shortname: sensors
+TR: http://www.w3.org/TR/sensors/
+Editor: Tobie Langel 78102, Intel Corporation, tobie@sensors.codespeaks.com
+Editor: Rick Waldron, jQuery Foundation
+Group: dap
+Abstract:
+  This specification defines a framework for exposing sensor data
+  to the Open Web Platform in a consistent way.
+  It does so by defining a blueprint for writing
+  specifications of concrete sensors along with an abstract Sensor interface
+  that can be extended to accommodate different sensor types.
+Version History: https://github.com/w3c/sensors/commits/gh-pages/index.bs
+!Bug Reports: <a href="https://www.github.com/w3c/sensors/issues/new">via the w3c/sensors repository on GitHub</a>
+Indent: 2
+Markup Shorthands: markdown on
+Inline Github Issues: true
+</pre>
+<pre class="anchors">
+urlPrefix: https://dom.spec.whatwg.org; spec: DOM
+  type: interface
+    text: EventTarget; url: interface-eventtarget
+urlPrefix: http://www.w3.org/TR/html5/; spec: HTML5
+  type: dfn
+    urlPrefix: webappapis.html
+      text: incumbent settings object
+      text: event handlers
+      text: event handler event type
+  type: interface
+    urlPrefix: webappapis.html
+      text: EventHandler
+urlPrefix: http://w3c.github.io/hr-time/; spec: hr-time-2
+  type: interface
+    text: DOMHighResTimeStamp; url: dom-domhighrestimestamp
+  type: dfn
+    text: time origin
+</pre>
+
+
+Introduction {#intro}
+=====================
+
+Introduction here.
+
+Use Cases
+=========
+
+Issue(w3c/sensors#12):
+
+Security and privacy considerations
+===================================
+
+Issue(w3c/sensors#14):
+
+Issue(w3c/sensors#20):
+
+API
+===
+
+Issue(w3c/sensors#8):
+
+## The <dfn>Sensors</dfn> Interface
+
+The <a>Sensors</a> interface represents a container for a list of <a>SensorInfo</a> objects. It is exposed on Window and Workers as the `Window.sensors` and `WorkerGlobalScope.sensors` attribute respectively.
+
+<pre class="idl">
+[Constructor, Exposed=(Window,Worker)]
+interface Sensors {
+  Promise&lt;sequence&lt;SensorInfo&gt;&gt; matchAll(optional MatchAllOptions options);
+};
+
+partial interface Window {
+  [SameObject] readonly attribute Sensors sensors;
+};
+
+partial interface WorkerGlobalScope {
+  [SameObject] readonly attribute Sensors sensors;
+};
+
+dictionary MatchAllOptions {
+  DOMString type;
+};
+</pre>
+
+### Sensors.matchAll
+
+Issue(w3c/sensors#26):
+
+Returns a promise which resolves to an array of <a>SensorInfo</a> objects representing all available local(?) sensors.
+
+Issue(w3c/sensors#28):
+
+Issue(w3c/sensors#7):
+
+<pre class="example highlight">
+sensors.matchAll({ type: "proximity", position: "rear" }).then(function(sensors) {
+    let sensor_info = sensors[0];
+    if (!sensor_info) return;
+    let sensor = new ProximitySensor(sensor_info.id, { /* ... */ });
+    sensor.onchange = dostuff;
+});
+</pre>
+
+## The <dfn>SensorInfo</dfn> Interface
+
+The `SensorInfo` interface is a lightweight object that represents an actual physical sensor. Concrete sensor implementation will need to subclass it.
+
+If no `id` is given, the Constructor uses the identifier of the default sensor of that type. This is to the cater to the common case of having a single sensor of a given type on a device.
+
+<pre class="example highlight javascript">
+
+let sensor = new GeolocationSensor();
+sensor.isDefault; // returns true;
+
+</pre>
+
+<pre class="idl">
+[Constructor(optional DOMString id, optional SensorInit sensorInitDic), Exposed=(Window,Worker)]
+interface SensorInfo {
+    readonly attribute DOMString id;
+    readonly attribute boolean isDefault;
+};
+
+dictionary SensorInit {
+  boolean isDefault;
+};
+</pre>
+
+### <dfn>SensorInfo.id</dnf>
+
+Returns the id of the sensor. This is an opaque DOMString.
+
+### <dfn>SensorInfo.isDefault</dnf>
+
+Returns true if the sensor is the default sensor of that type on the device, false otherwise.
+
+## The <dfn>Sensor</dfn> Interface
+
+The `Sensor` interface's role is to observe the changes in a given sensor at regular intervals and emit events when those value change in a consumer-configurable way.
+
+<pre class="idl">
+[Constructor(SensorInfo info, optional SensorOptions sensorObserverOptions), Exposed=(Window,Worker)]
+interface Sensor : EventTarget {
+  attribute double frequency;
+  attribute boolean batch;
+  readonly attribute SensorInfo info;
+  attribute TresholdCallback? treshold; 
+  attribute double timeout; 
+  attribute boolean wakeup; 
+  readonly attribute SensorReading? value;
+  readonly attribute SensorReading[]? values;
+  attribute EventHandler onerror;
+  attribute EventHandler onchange;
+  // would that cover all cases?
+  attribute EventHandler oncalibration;
+  // needed?
+  attribute EventHandler onconnect;
+  attribute EventHandler ondisconnect;
+};
+
+dictionary SensorOptions {
+  double? frequency;
+  boolean? batch = false;
+  TresholdCallback? treshold;
+  double? timeout;
+};
+
+callback TresholdCallback = boolean (SensorReading currentValue, SensorReading newValue);
+</pre>
+
+### Sensor.frequency
+
+Issue(w3c/sensors#4):
+
+Issue(w3c/sensors#6):
+
+Issue(w3c/sensors#23):
+
+### Sensor.batch
+
+Returns true if batch mode was requested, false otherwise.
+
+### Sensor.info
+
+Returns the related <a>SensorInfo</a> object.
+
+### Sensor.treshold
+
+Issue(w3c/sensors#25):
+
+### Sensor.timeout
+
+Issue(w3c/sensors#44):
+
+### Sensor.wakeup
+
+Issue(w3c/sensors#15):
+
+### Sensor.value
+
+Issue(w3c/sensors#2):
+
+### Sensor.values
+
+Issue(w3c/sensors#13):
+
+### Sensor.onerror
+
+### Sensor.onchange
+
+### Sensor.oncalibration
+
+### Sensor.onconnect
+
+### Sensor.ondisconnect
+
+### Event handlers
+
+The following are the <a>event handlers</a> (and their corresponding <a>event handler event types</a>) that MUST be supported as attributes by the objects implementing the <a>Sensor</a> interface:
+
+<table class="simple">
+  <thead>
+    <tr>
+      <th>event handler</th>
+      <th>event handler event type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><code>onchange</code></strong></td>
+      <td><code>change</code></td>
+    </tr>
+    <tr>
+      <td><strong><code>onerror</code></strong></td>
+      <td><code>error</code></td>
+    </tr>
+    <tr>
+      <td><strong><code>oncalibration</code></strong></td>
+      <td><code>calibration</code></td>
+    </tr>
+    <tr>
+      <td><strong><code>onconnect</code></strong></td>
+      <td><code>connect</code></td>
+    </tr>
+    <tr>
+      <td><strong><code>ondisconnect</code></strong></td>
+      <td><code>disconnect</code></td>
+    </tr>
+  </tbody>
+</table>
+
+### The <dfn>SensorReading</dfn> Interface
+
+Represents the values of a sensor at a given point in time.
+
+<pre class="idl">
+interface SensorReading {
+  readonly attribute DOMHighResTimeStamp timeStamp;
+  readonly attribute SensorInfo info;
+};
+</pre>
+
+### SensorReading.timeStamp
+
+Returns a timestamp of the time at which the data was <a href=#>read from the sensor</a> expressed in milliseconds that passed since the <a>time origin</a>.
+
+### SensorReading.info
+
+Returns the sensor object the reading is taken from.
+
+Low level Sensor API
+--------------------
+
+Issue(w3c/sensors#24):
+
+Extensibility
+=============
+
+The purpose of this section is to describe how this specification can be extended to specify concrete sensors.
+
+It will feature precise steps on how to extend or inherit from interfaces described in this specification along with examples for two sensors, one which measures a single value and one which measures multiple ones.
+
+Issue(w3c/sensors#22):
+
+Acknowledgements
+================
+
+The following people have greatly contributed to this specification through extensive discussions on GitHub: <span id=gh-commenters></span>.
+
+We'd also like to thank <span id=gh-contributors></span> for their editorial input.
+
