@@ -226,7 +226,11 @@ that can be extended to accommodate different sensor types.</p>
    <ul class="toc" role="directory">
     <li><a href="#intro"><span class="secno">1</span> <span class="content">Introduction</span></a>
     <li><a href="#use-cases"><span class="secno">2</span> <span class="content">Use Cases</span></a>
-    <li><a href="#security-and-privacy-considerations"><span class="secno">3</span> <span class="content">Security and privacy considerations</span></a>
+    <li>
+     <a href="#security-and-privacy-considerations"><span class="secno">3</span> <span class="content">Security and privacy considerations</span></a>
+     <ul class="toc">
+      <li><a href="#secure-context"><span class="secno">3.1</span> <span class="content">Secure Context</span></a>
+     </ul>
     <li>
      <a href="#api"><span class="secno">4</span> <span class="content">API</span></a>
      <ul class="toc">
@@ -307,6 +311,8 @@ that can be extended to accommodate different sensor types.</p>
     </ul>
    </div>
    <h2 class="heading settled" data-level="3" id="security-and-privacy-considerations"><span class="secno">3. </span><span class="content">Security and privacy considerations</span><a class="self-link" href="#security-and-privacy-considerations"></a></h2>
+   <h3 class="heading settled" data-level="3.1" id="secure-context"><span class="secno">3.1. </span><span class="content">Secure Context</span><a class="self-link" href="#secure-context"></a></h3>
+   <p>Sensor output is explicitely flagged by the Secure Contexts specification <a data-link-type="biblio" href="#biblio-powerful-features">[powerful-features]</a> as a high-value target for network attackers. At such, sensor output SHOULD only be available within a <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/powerfulfeatures/#secure-context">secure context</a>.</p>
    <div class="issue no-marker" id="issue-d41d8cd90">
     <a class="self-link" href="#issue-d41d8cd90"></a><a class="marker" href="https://github.com/w3c/sensors/issues/14">Issue #14 on GitHub: “Should sensors require a privileged context?”</a>
     <p>The <a href="https://w3c.github.io/webappsec/specs/powerfulfeatures/">Privileged Contexts spec</a> notes:</p>
@@ -870,6 +876,11 @@ callback <dfn class="idl-code" data-dfn-type="callback" data-export="" id="callb
      <li><a href="https://html.spec.whatwg.org/multipage/browsers.html#window">Window</a>
      <li><a href="https://html.spec.whatwg.org/multipage/workers.html#workerglobalscope">WorkerGlobalScope</a>
     </ul>
+   <li>
+    <a data-link-type="biblio" href="#biblio-powerful-features">[powerful-features]</a> defines the following terms:
+    <ul>
+     <li><a href="https://w3c.github.io/webappsec/specs/powerfulfeatures/#secure-context">secure context</a>
+    </ul>
   </ul>
   <h2 class="no-num heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
   <h3 class="no-num heading settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
@@ -882,6 +893,8 @@ callback <dfn class="idl-code" data-dfn-type="callback" data-export="" id="callb
    <dd>Ilya Grigorik; James Simonsen; Jatinder Mann. <a href="http://www.w3.org/TR/hr-time-2/">High Resolution Time Level 2</a>. 18 September 2015. WD. URL: <a href="http://www.w3.org/TR/hr-time-2/">http://www.w3.org/TR/hr-time-2/</a>
    <dt id="biblio-html5"><a class="self-link" href="#biblio-html5"></a>[HTML5]
    <dd>Ian Hickson; et al. <a href="http://www.w3.org/TR/html5/">HTML5</a>. 28 October 2014. REC. URL: <a href="http://www.w3.org/TR/html5/">http://www.w3.org/TR/html5/</a>
+   <dt id="biblio-powerful-features"><a class="self-link" href="#biblio-powerful-features"></a>[POWERFUL-FEATURES]
+   <dd>Mike West; Yan Zhu. <a href="http://www.w3.org/TR/powerful-features/">Privileged Contexts</a>. 24 April 2015. WD. URL: <a href="http://www.w3.org/TR/powerful-features/">http://www.w3.org/TR/powerful-features/</a>
    <dt id="biblio-rfc2119"><a class="self-link" href="#biblio-rfc2119"></a>[RFC2119]
    <dd>S. Bradner. <a href="https://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>. March 1997. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc2119">https://tools.ietf.org/html/rfc2119</a>
   </dl>
