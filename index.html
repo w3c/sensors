@@ -232,9 +232,26 @@ by simplifying the specification and implementation processes.</p>
     </ul>
    </div>
    <h2 class="heading settled" data-level="4" id="terminology"><span class="secno">4. </span><span class="content">Terminology</span><a class="self-link" href="#terminology"></a></h2>
-   <p>A <dfn data-dfn-type="dfn" data-noexport="" id="sensor">Sensor<a class="self-link" href="#sensor"></a></dfn> measures physical quantities such as temperature, acceleration, air pressure or luminosity and provide a corresponding output. Examples of sensors include (but are not limited to): GPS, compass, altimeter, barometer, podometer, thermometer or gyroscope. A <a data-link-type="dfn" href="#conformant-user-agent">User Agent</a> may expose different types of sensors may expose multiple sensors of the same kind, for example a rear and front proximity sensor on a mobile phone.</p>
-   <p>The output of sensors can be provided as is or combined with the output of other sensors through a process called <dfn data-dfn-type="dfn" data-noexport="" id="sensor-fusion">sensor fusion<a class="self-link" href="#sensor-fusion"></a></dfn> to provide higher-level or more accurate data (often at the cost of increased latency). For example, the output of a three-axis magnetometer needs to be combined with the output of an accelerometer to provide a correct bearing. Sensor fusion can be carried out at the hardware level or in software.</p>
-   <p><a data-link-type="dfn" href="#sensor">Sensors</a> created through <a data-link-type="dfn" href="#sensor-fusion">sensor fusion</a> are sometimes called virtual sensors or synthetic sensors. However, the specification doesn’t make any practical differences between them.</p>
+   <p>A <dfn data-dfn-type="dfn" data-noexport="" id="sensor">Sensor<a class="self-link" href="#sensor"></a></dfn> measures physical quantities such as
+temperature, acceleration, air pressure or luminosity
+and provide a corresponding output.
+Examples of sensors include (but are not limited to):
+GPS, compass, altimeter, barometer, podometer, thermometer or gyroscope.
+A <a data-link-type="dfn" href="#conformant-user-agent">User Agent</a> may expose
+different types of sensors and multiple sensors of the same kind.
+For example an accelerometer, gyroscope, and
+rear and front proximity sensor on a mobile phone.</p>
+   <p>The output of sensors can be provided as is
+or combined with the output of other sensors
+through a process called <dfn data-dfn-type="dfn" data-noexport="" id="sensor-fusion">sensor fusion<a class="self-link" href="#sensor-fusion"></a></dfn> to provide higher-level or more accurate data
+(often at the cost of increased latency).
+For example, the output of a three-axis magnetometer
+needs to be combined with the output of an accelerometer
+to provide a correct bearing.
+Sensor fusion can be carried out at the hardware or software level.</p>
+   <p><a data-link-type="dfn" href="#sensor">Sensors</a> created through <a data-link-type="dfn" href="#sensor-fusion">sensor fusion</a> are sometimes
+called virtual or synthetic sensors. However, the specification
+doesn’t make any practical differences between them.</p>
    <h2 class="heading settled" data-level="5" id="api"><span class="secno">5. </span><span class="content">API</span><a class="self-link" href="#api"></a></h2>
    <div class="issue no-marker" id="issue-d41d8cd91">
     <a class="self-link" href="#issue-d41d8cd91"></a><a class="marker" href="https://github.com/w3c/sensors/issues/8">Issue #8 on GitHub: “Should sensors be singleton?”</a>
@@ -591,7 +608,8 @@ callback <dfn class="idl-code" data-dfn-type="callback" data-export="" id="callb
     <p>Following the conversation in <a class="issue-link" href="https://github.com/w3c/sensors/issues/21" title="Dependency on [DOM] due to inheriting from EventTarget">#21</a>, it becomes apparent that identifying lower-level primitives that do the actual sensor polling would be helpful to better explain the magic behind concrete sensor implementations (in the spirit of the <a href="https://extensiblewebmanifesto.org/">Extensible Web Manifesto</a>) AND pave the path for supporting raw sensors via <a href="https://whatwg.github.io/serial/">serial port</a> or what not.</p>
    </div>
    <h2 class="heading settled" data-level="6" id="extensibility"><span class="secno">6. </span><span class="content">Extensibility</span><a class="self-link" href="#extensibility"></a></h2>
-   <p>The purpose of this section is to describe how this specification can be extended to specify concrete <a data-link-type="dfn" href="#sensor">sensors</a>.</p>
+   <p>The purpose of this section is to describe
+how this specification can be extended to specify concrete <a data-link-type="dfn" href="#sensor">sensors</a>.</p>
    <p>It will feature precise steps on how to extend or inherit from interfaces described in this specification along with examples for two sensors, one which measures a single value and one which measures multiple ones.</p>
    <div class="issue no-marker" id="issue-d41d8cd915">
     <a class="self-link" href="#issue-d41d8cd915"></a><a class="marker" href="https://github.com/w3c/sensors/issues/22">Issue #22 on GitHub: “Simplify extension of the Permissions API for concrete sensor implementations”</a>

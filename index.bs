@@ -88,11 +88,29 @@ Issue(w3c/sensors#20):
 Terminology
 ===========
 
-A <dfn>Sensor</dfn> measures physical quantities such as temperature, acceleration, air pressure or luminosity and provide a corresponding output. Examples of sensors include (but are not limited to): GPS, compass, altimeter, barometer, podometer, thermometer or gyroscope. A <a lt="conformant user agent">User Agent</a> may expose different types of sensors may expose multiple sensors of the same kind, for example a rear and front proximity sensor on a mobile phone.
+A <dfn>Sensor</dfn> measures physical quantities such as
+temperature, acceleration, air pressure or luminosity
+and provide a corresponding output.
+Examples of sensors include (but are not limited to):
+GPS, compass, altimeter, barometer, podometer, thermometer or gyroscope.
+A <a lt="conformant user agent">User Agent</a> may expose
+different types of sensors and multiple sensors of the same kind.
+For example an accelerometer, gyroscope, and
+rear and front proximity sensor on a mobile phone.
 
-The output of sensors can be provided as is or combined with the output of other sensors through a process called <dfn>sensor fusion</dfn> to provide higher-level or more accurate data (often at the cost of increased latency). For example, the output of a three-axis magnetometer needs to be combined with the output of an accelerometer to provide a correct bearing. Sensor fusion can be carried out at the hardware level or in software.
+The output of sensors can be provided as is
+or combined with the output of other sensors
+through a process called <dfn>sensor fusion</dfn>
+to provide higher-level or more accurate data
+(often at the cost of increased latency).
+For example, the output of a three-axis magnetometer
+needs to be combined with the output of an accelerometer
+to provide a correct bearing.
+Sensor fusion can be carried out at the hardware or software level.
 
-<a>Sensors</a> created through <a>sensor fusion</a> are sometimes called virtual sensors or synthetic sensors. However, the specification doesn't make any practical differences between them.
+<a>Sensors</a> created through <a>sensor fusion</a> are sometimes
+called virtual or synthetic sensors. However, the specification
+doesn't make any practical differences between them.
 
 API
 ===
@@ -320,7 +338,8 @@ Issue(w3c/sensors#24):
 Extensibility
 =============
 
-The purpose of this section is to describe how this specification can be extended to specify concrete <a>sensors</a>.
+The purpose of this section is to describe
+how this specification can be extended to specify concrete <a>sensors</a>.
 
 It will feature precise steps on how to extend or inherit from interfaces described in this specification along with examples for two sensors, one which measures a single value and one which measures multiple ones.
 
