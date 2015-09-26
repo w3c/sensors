@@ -19,6 +19,7 @@ Version History: https://github.com/w3c/sensors/commits/gh-pages/index.bs
 Indent: 2
 Markup Shorthands: markdown on
 Inline Github Issues: true
+Boilerplate: omit issues-index
 </pre>
 <pre class="anchors">
 urlPrefix: https://dom.spec.whatwg.org; spec: DOM
