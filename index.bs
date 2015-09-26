@@ -85,12 +85,21 @@ Sensor output is explicitely flagged by the Secure Contexts specification [[powe
 
 Issue(w3c/sensors#20):
 
+Terminology
+===========
+
+<dfn>Sensors</dfn> measure physical quantities such as temperature, acceleration, air pressure or luminosity. Examples of sensors include (but are not limited to): GPS, compass, altimeter, barometer, podometer, thermometer or gyroscope.
+
+The output of sensors can be provided as is or combined with the output of other sensors through a process called <dfn>sensor fusion</dfn> to provide higher-level or more accurate data (often at the cost of increased latency). For example, the output of an three-axis magnetometer needs to be combined with the output of an accelerometer to provide a correct bearing. Sensor fusion can be carried out at the hardware level or in software.
+
+<a>Sensors</a> created through <a>sensor fusion</a> are sometimes called virtual sensors or synthetic sensors. However, the specification doesn't make any practical differences between them.
+
 API
 ===
 
 Issue(w3c/sensors#8):
 
-## The <dfn>Sensors</dfn> Interface
+## The `Sensors` Interface
 
 The <a>Sensors</a> interface represents a container for a list of <a>SensorInfo</a> objects. It is exposed on Window and Workers as the `Window.sensors` and `WorkerGlobalScope.sensors` attribute respectively.
 
