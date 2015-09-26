@@ -83,8 +83,6 @@ Secure Context {#secure-context}
 
 Sensor output is explicitely flagged by the Secure Contexts specification [[powerful-features]] as a high-value target for network attackers. At such, sensor output SHOULD only be available within a <a>secure context</a>.
 
-Issue(w3c/sensors#14):
-
 Issue(w3c/sensors#20):
 
 API
@@ -170,6 +168,8 @@ Returns true if the sensor is the default sensor of that type on the device, fal
 ## The <dfn>Sensor</dfn> Interface
 
 The `Sensor` interface's role is to observe the changes in a given sensor at regular intervals and emit events when those value change in a consumer-configurable way.
+
+Issue(w3c/sensors#14):
 
 <pre class="idl">
 [Constructor(SensorInfo info, optional SensorOptions sensorObserverOptions), Exposed=(Window,Worker)]

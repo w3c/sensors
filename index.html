@@ -52,7 +52,7 @@
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="http://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/Icons/w3c_home" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2015-09-25">25 September 2015</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2015-09-26">26 September 2015</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -217,27 +217,7 @@ by simplifying the specification and implementation processes.</p>
    <h3 class="heading settled" data-level="3.1" id="secure-context"><span class="secno">3.1. </span><span class="content">Secure Context</span><a class="self-link" href="#secure-context"></a></h3>
    <p>Sensor output is explicitely flagged by the Secure Contexts specification <a data-link-type="biblio" href="#biblio-powerful-features">[powerful-features]</a> as a high-value target for network attackers. At such, sensor output SHOULD only be available within a <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/powerfulfeatures/#secure-context">secure context</a>.</p>
    <div class="issue no-marker" id="issue-d41d8cd90">
-    <a class="self-link" href="#issue-d41d8cd90"></a><a class="marker" href="https://github.com/w3c/sensors/issues/14">Issue #14 on GitHub: “Should sensors require a privileged context?”</a>
-    <p>The <a href="https://w3c.github.io/webappsec/specs/powerfulfeatures/">Privileged Contexts spec</a> notes:</p>
-    <blockquote>
-     <p>Certain web platform features that have a distinct impact on a user’s security or privacy should be available for use only in privileged contexts.</p>
-    </blockquote>
-    <p>... and <a href="https://w3c.github.io/webappsec/specs/powerfulfeatures/#feature-requires-privilege">explicitly notes</a> sensors as one of the features that should be available for use only in privileged contexts.</p>
-    <p><strong>Actions:</strong></p>
-    <ul class="task-list">
-     <li class="task-list-item">
-      <input class="task-list-item-checkbox" disabled="" type="checkbox">
-       assess the state of the privileged contexts work,
-     <li class="task-list-item">
-      <input class="task-list-item-checkbox" disabled="" type="checkbox">
-       see what are the implications on the sensor API design, if any,
-     <li class="task-list-item">
-      <input class="task-list-item-checkbox" disabled="" type="checkbox">
-       see what are the implications for the spec itself, if any.
-    </ul>
-   </div>
-   <div class="issue no-marker" id="issue-d41d8cd91">
-    <a class="self-link" href="#issue-d41d8cd91"></a><a class="marker" href="https://github.com/w3c/sensors/issues/20">Issue #20 on GitHub: “Allow for async permission request when first accessing sensor data”</a>
+    <a class="self-link" href="#issue-d41d8cd90"></a><a class="marker" href="https://github.com/w3c/sensors/issues/20">Issue #20 on GitHub: “Allow for async permission request when first accessing sensor data”</a>
     <p>Make sure the API is compatible with sensors which need to ask the user's permission before being used.</p>
     <p><strong>Proposed resolutions:</strong></p>
     <ul>
@@ -251,8 +231,8 @@ by simplifying the specification and implementation processes.</p>
     </ul>
    </div>
    <h2 class="heading settled" data-level="4" id="api"><span class="secno">4. </span><span class="content">API</span><a class="self-link" href="#api"></a></h2>
-   <div class="issue no-marker" id="issue-d41d8cd92">
-    <a class="self-link" href="#issue-d41d8cd92"></a><a class="marker" href="https://github.com/w3c/sensors/issues/8">Issue #8 on GitHub: “Should sensors be singleton?”</a>
+   <div class="issue no-marker" id="issue-d41d8cd91">
+    <a class="self-link" href="#issue-d41d8cd91"></a><a class="marker" href="https://github.com/w3c/sensors/issues/8">Issue #8 on GitHub: “Should sensors be singleton?”</a>
     <p><a class="user-mention" href="https://github.com/timvolodine">@timvolodine</a>'s <a href="http://lists.w3.org/Archives/Public/public-device-apis/2014Sep/0024.html">proposal</a> advocates sensor types should essentially be singletons.</p>
     <p>This is problematic for devices which have multiple sensors of a given type.</p>
     <p>It also doesn't help with the use case of having different parts of the application be interested in a different frequency of updates. For example, a cycling app could use GPS data to log geolocation every 10 seconds to display the ride on a map once its over and need 60hz update frequency to display that data live whenever the cyclist switches to the live map view.</p>
@@ -288,8 +268,8 @@ dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="d
 };
 </pre>
    <h4 class="heading settled" data-level="4.1.1" id="sensorsmatchall"><span class="secno">4.1.1. </span><span class="content">Sensors.matchAll</span><a class="self-link" href="#sensorsmatchall"></a></h4>
-   <div class="issue no-marker" id="issue-d41d8cd93">
-    <a class="self-link" href="#issue-d41d8cd93"></a><a class="marker" href="https://github.com/w3c/sensors/issues/26">Issue #26 on GitHub: “When there are multiple sensors of a given type, how do we identify which one to instantiate?”</a>
+   <div class="issue no-marker" id="issue-d41d8cd92">
+    <a class="self-link" href="#issue-d41d8cd92"></a><a class="marker" href="https://github.com/w3c/sensors/issues/26">Issue #26 on GitHub: “When there are multiple sensors of a given type, how do we identify which one to instantiate?”</a>
     <p>In <a class="issue-link" href="https://github.com/w3c/sensors/issues/8" title="Should sensors be singleton?">#8</a> we agreed that sensors shouldn't be singletons because it was both useful to allow multiple instances of each sensor and necessary to support multiple sensor of a given type on a single device (think for example proximity sensors on a car).</p>
     <p>Imagine we want to check the presence of an object on the back of a car, we'll need to get data from one of the back sensors, right?</p>
     <p>Should we go with a generic system, taking a DOMString, that would be defined in this spec, so for example:</p>
@@ -311,8 +291,8 @@ dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="d
     </ul>
    </div>
    <p>Returns a promise which resolves to an array of <a data-link-type="dfn" href="#sensorinfo">SensorInfo</a> objects representing all available local(?) sensors.</p>
-   <div class="issue no-marker" id="issue-d41d8cd94">
-    <a class="self-link" href="#issue-d41d8cd94"></a><a class="marker" href="https://github.com/w3c/sensors/issues/28">Issue #28 on GitHub: “Do we need a lightweight interface representing available sensors?”</a>
+   <div class="issue no-marker" id="issue-d41d8cd93">
+    <a class="self-link" href="#issue-d41d8cd93"></a><a class="marker" href="https://github.com/w3c/sensors/issues/28">Issue #28 on GitHub: “Do we need a lightweight interface representing available sensors?”</a>
     <p>This would be something like:</p>
     <div class="highlight highlight-source-webidl">
 <pre><span class="pl-k">interface</span> <span class="pl-en">SensorMetaData</span> {
@@ -359,8 +339,8 @@ dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="d
 }<span class="pl-ii"></span></pre>
     </div>
    </div>
-   <div class="issue no-marker" id="issue-d41d8cd95">
-    <a class="self-link" href="#issue-d41d8cd95"></a><a class="marker" href="https://github.com/w3c/sensors/issues/7">Issue #7 on GitHub: “Sensor discovery”</a>
+   <div class="issue no-marker" id="issue-d41d8cd94">
+    <a class="self-link" href="#issue-d41d8cd94"></a><a class="marker" href="https://github.com/w3c/sensors/issues/7">Issue #7 on GitHub: “Sensor discovery”</a>
     <p>Define how sensors are discoverable by the developer (especially what happens when you have multiple sensors of the same type).</p>
     <p><strong>Proposed resolution: There must be a way for developers to find out which sensors are available to a resource, which ones become available during the page's lifetime, and which ones get disconnected. The precise API by which this must be exposed is dependent on the research carried out in <a class="issue-link" href="https://github.com/w3c/sensors/issues/9" title="Should sensor EventTarget be immediately available or should they be accessed through a promise?">#9</a> to determine how sensor register themselves with a browsing context. Such an API must be designed to allow developers to gracefully handle sensors misrepresenting themselves either accidentally or on purpose.</strong></p>
    </div>
@@ -394,6 +374,29 @@ dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="d
    <p>Returns true if the sensor is the default sensor of that type on the device, false otherwise.</p>
    <h3 class="heading settled" data-level="4.3" id="the-sensor-interface"><span class="secno">4.3. </span><span class="content">The <dfn data-dfn-type="dfn" data-noexport="" id="sensor">Sensor<a class="self-link" href="#sensor"></a></dfn> Interface</span><a class="self-link" href="#the-sensor-interface"></a></h3>
    <p>The <code>Sensor</code> interface’s role is to observe the changes in a given sensor at regular intervals and emit events when those value change in a consumer-configurable way.</p>
+   <div class="issue no-marker" id="issue-d41d8cd95">
+    <a class="self-link" href="#issue-d41d8cd95"></a><a class="marker" href="https://github.com/w3c/sensors/issues/14">Issue #14 on GitHub: “Should sensors require a privileged context?”</a>
+    <p>The <a href="https://w3c.github.io/webappsec/specs/powerfulfeatures/">Privileged Contexts spec</a> notes:</p>
+    <blockquote>
+     <p>Certain web platform features that have a distinct impact on a user’s security or privacy should be available for use only in privileged contexts.</p>
+    </blockquote>
+    <p>... and <a href="https://w3c.github.io/webappsec/specs/powerfulfeatures/#feature-requires-privilege">explicitly notes</a> sensors as one of the features that should be available for use only in privileged contexts.</p>
+    <p><strong>Actions:</strong></p>
+    <ul class="task-list">
+     <li class="task-list-item">
+      <input checked="" class="task-list-item-checkbox" disabled="" type="checkbox">
+       assess the state of the privileged contexts work,
+     <li class="task-list-item">
+      <input checked="" class="task-list-item-checkbox" disabled="" type="checkbox">
+       see what are the implications on the sensor API design, if any,
+     <li class="task-list-item">
+      <input checked="" class="task-list-item-checkbox" disabled="" type="checkbox">
+       see what are the implications for the spec itself, if any.
+     <li class="task-list-item">
+      <input class="task-list-item-checkbox" disabled="" type="checkbox">
+       include boilerplate text in the instantiation steps.
+    </ul>
+   </div>
 <pre class="idl">[<dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="constructor" data-export="" data-lt="Sensor(info, sensorObserverOptions)" id="dom-sensor-sensor">Constructor<a class="self-link" href="#dom-sensor-sensor"></a></dfn>(<a data-link-type="idl-name" href="#sensorinfo1">SensorInfo</a> <dfn class="idl-code" data-dfn-for="Sensor/Sensor(info, sensorObserverOptions)" data-dfn-type="argument" data-export="" id="dom-sensor-sensor-info-sensorobserveroptions-info">info<a class="self-link" href="#dom-sensor-sensor-info-sensorobserveroptions-info"></a></dfn>, optional <a data-link-type="idl-name" href="#dictdef-sensoroptions">SensorOptions</a> <dfn class="idl-code" data-dfn-for="Sensor/Sensor(info, sensorObserverOptions)" data-dfn-type="argument" data-export="" id="dom-sensor-sensor-info-sensorobserveroptions-sensorobserveroptions">sensorObserverOptions<a class="self-link" href="#dom-sensor-sensor-info-sensorobserveroptions-sensorobserveroptions"></a></dfn>), Exposed=(Window,Worker)]
 interface <dfn class="idl-code" data-dfn-type="interface" data-export="" id="sensor0">Sensor<a class="self-link" href="#sensor0"></a></dfn> : <a data-link-type="idl-name" href="https://dom.spec.whatwg.org#interface-eventtarget">EventTarget</a> {
   attribute double <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="double " id="dom-sensor-frequency">frequency<a class="self-link" href="#dom-sensor-frequency"></a></dfn>;
