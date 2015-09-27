@@ -52,7 +52,7 @@
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="http://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/Icons/w3c_home" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2015-09-26">26 September 2015</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2015-09-27">27 September 2015</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -155,7 +155,11 @@ that can be extended to accommodate different sensor types.</p>
        </ul>
       <li><a href="#low-level-sensor-api"><span class="secno">5.4</span> <span class="content">Low level Sensor API</span></a>
      </ul>
-    <li><a href="#extensibility"><span class="secno">6</span> <span class="content">Extensibility</span></a>
+    <li>
+     <a href="#extensibility"><span class="secno">6</span> <span class="content">Extensibility</span></a>
+     <ul class="toc">
+      <li><a href="#naming"><span class="secno">6.1</span> <span class="content">Naming</span></a>
+     </ul>
     <li><a href="#acknowledgements"><span class="secno">7</span> <span class="content">Acknowledgements</span></a>
     <li>
      <a href="#conformance"><span class="secno"></span> <span class="content">Conformance</span></a>
@@ -610,6 +614,18 @@ callback <dfn class="idl-code" data-dfn-type="callback" data-export="" id="callb
    <h2 class="heading settled" data-level="6" id="extensibility"><span class="secno">6. </span><span class="content">Extensibility</span><a class="self-link" href="#extensibility"></a></h2>
    <p>The purpose of this section is to describe
 how this specification can be extended to specify concrete <a data-link-type="dfn" href="#sensor">sensors</a>.</p>
+   <h3 class="heading settled" data-level="6.1" id="naming"><span class="secno">6.1. </span><span class="content">Naming</span><a class="self-link" href="#naming"></a></h3>
+   <p><a class="idl-code" data-link-type="interface" href="#sensor0">Sensor</a> interfaces should be
+named after their associated <a data-link-type="dfn" href="#sensor">sensor</a>.
+So for example, the interface associated with a gyroscope
+should be simply named <code>Gyroscope</code>.
+When no such name exist or when such name it too arcane,
+the interface should be named by combining
+the physical quantity the <a data-link-type="dfn" href="#sensor">sensor</a> measures
+with the "Sensor" suffix.
+For example, a <a data-link-type="dfn" href="#sensor">sensor</a> measuring
+the distance at which an object is from it
+may see its associated interface called <code>ProximitySensor</code>.</p>
    <p>It will feature precise steps on how to extend or inherit from interfaces described in this specification along with examples for two sensors, one which measures a single value and one which measures multiple ones.</p>
    <div class="issue no-marker" id="issue-d41d8cd915">
     <a class="self-link" href="#issue-d41d8cd915"></a><a class="marker" href="https://github.com/w3c/sensors/issues/22">Issue #22 on GitHub: “Simplify extension of the Permissions API for concrete sensor implementations”</a>
