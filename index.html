@@ -244,8 +244,9 @@ Different <dfn data-dfn-type="dfn" data-noexport="" id="sensor-types">sensor typ
 such as temperature, air pressure, heart-rate, or luminosity
 and provide corresponding <dfn data-dfn-type="dfn" data-noexport="" id="output-data">output data<a class="self-link" href="#output-data"></a></dfn>.</p>
    <p>Sensor <a data-link-type="dfn" href="#output-data">output data</a> is generally <dfn data-dfn-type="dfn" data-lt="calibration" data-noexport="" id="calibration">calibrated<a class="self-link" href="#calibration"></a></dfn>,
-to account for known, _predictable_ issues.
-When known issues aren’t predictable, <a data-link-type="dfn" href="#sensor-fusion">sensor fusion</a> must be used instead.</p>
+to account for known, <em>predictable</em> errors.
+Known but <em>unpredictable</em> error need to be addressed dynamically
+using <a data-link-type="dfn" href="#sensor-fusion">sensor fusion</a>.</p>
    <p>For the purpose of this specification we distinguish between <a data-link-type="dfn" href="#high-level">high-level</a> and <a data-link-type="dfn" href="#low-level">low-level</a> sensor types.</p>
    <p><a data-link-type="dfn" href="#sensor-types">Sensor types</a> which are characterized by their implementation
 are refered to as <dfn data-dfn-type="dfn" data-noexport="" id="low-level">low-level<a class="self-link" href="#low-level"></a></dfn> sensors.

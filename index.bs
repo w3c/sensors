@@ -99,9 +99,9 @@ such as temperature, air pressure, heart-rate, or luminosity
 and provide corresponding <dfn>output data</dfn>.
 
 Sensor <a>output data</a> is generally <dfn lt="calibration">calibrated</dfn>,
-to account for known, _predictable_ issues.
-When known issues aren't predictable,
-<a>sensor fusion</a> must be used instead.
+to account for known, <em>predictable</em> errors.
+Known but <em>unpredictable</em> error need to be addressed dynamically
+using <a>sensor fusion</a>.
 
 For the purpose of this specification we distinguish between
 <a>high-level</a> and <a>low-level</a> sensor types.
