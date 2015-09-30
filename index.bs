@@ -62,7 +62,8 @@ When they are, it is often in ways that limit their possible use cases
 (for example by exposing abstractions that are too high level
 and which don't perform well enough).
 APIs also vary greatlty from one sensor to the next
-which increases the cognitive burden of authors and slows development.
+which increases the cognitive burden of Web application developers
+and slows development.
 
 The goal of the Generic Sensor API is to
 promote consistency across sensor APIs,
