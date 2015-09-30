@@ -52,7 +52,7 @@
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="http://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/Icons/w3c_home" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2015-09-27">27 September 2015</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2015-09-30">30 September 2015</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -194,13 +194,13 @@ which are part of the Internet of Things.</p>
 has so far been both slow-paced and ad-hoc.
 Few sensors are already exposed to the Web.
 When they are, it is often in ways that limit their possible use cases
-(for example by exposing abstractions that are too high level
-and which don’t perform well enough).
+(for example by exposing abstractions that are too <a data-link-type="dfn" href="#high-level">high-level</a> and which don’t perform well enough).
 APIs also vary greatlty from one sensor to the next
-which increases the cognitive burden of authors and slows development.</p>
+which increases the cognitive burden of Web application developers
+and slows development.</p>
    <p>The goal of the Generic Sensor API is to
 promote consistency across sensor APIs,
-enable advanced use cases thanks to performant low-level APIs, 
+enable advanced use cases thanks to performant <a data-link-type="dfn" href="#low-level">low-level</a> APIs,
 and increase the pace at which new sensors can be exposed to the Web
 by simplifying the specification and implementation processes.</p>
    <p></p>
@@ -219,8 +219,11 @@ by simplifying the specification and implementation processes.</p>
     </ul>
    </div>
    <h2 class="heading settled" data-level="3" id="security-and-privacy-considerations"><span class="secno">3. </span><span class="content">Security and privacy considerations</span><a class="self-link" href="#security-and-privacy-considerations"></a></h2>
+   <p></p>
    <h3 class="heading settled" data-level="3.1" id="secure-context"><span class="secno">3.1. </span><span class="content">Secure Context</span><a class="self-link" href="#secure-context"></a></h3>
-   <p>Sensor output is explicitely flagged by the Secure Contexts specification <a data-link-type="biblio" href="#biblio-powerful-features">[powerful-features]</a> as a high-value target for network attackers. At such, sensor output SHOULD only be available within a <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/powerfulfeatures/#secure-context">secure context</a>.</p>
+   <p>Sensor data is explicitely flagged by the
+Secure Contexts specification <a data-link-type="biblio" href="#biblio-powerful-features">[powerful-features]</a> as a high-value target for network attackers.
+As such, sensor data should only be available within a <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/powerfulfeatures/#secure-context">secure context</a>.</p>
    <div class="issue no-marker" id="issue-d41d8cd90">
     <a class="self-link" href="#issue-d41d8cd90"></a><a class="marker" href="https://github.com/w3c/sensors/issues/20">Issue #20 on GitHub: “Allow for async permission request when first accessing sensor data”</a>
     <p>Make sure the API is compatible with sensors which need to ask the user's permission before being used.</p>
@@ -236,26 +239,61 @@ by simplifying the specification and implementation processes.</p>
     </ul>
    </div>
    <h2 class="heading settled" data-level="4" id="terminology"><span class="secno">4. </span><span class="content">Terminology</span><a class="self-link" href="#terminology"></a></h2>
-   <p>A <dfn data-dfn-type="dfn" data-noexport="" id="sensor">Sensor<a class="self-link" href="#sensor"></a></dfn> measures physical quantities such as
-temperature, acceleration, air pressure or luminosity
-and provide a corresponding output.
-Examples of sensors include (but are not limited to):
-GPS, compass, altimeter, barometer, podometer, thermometer or gyroscope.
-A <a data-link-type="dfn" href="#conformant-user-agent">User Agent</a> may expose
-different types of sensors and multiple sensors of the same kind.
-For example an accelerometer, gyroscope, and
-rear and front proximity sensor on a mobile phone.</p>
-   <p>The output of sensors can be provided as is
-or combined with the output of other sensors
-through a process called <dfn data-dfn-type="dfn" data-noexport="" id="sensor-fusion">sensor fusion<a class="self-link" href="#sensor-fusion"></a></dfn> to provide higher-level or more accurate data
-(often at the cost of increased latency).
-For example, the output of a three-axis magnetometer
-needs to be combined with the output of an accelerometer
-to provide a correct bearing.
-Sensor fusion can be carried out at the hardware or software level.</p>
-   <p><a data-link-type="dfn" href="#sensor">Sensors</a> created through <a data-link-type="dfn" href="#sensor-fusion">sensor fusion</a> are sometimes
-called virtual or synthetic sensors. However, the specification
-doesn’t make any practical differences between them.</p>
+   <p>A <dfn data-dfn-type="dfn" data-noexport="" id="sensor">sensor<a class="self-link" href="#sensor"></a></dfn> provides information about the user and their environment.
+Different <dfn data-dfn-type="dfn" data-noexport="" id="sensor-types">sensor types<a class="self-link" href="#sensor-types"></a></dfn> measure different physical quantities
+such as temperature, air pressure, heart-rate, or luminosity
+and provide corresponding <dfn data-dfn-type="dfn" data-noexport="" id="output-data">output data<a class="self-link" href="#output-data"></a></dfn>.</p>
+   <p>Sensor <a data-link-type="dfn" href="#output-data">output data</a> is generally <dfn data-dfn-type="dfn" data-lt="calibration" data-noexport="" id="calibration">calibrated<a class="self-link" href="#calibration"></a></dfn>,
+to account for known, _predictable_ issues.
+When known issues aren’t predictable, <a data-link-type="dfn" href="#sensor-fusion">sensor fusion</a> must be used instead.</p>
+   <p>For the purpose of this specification we distinguish between <a data-link-type="dfn" href="#high-level">high-level</a> and <a data-link-type="dfn" href="#low-level">low-level</a> sensor types.</p>
+   <p><a data-link-type="dfn" href="#sensor-types">Sensor types</a> which are characterized by their implementation
+are refered to as <dfn data-dfn-type="dfn" data-noexport="" id="low-level">low-level<a class="self-link" href="#low-level"></a></dfn> sensors.
+For example a Gyroscope is a <a data-link-type="dfn" href="#low-level">low-level</a> sensor type.</p>
+   <p><a data-link-type="dfn" href="#sensor">Sensors</a> named after their <a data-link-type="dfn" href="#output-data">output data</a>,
+regarless of the implementation,
+are said to be <dfn data-dfn-type="dfn" data-noexport="" id="high-level">high-level<a class="self-link" href="#high-level"></a></dfn> sensors.
+For instance, geolocation sensors provide information about the user’s location,
+but the precise means by which this data is obtained
+is purposefully left opaque
+(it could come from a GPS chip, network cell triangulation,
+wifi networks, etc. or any combination of the above)
+and depends on various, implementation-specific heuristics. <a data-link-type="dfn" href="#high-level">High-level</a> sensors are generally the fruits of
+applying algorithms to <a data-link-type="dfn" href="#low-level">low-level</a> sensors--
+for example, a podometer can be built using only the output of a gyroscope--
+or of <a data-link-type="dfn" href="#sensor-fusion">sensor fusion</a>.</p>
+   <p>That said, the distinction between <a data-link-type="dfn" href="#high-level">high-level</a> and <a data-link-type="dfn" href="#low-level">low-level</a> sensor types
+is somewhat arbitrary and the line between the two is often blurred.
+For instance, a barometer, which measures air pressure,
+would be considered <a data-link-type="dfn" href="#low-level">low-level</a> for most common purposes.
+As, even though it is the product of the <a data-link-type="dfn" href="#sensor-fusion">sensor fusion</a> of
+resistive piezo-electric pressure and temperature sensors,
+exposing the sensors that compose it would serve no practical purpose
+(who cares about the temperature of a piezo-electric sensor?).
+A pressure-altimeter would probably fall in the same category,
+while a non-descript altimeter--
+which could get its data from either a barometer or a GPS signal--
+would clearly be categorized as a <a data-link-type="dfn" href="#high-level">high-level</a> sensor type.</p>
+   <p>Because the distinction is somewhat blurry,
+extensions to this specification (see <a href="#extensibility">§6 Extensibility</a>)
+are encouraged to provide domain-specific definitions of <a data-link-type="dfn" href="#high-level">high-level</a> and <a data-link-type="dfn" href="#low-level">low-level</a> sensors
+for the given <a data-link-type="dfn" href="#sensor-types">sensor types</a> they are targeting.</p>
+   <p>The <a data-link-type="dfn" href="#output-data">output data</a> of sensors can be combined with
+the output of other sensors
+through a process called <dfn data-dfn-type="dfn" data-noexport="" id="sensor-fusion">sensor fusion<a class="self-link" href="#sensor-fusion"></a></dfn>.
+This process provides <a data-link-type="dfn" href="#high-level">higher-level</a> or
+more accurate data (often at the cost of increased latency).
+For example, the <a data-link-type="dfn" href="#output-data">output</a> of a three-axis magnetometer
+needs to be combined with the <a data-link-type="dfn" href="#output-data">output</a> of an accelerometer
+to provide a correct bearing. <a data-link-type="dfn" href="#sensor-fusion">Sensor fusion</a> can be carried out at either
+the hardware or software level.</p>
+   <p class="note" role="note">Note: <a data-link-type="dfn" href="#sensor">Sensors</a> created through <a data-link-type="dfn" href="#sensor-fusion">sensor fusion</a> are sometimes
+called virtual or synthetic sensors.
+However, the specification doesn’t make any practical differences between them,
+preferring instead to differentiate sensors as to whether they describe
+the kind of <a data-link-type="dfn" href="#output-data">output data</a> produced--these are <a data-link-type="dfn" href="#high-level">high-level</a> sensors--
+or how the sensor is implemented (<a data-link-type="dfn" href="#low-level">low-level</a> sensors).</p>
+   <p></p>
    <h2 class="heading settled" data-level="5" id="api"><span class="secno">5. </span><span class="content">API</span><a class="self-link" href="#api"></a></h2>
    <div class="issue no-marker" id="issue-d41d8cd91">
     <a class="self-link" href="#issue-d41d8cd91"></a><a class="marker" href="https://github.com/w3c/sensors/issues/8">Issue #8 on GitHub: “Should sensors be singleton?”</a>
@@ -294,6 +332,7 @@ dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="d
 };
 </pre>
    <h4 class="heading settled" data-level="5.1.1" id="sensorsmatchall"><span class="secno">5.1.1. </span><span class="content">Sensors.matchAll</span><a class="self-link" href="#sensorsmatchall"></a></h4>
+   <p></p>
    <div class="issue no-marker" id="issue-d41d8cd92">
     <a class="self-link" href="#issue-d41d8cd92"></a><a class="marker" href="https://github.com/w3c/sensors/issues/26">Issue #26 on GitHub: “When there are multiple sensors of a given type, how do we identify which one to instantiate?”</a>
     <p>In <a class="issue-link" href="https://github.com/w3c/sensors/issues/8" title="Should sensors be singleton?">#8</a> we agreed that sensors shouldn't be singletons because it was both useful to allow multiple instances of each sensor and necessary to support multiple sensor of a given type on a single device (think for example proximity sensors on a car).</p>
@@ -463,7 +502,7 @@ callback <dfn class="idl-code" data-dfn-type="callback" data-export="" id="callb
      <p>Off the top of my head, <code>frequency: "animationframe"</code> might be good. The contract being that, if you pass that in to the constructor, then given</p>
      <div class="highlight highlight-source-js">
 <pre>requestAnimationFrame(<span class="pl-k">function</span> <span class="pl-en">frame</span>() {
-  <span class="pl-en">console</span><span class="pl-c1">.log</span>(mySensor.<span class="pl-c1">value</span>);
+  <span class="pl-en">console</span>.<span class="pl-c1">log</span>(mySensor.<span class="pl-c1">value</span>);
   requestAnimationFrame(frame);
 });</pre>
      </div>
@@ -626,7 +665,7 @@ with the "Sensor" suffix.
 For example, a <a data-link-type="dfn" href="#sensor">sensor</a> measuring
 the distance at which an object is from it
 may see its associated interface called <code>ProximitySensor</code>.</p>
-   <p>It will feature precise steps on how to extend or inherit from interfaces described in this specification along with examples for two sensors, one which measures a single value and one which measures multiple ones.</p>
+   <p></p>
    <div class="issue no-marker" id="issue-d41d8cd915">
     <a class="self-link" href="#issue-d41d8cd915"></a><a class="marker" href="https://github.com/w3c/sensors/issues/22">Issue #22 on GitHub: “Simplify extension of the Permissions API for concrete sensor implementations”</a>
     <p>Accessing sensor data has multiple privacy implications and is therefore subject to permissioning. The <a href="https://w3c.github.io/permissions/">Permission API</a> allows developers to check whether the permission to access a given API was already granted (or denied) by the user on a per origin basis.</p>
@@ -700,6 +739,7 @@ may see its associated interface called <code>ProximitySensor</code>.</p>
      <li><a href="#dom-sensor-batch">attribute for Sensor</a><span>, in §5.3</span>
      <li><a href="#dom-sensoroptions-batch">dict-member for SensorOptions</a><span>, in §5.3</span>
     </ul>
+   <li><a href="#calibration">calibration</a><span>, in §4</span>
    <li><a href="#conformant-server">conformant server</a><span>, in §Unnumbered section</span>
    <li><a href="#conformant-user-agent">conformant user agent</a><span>, in §Unnumbered section</span>
    <li><a href="#dom-tresholdcallback-currentvalue">currentValue</a><span>, in §5.3</span>
@@ -709,6 +749,7 @@ may see its associated interface called <code>ProximitySensor</code>.</p>
      <li><a href="#dom-sensor-frequency">attribute for Sensor</a><span>, in §5.3</span>
      <li><a href="#dom-sensoroptions-frequency">dict-member for SensorOptions</a><span>, in §5.3</span>
     </ul>
+   <li><a href="#high-level">high-level</a><span>, in §4</span>
    <li>
     id
     <ul>
@@ -728,6 +769,7 @@ may see its associated interface called <code>ProximitySensor</code>.</p>
      <li><a href="#dom-sensorinfo-isdefault">attribute for SensorInfo</a><span>, in §5.2</span>
      <li><a href="#dom-sensorinit-isdefault">dict-member for SensorInit</a><span>, in §5.2</span>
     </ul>
+   <li><a href="#low-level">low-level</a><span>, in §4</span>
    <li><a href="#dom-sensors-matchall">matchAll()</a><span>, in §5.1</span>
    <li><a href="#dictdef-matchalloptions">MatchAllOptions</a><span>, in §5.1</span>
    <li><a href="#dom-sensors-matchall">matchAll(options)</a><span>, in §5.1</span>
@@ -738,12 +780,9 @@ may see its associated interface called <code>ProximitySensor</code>.</p>
    <li><a href="#dom-sensor-ondisconnect">ondisconnect</a><span>, in §5.3</span>
    <li><a href="#dom-sensor-onerror">onerror</a><span>, in §5.3</span>
    <li><a href="#dom-sensors-matchall-options-options">options</a><span>, in §5.1</span>
-   <li>
-    Sensor
-    <ul>
-     <li><a href="#sensor">definition of</a><span>, in §4</span>
-     <li><a href="#sensor0">(interface)</a><span>, in §5.3</span>
-    </ul>
+   <li><a href="#output-data">output data</a><span>, in §4</span>
+   <li><a href="#sensor0">Sensor</a><span>, in §5.3</span>
+   <li><a href="#sensor">sensor</a><span>, in §4</span>
    <li><a href="#sensor-fusion">sensor fusion</a><span>, in §4</span>
    <li>
     SensorInfo
@@ -773,6 +812,7 @@ may see its associated interface called <code>ProximitySensor</code>.</p>
      <li><a href="#dom-workerglobalscope-sensors">attribute for WorkerGlobalScope</a><span>, in §5.1</span>
     </ul>
    <li><a href="#dom-sensors-sensors">Sensors()</a><span>, in §5.1</span>
+   <li><a href="#sensor-types">sensor types</a><span>, in §4</span>
    <li>
     timeout
     <ul>

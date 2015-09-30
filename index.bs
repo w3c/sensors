@@ -59,7 +59,7 @@ Exposing sensor data to the Web
 has so far been both slow-paced and ad-hoc.
 Few sensors are already exposed to the Web.
 When they are, it is often in ways that limit their possible use cases
-(for example by exposing abstractions that are too high level
+(for example by exposing abstractions that are too <a>high-level</a>
 and which don't perform well enough).
 APIs also vary greatlty from one sensor to the next
 which increases the cognitive burden of Web application developers
@@ -67,7 +67,7 @@ and slows development.
 
 The goal of the Generic Sensor API is to
 promote consistency across sensor APIs,
-enable advanced use cases thanks to performant low-level APIs, 
+enable advanced use cases thanks to performant <a>low-level</a> APIs,
 and increase the pace at which new sensors can be exposed to the Web
 by simplifying the specification and implementation processes.
 
@@ -82,32 +82,86 @@ Security and privacy considerations
 Secure Context {#secure-context}
 --------------
 
-Sensor output is explicitely flagged by the Secure Contexts specification [[powerful-features]] as a high-value target for network attackers. At such, sensor output SHOULD only be available within a <a>secure context</a>.
+Sensor data is explicitely flagged by the
+Secure Contexts specification [[powerful-features]]
+as a high-value target for network attackers.
+As such, sensor data should only be available within a <a>secure context</a>.
+
 
 Issue(w3c/sensors#20):
 
 Terminology
 ===========
 
-A <dfn>Sensor</dfn> measures physical quantities such as
-temperature, acceleration, air pressure or luminosity
-and provide a corresponding output.
-Examples of sensors include (but are not limited to):
-GPS, compass, altimeter, barometer, podometer, thermometer or gyroscope.
-A <a lt="conformant user agent">User Agent</a> may expose
-different types of sensors and multiple sensors of the same kind.
-For example an accelerometer, gyroscope, and
-rear and front proximity sensor on a mobile phone.
+A <dfn>sensor</dfn> provides information about the user and their environment.
+Different <dfn>sensor types</dfn> measure different physical quantities
+such as temperature, air pressure, heart-rate, or luminosity
+and provide corresponding <dfn>output data</dfn>.
 
-The output of sensors can be provided as is
-or combined with the output of other sensors
-through a process called <dfn>sensor fusion</dfn>
-to provide higher-level or more accurate data
-(often at the cost of increased latency).
-For example, the output of a three-axis magnetometer
-needs to be combined with the output of an accelerometer
+Sensor <a>output data</a> is generally <dfn lt="calibration">calibrated</dfn>,
+to account for known, _predictable_ issues.
+When known issues aren't predictable,
+<a>sensor fusion</a> must be used instead.
+
+For the purpose of this specification we distinguish between
+<a>high-level</a> and <a>low-level</a> sensor types.
+
+<a>Sensor types</a> which are characterized by their implementation
+are refered to as <dfn>low-level</dfn> sensors.
+For example a Gyroscope is a <a>low-level</a> sensor type.
+
+<a>Sensors</a> named after their <a>output data</a>,
+regarless of the implementation,
+are said to be <dfn>high-level</dfn> sensors.
+For instance, geolocation sensors provide information about the user's location,
+but the precise means by which this data is obtained
+is purposefully left opaque
+(it could come from a GPS chip, network cell triangulation,
+wifi networks, etc. or any combination of the above)
+and depends on various, implementation-specific heuristics.
+<a>High-level</a> sensors are generally the fruits of
+applying algorithms to <a>low-level</a> sensors--
+for example, a podometer can be built using only the output of a gyroscope--
+or of <a>sensor fusion</a>.
+
+That said, the distinction between
+<a>high-level</a> and <a>low-level</a> sensor types
+is somewhat arbitrary and the line between the two is often blurred.
+For instance, a barometer, which measures air pressure,
+would be considered <a>low-level</a> for most common purposes.
+As, even though it is the product of the <a>sensor fusion</a> of
+resistive piezo-electric pressure and temperature sensors,
+exposing the sensors that compose it would serve no practical purpose
+(who cares about the temperature of a piezo-electric sensor?).
+A pressure-altimeter would probably fall in the same category,
+while a non-descript altimeter--
+which could get its data from either a barometer or a GPS signal--
+would clearly be categorized as a <a>high-level</a> sensor type.
+
+Because the distinction is somewhat blurry,
+extensions to this specification (see [[#extensibility]])
+are encouraged to provide domain-specific definitions of
+<a>high-level</a> and <a>low-level</a> sensors
+for the given <a>sensor types</a> they are targeting.
+
+The <a>output data</a> of sensors can be combined with
+the output of other sensors
+through a process called <dfn>sensor fusion</dfn>.
+This process provides <a lt="high-level">higher-level</a> or
+more accurate data (often at the cost of increased latency).
+For example, the <a lt="output data">output</a> of a three-axis magnetometer
+needs to be combined with the <a lt="output data">output</a> of an accelerometer
 to provide a correct bearing.
-Sensor fusion can be carried out at the hardware or software level.
+<a>Sensor fusion</a> can be carried out at either
+the hardware or software level.
+
+Note: <a lt=sensor>Sensors</a> created through <a>sensor fusion</a> are sometimes
+called virtual or synthetic sensors.
+However, the specification doesn't make any practical differences between them,
+preferring instead to differentiate sensors as to whether they describe
+the kind of <a>output data</a> produced--these are <a>high-level</a> sensors--
+or how the sensor is implemented (<a>low-level</a> sensors).
+
 
 <a>Sensors</a> created through <a>sensor fusion</a> are sometimes
 called virtual or synthetic sensors. However, the specification
@@ -341,7 +395,6 @@ Extensibility
 
 The purpose of this section is to describe
 how this specification can be extended to specify concrete <a>sensors</a>.
-
 
 Naming
 ------
