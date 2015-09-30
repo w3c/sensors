@@ -71,10 +71,7 @@ enable advanced use cases thanks to performant <a>low-level</a> APIs,
 and increase the pace at which new sensors can be exposed to the Web
 by simplifying the specification and implementation processes.
 
-Use Cases
-=========
 
-Issue(w3c/sensors#12):
 
 Security and privacy considerations
 ===================================
