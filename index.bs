@@ -93,10 +93,9 @@ Issue(w3c/sensors#20):
 Terminology
 ===========
 
-A <dfn>sensor</dfn> provides information about the user and their environment.
-Different <dfn>sensor types</dfn> measure different physical quantities
-such as temperature, air pressure, heart-rate, or luminosity
-and provide corresponding <dfn>output data</dfn>.
+A <dfn>sensor</dfn> measure different physical quantities
+and provide corresponding <dfn>output data</dfn>
+which is a source of information about the user and their environment.
 
 Sensor <a>output data</a> is generally <dfn lt="calibration">calibrated</dfn>,
 to account for known, <em>predictable</em> errors.
