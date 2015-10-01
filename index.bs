@@ -99,6 +99,9 @@ to account for known, <em>predictable</em> errors.
 Known but <em>unpredictable</em> error need to be addressed dynamically
 using <a>sensor fusion</a>.
 
+Different <dfn>sensor types</dfn> measure different physical quantities
+such as temperature, air pressure, heart-rate, or luminosity.
+
 For the purpose of this specification we distinguish between
 <a>high-level</a> and <a>low-level</a> sensor types.
 
@@ -151,17 +154,13 @@ to provide a correct bearing.
 <a>Sensor fusion</a> can be carried out at either
 the hardware or software level.
 
-Note: <a lt=sensor>Sensors</a> created through <a>sensor fusion</a> are sometimes
+Note <a>sensors</a> created through <a>sensor fusion</a> are sometimes
 called virtual or synthetic sensors.
 However, the specification doesn't make any practical differences between them,
 preferring instead to differentiate sensors as to whether they describe
 the kind of <a>output data</a> produced--these are <a>high-level</a> sensors--
 or how the sensor is implemented (<a>low-level</a> sensors).
 
-
-<a>Sensors</a> created through <a>sensor fusion</a> are sometimes
-called virtual or synthetic sensors. However, the specification
-doesn't make any practical differences between them.
 
 API
 ===
