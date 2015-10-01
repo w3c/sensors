@@ -394,13 +394,12 @@ how this specification can be extended to specify concrete <a>sensors</a>.
 Naming
 ------
 
-<a interface>Sensor</a> interfaces should be
+<a interface>Sensor</a> interfaces for <a>low-level</a> sensors should be
 named after their associated <a>sensor</a>.
 So for example, the interface associated with a gyroscope
 should be simply named `Gyroscope`.
-When no such name exist or when such name it too arcane,
-the interface should be named by combining
-the physical quantity the <a>sensor</a> measures
+<a interface>Sensor</a> interfaces for <a>high-level</a> sensors should be
+named by combining the physical quantity the <a>sensor</a> measures
 with the "Sensor" suffix.
 For example, a <a>sensor</a> measuring
 the distance at which an object is from it
