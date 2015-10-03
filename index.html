@@ -1748,8 +1748,6 @@ may see its associated interface called <code>ProximitySensor</code>.</p>
    <h2 class="heading settled" data-level="7" id="acknowledgements"><span class="secno">7. </span><span class="content">Acknowledgements</span><a class="self-link" href="#acknowledgements"></a></h2>
    <p>The following people have greatly contributed to this specification through extensive discussions on GitHub: <span id="gh-commenters"></span>.</p>
    <p>We’d also like to thank <span id="gh-contributors"></span> for their editorial input.</p>
-  </main>
-  <div data-fill-with="conformance">
    <h2 class="no-ref no-num heading settled" id="conformance"><span class="content">Conformance</span><a class="self-link" href="#conformance"></a></h2>
    <h3 class="no-ref no-num heading settled" id="conventions"><span class="content">Document conventions</span><a class="self-link" href="#conventions"></a></h3>
    <p>Conformance requirements are expressed with a combination of
@@ -1768,6 +1766,11 @@ may see its associated interface called <code>ProximitySensor</code>.</p>
     <a class="self-link" href="#example-f839f6c8"></a> 
     <p>This is an example of an informative example.</p>
    </div>
+   <p>Because this document doesn’t itself define APIs for specific <a data-link-type="dfn" href="#sensor-types">sensor types</a>—<wbr>that is the role of extensions to this specification—<wbr>all examples are inevitably (wishful) fabrications.
+    Although all of the <a data-link-type="dfn" href="#sensor">sensors</a> used a examples
+    would be great candidates for building atop the Generic Sensor API,
+    their inclusion in this document does not imply that the relevant Working Groups
+    are planning to do so. </p>
    <p>Informative notes begin with the word "Note" and are set apart from the
     normative text with <code>class="note"</code>, like this: </p>
    <p class="note" role="note">Note, this is an informative note.</p>
@@ -1784,9 +1787,7 @@ may see its associated interface called <code>ProximitySensor</code>.</p>
    <h3 class="no-ref no-num heading settled" id="conformance-classes"><span class="content">Conformance Classes</span><a class="self-link" href="#conformance-classes"></a></h3>
    <p>A <dfn data-dfn-type="dfn" data-noexport="" id="conformant-user-agent">conformant user agent<a class="self-link" href="#conformant-user-agent"></a></dfn> must implement all the requirements
     listed in this specification that are applicable to user agents.</p>
-   <p>A <dfn data-dfn-type="dfn" data-noexport="" id="conformant-server">conformant server<a class="self-link" href="#conformant-server"></a></dfn> must implement all the requirements listed
-    in this specification that are applicable to servers.</p>
-  </div>
+  </main>
   <h2 class="no-num heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
   <h3 class="no-num heading settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
   <ul class="indexlist">
@@ -1797,7 +1798,6 @@ may see its associated interface called <code>ProximitySensor</code>.</p>
      <li><a href="#dom-sensoroptions-batch">dict-member for SensorOptions</a><span>, in §5.3</span>
     </ul>
    <li><a href="#calibration">calibration</a><span>, in §3</span>
-   <li><a href="#conformant-server">conformant server</a><span>, in §Unnumbered section</span>
    <li><a href="#conformant-user-agent">conformant user agent</a><span>, in §Unnumbered section</span>
    <li><a href="#dom-tresholdcallback-currentvalue">currentValue</a><span>, in §5.3</span>
    <li>
