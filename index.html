@@ -1233,10 +1233,10 @@ As such, sensor data should only be available within a <a data-link-type="dfn" h
    <h2 class="heading settled" data-level="3" id="terminology"><span class="secno">3. </span><span class="content">Terminology</span><a class="self-link" href="#terminology"></a></h2>
    <p>A <dfn data-dfn-type="dfn" data-noexport="" id="sensor">sensor<a class="self-link" href="#sensor"></a></dfn> measure different physical quantities
 and provide corresponding <dfn data-dfn-type="dfn" data-noexport="" id="output-data">output data<a class="self-link" href="#output-data"></a></dfn> which is a source of information about the user and their environment.</p>
-   <p>Sensor <a data-link-type="dfn" href="#output-data">output data</a> is generally <dfn data-dfn-type="dfn" data-lt="calibration" data-noexport="" id="calibration">calibrated<a class="self-link" href="#calibration"></a></dfn>,
-to account for known, <em>predictable</em> errors.
-Known but <em>unpredictable</em> error need to be addressed dynamically
-using <a data-link-type="dfn" href="#sensor-fusion">sensor fusion</a>.</p>
+   <p>Known, <em>predictable</em> discrepancies between <a data-link-type="dfn" href="#sensor">sensor</a> <a data-link-type="dfn" href="#output-data">output data</a> and the corresponding physical quantities being measured
+are corrected through <dfn data-dfn-type="dfn" data-noexport="" id="calibration">calibration<a class="self-link" href="#calibration"></a></dfn>,</p>
+   <p>Known but <em>unpredictable</em> discrepancies need to be addressed dynamically
+through a process called <a data-link-type="dfn" href="#sensor-fusion">sensor fusion</a>.</p>
    <p>Different <dfn data-dfn-type="dfn" data-noexport="" id="sensor-types">sensor types<a class="self-link" href="#sensor-types"></a></dfn> measure different physical quantities
 such as temperature, air pressure, heart-rate, or luminosity.</p>
    <p>For the purpose of this specification we distinguish between <a data-link-type="dfn" href="#high-level">high-level</a> and <a data-link-type="dfn" href="#low-level">low-level</a> sensor types.</p>
