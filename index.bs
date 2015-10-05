@@ -587,9 +587,6 @@ Calibration {#calibration}
 <a>Output data</a> emitted by <a interface>Sensor</a> objects
 should always be <a lt="calibration">calibrated</a>.
 
-<a>Sensor fusion</a> should only be applied to <a>low-level</a>
-<a>sensors</a> when the data obtained without that process would
-be meaningless. For example, the</a>
 
 
 It will feature precise steps on how to extend or inherit from interfaces described in this specification along with examples for two sensors, one which measures a single value and one which measures multiple ones.
