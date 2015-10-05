@@ -389,7 +389,7 @@ A `Sensor` object has an associated <a>sensor</a>.
 Issue(w3c/sensors#14):
 
 <pre class="idl">
-[Constructor(SensorInfo info, optional SensorOptions sensorObserverOptions), Exposed=(Window,Worker)]
+[Constructor(SensorInfo info, optional SensorOptions sensorOptions), Exposed=(Window,Worker)]
 interface Sensor : EventTarget {
   attribute double frequency;
   attribute boolean batch;
