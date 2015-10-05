@@ -243,6 +243,63 @@ and defensive programming which includes:
     </pre>
 </div>
 
+
+Model
+=====
+
+The Generic Sensor API is designed to make the most common use cases straightforward
+while still enabling more complex use cases.
+
+Most devices deployed today do not carry more than one
+<a>sensor</a> of each <a lt="sensor types">type</a>.
+This shouldn't come as a surprise since use cases for more than
+a <a>sensor</a> of a given <a lt="sensor types">type</a> are rare
+and generally limited to specific <a>sensor types</a> such as
+proximity sensors.
+
+The API therefore makes it easy to interact with
+the device's default (and often unique) sensor
+for each <a lt="sensor types">type</a>
+simply by instantiating the corresponding <a instance>Sensor</a> subclass.
+
+Indeed, without specific information identifying a particular <a>sensor</a>
+of a given <a lt="sensor type">type</a>,
+the default <a>sensor</a> is chosen.
+
+Note extension to this specification may choose not to define a default sensor
+when doing so wouldn't make sense.
+For example, it might be difficult to agree on a an obvious default sensor for
+proximity <a>sensors</a>.
+
+<div class="example">
+    Listening to geolocation changes:
+
+    <pre example highlight="js">
+    let sensor = new GeolocationSensor({ accuracy: "high" });
+
+    sensor.onchange = function(event) {
+        var coords = [event.data.latitude, event.data.longitude];
+        updateMap(null, coords, event.data.accuracy);
+    };
+
+    sensor.onerror = function(error) {
+        updateMap(error);
+    };
+    </pre>
+</div>
+
+Similarly, getting a single <a>output data</a> sample
+should be a simple process, and it is:
+
+<div class="example">
+    Geolocating the user:
+
+    <pre example highlight="js">
+    GeolocationSensor.requestData({ accuracy: "high" })
+        .then(reading => { displayCoords(reading.coords); })
+        .catch(err => console.log(err));
+    </pre>
+</div>
 API
 ===
 

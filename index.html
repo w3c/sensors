@@ -1059,7 +1059,7 @@
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="http://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/Icons/w3c_home" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2015-10-03">3 October 2015</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2015-10-05">5 October 2015</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1125,49 +1125,50 @@ that can be extended to accommodate different sensor types.</p>
      </ul>
     <li><a href="#terminology"><span class="secno">3</span> <span class="content">Terminology</span></a>
     <li><a href="#feature-detection"><span class="secno">4</span> <span class="content">An note on Feature Detection of Hardware Features</span></a>
+    <li><a href="#model"><span class="secno">5</span> <span class="content">Model</span></a>
     <li>
-     <a href="#api"><span class="secno">5</span> <span class="content">API</span></a>
+     <a href="#api"><span class="secno">6</span> <span class="content">API</span></a>
      <ul class="toc">
       <li>
-       <a href="#the-sensors-interface"><span class="secno">5.1</span> <span class="content">The <code>Sensors</code> Interface</span></a>
+       <a href="#the-sensors-interface"><span class="secno">6.1</span> <span class="content">The <code>Sensors</code> Interface</span></a>
        <ul class="toc">
-        <li><a href="#sensorsmatchall"><span class="secno">5.1.1</span> <span class="content">Sensors.matchAll</span></a>
+        <li><a href="#sensorsmatchall"><span class="secno">6.1.1</span> <span class="content">Sensors.matchAll</span></a>
        </ul>
       <li>
-       <a href="#the-sensorinfo-interface"><span class="secno">5.2</span> <span class="content">The <span>SensorInfo</span> Interface</span></a>
+       <a href="#the-sensorinfo-interface"><span class="secno">6.2</span> <span class="content">The <span>SensorInfo</span> Interface</span></a>
        <ul class="toc">
-        <li><a href="#sensorinfoid"><span class="secno">5.2.1</span> <span class="content"><span>SensorInfo.id</span></span></a>
-        <li><a href="#sensorinfoisdefault"><span class="secno">5.2.2</span> <span class="content"><span>SensorInfo.isDefault</span></span></a>
+        <li><a href="#sensorinfoid"><span class="secno">6.2.1</span> <span class="content"><span>SensorInfo.id</span></span></a>
+        <li><a href="#sensorinfoisdefault"><span class="secno">6.2.2</span> <span class="content"><span>SensorInfo.isDefault</span></span></a>
        </ul>
       <li>
-       <a href="#the-sensor-interface"><span class="secno">5.3</span> <span class="content">The <span>Sensor</span> Interface</span></a>
+       <a href="#the-sensor-interface"><span class="secno">6.3</span> <span class="content">The <span>Sensor</span> Interface</span></a>
        <ul class="toc">
-        <li><a href="#sensorfrequency"><span class="secno">5.3.1</span> <span class="content">Sensor.frequency</span></a>
-        <li><a href="#sensorbatch"><span class="secno">5.3.2</span> <span class="content">Sensor.batch</span></a>
-        <li><a href="#sensorinfo0"><span class="secno">5.3.3</span> <span class="content">Sensor.info</span></a>
-        <li><a href="#sensortreshold"><span class="secno">5.3.4</span> <span class="content">Sensor.treshold</span></a>
-        <li><a href="#sensortimeout"><span class="secno">5.3.5</span> <span class="content">Sensor.timeout</span></a>
-        <li><a href="#sensorwakeup"><span class="secno">5.3.6</span> <span class="content">Sensor.wakeup</span></a>
-        <li><a href="#sensorvalue"><span class="secno">5.3.7</span> <span class="content">Sensor.value</span></a>
-        <li><a href="#sensorvalues"><span class="secno">5.3.8</span> <span class="content">Sensor.values</span></a>
-        <li><a href="#sensoronerror"><span class="secno">5.3.9</span> <span class="content">Sensor.onerror</span></a>
-        <li><a href="#sensoronchange"><span class="secno">5.3.10</span> <span class="content">Sensor.onchange</span></a>
-        <li><a href="#sensoroncalibration"><span class="secno">5.3.11</span> <span class="content">Sensor.oncalibration</span></a>
-        <li><a href="#sensoronconnect"><span class="secno">5.3.12</span> <span class="content">Sensor.onconnect</span></a>
-        <li><a href="#sensorondisconnect"><span class="secno">5.3.13</span> <span class="content">Sensor.ondisconnect</span></a>
-        <li><a href="#event-handlers"><span class="secno">5.3.14</span> <span class="content">Event handlers</span></a>
-        <li><a href="#the-sensorreading-interface"><span class="secno">5.3.15</span> <span class="content">The <span>SensorReading</span> Interface</span></a>
-        <li><a href="#sensorreadingtimestamp"><span class="secno">5.3.16</span> <span class="content">SensorReading.timeStamp</span></a>
-        <li><a href="#sensorreadinginfo"><span class="secno">5.3.17</span> <span class="content">SensorReading.info</span></a>
+        <li><a href="#sensorfrequency"><span class="secno">6.3.1</span> <span class="content">Sensor.frequency</span></a>
+        <li><a href="#sensorbatch"><span class="secno">6.3.2</span> <span class="content">Sensor.batch</span></a>
+        <li><a href="#sensorinfo0"><span class="secno">6.3.3</span> <span class="content">Sensor.info</span></a>
+        <li><a href="#sensortreshold"><span class="secno">6.3.4</span> <span class="content">Sensor.treshold</span></a>
+        <li><a href="#sensortimeout"><span class="secno">6.3.5</span> <span class="content">Sensor.timeout</span></a>
+        <li><a href="#sensorwakeup"><span class="secno">6.3.6</span> <span class="content">Sensor.wakeup</span></a>
+        <li><a href="#sensorvalue"><span class="secno">6.3.7</span> <span class="content">Sensor.value</span></a>
+        <li><a href="#sensorvalues"><span class="secno">6.3.8</span> <span class="content">Sensor.values</span></a>
+        <li><a href="#sensoronerror"><span class="secno">6.3.9</span> <span class="content">Sensor.onerror</span></a>
+        <li><a href="#sensoronchange"><span class="secno">6.3.10</span> <span class="content">Sensor.onchange</span></a>
+        <li><a href="#sensoroncalibration"><span class="secno">6.3.11</span> <span class="content">Sensor.oncalibration</span></a>
+        <li><a href="#sensoronconnect"><span class="secno">6.3.12</span> <span class="content">Sensor.onconnect</span></a>
+        <li><a href="#sensorondisconnect"><span class="secno">6.3.13</span> <span class="content">Sensor.ondisconnect</span></a>
+        <li><a href="#event-handlers"><span class="secno">6.3.14</span> <span class="content">Event handlers</span></a>
+        <li><a href="#the-sensorreading-interface"><span class="secno">6.3.15</span> <span class="content">The <span>SensorReading</span> Interface</span></a>
+        <li><a href="#sensorreadingtimestamp"><span class="secno">6.3.16</span> <span class="content">SensorReading.timeStamp</span></a>
+        <li><a href="#sensorreadinginfo"><span class="secno">6.3.17</span> <span class="content">SensorReading.info</span></a>
        </ul>
-      <li><a href="#low-level-sensor-api"><span class="secno">5.4</span> <span class="content">Low level Sensor API</span></a>
+      <li><a href="#low-level-sensor-api"><span class="secno">6.4</span> <span class="content">Low level Sensor API</span></a>
      </ul>
     <li>
-     <a href="#extensibility"><span class="secno">6</span> <span class="content">Extensibility</span></a>
+     <a href="#extensibility"><span class="secno">7</span> <span class="content">Extensibility</span></a>
      <ul class="toc">
-      <li><a href="#naming"><span class="secno">6.1</span> <span class="content">Naming</span></a>
+      <li><a href="#naming"><span class="secno">7.1</span> <span class="content">Naming</span></a>
      </ul>
-    <li><a href="#acknowledgements"><span class="secno">7</span> <span class="content">Acknowledgements</span></a>
+    <li><a href="#acknowledgements"><span class="secno">8</span> <span class="content">Acknowledgements</span></a>
     <li>
      <a href="#conformance"><span class="secno"></span> <span class="content">Conformance</span></a>
      <ul class="toc">
@@ -1264,7 +1265,7 @@ exposing the sensors that compose it would serve no practical purpose
 A pressure-altimeter would probably fall in the same category,
 while a non-descript altimeter—<wbr>which could get its data from either a barometer or a GPS signal—<wbr>would clearly be categorized as a <a data-link-type="dfn" href="#high-level">high-level</a> sensor type.</p>
    <p>Because the distinction is somewhat blurry,
-extensions to this specification (see <a href="#extensibility">§6 Extensibility</a>)
+extensions to this specification (see <a href="#extensibility">§7 Extensibility</a>)
 are encouraged to provide domain-specific definitions of <a data-link-type="dfn" href="#high-level">high-level</a> and <a data-link-type="dfn" href="#low-level">low-level</a> sensors
 for the given <a data-link-type="dfn" href="#sensor-types">sensor types</a> they are targeting.</p>
    <p>The <a data-link-type="dfn" href="#output-data">output data</a> of sensors can be combined with
@@ -1353,7 +1354,45 @@ and defensive programming which includes:</p>
     <span class="nx">gracefullyDegrade</span><span class="p">();</span>
 <span class="p">}</span></pre>
    </div>
-   <h2 class="heading settled" data-level="5" id="api"><span class="secno">5. </span><span class="content">API</span><a class="self-link" href="#api"></a></h2>
+   <h2 class="heading settled" data-level="5" id="model"><span class="secno">5. </span><span class="content">Model</span><a class="self-link" href="#model"></a></h2>
+   <p>The Generic Sensor API is designed to make the most common use cases straightforward
+while still enabling more complex use cases.</p>
+   <p>Most devices deployed today do not carry more than one <a data-link-type="dfn" href="#sensor">sensor</a> of each <a data-link-type="dfn" href="#sensor-types">type</a>.
+This shouldn’t come as a surprise since use cases for more than
+a <a data-link-type="dfn" href="#sensor">sensor</a> of a given <a data-link-type="dfn" href="#sensor-types">type</a> are rare
+and generally limited to specific <a data-link-type="dfn" href="#sensor-types">sensor types</a> such as
+proximity sensors.</p>
+   <p>The API therefore makes it easy to interact with
+the device’s default (and often unique) sensor
+for each <a data-link-type="dfn" href="#sensor-types">type</a> simply by instantiating the corresponding <a data-link-type="dfn" href="#sensor" instance="">Sensor</a> subclass.</p>
+   <p>Indeed, without specific information identifying a particular <a data-link-type="dfn" href="#sensor">sensor</a> of a given <a data-link-type="dfn" href="#sensor-types">type</a>,
+the default <a data-link-type="dfn" href="#sensor">sensor</a> is chosen.</p>
+   <p>Note extension to this specification may choose not to define a default sensor
+when doing so wouldn’t make sense.
+For example, it might be difficult to agree on a an obvious default sensor for
+proximity <a data-link-type="dfn" href="#sensor">sensors</a>.</p>
+   <div class="example" id="example-d404a015">
+    <a class="self-link" href="#example-d404a015"></a> Listening to geolocation changes: 
+<pre class="highlight" example=""><span class="kd">let</span> <span class="nx">sensor</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">GeolocationSensor</span><span class="p">({</span> <span class="nx">accuracy</span><span class="o">:</span> <span class="s2">"high"</span> <span class="p">});</span>
+
+<span class="nx">sensor</span><span class="p">.</span><span class="nx">onchange</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">coords</span> <span class="o">=</span> <span class="p">[</span><span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">latitude</span><span class="p">,</span> <span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">longitude</span><span class="p">];</span>
+    <span class="nx">updateMap</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">coords</span><span class="p">,</span> <span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">accuracy</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="nx">sensor</span><span class="p">.</span><span class="nx">onerror</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">updateMap</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+<span class="p">};</span></pre>
+   </div>
+   <p>Similarly, getting a single <a data-link-type="dfn" href="#output-data">output data</a> sample
+should be a simple process, and it is:</p>
+   <div class="example" id="example-d31fe9d6">
+    <a class="self-link" href="#example-d31fe9d6"></a> Geolocating the user: 
+<pre class="highlight" example=""><span class="nx">GeolocationSensor</span><span class="p">.</span><span class="nx">requestData</span><span class="p">({</span> <span class="nx">accuracy</span><span class="o">:</span> <span class="s2">"high"</span> <span class="p">})</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">reading</span> <span class="o">=></span> <span class="p">{</span> <span class="nx">displayCoords</span><span class="p">(</span><span class="nx">reading</span><span class="p">.</span><span class="nx">coords</span><span class="p">);</span> <span class="p">})</span>
+    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=></span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">));</span></pre>
+   </div>
+   <h2 class="heading settled" data-level="6" id="api"><span class="secno">6. </span><span class="content">API</span><a class="self-link" href="#api"></a></h2>
    <div class="issue no-marker" id="issue-d41d8cd90">
     <a class="self-link" href="#issue-d41d8cd90"></a><a class="marker" href="https://github.com/w3c/sensors/issues/8">Issue #8 on GitHub: “Should sensors be singleton?”</a>
     <p><a class="user-mention" href="https://github.com/timvolodine">@timvolodine</a>'s <a href="http://lists.w3.org/Archives/Public/public-device-apis/2014Sep/0024.html">proposal</a> advocates sensor types should essentially be singletons.</p>
@@ -1371,7 +1410,7 @@ and defensive programming which includes:</p>
        define precisely the qualities of immutability and identity of the dictionary-like objects representing sensor values to match those of other event.data objects across the platform.
     </ul>
    </div>
-   <h3 class="heading settled" data-level="5.1" id="the-sensors-interface"><span class="secno">5.1. </span><span class="content">The <code>Sensors</code> Interface</span><a class="self-link" href="#the-sensors-interface"></a></h3>
+   <h3 class="heading settled" data-level="6.1" id="the-sensors-interface"><span class="secno">6.1. </span><span class="content">The <code>Sensors</code> Interface</span><a class="self-link" href="#the-sensors-interface"></a></h3>
    <p>The <a data-link-type="dfn" href="#sensor">Sensors</a> interface represents a container for a list of <a data-link-type="dfn" href="#sensorinfo">SensorInfo</a> objects. It is exposed on Window and Workers as the <code>Window.sensors</code> and <code>WorkerGlobalScope.sensors</code> attribute respectively.</p>
 <pre class="idl">[<dfn class="idl-code" data-dfn-for="Sensors" data-dfn-type="constructor" data-export="" data-lt="Sensors()" id="dom-sensors-sensors">Constructor<a class="self-link" href="#dom-sensors-sensors"></a></dfn>, Exposed=(Window,Worker)]
 interface <dfn class="idl-code" data-dfn-type="interface" data-export="" id="sensors">Sensors<a class="self-link" href="#sensors"></a></dfn> {
@@ -1390,7 +1429,7 @@ dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="d
   DOMString <dfn class="idl-code" data-dfn-for="MatchAllOptions" data-dfn-type="dict-member" data-export="" data-type="DOMString " id="dom-matchalloptions-type">type<a class="self-link" href="#dom-matchalloptions-type"></a></dfn>;
 };
 </pre>
-   <h4 class="heading settled" data-level="5.1.1" id="sensorsmatchall"><span class="secno">5.1.1. </span><span class="content">Sensors.matchAll</span><a class="self-link" href="#sensorsmatchall"></a></h4>
+   <h4 class="heading settled" data-level="6.1.1" id="sensorsmatchall"><span class="secno">6.1.1. </span><span class="content">Sensors.matchAll</span><a class="self-link" href="#sensorsmatchall"></a></h4>
    <div class="issue no-marker" id="issue-d41d8cd91">
     <a class="self-link" href="#issue-d41d8cd91"></a><a class="marker" href="https://github.com/w3c/sensors/issues/26">Issue #26 on GitHub: “When there are multiple sensors of a given type, how do we identify which one to instantiate?”</a>
     <p>In <a class="issue-link" href="https://github.com/w3c/sensors/issues/8" title="Should sensors be singleton?">#8</a> we agreed that sensors shouldn't be singletons because it was both useful to allow multiple instances of each sensor and necessary to support multiple sensor of a given type on a single device (think for example proximity sensors on a car).</p>
@@ -1474,7 +1513,7 @@ dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="d
     sensor.onchange = dostuff;
 });
 </pre>
-   <h3 class="heading settled" data-level="5.2" id="the-sensorinfo-interface"><span class="secno">5.2. </span><span class="content">The <dfn data-dfn-type="dfn" data-noexport="" id="sensorinfo">SensorInfo<a class="self-link" href="#sensorinfo"></a></dfn> Interface</span><a class="self-link" href="#the-sensorinfo-interface"></a></h3>
+   <h3 class="heading settled" data-level="6.2" id="the-sensorinfo-interface"><span class="secno">6.2. </span><span class="content">The <dfn data-dfn-type="dfn" data-noexport="" id="sensorinfo">SensorInfo<a class="self-link" href="#sensorinfo"></a></dfn> Interface</span><a class="self-link" href="#the-sensorinfo-interface"></a></h3>
    <p>The <code>SensorInfo</code> interface is a lightweight object that represents an actual physical sensor. Concrete sensor implementation will need to subclass it.</p>
    <p>If no <code>id</code> is given, the Constructor uses the identifier of the default sensor of that type. This is to the cater to the common case of having a single sensor of a given type on a device.</p>
 <pre class="example highlight javascript" id="example-ff336038"><a class="self-link" href="#example-ff336038"></a>let sensor = new GeolocationSensor();
@@ -1491,11 +1530,11 @@ dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="d
   boolean <dfn class="idl-code" data-dfn-for="SensorInit" data-dfn-type="dict-member" data-export="" data-type="boolean " id="dom-sensorinit-isdefault">isDefault<a class="self-link" href="#dom-sensorinit-isdefault"></a></dfn>;
 };
 </pre>
-   <h4 class="heading settled" data-level="5.2.1" id="sensorinfoid"><span class="secno">5.2.1. </span><span class="content"><dfn data-dfn-type="dfn" data-noexport="" id="sensorinfoid0">SensorInfo.id<a class="self-link" href="#sensorinfoid0"></a></dfn></span><a class="self-link" href="#sensorinfoid"></a></h4>
+   <h4 class="heading settled" data-level="6.2.1" id="sensorinfoid"><span class="secno">6.2.1. </span><span class="content"><dfn data-dfn-type="dfn" data-noexport="" id="sensorinfoid0">SensorInfo.id<a class="self-link" href="#sensorinfoid0"></a></dfn></span><a class="self-link" href="#sensorinfoid"></a></h4>
    <p>Returns the id of the sensor. This is an opaque DOMString.</p>
-   <h4 class="heading settled" data-level="5.2.2" id="sensorinfoisdefault"><span class="secno">5.2.2. </span><span class="content"><dfn data-dfn-type="dfn" data-noexport="" id="sensorinfoisdefault0">SensorInfo.isDefault<a class="self-link" href="#sensorinfoisdefault0"></a></dfn></span><a class="self-link" href="#sensorinfoisdefault"></a></h4>
+   <h4 class="heading settled" data-level="6.2.2" id="sensorinfoisdefault"><span class="secno">6.2.2. </span><span class="content"><dfn data-dfn-type="dfn" data-noexport="" id="sensorinfoisdefault0">SensorInfo.isDefault<a class="self-link" href="#sensorinfoisdefault0"></a></dfn></span><a class="self-link" href="#sensorinfoisdefault"></a></h4>
    <p>Returns true if the sensor is the default sensor of that type on the device, false otherwise.</p>
-   <h3 class="heading settled" data-level="5.3" id="the-sensor-interface"><span class="secno">5.3. </span><span class="content">The <dfn class="idl-code" data-dfn-type="interface" data-export="" id="sensor0">Sensor<a class="self-link" href="#sensor0"></a></dfn> Interface</span><a class="self-link" href="#the-sensor-interface"></a></h3>
+   <h3 class="heading settled" data-level="6.3" id="the-sensor-interface"><span class="secno">6.3. </span><span class="content">The <dfn class="idl-code" data-dfn-type="interface" data-export="" id="sensor0">Sensor<a class="self-link" href="#sensor0"></a></dfn> Interface</span><a class="self-link" href="#the-sensor-interface"></a></h3>
    <p>A <code>Sensor</code> object has an associated <a data-link-type="dfn" href="#sensor">sensor</a>.</p>
    <p><code>Sensor</code> Interface’s role is to observe the changes in a given sensor at regular intervals and emit events when those value change in a consumer-configurable way.</p>
    <div class="issue no-marker" id="issue-d41d8cd94">
@@ -1549,7 +1588,7 @@ dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="d
 
 callback <dfn class="idl-code" data-dfn-type="callback" data-export="" id="callbackdef-tresholdcallback">TresholdCallback<a class="self-link" href="#callbackdef-tresholdcallback"></a></dfn> = boolean (<a data-link-type="idl-name" href="#sensorreading0">SensorReading</a> <dfn class="idl-code" data-dfn-for="TresholdCallback" data-dfn-type="argument" data-export="" id="dom-tresholdcallback-currentvalue">currentValue<a class="self-link" href="#dom-tresholdcallback-currentvalue"></a></dfn>, <a data-link-type="idl-name" href="#sensorreading0">SensorReading</a> <dfn class="idl-code" data-dfn-for="TresholdCallback" data-dfn-type="argument" data-export="" id="dom-tresholdcallback-newvalue">newValue<a class="self-link" href="#dom-tresholdcallback-newvalue"></a></dfn>);
 </pre>
-   <h4 class="heading settled" data-level="5.3.1" id="sensorfrequency"><span class="secno">5.3.1. </span><span class="content">Sensor.frequency</span><a class="self-link" href="#sensorfrequency"></a></h4>
+   <h4 class="heading settled" data-level="6.3.1" id="sensorfrequency"><span class="secno">6.3.1. </span><span class="content">Sensor.frequency</span><a class="self-link" href="#sensorfrequency"></a></h4>
    <div class="issue no-marker" id="issue-d41d8cd95">
     <a class="self-link" href="#issue-d41d8cd95"></a><a class="marker" href="https://github.com/w3c/sensors/issues/4">Issue #4 on GitHub: “Provide a way of tying sensor requests to animation frames”</a>
     <p>Copy pasted from <a class="user-mention" href="https://github.com/domenic">@domenic</a>'s original issue <a class="issue-link" href="https://github.com/rwaldron/sensors/issues/5" title="Provide a way of tying sensor requests to animation frames">rwaldron/sensors#5</a></p>
@@ -1600,11 +1639,11 @@ callback <dfn class="idl-code" data-dfn-type="callback" data-export="" id="callb
     <p>It becomes very different if <code>ondata</code> events are exposed.</p>
     <p>Either way, that might warrant a note in the spec, no?</p>
    </div>
-   <h4 class="heading settled" data-level="5.3.2" id="sensorbatch"><span class="secno">5.3.2. </span><span class="content">Sensor.batch</span><a class="self-link" href="#sensorbatch"></a></h4>
+   <h4 class="heading settled" data-level="6.3.2" id="sensorbatch"><span class="secno">6.3.2. </span><span class="content">Sensor.batch</span><a class="self-link" href="#sensorbatch"></a></h4>
    <p>Returns true if batch mode was requested, false otherwise.</p>
-   <h4 class="heading settled" data-level="5.3.3" id="sensorinfo0"><span class="secno">5.3.3. </span><span class="content">Sensor.info</span><a class="self-link" href="#sensorinfo0"></a></h4>
+   <h4 class="heading settled" data-level="6.3.3" id="sensorinfo0"><span class="secno">6.3.3. </span><span class="content">Sensor.info</span><a class="self-link" href="#sensorinfo0"></a></h4>
    <p>Returns the related <a data-link-type="dfn" href="#sensorinfo">SensorInfo</a> object.</p>
-   <h4 class="heading settled" data-level="5.3.4" id="sensortreshold"><span class="secno">5.3.4. </span><span class="content">Sensor.treshold</span><a class="self-link" href="#sensortreshold"></a></h4>
+   <h4 class="heading settled" data-level="6.3.4" id="sensortreshold"><span class="secno">6.3.4. </span><span class="content">Sensor.treshold</span><a class="self-link" href="#sensortreshold"></a></h4>
    <div class="issue no-marker" id="issue-d41d8cd98">
     <a class="self-link" href="#issue-d41d8cd98"></a><a class="marker" href="https://github.com/w3c/sensors/issues/25">Issue #25 on GitHub: “Add a threshold option”</a>
     <p>Johnn-Five implements a <a href="https://github.com/rwaldron/johnny-five/wiki/Sensor#events">treshold attribute</a> which determines the amount of change necessary of the value of the sensor to trigger a <code>change</code> event. Given we want to support sensors with multiple values, we'd at least need to add an attribute for each value. It might be simpler to add a method that would compare the current values with the last emitted ones and return a boolean (which would be used internally to decide whether or nor to trigger the <code>change</code> event). So for example setting up a geoloc sensor to only trigger when changing hemisphere:</p>
@@ -1616,12 +1655,12 @@ callback <dfn class="idl-code" data-dfn-type="callback" data-export="" id="callb
 });</pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.3.5" id="sensortimeout"><span class="secno">5.3.5. </span><span class="content">Sensor.timeout</span><a class="self-link" href="#sensortimeout"></a></h4>
+   <h4 class="heading settled" data-level="6.3.5" id="sensortimeout"><span class="secno">6.3.5. </span><span class="content">Sensor.timeout</span><a class="self-link" href="#sensortimeout"></a></h4>
    <div class="issue no-marker" id="issue-d41d8cd99">
     <a class="self-link" href="#issue-d41d8cd99"></a><a class="marker" href="https://github.com/w3c/sensors/issues/44">Issue #44 on GitHub: “Add a timeout property?”</a>
     <p>This would be the time before you call <code>onerror</code> if no new value is received. Possibly also the time before you call <code>ondisconnect</code> if such an event is supported.</p>
    </div>
-   <h4 class="heading settled" data-level="5.3.6" id="sensorwakeup"><span class="secno">5.3.6. </span><span class="content">Sensor.wakeup</span><a class="self-link" href="#sensorwakeup"></a></h4>
+   <h4 class="heading settled" data-level="6.3.6" id="sensorwakeup"><span class="secno">6.3.6. </span><span class="content">Sensor.wakeup</span><a class="self-link" href="#sensorwakeup"></a></h4>
    <div class="issue no-marker" id="issue-d41d8cd910">
     <a class="self-link" href="#issue-d41d8cd910"></a><a class="marker" href="https://github.com/w3c/sensors/issues/15">Issue #15 on GitHub: “"wakeup" parameter”</a>
     <p><code>Sensor({ wakeup: true });</code> </p>
@@ -1630,12 +1669,12 @@ callback <dfn class="idl-code" data-dfn-type="callback" data-export="" id="callb
      <li>will wake up a sleeping device on change
     </ul>
    </div>
-   <h4 class="heading settled" data-level="5.3.7" id="sensorvalue"><span class="secno">5.3.7. </span><span class="content">Sensor.value</span><a class="self-link" href="#sensorvalue"></a></h4>
+   <h4 class="heading settled" data-level="6.3.7" id="sensorvalue"><span class="secno">6.3.7. </span><span class="content">Sensor.value</span><a class="self-link" href="#sensorvalue"></a></h4>
    <div class="issue no-marker" id="issue-d41d8cd911">
     <a class="self-link" href="#issue-d41d8cd911"></a><a class="marker" href="https://github.com/w3c/sensors/issues/2">Issue #2 on GitHub: “Handle sensors with multiple values”</a>
     <p><strong>Proposed resolution: the Generic Sensor API needs to support sensors with multiple values. This should be implementable using domain-specific named properties.</strong></p>
    </div>
-   <h4 class="heading settled" data-level="5.3.8" id="sensorvalues"><span class="secno">5.3.8. </span><span class="content">Sensor.values</span><a class="self-link" href="#sensorvalues"></a></h4>
+   <h4 class="heading settled" data-level="6.3.8" id="sensorvalues"><span class="secno">6.3.8. </span><span class="content">Sensor.values</span><a class="self-link" href="#sensorvalues"></a></h4>
    <div class="issue no-marker" id="issue-d41d8cd912">
     <a class="self-link" href="#issue-d41d8cd912"></a><a class="marker" href="https://github.com/w3c/sensors/issues/13">Issue #13 on GitHub: “Allowing data batching when poll frequency &lt; sensor frequency”</a>
     <p>Even when doing realtime processing (eg. say at 60 Hz), there is a benefit to having more than one new value every time you process (eg. Oculus polls a gyroscope at 1000 Hz for head tracking). In this case, every time you process, you'll have [1000/60] ~= 16 new sensor data.</p>
@@ -1662,12 +1701,12 @@ callback <dfn class="idl-code" data-dfn-type="callback" data-export="" id="callb
        Decide whether performance and/or memory constraints justify making the batch mode opt-in or whether it can just be the normal operational mode.
     </ul>
    </div>
-   <h4 class="heading settled" data-level="5.3.9" id="sensoronerror"><span class="secno">5.3.9. </span><span class="content">Sensor.onerror</span><a class="self-link" href="#sensoronerror"></a></h4>
-   <h4 class="heading settled" data-level="5.3.10" id="sensoronchange"><span class="secno">5.3.10. </span><span class="content">Sensor.onchange</span><a class="self-link" href="#sensoronchange"></a></h4>
-   <h4 class="heading settled" data-level="5.3.11" id="sensoroncalibration"><span class="secno">5.3.11. </span><span class="content">Sensor.oncalibration</span><a class="self-link" href="#sensoroncalibration"></a></h4>
-   <h4 class="heading settled" data-level="5.3.12" id="sensoronconnect"><span class="secno">5.3.12. </span><span class="content">Sensor.onconnect</span><a class="self-link" href="#sensoronconnect"></a></h4>
-   <h4 class="heading settled" data-level="5.3.13" id="sensorondisconnect"><span class="secno">5.3.13. </span><span class="content">Sensor.ondisconnect</span><a class="self-link" href="#sensorondisconnect"></a></h4>
-   <h4 class="heading settled" data-level="5.3.14" id="event-handlers"><span class="secno">5.3.14. </span><span class="content">Event handlers</span><a class="self-link" href="#event-handlers"></a></h4>
+   <h4 class="heading settled" data-level="6.3.9" id="sensoronerror"><span class="secno">6.3.9. </span><span class="content">Sensor.onerror</span><a class="self-link" href="#sensoronerror"></a></h4>
+   <h4 class="heading settled" data-level="6.3.10" id="sensoronchange"><span class="secno">6.3.10. </span><span class="content">Sensor.onchange</span><a class="self-link" href="#sensoronchange"></a></h4>
+   <h4 class="heading settled" data-level="6.3.11" id="sensoroncalibration"><span class="secno">6.3.11. </span><span class="content">Sensor.oncalibration</span><a class="self-link" href="#sensoroncalibration"></a></h4>
+   <h4 class="heading settled" data-level="6.3.12" id="sensoronconnect"><span class="secno">6.3.12. </span><span class="content">Sensor.onconnect</span><a class="self-link" href="#sensoronconnect"></a></h4>
+   <h4 class="heading settled" data-level="6.3.13" id="sensorondisconnect"><span class="secno">6.3.13. </span><span class="content">Sensor.ondisconnect</span><a class="self-link" href="#sensorondisconnect"></a></h4>
+   <h4 class="heading settled" data-level="6.3.14" id="event-handlers"><span class="secno">6.3.14. </span><span class="content">Event handlers</span><a class="self-link" href="#event-handlers"></a></h4>
    <p>The following are the <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#event-handlers">event handlers</a> (and their corresponding <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#event-handler-event-type">event handler event types</a>) that MUST be supported as attributes by the objects implementing the <a data-link-type="dfn" href="#sensor">Sensor</a> interface:</p>
    <table class="simple">
     <thead>
@@ -1691,26 +1730,26 @@ callback <dfn class="idl-code" data-dfn-type="callback" data-export="" id="callb
       <td><strong><code>ondisconnect</code></strong>
       <td><code>disconnect</code>
    </table>
-   <h4 class="heading settled" data-level="5.3.15" id="the-sensorreading-interface"><span class="secno">5.3.15. </span><span class="content">The <dfn data-dfn-type="dfn" data-noexport="" id="sensorreading">SensorReading<a class="self-link" href="#sensorreading"></a></dfn> Interface</span><a class="self-link" href="#the-sensorreading-interface"></a></h4>
+   <h4 class="heading settled" data-level="6.3.15" id="the-sensorreading-interface"><span class="secno">6.3.15. </span><span class="content">The <dfn data-dfn-type="dfn" data-noexport="" id="sensorreading">SensorReading<a class="self-link" href="#sensorreading"></a></dfn> Interface</span><a class="self-link" href="#the-sensorreading-interface"></a></h4>
    <p>Represents the values of a sensor at a given point in time.</p>
 <pre class="idl">interface <dfn class="idl-code" data-dfn-type="interface" data-export="" id="sensorreading0">SensorReading<a class="self-link" href="#sensorreading0"></a></dfn> {
   readonly attribute <a data-link-type="idl-name" href="http://w3c.github.io/hr-time/#dom-domhighrestimestamp">DOMHighResTimeStamp</a> <dfn class="idl-code" data-dfn-for="SensorReading" data-dfn-type="attribute" data-export="" data-readonly="" data-type="DOMHighResTimeStamp " id="dom-sensorreading-timestamp">timeStamp<a class="self-link" href="#dom-sensorreading-timestamp"></a></dfn>;
   readonly attribute <a data-link-type="idl-name" href="#sensorinfo1">SensorInfo</a> <dfn class="idl-code" data-dfn-for="SensorReading" data-dfn-type="attribute" data-export="" data-readonly="" data-type="SensorInfo " id="dom-sensorreading-info">info<a class="self-link" href="#dom-sensorreading-info"></a></dfn>;
 };
 </pre>
-   <h4 class="heading settled" data-level="5.3.16" id="sensorreadingtimestamp"><span class="secno">5.3.16. </span><span class="content">SensorReading.timeStamp</span><a class="self-link" href="#sensorreadingtimestamp"></a></h4>
+   <h4 class="heading settled" data-level="6.3.16" id="sensorreadingtimestamp"><span class="secno">6.3.16. </span><span class="content">SensorReading.timeStamp</span><a class="self-link" href="#sensorreadingtimestamp"></a></h4>
    <p>Returns a timestamp of the time at which the data was <a href="#">read from the sensor</a> expressed in milliseconds that passed since the <a data-link-type="dfn" href="http://w3c.github.io/hr-time/#time-origin">time origin</a>.</p>
-   <h4 class="heading settled" data-level="5.3.17" id="sensorreadinginfo"><span class="secno">5.3.17. </span><span class="content">SensorReading.info</span><a class="self-link" href="#sensorreadinginfo"></a></h4>
+   <h4 class="heading settled" data-level="6.3.17" id="sensorreadinginfo"><span class="secno">6.3.17. </span><span class="content">SensorReading.info</span><a class="self-link" href="#sensorreadinginfo"></a></h4>
    <p>Returns the sensor object the reading is taken from.</p>
-   <h3 class="heading settled" data-level="5.4" id="low-level-sensor-api"><span class="secno">5.4. </span><span class="content">Low level Sensor API</span><a class="self-link" href="#low-level-sensor-api"></a></h3>
+   <h3 class="heading settled" data-level="6.4" id="low-level-sensor-api"><span class="secno">6.4. </span><span class="content">Low level Sensor API</span><a class="self-link" href="#low-level-sensor-api"></a></h3>
    <div class="issue no-marker" id="issue-d41d8cd913">
     <a class="self-link" href="#issue-d41d8cd913"></a><a class="marker" href="https://github.com/w3c/sensors/issues/24">Issue #24 on GitHub: “Identify the lower level primitives that do the actual sensor polling.”</a>
     <p>Following the conversation in <a class="issue-link" href="https://github.com/w3c/sensors/issues/21" title="Dependency on [DOM] due to inheriting from EventTarget">#21</a>, it becomes apparent that identifying lower-level primitives that do the actual sensor polling would be helpful to better explain the magic behind concrete sensor implementations (in the spirit of the <a href="https://extensiblewebmanifesto.org/">Extensible Web Manifesto</a>) AND pave the path for supporting raw sensors via <a href="https://whatwg.github.io/serial/">serial port</a> or what not.</p>
    </div>
-   <h2 class="heading settled" data-level="6" id="extensibility"><span class="secno">6. </span><span class="content">Extensibility</span><a class="self-link" href="#extensibility"></a></h2>
+   <h2 class="heading settled" data-level="7" id="extensibility"><span class="secno">7. </span><span class="content">Extensibility</span><a class="self-link" href="#extensibility"></a></h2>
    <p>The purpose of this section is to describe
 how this specification can be extended to specify concrete <a data-link-type="dfn" href="#sensor">sensors</a>.</p>
-   <h3 class="heading settled" data-level="6.1" id="naming"><span class="secno">6.1. </span><span class="content">Naming</span><a class="self-link" href="#naming"></a></h3>
+   <h3 class="heading settled" data-level="7.1" id="naming"><span class="secno">7.1. </span><span class="content">Naming</span><a class="self-link" href="#naming"></a></h3>
    <p><a class="idl-code" data-link-type="interface" href="#sensor0">Sensor</a> interfaces for <a data-link-type="dfn" href="#low-level">low-level</a> sensors should be
 named after their associated <a data-link-type="dfn" href="#sensor">sensor</a>.
 So for example, the interface associated with a gyroscope
@@ -1745,7 +1784,7 @@ may see its associated interface called <code>ProximitySensor</code>.</p>
        Wait for @public-script-coord feedback and document it in Extensibility section accordingly.
     </ul>
    </div>
-   <h2 class="heading settled" data-level="7" id="acknowledgements"><span class="secno">7. </span><span class="content">Acknowledgements</span><a class="self-link" href="#acknowledgements"></a></h2>
+   <h2 class="heading settled" data-level="8" id="acknowledgements"><span class="secno">8. </span><span class="content">Acknowledgements</span><a class="self-link" href="#acknowledgements"></a></h2>
    <p>The following people have greatly contributed to this specification through extensive discussions on GitHub: <span id="gh-commenters"></span>.</p>
    <p>We’d also like to thank <span id="gh-contributors"></span> for their editorial input.</p>
    <h2 class="no-ref no-num heading settled" id="conformance"><span class="content">Conformance</span><a class="self-link" href="#conformance"></a></h2>
@@ -1794,100 +1833,100 @@ may see its associated interface called <code>ProximitySensor</code>.</p>
    <li>
     batch
     <ul>
-     <li><a href="#dom-sensor-batch">attribute for Sensor</a><span>, in §5.3</span>
-     <li><a href="#dom-sensoroptions-batch">dict-member for SensorOptions</a><span>, in §5.3</span>
+     <li><a href="#dom-sensor-batch">attribute for Sensor</a><span>, in §6.3</span>
+     <li><a href="#dom-sensoroptions-batch">dict-member for SensorOptions</a><span>, in §6.3</span>
     </ul>
    <li><a href="#calibration">calibration</a><span>, in §3</span>
    <li><a href="#conformant-user-agent">conformant user agent</a><span>, in §Unnumbered section</span>
-   <li><a href="#dom-tresholdcallback-currentvalue">currentValue</a><span>, in §5.3</span>
+   <li><a href="#dom-tresholdcallback-currentvalue">currentValue</a><span>, in §6.3</span>
    <li>
     frequency
     <ul>
-     <li><a href="#dom-sensor-frequency">attribute for Sensor</a><span>, in §5.3</span>
-     <li><a href="#dom-sensoroptions-frequency">dict-member for SensorOptions</a><span>, in §5.3</span>
+     <li><a href="#dom-sensor-frequency">attribute for Sensor</a><span>, in §6.3</span>
+     <li><a href="#dom-sensoroptions-frequency">dict-member for SensorOptions</a><span>, in §6.3</span>
     </ul>
    <li><a href="#high-level">high-level</a><span>, in §3</span>
    <li>
     id
     <ul>
-     <li><a href="#dom-sensorinfo-sensorinfo-id-sensorinitdic-id">argument for SensorInfo/SensorInfo(id, sensorInitDic)</a><span>, in §5.2</span>
-     <li><a href="#dom-sensorinfo-id">attribute for SensorInfo</a><span>, in §5.2</span>
+     <li><a href="#dom-sensorinfo-sensorinfo-id-sensorinitdic-id">argument for SensorInfo/SensorInfo(id, sensorInitDic)</a><span>, in §6.2</span>
+     <li><a href="#dom-sensorinfo-id">attribute for SensorInfo</a><span>, in §6.2</span>
     </ul>
    <li>
     info
     <ul>
-     <li><a href="#dom-sensor-sensor-info-sensorobserveroptions-info">argument for Sensor/Sensor(info, sensorObserverOptions)</a><span>, in §5.3</span>
-     <li><a href="#dom-sensor-info">attribute for Sensor</a><span>, in §5.3</span>
-     <li><a href="#dom-sensorreading-info">attribute for SensorReading</a><span>, in §5.3.15</span>
+     <li><a href="#dom-sensor-sensor-info-sensorobserveroptions-info">argument for Sensor/Sensor(info, sensorObserverOptions)</a><span>, in §6.3</span>
+     <li><a href="#dom-sensor-info">attribute for Sensor</a><span>, in §6.3</span>
+     <li><a href="#dom-sensorreading-info">attribute for SensorReading</a><span>, in §6.3.15</span>
     </ul>
    <li>
     isDefault
     <ul>
-     <li><a href="#dom-sensorinfo-isdefault">attribute for SensorInfo</a><span>, in §5.2</span>
-     <li><a href="#dom-sensorinit-isdefault">dict-member for SensorInit</a><span>, in §5.2</span>
+     <li><a href="#dom-sensorinfo-isdefault">attribute for SensorInfo</a><span>, in §6.2</span>
+     <li><a href="#dom-sensorinit-isdefault">dict-member for SensorInit</a><span>, in §6.2</span>
     </ul>
    <li><a href="#low-level">low-level</a><span>, in §3</span>
-   <li><a href="#dom-sensors-matchall">matchAll()</a><span>, in §5.1</span>
-   <li><a href="#dictdef-matchalloptions">MatchAllOptions</a><span>, in §5.1</span>
-   <li><a href="#dom-sensors-matchall">matchAll(options)</a><span>, in §5.1</span>
-   <li><a href="#dom-tresholdcallback-newvalue">newValue</a><span>, in §5.3</span>
-   <li><a href="#dom-sensor-oncalibration">oncalibration</a><span>, in §5.3</span>
-   <li><a href="#dom-sensor-onchange">onchange</a><span>, in §5.3</span>
-   <li><a href="#dom-sensor-onconnect">onconnect</a><span>, in §5.3</span>
-   <li><a href="#dom-sensor-ondisconnect">ondisconnect</a><span>, in §5.3</span>
-   <li><a href="#dom-sensor-onerror">onerror</a><span>, in §5.3</span>
-   <li><a href="#dom-sensors-matchall-options-options">options</a><span>, in §5.1</span>
+   <li><a href="#dom-sensors-matchall">matchAll()</a><span>, in §6.1</span>
+   <li><a href="#dictdef-matchalloptions">MatchAllOptions</a><span>, in §6.1</span>
+   <li><a href="#dom-sensors-matchall">matchAll(options)</a><span>, in §6.1</span>
+   <li><a href="#dom-tresholdcallback-newvalue">newValue</a><span>, in §6.3</span>
+   <li><a href="#dom-sensor-oncalibration">oncalibration</a><span>, in §6.3</span>
+   <li><a href="#dom-sensor-onchange">onchange</a><span>, in §6.3</span>
+   <li><a href="#dom-sensor-onconnect">onconnect</a><span>, in §6.3</span>
+   <li><a href="#dom-sensor-ondisconnect">ondisconnect</a><span>, in §6.3</span>
+   <li><a href="#dom-sensor-onerror">onerror</a><span>, in §6.3</span>
+   <li><a href="#dom-sensors-matchall-options-options">options</a><span>, in §6.1</span>
    <li><a href="#output-data">output data</a><span>, in §3</span>
-   <li><a href="#sensor0">Sensor</a><span>, in §5.3</span>
+   <li><a href="#sensor0">Sensor</a><span>, in §6.3</span>
    <li><a href="#sensor">sensor</a><span>, in §3</span>
    <li><a href="#sensor-fusion">sensor fusion</a><span>, in §3</span>
    <li>
     SensorInfo
     <ul>
-     <li><a href="#sensorinfo">definition of</a><span>, in §5.2</span>
-     <li><a href="#sensorinfo1">(interface)</a><span>, in §5.2</span>
+     <li><a href="#sensorinfo">definition of</a><span>, in §6.2</span>
+     <li><a href="#sensorinfo1">(interface)</a><span>, in §6.2</span>
     </ul>
-   <li><a href="#sensorinfoid0">SensorInfo.id</a><span>, in §5.2.1</span>
-   <li><a href="#dom-sensorinfo-sensorinfo">SensorInfo(id, sensorInitDic)</a><span>, in §5.2</span>
-   <li><a href="#sensorinfoisdefault0">SensorInfo.isDefault</a><span>, in §5.2.2</span>
-   <li><a href="#dom-sensor-sensor">Sensor(info, sensorObserverOptions)</a><span>, in §5.3</span>
-   <li><a href="#dictdef-sensorinit">SensorInit</a><span>, in §5.2</span>
-   <li><a href="#dom-sensorinfo-sensorinfo-id-sensorinitdic-sensorinitdic">sensorInitDic</a><span>, in §5.2</span>
-   <li><a href="#dom-sensor-sensor-info-sensorobserveroptions-sensorobserveroptions">sensorObserverOptions</a><span>, in §5.3</span>
-   <li><a href="#dictdef-sensoroptions">SensorOptions</a><span>, in §5.3</span>
+   <li><a href="#sensorinfoid0">SensorInfo.id</a><span>, in §6.2.1</span>
+   <li><a href="#dom-sensorinfo-sensorinfo">SensorInfo(id, sensorInitDic)</a><span>, in §6.2</span>
+   <li><a href="#sensorinfoisdefault0">SensorInfo.isDefault</a><span>, in §6.2.2</span>
+   <li><a href="#dom-sensor-sensor">Sensor(info, sensorObserverOptions)</a><span>, in §6.3</span>
+   <li><a href="#dictdef-sensorinit">SensorInit</a><span>, in §6.2</span>
+   <li><a href="#dom-sensorinfo-sensorinfo-id-sensorinitdic-sensorinitdic">sensorInitDic</a><span>, in §6.2</span>
+   <li><a href="#dom-sensor-sensor-info-sensorobserveroptions-sensorobserveroptions">sensorObserverOptions</a><span>, in §6.3</span>
+   <li><a href="#dictdef-sensoroptions">SensorOptions</a><span>, in §6.3</span>
    <li>
     SensorReading
     <ul>
-     <li><a href="#sensorreading">definition of</a><span>, in §5.3.15</span>
-     <li><a href="#sensorreading0">(interface)</a><span>, in §5.3.15</span>
+     <li><a href="#sensorreading">definition of</a><span>, in §6.3.15</span>
+     <li><a href="#sensorreading0">(interface)</a><span>, in §6.3.15</span>
     </ul>
-   <li><a href="#sensors">Sensors</a><span>, in §5.1</span>
+   <li><a href="#sensors">Sensors</a><span>, in §6.1</span>
    <li>
     sensors
     <ul>
-     <li><a href="#dom-window-sensors">attribute for Window</a><span>, in §5.1</span>
-     <li><a href="#dom-workerglobalscope-sensors">attribute for WorkerGlobalScope</a><span>, in §5.1</span>
+     <li><a href="#dom-window-sensors">attribute for Window</a><span>, in §6.1</span>
+     <li><a href="#dom-workerglobalscope-sensors">attribute for WorkerGlobalScope</a><span>, in §6.1</span>
     </ul>
-   <li><a href="#dom-sensors-sensors">Sensors()</a><span>, in §5.1</span>
+   <li><a href="#dom-sensors-sensors">Sensors()</a><span>, in §6.1</span>
    <li><a href="#sensor-types">sensor types</a><span>, in §3</span>
    <li>
     timeout
     <ul>
-     <li><a href="#dom-sensor-timeout">attribute for Sensor</a><span>, in §5.3</span>
-     <li><a href="#dom-sensoroptions-timeout">dict-member for SensorOptions</a><span>, in §5.3</span>
+     <li><a href="#dom-sensor-timeout">attribute for Sensor</a><span>, in §6.3</span>
+     <li><a href="#dom-sensoroptions-timeout">dict-member for SensorOptions</a><span>, in §6.3</span>
     </ul>
-   <li><a href="#dom-sensorreading-timestamp">timeStamp</a><span>, in §5.3.15</span>
+   <li><a href="#dom-sensorreading-timestamp">timeStamp</a><span>, in §6.3.15</span>
    <li>
     treshold
     <ul>
-     <li><a href="#dom-sensor-treshold">attribute for Sensor</a><span>, in §5.3</span>
-     <li><a href="#dom-sensoroptions-treshold">dict-member for SensorOptions</a><span>, in §5.3</span>
+     <li><a href="#dom-sensor-treshold">attribute for Sensor</a><span>, in §6.3</span>
+     <li><a href="#dom-sensoroptions-treshold">dict-member for SensorOptions</a><span>, in §6.3</span>
     </ul>
-   <li><a href="#callbackdef-tresholdcallback">TresholdCallback</a><span>, in §5.3</span>
-   <li><a href="#dom-matchalloptions-type">type</a><span>, in §5.1</span>
-   <li><a href="#dom-sensor-value">value</a><span>, in §5.3</span>
-   <li><a href="#dom-sensor-values">values</a><span>, in §5.3</span>
-   <li><a href="#dom-sensor-wakeup">wakeup</a><span>, in §5.3</span>
+   <li><a href="#callbackdef-tresholdcallback">TresholdCallback</a><span>, in §6.3</span>
+   <li><a href="#dom-matchalloptions-type">type</a><span>, in §6.1</span>
+   <li><a href="#dom-sensor-value">value</a><span>, in §6.3</span>
+   <li><a href="#dom-sensor-values">values</a><span>, in §6.3</span>
+   <li><a href="#dom-sensor-wakeup">wakeup</a><span>, in §6.3</span>
   </ul>
   <h3 class="no-num heading settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
   <ul class="indexlist">
