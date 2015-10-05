@@ -156,7 +156,7 @@ to provide a correct bearing.
 <a>Sensor fusion</a> can be carried out at either
 the hardware or software level.
 
-Note <a>sensors</a> created through <a>sensor fusion</a> are sometimes
+Note: <a>sensors</a> created through <a>sensor fusion</a> are sometimes
 called virtual or synthetic sensors.
 However, the specification doesn't make any practical differences between them,
 preferring instead to differentiate sensors as to whether they describe
@@ -266,7 +266,7 @@ Indeed, without specific information identifying a particular <a>sensor</a>
 of a given <a lt="sensor type">type</a>,
 the default <a>sensor</a> is chosen.
 
-Note extension to this specification may choose not to define a default sensor
+Note: extension to this specification may choose not to define a default sensor
 when doing so wouldn't make sense.
 For example, it might be difficult to agree on a an obvious default sensor for
 proximity <a>sensors</a>.
