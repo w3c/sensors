@@ -526,8 +526,15 @@ Issue(w3c/sensors#24):
 Extensibility
 =============
 
-The purpose of this section is to describe
-how this specification can be extended to specify concrete <a>sensors</a>.
+<em>This section is non-normative.</em>
+
+Its purpose is to describe
+how this specification can be extended to speficy APIs for
+different <a>sensor types</a>.
+
+Extension specifications are encouraged to focus on a single <a>sensor type</a>,
+exposing both <a lt="high-level">high</a> and <a lt="low-level">low</a> level
+as appropriate.
 
 Naming
 ------
@@ -542,6 +549,47 @@ with the "Sensor" suffix.
 For example, a <a>sensor</a> measuring
 the distance at which an object is from it
 may see its associated interface called `ProximitySensor`.
+
+Exposing High-Level vs. Low-Level Sensors {#high-vs-low-level}
+-----------------------------------------
+
+So far, specifications exposing sensors to the Web platform
+have focused on <a>high-level</a> sensors APIs. [[geolocation-API]] [[orientation-event]]
+
+This was a reaosnable approach for a number of reasons.
+Indeed, <a>high-level</a> sensors:
+
+-   convey developer intent clearly,
+-   do not require intimate knowledge of how the underlying hardware sensors functions,
+-   are easy to use,
+-   may enable the User Agent to make significant
+    performance and battery life improvements,
+-   help avoid certain privacy and security issues by
+    decreasing the amount and type of information exposed.
+
+However, an increasing number of use cases
+such as virtual and augmented reality [[sensor-use-cases]]
+require <a>low-level</a> access to sensors,
+most notably for performance reasons.
+
+Providing <a>low-level</a> access
+enables Web application developers to leverage domain-specific constraints
+and design more performant systems.
+
+Following the precepts of the Extensible Web Manifesto [[EXTENNNNSIBLE]],
+extension specifications should focus primarily on
+exposing <a>low-level</a> sensor APIs, but should also expose
+<a>high-level</a> APIs when they are clear benefits in doing so.
+
+Calibration {#calibration}
+-----------
+
+<a>Output data</a> emitted by <a interface>Sensor</a> objects
+should always be <a lt="calibration">calibrated</a>.
+
+<a>Sensor fusion</a> should only be applied to <a>low-level</a>
+<a>sensors</a> when the data obtained without that process would
+be meaningless. For example, the</a>
 
 
 It will feature precise steps on how to extend or inherit from interfaces described in this specification along with examples for two sensors, one which measures a single value and one which measures multiple ones.

@@ -1,0 +1,27 @@
+{
+    "SPIPHONE": {
+        "authors": [
+            "Philip Marquardt",
+            "Arunabh Verma",
+            "Henry Carter",
+            "Patrick Traynor"
+        ],
+        "title": "(sp)iPhone: Decoding Vibrations From Nearby Keyboards Using Mobile Phone Accelerometers",
+        "href": "http://www.cc.gatech.edu/~traynor/papers/traynor-ccs11.pdf",
+        "date": "October 18, 2011"
+    },
+    "sensor-use-cases": {
+        "authors": [
+            "Tobie Langel"
+        ],
+        "title": "Generic Sensor Use Cases",
+        "status": "ED",
+        "href": "http://w3c.github.io/sensors/usecases.html",
+        "date": "October 5, 2015"
+    },
+    "EXTENNNNSIBLE": {
+        "title": "The Extensible Web Manifesto",
+        "href": "https://extensiblewebmanifesto.org/",
+        "date": "June 10, 2013"
+    }
+}

@@ -1167,6 +1167,8 @@ that can be extended to accommodate different sensor types.</p>
      <a href="#extensibility"><span class="secno">7</span> <span class="content">Extensibility</span></a>
      <ul class="toc">
       <li><a href="#naming"><span class="secno">7.1</span> <span class="content">Naming</span></a>
+      <li><a href="#high-vs-low-level"><span class="secno">7.2</span> <span class="content">Exposing High-Level vs. Low-Level Sensors</span></a>
+      <li><a href="#calibration0"><span class="secno">7.3</span> <span class="content">Calibration</span></a>
      </ul>
     <li><a href="#acknowledgements"><span class="secno">8</span> <span class="content">Acknowledgements</span></a>
     <li>
@@ -1369,7 +1371,7 @@ for each <a data-link-type="dfn" href="#sensor-types">type</a> simply by instant
 the default <a data-link-type="dfn" href="#sensor">sensor</a> is chosen.</p>
    <p class="note" role="note">Note: extension to this specification may choose not to define a default sensor
 when doing so wouldn’t make sense.
-For example, it might be difficult to agree on a an obvious default sensor for
+For example, it might be difficult to agree on an obvious default <a data-link-type="dfn" href="#sensor">sensor</a> for
 proximity <a data-link-type="dfn" href="#sensor">sensors</a>.</p>
    <div class="example" id="example-d404a015">
     <a class="self-link" href="#example-d404a015"></a> Listening to geolocation changes: 
@@ -1747,8 +1749,13 @@ callback <dfn class="idl-code" data-dfn-type="callback" data-export="" id="callb
     <p>Following the conversation in <a class="issue-link" href="https://github.com/w3c/sensors/issues/21" title="Dependency on [DOM] due to inheriting from EventTarget">#21</a>, it becomes apparent that identifying lower-level primitives that do the actual sensor polling would be helpful to better explain the magic behind concrete sensor implementations (in the spirit of the <a href="https://extensiblewebmanifesto.org/">Extensible Web Manifesto</a>) AND pave the path for supporting raw sensors via <a href="https://whatwg.github.io/serial/">serial port</a> or what not.</p>
    </div>
    <h2 class="heading settled" data-level="7" id="extensibility"><span class="secno">7. </span><span class="content">Extensibility</span><a class="self-link" href="#extensibility"></a></h2>
-   <p>The purpose of this section is to describe
-how this specification can be extended to specify concrete <a data-link-type="dfn" href="#sensor">sensors</a>.</p>
+   <p><em>This section is non-normative.</em></p>
+   <p>Its purpose is to describe
+how this specification can be extended to speficy APIs for
+different <a data-link-type="dfn" href="#sensor-types">sensor types</a>.</p>
+   <p>Extension specifications are encouraged to focus on a single <a data-link-type="dfn" href="#sensor-types">sensor type</a>,
+exposing both <a data-link-type="dfn" href="#high-level">high</a> and <a data-link-type="dfn" href="#low-level">low</a> level
+as appropriate.</p>
    <h3 class="heading settled" data-level="7.1" id="naming"><span class="secno">7.1. </span><span class="content">Naming</span><a class="self-link" href="#naming"></a></h3>
    <p><a class="idl-code" data-link-type="interface" href="#sensor0">Sensor</a> interfaces for <a data-link-type="dfn" href="#low-level">low-level</a> sensors should be
 named after their associated <a data-link-type="dfn" href="#sensor">sensor</a>.
@@ -1759,6 +1766,39 @@ with the "Sensor" suffix.
 For example, a <a data-link-type="dfn" href="#sensor">sensor</a> measuring
 the distance at which an object is from it
 may see its associated interface called <code>ProximitySensor</code>.</p>
+   <h3 class="heading settled" data-level="7.2" id="high-vs-low-level"><span class="secno">7.2. </span><span class="content">Exposing High-Level vs. Low-Level Sensors</span><a class="self-link" href="#high-vs-low-level"></a></h3>
+   <p>So far, specifications exposing sensors to the Web platform
+have focused on <a data-link-type="dfn" href="#high-level">high-level</a> sensors APIs. <a data-link-type="biblio" href="#biblio-geolocation-api">[geolocation-API]</a> <a data-link-type="biblio" href="#biblio-orientation-event">[orientation-event]</a></p>
+   <p>This was a reaosnable approach for a number of reasons.
+Indeed, <a data-link-type="dfn" href="#high-level">high-level</a> sensors:</p>
+   <ul>
+    <li data-md="">
+     <p>convey developer intent clearly,</p>
+    <li data-md="">
+     <p>do not require intimate knowledge of how the underlying hardware sensors functions,</p>
+    <li data-md="">
+     <p>are easy to use,</p>
+    <li data-md="">
+     <p>may enable the User Agent to make significant
+  performance and battery life improvements,</p>
+    <li data-md="">
+     <p>help avoid certain privacy and security issues by
+  decreasing the amount and type of information exposed.</p>
+   </ul>
+   <p>However, an increasing number of use cases
+such as virtual and augmented reality <a data-link-type="biblio" href="#biblio-sensor-use-cases">[sensor-use-cases]</a> require <a data-link-type="dfn" href="#low-level">low-level</a> access to sensors,
+most notably for performance reasons.</p>
+   <p>Providing <a data-link-type="dfn" href="#low-level">low-level</a> access
+enables Web application developers to leverage domain-specific constraints
+and design more performant systems.</p>
+   <p>Following the precepts of the Extensible Web Manifesto <a data-link-type="biblio" href="#biblio-extennnnsible">[EXTENNNNSIBLE]</a>,
+extension specifications should focus primarily on
+exposing <a data-link-type="dfn" href="#low-level">low-level</a> sensor APIs, but should also expose <a data-link-type="dfn" href="#high-level">high-level</a> APIs when they are clear benefits in doing so.</p>
+   <h3 class="heading settled" data-level="7.3" id="calibration0"><span class="secno">7.3. </span><span class="content">Calibration</span><a class="self-link" href="#calibration0"></a></h3>
+   <p><a data-link-type="dfn" href="#output-data">Output data</a> emitted by <a class="idl-code" data-link-type="interface" href="#sensor0">Sensor</a> objects
+should always be <a data-link-type="dfn" href="#calibration">calibrated</a>.</p>
+   <p><a data-link-type="dfn" href="#sensor-fusion">Sensor fusion</a> should only be applied to <a data-link-type="dfn" href="#low-level">low-level</a> <a data-link-type="dfn" href="#sensor">sensors</a> when the data obtained without that process would
+be meaningless. For example, the</p>
    <p>It will feature precise steps on how to extend or inherit from interfaces described in this specification along with examples for two sensors, one which measures a single value and one which measures multiple ones.</p>
    <div class="issue no-marker" id="issue-d41d8cd914">
     <a class="self-link" href="#issue-d41d8cd914"></a><a class="marker" href="https://github.com/w3c/sensors/issues/22">Issue #22 on GitHub: “Simplify extension of the Permissions API for concrete sensor implementations”</a>
@@ -1978,8 +2018,16 @@ may see its associated interface called <code>ProximitySensor</code>.</p>
   </dl>
   <h3 class="no-num heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
   <dl>
+   <dt id="biblio-extennnnsible"><a class="self-link" href="#biblio-extennnnsible"></a>[EXTENNNNSIBLE]
+   <dd><a href="https://extensiblewebmanifesto.org/">The Extensible Web Manifesto</a>. June 10, 2013. URL: <a href="https://extensiblewebmanifesto.org/">https://extensiblewebmanifesto.org/</a>
+   <dt id="biblio-geolocation-api"><a class="self-link" href="#biblio-geolocation-api"></a>[geolocation-API]
+   <dd>Andrei Popescu. <a href="http://www.w3.org/TR/geolocation-API/">Geolocation API Specification</a>. 28 May 2015. PER. URL: <a href="http://www.w3.org/TR/geolocation-API/">http://www.w3.org/TR/geolocation-API/</a>
+   <dt id="biblio-orientation-event"><a class="self-link" href="#biblio-orientation-event"></a>[ORIENTATION-EVENT]
+   <dd>Stephen Block; Andrei Popescu. <a href="http://www.w3.org/TR/orientation-event/">DeviceOrientation Event Specification</a>. 1 December 2011. LCWD. URL: <a href="http://www.w3.org/TR/orientation-event/">http://www.w3.org/TR/orientation-event/</a>
    <dt id="biblio-permissions"><a class="self-link" href="#biblio-permissions"></a>[PERMISSIONS]
    <dd>Mounir Lamouri; Marcos Caceres. <a href="http://www.w3.org/TR/permissions/">The Permissions API</a>. 7 April 2015. WD. URL: <a href="http://www.w3.org/TR/permissions/">http://www.w3.org/TR/permissions/</a>
+   <dt id="biblio-sensor-use-cases"><a class="self-link" href="#biblio-sensor-use-cases"></a>[SENSOR-USE-CASES]
+   <dd>Tobie Langel. <a href="http://w3c.github.io/sensors/usecases.html">Generic Sensor Use Cases</a>. October 5, 2015. ED. URL: <a href="http://w3c.github.io/sensors/usecases.html">http://w3c.github.io/sensors/usecases.html</a>
   </dl>
   <h2 class="no-num heading settled" id="idl-index"><span class="content">IDL Index</span><a class="self-link" href="#idl-index"></a></h2>
 <pre class="idl">[<a href="#dom-sensors-sensors">Constructor</a>, Exposed=(Window,Worker)]
