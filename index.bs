@@ -416,8 +416,6 @@ The <a>frequency</a> at which the <a>read steps</a> are run.
 
 Issue(w3c/sensors#4):
 
-Issue(w3c/sensors#23):
-
 ### Sensor.batch
 
 `true` if <a>batch mode</a> was requested, false otherwise.
@@ -428,15 +426,9 @@ Returns the related <a>SensorInfo</a> object.
 
 ### Sensor.treshold
 
-Issue(w3c/sensors#25):
-
 ### Sensor.timeout
 
-Issue(w3c/sensors#44):
-
 ### Sensor.wakeup
-
-Issue(w3c/sensors#15):
 
 ### Sensor.value
 
@@ -551,13 +543,7 @@ dictionary MatchAllOptions {
     1. let <var>p</var> be a <a>List</a>.
     1. let <var>devices</var> be a <a>List</a>. -->
 
-Issue(w3c/sensors#26):
-
 Returns a promise which resolves to an array of <a>SensorInfo</a> objects representing all available local(?) sensors.
-
-Issue(w3c/sensors#28):
-
-Issue(w3c/sensors#7):
 
 <pre class="example highlight">
 sensors.matchAll({ type: "proximity", position: "rear" }).then(function(sensors) {
