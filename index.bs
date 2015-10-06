@@ -303,85 +303,18 @@ define ways uniquely identify each one.
     </pre>
 </div>
 
-API
-===
 
-Issue(w3c/sensors#8):
 
-## The `Sensors` Interface
 
-The <a>Sensors</a> interface represents a container for a list of <a>SensorInfo</a> objects. It is exposed on Window and Workers as the `Window.sensors` and `WorkerGlobalScope.sensors` attribute respectively.
 
-<pre class="idl">
-[Constructor, Exposed=(Window,Worker)]
-interface Sensors {
-  Promise&lt;sequence&lt;SensorInfo&gt;&gt; matchAll(optional MatchAllOptions options);
-};
 
-partial interface Window {
-  [SameObject] readonly attribute Sensors sensors;
-};
-
-partial interface WorkerGlobalScope {
-  [SameObject] readonly attribute Sensors sensors;
-};
-
-dictionary MatchAllOptions {
-  DOMString type;
-};
-</pre>
-
-### Sensors.matchAll
-
-Issue(w3c/sensors#26):
-
-Returns a promise which resolves to an array of <a>SensorInfo</a> objects representing all available local(?) sensors.
-
-Issue(w3c/sensors#28):
-
-Issue(w3c/sensors#7):
-
-<pre class="example highlight">
-sensors.matchAll({ type: "proximity", position: "rear" }).then(function(sensors) {
-    let sensor_info = sensors[0];
-    if (!sensor_info) return;
-    let sensor = new ProximitySensor(sensor_info.id, { /* ... */ });
-    sensor.onchange = dostuff;
-});
-</pre>
-
-## The <dfn>SensorInfo</dfn> Interface
-
-The `SensorInfo` interface is a lightweight object that represents an actual physical sensor. Concrete sensor implementation will need to subclass it.
-
-If no `id` is given, the Constructor uses the identifier of the default sensor of that type. This is to the cater to the common case of having a single sensor of a given type on a device.
-
-<pre class="example highlight javascript">
-
-let sensor = new GeolocationSensor();
-sensor.isDefault; // returns true;
-
-</pre>
-
-<pre class="idl">
-[Constructor(optional DOMString id, optional SensorInit sensorInitDic), Exposed=(Window,Worker)]
-interface SensorInfo {
-    readonly attribute DOMString id;
-    readonly attribute boolean isDefault;
-};
-
-dictionary SensorInit {
-  boolean isDefault;
-};
-</pre>
-
-### <dfn>SensorInfo.id</dnf>
 
 Returns the id of the sensor. This is an opaque DOMString.
 
-### <dfn>SensorInfo.isDefault</dnf>
+    
 
-Returns true if the sensor is the default sensor of that type on the device, false otherwise.
+API
+===
 
 ## The <dfn interface>Sensor</dfn> Interface
 
@@ -521,14 +454,97 @@ Returns a timestamp of the time at which the data was <a href=#>read from the se
 
 Returns the sensor object the reading is taken from.
 
+
+
+
+Issue(w3c/sensors#8):
+
+## The `Sensors` Interface
+
+The <a>Sensors</a> interface represents a container for a list of <a>SensorInfo</a> objects. It is exposed on Window and Workers as the `Window.sensors` and `WorkerGlobalScope.sensors` attribute respectively.
+
+<pre class="idl">
+[Constructor, Exposed=(Window,Worker)]
+interface Sensors {
+  Promise&lt;sequence&lt;SensorInfo&gt;&gt; matchAll(optional MatchAllOptions options);
+};
+
+partial interface Window {
+  [SameObject] readonly attribute Sensors sensors;
+};
+
+partial interface WorkerGlobalScope {
+  [SameObject] readonly attribute Sensors sensors;
+};
+
+dictionary MatchAllOptions {
+  DOMString type;
+};
+</pre>
+
+### Sensors.matchAll
+
+<!-- here link to read data from -->
+
+<!--Must take the following steps.
+    1. let <var>p</var> be a <a>List</a>.
+    1. let <var>devices</var> be a <a>List</a>. -->
+
+Issue(w3c/sensors#26):
+
+Returns a promise which resolves to an array of <a>SensorInfo</a> objects representing all available local(?) sensors.
+
+Issue(w3c/sensors#28):
+
+Issue(w3c/sensors#7):
+
+<pre class="example highlight">
+sensors.matchAll({ type: "proximity", position: "rear" }).then(function(sensors) {
+    let sensor_info = sensors[0];
+    if (!sensor_info) return;
+    let sensor = new ProximitySensor(sensor_info.id, { /* ... */ });
+    sensor.onchange = dostuff;
+});
+</pre>
+
+## The <dfn>SensorInfo</dfn> Interface
+
+The `SensorInfo` interface is a lightweight object that represents an actual physical sensor. Concrete sensor implementation will need to subclass it.
+
+If no `id` is given, the Constructor uses the identifier of the default sensor of that type. This is to the cater to the common case of having a single sensor of a given type on a device.
+
+<pre class="example highlight javascript">
+
+let sensor = new GeolocationSensor();
+sensor.isDefault; // returns true;
+
+</pre>
+
+<pre class="idl">
+[Constructor(optional DOMString id, optional SensorInit sensorInitDic), Exposed=(Window,Worker)]
+interface SensorInfo {
+    readonly attribute DOMString id;
+    readonly attribute boolean isDefault;
+};
+
+dictionary SensorInit {
+  boolean isDefault;
+};
+</pre>
+
+### <dfn>SensorInfo.id</dfn>
+
+Returns the id of the sensor. This is an opaque DOMString.
+
+### <dfn>SensorInfo.isDefault</dfn>
+
+Returns true if the sensor is the default sensor of that type on the device, false otherwise.
+
+
 Low level Sensor API
 --------------------
 
 Issue(w3c/sensors#24):
-
-
-
-
 
 Security and privacy considerations
 ===================================
