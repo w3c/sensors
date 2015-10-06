@@ -612,8 +612,6 @@ should always be <a lt="calibration">calibrated</a>.
 
 
 
-It will feature precise steps on how to extend or inherit from interfaces described in this specification along with examples for two sensors, one which measures a single value and one which measures multiple ones.
-
 Issue(w3c/sensors#22):
 
 Acknowledgements
