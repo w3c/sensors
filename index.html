@@ -1120,7 +1120,11 @@ that can be extended to accommodate different sensor types.</p>
     <li><a href="#intro"><span class="secno">1</span> <span class="content">Introduction</span></a>
     <li><a href="#terminology"><span class="secno">2</span> <span class="content">Terminology</span></a>
     <li><a href="#feature-detection"><span class="secno">3</span> <span class="content">An note on Feature Detection of Hardware Features</span></a>
-    <li><a href="#model"><span class="secno">4</span> <span class="content">Model</span></a>
+    <li>
+     <a href="#model"><span class="secno">4</span> <span class="content">Model</span></a>
+     <ul class="toc">
+      <li><a href="#enumerating-sensors"><span class="secno">4.1</span> <span class="content">Enumerating Sensors</span></a>
+     </ul>
     <li>
      <a href="#api"><span class="secno">5</span> <span class="content">API</span></a>
      <ul class="toc">
@@ -1137,27 +1141,29 @@ that can be extended to accommodate different sensor types.</p>
         <li><a href="#sensorvalue"><span class="secno">5.1.8</span> <span class="content">Sensor.value</span></a>
         <li><a href="#sensorvalues"><span class="secno">5.1.9</span> <span class="content">Sensor.values</span></a>
         <li><a href="#sensoronerror"><span class="secno">5.1.10</span> <span class="content">Sensor.onerror</span></a>
-        <li><a href="#sensoronchange"><span class="secno">5.1.11</span> <span class="content">Sensor.onchange</span></a>
-        <li><a href="#sensoroncalibration"><span class="secno">5.1.12</span> <span class="content">Sensor.oncalibration</span></a>
-        <li><a href="#sensoronconnect"><span class="secno">5.1.13</span> <span class="content">Sensor.onconnect</span></a>
-        <li><a href="#sensorondisconnect"><span class="secno">5.1.14</span> <span class="content">Sensor.ondisconnect</span></a>
-        <li><a href="#event-handlers"><span class="secno">5.1.15</span> <span class="content">Event handlers</span></a>
-        <li><a href="#the-sensorreading-interface"><span class="secno">5.1.16</span> <span class="content">The <span>SensorReading</span> Interface</span></a>
-        <li><a href="#sensorreadingtimestamp"><span class="secno">5.1.17</span> <span class="content">SensorReading.timeStamp</span></a>
-        <li><a href="#sensorreadinginfo"><span class="secno">5.1.18</span> <span class="content">SensorReading.info</span></a>
+        <li><a href="#sensorondata"><span class="secno">5.1.11</span> <span class="content">Sensor.ondata</span></a>
+        <li><a href="#sensoronchange"><span class="secno">5.1.12</span> <span class="content">Sensor.onchange</span></a>
+        <li><a href="#sensoroncalibration"><span class="secno">5.1.13</span> <span class="content">Sensor.oncalibration</span></a>
+        <li><a href="#event-handlers"><span class="secno">5.1.14</span> <span class="content">Event handlers</span></a>
        </ul>
       <li>
-       <a href="#the-sensors-interface"><span class="secno">5.2</span> <span class="content">The <code>Sensors</code> Interface</span></a>
+       <a href="#the-sensorreading-interface"><span class="secno">5.2</span> <span class="content">The SensorReading Interface</span></a>
        <ul class="toc">
-        <li><a href="#sensorsmatchall"><span class="secno">5.2.1</span> <span class="content">Sensors.matchAll</span></a>
+        <li><a href="#sensorreadingtimestamp"><span class="secno">5.2.1</span> <span class="content">SensorReading.timeStamp</span></a>
+        <li><a href="#sensorreadinginfo"><span class="secno">5.2.2</span> <span class="content">SensorReading.info</span></a>
        </ul>
       <li>
-       <a href="#the-sensorinfo-interface"><span class="secno">5.3</span> <span class="content">The <span>SensorInfo</span> Interface</span></a>
+       <a href="#the-sensors-interface"><span class="secno">5.3</span> <span class="content">The Sensors Interface</span></a>
        <ul class="toc">
-        <li><a href="#sensorinfoid"><span class="secno">5.3.1</span> <span class="content"><span>SensorInfo.id</span></span></a>
-        <li><a href="#sensorinfoisdefault"><span class="secno">5.3.2</span> <span class="content"><span>SensorInfo.isDefault</span></span></a>
+        <li><a href="#sensorsmatchall"><span class="secno">5.3.1</span> <span class="content">Sensors.matchAll</span></a>
        </ul>
-      <li><a href="#low-level-sensor-api"><span class="secno">5.4</span> <span class="content">Low level Sensor API</span></a>
+      <li>
+       <a href="#the-sensorinfo-interface"><span class="secno">5.4</span> <span class="content">The SensorInfo Interface</span></a>
+       <ul class="toc">
+        <li><a href="#sensorinfoid"><span class="secno">5.4.1</span> <span class="content"><span>SensorInfo.id</span></span></a>
+        <li><a href="#sensorinfoisdefault"><span class="secno">5.4.2</span> <span class="content"><span>SensorInfo.isDefault</span></span></a>
+       </ul>
+      <li><a href="#low-level-sensor-api"><span class="secno">5.5</span> <span class="content">Low level Sensor API</span></a>
      </ul>
     <li>
      <a href="#security-and-privacy-considerations"><span class="secno">6</span> <span class="content">Security and privacy considerations</span></a>
@@ -1170,7 +1176,11 @@ that can be extended to accommodate different sensor types.</p>
      <ul class="toc">
       <li><a href="#naming"><span class="secno">7.1</span> <span class="content">Naming</span></a>
       <li><a href="#high-vs-low-level"><span class="secno">7.2</span> <span class="content">Exposing High-Level vs. Low-Level Sensors</span></a>
-      <li><a href="#calibration0"><span class="secno">7.3</span> <span class="content">Calibration</span></a>
+      <li><a href="#multiple-sensors"><span class="secno">7.3</span> <span class="content">When is Enabling Multiple Sensors of the Same Type Not the Right Choice?</span></a>
+      <li><a href="#defining-a-default"><span class="secno">7.4</span> <span class="content">Defining a default</span></a>
+      <li><a href="#calibration0"><span class="secno">7.5</span> <span class="content">Calibration</span></a>
+      <li><a href="#permission-api"><span class="secno">7.6</span> <span class="content">Extending the Permission API</span></a>
+      <li><a href="#example-webidl"><span class="secno">7.7</span> <span class="content">Example WebIDL</span></a>
      </ul>
     <li><a href="#acknowledgements"><span class="secno">8</span> <span class="content">Acknowledgements</span></a>
     <li>
@@ -1382,13 +1392,20 @@ proximity <a data-link-type="dfn" href="#sensor">sensors</a>.</p>
    <p>In cases where
 multiple <a data-link-type="dfn" href="#sensor">sensors</a> of the same <a data-link-type="dfn" href="#sensor-types">type</a> may coexist on the same device,
 specification extension will have to
-define ways uniquely identify each one.</p>
+define ways to uniquely identify each one.</p>
    <div class="example" id="example-0a813841">
     <a class="self-link" href="#example-0a813841"></a> For example checking the pressure of the left rear tire: 
 <pre class="highlight" example=""><span class="nx">DirectTirePressureSensor</span><span class="p">.</span><span class="nx">requestData</span><span class="p">({</span> <span class="nx">position</span><span class="o">:</span> <span class="s2">"rear"</span><span class="p">,</span> <span class="nx">side</span><span class="o">:</span> <span class="s2">"left"</span> <span class="p">})</span>
     <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">reading</span> <span class="o">=></span> <span class="p">{</span> <span class="nx">display</span><span class="p">(</span><span class="nx">reading</span><span class="p">.</span><span class="nx">pressure</span><span class="p">);</span> <span class="p">})</span>
     <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=></span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">));</span></pre>
    </div>
+   <h3 class="heading settled" data-level="4.1" id="enumerating-sensors"><span class="secno">4.1. </span><span class="content">Enumerating Sensors</span><a class="self-link" href="#enumerating-sensors"></a></h3>
+    <a data-link-type="dfn" href="#sensor">Sensor</a> discoverability becomes particularly important
+as the number of <a data-link-type="dfn" href="#sensor">sensor</a> grows.
+Web application developers need to find out what kind of
+sensor is on a given device and what their capabilities are. 
+   <p><strong>This feature is at risk and might be moved to
+a subsequent version of this specification.</strong></p>
    <h2 class="heading settled" data-level="5" id="api"><span class="secno">5. </span><span class="content">API</span><a class="self-link" href="#api"></a></h2>
    <h3 class="heading settled" data-level="5.1" id="the-sensor-interface"><span class="secno">5.1. </span><span class="content">The Sensor Interface</span><a class="self-link" href="#the-sensor-interface"></a></h3>
    <p>A <dfn class="idl-code" data-dfn-type="interface" data-export="" id="sensor0">Sensor<a class="self-link" href="#sensor0"></a></dfn> object has an associated <a data-link-type="dfn" href="#sensor">sensor</a>.</p>
@@ -1406,6 +1423,7 @@ define ways uniquely identify each one.</p>
      <p><dfn data-dfn-type="dfn" data-noexport="" id="identifying-parameters">identifying parameters<a class="self-link" href="#identifying-parameters"></a></dfn></p>
 <pre class="idl">[<dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="constructor" data-export="" data-lt="Sensor(sensorOptions)" id="dom-sensor-sensor">Constructor<a class="self-link" href="#dom-sensor-sensor"></a></dfn>(optional <a data-link-type="idl-name" href="#dictdef-sensoroptions">SensorOptions</a> <dfn class="idl-code" data-dfn-for="Sensor/Sensor(sensorOptions)" data-dfn-type="argument" data-export="" id="dom-sensor-sensor-sensoroptions-sensoroptions">sensorOptions<a class="self-link" href="#dom-sensor-sensor-sensoroptions-sensoroptions"></a></dfn>), Exposed=(Window,Worker)]
 interface <a class="idl-code" data-link-type="interface" href="#sensor0">Sensor</a> : <a data-link-type="idl-name" href="https://dom.spec.whatwg.org#interface-eventtarget">EventTarget</a> {
+  static Promise&lt;<a data-link-type="idl-name" href="#sensorreading0">SensorReading</a>> <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="method" data-export="" data-lt="requestData(requestDataOptions)" id="dom-sensor-requestdata">requestData<a class="self-link" href="#dom-sensor-requestdata"></a></dfn>(<a data-link-type="idl-name" href="#dictdef-requestdataoptions">RequestDataOptions</a> <dfn class="idl-code" data-dfn-for="Sensor/requestData(requestDataOptions)" data-dfn-type="argument" data-export="" id="dom-sensor-requestdata-requestdataoptions-requestdataoptions">requestDataOptions<a class="self-link" href="#dom-sensor-requestdata-requestdataoptions-requestdataoptions"></a></dfn>);
   attribute double <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="double " id="dom-sensor-frequency">frequency<a class="self-link" href="#dom-sensor-frequency"></a></dfn>;
   attribute boolean <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="boolean " id="dom-sensor-batch">batch<a class="self-link" href="#dom-sensor-batch"></a></dfn>;
   readonly attribute <a data-link-type="idl-name" href="#sensorinfo1">SensorInfo</a> <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-readonly="" data-type="SensorInfo " id="dom-sensor-info">info<a class="self-link" href="#dom-sensor-info"></a></dfn>;
@@ -1415,12 +1433,9 @@ interface <a class="idl-code" data-link-type="interface" href="#sensor0">Sensor<
   readonly attribute <a data-link-type="idl-name" href="#sensorreading0">SensorReading</a>? <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-readonly="" data-type="SensorReading? " id="dom-sensor-value">value<a class="self-link" href="#dom-sensor-value"></a></dfn>;
   readonly attribute <a data-link-type="idl-name" href="#sensorreading0">SensorReading</a>[]? <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-readonly="" data-type="SensorReading[]? " id="dom-sensor-values">values<a class="self-link" href="#dom-sensor-values"></a></dfn>;
   attribute <a data-link-type="idl-name" href="http://www.w3.org/TR/html5/webappapis.html#eventhandler">EventHandler</a> <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="EventHandler " id="dom-sensor-onerror">onerror<a class="self-link" href="#dom-sensor-onerror"></a></dfn>;
+  attribute <a data-link-type="idl-name" href="http://www.w3.org/TR/html5/webappapis.html#eventhandler">EventHandler</a> <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="EventHandler " id="dom-sensor-ondata">ondata<a class="self-link" href="#dom-sensor-ondata"></a></dfn>;
   attribute <a data-link-type="idl-name" href="http://www.w3.org/TR/html5/webappapis.html#eventhandler">EventHandler</a> <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="EventHandler " id="dom-sensor-onchange">onchange<a class="self-link" href="#dom-sensor-onchange"></a></dfn>;
-  // would that cover all cases?
   attribute <a data-link-type="idl-name" href="http://www.w3.org/TR/html5/webappapis.html#eventhandler">EventHandler</a> <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="EventHandler " id="dom-sensor-oncalibration">oncalibration<a class="self-link" href="#dom-sensor-oncalibration"></a></dfn>;
-  // needed?
-  attribute <a data-link-type="idl-name" href="http://www.w3.org/TR/html5/webappapis.html#eventhandler">EventHandler</a> <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="EventHandler " id="dom-sensor-onconnect">onconnect<a class="self-link" href="#dom-sensor-onconnect"></a></dfn>;
-  attribute <a data-link-type="idl-name" href="http://www.w3.org/TR/html5/webappapis.html#eventhandler">EventHandler</a> <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="EventHandler " id="dom-sensor-ondisconnect">ondisconnect<a class="self-link" href="#dom-sensor-ondisconnect"></a></dfn>;
 };
 
 dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-sensoroptions">SensorOptions<a class="self-link" href="#dictdef-sensoroptions"></a></dfn> {
@@ -1429,6 +1444,14 @@ dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="d
   boolean? <dfn class="idl-code" data-default="false" data-dfn-for="SensorOptions" data-dfn-type="dict-member" data-export="" data-type="boolean? " id="dom-sensoroptions-batch">batch<a class="self-link" href="#dom-sensoroptions-batch"></a></dfn> = false;
   <a data-link-type="idl-name" href="#callbackdef-tresholdcallback">TresholdCallback</a>? <dfn class="idl-code" data-dfn-for="SensorOptions" data-dfn-type="dict-member" data-export="" data-type="TresholdCallback? " id="dom-sensoroptions-treshold">treshold<a class="self-link" href="#dom-sensoroptions-treshold"></a></dfn>;
   double? <dfn class="idl-code" data-dfn-for="SensorOptions" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-sensoroptions-timeout">timeout<a class="self-link" href="#dom-sensoroptions-timeout"></a></dfn>;
+};
+
+dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-requestdataoptions">RequestDataOptions<a class="self-link" href="#dictdef-requestdataoptions"></a></dfn> {
+  DOMString? <dfn class="idl-code" data-dfn-for="RequestDataOptions" data-dfn-type="dict-member" data-export="" data-type="DOMString? " id="dom-requestdataoptions-sensorid">sensorId<a class="self-link" href="#dom-requestdataoptions-sensorid"></a></dfn>;
+  double? <dfn class="idl-code" data-dfn-for="RequestDataOptions" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-requestdataoptions-frequency">frequency<a class="self-link" href="#dom-requestdataoptions-frequency"></a></dfn>;
+  boolean? <dfn class="idl-code" data-default="false" data-dfn-for="RequestDataOptions" data-dfn-type="dict-member" data-export="" data-type="boolean? " id="dom-requestdataoptions-batch">batch<a class="self-link" href="#dom-requestdataoptions-batch"></a></dfn> = false;
+  double? <dfn class="idl-code" data-dfn-for="RequestDataOptions" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-requestdataoptions-timeout">timeout<a class="self-link" href="#dom-requestdataoptions-timeout"></a></dfn>;
+  boolean? <dfn class="idl-code" data-default="false" data-dfn-for="RequestDataOptions" data-dfn-type="dict-member" data-export="" data-type="boolean? " id="dom-requestdataoptions-fromcache">fromCache<a class="self-link" href="#dom-requestdataoptions-fromcache"></a></dfn> = false;
 };
 
 callback <dfn class="idl-code" data-dfn-type="callback" data-export="" id="callbackdef-tresholdcallback">TresholdCallback<a class="self-link" href="#callbackdef-tresholdcallback"></a></dfn> = boolean (<a data-link-type="idl-name" href="#sensorreading0">SensorReading</a> <dfn class="idl-code" data-dfn-for="TresholdCallback" data-dfn-type="argument" data-export="" id="dom-tresholdcallback-currentvalue">currentValue<a class="self-link" href="#dom-tresholdcallback-currentvalue"></a></dfn>, <a data-link-type="idl-name" href="#sensorreading0">SensorReading</a> <dfn class="idl-code" data-dfn-for="TresholdCallback" data-dfn-type="argument" data-export="" id="dom-tresholdcallback-newvalue">newValue<a class="self-link" href="#dom-tresholdcallback-newvalue"></a></dfn>);
@@ -1534,21 +1557,7 @@ callback <dfn class="idl-code" data-dfn-type="callback" data-export="" id="callb
     </ul>
    </div>
    <div class="issue no-marker" id="issue-d41d8cd90">
-    <a class="self-link" href="#issue-d41d8cd90"></a><a class="marker" href="https://github.com/w3c/sensors/issues/6">Issue #6 on GitHub: “Agree on coarseness of frequency option”</a>
-    <p>There's disagreement as to how coarse the frequency option provided to the sensor object should be.</p>
-    <p>Proposals on the table:</p>
-    <ul>
-     <li>
-      <del><code>ms</code></del>
-       <code>Hz</code> (<a class="user-mention" href="https://github.com/rwaldron">@rwaldron</a>)
-     <li> <code>enum  { "low", "normal", "high" }</code> (<a class="user-mention" href="https://github.com/timvolodine">@timvolodine</a>) see <a href="http://lists.w3.org/Archives/Public/public-device-apis/2014Sep/0024.html">mailing list</a>.
-     <li> <code>animationframe</code> (<a class="user-mention" href="https://github.com/domenic">@domenic</a>) see <a class="issue-link" href="https://github.com/w3c/sensors/issues/4" title="Provide a way of tying sensor requests to animation frames">#4</a>.
-    </ul>
-    <p><strong>UPDATE</strong>: <a class="user-mention" href="https://github.com/rwaldron">@rwaldron</a>'s proposal is in <code>Hz</code> not <code>ms</code> (apologies for the confusion-inducing mixup).</p>
-    <p><strong>Proposed resolution: Sensor update rates are set using frequency measured in Hz. Additionally, an option to tie update frequency and framerates together will be supported depending on the outcome of <a class="issue-link" href="https://github.com/w3c/sensors/issues/4" title="Provide a way of tying sensor requests to animation frames">#4</a>.</strong></p>
-   </div>
-   <div class="issue no-marker" id="issue-d41d8cd91">
-    <a class="self-link" href="#issue-d41d8cd91"></a><a class="marker" href="https://github.com/w3c/sensors/issues/23">Issue #23 on GitHub: “What if requested polling frequency is > time it takes to read data out of the sensor?”</a>
+    <a class="self-link" href="#issue-d41d8cd90"></a><a class="marker" href="https://github.com/w3c/sensors/issues/23">Issue #23 on GitHub: “What if requested polling frequency is > time it takes to read data out of the sensor?”</a>
     <p>For example, getting the temp and humidity readings out of certain cheap sensors can take up to 0.25 seconds.</p>
     <p>Should this be reflected in <code>Sensor.frequency</code>? i.e. should the value of <code>Sensor.Temp({ frequency: 60 }).frequency</code> be <code>60</code> or <code>4</code> (4 Hz == 0.25s intervals)?</p>
     <p>My feeling is that it shouldn't given that it's not observable by consumers if the only thing exposed is <code>onchanged</code> events.</p>
@@ -1560,8 +1569,8 @@ callback <dfn class="idl-code" data-dfn-type="callback" data-export="" id="callb
    <h4 class="heading settled" data-level="5.1.4" id="sensorinfo"><span class="secno">5.1.4. </span><span class="content">Sensor.info</span><a class="self-link" href="#sensorinfo"></a></h4>
    <p>Returns the related <a data-link-type="dfn" href="#sensorinfo0">SensorInfo</a> object.</p>
    <h4 class="heading settled" data-level="5.1.5" id="sensortreshold"><span class="secno">5.1.5. </span><span class="content">Sensor.treshold</span><a class="self-link" href="#sensortreshold"></a></h4>
-   <div class="issue no-marker" id="issue-d41d8cd92">
-    <a class="self-link" href="#issue-d41d8cd92"></a><a class="marker" href="https://github.com/w3c/sensors/issues/25">Issue #25 on GitHub: “Add a threshold option”</a>
+   <div class="issue no-marker" id="issue-d41d8cd91">
+    <a class="self-link" href="#issue-d41d8cd91"></a><a class="marker" href="https://github.com/w3c/sensors/issues/25">Issue #25 on GitHub: “Add a threshold option”</a>
     <p>Johnn-Five implements a <a href="https://github.com/rwaldron/johnny-five/wiki/Sensor#events">treshold attribute</a> which determines the amount of change necessary of the value of the sensor to trigger a <code>change</code> event. Given we want to support sensors with multiple values, we'd at least need to add an attribute for each value. It might be simpler to add a method that would compare the current values with the last emitted ones and return a boolean (which would be used internally to decide whether or nor to trigger the <code>change</code> event). So for example setting up a geoloc sensor to only trigger when changing hemisphere:</p>
     <div class="highlight highlight-source-js">
 <pre><span class="pl-k">new</span> <span class="pl-en">Sensor</span>({
@@ -1572,13 +1581,13 @@ callback <dfn class="idl-code" data-dfn-type="callback" data-export="" id="callb
     </div>
    </div>
    <h4 class="heading settled" data-level="5.1.6" id="sensortimeout"><span class="secno">5.1.6. </span><span class="content">Sensor.timeout</span><a class="self-link" href="#sensortimeout"></a></h4>
-   <div class="issue no-marker" id="issue-d41d8cd93">
-    <a class="self-link" href="#issue-d41d8cd93"></a><a class="marker" href="https://github.com/w3c/sensors/issues/44">Issue #44 on GitHub: “Add a timeout property?”</a>
+   <div class="issue no-marker" id="issue-d41d8cd92">
+    <a class="self-link" href="#issue-d41d8cd92"></a><a class="marker" href="https://github.com/w3c/sensors/issues/44">Issue #44 on GitHub: “Add a timeout property?”</a>
     <p>This would be the time before you call <code>onerror</code> if no new value is received. Possibly also the time before you call <code>ondisconnect</code> if such an event is supported.</p>
    </div>
    <h4 class="heading settled" data-level="5.1.7" id="sensorwakeup"><span class="secno">5.1.7. </span><span class="content">Sensor.wakeup</span><a class="self-link" href="#sensorwakeup"></a></h4>
-   <div class="issue no-marker" id="issue-d41d8cd94">
-    <a class="self-link" href="#issue-d41d8cd94"></a><a class="marker" href="https://github.com/w3c/sensors/issues/15">Issue #15 on GitHub: “"wakeup" parameter”</a>
+   <div class="issue no-marker" id="issue-d41d8cd93">
+    <a class="self-link" href="#issue-d41d8cd93"></a><a class="marker" href="https://github.com/w3c/sensors/issues/15">Issue #15 on GitHub: “"wakeup" parameter”</a>
     <p><code>Sensor({ wakeup: true });</code> </p>
     <ul>
      <li>defaults to false
@@ -1586,13 +1595,12 @@ callback <dfn class="idl-code" data-dfn-type="callback" data-export="" id="callb
     </ul>
    </div>
    <h4 class="heading settled" data-level="5.1.8" id="sensorvalue"><span class="secno">5.1.8. </span><span class="content">Sensor.value</span><a class="self-link" href="#sensorvalue"></a></h4>
-   <div class="issue no-marker" id="issue-d41d8cd95">
-    <a class="self-link" href="#issue-d41d8cd95"></a><a class="marker" href="https://github.com/w3c/sensors/issues/2">Issue #2 on GitHub: “Handle sensors with multiple values”</a>
-    <p><strong>Proposed resolution: the Generic Sensor API needs to support sensors with multiple values. This should be implementable using domain-specific named properties.</strong></p>
-   </div>
+   <p>The value attribute of must always point to the latest <a data-link-type="dfn" href="#sensorreading">SensorReading</a> whatever the <a data-link-type="dfn" href="#frequency">frequency</a> so that
+the value attribute of two instances of the same Sensor interface
+associated with the same <a data-link-type="dfn" href="#sensor">sensor</a> hold the same <a data-link-type="dfn" href="#sensorreading">SensorReading</a> during a single <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#event-loop">event loop</a> turn.</p>
    <h4 class="heading settled" data-level="5.1.9" id="sensorvalues"><span class="secno">5.1.9. </span><span class="content">Sensor.values</span><a class="self-link" href="#sensorvalues"></a></h4>
-   <div class="issue no-marker" id="issue-d41d8cd96">
-    <a class="self-link" href="#issue-d41d8cd96"></a><a class="marker" href="https://github.com/w3c/sensors/issues/13">Issue #13 on GitHub: “Allowing data batching when poll frequency &lt; sensor frequency”</a>
+   <div class="issue no-marker" id="issue-d41d8cd94">
+    <a class="self-link" href="#issue-d41d8cd94"></a><a class="marker" href="https://github.com/w3c/sensors/issues/13">Issue #13 on GitHub: “Allowing data batching when poll frequency &lt; sensor frequency”</a>
     <p>Even when doing realtime processing (eg. say at 60 Hz), there is a benefit to having more than one new value every time you process (eg. Oculus polls a gyroscope at 1000 Hz for head tracking). In this case, every time you process, you'll have [1000/60] ~= 16 new sensor data.</p>
     <p>This seems like a desirable feature. How would you handle this though?</p>
     <p>Is this (yet) an extra option you set? How does that work with sensors with multiple values, etc.?</p>
@@ -1618,11 +1626,10 @@ callback <dfn class="idl-code" data-dfn-type="callback" data-export="" id="callb
     </ul>
    </div>
    <h4 class="heading settled" data-level="5.1.10" id="sensoronerror"><span class="secno">5.1.10. </span><span class="content">Sensor.onerror</span><a class="self-link" href="#sensoronerror"></a></h4>
-   <h4 class="heading settled" data-level="5.1.11" id="sensoronchange"><span class="secno">5.1.11. </span><span class="content">Sensor.onchange</span><a class="self-link" href="#sensoronchange"></a></h4>
-   <h4 class="heading settled" data-level="5.1.12" id="sensoroncalibration"><span class="secno">5.1.12. </span><span class="content">Sensor.oncalibration</span><a class="self-link" href="#sensoroncalibration"></a></h4>
-   <h4 class="heading settled" data-level="5.1.13" id="sensoronconnect"><span class="secno">5.1.13. </span><span class="content">Sensor.onconnect</span><a class="self-link" href="#sensoronconnect"></a></h4>
-   <h4 class="heading settled" data-level="5.1.14" id="sensorondisconnect"><span class="secno">5.1.14. </span><span class="content">Sensor.ondisconnect</span><a class="self-link" href="#sensorondisconnect"></a></h4>
-   <h4 class="heading settled" data-level="5.1.15" id="event-handlers"><span class="secno">5.1.15. </span><span class="content">Event handlers</span><a class="self-link" href="#event-handlers"></a></h4>
+   <h4 class="heading settled" data-level="5.1.11" id="sensorondata"><span class="secno">5.1.11. </span><span class="content">Sensor.ondata</span><a class="self-link" href="#sensorondata"></a></h4>
+   <h4 class="heading settled" data-level="5.1.12" id="sensoronchange"><span class="secno">5.1.12. </span><span class="content">Sensor.onchange</span><a class="self-link" href="#sensoronchange"></a></h4>
+   <h4 class="heading settled" data-level="5.1.13" id="sensoroncalibration"><span class="secno">5.1.13. </span><span class="content">Sensor.oncalibration</span><a class="self-link" href="#sensoroncalibration"></a></h4>
+   <h4 class="heading settled" data-level="5.1.14" id="event-handlers"><span class="secno">5.1.14. </span><span class="content">Event handlers</span><a class="self-link" href="#event-handlers"></a></h4>
    <p>The following are the <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#event-handlers">event handlers</a> (and their corresponding <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#event-handler-event-type">event handler event types</a>) that MUST be supported as attributes by the objects implementing the <a data-link-type="dfn" href="#sensor">Sensor</a> interface:</p>
    <table class="simple">
     <thead>
@@ -1630,6 +1637,9 @@ callback <dfn class="idl-code" data-dfn-type="callback" data-export="" id="callb
       <th>event handler
       <th>event handler event type
     <tbody>
+     <tr>
+      <td><strong><code>ondata</code></strong>
+      <td><code>data</code>
      <tr>
       <td><strong><code>onchange</code></strong>
       <td><code>change</code>
@@ -1639,43 +1649,26 @@ callback <dfn class="idl-code" data-dfn-type="callback" data-export="" id="callb
      <tr>
       <td><strong><code>oncalibration</code></strong>
       <td><code>calibration</code>
-     <tr>
-      <td><strong><code>onconnect</code></strong>
-      <td><code>connect</code>
-     <tr>
-      <td><strong><code>ondisconnect</code></strong>
-      <td><code>disconnect</code>
    </table>
-   <h4 class="heading settled" data-level="5.1.16" id="the-sensorreading-interface"><span class="secno">5.1.16. </span><span class="content">The <dfn data-dfn-type="dfn" data-noexport="" id="sensorreading">SensorReading<a class="self-link" href="#sensorreading"></a></dfn> Interface</span><a class="self-link" href="#the-sensorreading-interface"></a></h4>
-   <p>Represents the values of a sensor at a given point in time.</p>
+   <h3 class="heading settled" data-level="5.2" id="the-sensorreading-interface"><span class="secno">5.2. </span><span class="content">The SensorReading Interface</span><a class="self-link" href="#the-sensorreading-interface"></a></h3>
+   <p>A <dfn data-dfn-type="dfn" data-noexport="" id="sensorreading">SensorReading<a class="self-link" href="#sensorreading"></a></dfn> represents the state of a <a data-link-type="dfn" href="#sensor">sensor</a> at a given point in time.</p>
 <pre class="idl">interface <dfn class="idl-code" data-dfn-type="interface" data-export="" id="sensorreading0">SensorReading<a class="self-link" href="#sensorreading0"></a></dfn> {
   readonly attribute <a data-link-type="idl-name" href="http://w3c.github.io/hr-time/#dom-domhighrestimestamp">DOMHighResTimeStamp</a> <dfn class="idl-code" data-dfn-for="SensorReading" data-dfn-type="attribute" data-export="" data-readonly="" data-type="DOMHighResTimeStamp " id="dom-sensorreading-timestamp">timeStamp<a class="self-link" href="#dom-sensorreading-timestamp"></a></dfn>;
   readonly attribute <a data-link-type="idl-name" href="#sensorinfo1">SensorInfo</a> <dfn class="idl-code" data-dfn-for="SensorReading" data-dfn-type="attribute" data-export="" data-readonly="" data-type="SensorInfo " id="dom-sensorreading-info">info<a class="self-link" href="#dom-sensorreading-info"></a></dfn>;
 };
 </pre>
-   <h4 class="heading settled" data-level="5.1.17" id="sensorreadingtimestamp"><span class="secno">5.1.17. </span><span class="content">SensorReading.timeStamp</span><a class="self-link" href="#sensorreadingtimestamp"></a></h4>
-   <p>Returns a timestamp of the time at which the data was <a href="#">read from the sensor</a> expressed in milliseconds that passed since the <a data-link-type="dfn" href="http://w3c.github.io/hr-time/#time-origin">time origin</a>.</p>
-   <h4 class="heading settled" data-level="5.1.18" id="sensorreadinginfo"><span class="secno">5.1.18. </span><span class="content">SensorReading.info</span><a class="self-link" href="#sensorreadinginfo"></a></h4>
+   <h4 class="heading settled" data-level="5.2.1" id="sensorreadingtimestamp"><span class="secno">5.2.1. </span><span class="content">SensorReading.timeStamp</span><a class="self-link" href="#sensorreadingtimestamp"></a></h4>
+   <p>Returns a timestamp of the time
+at which the <a data-link-type="dfn" href="#read-steps">read steps</a> was carried out
+expressed in milliseconds that passed since the <a data-link-type="dfn" href="http://w3c.github.io/hr-time/#time-origin">time origin</a>.</p>
+   <h4 class="heading settled" data-level="5.2.2" id="sensorreadinginfo"><span class="secno">5.2.2. </span><span class="content">SensorReading.info</span><a class="self-link" href="#sensorreadinginfo"></a></h4>
    <p>Returns the sensor object the reading is taken from.</p>
-   <div class="issue no-marker" id="issue-d41d8cd97">
-    <a class="self-link" href="#issue-d41d8cd97"></a><a class="marker" href="https://github.com/w3c/sensors/issues/8">Issue #8 on GitHub: “Should sensors be singleton?”</a>
-    <p><a class="user-mention" href="https://github.com/timvolodine">@timvolodine</a>'s <a href="http://lists.w3.org/Archives/Public/public-device-apis/2014Sep/0024.html">proposal</a> advocates sensor types should essentially be singletons.</p>
-    <p>This is problematic for devices which have multiple sensors of a given type.</p>
-    <p>It also doesn't help with the use case of having different parts of the application be interested in a different frequency of updates. For example, a cycling app could use GPS data to log geolocation every 10 seconds to display the ride on a map once its over and need 60hz update frequency to display that data live whenever the cyclist switches to the live map view.</p>
-    <p><strong>Resolution: It must be possible to create multiple instances of Sensor objects, whether these are created through a constructor, a factory method or a promise.</strong></p>
-    <p><strong>Resolution: The <code>value</code> property of a sensor instance must always point to the freshest data available whatever the frequency so that two instances of the same Sensor interface hold the same value during a single event turn.</strong> Note: the frequency is indicative of the <em>minimum</em> frequency at which the sensor is polled and the frequency at which the event are emitted.</p>
-    <p><strong>Actions:</strong></p>
-    <ul class="task-list">
-     <li class="task-list-item">
-      <input class="task-list-item-checkbox" disabled="" type="checkbox">
-       research the qualities of immutability and identity of custom data dispatched as <code>event.data</code> throughout the Web platform.
-     <li class="task-list-item">
-      <input class="task-list-item-checkbox" disabled="" type="checkbox">
-       define precisely the qualities of immutability and identity of the dictionary-like objects representing sensor values to match those of other event.data objects across the platform.
-    </ul>
-   </div>
-   <h3 class="heading settled" data-level="5.2" id="the-sensors-interface"><span class="secno">5.2. </span><span class="content">The <code>Sensors</code> Interface</span><a class="self-link" href="#the-sensors-interface"></a></h3>
-   <p>The <a data-link-type="dfn" href="#sensor">Sensors</a> interface represents a container for a list of <a data-link-type="dfn" href="#sensorinfo0">SensorInfo</a> objects. It is exposed on Window and Workers as the <code>Window.sensors</code> and <code>WorkerGlobalScope.sensors</code> attribute respectively.</p>
+   <h3 class="heading settled" data-level="5.3" id="the-sensors-interface"><span class="secno">5.3. </span><span class="content">The Sensors Interface</span><a class="self-link" href="#the-sensors-interface"></a></h3>
+   <p><strong>This feature is at risk.</strong></p>
+   <p>The <a data-link-type="dfn" href="#sensor">Sensors</a> interface represents a container for a list of <a data-link-type="dfn" href="#sensorinfo0">SensorInfo</a> objects.
+It is exposed on Window and Workers as the <code>Window.sensors</code> and <code>WorkerGlobalScope.sensors</code> attribute respectively.</p>
+   <p>TODO: make this explicietly about local sensors and allow supporting enumeration of
+remote sensors through added parameters.</p>
 <pre class="idl">[<dfn class="idl-code" data-dfn-for="Sensors" data-dfn-type="constructor" data-export="" data-lt="Sensors()" id="dom-sensors-sensors">Constructor<a class="self-link" href="#dom-sensors-sensors"></a></dfn>, Exposed=(Window,Worker)]
 interface <dfn class="idl-code" data-dfn-type="interface" data-export="" id="sensors">Sensors<a class="self-link" href="#sensors"></a></dfn> {
   Promise&lt;sequence&lt;<a data-link-type="idl-name" href="#sensorinfo1">SensorInfo</a>>> <dfn class="idl-code" data-dfn-for="Sensors" data-dfn-type="method" data-export="" data-lt="matchAll(options)|matchAll()" id="dom-sensors-matchall">matchAll<a class="self-link" href="#dom-sensors-matchall"></a></dfn>(optional <a data-link-type="idl-name" href="#dictdef-matchalloptions">MatchAllOptions</a> <dfn class="idl-code" data-dfn-for="Sensors/matchAll(options), Sensors/matchAll()" data-dfn-type="argument" data-export="" id="dom-sensors-matchall-options-options">options<a class="self-link" href="#dom-sensors-matchall-options-options"></a></dfn>);
@@ -1691,12 +1684,13 @@ partial interface <a class="idl-code" data-link-type="interface" href="https://h
 
 dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-matchalloptions">MatchAllOptions<a class="self-link" href="#dictdef-matchalloptions"></a></dfn> {
   DOMString <dfn class="idl-code" data-dfn-for="MatchAllOptions" data-dfn-type="dict-member" data-export="" data-type="DOMString " id="dom-matchalloptions-type">type<a class="self-link" href="#dom-matchalloptions-type"></a></dfn>;
+  boolean? <dfn class="idl-code" data-default="false" data-dfn-for="MatchAllOptions" data-dfn-type="dict-member" data-export="" data-type="boolean? " id="dom-matchalloptions-remote">remote<a class="self-link" href="#dom-matchalloptions-remote"></a></dfn> = false;
 };
 </pre>
-   <h4 class="heading settled" data-level="5.2.1" id="sensorsmatchall"><span class="secno">5.2.1. </span><span class="content">Sensors.matchAll</span><a class="self-link" href="#sensorsmatchall"></a></h4>
+   <h4 class="heading settled" data-level="5.3.1" id="sensorsmatchall"><span class="secno">5.3.1. </span><span class="content">Sensors.matchAll</span><a class="self-link" href="#sensorsmatchall"></a></h4>
    <p></p>
-   <div class="issue no-marker" id="issue-d41d8cd98">
-    <a class="self-link" href="#issue-d41d8cd98"></a><a class="marker" href="https://github.com/w3c/sensors/issues/26">Issue #26 on GitHub: “When there are multiple sensors of a given type, how do we identify which one to instantiate?”</a>
+   <div class="issue no-marker" id="issue-d41d8cd95">
+    <a class="self-link" href="#issue-d41d8cd95"></a><a class="marker" href="https://github.com/w3c/sensors/issues/26">Issue #26 on GitHub: “When there are multiple sensors of a given type, how do we identify which one to instantiate?”</a>
     <p>In <a class="issue-link" href="https://github.com/w3c/sensors/issues/8" title="Should sensors be singleton?">#8</a> we agreed that sensors shouldn't be singletons because it was both useful to allow multiple instances of each sensor and necessary to support multiple sensor of a given type on a single device (think for example proximity sensors on a car).</p>
     <p>Imagine we want to check the presence of an object on the back of a car, we'll need to get data from one of the back sensors, right?</p>
     <p>Should we go with a generic system, taking a DOMString, that would be defined in this spec, so for example:</p>
@@ -1718,8 +1712,8 @@ dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="d
     </ul>
    </div>
    <p>Returns a promise which resolves to an array of <a data-link-type="dfn" href="#sensorinfo0">SensorInfo</a> objects representing all available local(?) sensors.</p>
-   <div class="issue no-marker" id="issue-d41d8cd99">
-    <a class="self-link" href="#issue-d41d8cd99"></a><a class="marker" href="https://github.com/w3c/sensors/issues/28">Issue #28 on GitHub: “Do we need a lightweight interface representing available sensors?”</a>
+   <div class="issue no-marker" id="issue-d41d8cd96">
+    <a class="self-link" href="#issue-d41d8cd96"></a><a class="marker" href="https://github.com/w3c/sensors/issues/28">Issue #28 on GitHub: “Do we need a lightweight interface representing available sensors?”</a>
     <p>This would be something like:</p>
     <div class="highlight highlight-source-webidl">
 <pre><span class="pl-k">interface</span> <span class="pl-en">SensorMetaData</span> {
@@ -1766,25 +1760,21 @@ dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="d
 }<span class="pl-ii"></span></pre>
     </div>
    </div>
-   <div class="issue no-marker" id="issue-d41d8cd910">
-    <a class="self-link" href="#issue-d41d8cd910"></a><a class="marker" href="https://github.com/w3c/sensors/issues/7">Issue #7 on GitHub: “Sensor discovery”</a>
+   <div class="issue no-marker" id="issue-d41d8cd97">
+    <a class="self-link" href="#issue-d41d8cd97"></a><a class="marker" href="https://github.com/w3c/sensors/issues/7">Issue #7 on GitHub: “Sensor discovery”</a>
     <p>Define how sensors are discoverable by the developer (especially what happens when you have multiple sensors of the same type).</p>
     <p><strong>Proposed resolution: There must be a way for developers to find out which sensors are available to a resource, which ones become available during the page's lifetime, and which ones get disconnected. The precise API by which this must be exposed is dependent on the research carried out in <a class="issue-link" href="https://github.com/w3c/sensors/issues/9" title="Should sensor EventTarget be immediately available or should they be accessed through a promise?">#9</a> to determine how sensor register themselves with a browsing context. Such an API must be designed to allow developers to gracefully handle sensors misrepresenting themselves either accidentally or on purpose.</strong></p>
    </div>
-<pre class="example highlight" id="example-6654dffb"><a class="self-link" href="#example-6654dffb"></a>sensors.matchAll({ type: "proximity", position: "rear" }).then(function(sensors) {
+<pre class="example highlight" id="example-6bd68e85"><a class="self-link" href="#example-6bd68e85"></a>sensors.matchAll({ type: "proximity", position: "rear" }).then(function(sensors) {
     let sensor_info = sensors[0];
     if (!sensor_info) return;
-    let sensor = new ProximitySensor(sensor_info.id, { /* ... */ });
+    let sensor = new ProximitySensor({ sensorId: sensor_info.id });
     sensor.onchange = dostuff;
 });
 </pre>
-   <h3 class="heading settled" data-level="5.3" id="the-sensorinfo-interface"><span class="secno">5.3. </span><span class="content">The <dfn data-dfn-type="dfn" data-noexport="" id="sensorinfo0">SensorInfo<a class="self-link" href="#sensorinfo0"></a></dfn> Interface</span><a class="self-link" href="#the-sensorinfo-interface"></a></h3>
-   <p>The <code>SensorInfo</code> interface is a lightweight object that represents an actual physical sensor. Concrete sensor implementation will need to subclass it.</p>
-   <p>If no <code>id</code> is given, the Constructor uses the identifier of the default sensor of that type. This is to the cater to the common case of having a single sensor of a given type on a device.</p>
-<pre class="example highlight javascript" id="example-ff336038"><a class="self-link" href="#example-ff336038"></a>let sensor = new GeolocationSensor();
-sensor.isDefault; // returns true;
-
-</pre>
+   <h3 class="heading settled" data-level="5.4" id="the-sensorinfo-interface"><span class="secno">5.4. </span><span class="content">The SensorInfo Interface</span><a class="self-link" href="#the-sensorinfo-interface"></a></h3>
+   <p><strong>This feature is at risk.</strong></p>
+   <p>The <dfn data-dfn-type="dfn" data-noexport="" id="sensorinfo0">SensorInfo<a class="self-link" href="#sensorinfo0"></a></dfn> interface is a lightweight object that represents an actual physical sensor. Concrete sensor implementation will need to subclass it.</p>
 <pre class="idl">[<dfn class="idl-code" data-dfn-for="SensorInfo" data-dfn-type="constructor" data-export="" data-lt="SensorInfo(id, sensorInitDic)" id="dom-sensorinfo-sensorinfo">Constructor<a class="self-link" href="#dom-sensorinfo-sensorinfo"></a></dfn>(optional DOMString <dfn class="idl-code" data-dfn-for="SensorInfo/SensorInfo(id, sensorInitDic)" data-dfn-type="argument" data-export="" id="dom-sensorinfo-sensorinfo-id-sensorinitdic-id">id<a class="self-link" href="#dom-sensorinfo-sensorinfo-id-sensorinitdic-id"></a></dfn>, optional <a data-link-type="idl-name" href="#dictdef-sensorinit">SensorInit</a> <dfn class="idl-code" data-dfn-for="SensorInfo/SensorInfo(id, sensorInitDic)" data-dfn-type="argument" data-export="" id="dom-sensorinfo-sensorinfo-id-sensorinitdic-sensorinitdic">sensorInitDic<a class="self-link" href="#dom-sensorinfo-sensorinfo-id-sensorinitdic-sensorinitdic"></a></dfn>), Exposed=(Window,Worker)]
 interface <dfn class="idl-code" data-dfn-type="interface" data-export="" id="sensorinfo1">SensorInfo<a class="self-link" href="#sensorinfo1"></a></dfn> {
     readonly attribute DOMString <dfn class="idl-code" data-dfn-for="SensorInfo" data-dfn-type="attribute" data-export="" data-readonly="" data-type="DOMString " id="dom-sensorinfo-id">id<a class="self-link" href="#dom-sensorinfo-id"></a></dfn>;
@@ -1795,13 +1785,13 @@ dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="d
   boolean <dfn class="idl-code" data-dfn-for="SensorInit" data-dfn-type="dict-member" data-export="" data-type="boolean " id="dom-sensorinit-isdefault">isDefault<a class="self-link" href="#dom-sensorinit-isdefault"></a></dfn>;
 };
 </pre>
-   <h4 class="heading settled" data-level="5.3.1" id="sensorinfoid"><span class="secno">5.3.1. </span><span class="content"><dfn data-dfn-type="dfn" data-noexport="" id="sensorinfoid0">SensorInfo.id<a class="self-link" href="#sensorinfoid0"></a></dfn></span><a class="self-link" href="#sensorinfoid"></a></h4>
+   <h4 class="heading settled" data-level="5.4.1" id="sensorinfoid"><span class="secno">5.4.1. </span><span class="content"><dfn data-dfn-type="dfn" data-noexport="" id="sensorinfoid0">SensorInfo.id<a class="self-link" href="#sensorinfoid0"></a></dfn></span><a class="self-link" href="#sensorinfoid"></a></h4>
    <p>Returns the id of the sensor. This is an opaque DOMString.</p>
-   <h4 class="heading settled" data-level="5.3.2" id="sensorinfoisdefault"><span class="secno">5.3.2. </span><span class="content"><dfn data-dfn-type="dfn" data-noexport="" id="sensorinfoisdefault0">SensorInfo.isDefault<a class="self-link" href="#sensorinfoisdefault0"></a></dfn></span><a class="self-link" href="#sensorinfoisdefault"></a></h4>
+   <h4 class="heading settled" data-level="5.4.2" id="sensorinfoisdefault"><span class="secno">5.4.2. </span><span class="content"><dfn data-dfn-type="dfn" data-noexport="" id="sensorinfoisdefault0">SensorInfo.isDefault<a class="self-link" href="#sensorinfoisdefault0"></a></dfn></span><a class="self-link" href="#sensorinfoisdefault"></a></h4>
    <p>Returns true if the sensor is the default sensor of that type on the device, false otherwise.</p>
-   <h3 class="heading settled" data-level="5.4" id="low-level-sensor-api"><span class="secno">5.4. </span><span class="content">Low level Sensor API</span><a class="self-link" href="#low-level-sensor-api"></a></h3>
-   <div class="issue no-marker" id="issue-d41d8cd911">
-    <a class="self-link" href="#issue-d41d8cd911"></a><a class="marker" href="https://github.com/w3c/sensors/issues/24">Issue #24 on GitHub: “Identify the lower level primitives that do the actual sensor polling.”</a>
+   <h3 class="heading settled" data-level="5.5" id="low-level-sensor-api"><span class="secno">5.5. </span><span class="content">Low level Sensor API</span><a class="self-link" href="#low-level-sensor-api"></a></h3>
+   <div class="issue no-marker" id="issue-d41d8cd98">
+    <a class="self-link" href="#issue-d41d8cd98"></a><a class="marker" href="https://github.com/w3c/sensors/issues/24">Issue #24 on GitHub: “Identify the lower level primitives that do the actual sensor polling.”</a>
     <p>Following the conversation in <a class="issue-link" href="https://github.com/w3c/sensors/issues/21" title="Dependency on [DOM] due to inheriting from EventTarget">#21</a>, it becomes apparent that identifying lower-level primitives that do the actual sensor polling would be helpful to better explain the magic behind concrete sensor implementations (in the spirit of the <a href="https://extensiblewebmanifesto.org/">Extensible Web Manifesto</a>) AND pave the path for supporting raw sensors via <a href="https://whatwg.github.io/serial/">serial port</a> or what not.</p>
    </div>
    <h2 class="heading settled" data-level="6" id="security-and-privacy-considerations"><span class="secno">6. </span><span class="content">Security and privacy considerations</span><a class="self-link" href="#security-and-privacy-considerations"></a></h2>
@@ -1811,8 +1801,8 @@ dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="d
 Secure Contexts specification <a data-link-type="biblio" href="#biblio-powerful-features">[powerful-features]</a> as a high-value target for network attackers.
 As such, sensor data should only be available within a <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/powerfulfeatures/#secure-context">secure context</a>.</p>
    <h3 class="heading settled" data-level="6.2" id="permissioning"><span class="secno">6.2. </span><span class="content">Obtaining Explicit User Permission</span><a class="self-link" href="#permissioning"></a></h3>
-   <div class="issue no-marker" id="issue-d41d8cd912">
-    <a class="self-link" href="#issue-d41d8cd912"></a><a class="marker" href="https://github.com/w3c/sensors/issues/20">Issue #20 on GitHub: “Allow for async permission request when first accessing sensor data”</a>
+   <div class="issue no-marker" id="issue-d41d8cd99">
+    <a class="self-link" href="#issue-d41d8cd99"></a><a class="marker" href="https://github.com/w3c/sensors/issues/20">Issue #20 on GitHub: “Allow for async permission request when first accessing sensor data”</a>
     <p>Make sure the API is compatible with sensors which need to ask the user's permission before being used.</p>
     <p><strong>Proposed resolutions:</strong></p>
     <ul>
@@ -1843,6 +1833,11 @@ with the "Sensor" suffix.
 For example, a <a data-link-type="dfn" href="#sensor">sensor</a> measuring
 the distance at which an object is from it
 may see its associated interface called <code>ProximitySensor</code>.</p>
+   <p>Attributes of the <a class="idl-code" data-link-type="interface" href="#sensorreading0">SensorReading</a> subclass that
+hold <a data-link-type="dfn" href="#output-data">output data</a> should be named after the full name of this <a data-link-type="dfn" href="#output-data">output data</a>.
+For example, the <code>TemperatureSensorReading</code> interface should hold
+the value of the <a data-link-type="dfn" href="#sensor">sensor</a>’s <a data-link-type="dfn" href="#output-data">output data</a> in
+a <code>temperature</code> attribute (and not a <code>value</code> or <code>temp</code> attribute).</p>
    <h3 class="heading settled" data-level="7.2" id="high-vs-low-level"><span class="secno">7.2. </span><span class="content">Exposing High-Level vs. Low-Level Sensors</span><a class="self-link" href="#high-vs-low-level"></a></h3>
    <p>So far, specifications exposing sensors to the Web platform
 have focused on <a data-link-type="dfn" href="#high-level">high-level</a> sensors APIs. <a data-link-type="biblio" href="#biblio-geolocation-api">[geolocation-API]</a> <a data-link-type="biblio" href="#biblio-orientation-event">[orientation-event]</a></p>
@@ -1871,11 +1866,25 @@ and design more performant systems.</p>
    <p>Following the precepts of the Extensible Web Manifesto <a data-link-type="biblio" href="#biblio-extennnnsible">[EXTENNNNSIBLE]</a>,
 extension specifications should focus primarily on
 exposing <a data-link-type="dfn" href="#low-level">low-level</a> sensor APIs, but should also expose <a data-link-type="dfn" href="#high-level">high-level</a> APIs when they are clear benefits in doing so.</p>
-   <h3 class="heading settled" data-level="7.3" id="calibration0"><span class="secno">7.3. </span><span class="content">Calibration</span><a class="self-link" href="#calibration0"></a></h3>
+   <h3 class="heading settled" data-level="7.3" id="multiple-sensors"><span class="secno">7.3. </span><span class="content">When is Enabling Multiple Sensors of the Same Type Not the Right Choice?</span><a class="self-link" href="#multiple-sensors"></a></h3>
+   <p>TODO: provide guidance on when to:</p>
+   <ul>
+    <li data-md="">
+     <p>allow multiple sensors of the same type to be instantiated,</p>
+    <li data-md="">
+     <p>create different interfaces that inherit from <a class="idl-code" data-link-type="interface" href="#sensor0">Sensor</a>,</p>
+    <li data-md="">
+     <p>add constructor parameters to tweak sensors settings (e.g. setting required accuracy).</p>
+   </ul>
+   <h3 class="heading settled" data-level="7.4" id="defining-a-default"><span class="secno">7.4. </span><span class="content">Defining a default</span><a class="self-link" href="#defining-a-default"></a></h3>
+   <p>TODO: provide guidance on how and when to set a default <a data-link-type="dfn" href="#sensor">sensor</a>.</p>
+   <h3 class="heading settled" data-level="7.5" id="calibration0"><span class="secno">7.5. </span><span class="content">Calibration</span><a class="self-link" href="#calibration0"></a></h3>
    <p><a data-link-type="dfn" href="#output-data">Output data</a> emitted by <a class="idl-code" data-link-type="interface" href="#sensor0">Sensor</a> objects
 should always be <a data-link-type="dfn" href="#calibration">calibrated</a>.</p>
-   <div class="issue no-marker" id="issue-d41d8cd913">
-    <a class="self-link" href="#issue-d41d8cd913"></a><a class="marker" href="https://github.com/w3c/sensors/issues/22">Issue #22 on GitHub: “Simplify extension of the Permissions API for concrete sensor implementations”</a>
+   <h3 class="heading settled" data-level="7.6" id="permission-api"><span class="secno">7.6. </span><span class="content">Extending the Permission API</span><a class="self-link" href="#permission-api"></a></h3>
+   <p>Provide guidance on how to extend the Permission API <a data-link-type="biblio" href="#biblio-permissions">[permissions]</a> for each <a data-link-type="dfn" href="#sensor-types">sensor types</a>.</p>
+   <div class="issue no-marker" id="issue-d41d8cd910">
+    <a class="self-link" href="#issue-d41d8cd910"></a><a class="marker" href="https://github.com/w3c/sensors/issues/22">Issue #22 on GitHub: “Simplify extension of the Permissions API for concrete sensor implementations”</a>
     <p>Accessing sensor data has multiple privacy implications and is therefore subject to permissioning. The <a href="https://w3c.github.io/permissions/">Permission API</a> allows developers to check whether the permission to access a given API was already granted (or denied) by the user on a per origin basis.</p>
     <p>Currently, exposing that status through the Permissions API requires a modification of the Permission API spec itself. Ideally, we'd want sped editors authoring concrete sensor specs to be able to extend the Permission API within the same document.</p>
     <p>This needs concertation with the editors of the Permissions API.</p>
@@ -1898,6 +1907,47 @@ should always be <a data-link-type="dfn" href="#calibration">calibrated</a>.</p>
        Wait for @public-script-coord feedback and document it in Extensibility section accordingly.
     </ul>
    </div>
+   <h3 class="heading settled" data-level="7.7" id="example-webidl"><span class="secno">7.7. </span><span class="content">Example WebIDL</span><a class="self-link" href="#example-webidl"></a></h3>
+   <p>Here’s example WebIDL for a possible extension of this specification
+for proximity <a data-link-type="dfn" href="#sensor">sensors</a>.</p>
+<pre class="example" id="example-907871bc"><a class="self-link" href="#example-907871bc"></a>[Constructor(optional ProximitySensorOptions proximitySensorOptions), Exposed=(Window,Worker)]
+interface ProximitySensor : Sensor {
+  readonly attribute ProximitySensorReading? value;
+  readonly attribute ProximitySensorReading[]? values;
+};
+
+interface ProximitySensorReading : SensorReading {
+    readonly attribute unrestricted double distance;
+};
+
+dictionary ProximitySensorOptions : SensorOptions {
+    double? min = -Infinity;
+    double? max = Infinity;
+    ProximitySensorPosition? position;
+    ProximitySensorDirection? direction;
+};
+    
+enum ProximitySensorPosition {
+    "top-left",
+    "top",
+    "top-right",
+    "middle-left",
+    "middle",
+    "middle-right",
+    "bottom-left",
+    "bottom",
+    "bottom-right"
+};
+
+enum ProximitySensorDirection {
+    "front",
+    "rear",
+    "left",
+    "right",
+    "top",
+    "bottom"
+};
+</pre>
    <h2 class="heading settled" data-level="8" id="acknowledgements"><span class="secno">8. </span><span class="content">Acknowledgements</span><a class="self-link" href="#acknowledgements"></a></h2>
    <p>The following people have greatly contributed to this specification through extensive discussions on GitHub:
 Anssi Kostiainen,
@@ -1979,6 +2029,7 @@ for their editorial input.</p>
     <ul>
      <li><a href="#dom-sensor-batch">attribute for Sensor</a><span>, in §5.1</span>
      <li><a href="#dom-sensoroptions-batch">dict-member for SensorOptions</a><span>, in §5.1</span>
+     <li><a href="#dom-requestdataoptions-batch">dict-member for RequestDataOptions</a><span>, in §5.1</span>
     </ul>
    <li><a href="#batch-mode">batch mode</a><span>, in §5.1</span>
    <li><a href="#calibration">calibration</a><span>, in §2</span>
@@ -1990,72 +2041,82 @@ for their editorial input.</p>
      <li><a href="#frequency">definition of</a><span>, in §5.1</span>
      <li><a href="#dom-sensor-frequency">attribute for Sensor</a><span>, in §5.1</span>
      <li><a href="#dom-sensoroptions-frequency">dict-member for SensorOptions</a><span>, in §5.1</span>
+     <li><a href="#dom-requestdataoptions-frequency">dict-member for RequestDataOptions</a><span>, in §5.1</span>
     </ul>
+   <li><a href="#dom-requestdataoptions-fromcache">fromCache</a><span>, in §5.1</span>
    <li><a href="#high-level">high-level</a><span>, in §2</span>
    <li>
     id
     <ul>
-     <li><a href="#dom-sensorinfo-sensorinfo-id-sensorinitdic-id">argument for SensorInfo/SensorInfo(id, sensorInitDic)</a><span>, in §5.3</span>
-     <li><a href="#dom-sensorinfo-id">attribute for SensorInfo</a><span>, in §5.3</span>
+     <li><a href="#dom-sensorinfo-sensorinfo-id-sensorinitdic-id">argument for SensorInfo/SensorInfo(id, sensorInitDic)</a><span>, in §5.4</span>
+     <li><a href="#dom-sensorinfo-id">attribute for SensorInfo</a><span>, in §5.4</span>
     </ul>
    <li><a href="#identifying-parameters">identifying parameters</a><span>, in §5.1</span>
    <li>
     info
     <ul>
      <li><a href="#dom-sensor-info">attribute for Sensor</a><span>, in §5.1</span>
-     <li><a href="#dom-sensorreading-info">attribute for SensorReading</a><span>, in §5.1.16</span>
+     <li><a href="#dom-sensorreading-info">attribute for SensorReading</a><span>, in §5.2</span>
     </ul>
    <li>
     isDefault
     <ul>
-     <li><a href="#dom-sensorinfo-isdefault">attribute for SensorInfo</a><span>, in §5.3</span>
-     <li><a href="#dom-sensorinit-isdefault">dict-member for SensorInit</a><span>, in §5.3</span>
+     <li><a href="#dom-sensorinfo-isdefault">attribute for SensorInfo</a><span>, in §5.4</span>
+     <li><a href="#dom-sensorinit-isdefault">dict-member for SensorInit</a><span>, in §5.4</span>
     </ul>
    <li><a href="#low-level">low-level</a><span>, in §2</span>
-   <li><a href="#dom-sensors-matchall">matchAll()</a><span>, in §5.2</span>
-   <li><a href="#dictdef-matchalloptions">MatchAllOptions</a><span>, in §5.2</span>
-   <li><a href="#dom-sensors-matchall">matchAll(options)</a><span>, in §5.2</span>
+   <li><a href="#dom-sensors-matchall">matchAll()</a><span>, in §5.3</span>
+   <li><a href="#dictdef-matchalloptions">MatchAllOptions</a><span>, in §5.3</span>
+   <li><a href="#dom-sensors-matchall">matchAll(options)</a><span>, in §5.3</span>
    <li><a href="#dom-tresholdcallback-newvalue">newValue</a><span>, in §5.1</span>
    <li><a href="#dom-sensor-oncalibration">oncalibration</a><span>, in §5.1</span>
    <li><a href="#dom-sensor-onchange">onchange</a><span>, in §5.1</span>
-   <li><a href="#dom-sensor-onconnect">onconnect</a><span>, in §5.1</span>
-   <li><a href="#dom-sensor-ondisconnect">ondisconnect</a><span>, in §5.1</span>
+   <li><a href="#dom-sensor-ondata">ondata</a><span>, in §5.1</span>
    <li><a href="#dom-sensor-onerror">onerror</a><span>, in §5.1</span>
-   <li><a href="#dom-sensors-matchall-options-options">options</a><span>, in §5.2</span>
+   <li><a href="#dom-sensors-matchall-options-options">options</a><span>, in §5.3</span>
    <li><a href="#output-data">output data</a><span>, in §2</span>
    <li><a href="#permission">permission</a><span>, in §5.1</span>
    <li><a href="#read-steps">read steps</a><span>, in §5.1</span>
+   <li><a href="#dom-matchalloptions-remote">remote</a><span>, in §5.3</span>
+   <li><a href="#dictdef-requestdataoptions">RequestDataOptions</a><span>, in §5.1</span>
+   <li><a href="#dom-sensor-requestdata-requestdataoptions-requestdataoptions">requestDataOptions</a><span>, in §5.1</span>
+   <li><a href="#dom-sensor-requestdata">requestData(requestDataOptions)</a><span>, in §5.1</span>
    <li><a href="#sensor0">Sensor</a><span>, in §5.1</span>
    <li><a href="#sensor">sensor</a><span>, in §2</span>
    <li><a href="#sensor-fusion">sensor fusion</a><span>, in §2</span>
-   <li><a href="#dom-sensoroptions-sensorid">sensorId</a><span>, in §5.1</span>
+   <li>
+    sensorId
+    <ul>
+     <li><a href="#dom-sensoroptions-sensorid">dict-member for SensorOptions</a><span>, in §5.1</span>
+     <li><a href="#dom-requestdataoptions-sensorid">dict-member for RequestDataOptions</a><span>, in §5.1</span>
+    </ul>
    <li>
     SensorInfo
     <ul>
-     <li><a href="#sensorinfo0">definition of</a><span>, in §5.3</span>
-     <li><a href="#sensorinfo1">(interface)</a><span>, in §5.3</span>
+     <li><a href="#sensorinfo0">definition of</a><span>, in §5.4</span>
+     <li><a href="#sensorinfo1">(interface)</a><span>, in §5.4</span>
     </ul>
-   <li><a href="#sensorinfoid0">SensorInfo.id</a><span>, in §5.3.1</span>
-   <li><a href="#dom-sensorinfo-sensorinfo">SensorInfo(id, sensorInitDic)</a><span>, in §5.3</span>
-   <li><a href="#sensorinfoisdefault0">SensorInfo.isDefault</a><span>, in §5.3.2</span>
-   <li><a href="#dictdef-sensorinit">SensorInit</a><span>, in §5.3</span>
-   <li><a href="#dom-sensorinfo-sensorinfo-id-sensorinitdic-sensorinitdic">sensorInitDic</a><span>, in §5.3</span>
+   <li><a href="#sensorinfoid0">SensorInfo.id</a><span>, in §5.4.1</span>
+   <li><a href="#dom-sensorinfo-sensorinfo">SensorInfo(id, sensorInitDic)</a><span>, in §5.4</span>
+   <li><a href="#sensorinfoisdefault0">SensorInfo.isDefault</a><span>, in §5.4.2</span>
+   <li><a href="#dictdef-sensorinit">SensorInit</a><span>, in §5.4</span>
+   <li><a href="#dom-sensorinfo-sensorinfo-id-sensorinitdic-sensorinitdic">sensorInitDic</a><span>, in §5.4</span>
    <li><a href="#dom-sensor-sensor-sensoroptions-sensoroptions">sensorOptions</a><span>, in §5.1</span>
    <li><a href="#dictdef-sensoroptions">SensorOptions</a><span>, in §5.1</span>
    <li>
     SensorReading
     <ul>
-     <li><a href="#sensorreading">definition of</a><span>, in §5.1.16</span>
-     <li><a href="#sensorreading0">(interface)</a><span>, in §5.1.16</span>
+     <li><a href="#sensorreading">definition of</a><span>, in §5.2</span>
+     <li><a href="#sensorreading0">(interface)</a><span>, in §5.2</span>
     </ul>
-   <li><a href="#sensors">Sensors</a><span>, in §5.2</span>
+   <li><a href="#sensors">Sensors</a><span>, in §5.3</span>
    <li>
     sensors
     <ul>
-     <li><a href="#dom-window-sensors">attribute for Window</a><span>, in §5.2</span>
-     <li><a href="#dom-workerglobalscope-sensors">attribute for WorkerGlobalScope</a><span>, in §5.2</span>
+     <li><a href="#dom-window-sensors">attribute for Window</a><span>, in §5.3</span>
+     <li><a href="#dom-workerglobalscope-sensors">attribute for WorkerGlobalScope</a><span>, in §5.3</span>
     </ul>
-   <li><a href="#dom-sensors-sensors">Sensors()</a><span>, in §5.2</span>
+   <li><a href="#dom-sensors-sensors">Sensors()</a><span>, in §5.3</span>
    <li><a href="#dom-sensor-sensor">Sensor(sensorOptions)</a><span>, in §5.1</span>
    <li><a href="#sensor-types">sensor types</a><span>, in §2</span>
    <li>
@@ -2063,8 +2124,9 @@ for their editorial input.</p>
     <ul>
      <li><a href="#dom-sensor-timeout">attribute for Sensor</a><span>, in §5.1</span>
      <li><a href="#dom-sensoroptions-timeout">dict-member for SensorOptions</a><span>, in §5.1</span>
+     <li><a href="#dom-requestdataoptions-timeout">dict-member for RequestDataOptions</a><span>, in §5.1</span>
     </ul>
-   <li><a href="#dom-sensorreading-timestamp">timeStamp</a><span>, in §5.1.16</span>
+   <li><a href="#dom-sensorreading-timestamp">timeStamp</a><span>, in §5.2</span>
    <li>
     treshold
     <ul>
@@ -2072,7 +2134,7 @@ for their editorial input.</p>
      <li><a href="#dom-sensoroptions-treshold">dict-member for SensorOptions</a><span>, in §5.1</span>
     </ul>
    <li><a href="#callbackdef-tresholdcallback">TresholdCallback</a><span>, in §5.1</span>
-   <li><a href="#dom-matchalloptions-type">type</a><span>, in §5.2</span>
+   <li><a href="#dom-matchalloptions-type">type</a><span>, in §5.3</span>
    <li><a href="#dom-sensor-value">value</a><span>, in §5.1</span>
    <li><a href="#dom-sensor-values">values</a><span>, in §5.1</span>
    <li><a href="#dom-sensor-wakeup">wakeup</a><span>, in §5.1</span>
@@ -2091,6 +2153,7 @@ for their editorial input.</p>
      <li><a href="http://www.w3.org/TR/html5/webappapis.html#eventhandler">EventHandler</a>
      <li><a href="http://www.w3.org/TR/html5/webappapis.html#event-handler-event-type">event handler event type</a>
      <li><a href="http://www.w3.org/TR/html5/webappapis.html#event-handlers">event handlers</a>
+     <li><a href="http://www.w3.org/TR/html5/webappapis.html#event-loop">event loop</a>
      <li><a href="http://www.w3.org/TR/html5/infrastructure.html#in-parallel">in parallel</a>
      <li><a href="http://www.w3.org/TR/html5/webappapis.html#incumbent-settings-object">incumbent settings object</a>
      <li><a href="http://www.w3.org/TR/html5/webappapis.html#queue-a-task">queue a task</a>
@@ -2152,6 +2215,7 @@ for their editorial input.</p>
   <h2 class="no-num heading settled" id="idl-index"><span class="content">IDL Index</span><a class="self-link" href="#idl-index"></a></h2>
 <pre class="idl">[<a href="#dom-sensor-sensor">Constructor</a>(optional <a data-link-type="idl-name" href="#dictdef-sensoroptions">SensorOptions</a> <a href="#dom-sensor-sensor-sensoroptions-sensoroptions">sensorOptions</a>), Exposed=(Window,Worker)]
 interface <a class="idl-code" data-link-type="interface" href="#sensor0">Sensor</a> : <a data-link-type="idl-name" href="https://dom.spec.whatwg.org#interface-eventtarget">EventTarget</a> {
+  static Promise&lt;<a data-link-type="idl-name" href="#sensorreading0">SensorReading</a>> <a href="#dom-sensor-requestdata">requestData</a>(<a data-link-type="idl-name" href="#dictdef-requestdataoptions">RequestDataOptions</a> <a href="#dom-sensor-requestdata-requestdataoptions-requestdataoptions">requestDataOptions</a>);
   attribute double <a data-type="double " href="#dom-sensor-frequency">frequency</a>;
   attribute boolean <a data-type="boolean " href="#dom-sensor-batch">batch</a>;
   readonly attribute <a data-link-type="idl-name" href="#sensorinfo1">SensorInfo</a> <a data-readonly="" data-type="SensorInfo " href="#dom-sensor-info">info</a>;
@@ -2161,12 +2225,9 @@ interface <a class="idl-code" data-link-type="interface" href="#sensor0">Sensor<
   readonly attribute <a data-link-type="idl-name" href="#sensorreading0">SensorReading</a>? <a data-readonly="" data-type="SensorReading? " href="#dom-sensor-value">value</a>;
   readonly attribute <a data-link-type="idl-name" href="#sensorreading0">SensorReading</a>[]? <a data-readonly="" data-type="SensorReading[]? " href="#dom-sensor-values">values</a>;
   attribute <a data-link-type="idl-name" href="http://www.w3.org/TR/html5/webappapis.html#eventhandler">EventHandler</a> <a data-type="EventHandler " href="#dom-sensor-onerror">onerror</a>;
+  attribute <a data-link-type="idl-name" href="http://www.w3.org/TR/html5/webappapis.html#eventhandler">EventHandler</a> <a data-type="EventHandler " href="#dom-sensor-ondata">ondata</a>;
   attribute <a data-link-type="idl-name" href="http://www.w3.org/TR/html5/webappapis.html#eventhandler">EventHandler</a> <a data-type="EventHandler " href="#dom-sensor-onchange">onchange</a>;
-  // would that cover all cases?
   attribute <a data-link-type="idl-name" href="http://www.w3.org/TR/html5/webappapis.html#eventhandler">EventHandler</a> <a data-type="EventHandler " href="#dom-sensor-oncalibration">oncalibration</a>;
-  // needed?
-  attribute <a data-link-type="idl-name" href="http://www.w3.org/TR/html5/webappapis.html#eventhandler">EventHandler</a> <a data-type="EventHandler " href="#dom-sensor-onconnect">onconnect</a>;
-  attribute <a data-link-type="idl-name" href="http://www.w3.org/TR/html5/webappapis.html#eventhandler">EventHandler</a> <a data-type="EventHandler " href="#dom-sensor-ondisconnect">ondisconnect</a>;
 };
 
 dictionary <a href="#dictdef-sensoroptions">SensorOptions</a> {
@@ -2175,6 +2236,14 @@ dictionary <a href="#dictdef-sensoroptions">SensorOptions</a> {
   boolean? <a data-default="false" data-type="boolean? " href="#dom-sensoroptions-batch">batch</a> = false;
   <a data-link-type="idl-name" href="#callbackdef-tresholdcallback">TresholdCallback</a>? <a data-type="TresholdCallback? " href="#dom-sensoroptions-treshold">treshold</a>;
   double? <a data-type="double? " href="#dom-sensoroptions-timeout">timeout</a>;
+};
+
+dictionary <a href="#dictdef-requestdataoptions">RequestDataOptions</a> {
+  DOMString? <a data-type="DOMString? " href="#dom-requestdataoptions-sensorid">sensorId</a>;
+  double? <a data-type="double? " href="#dom-requestdataoptions-frequency">frequency</a>;
+  boolean? <a data-default="false" data-type="boolean? " href="#dom-requestdataoptions-batch">batch</a> = false;
+  double? <a data-type="double? " href="#dom-requestdataoptions-timeout">timeout</a>;
+  boolean? <a data-default="false" data-type="boolean? " href="#dom-requestdataoptions-fromcache">fromCache</a> = false;
 };
 
 callback <a href="#callbackdef-tresholdcallback">TresholdCallback</a> = boolean (<a data-link-type="idl-name" href="#sensorreading0">SensorReading</a> <a href="#dom-tresholdcallback-currentvalue">currentValue</a>, <a data-link-type="idl-name" href="#sensorreading0">SensorReading</a> <a href="#dom-tresholdcallback-newvalue">newValue</a>);
@@ -2199,6 +2268,7 @@ partial interface <a class="idl-code" data-link-type="interface" href="https://h
 
 dictionary <a href="#dictdef-matchalloptions">MatchAllOptions</a> {
   DOMString <a data-type="DOMString " href="#dom-matchalloptions-type">type</a>;
+  boolean? <a data-default="false" data-type="boolean? " href="#dom-matchalloptions-remote">remote</a> = false;
 };
 
 [<a href="#dom-sensorinfo-sensorinfo">Constructor</a>(optional DOMString <a href="#dom-sensorinfo-sensorinfo-id-sensorinitdic-id">id</a>, optional <a data-link-type="idl-name" href="#dictdef-sensorinit">SensorInit</a> <a href="#dom-sensorinfo-sensorinfo-id-sensorinitdic-sensorinitdic">sensorInitDic</a>), Exposed=(Window,Worker)]
