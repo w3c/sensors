@@ -705,9 +705,59 @@ Calibration {#calibration}
 <a>Output data</a> emitted by <a interface>Sensor</a> objects
 should always be <a lt="calibration">calibrated</a>.
 
+Extending the Permission API {#permission-api}
+----------------------------
 
+Provide guidance on how to extend the Permission API [[permissions]]
+for each <a>sensor types</a>.
 
 Issue(w3c/sensors#22):
+
+Example WebIDL
+--------------
+
+Here's example WebIDL for a possible extension of this specification
+for proximity <a>sensors</a>.
+
+<pre class=example highlight=WEBidl >
+    [Constructor(optional ProximitySensorOptions proximitySensorOptions), Exposed=(Window,Worker)]
+    interface ProximitySensor : Sensor {
+      readonly attribute ProximitySensorReading? value;
+      readonly attribute ProximitySensorReading[]? values;
+    };
+
+    interface ProximitySensorReading : SensorReading {
+        readonly attribute unrestricted double distance;
+    };
+
+    dictionary ProximitySensorOptions : SensorOptions {
+        double? min = -Infinity;
+        double? max = Infinity;
+        ProximitySensorPosition? position;
+        ProximitySensorDirection? direction;
+    };
+    
+    enum ProximitySensorPosition {
+        "top-left",
+        "top",
+        "top-right",
+        "middle-left",
+        "middle",
+        "middle-right",
+        "bottom-left",
+        "bottom",
+        "bottom-right"
+    };
+
+    enum ProximitySensorDirection {
+        "front",
+        "rear",
+        "left",
+        "right",
+        "top",
+        "bottom"
+    };
+</pre>
 
 Acknowledgements
 ================
