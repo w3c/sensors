@@ -512,9 +512,16 @@ expressed in milliseconds that passed since the <a>time origin</a>.
 
 Returns the sensor object the reading is taken from.
 
-## The `Sensors` Interface
+The Sensors Interface
+---------------------
 
-The <a>Sensors</a> interface represents a container for a list of <a>SensorInfo</a> objects. It is exposed on Window and Workers as the `Window.sensors` and `WorkerGlobalScope.sensors` attribute respectively.
+<strong>This feature is at risk.</strong>
+
+The <a>Sensors</a> interface represents a container for a list of <a>SensorInfo</a> objects.
+It is exposed on Window and Workers as the `Window.sensors` and `WorkerGlobalScope.sensors` attribute respectively.
+
+TODO: make this explicietly about local sensors and allow supporting enumeration of
+remote sensors through added parameters.
 
 <pre class="idl">
 [Constructor, Exposed=(Window,Worker)]
@@ -532,6 +539,7 @@ partial interface WorkerGlobalScope {
 
 dictionary MatchAllOptions {
   DOMString type;
+  boolean? remote = false;
 };
 </pre>
 
@@ -560,18 +568,13 @@ sensors.matchAll({ type: "proximity", position: "rear" }).then(function(sensors)
 });
 </pre>
 
-## The <dfn>SensorInfo</dfn> Interface
+The SensorInfo Interface
+------------------------
 
-The `SensorInfo` interface is a lightweight object that represents an actual physical sensor. Concrete sensor implementation will need to subclass it.
+<strong>This feature is at risk.</strong>
 
-If no `id` is given, the Constructor uses the identifier of the default sensor of that type. This is to the cater to the common case of having a single sensor of a given type on a device.
 
-<pre class="example highlight javascript">
-
-let sensor = new GeolocationSensor();
-sensor.isDefault; // returns true;
-
-</pre>
+The <dfn>SensorInfo</dfn> interface is a lightweight object that represents an actual physical sensor. Concrete sensor implementation will need to subclass it.
 
 <pre class="idl">
 [Constructor(optional DOMString id, optional SensorInit sensorInitDic), Exposed=(Window,Worker)]
