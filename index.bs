@@ -533,6 +533,8 @@ Issue(w3c/sensors#24):
 Security and privacy considerations
 ===================================
 
+TODO: gather general security and privacy risks common to all sensors.
+
 Secure Context {#secure-context}
 --------------
 
