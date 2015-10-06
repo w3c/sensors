@@ -1555,51 +1555,20 @@ callback <dfn class="idl-code" data-dfn-type="callback" data-export="" id="callb
        design the API so that developers can indicate the sensors update frequency must be framerate dependent.
     </ul>
    </div>
-   <div class="issue no-marker" id="issue-d41d8cd90">
-    <a class="self-link" href="#issue-d41d8cd90"></a><a class="marker" href="https://github.com/w3c/sensors/issues/23">Issue #23 on GitHub: “What if requested polling frequency is > time it takes to read data out of the sensor?”</a>
-    <p>For example, getting the temp and humidity readings out of certain cheap sensors can take up to 0.25 seconds.</p>
-    <p>Should this be reflected in <code>Sensor.frequency</code>? i.e. should the value of <code>Sensor.Temp({ frequency: 60 }).frequency</code> be <code>60</code> or <code>4</code> (4 Hz == 0.25s intervals)?</p>
-    <p>My feeling is that it shouldn't given that it's not observable by consumers if the only thing exposed is <code>onchanged</code> events.</p>
-    <p>It becomes very different if <code>ondata</code> events are exposed.</p>
-    <p>Either way, that might warrant a note in the spec, no?</p>
-   </div>
    <h4 class="heading settled" data-level="5.1.3" id="sensorbatch"><span class="secno">5.1.3. </span><span class="content">Sensor.batch</span><a class="self-link" href="#sensorbatch"></a></h4>
    <p><code>true</code> if <a data-link-type="dfn" href="#batch-mode">batch mode</a> was requested, false otherwise.</p>
    <h4 class="heading settled" data-level="5.1.4" id="sensorinfo"><span class="secno">5.1.4. </span><span class="content">Sensor.info</span><a class="self-link" href="#sensorinfo"></a></h4>
    <p>Returns the related <a data-link-type="dfn" href="#sensorinfo0">SensorInfo</a> object.</p>
    <h4 class="heading settled" data-level="5.1.5" id="sensortreshold"><span class="secno">5.1.5. </span><span class="content">Sensor.treshold</span><a class="self-link" href="#sensortreshold"></a></h4>
-   <div class="issue no-marker" id="issue-d41d8cd91">
-    <a class="self-link" href="#issue-d41d8cd91"></a><a class="marker" href="https://github.com/w3c/sensors/issues/25">Issue #25 on GitHub: “Add a threshold option”</a>
-    <p>Johnn-Five implements a <a href="https://github.com/rwaldron/johnny-five/wiki/Sensor#events">treshold attribute</a> which determines the amount of change necessary of the value of the sensor to trigger a <code>change</code> event. Given we want to support sensors with multiple values, we'd at least need to add an attribute for each value. It might be simpler to add a method that would compare the current values with the last emitted ones and return a boolean (which would be used internally to decide whether or nor to trigger the <code>change</code> event). So for example setting up a geoloc sensor to only trigger when changing hemisphere:</p>
-    <div class="highlight highlight-source-js">
-<pre><span class="pl-k">new</span> <span class="pl-en">Sensor</span>({
-    <span class="pl-en">change</span><span class="pl-k">:</span> <span class="pl-k">function</span>(<span class="pl-smi">prev</span>, <span class="pl-smi">curr</span>) {
-        <span class="pl-k">return</span> <span class="pl-c1">Math</span>.sign(prev.latitude) <span class="pl-k">!==</span> <span class="pl-c1">Math</span>.sign(curr.latitude);
-    }
-});</pre>
-    </div>
-   </div>
    <h4 class="heading settled" data-level="5.1.6" id="sensortimeout"><span class="secno">5.1.6. </span><span class="content">Sensor.timeout</span><a class="self-link" href="#sensortimeout"></a></h4>
-   <div class="issue no-marker" id="issue-d41d8cd92">
-    <a class="self-link" href="#issue-d41d8cd92"></a><a class="marker" href="https://github.com/w3c/sensors/issues/44">Issue #44 on GitHub: “Add a timeout property?”</a>
-    <p>This would be the time before you call <code>onerror</code> if no new value is received. Possibly also the time before you call <code>ondisconnect</code> if such an event is supported.</p>
-   </div>
    <h4 class="heading settled" data-level="5.1.7" id="sensorwakeup"><span class="secno">5.1.7. </span><span class="content">Sensor.wakeup</span><a class="self-link" href="#sensorwakeup"></a></h4>
-   <div class="issue no-marker" id="issue-d41d8cd93">
-    <a class="self-link" href="#issue-d41d8cd93"></a><a class="marker" href="https://github.com/w3c/sensors/issues/15">Issue #15 on GitHub: “"wakeup" parameter”</a>
-    <p><code>Sensor({ wakeup: true });</code> </p>
-    <ul>
-     <li>defaults to false
-     <li>will wake up a sleeping device on change
-    </ul>
-   </div>
    <h4 class="heading settled" data-level="5.1.8" id="sensorvalue"><span class="secno">5.1.8. </span><span class="content">Sensor.value</span><a class="self-link" href="#sensorvalue"></a></h4>
    <p>The value attribute of must always point to the latest <a data-link-type="dfn" href="#sensorreading">SensorReading</a> whatever the <a data-link-type="dfn" href="#frequency">frequency</a> so that
 the value attribute of two instances of the same Sensor interface
 associated with the same <a data-link-type="dfn" href="#sensor">sensor</a> hold the same <a data-link-type="dfn" href="#sensorreading">SensorReading</a> during a single <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#event-loop">event loop</a> turn.</p>
    <h4 class="heading settled" data-level="5.1.9" id="sensorvalues"><span class="secno">5.1.9. </span><span class="content">Sensor.values</span><a class="self-link" href="#sensorvalues"></a></h4>
-   <div class="issue no-marker" id="issue-d41d8cd94">
-    <a class="self-link" href="#issue-d41d8cd94"></a><a class="marker" href="https://github.com/w3c/sensors/issues/13">Issue #13 on GitHub: “Allowing data batching when poll frequency &lt; sensor frequency”</a>
+   <div class="issue no-marker" id="issue-d41d8cd90">
+    <a class="self-link" href="#issue-d41d8cd90"></a><a class="marker" href="https://github.com/w3c/sensors/issues/13">Issue #13 on GitHub: “Allowing data batching when poll frequency &lt; sensor frequency”</a>
     <p>Even when doing realtime processing (eg. say at 60 Hz), there is a benefit to having more than one new value every time you process (eg. Oculus polls a gyroscope at 1000 Hz for head tracking). In this case, every time you process, you'll have [1000/60] ~= 16 new sensor data.</p>
     <p>This seems like a desirable feature. How would you handle this though?</p>
     <p>Is this (yet) an extra option you set? How does that work with sensors with multiple values, etc.?</p>
@@ -1688,82 +1657,7 @@ dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="d
 </pre>
    <h4 class="heading settled" data-level="5.3.1" id="sensorsmatchall"><span class="secno">5.3.1. </span><span class="content">Sensors.matchAll</span><a class="self-link" href="#sensorsmatchall"></a></h4>
    <p></p>
-   <div class="issue no-marker" id="issue-d41d8cd95">
-    <a class="self-link" href="#issue-d41d8cd95"></a><a class="marker" href="https://github.com/w3c/sensors/issues/26">Issue #26 on GitHub: “When there are multiple sensors of a given type, how do we identify which one to instantiate?”</a>
-    <p>In <a class="issue-link" href="https://github.com/w3c/sensors/issues/8" title="Should sensors be singleton?">#8</a> we agreed that sensors shouldn't be singletons because it was both useful to allow multiple instances of each sensor and necessary to support multiple sensor of a given type on a single device (think for example proximity sensors on a car).</p>
-    <p>Imagine we want to check the presence of an object on the back of a car, we'll need to get data from one of the back sensors, right?</p>
-    <p>Should we go with a generic system, taking a DOMString, that would be defined in this spec, so for example:</p>
-    <div class="highlight highlight-source-js">
-<pre><span class="pl-k">new</span> <span class="pl-en">Sensor.Proximity</span>({ identifier<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>back-right<span class="pl-pds">"</span></span> });
-<span class="pl-k">new</span> <span class="pl-en">Sensor.Temperature</span>({ identifier<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>internal<span class="pl-pds">"</span></span> });</pre>
-    </div>
-    <p>…or should we let specs for concrete sensors implement that the way they want? So we might get something like (trading off consistency for context):</p>
-    <div class="highlight highlight-source-js">
-<pre><span class="pl-k">new</span> <span class="pl-en">Sensor.Proximity</span>({ position<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>back-right<span class="pl-pds">"</span></span> });
-<span class="pl-k">new</span> <span class="pl-en">Sensor.Temperature</span>({ id<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>internal<span class="pl-pds">"</span></span> });</pre>
-    </div>
-    <p>Questions: </p>
-    <ul>
-     <li>Is such an identifier the right solution?
-     <li>Should we favor consistency or context?
-     <li>What happens when no identifier is passed to the constructor? Must there be a default sensor for each type so that you can do: <code>new Sensor.Geoloc()</code> and not <code>new Sensor.Geoloc({ identifier: "default" })</code>?
-     <li>Where are those lists of sensors defined? In the concrete specs themselves? Through an API the consumer can query (e.g. <code>Sensor.Proximity.getAll()</code>)?
-    </ul>
-   </div>
    <p>Returns a promise which resolves to an array of <a data-link-type="dfn" href="#sensorinfo0">SensorInfo</a> objects representing all available local(?) sensors.</p>
-   <div class="issue no-marker" id="issue-d41d8cd96">
-    <a class="self-link" href="#issue-d41d8cd96"></a><a class="marker" href="https://github.com/w3c/sensors/issues/28">Issue #28 on GitHub: “Do we need a lightweight interface representing available sensors?”</a>
-    <p>This would be something like:</p>
-    <div class="highlight highlight-source-webidl">
-<pre><span class="pl-k">interface</span> <span class="pl-en">SensorMetaData</span> {
-    readonly attribute SensorIdentifier identifier;
-    readonly attribute boolean isDefault;
-    readonly attribute SensorPosition position;
-    readonly attribute SensorDirection direction;
-    readonly attribute boolean isInternal;
-    Sensor <span class="pl-en">createObserver</span>(SensorInit sensorInitDict);
-    <span class="pl-c">// Would create a Sensor object for this particular physical sensor.</span>
-}<span class="pl-ii"></span>
-
-<span class="pl-k">enum</span> <span class="pl-en">SensorPosition</span> {
-    <span class="pl-s"><span class="pl-pds">"</span>top-left<span class="pl-pds">"</span></span>,
-    <span class="pl-s"><span class="pl-pds">"</span>top<span class="pl-pds">"</span></span>,
-    <span class="pl-s"><span class="pl-pds">"</span>top-right<span class="pl-pds">"</span></span>,
-    <span class="pl-s"><span class="pl-pds">"</span>middle-left<span class="pl-pds">"</span></span>,
-    <span class="pl-s"><span class="pl-pds">"</span>middle<span class="pl-pds">"</span></span>,
-    <span class="pl-s"><span class="pl-pds">"</span>middle-right<span class="pl-pds">"</span></span>,
-    <span class="pl-s"><span class="pl-pds">"</span>bottom-left<span class="pl-pds">"</span></span>,
-    <span class="pl-s"><span class="pl-pds">"</span>bottom<span class="pl-pds">"</span></span>,
-    <span class="pl-s"><span class="pl-pds">"</span>bottom-right<span class="pl-pds">"</span></span>
-}<span class="pl-ii"></span>
-
-<span class="pl-k">enum</span> <span class="pl-en">SensorDirection</span> {
-    <span class="pl-s"><span class="pl-pds">"</span>front<span class="pl-pds">"</span></span>,
-    <span class="pl-s"><span class="pl-pds">"</span>rear<span class="pl-pds">"</span></span>,
-    <span class="pl-s"><span class="pl-pds">"</span>left<span class="pl-pds">"</span></span>,
-    <span class="pl-s"><span class="pl-pds">"</span>right<span class="pl-pds">"</span></span>,
-    <span class="pl-s"><span class="pl-pds">"</span>top<span class="pl-pds">"</span></span>,
-    <span class="pl-s"><span class="pl-pds">"</span>bottom<span class="pl-pds">"</span></span>
-}<span class="pl-ii"></span></pre>
-    </div>
-    <p><code>Enums</code> inferred from <a class="issue-link" href="https://github.com/w3c/sensors/issues/26#issuecomment-109392164" title="When there are multiple sensors of a given type, how do we identify which one to instantiate?">#26 (comment)</a> (which isn't definitive).</p>
-    <p>The name is terrible, but please bear with me. It might be worth considering renaming <code>Sensor</code> to something like <code>SensorObserver</code> instead and using <code>Sensor</code> for this object, which would give us:</p>
-    <div class="highlight highlight-source-webidl">
-<pre><span class="pl-k">interface</span> <span class="pl-en">Sensor</span> {
-    readonly attribute SensorIdentifier identifier;
-    readonly attribute boolean isDefault;
-    readonly attribute SensorPosition position;
-    readonly attribute SensorDirection direction;
-    readonly attribute boolean isInternal;
-    SensorObserver <span class="pl-en">createObserver</span>(SensorObserverInit sensorObserverInitDict);
-}<span class="pl-ii"></span></pre>
-    </div>
-   </div>
-   <div class="issue no-marker" id="issue-d41d8cd97">
-    <a class="self-link" href="#issue-d41d8cd97"></a><a class="marker" href="https://github.com/w3c/sensors/issues/7">Issue #7 on GitHub: “Sensor discovery”</a>
-    <p>Define how sensors are discoverable by the developer (especially what happens when you have multiple sensors of the same type).</p>
-    <p><strong>Proposed resolution: There must be a way for developers to find out which sensors are available to a resource, which ones become available during the page's lifetime, and which ones get disconnected. The precise API by which this must be exposed is dependent on the research carried out in <a class="issue-link" href="https://github.com/w3c/sensors/issues/9" title="Should sensor EventTarget be immediately available or should they be accessed through a promise?">#9</a> to determine how sensor register themselves with a browsing context. Such an API must be designed to allow developers to gracefully handle sensors misrepresenting themselves either accidentally or on purpose.</strong></p>
-   </div>
 <pre class="example highlight" id="example-6bd68e85"><a class="self-link" href="#example-6bd68e85"></a>sensors.matchAll({ type: "proximity", position: "rear" }).then(function(sensors) {
     let sensor_info = sensors[0];
     if (!sensor_info) return;
@@ -1795,8 +1689,8 @@ dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="d
 Secure Contexts specification <a data-link-type="biblio" href="#biblio-powerful-features">[powerful-features]</a> as a high-value target for network attackers.
 As such, sensor data should only be available within a <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/powerfulfeatures/#secure-context">secure context</a>.</p>
    <h3 class="heading settled" data-level="6.2" id="permissioning"><span class="secno">6.2. </span><span class="content">Obtaining Explicit User Permission</span><a class="self-link" href="#permissioning"></a></h3>
-   <div class="issue no-marker" id="issue-d41d8cd98">
-    <a class="self-link" href="#issue-d41d8cd98"></a><a class="marker" href="https://github.com/w3c/sensors/issues/20">Issue #20 on GitHub: “Allow for async permission request when first accessing sensor data”</a>
+   <div class="issue no-marker" id="issue-d41d8cd91">
+    <a class="self-link" href="#issue-d41d8cd91"></a><a class="marker" href="https://github.com/w3c/sensors/issues/20">Issue #20 on GitHub: “Allow for async permission request when first accessing sensor data”</a>
     <p>Make sure the API is compatible with sensors which need to ask the user's permission before being used.</p>
     <p><strong>Proposed resolutions:</strong></p>
     <ul>
@@ -1877,8 +1771,8 @@ exposing <a data-link-type="dfn" href="#low-level">low-level</a> sensor APIs, bu
 should always be <a data-link-type="dfn" href="#calibration">calibrated</a>.</p>
    <h3 class="heading settled" data-level="7.6" id="permission-api"><span class="secno">7.6. </span><span class="content">Extending the Permission API</span><a class="self-link" href="#permission-api"></a></h3>
    <p>Provide guidance on how to extend the Permission API <a data-link-type="biblio" href="#biblio-permissions">[permissions]</a> for each <a data-link-type="dfn" href="#sensor-types">sensor types</a>.</p>
-   <div class="issue no-marker" id="issue-d41d8cd99">
-    <a class="self-link" href="#issue-d41d8cd99"></a><a class="marker" href="https://github.com/w3c/sensors/issues/22">Issue #22 on GitHub: “Simplify extension of the Permissions API for concrete sensor implementations”</a>
+   <div class="issue no-marker" id="issue-d41d8cd92">
+    <a class="self-link" href="#issue-d41d8cd92"></a><a class="marker" href="https://github.com/w3c/sensors/issues/22">Issue #22 on GitHub: “Simplify extension of the Permissions API for concrete sensor implementations”</a>
     <p>Accessing sensor data has multiple privacy implications and is therefore subject to permissioning. The <a href="https://w3c.github.io/permissions/">Permission API</a> allows developers to check whether the permission to access a given API was already granted (or denied) by the user on a per origin basis.</p>
     <p>Currently, exposing that status through the Permissions API requires a modification of the Permission API spec itself. Ideally, we'd want sped editors authoring concrete sensor specs to be able to extend the Permission API within the same document.</p>
     <p>This needs concertation with the editors of the Permissions API.</p>
