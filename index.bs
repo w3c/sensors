@@ -252,11 +252,6 @@ Indeed, without specific information identifying a particular <a>sensor</a>
 of a given <a lt="sensor type">type</a>,
 the default <a>sensor</a> is chosen.
 
-Note: extension to this specification may choose not to define a default sensor
-when doing so wouldn't make sense.
-For example, it might be difficult to agree on an obvious default <a>sensor</a> for
-proximity <a>sensors</a>.
-
 <div class="example">
     Listening to geolocation changes:
 
@@ -286,6 +281,11 @@ should be a simple process, and it is:
         .catch(err => console.log(err));
     </pre>
 </div>
+
+Note: extension to this specification may choose not to define a default sensor
+when doing so wouldn't make sense.
+For example, it might be difficult to agree on an obvious default <a>sensor</a> for
+proximity <a>sensors</a>.
 
 In cases where
 multiple <a>sensors</a> of the same <a lt="sensor type">type</a>
