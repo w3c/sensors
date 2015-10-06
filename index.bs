@@ -423,6 +423,12 @@ Issue(w3c/sensors#15):
 
 ### Sensor.value
 
+The value attribute of must always point to the latest <a>SensorReading</a>
+whatever the <a>frequency</a> so that
+the value property of two instances of the same Sensor interface
+associated with the same <a>sensor</a>
+hold the same <a>SensorReading</a> during a single event turn.
+
 Issue(w3c/sensors#2):
 
 ### Sensor.values
@@ -476,7 +482,7 @@ The following are the <a>event handlers</a> (and their corresponding <a>event ha
 
 ### The <dfn>SensorReading</dfn> Interface
 
-Represents the values of a sensor at a given point in time.
+Represents the values of a <a>sensor</a> at a given point in time.
 
 <pre class="idl">
 interface SensorReading {
@@ -492,11 +498,6 @@ Returns a timestamp of the time at which the data was <a href=#>read from the se
 ### SensorReading.info
 
 Returns the sensor object the reading is taken from.
-
-
-
-
-Issue(w3c/sensors#8):
 
 ## The `Sensors` Interface
 
