@@ -345,6 +345,7 @@ TODO: define the following concepts
 <pre class="idl">
 [Constructor(optional SensorOptions sensorOptions), Exposed=(Window,Worker)]
 interface Sensor : EventTarget {
+  static Promise&lt;SensorReading&gt; requestData(RequestDataOptions requestDataOptions);
   attribute double frequency;
   attribute boolean batch;
   readonly attribute SensorInfo info;
@@ -354,12 +355,9 @@ interface Sensor : EventTarget {
   readonly attribute SensorReading? value;
   readonly attribute SensorReading[]? values;
   attribute EventHandler onerror;
+  attribute EventHandler ondata;
   attribute EventHandler onchange;
-  // would that cover all cases?
   attribute EventHandler oncalibration;
-  // needed?
-  attribute EventHandler onconnect;
-  attribute EventHandler ondisconnect;
 };
 
 dictionary SensorOptions {
@@ -368,6 +366,14 @@ dictionary SensorOptions {
   boolean? batch = false;
   TresholdCallback? treshold;
   double? timeout;
+};
+
+dictionary RequestDataOptions {
+  DOMString? sensorId;
+  double? frequency;
+  boolean? batch = false;
+  double? timeout;
+  boolean? fromCache = false;
 };
 
 callback TresholdCallback = boolean (SensorReading currentValue, SensorReading newValue);
@@ -446,13 +452,12 @@ Issue(w3c/sensors#13):
 
 ### Sensor.onerror
 
+### Sensor.ondata
+
 ### Sensor.onchange
 
 ### Sensor.oncalibration
 
-### Sensor.onconnect
-
-### Sensor.ondisconnect
 
 ### Event handlers
 
@@ -467,6 +472,10 @@ The following are the <a>event handlers</a> (and their corresponding <a>event ha
   </thead>
   <tbody>
     <tr>
+      <td><strong><code>ondata</code></strong></td>
+      <td><code>data</code></td>
+    </tr>
+    <tr>
       <td><strong><code>onchange</code></strong></td>
       <td><code>change</code></td>
     </tr>
@@ -478,20 +487,13 @@ The following are the <a>event handlers</a> (and their corresponding <a>event ha
       <td><strong><code>oncalibration</code></strong></td>
       <td><code>calibration</code></td>
     </tr>
-    <tr>
-      <td><strong><code>onconnect</code></strong></td>
-      <td><code>connect</code></td>
-    </tr>
-    <tr>
-      <td><strong><code>ondisconnect</code></strong></td>
-      <td><code>disconnect</code></td>
-    </tr>
   </tbody>
 </table>
 
-### The <dfn>SensorReading</dfn> Interface
+The SensorReading Interface
+---------------------------
 
-Represents the values of a <a>sensor</a> at a given point in time.
+A <dfn>SensorReading</dfn> represents the state of a <a>sensor</a> at a given point in time.
 
 <pre class="idl">
 interface SensorReading {
@@ -502,7 +504,9 @@ interface SensorReading {
 
 ### SensorReading.timeStamp
 
-Returns a timestamp of the time at which the data was <a href=#>read from the sensor</a> expressed in milliseconds that passed since the <a>time origin</a>.
+Returns a timestamp of the time
+at which the <a>read steps</a> was carried out
+expressed in milliseconds that passed since the <a>time origin</a>.
 
 ### SensorReading.info
 
@@ -551,7 +555,7 @@ Issue(w3c/sensors#7):
 sensors.matchAll({ type: "proximity", position: "rear" }).then(function(sensors) {
     let sensor_info = sensors[0];
     if (!sensor_info) return;
-    let sensor = new ProximitySensor(sensor_info.id, { /* ... */ });
+    let sensor = new ProximitySensor({ sensorId: sensor_info.id });
     sensor.onchange = dostuff;
 });
 </pre>
