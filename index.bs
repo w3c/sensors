@@ -597,11 +597,6 @@ Returns the id of the sensor. This is an opaque DOMString.
 Returns true if the sensor is the default sensor of that type on the device, false otherwise.
 
 
-Low level Sensor API
---------------------
-
-Issue(w3c/sensors#24):
-
 Security and privacy considerations
 ===================================
 

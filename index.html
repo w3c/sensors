@@ -1163,7 +1163,6 @@ that can be extended to accommodate different sensor types.</p>
         <li><a href="#sensorinfoid"><span class="secno">5.4.1</span> <span class="content"><span>SensorInfo.id</span></span></a>
         <li><a href="#sensorinfoisdefault"><span class="secno">5.4.2</span> <span class="content"><span>SensorInfo.isDefault</span></span></a>
        </ul>
-      <li><a href="#low-level-sensor-api"><span class="secno">5.5</span> <span class="content">Low level Sensor API</span></a>
      </ul>
     <li>
      <a href="#security-and-privacy-considerations"><span class="secno">6</span> <span class="content">Security and privacy considerations</span></a>
@@ -1789,11 +1788,6 @@ dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="d
    <p>Returns the id of the sensor. This is an opaque DOMString.</p>
    <h4 class="heading settled" data-level="5.4.2" id="sensorinfoisdefault"><span class="secno">5.4.2. </span><span class="content"><dfn data-dfn-type="dfn" data-noexport="" id="sensorinfoisdefault0">SensorInfo.isDefault<a class="self-link" href="#sensorinfoisdefault0"></a></dfn></span><a class="self-link" href="#sensorinfoisdefault"></a></h4>
    <p>Returns true if the sensor is the default sensor of that type on the device, false otherwise.</p>
-   <h3 class="heading settled" data-level="5.5" id="low-level-sensor-api"><span class="secno">5.5. </span><span class="content">Low level Sensor API</span><a class="self-link" href="#low-level-sensor-api"></a></h3>
-   <div class="issue no-marker" id="issue-d41d8cd98">
-    <a class="self-link" href="#issue-d41d8cd98"></a><a class="marker" href="https://github.com/w3c/sensors/issues/24">Issue #24 on GitHub: “Identify the lower level primitives that do the actual sensor polling.”</a>
-    <p>Following the conversation in <a class="issue-link" href="https://github.com/w3c/sensors/issues/21" title="Dependency on [DOM] due to inheriting from EventTarget">#21</a>, it becomes apparent that identifying lower-level primitives that do the actual sensor polling would be helpful to better explain the magic behind concrete sensor implementations (in the spirit of the <a href="https://extensiblewebmanifesto.org/">Extensible Web Manifesto</a>) AND pave the path for supporting raw sensors via <a href="https://whatwg.github.io/serial/">serial port</a> or what not.</p>
-   </div>
    <h2 class="heading settled" data-level="6" id="security-and-privacy-considerations"><span class="secno">6. </span><span class="content">Security and privacy considerations</span><a class="self-link" href="#security-and-privacy-considerations"></a></h2>
    <p>TODO: gather general security and privacy risks common to all sensors.</p>
    <h3 class="heading settled" data-level="6.1" id="secure-context"><span class="secno">6.1. </span><span class="content">Secure Context</span><a class="self-link" href="#secure-context"></a></h3>
@@ -1801,8 +1795,8 @@ dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="d
 Secure Contexts specification <a data-link-type="biblio" href="#biblio-powerful-features">[powerful-features]</a> as a high-value target for network attackers.
 As such, sensor data should only be available within a <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/powerfulfeatures/#secure-context">secure context</a>.</p>
    <h3 class="heading settled" data-level="6.2" id="permissioning"><span class="secno">6.2. </span><span class="content">Obtaining Explicit User Permission</span><a class="self-link" href="#permissioning"></a></h3>
-   <div class="issue no-marker" id="issue-d41d8cd99">
-    <a class="self-link" href="#issue-d41d8cd99"></a><a class="marker" href="https://github.com/w3c/sensors/issues/20">Issue #20 on GitHub: “Allow for async permission request when first accessing sensor data”</a>
+   <div class="issue no-marker" id="issue-d41d8cd98">
+    <a class="self-link" href="#issue-d41d8cd98"></a><a class="marker" href="https://github.com/w3c/sensors/issues/20">Issue #20 on GitHub: “Allow for async permission request when first accessing sensor data”</a>
     <p>Make sure the API is compatible with sensors which need to ask the user's permission before being used.</p>
     <p><strong>Proposed resolutions:</strong></p>
     <ul>
@@ -1883,8 +1877,8 @@ exposing <a data-link-type="dfn" href="#low-level">low-level</a> sensor APIs, bu
 should always be <a data-link-type="dfn" href="#calibration">calibrated</a>.</p>
    <h3 class="heading settled" data-level="7.6" id="permission-api"><span class="secno">7.6. </span><span class="content">Extending the Permission API</span><a class="self-link" href="#permission-api"></a></h3>
    <p>Provide guidance on how to extend the Permission API <a data-link-type="biblio" href="#biblio-permissions">[permissions]</a> for each <a data-link-type="dfn" href="#sensor-types">sensor types</a>.</p>
-   <div class="issue no-marker" id="issue-d41d8cd910">
-    <a class="self-link" href="#issue-d41d8cd910"></a><a class="marker" href="https://github.com/w3c/sensors/issues/22">Issue #22 on GitHub: “Simplify extension of the Permissions API for concrete sensor implementations”</a>
+   <div class="issue no-marker" id="issue-d41d8cd99">
+    <a class="self-link" href="#issue-d41d8cd99"></a><a class="marker" href="https://github.com/w3c/sensors/issues/22">Issue #22 on GitHub: “Simplify extension of the Permissions API for concrete sensor implementations”</a>
     <p>Accessing sensor data has multiple privacy implications and is therefore subject to permissioning. The <a href="https://w3c.github.io/permissions/">Permission API</a> allows developers to check whether the permission to access a given API was already granted (or denied) by the user on a per origin basis.</p>
     <p>Currently, exposing that status through the Permissions API requires a modification of the Permission API spec itself. Ideally, we'd want sped editors authoring concrete sensor specs to be able to extend the Permission API within the same document.</p>
     <p>This needs concertation with the editors of the Permissions API.</p>
