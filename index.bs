@@ -71,22 +71,6 @@ enable advanced use cases thanks to performant <a>low-level</a> APIs,
 and increase the pace at which new sensors can be exposed to the Web
 by simplifying the specification and implementation processes.
 
-
-
-Security and privacy considerations
-===================================
-
-Secure Context {#secure-context}
---------------
-
-Sensor data is explicitely flagged by the
-Secure Contexts specification [[powerful-features]]
-as a high-value target for network attackers.
-As such, sensor data should only be available within a <a>secure context</a>.
-
-
-Issue(w3c/sensors#20):
-
 Terminology
 ===========
 
@@ -541,6 +525,26 @@ Low level Sensor API
 --------------------
 
 Issue(w3c/sensors#24):
+
+
+
+
+
+Security and privacy considerations
+===================================
+
+Secure Context {#secure-context}
+--------------
+
+Sensor data is explicitely flagged by the
+Secure Contexts specification [[powerful-features]]
+as a high-value target for network attackers.
+As such, sensor data should only be available within a <a>secure context</a>.
+
+Obtaining Explicit User Permission {#permissioning}
+----------------------------------
+
+Issue(w3c/sensors#20):
 
 Extensibility
 =============
