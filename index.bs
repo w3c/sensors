@@ -34,6 +34,7 @@ urlPrefix: http://www.w3.org/TR/html5/; spec: HTML5
       text: event handlers
       text: event handler event type
       text: queue a task
+      text: event loop
     urlPrefix: infrastructure.html
       text: in parallel
   type: interface
@@ -425,9 +426,9 @@ Issue(w3c/sensors#15):
 
 The value attribute of must always point to the latest <a>SensorReading</a>
 whatever the <a>frequency</a> so that
-the value property of two instances of the same Sensor interface
+the value attribute of two instances of the same Sensor interface
 associated with the same <a>sensor</a>
-hold the same <a>SensorReading</a> during a single event turn.
+hold the same <a>SensorReading</a> during a single <a>event loop</a> turn.
 
 Issue(w3c/sensors#2):
 
