@@ -301,7 +301,7 @@ In cases where
 multiple <a>sensors</a> of the same <a lt="sensor type">type</a>
 may coexist on the same device,
 specification extension will have to
-define ways uniquely identify each one.
+define ways to uniquely identify each one.
 
 <div class="example">
     For example checking the pressure of the left rear tire: 
