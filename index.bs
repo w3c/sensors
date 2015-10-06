@@ -619,9 +619,39 @@ Issue(w3c/sensors#22):
 Acknowledgements
 ================
 
-The following people have greatly contributed to this specification through extensive discussions on GitHub: <span id=gh-commenters></span>.
+The following people have greatly contributed to this specification through extensive discussions on GitHub:
+Anssi Kostiainen,
+Boris Smus,
+Claes Nilsson,
+Dave Raggett,
+davidmarkclements,
+Domenic Denicola,
+Dominique Hazael-Massieux,
+fhirsch,
+Francesco Iovine,
+gmandyam,
+Jafar Husain,
+Johannes Hund,
+Kris Kowal,
+Marcos Caceres,
+Mats Wichmann,
+Matthew Podwysocki,
+pablochacin,
+Remy Sharp,
+Rich Tibbett,
+Rick Waldron,
+Rijubrata Bhaumik,
+robman,
+Sean T. McBeth,
+smaug----,
+and
+zenparsing.
 
-We'd also like to thank <span id=gh-contributors></span> for their editorial input.
+We'd also like to thank
+Anssi Kostiainen,Erik Wilde,
+and
+Michael[tm] Smith
+for their editorial input.
 
 <h2 id="conformance" class="no-ref no-num">Conformance</h2>
 
