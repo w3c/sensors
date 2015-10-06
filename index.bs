@@ -247,6 +247,8 @@ and defensive programming which includes:
 Model
 =====
 
+<em>This section is non-normative</em>.
+
 The Generic Sensor API is designed to make the most common use cases straightforward
 while still enabling more complex use cases.
 
@@ -258,7 +260,7 @@ and generally limited to specific <a>sensor types</a> such as
 proximity sensors.
 
 The API therefore makes it easy to interact with
-the device's default (and often unique) sensor
+the device's default (and often unique) <a>sensor</a>
 for each <a lt="sensor types">type</a>
 simply by instantiating the corresponding <a instance>Sensor</a> subclass.
 
@@ -300,6 +302,23 @@ should be a simple process, and it is:
         .catch(err => console.log(err));
     </pre>
 </div>
+
+In cases where
+multiple <a>sensors</a> of the same <a lt="sensor type">type</a>
+may coexist on the same device,
+specification extension will have to
+define ways uniquely identify each one.
+
+<div class="example">
+    For example checking the pressure of the left rear tire: 
+
+    <pre example highlight="js">
+    DirectTirePressureSensor.requestData({ position: "rear", side: "left" })
+        .then(reading => { display(reading.pressure); })
+        .catch(err => console.log(err));
+    </pre>
+</div>
+
 API
 ===
 
