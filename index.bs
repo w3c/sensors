@@ -668,6 +668,20 @@ extension specifications should focus primarily on
 exposing <a>low-level</a> sensor APIs, but should also expose
 <a>high-level</a> APIs when they are clear benefits in doing so.
 
+When is Enabling Multiple Sensors of the Same Type Not the Right Choice? {#multiple-sensors}
+------------------------------------------------------------------------
+
+TODO: provide guidance on when to:
+
+- allow multiple sensors of the same type to be instantiated,
+- create different interfaces that inherit from <a interface>Sensor</a>,
+- add constructor parameters to tweak sensors settings (e.g. setting required accuracy).
+
+Defining a default
+------------------
+
+TODO: provide guidance on how and when to set a default <a>sensor</a>.
+
 Calibration {#calibration}
 -----------
 
