@@ -313,8 +313,8 @@ define ways to uniquely identify each one.
     </pre>
 </div>
 
-### Enumerating Sensors
-
+Enumerating Sensors
+-------------------
 <a>Sensor</a> discoverability becomes particularly important
 as the number of <a>sensor</a> grows.
 Web application developers need to find out what kind of
