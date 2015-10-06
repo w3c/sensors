@@ -23,6 +23,8 @@ Boilerplate: omit issues-index, omit conformance
 </pre>
 <pre class="anchors">
 urlPrefix: https://dom.spec.whatwg.org; spec: DOM
+  type: dfn
+    text: fire an event; url: concept-event-fire
   type: interface
     text: EventTarget; url: interface-eventtarget
 urlPrefix: http://www.w3.org/TR/html5/; spec: HTML5
@@ -31,6 +33,9 @@ urlPrefix: http://www.w3.org/TR/html5/; spec: HTML5
       text: incumbent settings object
       text: event handlers
       text: event handler event type
+      text: queue a task
+    urlPrefix: infrastructure.html
+      text: in parallel
   type: interface
     urlPrefix: webappapis.html
       text: EventHandler
@@ -42,6 +47,9 @@ urlPrefix: http://w3c.github.io/hr-time/; spec: hr-time-2
 urlPrefix: https://w3c.github.io/webappsec/specs/powerfulfeatures/; spec: powerful-features
   type: dfn
     text: secure context
+urlPrefix: https://heycam.github.io/webidl/; spec: WebIDL
+  type: dfn
+    text: throw
 </pre>
 
 
@@ -147,6 +155,8 @@ preferring instead to differentiate sensors as to whether they describe
 the kind of <a>output data</a> produced--these are <a>high-level</a> sensors--
 or how the sensor is implemented (<a>low-level</a> sensors).
 
+TODO: add a section about reading from a <a>sensor</a> and
+how this is exposed as an asynchonous operation.
 
 An note on Feature Detection of Hardware Features {#feature-detection}
 =================================================
@@ -227,7 +237,6 @@ and defensive programming which includes:
     </pre>
 </div>
 
-
 Model
 =====
 
@@ -303,29 +312,27 @@ define ways uniquely identify each one.
     </pre>
 </div>
 
-
-
-
-
-
-
-Returns the id of the sensor. This is an opaque DOMString.
-
-    
-
 API
 ===
 
-## The <dfn interface>Sensor</dfn> Interface
+## The Sensor Interface
 
-A `Sensor` object has an associated <a>sensor</a>.
+A <dfn interface>Sensor</dfn> object has an associated <a>sensor</a>.
 
-`Sensor` Interface's role is to observe the changes in a given sensor at regular intervals and emit events when those value change in a consumer-configurable way.
+A <a interface>Sensor</a> object observes the changes in its associated <a>sensor</a>
+at regular intervals and reports those values by firing DOM events.
 
-Issue(w3c/sensors#14):
+<dfn>frequency</dfn> is measured in hertz (Hz).
+
+TODO: define the following concepts
+
+- <dfn>batch mode</dfn>
+- <dfn>permission</dfn>
+- <dfn>read steps</dfn>
+- <dfn>identifying parameters</dfn>
 
 <pre class="idl">
-[Constructor(SensorInfo info, optional SensorOptions sensorOptions), Exposed=(Window,Worker)]
+[Constructor(optional SensorOptions sensorOptions), Exposed=(Window,Worker)]
 interface Sensor : EventTarget {
   attribute double frequency;
   attribute boolean batch;
@@ -345,6 +352,7 @@ interface Sensor : EventTarget {
 };
 
 dictionary SensorOptions {
+  DOMString? sensorId;
   double? frequency;
   boolean? batch = false;
   TresholdCallback? treshold;
@@ -354,7 +362,40 @@ dictionary SensorOptions {
 callback TresholdCallback = boolean (SensorReading currentValue, SensorReading newValue);
 </pre>
 
+### Sensor Constructor
+
+The <a>Sensor()</a> constructor must run these steps:
+
+1.  If the <a>incumbent settings object</a> is not a <a>secure context</a>, then:
+    1.  <a>throw</a> a SecurityError.
+1.  If sensorOptions.sensorId is specified, then:
+    1.  If there is a <a>sensor</a> identified by sensorOptions.sensorId, then
+        1.  let <var>sensor</var> be a new <a interface>Sensor</a> object.
+        1.  associate <var>sensor</var> with that <a>sensor</a>
+    1. Otherwise, <a>throw</a> a TypeError.
+1.  Otherwise, if <a>identifying parameters</a> in sensorOptions are set, then:
+    1.  If these <a>identifying parameters</a> allow a unique <a>sensor</a> to be identified, then:
+        1.  let <var>sensor</var> be a new <a interface>Sensor</a> object.
+        1.  associate <var>sensor</var> with that <a>sensor</a>
+    1. Otherwise, <a>throw</a> a TypeError.
+1.  Otherwise, if a default sensor exists for this <a>sensor type</a>:
+    1.  let <var>sensor</var> be a new <a interface>Sensor</a> object.
+    1.  associate that <a>sensor</a> with it.
+1.  Otherwise, <a>throw</a> a TypeError.
+1.  Set <var>sensor</var>'s reading attribute to `null`.
+1.  return <var>sensor</var>.
+1.  Run these substeps <a>in parallel</a>:
+    1.  If <a>permission</a> is not granted,
+        <a>queue a task</a> to <a>fire an event</a> named error on <var>sensor</var>,
+        and terminate these substeps.
+    1.  If cached <a>SensorReadings</a> are available,
+        1.   let <var>latest_reading</var> be the most recent of those <a>SensorReadings</a>.
+        2.   set the value of <var>sensor</var>'s reading attribute to <var>latest_reading</var>.
+    1.  run the <a>read steps</a> for <var>sensor</var>.
+
 ### Sensor.frequency
+
+The <a>frequency</a> at which the <a>read steps</a> are run.
 
 Issue(w3c/sensors#4):
 
@@ -364,7 +405,7 @@ Issue(w3c/sensors#23):
 
 ### Sensor.batch
 
-Returns true if batch mode was requested, false otherwise.
+`true` if <a>batch mode</a> was requested, false otherwise.
 
 ### Sensor.info
 
