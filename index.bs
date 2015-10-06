@@ -430,8 +430,6 @@ the value attribute of two instances of the same Sensor interface
 associated with the same <a>sensor</a>
 hold the same <a>SensorReading</a> during a single <a>event loop</a> turn.
 
-Issue(w3c/sensors#2):
-
 ### Sensor.values
 
 Issue(w3c/sensors#13):
@@ -631,6 +629,13 @@ with the "Sensor" suffix.
 For example, a <a>sensor</a> measuring
 the distance at which an object is from it
 may see its associated interface called `ProximitySensor`.
+
+Attributes of the <a interface>SensorReading</a> subclass that
+hold <a>output data</a>
+should be named after the full name of this <a>output data</a>.
+For example, the `TemperatureSensorReading` interface should hold
+the value of the <a>sensor</s>'s <a>output data</a> in
+a `temperature` attribute (and not a `value` or `temp` attribute).
 
 Exposing High-Level vs. Low-Level Sensors {#high-vs-low-level}
 -----------------------------------------
