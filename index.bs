@@ -399,8 +399,6 @@ The <a>frequency</a> at which the <a>read steps</a> are run.
 
 Issue(w3c/sensors#4):
 
-Issue(w3c/sensors#6):
-
 Issue(w3c/sensors#23):
 
 ### Sensor.batch
