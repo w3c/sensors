@@ -255,7 +255,7 @@ proximity sensors.
 The API therefore makes it easy to interact with
 the device's default (and often unique) <a>sensor</a>
 for each <a lt="sensor types">type</a>
-simply by instantiating the corresponding <a instance>Sensor</a> subclass.
+simply by instantiating the corresponding <a interface>Sensor</a> subclass.
 
 Indeed, without specific information identifying a particular <a>sensor</a>
 of a given <a lt="sensor type">type</a>,
