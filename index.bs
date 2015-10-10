@@ -61,7 +61,7 @@ Increasingly, sensor data is used in application development to
 enable new use cases such a geolocation,
 counting steps or head-tracking.
 This is especially true on mobile devices where new sensors are added regularly.
-It is also increasinly common in networked objects
+It is also increasingly common in networked objects
 which are part of the Internet of Things.
 
 Exposing sensor data to the Web
@@ -70,7 +70,7 @@ Few sensors are already exposed to the Web.
 When they are, it is often in ways that limit their possible use cases
 (for example by exposing abstractions that are too <a>high-level</a>
 and which don't perform well enough).
-APIs also vary greatlty from one sensor to the next
+APIs also vary greatly from one sensor to the next
 which increases the cognitive burden of Web application developers
 and slows development.
 
@@ -101,11 +101,11 @@ For the purpose of this specification we distinguish between
 <a>high-level</a> and <a>low-level</a> sensor types.
 
 <a>Sensor types</a> which are characterized by their implementation
-are refered to as <dfn>low-level</dfn> sensors.
+are referred to as <dfn>low-level</dfn> sensors.
 For example a Gyroscope is a <a>low-level</a> sensor type.
 
 <a>Sensors</a> named after their <a>output data</a>,
-regarless of the implementation,
+regardless of the implementation,
 are said to be <dfn>high-level</dfn> sensors.
 For instance, geolocation sensors provide information about the user's location,
 but the precise means by which this data is obtained
@@ -115,7 +115,7 @@ wifi networks, etc. or any combination of the above)
 and depends on various, implementation-specific heuristics.
 <a>High-level</a> sensors are generally the fruits of
 applying algorithms to <a>low-level</a> sensors--
-for example, a podometer can be built using only the output of a gyroscope--
+for example, a pedometer can be built using only the output of a gyroscope--
 or of <a>sensor fusion</a>.
 
 That said, the distinction between
@@ -128,7 +128,7 @@ resistive piezo-electric pressure and temperature sensors,
 exposing the sensors that compose it would serve no practical purpose
 (who cares about the temperature of a piezo-electric sensor?).
 A pressure-altimeter would probably fall in the same category,
-while a non-descript altimeter--
+while a nondescript altimeter--
 which could get its data from either a barometer or a GPS signal--
 would clearly be categorized as a <a>high-level</a> sensor type.
 
@@ -157,7 +157,7 @@ the kind of <a>output data</a> produced--these are <a>high-level</a> sensors--
 or how the sensor is implemented (<a>low-level</a> sensors).
 
 TODO: add a section about reading from a <a>sensor</a> and
-how this is exposed as an asynchonous operation.
+how this is exposed as an asynchronous operation.
 
 An note on Feature Detection of Hardware Features {#feature-detection}
 =================================================
@@ -204,7 +204,7 @@ The problem with this is twofold.
 First, getting this information out of the hardware is costly,
 in both performance and battery time,
 and would sit in the critical path.
-Secondly, the status of the underlying hardware can elvolve over time.
+Secondly, the status of the underlying hardware can evolve over time.
 The user can revoke permission, the connection to the sensor be severed,
 the operating system may decide to limit sensor usage below a certain battery threshold,
 etc.
@@ -215,7 +215,7 @@ and defensive programming which includes:
 
 1.  checking for error thrown when instantiating a <a interface>Sensor</a> object,
 2.  listening to errors emitted by it,
-3.  setting an appropriate timeout for your particular usecase,
+3.  setting an appropriate timeout for your particular use case,
 4.  handling all of the above graciously so that the user's experienced is
     enhanced by the possible usage of a sensor, not degraded by its
     absence.
@@ -349,7 +349,7 @@ interface Sensor : EventTarget {
   attribute double frequency;
   attribute boolean batch;
   readonly attribute SensorInfo info;
-  attribute TresholdCallback? treshold; 
+  attribute ThresholdCallback? threshold; 
   attribute double timeout; 
   attribute boolean wakeup; 
   readonly attribute SensorReading? value;
@@ -364,7 +364,7 @@ dictionary SensorOptions {
   DOMString? sensorId;
   double? frequency;
   boolean? batch = false;
-  TresholdCallback? treshold;
+  ThresholdCallback? threshold;
   double? timeout;
 };
 
@@ -376,7 +376,7 @@ dictionary RequestDataOptions {
   boolean? fromCache = false;
 };
 
-callback TresholdCallback = boolean (SensorReading currentValue, SensorReading newValue);
+callback ThresholdCallback = boolean (SensorReading currentValue, SensorReading newValue);
 </pre>
 
 ### Sensor Constructor
@@ -401,10 +401,10 @@ The <a>Sensor()</a> constructor must run these steps:
 1.  Otherwise, <a>throw</a> a TypeError.
 1.  Set <var>sensor</var>'s reading attribute to `null`.
 1.  return <var>sensor</var>.
-1.  Run these substeps <a>in parallel</a>:
+1.  Run these sub-steps <a>in parallel</a>:
     1.  If <a>permission</a> is not granted,
         <a>queue a task</a> to <a>fire an event</a> named error on <var>sensor</var>,
-        and terminate these substeps.
+        and terminate these sub-steps.
     1.  If cached <a>SensorReadings</a> are available,
         1.   let <var>latest_reading</var> be the most recent of those <a>SensorReadings</a>.
         2.   set the value of <var>sensor</var>'s reading attribute to <var>latest_reading</var>.
@@ -424,7 +424,7 @@ Issue(w3c/sensors#4):
 
 Returns the related <a>SensorInfo</a> object.
 
-### Sensor.treshold
+### Sensor.threshold
 
 ### Sensor.timeout
 
@@ -512,7 +512,7 @@ The Sensors Interface
 The <a>Sensors</a> interface represents a container for a list of <a>SensorInfo</a> objects.
 It is exposed on Window and Workers as the `Window.sensors` and `WorkerGlobalScope.sensors` attribute respectively.
 
-TODO: make this explicietly about local sensors and allow supporting enumeration of
+TODO: make this explicitly about local sensors and allow supporting enumeration of
 remote sensors through added parameters.
 
 <pre class="idl">
@@ -591,7 +591,7 @@ TODO: gather general security and privacy risks common to all sensors.
 Secure Context {#secure-context}
 --------------
 
-Sensor data is explicitely flagged by the
+Sensor data is explicitly flagged by the
 Secure Contexts specification [[powerful-features]]
 as a high-value target for network attackers.
 As such, sensor data should only be available within a <a>secure context</a>.
@@ -607,7 +607,7 @@ Extensibility
 <em>This section is non-normative.</em>
 
 Its purpose is to describe
-how this specification can be extended to speficy APIs for
+how this specification can be extended to specify APIs for
 different <a>sensor types</a>.
 
 Extension specifications are encouraged to focus on a single <a>sensor type</a>,
@@ -641,7 +641,7 @@ Exposing High-Level vs. Low-Level Sensors {#high-vs-low-level}
 So far, specifications exposing sensors to the Web platform
 have focused on <a>high-level</a> sensors APIs. [[geolocation-API]] [[orientation-event]]
 
-This was a reaosnable approach for a number of reasons.
+This was a reasonable approach for a number of reasons.
 Indeed, <a>high-level</a> sensors:
 
 -   convey developer intent clearly,
