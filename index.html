@@ -435,7 +435,6 @@
 
 	img {
 		border-style: none;
-		color: white;
 	}
 
 	figure, div.figure, div.sidefigure {
@@ -1059,17 +1058,17 @@
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="http://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/Icons/w3c_home" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2015-10-06">6 October 2015</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2015-10-10">10 October 2015</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
      <dd><a class="u-url" href="https://w3c.github.io/sensors/">https://w3c.github.io/sensors/</a>
      <dt>Latest version:
-     <dd><a href="http://www.w3.org/TR/sensors/">http://www.w3.org/TR/sensors/</a>
+     <dd><a href="http://www.w3.org/TR/generic-sensor/">http://www.w3.org/TR/generic-sensor/</a>
      <dt>Version History:
      <dd><a href="https://github.com/w3c/sensors/commits/gh-pages/index.bs">https://github.com/w3c/sensors/commits/gh-pages/index.bs</a>
      <dt>Feedback:
-     <dd><span><a href="mailto:public-device-apis@w3.org?subject=%5Bsensors%5D%20YOUR%20TOPIC%20HERE">public-device-apis@w3.org</a> with subject line “<kbd>[sensors] <var>… message topic …</var></kbd>” (<a href="https://lists.w3.org/Archives/Public/public-device-apis/" rel="discussion">archives</a>)</span>
+     <dd><span><a href="mailto:public-device-apis@w3.org?subject=%5Bgeneric-sensor%5D%20YOUR%20TOPIC%20HERE">public-device-apis@w3.org</a> with subject line “<kbd>[generic-sensor] <i>… message topic …</i></kbd>” (<a href="https://lists.w3.org/Archives/Public/public-device-apis/" rel="discussion">archives</a>)</span>
      <dt>Issue Tracking:
      <dd><a href="https://github.com/tobie/sensors/issues/">GitHub</a>
      <dt class="editor">Editors:
@@ -1092,17 +1091,17 @@ It does so by defining a blueprint for writing
 specifications of concrete sensors along with an abstract Sensor interface
 that can be extended to accommodate different sensor types.</p>
   </div>
-  <h2 class="no-num no-toc no-ref heading settled" id="status"><span class="content">Status of this document</span></h2>
+  <h2 class="no-num no-toc no-ref heading settled" id="sotd"><span class="content">Status of this document</span></h2>
   <div data-fill-with="status">
    <p> This is a public copy of the editors’ draft.
 	It is provided for discussion only and may change at any moment.
 	Its publication here does not imply endorsement of its contents by W3C.
 	Don’t cite this document other than as work in progress. </p>
-   <p> If you wish to make comments regarding this document, please send them to <a href="mailto:public-device-apis@w3.org?Subject=%5Bsensors%5D%20PUT%20SUBJECT%20HERE">public-device-apis@w3.org</a> (<a href="mailto:public-device-apis-request@w3.org?subject=subscribe">subscribe</a>, <a href="http://lists.w3.org/Archives/Public/public-device-apis/">archives</a>).
+   <p> If you wish to make comments regarding this document, please send them to <a href="mailto:public-device-apis@w3.org?Subject=%5Bgeneric-sensor%5D%20PUT%20SUBJECT%20HERE">public-device-apis@w3.org</a> (<a href="mailto:public-device-apis-request@w3.org?subject=subscribe">subscribe</a>, <a href="http://lists.w3.org/Archives/Public/public-device-apis/">archives</a>).
 	When sending e-mail,
-	please put the text “sensors” in the subject,
+	please put the text “generic-sensor” in the subject,
 	preferably like this:
-	“[sensors] <em>…summary of comment…</em>”.
+	“[generic-sensor] <em>…summary of comment…</em>”.
 	All comments are welcome. </p>
    <p> This document was produced by the <a href="http://www.w3.org/2009/dap/">Device APIs Working Group</a>. </p>
    <p> This document was produced by a group operating under
@@ -1135,7 +1134,7 @@ that can be extended to accommodate different sensor types.</p>
         <li><a href="#sensorfrequency"><span class="secno">5.1.2</span> <span class="content">Sensor.frequency</span></a>
         <li><a href="#sensorbatch"><span class="secno">5.1.3</span> <span class="content">Sensor.batch</span></a>
         <li><a href="#sensorinfo"><span class="secno">5.1.4</span> <span class="content">Sensor.info</span></a>
-        <li><a href="#sensortreshold"><span class="secno">5.1.5</span> <span class="content">Sensor.treshold</span></a>
+        <li><a href="#sensorthreshold"><span class="secno">5.1.5</span> <span class="content">Sensor.threshold</span></a>
         <li><a href="#sensortimeout"><span class="secno">5.1.6</span> <span class="content">Sensor.timeout</span></a>
         <li><a href="#sensorwakeup"><span class="secno">5.1.7</span> <span class="content">Sensor.wakeup</span></a>
         <li><a href="#sensorvalue"><span class="secno">5.1.8</span> <span class="content">Sensor.value</span></a>
@@ -1210,14 +1209,14 @@ that can be extended to accommodate different sensor types.</p>
 enable new use cases such a geolocation,
 counting steps or head-tracking.
 This is especially true on mobile devices where new sensors are added regularly.
-It is also increasinly common in networked objects
+It is also increasingly common in networked objects
 which are part of the Internet of Things.</p>
    <p>Exposing sensor data to the Web
 has so far been both slow-paced and ad-hoc.
 Few sensors are already exposed to the Web.
 When they are, it is often in ways that limit their possible use cases
 (for example by exposing abstractions that are too <a data-link-type="dfn" href="#high-level">high-level</a> and which don’t perform well enough).
-APIs also vary greatlty from one sensor to the next
+APIs also vary greatly from one sensor to the next
 which increases the cognitive burden of Web application developers
 and slows development.</p>
    <p>The goal of the Generic Sensor API is to
@@ -1236,10 +1235,10 @@ through a process called <a data-link-type="dfn" href="#sensor-fusion">sensor fu
 such as temperature, air pressure, heart-rate, or luminosity.</p>
    <p>For the purpose of this specification we distinguish between <a data-link-type="dfn" href="#high-level">high-level</a> and <a data-link-type="dfn" href="#low-level">low-level</a> sensor types.</p>
    <p><a data-link-type="dfn" href="#sensor-types">Sensor types</a> which are characterized by their implementation
-are refered to as <dfn data-dfn-type="dfn" data-noexport="" id="low-level">low-level<a class="self-link" href="#low-level"></a></dfn> sensors.
+are referred to as <dfn data-dfn-type="dfn" data-noexport="" id="low-level">low-level<a class="self-link" href="#low-level"></a></dfn> sensors.
 For example a Gyroscope is a <a data-link-type="dfn" href="#low-level">low-level</a> sensor type.</p>
    <p><a data-link-type="dfn" href="#sensor">Sensors</a> named after their <a data-link-type="dfn" href="#output-data">output data</a>,
-regarless of the implementation,
+regardless of the implementation,
 are said to be <dfn data-dfn-type="dfn" data-noexport="" id="high-level">high-level<a class="self-link" href="#high-level"></a></dfn> sensors.
 For instance, geolocation sensors provide information about the user’s location,
 but the precise means by which this data is obtained
@@ -1247,7 +1246,7 @@ is purposefully left opaque
 (it could come from a GPS chip, network cell triangulation,
 wifi networks, etc. or any combination of the above)
 and depends on various, implementation-specific heuristics. <a data-link-type="dfn" href="#high-level">High-level</a> sensors are generally the fruits of
-applying algorithms to <a data-link-type="dfn" href="#low-level">low-level</a> sensors—<wbr>for example, a podometer can be built using only the output of a gyroscope—<wbr>or of <a data-link-type="dfn" href="#sensor-fusion">sensor fusion</a>.</p>
+applying algorithms to <a data-link-type="dfn" href="#low-level">low-level</a> sensors—<wbr>for example, a pedometer can be built using only the output of a gyroscope—<wbr>or of <a data-link-type="dfn" href="#sensor-fusion">sensor fusion</a>.</p>
    <p>That said, the distinction between <a data-link-type="dfn" href="#high-level">high-level</a> and <a data-link-type="dfn" href="#low-level">low-level</a> sensor types
 is somewhat arbitrary and the line between the two is often blurred.
 For instance, a barometer, which measures air pressure,
@@ -1257,7 +1256,7 @@ resistive piezo-electric pressure and temperature sensors,
 exposing the sensors that compose it would serve no practical purpose
 (who cares about the temperature of a piezo-electric sensor?).
 A pressure-altimeter would probably fall in the same category,
-while a non-descript altimeter—<wbr>which could get its data from either a barometer or a GPS signal—<wbr>would clearly be categorized as a <a data-link-type="dfn" href="#high-level">high-level</a> sensor type.</p>
+while a nondescript altimeter—<wbr>which could get its data from either a barometer or a GPS signal—<wbr>would clearly be categorized as a <a data-link-type="dfn" href="#high-level">high-level</a> sensor type.</p>
    <p>Because the distinction is somewhat blurry,
 extensions to this specification (see <a href="#extensibility">§7 Extensibility</a>)
 are encouraged to provide domain-specific definitions of <a data-link-type="dfn" href="#high-level">high-level</a> and <a data-link-type="dfn" href="#low-level">low-level</a> sensors
@@ -1277,7 +1276,7 @@ However, the specification doesn’t make any practical differences between them
 preferring instead to differentiate sensors as to whether they describe
 the kind of <a data-link-type="dfn" href="#output-data">output data</a> produced--these are <a data-link-type="dfn" href="#high-level">high-level</a> sensors—<wbr>or how the sensor is implemented (<a data-link-type="dfn" href="#low-level">low-level</a> sensors).</p>
    <p>TODO: add a section about reading from a <a data-link-type="dfn" href="#sensor">sensor</a> and
-how this is exposed as an asynchonous operation.</p>
+how this is exposed as an asynchronous operation.</p>
    <h2 class="heading settled" data-level="3" id="feature-detection"><span class="secno">3. </span><span class="content">An note on Feature Detection of Hardware Features</span><a class="self-link" href="#feature-detection"></a></h2>
    <p><em>This section is non-normative.</em></p>
    <p>Feature detection is an established Web development best practice.
@@ -1315,7 +1314,7 @@ The problem with this is twofold.
 First, getting this information out of the hardware is costly,
 in both performance and battery time,
 and would sit in the critical path.
-Secondly, the status of the underlying hardware can elvolve over time.
+Secondly, the status of the underlying hardware can evolve over time.
 The user can revoke permission, the connection to the sensor be severed,
 the operating system may decide to limit sensor usage below a certain battery threshold,
 etc.</p>
@@ -1328,7 +1327,7 @@ and defensive programming which includes:</p>
     <li data-md="">
      <p>listening to errors emitted by it,</p>
     <li data-md="">
-     <p>setting an appropriate timeout for your particular usecase,</p>
+     <p>setting an appropriate timeout for your particular use case,</p>
     <li data-md="">
      <p>handling all of the above graciously so that the user’s experienced is
   enhanced by the possible usage of a sensor, not degraded by its
@@ -1426,7 +1425,7 @@ interface <a class="idl-code" data-link-type="interface" href="#sensor0">Sensor<
   attribute double <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="double " id="dom-sensor-frequency">frequency<a class="self-link" href="#dom-sensor-frequency"></a></dfn>;
   attribute boolean <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="boolean " id="dom-sensor-batch">batch<a class="self-link" href="#dom-sensor-batch"></a></dfn>;
   readonly attribute <a data-link-type="idl-name" href="#sensorinfo1">SensorInfo</a> <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-readonly="" data-type="SensorInfo " id="dom-sensor-info">info<a class="self-link" href="#dom-sensor-info"></a></dfn>;
-  attribute <a data-link-type="idl-name" href="#callbackdef-tresholdcallback">TresholdCallback</a>? <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="TresholdCallback? " id="dom-sensor-treshold">treshold<a class="self-link" href="#dom-sensor-treshold"></a></dfn>; 
+  attribute <a data-link-type="idl-name" href="#callbackdef-thresholdcallback">ThresholdCallback</a>? <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="ThresholdCallback? " id="dom-sensor-threshold">threshold<a class="self-link" href="#dom-sensor-threshold"></a></dfn>; 
   attribute double <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="double " id="dom-sensor-timeout">timeout<a class="self-link" href="#dom-sensor-timeout"></a></dfn>; 
   attribute boolean <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="boolean " id="dom-sensor-wakeup">wakeup<a class="self-link" href="#dom-sensor-wakeup"></a></dfn>; 
   readonly attribute <a data-link-type="idl-name" href="#sensorreading0">SensorReading</a>? <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-readonly="" data-type="SensorReading? " id="dom-sensor-value">value<a class="self-link" href="#dom-sensor-value"></a></dfn>;
@@ -1441,7 +1440,7 @@ dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="d
   DOMString? <dfn class="idl-code" data-dfn-for="SensorOptions" data-dfn-type="dict-member" data-export="" data-type="DOMString? " id="dom-sensoroptions-sensorid">sensorId<a class="self-link" href="#dom-sensoroptions-sensorid"></a></dfn>;
   double? <dfn class="idl-code" data-dfn-for="SensorOptions" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-sensoroptions-frequency">frequency<a class="self-link" href="#dom-sensoroptions-frequency"></a></dfn>;
   boolean? <dfn class="idl-code" data-default="false" data-dfn-for="SensorOptions" data-dfn-type="dict-member" data-export="" data-type="boolean? " id="dom-sensoroptions-batch">batch<a class="self-link" href="#dom-sensoroptions-batch"></a></dfn> = false;
-  <a data-link-type="idl-name" href="#callbackdef-tresholdcallback">TresholdCallback</a>? <dfn class="idl-code" data-dfn-for="SensorOptions" data-dfn-type="dict-member" data-export="" data-type="TresholdCallback? " id="dom-sensoroptions-treshold">treshold<a class="self-link" href="#dom-sensoroptions-treshold"></a></dfn>;
+  <a data-link-type="idl-name" href="#callbackdef-thresholdcallback">ThresholdCallback</a>? <dfn class="idl-code" data-dfn-for="SensorOptions" data-dfn-type="dict-member" data-export="" data-type="ThresholdCallback? " id="dom-sensoroptions-threshold">threshold<a class="self-link" href="#dom-sensoroptions-threshold"></a></dfn>;
   double? <dfn class="idl-code" data-dfn-for="SensorOptions" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-sensoroptions-timeout">timeout<a class="self-link" href="#dom-sensoroptions-timeout"></a></dfn>;
 };
 
@@ -1453,7 +1452,7 @@ dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="d
   boolean? <dfn class="idl-code" data-default="false" data-dfn-for="RequestDataOptions" data-dfn-type="dict-member" data-export="" data-type="boolean? " id="dom-requestdataoptions-fromcache">fromCache<a class="self-link" href="#dom-requestdataoptions-fromcache"></a></dfn> = false;
 };
 
-callback <dfn class="idl-code" data-dfn-type="callback" data-export="" id="callbackdef-tresholdcallback">TresholdCallback<a class="self-link" href="#callbackdef-tresholdcallback"></a></dfn> = boolean (<a data-link-type="idl-name" href="#sensorreading0">SensorReading</a> <dfn class="idl-code" data-dfn-for="TresholdCallback" data-dfn-type="argument" data-export="" id="dom-tresholdcallback-currentvalue">currentValue<a class="self-link" href="#dom-tresholdcallback-currentvalue"></a></dfn>, <a data-link-type="idl-name" href="#sensorreading0">SensorReading</a> <dfn class="idl-code" data-dfn-for="TresholdCallback" data-dfn-type="argument" data-export="" id="dom-tresholdcallback-newvalue">newValue<a class="self-link" href="#dom-tresholdcallback-newvalue"></a></dfn>);
+callback <dfn class="idl-code" data-dfn-type="callback" data-export="" id="callbackdef-thresholdcallback">ThresholdCallback<a class="self-link" href="#callbackdef-thresholdcallback"></a></dfn> = boolean (<a data-link-type="idl-name" href="#sensorreading0">SensorReading</a> <dfn class="idl-code" data-dfn-for="ThresholdCallback" data-dfn-type="argument" data-export="" id="dom-thresholdcallback-currentvalue">currentValue<a class="self-link" href="#dom-thresholdcallback-currentvalue"></a></dfn>, <a data-link-type="idl-name" href="#sensorreading0">SensorReading</a> <dfn class="idl-code" data-dfn-for="ThresholdCallback" data-dfn-type="argument" data-export="" id="dom-thresholdcallback-newvalue">newValue<a class="self-link" href="#dom-thresholdcallback-newvalue"></a></dfn>);
 </pre>
    </ul>
    <h4 class="heading settled" data-level="5.1.1" id="sensor-constructor"><span class="secno">5.1.1. </span><span class="content">Sensor Constructor</span><a class="self-link" href="#sensor-constructor"></a></h4>
@@ -1508,11 +1507,11 @@ callback <dfn class="idl-code" data-dfn-type="callback" data-export="" id="callb
     <li data-md="">
      <p>return <var>sensor</var>.</p>
     <li data-md="">
-     <p>Run these substeps <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#in-parallel">in parallel</a>:</p>
+     <p>Run these sub-steps <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#in-parallel">in parallel</a>:</p>
      <ol>
       <li data-md="">
        <p>If <a data-link-type="dfn" href="#permission">permission</a> is not granted, <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#queue-a-task">queue a task</a> to <a data-link-type="dfn" href="https://dom.spec.whatwg.org#concept-event-fire">fire an event</a> named error on <var>sensor</var>,
-  and terminate these substeps.</p>
+  and terminate these sub-steps.</p>
       <li data-md="">
        <p>If cached <a data-link-type="dfn" href="#sensorreading">SensorReadings</a> are available,</p>
        <ol>
@@ -1559,7 +1558,7 @@ callback <dfn class="idl-code" data-dfn-type="callback" data-export="" id="callb
    <p><code>true</code> if <a data-link-type="dfn" href="#batch-mode">batch mode</a> was requested, false otherwise.</p>
    <h4 class="heading settled" data-level="5.1.4" id="sensorinfo"><span class="secno">5.1.4. </span><span class="content">Sensor.info</span><a class="self-link" href="#sensorinfo"></a></h4>
    <p>Returns the related <a data-link-type="dfn" href="#sensorinfo0">SensorInfo</a> object.</p>
-   <h4 class="heading settled" data-level="5.1.5" id="sensortreshold"><span class="secno">5.1.5. </span><span class="content">Sensor.treshold</span><a class="self-link" href="#sensortreshold"></a></h4>
+   <h4 class="heading settled" data-level="5.1.5" id="sensorthreshold"><span class="secno">5.1.5. </span><span class="content">Sensor.threshold</span><a class="self-link" href="#sensorthreshold"></a></h4>
    <h4 class="heading settled" data-level="5.1.6" id="sensortimeout"><span class="secno">5.1.6. </span><span class="content">Sensor.timeout</span><a class="self-link" href="#sensortimeout"></a></h4>
    <h4 class="heading settled" data-level="5.1.7" id="sensorwakeup"><span class="secno">5.1.7. </span><span class="content">Sensor.wakeup</span><a class="self-link" href="#sensorwakeup"></a></h4>
    <h4 class="heading settled" data-level="5.1.8" id="sensorvalue"><span class="secno">5.1.8. </span><span class="content">Sensor.value</span><a class="self-link" href="#sensorvalue"></a></h4>
@@ -1635,7 +1634,7 @@ expressed in milliseconds that passed since the <a data-link-type="dfn" href="ht
    <p><strong>This feature is at risk.</strong></p>
    <p>The <a data-link-type="dfn" href="#sensor">Sensors</a> interface represents a container for a list of <a data-link-type="dfn" href="#sensorinfo0">SensorInfo</a> objects.
 It is exposed on Window and Workers as the <code>Window.sensors</code> and <code>WorkerGlobalScope.sensors</code> attribute respectively.</p>
-   <p>TODO: make this explicietly about local sensors and allow supporting enumeration of
+   <p>TODO: make this explicitly about local sensors and allow supporting enumeration of
 remote sensors through added parameters.</p>
 <pre class="idl">[<dfn class="idl-code" data-dfn-for="Sensors" data-dfn-type="constructor" data-export="" data-lt="Sensors()" id="dom-sensors-sensors">Constructor<a class="self-link" href="#dom-sensors-sensors"></a></dfn>, Exposed=(Window,Worker)]
 interface <dfn class="idl-code" data-dfn-type="interface" data-export="" id="sensors">Sensors<a class="self-link" href="#sensors"></a></dfn> {
@@ -1685,7 +1684,7 @@ dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="d
    <h2 class="heading settled" data-level="6" id="security-and-privacy-considerations"><span class="secno">6. </span><span class="content">Security and privacy considerations</span><a class="self-link" href="#security-and-privacy-considerations"></a></h2>
    <p>TODO: gather general security and privacy risks common to all sensors.</p>
    <h3 class="heading settled" data-level="6.1" id="secure-context"><span class="secno">6.1. </span><span class="content">Secure Context</span><a class="self-link" href="#secure-context"></a></h3>
-   <p>Sensor data is explicitely flagged by the
+   <p>Sensor data is explicitly flagged by the
 Secure Contexts specification <a data-link-type="biblio" href="#biblio-powerful-features">[powerful-features]</a> as a high-value target for network attackers.
 As such, sensor data should only be available within a <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/powerfulfeatures/#secure-context">secure context</a>.</p>
    <h3 class="heading settled" data-level="6.2" id="permissioning"><span class="secno">6.2. </span><span class="content">Obtaining Explicit User Permission</span><a class="self-link" href="#permissioning"></a></h3>
@@ -1706,7 +1705,7 @@ As such, sensor data should only be available within a <a data-link-type="dfn" h
    <h2 class="heading settled" data-level="7" id="extensibility"><span class="secno">7. </span><span class="content">Extensibility</span><a class="self-link" href="#extensibility"></a></h2>
    <p><em>This section is non-normative.</em></p>
    <p>Its purpose is to describe
-how this specification can be extended to speficy APIs for
+how this specification can be extended to specify APIs for
 different <a data-link-type="dfn" href="#sensor-types">sensor types</a>.</p>
    <p>Extension specifications are encouraged to focus on a single <a data-link-type="dfn" href="#sensor-types">sensor type</a>,
 exposing both <a data-link-type="dfn" href="#high-level">high</a> and <a data-link-type="dfn" href="#low-level">low</a> level
@@ -1729,7 +1728,7 @@ a <code>temperature</code> attribute (and not a <code>value</code> or <code>temp
    <h3 class="heading settled" data-level="7.2" id="high-vs-low-level"><span class="secno">7.2. </span><span class="content">Exposing High-Level vs. Low-Level Sensors</span><a class="self-link" href="#high-vs-low-level"></a></h3>
    <p>So far, specifications exposing sensors to the Web platform
 have focused on <a data-link-type="dfn" href="#high-level">high-level</a> sensors APIs. <a data-link-type="biblio" href="#biblio-geolocation-api">[geolocation-API]</a> <a data-link-type="biblio" href="#biblio-orientation-event">[orientation-event]</a></p>
-   <p>This was a reaosnable approach for a number of reasons.
+   <p>This was a reasonable approach for a number of reasons.
 Indeed, <a data-link-type="dfn" href="#high-level">high-level</a> sensors:</p>
    <ul>
     <li data-md="">
@@ -1922,7 +1921,7 @@ for their editorial input.</p>
    <li><a href="#batch-mode">batch mode</a><span>, in §5.1</span>
    <li><a href="#calibration">calibration</a><span>, in §2</span>
    <li><a href="#conformant-user-agent">conformant user agent</a><span>, in §Unnumbered section</span>
-   <li><a href="#dom-tresholdcallback-currentvalue">currentValue</a><span>, in §5.1</span>
+   <li><a href="#dom-thresholdcallback-currentvalue">currentValue</a><span>, in §5.1</span>
    <li>
     frequency
     <ul>
@@ -1956,7 +1955,7 @@ for their editorial input.</p>
    <li><a href="#dom-sensors-matchall">matchAll()</a><span>, in §5.3</span>
    <li><a href="#dictdef-matchalloptions">MatchAllOptions</a><span>, in §5.3</span>
    <li><a href="#dom-sensors-matchall">matchAll(options)</a><span>, in §5.3</span>
-   <li><a href="#dom-tresholdcallback-newvalue">newValue</a><span>, in §5.1</span>
+   <li><a href="#dom-thresholdcallback-newvalue">newValue</a><span>, in §5.1</span>
    <li><a href="#dom-sensor-oncalibration">oncalibration</a><span>, in §5.1</span>
    <li><a href="#dom-sensor-onchange">onchange</a><span>, in §5.1</span>
    <li><a href="#dom-sensor-ondata">ondata</a><span>, in §5.1</span>
@@ -2008,6 +2007,13 @@ for their editorial input.</p>
    <li><a href="#dom-sensor-sensor">Sensor(sensorOptions)</a><span>, in §5.1</span>
    <li><a href="#sensor-types">sensor types</a><span>, in §2</span>
    <li>
+    threshold
+    <ul>
+     <li><a href="#dom-sensor-threshold">attribute for Sensor</a><span>, in §5.1</span>
+     <li><a href="#dom-sensoroptions-threshold">dict-member for SensorOptions</a><span>, in §5.1</span>
+    </ul>
+   <li><a href="#callbackdef-thresholdcallback">ThresholdCallback</a><span>, in §5.1</span>
+   <li>
     timeout
     <ul>
      <li><a href="#dom-sensor-timeout">attribute for Sensor</a><span>, in §5.1</span>
@@ -2015,13 +2021,6 @@ for their editorial input.</p>
      <li><a href="#dom-requestdataoptions-timeout">dict-member for RequestDataOptions</a><span>, in §5.1</span>
     </ul>
    <li><a href="#dom-sensorreading-timestamp">timeStamp</a><span>, in §5.2</span>
-   <li>
-    treshold
-    <ul>
-     <li><a href="#dom-sensor-treshold">attribute for Sensor</a><span>, in §5.1</span>
-     <li><a href="#dom-sensoroptions-treshold">dict-member for SensorOptions</a><span>, in §5.1</span>
-    </ul>
-   <li><a href="#callbackdef-tresholdcallback">TresholdCallback</a><span>, in §5.1</span>
    <li><a href="#dom-matchalloptions-type">type</a><span>, in §5.3</span>
    <li><a href="#dom-sensor-value">value</a><span>, in §5.1</span>
    <li><a href="#dom-sensor-values">values</a><span>, in §5.1</span>
@@ -2107,7 +2106,7 @@ interface <a class="idl-code" data-link-type="interface" href="#sensor0">Sensor<
   attribute double <a data-type="double " href="#dom-sensor-frequency">frequency</a>;
   attribute boolean <a data-type="boolean " href="#dom-sensor-batch">batch</a>;
   readonly attribute <a data-link-type="idl-name" href="#sensorinfo1">SensorInfo</a> <a data-readonly="" data-type="SensorInfo " href="#dom-sensor-info">info</a>;
-  attribute <a data-link-type="idl-name" href="#callbackdef-tresholdcallback">TresholdCallback</a>? <a data-type="TresholdCallback? " href="#dom-sensor-treshold">treshold</a>; 
+  attribute <a data-link-type="idl-name" href="#callbackdef-thresholdcallback">ThresholdCallback</a>? <a data-type="ThresholdCallback? " href="#dom-sensor-threshold">threshold</a>; 
   attribute double <a data-type="double " href="#dom-sensor-timeout">timeout</a>; 
   attribute boolean <a data-type="boolean " href="#dom-sensor-wakeup">wakeup</a>; 
   readonly attribute <a data-link-type="idl-name" href="#sensorreading0">SensorReading</a>? <a data-readonly="" data-type="SensorReading? " href="#dom-sensor-value">value</a>;
@@ -2122,7 +2121,7 @@ dictionary <a href="#dictdef-sensoroptions">SensorOptions</a> {
   DOMString? <a data-type="DOMString? " href="#dom-sensoroptions-sensorid">sensorId</a>;
   double? <a data-type="double? " href="#dom-sensoroptions-frequency">frequency</a>;
   boolean? <a data-default="false" data-type="boolean? " href="#dom-sensoroptions-batch">batch</a> = false;
-  <a data-link-type="idl-name" href="#callbackdef-tresholdcallback">TresholdCallback</a>? <a data-type="TresholdCallback? " href="#dom-sensoroptions-treshold">treshold</a>;
+  <a data-link-type="idl-name" href="#callbackdef-thresholdcallback">ThresholdCallback</a>? <a data-type="ThresholdCallback? " href="#dom-sensoroptions-threshold">threshold</a>;
   double? <a data-type="double? " href="#dom-sensoroptions-timeout">timeout</a>;
 };
 
@@ -2134,7 +2133,7 @@ dictionary <a href="#dictdef-requestdataoptions">RequestDataOptions</a> {
   boolean? <a data-default="false" data-type="boolean? " href="#dom-requestdataoptions-fromcache">fromCache</a> = false;
 };
 
-callback <a href="#callbackdef-tresholdcallback">TresholdCallback</a> = boolean (<a data-link-type="idl-name" href="#sensorreading0">SensorReading</a> <a href="#dom-tresholdcallback-currentvalue">currentValue</a>, <a data-link-type="idl-name" href="#sensorreading0">SensorReading</a> <a href="#dom-tresholdcallback-newvalue">newValue</a>);
+callback <a href="#callbackdef-thresholdcallback">ThresholdCallback</a> = boolean (<a data-link-type="idl-name" href="#sensorreading0">SensorReading</a> <a href="#dom-thresholdcallback-currentvalue">currentValue</a>, <a data-link-type="idl-name" href="#sensorreading0">SensorReading</a> <a href="#dom-thresholdcallback-newvalue">newValue</a>);
 
 interface <a href="#sensorreading0">SensorReading</a> {
   readonly attribute <a data-link-type="idl-name" href="http://w3c.github.io/hr-time/#dom-domhighrestimestamp">DOMHighResTimeStamp</a> <a data-readonly="" data-type="DOMHighResTimeStamp " href="#dom-sensorreading-timestamp">timeStamp</a>;
