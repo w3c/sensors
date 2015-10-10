@@ -171,7 +171,7 @@ but rather to put it in the context of detecting hardware-dependent features.
 Consider the below feature detection examples:
 
 <div class="example">
-    <pre example highlight="js">
+    <pre highlight="js">
         if (typeof Gyroscope === "function") {
             // run in circles...
         }
@@ -220,7 +220,7 @@ and defensive programming which includes:
     absence.
 
 <div class="example">
-    <pre example highlight="js">
+    <pre highlight="js">
         if (typeof GeolocationSensor === "function") {
             try {
                 let sensor = new GeolocationSensor({
@@ -264,7 +264,7 @@ the default <a>sensor</a> is chosen.
 <div class="example">
     Listening to geolocation changes:
 
-    <pre example highlight="js">
+    <pre highlight="js">
     let sensor = new GeolocationSensor({ accuracy: "high" });
 
     sensor.onchange = function(event) {
@@ -284,7 +284,7 @@ should be a simple process, and it is:
 <div class="example">
     Geolocating the user:
 
-    <pre example highlight="js">
+    <pre highlight="js">
     GeolocationSensor.requestData({ accuracy: "high" })
         .then(reading => { displayCoords(reading.coords); })
         .catch(err => console.log(err));
@@ -305,7 +305,7 @@ define ways to uniquely identify each one.
 <div class="example">
     For example checking the pressure of the left rear tire: 
 
-    <pre example highlight="js">
+    <pre highlight="js">
     DirectTirePressureSensor.requestData({ position: "rear", side: "left" })
         .then(reading => { display(reading.pressure); })
         .catch(err => console.log(err));
