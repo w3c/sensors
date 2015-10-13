@@ -57,7 +57,7 @@ Introduction {#intro}
 =====================
 
 Increasingly, sensor data is used in application development to
-enable new use cases such a geolocation,
+enable new use cases such as geolocation,
 counting steps or head-tracking.
 This is especially true on mobile devices where new sensors are added regularly.
 It is also increasingly common in networked objects
@@ -82,7 +82,7 @@ by simplifying the specification and implementation processes.
 Terminology
 ===========
 
-A <dfn>sensor</dfn> measure different physical quantities
+A <dfn>sensor</dfn> measures different physical quantities
 and provide corresponding <dfn>output data</dfn>
 which is a source of information about the user and their environment.
 
@@ -122,7 +122,7 @@ That said, the distinction between
 is somewhat arbitrary and the line between the two is often blurred.
 For instance, a barometer, which measures air pressure,
 would be considered <a>low-level</a> for most common purposes.
-As, even though it is the product of the <a>sensor fusion</a> of
+Even though it is the product of the <a>sensor fusion</a> of
 resistive piezo-electric pressure and temperature sensors,
 exposing the sensors that compose it would serve no practical purpose
 (who cares about the temperature of a piezo-electric sensor?).
@@ -315,7 +315,7 @@ define ways to uniquely identify each one.
 Enumerating Sensors
 -------------------
 <a>Sensor</a> discoverability becomes particularly important
-as the number of <a>sensor</a> grows.
+as the number of <a>sensors</a> grows.
 Web application developers need to find out what kind of
 sensor is on a given device and what their capabilities are.
 
@@ -750,7 +750,7 @@ Dave Raggett,
 davidmarkclements,
 Domenic Denicola,
 Dominique Hazael-Massieux,
-fhirsch,
+Frederick Hirsch,
 Francesco Iovine,
 gmandyam,
 Jafar Husain,
