@@ -1210,7 +1210,7 @@ that can be extended to accommodate different sensor types.</p>
   <main>
    <h2 class="heading settled" data-level="1" id="intro"><span class="secno">1. </span><span class="content">Introduction</span><a class="self-link" href="#intro"></a></h2>
    <p>Increasingly, sensor data is used in application development to
-enable new use cases such a geolocation,
+enable new use cases such as geolocation,
 counting steps or head-tracking.
 This is especially true on mobile devices where new sensors are added regularly.
 It is also increasingly common in networked objects
@@ -1229,7 +1229,7 @@ enable advanced use cases thanks to performant <a data-link-type="dfn" href="#lo
 and increase the pace at which new sensors can be exposed to the Web
 by simplifying the specification and implementation processes.</p>
    <h2 class="heading settled" data-level="2" id="terminology"><span class="secno">2. </span><span class="content">Terminology</span><a class="self-link" href="#terminology"></a></h2>
-   <p>A <dfn data-dfn-type="dfn" data-noexport="" id="sensor">sensor<a class="self-link" href="#sensor"></a></dfn> measure different physical quantities
+   <p>A <dfn data-dfn-type="dfn" data-noexport="" id="sensor">sensor<a class="self-link" href="#sensor"></a></dfn> measures different physical quantities
 and provide corresponding <dfn data-dfn-type="dfn" data-noexport="" id="output-data">output data<a class="self-link" href="#output-data"></a></dfn> which is a source of information about the user and their environment.</p>
    <p>Known, <em>predictable</em> discrepancies between <a data-link-type="dfn" href="#sensor">sensor</a> <a data-link-type="dfn" href="#output-data">output data</a> and the corresponding physical quantities being measured
 are corrected through <dfn data-dfn-type="dfn" data-noexport="" id="calibration">calibration<a class="self-link" href="#calibration"></a></dfn>,</p>
@@ -1255,7 +1255,7 @@ applying algorithms to <a data-link-type="dfn" href="#low-level">low-level</a> s
 is somewhat arbitrary and the line between the two is often blurred.
 For instance, a barometer, which measures air pressure,
 would be considered <a data-link-type="dfn" href="#low-level">low-level</a> for most common purposes.
-As, even though it is the product of the <a data-link-type="dfn" href="#sensor-fusion">sensor fusion</a> of
+Even though it is the product of the <a data-link-type="dfn" href="#sensor-fusion">sensor fusion</a> of
 resistive piezo-electric pressure and temperature sensors,
 exposing the sensors that compose it would serve no practical purpose
 (who cares about the temperature of a piezo-electric sensor?).
@@ -1403,7 +1403,7 @@ define ways to uniquely identify each one.</p>
    </div>
    <h3 class="heading settled" data-level="4.1" id="enumerating-sensors"><span class="secno">4.1. </span><span class="content">Enumerating Sensors</span><a class="self-link" href="#enumerating-sensors"></a></h3>
     <a data-link-type="dfn" href="#sensor">Sensor</a> discoverability becomes particularly important
-as the number of <a data-link-type="dfn" href="#sensor">sensor</a> grows.
+as the number of <a data-link-type="dfn" href="#sensor">sensors</a> grows.
 Web application developers need to find out what kind of
 sensor is on a given device and what their capabilities are. 
    <p><strong>This feature is at risk and might be moved to
@@ -1434,10 +1434,10 @@ interface <a class="idl-code" data-link-type="interface" href="#sensor0">Sensor<
   attribute boolean <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="boolean " id="dom-sensor-wakeup">wakeup<a class="self-link" href="#dom-sensor-wakeup"></a></dfn>; 
   readonly attribute <a data-link-type="idl-name" href="#sensorreading0">SensorReading</a>? <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-readonly="" data-type="SensorReading? " id="dom-sensor-value">value<a class="self-link" href="#dom-sensor-value"></a></dfn>;
   readonly attribute <a data-link-type="idl-name" href="#sensorreading0">SensorReading</a>[]? <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-readonly="" data-type="SensorReading[]? " id="dom-sensor-values">values<a class="self-link" href="#dom-sensor-values"></a></dfn>;
-  attribute <a data-link-type="idl-name" href="http://www.w3.org/TR/html5/webappapis.html#eventhandler">EventHandler</a> <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="EventHandler " id="dom-sensor-onerror">onerror<a class="self-link" href="#dom-sensor-onerror"></a></dfn>;
-  attribute <a data-link-type="idl-name" href="http://www.w3.org/TR/html5/webappapis.html#eventhandler">EventHandler</a> <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="EventHandler " id="dom-sensor-ondata">ondata<a class="self-link" href="#dom-sensor-ondata"></a></dfn>;
-  attribute <a data-link-type="idl-name" href="http://www.w3.org/TR/html5/webappapis.html#eventhandler">EventHandler</a> <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="EventHandler " id="dom-sensor-onchange">onchange<a class="self-link" href="#dom-sensor-onchange"></a></dfn>;
-  attribute <a data-link-type="idl-name" href="http://www.w3.org/TR/html5/webappapis.html#eventhandler">EventHandler</a> <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="EventHandler " id="dom-sensor-oncalibration">oncalibration<a class="self-link" href="#dom-sensor-oncalibration"></a></dfn>;
+  attribute <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a> <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="EventHandler " id="dom-sensor-onerror">onerror<a class="self-link" href="#dom-sensor-onerror"></a></dfn>;
+  attribute <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a> <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="EventHandler " id="dom-sensor-ondata">ondata<a class="self-link" href="#dom-sensor-ondata"></a></dfn>;
+  attribute <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a> <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="EventHandler " id="dom-sensor-onchange">onchange<a class="self-link" href="#dom-sensor-onchange"></a></dfn>;
+  attribute <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a> <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="EventHandler " id="dom-sensor-oncalibration">oncalibration<a class="self-link" href="#dom-sensor-oncalibration"></a></dfn>;
 };
 
 dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-sensoroptions">SensorOptions<a class="self-link" href="#dictdef-sensoroptions"></a></dfn> {
@@ -1463,10 +1463,10 @@ callback <dfn class="idl-code" data-dfn-type="callback" data-export="" id="callb
    <p>The <a data-link-type="functionish" href="#dom-sensor-sensor">Sensor()</a> constructor must run these steps:</p>
    <ol>
     <li data-md="">
-     <p>If the <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#incumbent-settings-object">incumbent settings object</a> is not a <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/powerfulfeatures/#secure-context">secure context</a>, then:</p>
+     <p>If the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#incumbent-settings-object">incumbent settings object</a> is not a <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/powerfulfeatures/#secure-context">secure context</a>, then:</p>
      <ol>
       <li data-md="">
-       <p><a data-link-type="dfn" href="https://heycam.github.io/webidl/#throw">throw</a> a SecurityError.</p>
+       <p><a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-throw">throw</a> a SecurityError.</p>
      </ol>
     <li data-md="">
      <p>If sensorOptions.sensorId is specified, then:</p>
@@ -1480,7 +1480,7 @@ callback <dfn class="idl-code" data-dfn-type="callback" data-export="" id="callb
          <p>associate <var>sensor</var> with that <a data-link-type="dfn" href="#sensor">sensor</a></p>
        </ol>
       <li data-md="">
-       <p>Otherwise, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#throw">throw</a> a TypeError.</p>
+       <p>Otherwise, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-throw">throw</a> a TypeError.</p>
      </ol>
     <li data-md="">
      <p>Otherwise, if <a data-link-type="dfn" href="#identifying-parameters">identifying parameters</a> in sensorOptions are set, then:</p>
@@ -1494,7 +1494,7 @@ callback <dfn class="idl-code" data-dfn-type="callback" data-export="" id="callb
          <p>associate <var>sensor</var> with that <a data-link-type="dfn" href="#sensor">sensor</a></p>
        </ol>
       <li data-md="">
-       <p>Otherwise, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#throw">throw</a> a TypeError.</p>
+       <p>Otherwise, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-throw">throw</a> a TypeError.</p>
      </ol>
     <li data-md="">
      <p>Otherwise, if a default sensor exists for this <a data-link-type="dfn" href="#sensor-types">sensor type</a>:</p>
@@ -1505,16 +1505,16 @@ callback <dfn class="idl-code" data-dfn-type="callback" data-export="" id="callb
        <p>associate that <a data-link-type="dfn" href="#sensor">sensor</a> with it.</p>
      </ol>
     <li data-md="">
-     <p>Otherwise, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#throw">throw</a> a TypeError.</p>
+     <p>Otherwise, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-throw">throw</a> a TypeError.</p>
     <li data-md="">
      <p>Set <var>sensor</var>’s reading attribute to <code>null</code>.</p>
     <li data-md="">
      <p>return <var>sensor</var>.</p>
     <li data-md="">
-     <p>Run these sub-steps <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#in-parallel">in parallel</a>:</p>
+     <p>Run these sub-steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in parallel</a>:</p>
      <ol>
       <li data-md="">
-       <p>If <a data-link-type="dfn" href="#permission">permission</a> is not granted, <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#queue-a-task">queue a task</a> to <a data-link-type="dfn" href="https://dom.spec.whatwg.org#concept-event-fire">fire an event</a> named error on <var>sensor</var>,
+       <p>If <a data-link-type="dfn" href="#permission">permission</a> is not granted, <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task">queue a task</a> to <a data-link-type="dfn" href="https://dom.spec.whatwg.org#concept-event-fire">fire an event</a> named error on <var>sensor</var>,
   and terminate these sub-steps.</p>
       <li data-md="">
        <p>If cached <a data-link-type="dfn" href="#sensorreading">SensorReadings</a> are available,</p>
@@ -1568,7 +1568,7 @@ callback <dfn class="idl-code" data-dfn-type="callback" data-export="" id="callb
    <h4 class="heading settled" data-level="5.1.8" id="sensorvalue"><span class="secno">5.1.8. </span><span class="content">Sensor.value</span><a class="self-link" href="#sensorvalue"></a></h4>
    <p>The value attribute of must always point to the latest <a data-link-type="dfn" href="#sensorreading">SensorReading</a> whatever the <a data-link-type="dfn" href="#frequency">frequency</a> so that
 the value attribute of two instances of the same Sensor interface
-associated with the same <a data-link-type="dfn" href="#sensor">sensor</a> hold the same <a data-link-type="dfn" href="#sensorreading">SensorReading</a> during a single <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#event-loop">event loop</a> turn.</p>
+associated with the same <a data-link-type="dfn" href="#sensor">sensor</a> hold the same <a data-link-type="dfn" href="#sensorreading">SensorReading</a> during a single <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-loop">event loop</a> turn.</p>
    <h4 class="heading settled" data-level="5.1.9" id="sensorvalues"><span class="secno">5.1.9. </span><span class="content">Sensor.values</span><a class="self-link" href="#sensorvalues"></a></h4>
    <div class="issue no-marker" id="issue-d41d8cd90">
     <a class="self-link" href="#issue-d41d8cd90"></a><a class="marker" href="https://github.com/w3c/sensors/issues/13">Issue #13 on GitHub: “Allowing data batching when poll frequency &lt; sensor frequency”</a>
@@ -1601,7 +1601,7 @@ associated with the same <a data-link-type="dfn" href="#sensor">sensor</a> hold 
    <h4 class="heading settled" data-level="5.1.12" id="sensoronchange"><span class="secno">5.1.12. </span><span class="content">Sensor.onchange</span><a class="self-link" href="#sensoronchange"></a></h4>
    <h4 class="heading settled" data-level="5.1.13" id="sensoroncalibration"><span class="secno">5.1.13. </span><span class="content">Sensor.oncalibration</span><a class="self-link" href="#sensoroncalibration"></a></h4>
    <h4 class="heading settled" data-level="5.1.14" id="event-handlers"><span class="secno">5.1.14. </span><span class="content">Event handlers</span><a class="self-link" href="#event-handlers"></a></h4>
-   <p>The following are the <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#event-handlers">event handlers</a> (and their corresponding <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#event-handler-event-type">event handler event types</a>) that MUST be supported as attributes by the objects implementing the <a data-link-type="dfn" href="#sensor">Sensor</a> interface:</p>
+   <p>The following are the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers">event handlers</a> (and their corresponding <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-type">event handler event types</a>) that MUST be supported as attributes by the objects implementing the <a data-link-type="dfn" href="#sensor">Sensor</a> interface:</p>
    <table class="simple">
     <thead>
      <tr>
@@ -1848,7 +1848,7 @@ Dave Raggett,
 davidmarkclements,
 Domenic Denicola,
 Dominique Hazael-Massieux,
-fhirsch,
+Frederick Hirsch,
 Francesco Iovine,
 gmandyam,
 Jafar Husain,
@@ -2039,20 +2039,20 @@ for their editorial input.</p>
      <li><a href="https://dom.spec.whatwg.org#concept-event-fire">fire an event</a>
     </ul>
    <li>
-    <a data-link-type="biblio" href="#biblio-html5">[html5]</a> defines the following terms:
+    <a data-link-type="biblio" href="#biblio-html">[HTML]</a> defines the following terms:
     <ul>
-     <li><a href="http://www.w3.org/TR/html5/webappapis.html#eventhandler">EventHandler</a>
-     <li><a href="http://www.w3.org/TR/html5/webappapis.html#event-handler-event-type">event handler event type</a>
-     <li><a href="http://www.w3.org/TR/html5/webappapis.html#event-handlers">event handlers</a>
-     <li><a href="http://www.w3.org/TR/html5/webappapis.html#event-loop">event loop</a>
-     <li><a href="http://www.w3.org/TR/html5/infrastructure.html#in-parallel">in parallel</a>
-     <li><a href="http://www.w3.org/TR/html5/webappapis.html#incumbent-settings-object">incumbent settings object</a>
-     <li><a href="http://www.w3.org/TR/html5/webappapis.html#queue-a-task">queue a task</a>
+     <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a>
+     <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-type">event handler event type</a>
+     <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers">event handlers</a>
+     <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#event-loop">event loop</a>
+     <li><a href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in parallel</a>
+     <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#incumbent-settings-object">incumbent settings object</a>
+     <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task">queue a task</a>
     </ul>
    <li>
     <a data-link-type="biblio" href="#biblio-webidl">[WebIDL]</a> defines the following terms:
     <ul>
-     <li><a href="https://heycam.github.io/webidl/#throw">throw</a>
+     <li><a href="https://heycam.github.io/webidl/#dfn-throw">throw</a>
     </ul>
    <li>
     <a data-link-type="biblio" href="#biblio-hr-time-2">[hr-time-2]</a> defines the following terms:
@@ -2083,8 +2083,6 @@ for their editorial input.</p>
    <dd>Anne van Kesteren; et al. <a href="http://www.w3.org/TR/dom/">W3C DOM4</a>. 18 June 2015. LCWD. URL: <a href="http://www.w3.org/TR/dom/">http://www.w3.org/TR/dom/</a>
    <dt id="biblio-hr-time-2"><a class="self-link" href="#biblio-hr-time-2"></a>[HR-TIME-2]
    <dd>Ilya Grigorik; James Simonsen; Jatinder Mann. <a href="http://www.w3.org/TR/hr-time-2/">High Resolution Time Level 2</a>. 18 September 2015. WD. URL: <a href="http://www.w3.org/TR/hr-time-2/">http://www.w3.org/TR/hr-time-2/</a>
-   <dt id="biblio-html5"><a class="self-link" href="#biblio-html5"></a>[HTML5]
-   <dd>Ian Hickson; et al. <a href="http://www.w3.org/TR/html5/">HTML5</a>. 28 October 2014. REC. URL: <a href="http://www.w3.org/TR/html5/">http://www.w3.org/TR/html5/</a>
    <dt id="biblio-powerful-features"><a class="self-link" href="#biblio-powerful-features"></a>[POWERFUL-FEATURES]
    <dd>Mike West; Yan Zhu. <a href="http://www.w3.org/TR/powerful-features/">Privileged Contexts</a>. 24 April 2015. WD. URL: <a href="http://www.w3.org/TR/powerful-features/">http://www.w3.org/TR/powerful-features/</a>
    <dt id="biblio-rfc2119"><a class="self-link" href="#biblio-rfc2119"></a>[RFC2119]
@@ -2115,10 +2113,10 @@ interface <a class="idl-code" data-link-type="interface" href="#sensor0">Sensor<
   attribute boolean <a data-type="boolean " href="#dom-sensor-wakeup">wakeup</a>; 
   readonly attribute <a data-link-type="idl-name" href="#sensorreading0">SensorReading</a>? <a data-readonly="" data-type="SensorReading? " href="#dom-sensor-value">value</a>;
   readonly attribute <a data-link-type="idl-name" href="#sensorreading0">SensorReading</a>[]? <a data-readonly="" data-type="SensorReading[]? " href="#dom-sensor-values">values</a>;
-  attribute <a data-link-type="idl-name" href="http://www.w3.org/TR/html5/webappapis.html#eventhandler">EventHandler</a> <a data-type="EventHandler " href="#dom-sensor-onerror">onerror</a>;
-  attribute <a data-link-type="idl-name" href="http://www.w3.org/TR/html5/webappapis.html#eventhandler">EventHandler</a> <a data-type="EventHandler " href="#dom-sensor-ondata">ondata</a>;
-  attribute <a data-link-type="idl-name" href="http://www.w3.org/TR/html5/webappapis.html#eventhandler">EventHandler</a> <a data-type="EventHandler " href="#dom-sensor-onchange">onchange</a>;
-  attribute <a data-link-type="idl-name" href="http://www.w3.org/TR/html5/webappapis.html#eventhandler">EventHandler</a> <a data-type="EventHandler " href="#dom-sensor-oncalibration">oncalibration</a>;
+  attribute <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a> <a data-type="EventHandler " href="#dom-sensor-onerror">onerror</a>;
+  attribute <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a> <a data-type="EventHandler " href="#dom-sensor-ondata">ondata</a>;
+  attribute <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a> <a data-type="EventHandler " href="#dom-sensor-onchange">onchange</a>;
+  attribute <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a> <a data-type="EventHandler " href="#dom-sensor-oncalibration">oncalibration</a>;
 };
 
 dictionary <a href="#dictdef-sensoroptions">SensorOptions</a> {
