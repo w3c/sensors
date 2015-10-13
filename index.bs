@@ -26,7 +26,7 @@ urlPrefix: https://dom.spec.whatwg.org; spec: DOM
     text: fire an event; url: concept-event-fire
   type: interface
     text: EventTarget; url: interface-eventtarget
-urlPrefix: http://www.w3.org/TR/html5/; spec: HTML5
+urlPrefix: https://html.spec.whatwg.org/multipage; spec: HTML
   type: dfn
     urlPrefix: webappapis.html
       text: incumbent settings object
@@ -49,7 +49,7 @@ urlPrefix: https://w3c.github.io/webappsec/specs/powerfulfeatures/; spec: powerf
     text: secure context
 urlPrefix: https://heycam.github.io/webidl/; spec: WebIDL
   type: dfn
-    text: throw
+    text: throw, url: dfn-throw
 </pre>
 
 
