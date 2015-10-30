@@ -16,6 +16,7 @@ Abstract:
 Version History: https://github.com/w3c/sensors/commits/gh-pages/index.bs
 !Bug Reports: <a href="https://www.github.com/w3c/sensors/issues/new">via the w3c/sensors repository on GitHub</a>
 Indent: 2
+Repository: w3c/sensors
 Markup Shorthands: markdown on
 Inline Github Issues: true
 Boilerplate: omit issues-index, omit conformance
