@@ -282,7 +282,7 @@ should be a simple process, and it is:
     Geolocating the user:
 
     <pre highlight="js">
-    GeolocationSensor.requestData({ accuracy: "high" })
+    GeolocationSensor.requestReading({ accuracy: "high" })
         .then(reading => { displayCoords(reading.coords); })
         .catch(err => console.log(err));
     </pre>
@@ -303,7 +303,7 @@ define ways to uniquely identify each one.
     For example checking the pressure of the left rear tire: 
 
     <pre highlight="js">
-    DirectTirePressureSensor.requestData({ position: "rear", side: "left" })
+    DirectTirePressureSensor.requestReading({ position: "rear", side: "left" })
         .then(reading => { display(reading.pressure); })
         .catch(err => console.log(err));
     </pre>
@@ -341,15 +341,15 @@ TODO: define the following concepts
 <pre class="idl">
 [Constructor(optional SensorOptions sensorOptions), Exposed=(Window,Worker)]
 interface Sensor : EventTarget {
-  static Promise&lt;SensorReading&gt; requestData(RequestDataOptions requestDataOptions);
+  static Promise&lt;SensorReading&gt; requestReading(RequestDataOptions requestReadingOptions);
   attribute double frequency;
   attribute boolean batch;
-  readonly attribute SensorInfo info;
-  attribute ThresholdCallback? threshold; 
+  readonly attribute DOMString sensorId;
+  attribute double? treshold;
   attribute double timeout; 
   attribute boolean wakeup; 
-  readonly attribute SensorReading? value;
-  readonly attribute SensorReading[]? values;
+  readonly attribute SensorReading? reading;
+  readonly attribute SensorReading[]? readings;
   attribute EventHandler onerror;
   attribute EventHandler ondata;
   attribute EventHandler onchange;
@@ -360,19 +360,13 @@ dictionary SensorOptions {
   DOMString? sensorId;
   double? frequency;
   boolean? batch = false;
-  ThresholdCallback? threshold;
   double? timeout;
 };
 
-dictionary RequestDataOptions {
-  DOMString? sensorId;
-  double? frequency;
-  boolean? batch = false;
-  double? timeout;
+dictionary RequestDataOptions : SensorOptions {
   boolean? fromCache = false;
 };
 
-callback ThresholdCallback = boolean (SensorReading currentValue, SensorReading newValue);
 </pre>
 
 ### Sensor Constructor
@@ -416,9 +410,7 @@ Issue(w3c/sensors#4):
 
 `true` if <a>batch mode</a> was requested, false otherwise.
 
-### Sensor.info
-
-Returns the related <a>SensorInfo</a> object.
+### Sensor.sensorId
 
 ### Sensor.threshold
 
@@ -426,15 +418,15 @@ Returns the related <a>SensorInfo</a> object.
 
 ### Sensor.wakeup
 
-### Sensor.value
+### Sensor.reading
 
-The value attribute of must always point to the latest <a>SensorReading</a>
+The reading attribute of must always point to the latest <a>SensorReading</a>
 whatever the <a>frequency</a> so that
-the value attribute of two instances of the same Sensor interface
+the reading attribute of two instances of the same Sensor interface
 associated with the same <a>sensor</a>
 hold the same <a>SensorReading</a> during a single <a>event loop</a> turn.
 
-### Sensor.values
+### Sensor.readings
 
 Issue(w3c/sensors#13):
 
@@ -486,7 +478,7 @@ A <dfn>SensorReading</dfn> represents the state of a <a>sensor</a> at a given po
 <pre class="idl">
 interface SensorReading {
   readonly attribute DOMHighResTimeStamp timeStamp;
-  readonly attribute SensorInfo info;
+  readonly attribute DOMString sensorId;
 };
 </pre>
 
@@ -496,88 +488,9 @@ Returns a timestamp of the time
 at which the <a>read steps</a> was carried out
 expressed in milliseconds that passed since the <a>time origin</a>.
 
-### SensorReading.info
+### SensorReading.sensorId
 
-Returns the sensor object the reading is taken from.
-
-The Sensors Interface
----------------------
-
-<strong>This feature is at risk.</strong>
-
-The <a>Sensors</a> interface represents a container for a list of <a>SensorInfo</a> objects.
-It is exposed on Window and Workers as the `Window.sensors` and `WorkerGlobalScope.sensors` attribute respectively.
-
-TODO: make this explicitly about local sensors and allow supporting enumeration of
-remote sensors through added parameters.
-
-<pre class="idl">
-[Constructor, Exposed=(Window,Worker)]
-interface Sensors {
-  Promise&lt;sequence&lt;SensorInfo&gt;&gt; matchAll(optional MatchAllOptions options);
-};
-
-partial interface Window {
-  [SameObject] readonly attribute Sensors sensors;
-};
-
-partial interface WorkerGlobalScope {
-  [SameObject] readonly attribute Sensors sensors;
-};
-
-dictionary MatchAllOptions {
-  DOMString type;
-  boolean? remote = false;
-};
-</pre>
-
-### Sensors.matchAll
-
-<!-- here link to read data from -->
-
-<!--Must take the following steps.
-    1. let <var>p</var> be a <a>List</a>.
-    1. let <var>devices</var> be a <a>List</a>. -->
-
-Returns a promise which resolves to an array of <a>SensorInfo</a> objects representing all available local(?) sensors.
-
-<pre class="example highlight">
-sensors.matchAll({ type: "proximity", position: "rear" }).then(function(sensors) {
-    let sensor_info = sensors[0];
-    if (!sensor_info) return;
-    let sensor = new ProximitySensor({ sensorId: sensor_info.id });
-    sensor.onchange = dostuff;
-});
-</pre>
-
-The SensorInfo Interface
-------------------------
-
-<strong>This feature is at risk.</strong>
-
-
-The <dfn>SensorInfo</dfn> interface is a lightweight object that represents an actual physical sensor. Concrete sensor implementation will need to subclass it.
-
-<pre class="idl">
-[Constructor(optional DOMString id, optional SensorInit sensorInitDic), Exposed=(Window,Worker)]
-interface SensorInfo {
-    readonly attribute DOMString id;
-    readonly attribute boolean isDefault;
-};
-
-dictionary SensorInit {
-  boolean isDefault;
-};
-</pre>
-
-### <dfn>SensorInfo.id</dfn>
-
-Returns the id of the sensor. This is an opaque DOMString.
-
-### <dfn>SensorInfo.isDefault</dfn>
-
-Returns true if the sensor is the default sensor of that type on the device, false otherwise.
-
+Returns the id of the sensor the reading is taken from.
 
 Security and privacy considerations
 ===================================
@@ -699,8 +612,8 @@ for proximity <a>sensors</a>.
 <pre class=example highlight=WEBidl >
     [Constructor(optional ProximitySensorOptions proximitySensorOptions), Exposed=(Window,Worker)]
     interface ProximitySensor : Sensor {
-      readonly attribute ProximitySensorReading? value;
-      readonly attribute ProximitySensorReading[]? values;
+      readonly attribute ProximitySensorReading? reading;
+      readonly attribute ProximitySensorReading[]? readings;
     };
 
     interface ProximitySensorReading : SensorReading {
