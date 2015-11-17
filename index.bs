@@ -222,19 +222,15 @@ and defensive programming which includes:
 
 <div class="example">
     <pre highlight="js">
-        if (typeof GeolocationSensor === "function") {
-            try {
-                let sensor = new GeolocationSensor({
-                    timeout: 3 * 1000 // 3 seconds
-                });
-                sensor.onerror = error => gracefullyDegrade(error);
-                sensor.onchange = data => updatePosition(data.coords);
-            } catch(error) {
-                gracefullyDegrade(error);
-            }
-        } else {
-            gracefullyDegrade();
-        }
+    	try { // No need to feature detect thanks to try..catch block.
+    	    let sensor = new GeolocationSensor({
+    	        timeout: 3 * 1000 // 3 seconds
+    	    });
+    	    sensor.onerror = error => gracefullyDegrade(error);
+    	    sensor.onchange = data => updatePosition(data.coords);
+    	} catch(error) {
+    	    gracefullyDegrade(error);
+    	}
     </pre>
 </div>
 
