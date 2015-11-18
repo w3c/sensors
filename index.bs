@@ -341,7 +341,7 @@ TODO: define the following concepts
 <pre class="idl">
 [Constructor(optional SensorOptions sensorOptions), Exposed=(Window,Worker)]
 interface Sensor : EventTarget {
-  static Promise&lt;SensorReading&gt; requestReading(RequestDataOptions requestReadingOptions);
+  static Promise&lt;SensorReading&gt; requestReading(RequestReadingOptions requestReadingOptions);
   attribute double frequency;
   attribute boolean batch;
   readonly attribute DOMString sensorId;
@@ -363,7 +363,7 @@ dictionary SensorOptions {
   double? timeout;
 };
 
-dictionary RequestDataOptions : SensorOptions {
+dictionary RequestReadingOptions : SensorOptions {
   boolean? fromCache = false;
 };
 

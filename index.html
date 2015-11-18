@@ -1413,7 +1413,7 @@ a subsequent version of this specification.</strong></p>
      <p><dfn data-dfn-type="dfn" data-noexport="" id="identifying-parameters">identifying parameters<a class="self-link" href="#identifying-parameters"></a></dfn></p>
 <pre class="idl">[<dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="constructor" data-export="" data-lt="Sensor(sensorOptions)" id="dom-sensor-sensor">Constructor<a class="self-link" href="#dom-sensor-sensor"></a></dfn>(optional <a data-link-type="idl-name" href="#dictdef-sensoroptions">SensorOptions</a> <dfn class="idl-code" data-dfn-for="Sensor/Sensor(sensorOptions)" data-dfn-type="argument" data-export="" id="dom-sensor-sensor-sensoroptions-sensoroptions">sensorOptions<a class="self-link" href="#dom-sensor-sensor-sensoroptions-sensoroptions"></a></dfn>), Exposed=(Window,Worker)]
 interface <a class="idl-code" data-link-type="interface" href="#sensor0">Sensor</a> : <a data-link-type="idl-name" href="https://dom.spec.whatwg.org#interface-eventtarget">EventTarget</a> {
-  static Promise&lt;<a data-link-type="idl-name" href="#sensorreading1">SensorReading</a>> <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="method" data-export="" data-lt="requestReading(requestReadingOptions)" id="dom-sensor-requestreading">requestReading<a class="self-link" href="#dom-sensor-requestreading"></a></dfn>(<a data-link-type="idl-name" href="#dictdef-requestdataoptions">RequestDataOptions</a> <dfn class="idl-code" data-dfn-for="Sensor/requestReading(requestReadingOptions)" data-dfn-type="argument" data-export="" id="dom-sensor-requestreading-requestreadingoptions-requestreadingoptions">requestReadingOptions<a class="self-link" href="#dom-sensor-requestreading-requestreadingoptions-requestreadingoptions"></a></dfn>);
+  static Promise&lt;<a data-link-type="idl-name" href="#sensorreading1">SensorReading</a>> <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="method" data-export="" data-lt="requestReading(requestReadingOptions)" id="dom-sensor-requestreading">requestReading<a class="self-link" href="#dom-sensor-requestreading"></a></dfn>(<a data-link-type="idl-name" href="#dictdef-requestreadingoptions">RequestReadingOptions</a> <dfn class="idl-code" data-dfn-for="Sensor/requestReading(requestReadingOptions)" data-dfn-type="argument" data-export="" id="dom-sensor-requestreading-requestreadingoptions-requestreadingoptions">requestReadingOptions<a class="self-link" href="#dom-sensor-requestreading-requestreadingoptions-requestreadingoptions"></a></dfn>);
   attribute double <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="double " id="dom-sensor-frequency">frequency<a class="self-link" href="#dom-sensor-frequency"></a></dfn>;
   attribute boolean <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="boolean " id="dom-sensor-batch">batch<a class="self-link" href="#dom-sensor-batch"></a></dfn>;
   readonly attribute DOMString <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-readonly="" data-type="DOMString " id="dom-sensor-sensorid">sensorId<a class="self-link" href="#dom-sensor-sensorid"></a></dfn>;
@@ -1435,8 +1435,8 @@ dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="d
   double? <dfn class="idl-code" data-dfn-for="SensorOptions" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-sensoroptions-timeout">timeout<a class="self-link" href="#dom-sensoroptions-timeout"></a></dfn>;
 };
 
-dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-requestdataoptions">RequestDataOptions<a class="self-link" href="#dictdef-requestdataoptions"></a></dfn> : <a data-link-type="idl-name" href="#dictdef-sensoroptions">SensorOptions</a> {
-  boolean? <dfn class="idl-code" data-default="false" data-dfn-for="RequestDataOptions" data-dfn-type="dict-member" data-export="" data-type="boolean? " id="dom-requestdataoptions-fromcache">fromCache<a class="self-link" href="#dom-requestdataoptions-fromcache"></a></dfn> = false;
+dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-requestreadingoptions">RequestReadingOptions<a class="self-link" href="#dictdef-requestreadingoptions"></a></dfn> : <a data-link-type="idl-name" href="#dictdef-sensoroptions">SensorOptions</a> {
+  boolean? <dfn class="idl-code" data-default="false" data-dfn-for="RequestReadingOptions" data-dfn-type="dict-member" data-export="" data-type="boolean? " id="dom-requestreadingoptions-fromcache">fromCache<a class="self-link" href="#dom-requestreadingoptions-fromcache"></a></dfn> = false;
 };
 
 </pre>
@@ -1861,7 +1861,7 @@ for their editorial input.</p>
      <li><a href="#dom-sensor-frequency">attribute for Sensor</a><span>, in §5.1</span>
      <li><a href="#dom-sensoroptions-frequency">dict-member for SensorOptions</a><span>, in §5.1</span>
     </ul>
-   <li><a href="#dom-requestdataoptions-fromcache">fromCache</a><span>, in §5.1</span>
+   <li><a href="#dom-requestreadingoptions-fromcache">fromCache</a><span>, in §5.1</span>
    <li><a href="#high-level">high-level</a><span>, in §2</span>
    <li><a href="#identifying-parameters">identifying parameters</a><span>, in §5.1</span>
    <li><a href="#low-level">low-level</a><span>, in §2</span>
@@ -1874,7 +1874,7 @@ for their editorial input.</p>
    <li><a href="#dom-sensor-reading">reading</a><span>, in §5.1</span>
    <li><a href="#dom-sensor-readings">readings</a><span>, in §5.1</span>
    <li><a href="#read-steps">read steps</a><span>, in §5.1</span>
-   <li><a href="#dictdef-requestdataoptions">RequestDataOptions</a><span>, in §5.1</span>
+   <li><a href="#dictdef-requestreadingoptions">RequestReadingOptions</a><span>, in §5.1</span>
    <li><a href="#dom-sensor-requestreading-requestreadingoptions-requestreadingoptions">requestReadingOptions</a><span>, in §5.1</span>
    <li><a href="#dom-sensor-requestreading">requestReading(requestReadingOptions)</a><span>, in §5.1</span>
    <li><a href="#sensor0">Sensor</a><span>, in §5.1</span>
@@ -1975,7 +1975,7 @@ for their editorial input.</p>
   <h2 class="no-num heading settled" id="idl-index"><span class="content">IDL Index</span><a class="self-link" href="#idl-index"></a></h2>
 <pre class="idl">[<a href="#dom-sensor-sensor">Constructor</a>(optional <a data-link-type="idl-name" href="#dictdef-sensoroptions">SensorOptions</a> <a href="#dom-sensor-sensor-sensoroptions-sensoroptions">sensorOptions</a>), Exposed=(Window,Worker)]
 interface <a class="idl-code" data-link-type="interface" href="#sensor0">Sensor</a> : <a data-link-type="idl-name" href="https://dom.spec.whatwg.org#interface-eventtarget">EventTarget</a> {
-  static Promise&lt;<a data-link-type="idl-name" href="#sensorreading1">SensorReading</a>> <a href="#dom-sensor-requestreading">requestReading</a>(<a data-link-type="idl-name" href="#dictdef-requestdataoptions">RequestDataOptions</a> <a href="#dom-sensor-requestreading-requestreadingoptions-requestreadingoptions">requestReadingOptions</a>);
+  static Promise&lt;<a data-link-type="idl-name" href="#sensorreading1">SensorReading</a>> <a href="#dom-sensor-requestreading">requestReading</a>(<a data-link-type="idl-name" href="#dictdef-requestreadingoptions">RequestReadingOptions</a> <a href="#dom-sensor-requestreading-requestreadingoptions-requestreadingoptions">requestReadingOptions</a>);
   attribute double <a data-type="double " href="#dom-sensor-frequency">frequency</a>;
   attribute boolean <a data-type="boolean " href="#dom-sensor-batch">batch</a>;
   readonly attribute DOMString <a data-readonly="" data-type="DOMString " href="#dom-sensor-sensorid">sensorId</a>;
@@ -1997,8 +1997,8 @@ dictionary <a href="#dictdef-sensoroptions">SensorOptions</a> {
   double? <a data-type="double? " href="#dom-sensoroptions-timeout">timeout</a>;
 };
 
-dictionary <a href="#dictdef-requestdataoptions">RequestDataOptions</a> : <a data-link-type="idl-name" href="#dictdef-sensoroptions">SensorOptions</a> {
-  boolean? <a data-default="false" data-type="boolean? " href="#dom-requestdataoptions-fromcache">fromCache</a> = false;
+dictionary <a href="#dictdef-requestreadingoptions">RequestReadingOptions</a> : <a data-link-type="idl-name" href="#dictdef-sensoroptions">SensorOptions</a> {
+  boolean? <a data-default="false" data-type="boolean? " href="#dom-requestreadingoptions-fromcache">fromCache</a> = false;
 };
 
 
