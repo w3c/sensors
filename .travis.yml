@@ -3,7 +3,7 @@ branches:
   only:
     - gh-pages
 script:
-  -echo "ok"
+  - echo "ok"
 env:
   global:
     - WIDLPROC_PATH=$TRAVIS_BUILD_DIR/widlproc/obj/widlproc
