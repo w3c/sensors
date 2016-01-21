@@ -1434,12 +1434,11 @@ that can be extended to accommodate different sensor types.</p>
         <li><a href="#sensorthreshold"><span class="secno">5.1.3</span> <span class="content">Sensor.threshold</span></a>
         <li><a href="#sensortimeout"><span class="secno">5.1.4</span> <span class="content">Sensor.timeout</span></a>
         <li><a href="#sensorreading"><span class="secno">5.1.5</span> <span class="content">Sensor.reading</span></a>
-        <li><a href="#sensorreadings"><span class="secno">5.1.6</span> <span class="content">Sensor.readings</span></a>
-        <li><a href="#sensoronerror"><span class="secno">5.1.7</span> <span class="content">Sensor.onerror</span></a>
-        <li><a href="#sensorondata"><span class="secno">5.1.8</span> <span class="content">Sensor.ondata</span></a>
-        <li><a href="#sensoronchange"><span class="secno">5.1.9</span> <span class="content">Sensor.onchange</span></a>
-        <li><a href="#sensoroncalibration"><span class="secno">5.1.10</span> <span class="content">Sensor.oncalibration</span></a>
-        <li><a href="#event-handlers"><span class="secno">5.1.11</span> <span class="content">Event handlers</span></a>
+        <li><a href="#sensoronerror"><span class="secno">5.1.6</span> <span class="content">Sensor.onerror</span></a>
+        <li><a href="#sensorondata"><span class="secno">5.1.7</span> <span class="content">Sensor.ondata</span></a>
+        <li><a href="#sensoronchange"><span class="secno">5.1.8</span> <span class="content">Sensor.onchange</span></a>
+        <li><a href="#sensoroncalibration"><span class="secno">5.1.9</span> <span class="content">Sensor.oncalibration</span></a>
+        <li><a href="#event-handlers"><span class="secno">5.1.10</span> <span class="content">Event handlers</span></a>
        </ol>
       <li>
        <a href="#the-sensorreading-interface"><span class="secno">5.2</span> <span class="content">The SensorReading Interface</span></a>
@@ -1794,38 +1793,11 @@ dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="d
    <p>The reading attribute of must always point to the latest <a data-link-type="dfn" href="#sensorreading0">SensorReading</a> whatever the <a data-link-type="dfn" href="#frequency">frequency</a> so that
 the reading attribute of two instances of the same Sensor interface
 associated with the same <a data-link-type="dfn" href="#sensor">sensor</a> hold the same <a data-link-type="dfn" href="#sensorreading0">SensorReading</a> during a single <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-loop">event loop</a> turn.</p>
-   <h4 class="heading settled" data-level="5.1.6" id="sensorreadings"><span class="secno">5.1.6. </span><span class="content">Sensor.readings</span><a class="self-link" href="#sensorreadings"></a></h4>
-   <div class="issue no-marker" id="issue-d41d8cd9">
-    <a class="self-link" href="#issue-d41d8cd9"></a><a class="marker" href="https://github.com/w3c/sensors/issues/13">Issue #13 on GitHub: “Allowing data batching when poll frequency &lt; sensor frequency”</a>
-    <p>Even when doing realtime processing (eg. say at 60 Hz), there is a benefit to having more than one new value every time you process (eg. Oculus polls a gyroscope at 1000 Hz for head tracking). In this case, every time you process, you'll have [1000/60] ~= 16 new sensor data.</p>
-    <p>This seems like a desirable feature. How would you handle this though?</p>
-    <p>Is this (yet) an extra option you set? How does that work with sensors with multiple values, etc.?</p>
-    <p>/cc <a class="user-mention" href="https://github.com/borismus">@borismus</a> </p>
-    <p><strong>Proposed resolutions: Some use cases have high data frequency requirements which might cause performance and/or memory constraints. Further research is needed to assess and determine how to satisfy those requirements.</strong></p>
-    <p><strong>Further actions:</strong></p>
-    <ul class="task-list">
-     <li class="task-list-item">
-      <input class="task-list-item-checkbox" disabled="" type="checkbox">
-       List use cases with high data frequency requirements.
-     <li class="task-list-item">
-      <input class="task-list-item-checkbox" disabled="" type="checkbox">
-       Research the performance costs of crossing the JS context to justify batching requirements (talk with implementors).
-     <li class="task-list-item">
-      <input class="task-list-item-checkbox" disabled="" type="checkbox">
-       Decide on a solution to expose the batching in the Sensor API.
-     <li class="task-list-item">
-      <input class="task-list-item-checkbox" disabled="" type="checkbox">
-       Devise a strategy to handle huge backlog of historical data.
-     <li class="task-list-item">
-      <input class="task-list-item-checkbox" disabled="" type="checkbox">
-       Decide whether performance and/or memory constraints justify making the batch mode opt-in or whether it can just be the normal operational mode.
-    </ul>
-   </div>
-   <h4 class="heading settled" data-level="5.1.7" id="sensoronerror"><span class="secno">5.1.7. </span><span class="content">Sensor.onerror</span><a class="self-link" href="#sensoronerror"></a></h4>
-   <h4 class="heading settled" data-level="5.1.8" id="sensorondata"><span class="secno">5.1.8. </span><span class="content">Sensor.ondata</span><a class="self-link" href="#sensorondata"></a></h4>
-   <h4 class="heading settled" data-level="5.1.9" id="sensoronchange"><span class="secno">5.1.9. </span><span class="content">Sensor.onchange</span><a class="self-link" href="#sensoronchange"></a></h4>
-   <h4 class="heading settled" data-level="5.1.10" id="sensoroncalibration"><span class="secno">5.1.10. </span><span class="content">Sensor.oncalibration</span><a class="self-link" href="#sensoroncalibration"></a></h4>
-   <h4 class="heading settled" data-level="5.1.11" id="event-handlers"><span class="secno">5.1.11. </span><span class="content">Event handlers</span><a class="self-link" href="#event-handlers"></a></h4>
+   <h4 class="heading settled" data-level="5.1.6" id="sensoronerror"><span class="secno">5.1.6. </span><span class="content">Sensor.onerror</span><a class="self-link" href="#sensoronerror"></a></h4>
+   <h4 class="heading settled" data-level="5.1.7" id="sensorondata"><span class="secno">5.1.7. </span><span class="content">Sensor.ondata</span><a class="self-link" href="#sensorondata"></a></h4>
+   <h4 class="heading settled" data-level="5.1.8" id="sensoronchange"><span class="secno">5.1.8. </span><span class="content">Sensor.onchange</span><a class="self-link" href="#sensoronchange"></a></h4>
+   <h4 class="heading settled" data-level="5.1.9" id="sensoroncalibration"><span class="secno">5.1.9. </span><span class="content">Sensor.oncalibration</span><a class="self-link" href="#sensoroncalibration"></a></h4>
+   <h4 class="heading settled" data-level="5.1.10" id="event-handlers"><span class="secno">5.1.10. </span><span class="content">Event handlers</span><a class="self-link" href="#event-handlers"></a></h4>
    <p>The following are the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers">event handlers</a> (and their corresponding <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-type">event handler event types</a>) that MUST be supported as attributes by the objects implementing the <a data-link-type="dfn" href="#sensor">Sensor</a> interface:</p>
    <table class="simple">
     <thead>
@@ -1899,8 +1871,8 @@ Secure Contexts specification <a data-link-type="biblio" href="#biblio-powerful-
 As such, sensor <a data-link-type="dfn" href="#output-data">output data</a> should only be available
 within a <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/powerfulfeatures/#secure-context">secure context</a>.</p>
    <h3 class="heading settled" data-level="6.3" id="permissioning"><span class="secno">6.3. </span><span class="content">Obtaining Explicit User Permission</span><a class="self-link" href="#permissioning"></a></h3>
-   <div class="issue no-marker" id="issue-d41d8cd90">
-    <a class="self-link" href="#issue-d41d8cd90"></a><a class="marker" href="https://github.com/w3c/sensors/issues/20">Issue #20 on GitHub: “Allow for async permission request when first accessing sensor data”</a>
+   <div class="issue no-marker" id="issue-d41d8cd9">
+    <a class="self-link" href="#issue-d41d8cd9"></a><a class="marker" href="https://github.com/w3c/sensors/issues/20">Issue #20 on GitHub: “Allow for async permission request when first accessing sensor data”</a>
     <p>Make sure the API is compatible with sensors which need to ask the user's permission before being used.</p>
     <p><strong>Proposed resolutions:</strong></p>
     <ul>
@@ -1981,8 +1953,8 @@ exposing <a data-link-type="dfn" href="#low-level">low-level</a> sensor APIs, bu
 should always be <a data-link-type="dfn" href="#calibration">calibrated</a>.</p>
    <h3 class="heading settled" data-level="7.6" id="permission-api"><span class="secno">7.6. </span><span class="content">Extending the Permission API</span><a class="self-link" href="#permission-api"></a></h3>
    <p>Provide guidance on how to extend the Permission API <a data-link-type="biblio" href="#biblio-permissions">[permissions]</a> for each <a data-link-type="dfn" href="#sensor-types">sensor types</a>.</p>
-   <div class="issue no-marker" id="issue-d41d8cd91">
-    <a class="self-link" href="#issue-d41d8cd91"></a><a class="marker" href="https://github.com/w3c/sensors/issues/22">Issue #22 on GitHub: “Simplify extension of the Permissions API for concrete sensor implementations”</a>
+   <div class="issue no-marker" id="issue-d41d8cd90">
+    <a class="self-link" href="#issue-d41d8cd90"></a><a class="marker" href="https://github.com/w3c/sensors/issues/22">Issue #22 on GitHub: “Simplify extension of the Permissions API for concrete sensor implementations”</a>
     <p>Accessing sensor data has multiple privacy implications and is therefore subject to permissioning. The <a href="https://w3c.github.io/permissions/">Permission API</a> allows developers to check whether the permission to access a given API was already granted (or denied) by the user on a per origin basis.</p>
     <p>Currently, exposing that status through the Permissions API requires a modification of the Permission API spec itself. Ideally, we'd want sped editors authoring concrete sensor specs to be able to extend the Permission API within the same document.</p>
     <p>This needs concertation with the editors of the Permissions API.</p>
@@ -2008,10 +1980,9 @@ should always be <a data-link-type="dfn" href="#calibration">calibrated</a>.</p>
    <h3 class="heading settled" data-level="7.7" id="example-webidl"><span class="secno">7.7. </span><span class="content">Example WebIDL</span><a class="self-link" href="#example-webidl"></a></h3>
    <p>Here’s example WebIDL for a possible extension of this specification
 for proximity <a data-link-type="dfn" href="#sensor">sensors</a>.</p>
-<pre class="example" id="example-897a605b"><a class="self-link" href="#example-897a605b"></a>[Constructor(optional ProximitySensorOptions proximitySensorOptions)]
+<pre class="example" id="example-b23dffad"><a class="self-link" href="#example-b23dffad"></a>[Constructor(optional ProximitySensorOptions proximitySensorOptions)]
 interface ProximitySensor : Sensor {
   readonly attribute ProximitySensorReading? reading;
-  readonly attribute ProximitySensorReading[]? readings;
 };
 
 interface ProximitySensorReading : SensorReading {

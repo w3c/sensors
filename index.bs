@@ -401,10 +401,6 @@ the reading attribute of two instances of the same Sensor interface
 associated with the same <a>sensor</a>
 hold the same <a>SensorReading</a> during a single <a>event loop</a> turn.
 
-### Sensor.readings
-
-Issue(w3c/sensors#13):
-
 ### Sensor.onerror
 
 ### Sensor.ondata
@@ -631,7 +627,6 @@ for proximity <a>sensors</a>.
     [Constructor(optional ProximitySensorOptions proximitySensorOptions)]
     interface ProximitySensor : Sensor {
       readonly attribute ProximitySensorReading? reading;
-      readonly attribute ProximitySensorReading[]? readings;
     };
 
     interface ProximitySensorReading : SensorReading {
