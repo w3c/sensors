@@ -177,7 +177,7 @@ Consider the below feature detection examples:
             // run in circles...
         }
         
-        if ("PromimitySensor" in window) {
+        if ("ProximitySensor" in window) {
             // watch out!
         }
         
