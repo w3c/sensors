@@ -323,7 +323,6 @@ at regular intervals and reports those values by firing DOM events.
 
 TODO: define the following concepts
 
-- <dfn>batch mode</dfn>
 - <dfn>permission</dfn>
 - <dfn>read steps</dfn>
 - <dfn>identifying parameters</dfn>
