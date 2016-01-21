@@ -336,7 +336,6 @@ interface Sensor : EventTarget {
   readonly attribute DOMString sensorId;
   attribute double? treshold;
   attribute double timeout; 
-  attribute boolean wakeup; 
   readonly attribute SensorReading? reading;
   attribute EventHandler onerror;
   attribute EventHandler ondata;
@@ -393,8 +392,6 @@ The <a>Sensor()</a> constructor must run these steps:
 ### Sensor.threshold
 
 ### Sensor.timeout
-
-### Sensor.wakeup
 
 ### Sensor.reading
 

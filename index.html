@@ -1433,14 +1433,13 @@ that can be extended to accommodate different sensor types.</p>
         <li><a href="#sensorsensorid"><span class="secno">5.1.2</span> <span class="content">Sensor.sensorId</span></a>
         <li><a href="#sensorthreshold"><span class="secno">5.1.3</span> <span class="content">Sensor.threshold</span></a>
         <li><a href="#sensortimeout"><span class="secno">5.1.4</span> <span class="content">Sensor.timeout</span></a>
-        <li><a href="#sensorwakeup"><span class="secno">5.1.5</span> <span class="content">Sensor.wakeup</span></a>
-        <li><a href="#sensorreading"><span class="secno">5.1.6</span> <span class="content">Sensor.reading</span></a>
-        <li><a href="#sensorreadings"><span class="secno">5.1.7</span> <span class="content">Sensor.readings</span></a>
-        <li><a href="#sensoronerror"><span class="secno">5.1.8</span> <span class="content">Sensor.onerror</span></a>
-        <li><a href="#sensorondata"><span class="secno">5.1.9</span> <span class="content">Sensor.ondata</span></a>
-        <li><a href="#sensoronchange"><span class="secno">5.1.10</span> <span class="content">Sensor.onchange</span></a>
-        <li><a href="#sensoroncalibration"><span class="secno">5.1.11</span> <span class="content">Sensor.oncalibration</span></a>
-        <li><a href="#event-handlers"><span class="secno">5.1.12</span> <span class="content">Event handlers</span></a>
+        <li><a href="#sensorreading"><span class="secno">5.1.5</span> <span class="content">Sensor.reading</span></a>
+        <li><a href="#sensorreadings"><span class="secno">5.1.6</span> <span class="content">Sensor.readings</span></a>
+        <li><a href="#sensoronerror"><span class="secno">5.1.7</span> <span class="content">Sensor.onerror</span></a>
+        <li><a href="#sensorondata"><span class="secno">5.1.8</span> <span class="content">Sensor.ondata</span></a>
+        <li><a href="#sensoronchange"><span class="secno">5.1.9</span> <span class="content">Sensor.onchange</span></a>
+        <li><a href="#sensoroncalibration"><span class="secno">5.1.10</span> <span class="content">Sensor.oncalibration</span></a>
+        <li><a href="#event-handlers"><span class="secno">5.1.11</span> <span class="content">Event handlers</span></a>
        </ol>
       <li>
        <a href="#the-sensorreading-interface"><span class="secno">5.2</span> <span class="content">The SensorReading Interface</span></a>
@@ -1699,7 +1698,6 @@ interface <a class="idl-code" data-link-type="interface" href="#sensor0">Sensor<
   readonly attribute DOMString <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-readonly="" data-type="DOMString " id="dom-sensor-sensorid">sensorId<a class="self-link" href="#dom-sensor-sensorid"></a></dfn>;
   attribute double? <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="double? " id="dom-sensor-treshold">treshold<a class="self-link" href="#dom-sensor-treshold"></a></dfn>;
   attribute double <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="double " id="dom-sensor-timeout">timeout<a class="self-link" href="#dom-sensor-timeout"></a></dfn>; 
-  attribute boolean <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="boolean " id="dom-sensor-wakeup">wakeup<a class="self-link" href="#dom-sensor-wakeup"></a></dfn>; 
   readonly attribute <a data-link-type="idl-name" href="#sensorreading1">SensorReading</a>? <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-readonly="" data-type="SensorReading? " id="dom-sensor-reading">reading<a class="self-link" href="#dom-sensor-reading"></a></dfn>;
   attribute <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a> <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="EventHandler " id="dom-sensor-onerror">onerror<a class="self-link" href="#dom-sensor-onerror"></a></dfn>;
   attribute <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a> <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="EventHandler " id="dom-sensor-ondata">ondata<a class="self-link" href="#dom-sensor-ondata"></a></dfn>;
@@ -1792,12 +1790,11 @@ dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="d
    <h4 class="heading settled" data-level="5.1.2" id="sensorsensorid"><span class="secno">5.1.2. </span><span class="content">Sensor.sensorId</span><a class="self-link" href="#sensorsensorid"></a></h4>
    <h4 class="heading settled" data-level="5.1.3" id="sensorthreshold"><span class="secno">5.1.3. </span><span class="content">Sensor.threshold</span><a class="self-link" href="#sensorthreshold"></a></h4>
    <h4 class="heading settled" data-level="5.1.4" id="sensortimeout"><span class="secno">5.1.4. </span><span class="content">Sensor.timeout</span><a class="self-link" href="#sensortimeout"></a></h4>
-   <h4 class="heading settled" data-level="5.1.5" id="sensorwakeup"><span class="secno">5.1.5. </span><span class="content">Sensor.wakeup</span><a class="self-link" href="#sensorwakeup"></a></h4>
-   <h4 class="heading settled" data-level="5.1.6" id="sensorreading"><span class="secno">5.1.6. </span><span class="content">Sensor.reading</span><a class="self-link" href="#sensorreading"></a></h4>
+   <h4 class="heading settled" data-level="5.1.5" id="sensorreading"><span class="secno">5.1.5. </span><span class="content">Sensor.reading</span><a class="self-link" href="#sensorreading"></a></h4>
    <p>The reading attribute of must always point to the latest <a data-link-type="dfn" href="#sensorreading0">SensorReading</a> whatever the <a data-link-type="dfn" href="#frequency">frequency</a> so that
 the reading attribute of two instances of the same Sensor interface
 associated with the same <a data-link-type="dfn" href="#sensor">sensor</a> hold the same <a data-link-type="dfn" href="#sensorreading0">SensorReading</a> during a single <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-loop">event loop</a> turn.</p>
-   <h4 class="heading settled" data-level="5.1.7" id="sensorreadings"><span class="secno">5.1.7. </span><span class="content">Sensor.readings</span><a class="self-link" href="#sensorreadings"></a></h4>
+   <h4 class="heading settled" data-level="5.1.6" id="sensorreadings"><span class="secno">5.1.6. </span><span class="content">Sensor.readings</span><a class="self-link" href="#sensorreadings"></a></h4>
    <div class="issue no-marker" id="issue-d41d8cd9">
     <a class="self-link" href="#issue-d41d8cd9"></a><a class="marker" href="https://github.com/w3c/sensors/issues/13">Issue #13 on GitHub: “Allowing data batching when poll frequency &lt; sensor frequency”</a>
     <p>Even when doing realtime processing (eg. say at 60 Hz), there is a benefit to having more than one new value every time you process (eg. Oculus polls a gyroscope at 1000 Hz for head tracking). In this case, every time you process, you'll have [1000/60] ~= 16 new sensor data.</p>
@@ -1824,11 +1821,11 @@ associated with the same <a data-link-type="dfn" href="#sensor">sensor</a> hold 
        Decide whether performance and/or memory constraints justify making the batch mode opt-in or whether it can just be the normal operational mode.
     </ul>
    </div>
-   <h4 class="heading settled" data-level="5.1.8" id="sensoronerror"><span class="secno">5.1.8. </span><span class="content">Sensor.onerror</span><a class="self-link" href="#sensoronerror"></a></h4>
-   <h4 class="heading settled" data-level="5.1.9" id="sensorondata"><span class="secno">5.1.9. </span><span class="content">Sensor.ondata</span><a class="self-link" href="#sensorondata"></a></h4>
-   <h4 class="heading settled" data-level="5.1.10" id="sensoronchange"><span class="secno">5.1.10. </span><span class="content">Sensor.onchange</span><a class="self-link" href="#sensoronchange"></a></h4>
-   <h4 class="heading settled" data-level="5.1.11" id="sensoroncalibration"><span class="secno">5.1.11. </span><span class="content">Sensor.oncalibration</span><a class="self-link" href="#sensoroncalibration"></a></h4>
-   <h4 class="heading settled" data-level="5.1.12" id="event-handlers"><span class="secno">5.1.12. </span><span class="content">Event handlers</span><a class="self-link" href="#event-handlers"></a></h4>
+   <h4 class="heading settled" data-level="5.1.7" id="sensoronerror"><span class="secno">5.1.7. </span><span class="content">Sensor.onerror</span><a class="self-link" href="#sensoronerror"></a></h4>
+   <h4 class="heading settled" data-level="5.1.8" id="sensorondata"><span class="secno">5.1.8. </span><span class="content">Sensor.ondata</span><a class="self-link" href="#sensorondata"></a></h4>
+   <h4 class="heading settled" data-level="5.1.9" id="sensoronchange"><span class="secno">5.1.9. </span><span class="content">Sensor.onchange</span><a class="self-link" href="#sensoronchange"></a></h4>
+   <h4 class="heading settled" data-level="5.1.10" id="sensoroncalibration"><span class="secno">5.1.10. </span><span class="content">Sensor.oncalibration</span><a class="self-link" href="#sensoroncalibration"></a></h4>
+   <h4 class="heading settled" data-level="5.1.11" id="event-handlers"><span class="secno">5.1.11. </span><span class="content">Event handlers</span><a class="self-link" href="#event-handlers"></a></h4>
    <p>The following are the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers">event handlers</a> (and their corresponding <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-type">event handler event types</a>) that MUST be supported as attributes by the objects implementing the <a data-link-type="dfn" href="#sensor">Sensor</a> interface:</p>
    <table class="simple">
     <thead>
@@ -2180,7 +2177,6 @@ for their editorial input.</p>
      <li><a href="#dom-sensor-treshold">attribute for Sensor</a><span>, in §5.1</span>
      <li><a href="#dom-sensoroptions-treshold">dict-member for SensorOptions</a><span>, in §5.1</span>
     </ul>
-   <li><a href="#dom-sensor-wakeup">wakeup</a><span>, in §5.1</span>
   </ul>
   <h3 class="no-num heading settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
   <ul class="index">
@@ -2255,7 +2251,6 @@ interface <a class="idl-code" data-link-type="interface" href="#sensor0">Sensor<
   readonly attribute DOMString <a data-readonly="" data-type="DOMString " href="#dom-sensor-sensorid">sensorId</a>;
   attribute double? <a data-type="double? " href="#dom-sensor-treshold">treshold</a>;
   attribute double <a data-type="double " href="#dom-sensor-timeout">timeout</a>; 
-  attribute boolean <a data-type="boolean " href="#dom-sensor-wakeup">wakeup</a>; 
   readonly attribute <a data-link-type="idl-name" href="#sensorreading1">SensorReading</a>? <a data-readonly="" data-type="SensorReading? " href="#dom-sensor-reading">reading</a>;
   attribute <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a> <a data-type="EventHandler " href="#dom-sensor-onerror">onerror</a>;
   attribute <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a> <a data-type="EventHandler " href="#dom-sensor-ondata">ondata</a>;
