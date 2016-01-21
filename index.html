@@ -1430,18 +1430,17 @@ that can be extended to accommodate different sensor types.</p>
        <a href="#the-sensor-interface"><span class="secno">5.1</span> <span class="content">The Sensor Interface</span></a>
        <ol class="toc">
         <li><a href="#sensor-constructor"><span class="secno">5.1.1</span> <span class="content">Sensor Constructor</span></a>
-        <li><a href="#sensorfrequency"><span class="secno">5.1.2</span> <span class="content">Sensor.frequency</span></a>
-        <li><a href="#sensorsensorid"><span class="secno">5.1.3</span> <span class="content">Sensor.sensorId</span></a>
-        <li><a href="#sensorthreshold"><span class="secno">5.1.4</span> <span class="content">Sensor.threshold</span></a>
-        <li><a href="#sensortimeout"><span class="secno">5.1.5</span> <span class="content">Sensor.timeout</span></a>
-        <li><a href="#sensorwakeup"><span class="secno">5.1.6</span> <span class="content">Sensor.wakeup</span></a>
-        <li><a href="#sensorreading"><span class="secno">5.1.7</span> <span class="content">Sensor.reading</span></a>
-        <li><a href="#sensorreadings"><span class="secno">5.1.8</span> <span class="content">Sensor.readings</span></a>
-        <li><a href="#sensoronerror"><span class="secno">5.1.9</span> <span class="content">Sensor.onerror</span></a>
-        <li><a href="#sensorondata"><span class="secno">5.1.10</span> <span class="content">Sensor.ondata</span></a>
-        <li><a href="#sensoronchange"><span class="secno">5.1.11</span> <span class="content">Sensor.onchange</span></a>
-        <li><a href="#sensoroncalibration"><span class="secno">5.1.12</span> <span class="content">Sensor.oncalibration</span></a>
-        <li><a href="#event-handlers"><span class="secno">5.1.13</span> <span class="content">Event handlers</span></a>
+        <li><a href="#sensorsensorid"><span class="secno">5.1.2</span> <span class="content">Sensor.sensorId</span></a>
+        <li><a href="#sensorthreshold"><span class="secno">5.1.3</span> <span class="content">Sensor.threshold</span></a>
+        <li><a href="#sensortimeout"><span class="secno">5.1.4</span> <span class="content">Sensor.timeout</span></a>
+        <li><a href="#sensorwakeup"><span class="secno">5.1.5</span> <span class="content">Sensor.wakeup</span></a>
+        <li><a href="#sensorreading"><span class="secno">5.1.6</span> <span class="content">Sensor.reading</span></a>
+        <li><a href="#sensorreadings"><span class="secno">5.1.7</span> <span class="content">Sensor.readings</span></a>
+        <li><a href="#sensoronerror"><span class="secno">5.1.8</span> <span class="content">Sensor.onerror</span></a>
+        <li><a href="#sensorondata"><span class="secno">5.1.9</span> <span class="content">Sensor.ondata</span></a>
+        <li><a href="#sensoronchange"><span class="secno">5.1.10</span> <span class="content">Sensor.onchange</span></a>
+        <li><a href="#sensoroncalibration"><span class="secno">5.1.11</span> <span class="content">Sensor.oncalibration</span></a>
+        <li><a href="#event-handlers"><span class="secno">5.1.12</span> <span class="content">Event handlers</span></a>
        </ol>
       <li>
        <a href="#the-sensorreading-interface"><span class="secno">5.2</span> <span class="content">The SensorReading Interface</span></a>
@@ -1697,7 +1696,6 @@ define ways to uniquely identify each one.</p>
 <pre class="idl">[<dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="constructor" data-export="" data-lt="Sensor(sensorOptions)" id="dom-sensor-sensor">Constructor<a class="self-link" href="#dom-sensor-sensor"></a></dfn>(optional <a data-link-type="idl-name" href="#dictdef-sensoroptions">SensorOptions</a> <dfn class="idl-code" data-dfn-for="Sensor/Sensor(sensorOptions)" data-dfn-type="argument" data-export="" id="dom-sensor-sensor-sensoroptions-sensoroptions">sensorOptions<a class="self-link" href="#dom-sensor-sensor-sensoroptions-sensoroptions"></a></dfn>)]
 interface <a class="idl-code" data-link-type="interface" href="#sensor0">Sensor</a> : <a data-link-type="idl-name" href="https://dom.spec.whatwg.org#interface-eventtarget">EventTarget</a> {
   static Promise&lt;<a data-link-type="idl-name" href="#sensorreading1">SensorReading</a>> <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="method" data-export="" data-lt="requestReading(requestReadingOptions)" id="dom-sensor-requestreading">requestReading<a class="self-link" href="#dom-sensor-requestreading"></a></dfn>(<a data-link-type="idl-name" href="#dictdef-requestreadingoptions">RequestReadingOptions</a> <dfn class="idl-code" data-dfn-for="Sensor/requestReading(requestReadingOptions)" data-dfn-type="argument" data-export="" id="dom-sensor-requestreading-requestreadingoptions-requestreadingoptions">requestReadingOptions<a class="self-link" href="#dom-sensor-requestreading-requestreadingoptions-requestreadingoptions"></a></dfn>);
-  attribute double <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="double " id="dom-sensor-frequency">frequency<a class="self-link" href="#dom-sensor-frequency"></a></dfn>;
   readonly attribute DOMString <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-readonly="" data-type="DOMString " id="dom-sensor-sensorid">sensorId<a class="self-link" href="#dom-sensor-sensorid"></a></dfn>;
   attribute double? <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="double? " id="dom-sensor-treshold">treshold<a class="self-link" href="#dom-sensor-treshold"></a></dfn>;
   attribute double <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="double " id="dom-sensor-timeout">timeout<a class="self-link" href="#dom-sensor-timeout"></a></dfn>; 
@@ -1711,6 +1709,7 @@ interface <a class="idl-code" data-link-type="interface" href="#sensor0">Sensor<
 
 dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-sensoroptions">SensorOptions<a class="self-link" href="#dictdef-sensoroptions"></a></dfn> {
   DOMString? <dfn class="idl-code" data-dfn-for="SensorOptions" data-dfn-type="dict-member" data-export="" data-type="DOMString? " id="dom-sensoroptions-sensorid">sensorId<a class="self-link" href="#dom-sensoroptions-sensorid"></a></dfn>;
+  double? <dfn class="idl-code" data-dfn-for="SensorOptions" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-sensoroptions-treshold">treshold<a class="self-link" href="#dom-sensoroptions-treshold"></a></dfn>;
   double? <dfn class="idl-code" data-dfn-for="SensorOptions" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-sensoroptions-frequency">frequency<a class="self-link" href="#dom-sensoroptions-frequency"></a></dfn>;
   double? <dfn class="idl-code" data-dfn-for="SensorOptions" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-sensoroptions-timeout">timeout<a class="self-link" href="#dom-sensoroptions-timeout"></a></dfn>;
 };
@@ -1790,47 +1789,17 @@ dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="d
        <p>run the <a data-link-type="dfn" href="#read-steps">read steps</a> for <var>sensor</var>.</p>
      </ol>
    </ol>
-   <h4 class="heading settled" data-level="5.1.2" id="sensorfrequency"><span class="secno">5.1.2. </span><span class="content">Sensor.frequency</span><a class="self-link" href="#sensorfrequency"></a></h4>
-   <p>The <a data-link-type="dfn" href="#frequency">frequency</a> at which the <a data-link-type="dfn" href="#read-steps">read steps</a> are run.</p>
-   <div class="issue no-marker" id="issue-d41d8cd9">
-    <a class="self-link" href="#issue-d41d8cd9"></a><a class="marker" href="https://github.com/w3c/sensors/issues/4">Issue #4 on GitHub: “Provide a way of tying sensor requests to animation frames”</a>
-    <p>Copy pasted from <a class="user-mention" href="https://github.com/domenic">@domenic</a>'s original issue <a class="issue-link js-issue-link" data-error-text="Failed to load issue title" data-id="42182400" data-permission-text="Issue title is private" data-url="https://github.com/rwaldron/sensors/issues/5" href="https://github.com/rwaldron/sensors/issues/5">rwaldron/sensors#5</a></p>
-    <blockquote>
-     <p>For games and other animation frame loop-based situations (off the top of my head, accelerometer-based scrolling comes to mind) you want one value per animation frame.</p>
-     <p>Chrome is actually doing work specifically to integrate our scheduling of input events and animation frames, see <a href="https://docs.google.com/document/d/11N2WTV3M0IkZ-kQlKWlBcwkOkKTCuLXGVNylK5E2zvc/edit">Blink Scheduler design doc</a>.</p>
-     <p>Off the top of my head, <code>frequency: "animationframe"</code> might be good. The contract being that, if you pass that in to the constructor, then given</p>
-     <div class="highlight highlight-source-js">
-<pre><span class="pl-en">requestAnimationFrame</span>(<span class="pl-k">function</span> <span class="pl-en">frame</span>() {
-  <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-smi">mySensor</span>.<span class="pl-c1">value</span>);
-  <span class="pl-en">requestAnimationFrame</span>(frame);
-});</pre>
-     </div>
-     <p>you will get an updated value every frame.</p>
-     <p>I don't think <code>frequency: 60</code> is quite the same thing (but I could be wrong; will try to tag in some Blink engineers) since animation frames often vary away from 60 Hz and so you will quickly get out of sync.</p>
-     <p>Posted to blink-dev: <a href="https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/fLucJ2QH3fA">https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/fLucJ2QH3fA</a> unsure whether people will follow-up here or there.</p>
-    </blockquote>
-    <p><strong>Proposed resolution: Enabling developers to tie the frequency of sensor updates to animation framerate is a desirable feature. Further research is needed to see whether or not that is implementable.</strong></p>
-    <p><strong>Actions:</strong></p>
-    <ul class="task-list">
-     <li class="task-list-item">
-      <input class="task-list-item-checkbox" disabled="" type="checkbox">
-       research whether sensor update frequency can be tied to animation framerate.
-     <li class="task-list-item">
-      <input class="task-list-item-checkbox" disabled="" type="checkbox">
-       design the API so that developers can indicate the sensors update frequency must be framerate dependent.
-    </ul>
-   </div>
-   <h4 class="heading settled" data-level="5.1.3" id="sensorsensorid"><span class="secno">5.1.3. </span><span class="content">Sensor.sensorId</span><a class="self-link" href="#sensorsensorid"></a></h4>
-   <h4 class="heading settled" data-level="5.1.4" id="sensorthreshold"><span class="secno">5.1.4. </span><span class="content">Sensor.threshold</span><a class="self-link" href="#sensorthreshold"></a></h4>
-   <h4 class="heading settled" data-level="5.1.5" id="sensortimeout"><span class="secno">5.1.5. </span><span class="content">Sensor.timeout</span><a class="self-link" href="#sensortimeout"></a></h4>
-   <h4 class="heading settled" data-level="5.1.6" id="sensorwakeup"><span class="secno">5.1.6. </span><span class="content">Sensor.wakeup</span><a class="self-link" href="#sensorwakeup"></a></h4>
-   <h4 class="heading settled" data-level="5.1.7" id="sensorreading"><span class="secno">5.1.7. </span><span class="content">Sensor.reading</span><a class="self-link" href="#sensorreading"></a></h4>
+   <h4 class="heading settled" data-level="5.1.2" id="sensorsensorid"><span class="secno">5.1.2. </span><span class="content">Sensor.sensorId</span><a class="self-link" href="#sensorsensorid"></a></h4>
+   <h4 class="heading settled" data-level="5.1.3" id="sensorthreshold"><span class="secno">5.1.3. </span><span class="content">Sensor.threshold</span><a class="self-link" href="#sensorthreshold"></a></h4>
+   <h4 class="heading settled" data-level="5.1.4" id="sensortimeout"><span class="secno">5.1.4. </span><span class="content">Sensor.timeout</span><a class="self-link" href="#sensortimeout"></a></h4>
+   <h4 class="heading settled" data-level="5.1.5" id="sensorwakeup"><span class="secno">5.1.5. </span><span class="content">Sensor.wakeup</span><a class="self-link" href="#sensorwakeup"></a></h4>
+   <h4 class="heading settled" data-level="5.1.6" id="sensorreading"><span class="secno">5.1.6. </span><span class="content">Sensor.reading</span><a class="self-link" href="#sensorreading"></a></h4>
    <p>The reading attribute of must always point to the latest <a data-link-type="dfn" href="#sensorreading0">SensorReading</a> whatever the <a data-link-type="dfn" href="#frequency">frequency</a> so that
 the reading attribute of two instances of the same Sensor interface
 associated with the same <a data-link-type="dfn" href="#sensor">sensor</a> hold the same <a data-link-type="dfn" href="#sensorreading0">SensorReading</a> during a single <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-loop">event loop</a> turn.</p>
-   <h4 class="heading settled" data-level="5.1.8" id="sensorreadings"><span class="secno">5.1.8. </span><span class="content">Sensor.readings</span><a class="self-link" href="#sensorreadings"></a></h4>
-   <div class="issue no-marker" id="issue-d41d8cd90">
-    <a class="self-link" href="#issue-d41d8cd90"></a><a class="marker" href="https://github.com/w3c/sensors/issues/13">Issue #13 on GitHub: “Allowing data batching when poll frequency &lt; sensor frequency”</a>
+   <h4 class="heading settled" data-level="5.1.7" id="sensorreadings"><span class="secno">5.1.7. </span><span class="content">Sensor.readings</span><a class="self-link" href="#sensorreadings"></a></h4>
+   <div class="issue no-marker" id="issue-d41d8cd9">
+    <a class="self-link" href="#issue-d41d8cd9"></a><a class="marker" href="https://github.com/w3c/sensors/issues/13">Issue #13 on GitHub: “Allowing data batching when poll frequency &lt; sensor frequency”</a>
     <p>Even when doing realtime processing (eg. say at 60 Hz), there is a benefit to having more than one new value every time you process (eg. Oculus polls a gyroscope at 1000 Hz for head tracking). In this case, every time you process, you'll have [1000/60] ~= 16 new sensor data.</p>
     <p>This seems like a desirable feature. How would you handle this though?</p>
     <p>Is this (yet) an extra option you set? How does that work with sensors with multiple values, etc.?</p>
@@ -1855,11 +1824,11 @@ associated with the same <a data-link-type="dfn" href="#sensor">sensor</a> hold 
        Decide whether performance and/or memory constraints justify making the batch mode opt-in or whether it can just be the normal operational mode.
     </ul>
    </div>
-   <h4 class="heading settled" data-level="5.1.9" id="sensoronerror"><span class="secno">5.1.9. </span><span class="content">Sensor.onerror</span><a class="self-link" href="#sensoronerror"></a></h4>
-   <h4 class="heading settled" data-level="5.1.10" id="sensorondata"><span class="secno">5.1.10. </span><span class="content">Sensor.ondata</span><a class="self-link" href="#sensorondata"></a></h4>
-   <h4 class="heading settled" data-level="5.1.11" id="sensoronchange"><span class="secno">5.1.11. </span><span class="content">Sensor.onchange</span><a class="self-link" href="#sensoronchange"></a></h4>
-   <h4 class="heading settled" data-level="5.1.12" id="sensoroncalibration"><span class="secno">5.1.12. </span><span class="content">Sensor.oncalibration</span><a class="self-link" href="#sensoroncalibration"></a></h4>
-   <h4 class="heading settled" data-level="5.1.13" id="event-handlers"><span class="secno">5.1.13. </span><span class="content">Event handlers</span><a class="self-link" href="#event-handlers"></a></h4>
+   <h4 class="heading settled" data-level="5.1.8" id="sensoronerror"><span class="secno">5.1.8. </span><span class="content">Sensor.onerror</span><a class="self-link" href="#sensoronerror"></a></h4>
+   <h4 class="heading settled" data-level="5.1.9" id="sensorondata"><span class="secno">5.1.9. </span><span class="content">Sensor.ondata</span><a class="self-link" href="#sensorondata"></a></h4>
+   <h4 class="heading settled" data-level="5.1.10" id="sensoronchange"><span class="secno">5.1.10. </span><span class="content">Sensor.onchange</span><a class="self-link" href="#sensoronchange"></a></h4>
+   <h4 class="heading settled" data-level="5.1.11" id="sensoroncalibration"><span class="secno">5.1.11. </span><span class="content">Sensor.oncalibration</span><a class="self-link" href="#sensoroncalibration"></a></h4>
+   <h4 class="heading settled" data-level="5.1.12" id="event-handlers"><span class="secno">5.1.12. </span><span class="content">Event handlers</span><a class="self-link" href="#event-handlers"></a></h4>
    <p>The following are the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers">event handlers</a> (and their corresponding <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-type">event handler event types</a>) that MUST be supported as attributes by the objects implementing the <a data-link-type="dfn" href="#sensor">Sensor</a> interface:</p>
    <table class="simple">
     <thead>
@@ -1933,8 +1902,8 @@ Secure Contexts specification <a data-link-type="biblio" href="#biblio-powerful-
 As such, sensor <a data-link-type="dfn" href="#output-data">output data</a> should only be available
 within a <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/powerfulfeatures/#secure-context">secure context</a>.</p>
    <h3 class="heading settled" data-level="6.3" id="permissioning"><span class="secno">6.3. </span><span class="content">Obtaining Explicit User Permission</span><a class="self-link" href="#permissioning"></a></h3>
-   <div class="issue no-marker" id="issue-d41d8cd91">
-    <a class="self-link" href="#issue-d41d8cd91"></a><a class="marker" href="https://github.com/w3c/sensors/issues/20">Issue #20 on GitHub: “Allow for async permission request when first accessing sensor data”</a>
+   <div class="issue no-marker" id="issue-d41d8cd90">
+    <a class="self-link" href="#issue-d41d8cd90"></a><a class="marker" href="https://github.com/w3c/sensors/issues/20">Issue #20 on GitHub: “Allow for async permission request when first accessing sensor data”</a>
     <p>Make sure the API is compatible with sensors which need to ask the user's permission before being used.</p>
     <p><strong>Proposed resolutions:</strong></p>
     <ul>
@@ -2015,8 +1984,8 @@ exposing <a data-link-type="dfn" href="#low-level">low-level</a> sensor APIs, bu
 should always be <a data-link-type="dfn" href="#calibration">calibrated</a>.</p>
    <h3 class="heading settled" data-level="7.6" id="permission-api"><span class="secno">7.6. </span><span class="content">Extending the Permission API</span><a class="self-link" href="#permission-api"></a></h3>
    <p>Provide guidance on how to extend the Permission API <a data-link-type="biblio" href="#biblio-permissions">[permissions]</a> for each <a data-link-type="dfn" href="#sensor-types">sensor types</a>.</p>
-   <div class="issue no-marker" id="issue-d41d8cd92">
-    <a class="self-link" href="#issue-d41d8cd92"></a><a class="marker" href="https://github.com/w3c/sensors/issues/22">Issue #22 on GitHub: “Simplify extension of the Permissions API for concrete sensor implementations”</a>
+   <div class="issue no-marker" id="issue-d41d8cd91">
+    <a class="self-link" href="#issue-d41d8cd91"></a><a class="marker" href="https://github.com/w3c/sensors/issues/22">Issue #22 on GitHub: “Simplify extension of the Permissions API for concrete sensor implementations”</a>
     <p>Accessing sensor data has multiple privacy implications and is therefore subject to permissioning. The <a href="https://w3c.github.io/permissions/">Permission API</a> allows developers to check whether the permission to access a given API was already granted (or denied) by the user on a per origin basis.</p>
     <p>Currently, exposing that status through the Permissions API requires a modification of the Permission API spec itself. Ideally, we'd want sped editors authoring concrete sensor specs to be able to extend the Permission API within the same document.</p>
     <p>This needs concertation with the editors of the Permissions API.</p>
@@ -2163,7 +2132,6 @@ for their editorial input.</p>
     frequency
     <ul>
      <li><a href="#frequency">definition of</a><span>, in §5.1</span>
-     <li><a href="#dom-sensor-frequency">attribute for Sensor</a><span>, in §5.1</span>
      <li><a href="#dom-sensoroptions-frequency">dict-member for SensorOptions</a><span>, in §5.1</span>
     </ul>
    <li><a href="#dom-requestreadingoptions-fromcache">fromCache</a><span>, in §5.1</span>
@@ -2206,7 +2174,12 @@ for their editorial input.</p>
      <li><a href="#dom-sensoroptions-timeout">dict-member for SensorOptions</a><span>, in §5.1</span>
     </ul>
    <li><a href="#dom-sensorreading-timestamp">timeStamp</a><span>, in §5.2</span>
-   <li><a href="#dom-sensor-treshold">treshold</a><span>, in §5.1</span>
+   <li>
+    treshold
+    <ul>
+     <li><a href="#dom-sensor-treshold">attribute for Sensor</a><span>, in §5.1</span>
+     <li><a href="#dom-sensoroptions-treshold">dict-member for SensorOptions</a><span>, in §5.1</span>
+    </ul>
    <li><a href="#dom-sensor-wakeup">wakeup</a><span>, in §5.1</span>
   </ul>
   <h3 class="no-num heading settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
@@ -2278,7 +2251,6 @@ for their editorial input.</p>
 <pre class="idl">[<a href="#dom-sensor-sensor">Constructor</a>(optional <a data-link-type="idl-name" href="#dictdef-sensoroptions">SensorOptions</a> <a href="#dom-sensor-sensor-sensoroptions-sensoroptions">sensorOptions</a>)]
 interface <a class="idl-code" data-link-type="interface" href="#sensor0">Sensor</a> : <a data-link-type="idl-name" href="https://dom.spec.whatwg.org#interface-eventtarget">EventTarget</a> {
   static Promise&lt;<a data-link-type="idl-name" href="#sensorreading1">SensorReading</a>> <a href="#dom-sensor-requestreading">requestReading</a>(<a data-link-type="idl-name" href="#dictdef-requestreadingoptions">RequestReadingOptions</a> <a href="#dom-sensor-requestreading-requestreadingoptions-requestreadingoptions">requestReadingOptions</a>);
-  attribute double <a data-type="double " href="#dom-sensor-frequency">frequency</a>;
   readonly attribute DOMString <a data-readonly="" data-type="DOMString " href="#dom-sensor-sensorid">sensorId</a>;
   attribute double? <a data-type="double? " href="#dom-sensor-treshold">treshold</a>;
   attribute double <a data-type="double " href="#dom-sensor-timeout">timeout</a>; 
@@ -2292,6 +2264,7 @@ interface <a class="idl-code" data-link-type="interface" href="#sensor0">Sensor<
 
 dictionary <a href="#dictdef-sensoroptions">SensorOptions</a> {
   DOMString? <a data-type="DOMString? " href="#dom-sensoroptions-sensorid">sensorId</a>;
+  double? <a data-type="double? " href="#dom-sensoroptions-treshold">treshold</a>;
   double? <a data-type="double? " href="#dom-sensoroptions-frequency">frequency</a>;
   double? <a data-type="double? " href="#dom-sensoroptions-timeout">timeout</a>;
 };
