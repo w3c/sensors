@@ -37,6 +37,8 @@ urlPrefix: https://html.spec.whatwg.org/multipage/; spec: HTML
       text: event loop
     urlPrefix: infrastructure.html
       text: in parallel
+    urlPrefix: browsers.html
+      text: top-level browsing context
   type: interface
     urlPrefix: webappapis.html
       text: EventHandler
