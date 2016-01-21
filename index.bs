@@ -332,13 +332,11 @@ TODO: define the following concepts
 interface Sensor : EventTarget {
   static Promise&lt;SensorReading&gt; requestReading(RequestReadingOptions requestReadingOptions);
   attribute double frequency;
-  attribute boolean batch;
   readonly attribute DOMString sensorId;
   attribute double? treshold;
   attribute double timeout; 
   attribute boolean wakeup; 
   readonly attribute SensorReading? reading;
-  readonly attribute SensorReading[]? readings;
   attribute EventHandler onerror;
   attribute EventHandler ondata;
   attribute EventHandler onchange;
@@ -348,7 +346,6 @@ interface Sensor : EventTarget {
 dictionary SensorOptions {
   DOMString? sensorId;
   double? frequency;
-  boolean? batch = false;
   double? timeout;
 };
 
@@ -394,10 +391,6 @@ The <a>Sensor()</a> constructor must run these steps:
 The <a>frequency</a> at which the <a>read steps</a> are run.
 
 Issue(w3c/sensors#4):
-
-### Sensor.batch
-
-`true` if <a>batch mode</a> was requested, false otherwise.
 
 ### Sensor.sensorId
 
