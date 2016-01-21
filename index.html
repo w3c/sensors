@@ -1361,7 +1361,7 @@
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="http://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/Icons/w3c_home" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-01-21">21 January 2016</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-01-06">6 January 2016</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1422,11 +1422,7 @@ that can be extended to accommodate different sensor types.</p>
     <li><a href="#intro"><span class="secno">1</span> <span class="content">Introduction</span></a>
     <li><a href="#terminology"><span class="secno">2</span> <span class="content">Terminology</span></a>
     <li><a href="#feature-detection"><span class="secno">3</span> <span class="content">An note on Feature Detection of Hardware Features</span></a>
-    <li>
-     <a href="#model"><span class="secno">4</span> <span class="content">Model</span></a>
-     <ol class="toc">
-      <li><a href="#enumerating-sensors"><span class="secno">4.1</span> <span class="content">Enumerating Sensors</span></a>
-     </ol>
+    <li><a href="#model"><span class="secno">4</span> <span class="content">Model</span></a>
     <li>
      <a href="#api"><span class="secno">5</span> <span class="content">API</span></a>
      <ol class="toc">
@@ -1685,13 +1681,6 @@ define ways to uniquely identify each one.</p>
     <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">reading</span> <span class="o">=></span> <span class="p">{</span> <span class="nx">display</span><span class="p">(</span><span class="nx">reading</span><span class="p">.</span><span class="nx">pressure</span><span class="p">);</span> <span class="p">})</span>
     <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=></span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">));</span></pre>
    </div>
-   <h3 class="heading settled" data-level="4.1" id="enumerating-sensors"><span class="secno">4.1. </span><span class="content">Enumerating Sensors</span><a class="self-link" href="#enumerating-sensors"></a></h3>
-    <a data-link-type="dfn" href="#sensor">Sensor</a> discoverability becomes particularly important
-as the number of <a data-link-type="dfn" href="#sensor">sensors</a> grows.
-Web application developers need to find out what kind of
-sensor is on a given device and what their capabilities are. 
-   <p><strong>This feature is at risk and might be moved to
-a subsequent version of this specification.</strong></p>
    <h2 class="heading settled" data-level="5" id="api"><span class="secno">5. </span><span class="content">API</span><a class="self-link" href="#api"></a></h2>
    <h3 class="heading settled" data-level="5.1" id="the-sensor-interface"><span class="secno">5.1. </span><span class="content">The Sensor Interface</span><a class="self-link" href="#the-sensor-interface"></a></h3>
    <p>A <dfn class="idl-code" data-dfn-type="interface" data-export="" id="sensor0">Sensor<a class="self-link" href="#sensor0"></a></dfn> object has an associated <a data-link-type="dfn" href="#sensor">sensor</a>.</p>

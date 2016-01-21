@@ -309,16 +309,6 @@ define ways to uniquely identify each one.
     </pre>
 </div>
 
-Enumerating Sensors
--------------------
-<a>Sensor</a> discoverability becomes particularly important
-as the number of <a>sensors</a> grows.
-Web application developers need to find out what kind of
-sensor is on a given device and what their capabilities are.
-
-<strong>This feature is at risk and might be moved to
-a subsequent version of this specification.</strong>
-
 API
 ===
 
