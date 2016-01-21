@@ -328,7 +328,7 @@ TODO: define the following concepts
 - <dfn>identifying parameters</dfn>
 
 <pre class="idl">
-[Constructor(optional SensorOptions sensorOptions), Exposed=(Window,Worker)]
+[Constructor(optional SensorOptions sensorOptions)]
 interface Sensor : EventTarget {
   static Promise&lt;SensorReading&gt; requestReading(RequestReadingOptions requestReadingOptions);
   attribute double frequency;
@@ -635,7 +635,7 @@ Here's example WebIDL for a possible extension of this specification
 for proximity <a>sensors</a>.
 
 <pre class=example highlight=WEBidl >
-    [Constructor(optional ProximitySensorOptions proximitySensorOptions), Exposed=(Window,Worker)]
+    [Constructor(optional ProximitySensorOptions proximitySensorOptions)]
     interface ProximitySensor : Sensor {
       readonly attribute ProximitySensorReading? reading;
       readonly attribute ProximitySensorReading[]? readings;
