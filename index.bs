@@ -343,6 +343,15 @@ interface Sensor : EventTarget {
   attribute EventHandler oncalibration;
 };
 
+[Constructor(DOMString type, SensorReadingEventInit eventInitDict)]
+interface SensorReadingEvent : Event {
+  readonly attribute SensorReading reading;
+};
+
+dictionary SensorReadingEventInit : EventInit {
+  SensorReading reading;
+};
+
 dictionary SensorOptions {
   DOMString? sensorId;
   double? treshold;
@@ -447,6 +456,8 @@ The SensorReading Interface
 A <dfn>SensorReading</dfn> represents the state of a <a>sensor</a> at a given point in time.
 
 <pre class="idl">
+
+[Constructor()]
 interface SensorReading {
   readonly attribute DOMHighResTimeStamp timeStamp;
   readonly attribute DOMString sensorId;

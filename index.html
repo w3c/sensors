@@ -1361,7 +1361,7 @@
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="http://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/Icons/w3c_home" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-01-21">21 January 2016</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-01-28">28 January 2016</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1643,13 +1643,13 @@ proximity sensors.</p>
 the device’s default (and often unique) <a data-link-type="dfn" href="#sensor">sensor</a> for each <a data-link-type="dfn" href="#sensor-types">type</a> simply by instantiating the corresponding <a class="idl-code" data-link-type="interface" href="#sensor0">Sensor</a> subclass.</p>
    <p>Indeed, without specific information identifying a particular <a data-link-type="dfn" href="#sensor">sensor</a> of a given <a data-link-type="dfn" href="#sensor-types">type</a>,
 the default <a data-link-type="dfn" href="#sensor">sensor</a> is chosen.</p>
-   <div class="example" id="example-cdf4065f">
-    <a class="self-link" href="#example-cdf4065f"></a> Listening to geolocation changes: 
+   <div class="example" id="example-4ec6b87a">
+    <a class="self-link" href="#example-4ec6b87a"></a> Listening to geolocation changes: 
 <pre class="highlight"><span class="kd">let</span> <span class="nx">sensor</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">GeolocationSensor</span><span class="p">({</span> <span class="nx">accuracy</span><span class="o">:</span> <span class="s2">"high"</span> <span class="p">});</span>
 
 <span class="nx">sensor</span><span class="p">.</span><span class="nx">onchange</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">coords</span> <span class="o">=</span> <span class="p">[</span><span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">latitude</span><span class="p">,</span> <span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">longitude</span><span class="p">];</span>
-    <span class="nx">updateMap</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">coords</span><span class="p">,</span> <span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">accuracy</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">coords</span> <span class="o">=</span> <span class="p">[</span><span class="nx">event</span><span class="p">.</span><span class="nx">reading</span><span class="p">.</span><span class="nx">latitude</span><span class="p">,</span> <span class="nx">event</span><span class="p">.</span><span class="nx">reading</span><span class="p">.</span><span class="nx">longitude</span><span class="p">];</span>
+    <span class="nx">updateMap</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">coords</span><span class="p">,</span> <span class="nx">reading</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">accuracy</span><span class="p">);</span>
 <span class="p">};</span>
 
 <span class="nx">sensor</span><span class="p">.</span><span class="nx">onerror</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
@@ -1702,6 +1702,15 @@ interface <a class="idl-code" data-link-type="interface" href="#sensor0">Sensor<
   attribute <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a> <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="EventHandler " id="dom-sensor-ondata">ondata<a class="self-link" href="#dom-sensor-ondata"></a></dfn>;
   attribute <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a> <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="EventHandler " id="dom-sensor-onchange">onchange<a class="self-link" href="#dom-sensor-onchange"></a></dfn>;
   attribute <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a> <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="EventHandler " id="dom-sensor-oncalibration">oncalibration<a class="self-link" href="#dom-sensor-oncalibration"></a></dfn>;
+};
+
+[<dfn class="idl-code" data-dfn-for="SensorReadingEvent" data-dfn-type="constructor" data-export="" data-lt="SensorReadingEvent(type, eventInitDict)" id="dom-sensorreadingevent-sensorreadingevent">Constructor<a class="self-link" href="#dom-sensorreadingevent-sensorreadingevent"></a></dfn>(DOMString <dfn class="idl-code" data-dfn-for="SensorReadingEvent/SensorReadingEvent(type, eventInitDict)" data-dfn-type="argument" data-export="" id="dom-sensorreadingevent-sensorreadingevent-type-eventinitdict-type">type<a class="self-link" href="#dom-sensorreadingevent-sensorreadingevent-type-eventinitdict-type"></a></dfn>, <a data-link-type="idl-name" href="#dictdef-sensorreadingeventinit">SensorReadingEventInit</a> <dfn class="idl-code" data-dfn-for="SensorReadingEvent/SensorReadingEvent(type, eventInitDict)" data-dfn-type="argument" data-export="" id="dom-sensorreadingevent-sensorreadingevent-type-eventinitdict-eventinitdict">eventInitDict<a class="self-link" href="#dom-sensorreadingevent-sensorreadingevent-type-eventinitdict-eventinitdict"></a></dfn>)]
+interface <dfn class="idl-code" data-dfn-type="interface" data-export="" id="sensorreadingevent">SensorReadingEvent<a class="self-link" href="#sensorreadingevent"></a></dfn> : <a data-link-type="idl-name" href="https://dom.spec.whatwg.org/#event">Event</a> {
+  readonly attribute <a data-link-type="idl-name" href="#sensorreading1">SensorReading</a> <dfn class="idl-code" data-dfn-for="SensorReadingEvent" data-dfn-type="attribute" data-export="" data-readonly="" data-type="SensorReading " id="dom-sensorreadingevent-reading">reading<a class="self-link" href="#dom-sensorreadingevent-reading"></a></dfn>;
+};
+
+dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-sensorreadingeventinit">SensorReadingEventInit<a class="self-link" href="#dictdef-sensorreadingeventinit"></a></dfn> : <a data-link-type="idl-name" href="https://dom.spec.whatwg.org/#dictdef-eventinit">EventInit</a> {
+  <a data-link-type="idl-name" href="#sensorreading1">SensorReading</a> <dfn class="idl-code" data-dfn-for="SensorReadingEventInit" data-dfn-type="dict-member" data-export="" data-type="SensorReading " id="dom-sensorreadingeventinit-reading">reading<a class="self-link" href="#dom-sensorreadingeventinit-reading"></a></dfn>;
 };
 
 dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-sensoroptions">SensorOptions<a class="self-link" href="#dictdef-sensoroptions"></a></dfn> {
@@ -1820,7 +1829,8 @@ associated with the same <a data-link-type="dfn" href="#sensor">sensor</a> hold 
    </table>
    <h3 class="heading settled" data-level="5.2" id="the-sensorreading-interface"><span class="secno">5.2. </span><span class="content">The SensorReading Interface</span><a class="self-link" href="#the-sensorreading-interface"></a></h3>
    <p>A <dfn data-dfn-type="dfn" data-noexport="" id="sensorreading0">SensorReading<a class="self-link" href="#sensorreading0"></a></dfn> represents the state of a <a data-link-type="dfn" href="#sensor">sensor</a> at a given point in time.</p>
-<pre class="idl">interface <dfn class="idl-code" data-dfn-type="interface" data-export="" id="sensorreading1">SensorReading<a class="self-link" href="#sensorreading1"></a></dfn> {
+<pre class="idl">[<dfn class="idl-code" data-dfn-for="SensorReading" data-dfn-type="constructor" data-export="" data-lt="SensorReading()" id="dom-sensorreading-sensorreading">Constructor<a class="self-link" href="#dom-sensorreading-sensorreading"></a></dfn>()]
+interface <dfn class="idl-code" data-dfn-type="interface" data-export="" id="sensorreading1">SensorReading<a class="self-link" href="#sensorreading1"></a></dfn> {
   readonly attribute <a data-link-type="idl-name" href="http://w3c.github.io/hr-time/#dom-domhighrestimestamp">DOMHighResTimeStamp</a> <dfn class="idl-code" data-dfn-for="SensorReading" data-dfn-type="attribute" data-export="" data-readonly="" data-type="DOMHighResTimeStamp " id="dom-sensorreading-timestamp">timeStamp<a class="self-link" href="#dom-sensorreading-timestamp"></a></dfn>;
   readonly attribute DOMString <dfn class="idl-code" data-dfn-for="SensorReading" data-dfn-type="attribute" data-export="" data-readonly="" data-type="DOMString " id="dom-sensorreading-sensorid">sensorId<a class="self-link" href="#dom-sensorreading-sensorid"></a></dfn>;
 };
@@ -2112,7 +2122,13 @@ for their editorial input.</p>
    <li><a href="#dom-sensor-onerror">onerror</a><span>, in §5.1</span>
    <li><a href="#output-data">output data</a><span>, in §2</span>
    <li><a href="#permission">permission</a><span>, in §5.1</span>
-   <li><a href="#dom-sensor-reading">reading</a><span>, in §5.1</span>
+   <li>
+    reading
+    <ul>
+     <li><a href="#dom-sensor-reading">attribute for Sensor</a><span>, in §5.1</span>
+     <li><a href="#dom-sensorreadingevent-reading">attribute for SensorReadingEvent</a><span>, in §5.1</span>
+     <li><a href="#dom-sensorreadingeventinit-reading">dict-member for SensorReadingEventInit</a><span>, in §5.1</span>
+    </ul>
    <li><a href="#read-steps">read steps</a><span>, in §5.1</span>
    <li><a href="#dictdef-requestreadingoptions">RequestReadingOptions</a><span>, in §5.1</span>
    <li><a href="#dom-sensor-requestreading">requestReading(requestReadingOptions)</a><span>, in §5.1</span>
@@ -2127,12 +2143,16 @@ for their editorial input.</p>
      <li><a href="#dom-sensorreading-sensorid">attribute for SensorReading</a><span>, in §5.2</span>
     </ul>
    <li><a href="#dictdef-sensoroptions">SensorOptions</a><span>, in §5.1</span>
+   <li><a href="#dom-sensorreading-sensorreading">SensorReading()</a><span>, in §5.2</span>
    <li>
     SensorReading
     <ul>
      <li><a href="#sensorreading0">definition of</a><span>, in §5.2</span>
      <li><a href="#sensorreading1">(interface)</a><span>, in §5.2</span>
     </ul>
+   <li><a href="#sensorreadingevent">SensorReadingEvent</a><span>, in §5.1</span>
+   <li><a href="#dictdef-sensorreadingeventinit">SensorReadingEventInit</a><span>, in §5.1</span>
+   <li><a href="#dom-sensorreadingevent-sensorreadingevent">SensorReadingEvent(type, eventInitDict)</a><span>, in §5.1</span>
    <li><a href="#dom-sensor-sensor">Sensor(sensorOptions)</a><span>, in §5.1</span>
    <li><a href="#sensor-types">sensor types</a><span>, in §2</span>
    <li>
@@ -2175,6 +2195,12 @@ for their editorial input.</p>
      <li><a href="https://heycam.github.io/webidl/#dfn-throw">throw</a>
     </ul>
    <li>
+    <a data-link-type="biblio" href="#biblio-dom-ls">[dom-ls]</a> defines the following terms:
+    <ul>
+     <li><a href="https://dom.spec.whatwg.org/#event">Event</a>
+     <li><a href="https://dom.spec.whatwg.org/#dictdef-eventinit">EventInit</a>
+    </ul>
+   <li>
     <a data-link-type="biblio" href="#biblio-hr-time-2">[hr-time-2]</a> defines the following terms:
     <ul>
      <li><a href="http://w3c.github.io/hr-time/#dom-domhighrestimestamp">DOMHighResTimeStamp</a>
@@ -2195,6 +2221,8 @@ for their editorial input.</p>
    <dd>Cameron McCormack; Boris Zbarsky. <a href="http://www.w3.org/TR/WebIDL-1/">WebIDL Level 1</a>. 4 August 2015. WD. URL: <a href="http://www.w3.org/TR/WebIDL-1/">http://www.w3.org/TR/WebIDL-1/</a>
    <dt id="biblio-dom"><a class="self-link" href="#biblio-dom"></a>[DOM]
    <dd>Anne van Kesteren; et al. <a href="http://www.w3.org/TR/dom/">W3C DOM4</a>. 19 November 2015. REC. URL: <a href="http://www.w3.org/TR/dom/">http://www.w3.org/TR/dom/</a>
+   <dt id="biblio-dom-ls"><a class="self-link" href="#biblio-dom-ls"></a>[DOM-LS]
+   <dd>Document Object Model URL: <a href="https://dom.spec.whatwg.org/">https://dom.spec.whatwg.org/</a>
    <dt id="biblio-hr-time-2"><a class="self-link" href="#biblio-hr-time-2"></a>[HR-TIME-2]
    <dd>Ilya Grigorik; James Simonsen; Jatinder Mann. <a href="http://www.w3.org/TR/hr-time-2/">High Resolution Time Level 2</a>. 16 November 2015. WD. URL: <a href="http://www.w3.org/TR/hr-time-2/">http://www.w3.org/TR/hr-time-2/</a>
    <dt id="biblio-powerful-features"><a class="self-link" href="#biblio-powerful-features"></a>[POWERFUL-FEATURES]
@@ -2229,6 +2257,15 @@ interface <a class="idl-code" data-link-type="interface" href="#sensor0">Sensor<
   attribute <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a> <a data-type="EventHandler " href="#dom-sensor-oncalibration">oncalibration</a>;
 };
 
+[<a href="#dom-sensorreadingevent-sensorreadingevent">Constructor</a>(DOMString <a href="#dom-sensorreadingevent-sensorreadingevent-type-eventinitdict-type">type</a>, <a data-link-type="idl-name" href="#dictdef-sensorreadingeventinit">SensorReadingEventInit</a> <a href="#dom-sensorreadingevent-sensorreadingevent-type-eventinitdict-eventinitdict">eventInitDict</a>)]
+interface <a href="#sensorreadingevent">SensorReadingEvent</a> : <a data-link-type="idl-name" href="https://dom.spec.whatwg.org/#event">Event</a> {
+  readonly attribute <a data-link-type="idl-name" href="#sensorreading1">SensorReading</a> <a data-readonly="" data-type="SensorReading " href="#dom-sensorreadingevent-reading">reading</a>;
+};
+
+dictionary <a href="#dictdef-sensorreadingeventinit">SensorReadingEventInit</a> : <a data-link-type="idl-name" href="https://dom.spec.whatwg.org/#dictdef-eventinit">EventInit</a> {
+  <a data-link-type="idl-name" href="#sensorreading1">SensorReading</a> <a data-type="SensorReading " href="#dom-sensorreadingeventinit-reading">reading</a>;
+};
+
 dictionary <a href="#dictdef-sensoroptions">SensorOptions</a> {
   DOMString? <a data-type="DOMString? " href="#dom-sensoroptions-sensorid">sensorId</a>;
   double? <a data-type="double? " href="#dom-sensoroptions-treshold">treshold</a>;
@@ -2241,6 +2278,7 @@ dictionary <a href="#dictdef-requestreadingoptions">RequestReadingOptions</a> : 
 };
 
 
+[<a href="#dom-sensorreading-sensorreading">Constructor</a>()]
 interface <a href="#sensorreading1">SensorReading</a> {
   readonly attribute <a data-link-type="idl-name" href="http://w3c.github.io/hr-time/#dom-domhighrestimestamp">DOMHighResTimeStamp</a> <a data-readonly="" data-type="DOMHighResTimeStamp " href="#dom-sensorreading-timestamp">timeStamp</a>;
   readonly attribute DOMString <a data-readonly="" data-type="DOMString " href="#dom-sensorreading-sensorid">sensorId</a>;
