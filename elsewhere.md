@@ -46,12 +46,13 @@ Related conversations, posts, etc.
 ## Related Implementations
 
 * [Johnny-Five][501]
-* [Android Sensors][502]
+* [Android Sensors][502] ([Sensor reference][505])
 * [iOS CoreMotion][503]
 * [CoreMotion article][504]
 
 [501]: https://github.com/rwaldron/johnny-five/wiki/Sensor
 [502]: https://source.android.com/devices/halref/sensors_8h.html
+[505]: http://developer.android.com/reference/android/hardware/Sensor.html
 [503]: https://developer.apple.com/library/ios/documentation/CoreMotion/Reference/CMMotionManager_Class/index.html
 [504]: http://nshipster.com/cmdevicemotion/
 
