@@ -1695,7 +1695,7 @@ define ways to uniquely identify each one.</p>
 interface <a class="idl-code" data-link-type="interface" href="#sensor0">Sensor</a> : <a data-link-type="idl-name" href="https://dom.spec.whatwg.org#interface-eventtarget">EventTarget</a> {
   static Promise&lt;<a data-link-type="idl-name" href="#sensorreading1">SensorReading</a>> <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="method" data-export="" data-lt="requestReading(requestReadingOptions)" id="dom-sensor-requestreading">requestReading<a class="self-link" href="#dom-sensor-requestreading"></a></dfn>(<a data-link-type="idl-name" href="#dictdef-requestreadingoptions">RequestReadingOptions</a> <dfn class="idl-code" data-dfn-for="Sensor/requestReading(requestReadingOptions)" data-dfn-type="argument" data-export="" id="dom-sensor-requestreading-requestreadingoptions-requestreadingoptions">requestReadingOptions<a class="self-link" href="#dom-sensor-requestreading-requestreadingoptions-requestreadingoptions"></a></dfn>);
   readonly attribute DOMString <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-readonly="" data-type="DOMString " id="dom-sensor-sensorid">sensorId<a class="self-link" href="#dom-sensor-sensorid"></a></dfn>;
-  attribute double? <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="double? " id="dom-sensor-treshold">treshold<a class="self-link" href="#dom-sensor-treshold"></a></dfn>;
+  attribute double? <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="double? " id="dom-sensor-threshold">threshold<a class="self-link" href="#dom-sensor-threshold"></a></dfn>;
   attribute double <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="double " id="dom-sensor-timeout">timeout<a class="self-link" href="#dom-sensor-timeout"></a></dfn>; 
   readonly attribute <a data-link-type="idl-name" href="#sensorreading1">SensorReading</a>? <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-readonly="" data-type="SensorReading? " id="dom-sensor-reading">reading<a class="self-link" href="#dom-sensor-reading"></a></dfn>;
   attribute <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a> <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="EventHandler " id="dom-sensor-onerror">onerror<a class="self-link" href="#dom-sensor-onerror"></a></dfn>;
@@ -1715,7 +1715,7 @@ dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="d
 
 dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-sensoroptions">SensorOptions<a class="self-link" href="#dictdef-sensoroptions"></a></dfn> {
   DOMString? <dfn class="idl-code" data-dfn-for="SensorOptions" data-dfn-type="dict-member" data-export="" data-type="DOMString? " id="dom-sensoroptions-sensorid">sensorId<a class="self-link" href="#dom-sensoroptions-sensorid"></a></dfn>;
-  double? <dfn class="idl-code" data-dfn-for="SensorOptions" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-sensoroptions-treshold">treshold<a class="self-link" href="#dom-sensoroptions-treshold"></a></dfn>;
+  double? <dfn class="idl-code" data-dfn-for="SensorOptions" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-sensoroptions-threshold">threshold<a class="self-link" href="#dom-sensoroptions-threshold"></a></dfn>;
   double? <dfn class="idl-code" data-dfn-for="SensorOptions" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-sensoroptions-frequency">frequency<a class="self-link" href="#dom-sensoroptions-frequency"></a></dfn>;
   double? <dfn class="idl-code" data-dfn-for="SensorOptions" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-sensoroptions-timeout">timeout<a class="self-link" href="#dom-sensoroptions-timeout"></a></dfn>;
 };
@@ -2163,10 +2163,10 @@ for their editorial input.</p>
     </ul>
    <li><a href="#dom-sensorreading-timestamp">timeStamp</a><span>, in §5.2</span>
    <li>
-    treshold
+    threshold
     <ul>
-     <li><a href="#dom-sensor-treshold">attribute for Sensor</a><span>, in §5.1</span>
-     <li><a href="#dom-sensoroptions-treshold">dict-member for SensorOptions</a><span>, in §5.1</span>
+     <li><a href="#dom-sensor-threshold">attribute for Sensor</a><span>, in §5.1</span>
+     <li><a href="#dom-sensoroptions-threshold">dict-member for SensorOptions</a><span>, in §5.1</span>
     </ul>
   </ul>
   <h3 class="no-num heading settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
@@ -2248,7 +2248,7 @@ for their editorial input.</p>
 interface <a class="idl-code" data-link-type="interface" href="#sensor0">Sensor</a> : <a data-link-type="idl-name" href="https://dom.spec.whatwg.org#interface-eventtarget">EventTarget</a> {
   static Promise&lt;<a data-link-type="idl-name" href="#sensorreading1">SensorReading</a>> <a href="#dom-sensor-requestreading">requestReading</a>(<a data-link-type="idl-name" href="#dictdef-requestreadingoptions">RequestReadingOptions</a> <a href="#dom-sensor-requestreading-requestreadingoptions-requestreadingoptions">requestReadingOptions</a>);
   readonly attribute DOMString <a data-readonly="" data-type="DOMString " href="#dom-sensor-sensorid">sensorId</a>;
-  attribute double? <a data-type="double? " href="#dom-sensor-treshold">treshold</a>;
+  attribute double? <a data-type="double? " href="#dom-sensor-threshold">threshold</a>;
   attribute double <a data-type="double " href="#dom-sensor-timeout">timeout</a>; 
   readonly attribute <a data-link-type="idl-name" href="#sensorreading1">SensorReading</a>? <a data-readonly="" data-type="SensorReading? " href="#dom-sensor-reading">reading</a>;
   attribute <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a> <a data-type="EventHandler " href="#dom-sensor-onerror">onerror</a>;
@@ -2268,7 +2268,7 @@ dictionary <a href="#dictdef-sensorreadingeventinit">SensorReadingEventInit</a> 
 
 dictionary <a href="#dictdef-sensoroptions">SensorOptions</a> {
   DOMString? <a data-type="DOMString? " href="#dom-sensoroptions-sensorid">sensorId</a>;
-  double? <a data-type="double? " href="#dom-sensoroptions-treshold">treshold</a>;
+  double? <a data-type="double? " href="#dom-sensoroptions-threshold">threshold</a>;
   double? <a data-type="double? " href="#dom-sensoroptions-frequency">frequency</a>;
   double? <a data-type="double? " href="#dom-sensoroptions-timeout">timeout</a>;
 };
