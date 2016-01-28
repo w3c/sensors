@@ -14,12 +14,13 @@ Related conversations, posts, etc.
 
 * [Web Sensor API: Raw and Uncut][201], Boris Smus.
 * [Byte Sources: Introduction][202], [Reading from Files][203], [Reading from Sockets][204], Domenic Denicola.
+* [Sensor terminology][205]
 
 [201]: http://smus.com/web-sensor-api/
 [202]: https://blog.domenic.me/byte-sources-introduction/
 [203]: https://blog.domenic.me/reading-from-files/
 [204]: https://blog.domenic.me/reading-from-sockets/
-
+[205]: http://www.ni.com/white-paper/14860/en/
 ## Documents
 
 * The [Extensible Web Report Card on Sensors][301], maintained by W3C TAG.
@@ -46,6 +47,13 @@ Related conversations, posts, etc.
 
 * [Johnny-Five][501]
 * [Android Sensors][502]
+* [iOS CoreMotion][503]
+* [CoreMotion article][504]
 
 [501]: https://github.com/rwaldron/johnny-five/wiki/Sensor
 [502]: https://source.android.com/devices/halref/sensors_8h.html
+[503]: https://developer.apple.com/library/ios/documentation/CoreMotion/Reference/CMMotionManager_Class/index.html
+[504]: http://nshipster.com/cmdevicemotion/
+
+
+http://www.ni.com/white-paper/14860/en/
