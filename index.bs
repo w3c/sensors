@@ -38,6 +38,7 @@ urlPrefix: https://html.spec.whatwg.org/multipage/; spec: HTML
     urlPrefix: infrastructure.html
       text: in parallel
     urlPrefix: browsers.html
+      text: browsing context
       text: top-level browsing context
   type: interface
     urlPrefix: webappapis.html
@@ -370,6 +371,8 @@ dictionary RequestReadingOptions : SensorOptions {
 The <a>Sensor()</a> constructor must run these steps:
 
 1.  If the <a>incumbent settings object</a> is not a <a>secure context</a>, then:
+    1.  <a>throw</a> a SecurityError.
+1.  If the <a>browsing context</a> is not a <a>top-level browsing context</a>, then:
     1.  <a>throw</a> a SecurityError.
 1.  If sensorOptions.sensorId is specified, then:
     1.  If there is a <a>sensor</a> identified by sensorOptions.sensorId, then
