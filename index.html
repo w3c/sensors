@@ -1875,7 +1875,7 @@ and allowing the user to disable it.</p>
 perform a privacy assessment of their application
 taking all aspects of their application into consideration.</p>
    <h3 class="heading settled" data-level="6.1" id="browsing-context"><span class="secno">6.1. </span><span class="content">Browsing Context</span><a class="self-link" href="#browsing-context"></a></h3>
-   <p>Sensor <a data-link-type="dfn" href="#output-data">output data</a> should only be available in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context">top-level browsing context</a> to avoid the privacy risk of
+   <p>Sensor <a data-link-type="dfn" href="#output-data">output data</a> must only be available in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context">top-level browsing context</a> to avoid the privacy risk of
 sharing the information defined in this specification
 (and specifications extending it)
 with contexts unfamiliar to the user.
@@ -1884,7 +1884,7 @@ the active tab, and not on the background tabs or within iframes.</p>
    <h3 class="heading settled" data-level="6.2" id="secure-context"><span class="secno">6.2. </span><span class="content">Secure Context</span><a class="self-link" href="#secure-context"></a></h3>
    <p>Sensor <a data-link-type="dfn" href="#output-data">output data</a> is explicitly flagged by the
 Secure Contexts specification <a data-link-type="biblio" href="#biblio-powerful-features">[powerful-features]</a> as a high-value target for network attackers.
-As such, sensor <a data-link-type="dfn" href="#output-data">output data</a> should only be available
+As such, sensor <a data-link-type="dfn" href="#output-data">output data</a> must only be available
 within a <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/powerfulfeatures/#secure-context">secure context</a>.</p>
    <h3 class="heading settled" data-level="6.3" id="permissioning"><span class="secno">6.3. </span><span class="content">Obtaining Explicit User Permission</span><a class="self-link" href="#permissioning"></a></h3>
    <div class="issue no-marker" id="issue-d41d8cd9">

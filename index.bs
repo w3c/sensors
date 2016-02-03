@@ -516,7 +516,7 @@ taking all aspects of their application into consideration.
 Browsing Context {#browsing-context}
 ----------------
 
-Sensor <a>output data</a> should only be available in the
+Sensor <a>output data</a> must only be available in the
 <a>top-level browsing context</a> to avoid the privacy risk of
 sharing the information defined in this specification
 (and specifications extending it)
@@ -530,7 +530,7 @@ Secure Context {#secure-context}
 Sensor <a>output data</a> is explicitly flagged by the
 Secure Contexts specification [[powerful-features]]
 as a high-value target for network attackers.
-As such, sensor <a>output data</a> should only be available
+As such, sensor <a>output data</a> must only be available
 within a <a>secure context</a>.
 
 Obtaining Explicit User Permission {#permissioning}
