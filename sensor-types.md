@@ -1,7 +1,8 @@
 
 
-| Sensor type                 | Underlying physical sensors                                                 | Android name                                                 | Reporting mode on Android |
-| --------------------------- | --------------------------------------------------------------------------- | ------------------------------------------------------------ | ------------------------- |
+| Sensor type                   | Underlying physical sensors                                                 | Android name                                                 | Reporting mode on Android |
+| ----------------------------- | --------------------------------------------------------------------------- | ------------------------------------------------------------ | ------------------------- |
+| Geolocation Sensor            | GPS, cell triangulation, etc.                                               | [Location][a_location]                                       | On-change                 |
 | *Accelerometer*               | Accelerometer                                                               | [Accelerometer][a_accelerometer]                             | Continuous                |
 | Ambient Temperature Sensor    |                                                                             | [Ambient temperature][a_ambient_temperature]                 | On-change                 |
 | Compass                       | Magnetometer                                                                | [Magnetic field sensor][a_magnetic_field_sensor]             | Continuous                |
@@ -20,6 +21,7 @@
 | *Rotation vector*             | Accelerometer, Magnetometer, AND (when present) _Gyroscope_                 | [Rotation vector][a_rotation_vector]                         | Continuous                |
 | Pedometer                     | Accelerometer                                                               | [Step counter][a_step_counter]                               | On-change                 |
 
+[a_location]: http://developer.android.com/reference/android/location/package-summary.html
 [a_accelerometer]: https://source.android.com/devices/sensors/sensor-types.html#accelerometer                             
 [a_ambient_temperature]: https://source.android.com/devices/sensors/sensor-types.html#ambient_temperature                 
 [a_magnetic_field_sensor]: https://source.android.com/devices/sensors/sensor-types.html#magnetic_field_sensor             
