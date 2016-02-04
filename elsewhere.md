@@ -52,9 +52,9 @@ Related conversations, posts, etc.
 
 [501]: https://github.com/rwaldron/johnny-five/wiki/Sensor
 [502]: https://source.android.com/devices/halref/sensors_8h.html
-[505]: http://developer.android.com/reference/android/hardware/Sensor.html
 [503]: https://developer.apple.com/library/ios/documentation/CoreMotion/Reference/CMMotionManager_Class/index.html
 [504]: http://nshipster.com/cmdevicemotion/
+[505]: http://developer.android.com/reference/android/hardware/Sensor.html
 
 
 http://www.ni.com/white-paper/14860/en/
