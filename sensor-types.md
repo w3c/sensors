@@ -1,27 +1,24 @@
 
 
-| Sensor type | Underlying physical sensors                                                 | Android name                                                 | Reporting mode on Android |
-| ----------- | --------------------------------------------------------------------------- | ------------------------------------------------------------ | ------------------------- |
-|             | Accelerometer                                                               | [Accelerometer][a_accelerometer]                             | Continuous                |
-|             |                                                                             | [Ambient temperature][a_ambient_temperature]                 | On-change                 |
-|             | Magnetometer                                                                | [Magnetic field sensor][a_magnetic_field_sensor]             | Continuous                |
-|             | Gyroscope                                                                   | [Gyroscope][a_gyroscope]                                     | Continuous                |
-|             |                                                                             | [Heart Rate][a_heart_rate]                                   | On-change                 |
-|             |                                                                             | [Light][a_light]                                             | On-change                 |
-|             |                                                                             | [Proximity][a_proximity]                                     | On-change                 |
-|             |                                                                             | [Pressure][a_pressure]                                       | Continuous                |
-|             |                                                                             | [Relative humidity][a_relative_humidity]                     | On-change                 |
-|             | Accelerometer, Gyroscope MUST NOT USE Magnetometer                          | [Game rotation vector][a_game_rotation_vector]               | Continuous                |
-|             | Accelerometer, Magnetometer, MUST NOT USE Gyroscope                         | [Geomagnetic rotation vector][a_geomagnetic_rotation_vector] | Continuous                |
-|             | Accelerometer, Gyroscope                                                    | [Gravity][a_gravity]                                         | Continuous                |
-|             | Gyroscope                                                                   | [Gyroscope uncalibrated][a_gyroscope_uncalibrated]           | Continuous                |
-|             | Accelerometer, Gyroscope (if present) or Magnetometer (if gyro not present) | [Linear acceleration][a_linear_acceleration]                 | Continuous                |
-|             | Magnetometer                                                                | [Magnetic field uncalibrated][a_magnetic_field_uncalibrated] | Continuous                |
-|             | Accelerometer, Magnetometer, AND (when present) _Gyroscope_                 | [Rotation vector][a_rotation_vector]                         | Continuous                |
-|             | Accelerometer (or another as long as very low power)                        | [Significant motion][a_significant_motion]                   | One-shot                  |
-|             | Accelerometer                                                               | [Step counter][a_step_counter]                               | On-change                 |
-|             | Accelerometer                                                               | [Step detector][a_step_detector]                             | Special                   |
-|             | Accelerometer                                                               | [Tilt detector][a_tilt_detector]                             | Special                   |
+| Sensor type                 | Underlying physical sensors                                                 | Android name                                                 | Reporting mode on Android |
+| --------------------------- | --------------------------------------------------------------------------- | ------------------------------------------------------------ | ------------------------- |
+| *Accelerometer*               | Accelerometer                                                               | [Accelerometer][a_accelerometer]                             | Continuous                |
+| Ambient Temperature Sensor    |                                                                             | [Ambient temperature][a_ambient_temperature]                 | On-change                 |
+| Compass                       | Magnetometer                                                                | [Magnetic field sensor][a_magnetic_field_sensor]             | Continuous                |
+| Gyroscope                     | Gyroscope                                                                   | [Gyroscope][a_gyroscope]                                     | Continuous                |
+| Heart Rate Sensor             |                                                                             | [Heart Rate][a_heart_rate]                                   | On-change                 |
+| Ambient Light Sensor          |                                                                             | [Light][a_light]                                             | On-change                 |
+| Proximity Sensor              |                                                                             | [Proximity][a_proximity]                                     | On-change                 |
+| Pressure Sensor               |                                                                             | [Pressure][a_pressure]                                       | Continuous                |
+| Relative Humidity Sensor      |                                                                             | [Relative humidity][a_relative_humidity]                     | On-change                 |
+| *Game rotation vector*        | Accelerometer, Gyroscope MUST NOT USE Magnetometer                          | [Game rotation vector][a_game_rotation_vector]               | Continuous                |
+| *Geomagnetic rotation vector* | Accelerometer, Magnetometer, MUST NOT USE Gyroscope                         | [Geomagnetic rotation vector][a_geomagnetic_rotation_vector] | Continuous                |
+| *Gravity*                     | Accelerometer, Gyroscope                                                    | [Gravity][a_gravity]                                         | Continuous                |
+| *Gyroscope uncalibrated*      | Gyroscope                                                                   | [Gyroscope uncalibrated][a_gyroscope_uncalibrated]           | Continuous                |
+| *Linear acceleration*         | Accelerometer, Gyroscope (if present) or Magnetometer (if gyro not present) | [Linear acceleration][a_linear_acceleration]                 | Continuous                |
+| *Magnetic field uncalibrated* | Magnetometer                                                                | [Magnetic field uncalibrated][a_magnetic_field_uncalibrated] | Continuous                |
+| *Rotation vector*             | Accelerometer, Magnetometer, AND (when present) _Gyroscope_                 | [Rotation vector][a_rotation_vector]                         | Continuous                |
+| Pedometer                     | Accelerometer                                                               | [Step counter][a_step_counter]                               | On-change                 |
 
 [a_accelerometer]: https://source.android.com/devices/sensors/sensor-types.html#accelerometer                             
 [a_ambient_temperature]: https://source.android.com/devices/sensors/sensor-types.html#ambient_temperature                 
@@ -39,7 +36,4 @@
 [a_linear_acceleration]: https://source.android.com/devices/sensors/sensor-types.html#linear_acceleration                 
 [a_magnetic_field_uncalibrated]: https://source.android.com/devices/sensors/sensor-types.html#magnetic_field_uncalibrated 
 [a_rotation_vector]: https://source.android.com/devices/sensors/sensor-types.html#rotation_vector                         
-[a_significant_motion]: https://source.android.com/devices/sensors/sensor-types.html#significant_motion                   
 [a_step_counter]: https://source.android.com/devices/sensors/sensor-types.html#step_counter                               
-[a_step_detector]: https://source.android.com/devices/sensors/sensor-types.html#step_detector                             
-[a_tilt_detector]: https://source.android.com/devices/sensors/sensor-types.html#tilt_detector                             
