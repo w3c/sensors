@@ -632,6 +632,12 @@ for each <a>sensor types</a>.
 
 Issue(w3c/sensors#22):
 
+Immutability requirements
+-------------------------
+
+Attributes of the <a interface>SensorReading</a> subclass that
+hold <a>output data</a> must be readonly.
+
 Example WebIDL
 --------------
 

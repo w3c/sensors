@@ -1361,7 +1361,7 @@
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="http://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/Icons/w3c_home" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-02-04">4 February 2016</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-02-05">5 February 2016</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1464,7 +1464,8 @@ that can be extended to accommodate different sensor types.</p>
       <li><a href="#defining-a-default"><span class="secno">7.4</span> <span class="content">Defining a default</span></a>
       <li><a href="#calibration0"><span class="secno">7.5</span> <span class="content">Calibration</span></a>
       <li><a href="#permission-api"><span class="secno">7.6</span> <span class="content">Extending the Permission API</span></a>
-      <li><a href="#example-webidl"><span class="secno">7.7</span> <span class="content">Example WebIDL</span></a>
+      <li><a href="#immutability-requirements"><span class="secno">7.7</span> <span class="content">Immutability requirements</span></a>
+      <li><a href="#example-webidl"><span class="secno">7.8</span> <span class="content">Example WebIDL</span></a>
      </ol>
     <li><a href="#acknowledgements"><span class="secno">8</span> <span class="content">Acknowledgements</span></a>
     <li>
@@ -1990,11 +1991,17 @@ should always be <a data-link-type="dfn" href="#calibration">calibrated</a>.</p>
       <input checked="" class="task-list-item-checkbox" disabled="" type="checkbox">
        Email @public-script-coord about <code>partial enum</code> proposal
      <li class="task-list-item">
+      <input checked="" class="task-list-item-checkbox" disabled="" type="checkbox">
+       Wait for @public-script-coord feedback
+     <li class="task-list-item">
       <input class="task-list-item-checkbox" disabled="" type="checkbox">
-       Wait for @public-script-coord feedback and document it in Extensibility section accordingly.
+       Document current issue as a note in the Extensibility section of the spec.
     </ul>
    </div>
-   <h3 class="heading settled" data-level="7.7" id="example-webidl"><span class="secno">7.7. </span><span class="content">Example WebIDL</span><a class="self-link" href="#example-webidl"></a></h3>
+   <h3 class="heading settled" data-level="7.7" id="immutability-requirements"><span class="secno">7.7. </span><span class="content">Immutability requirements</span><a class="self-link" href="#immutability-requirements"></a></h3>
+   <p>Attributes of the <a class="idl-code" data-link-type="interface" href="#sensorreading1">SensorReading</a> subclass that
+hold <a data-link-type="dfn" href="#output-data">output data</a> must be readonly.</p>
+   <h3 class="heading settled" data-level="7.8" id="example-webidl"><span class="secno">7.8. </span><span class="content">Example WebIDL</span><a class="self-link" href="#example-webidl"></a></h3>
    <p>Here’s example WebIDL for a possible extension of this specification
 for proximity <a data-link-type="dfn" href="#sensor">sensors</a>.</p>
 <pre class="example" id="example-b23dffad"><a class="self-link" href="#example-b23dffad"></a>[Constructor(optional ProximitySensorOptions proximitySensorOptions)]
