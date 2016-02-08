@@ -1361,7 +1361,7 @@
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="http://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/Icons/w3c_home" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-02-05">5 February 2016</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-02-08">8 February 2016</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1432,14 +1432,13 @@ that can be extended to accommodate different sensor types.</p>
        <ol class="toc">
         <li><a href="#sensor-constructor"><span class="secno">5.1.1</span> <span class="content">Sensor Constructor</span></a>
         <li><a href="#sensorsensorid"><span class="secno">5.1.2</span> <span class="content">Sensor.sensorId</span></a>
-        <li><a href="#sensorthreshold"><span class="secno">5.1.3</span> <span class="content">Sensor.threshold</span></a>
-        <li><a href="#sensortimeout"><span class="secno">5.1.4</span> <span class="content">Sensor.timeout</span></a>
-        <li><a href="#sensorreading"><span class="secno">5.1.5</span> <span class="content">Sensor.reading</span></a>
-        <li><a href="#sensoronerror"><span class="secno">5.1.6</span> <span class="content">Sensor.onerror</span></a>
-        <li><a href="#sensorondata"><span class="secno">5.1.7</span> <span class="content">Sensor.ondata</span></a>
-        <li><a href="#sensoronchange"><span class="secno">5.1.8</span> <span class="content">Sensor.onchange</span></a>
-        <li><a href="#sensoroncalibration"><span class="secno">5.1.9</span> <span class="content">Sensor.oncalibration</span></a>
-        <li><a href="#event-handlers"><span class="secno">5.1.10</span> <span class="content">Event handlers</span></a>
+        <li><a href="#sensortimeout"><span class="secno">5.1.3</span> <span class="content">Sensor.timeout</span></a>
+        <li><a href="#sensorreading"><span class="secno">5.1.4</span> <span class="content">Sensor.reading</span></a>
+        <li><a href="#sensoronerror"><span class="secno">5.1.5</span> <span class="content">Sensor.onerror</span></a>
+        <li><a href="#sensorondata"><span class="secno">5.1.6</span> <span class="content">Sensor.ondata</span></a>
+        <li><a href="#sensoronchange"><span class="secno">5.1.7</span> <span class="content">Sensor.onchange</span></a>
+        <li><a href="#sensoroncalibration"><span class="secno">5.1.8</span> <span class="content">Sensor.oncalibration</span></a>
+        <li><a href="#event-handlers"><span class="secno">5.1.9</span> <span class="content">Event handlers</span></a>
        </ol>
       <li>
        <a href="#the-sensorreading-interface"><span class="secno">5.2</span> <span class="content">The SensorReading Interface</span></a>
@@ -1697,7 +1696,6 @@ define ways to uniquely identify each one.</p>
 interface <a class="idl-code" data-link-type="interface" href="#sensor0">Sensor</a> : <a data-link-type="idl-name" href="https://dom.spec.whatwg.org#interface-eventtarget">EventTarget</a> {
   static Promise&lt;<a data-link-type="idl-name" href="#sensorreading1">SensorReading</a>> <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="method" data-export="" data-lt="requestReading(requestReadingOptions)" id="dom-sensor-requestreading">requestReading<a class="self-link" href="#dom-sensor-requestreading"></a></dfn>(<a data-link-type="idl-name" href="#dictdef-requestreadingoptions">RequestReadingOptions</a> <dfn class="idl-code" data-dfn-for="Sensor/requestReading(requestReadingOptions)" data-dfn-type="argument" data-export="" id="dom-sensor-requestreading-requestreadingoptions-requestreadingoptions">requestReadingOptions<a class="self-link" href="#dom-sensor-requestreading-requestreadingoptions-requestreadingoptions"></a></dfn>);
   readonly attribute DOMString <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-readonly="" data-type="DOMString " id="dom-sensor-sensorid">sensorId<a class="self-link" href="#dom-sensor-sensorid"></a></dfn>;
-  attribute double? <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="double? " id="dom-sensor-threshold">threshold<a class="self-link" href="#dom-sensor-threshold"></a></dfn>;
   attribute double <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="double " id="dom-sensor-timeout">timeout<a class="self-link" href="#dom-sensor-timeout"></a></dfn>; 
   readonly attribute <a data-link-type="idl-name" href="#sensorreading1">SensorReading</a>? <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-readonly="" data-type="SensorReading? " id="dom-sensor-reading">reading<a class="self-link" href="#dom-sensor-reading"></a></dfn>;
   attribute <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a> <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="EventHandler " id="dom-sensor-onerror">onerror<a class="self-link" href="#dom-sensor-onerror"></a></dfn>;
@@ -1717,7 +1715,6 @@ dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="d
 
 dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-sensoroptions">SensorOptions<a class="self-link" href="#dictdef-sensoroptions"></a></dfn> {
   DOMString? <dfn class="idl-code" data-dfn-for="SensorOptions" data-dfn-type="dict-member" data-export="" data-type="DOMString? " id="dom-sensoroptions-sensorid">sensorId<a class="self-link" href="#dom-sensoroptions-sensorid"></a></dfn>;
-  double? <dfn class="idl-code" data-dfn-for="SensorOptions" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-sensoroptions-threshold">threshold<a class="self-link" href="#dom-sensoroptions-threshold"></a></dfn>;
   double? <dfn class="idl-code" data-dfn-for="SensorOptions" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-sensoroptions-frequency">frequency<a class="self-link" href="#dom-sensoroptions-frequency"></a></dfn>;
   double? <dfn class="idl-code" data-dfn-for="SensorOptions" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-sensoroptions-timeout">timeout<a class="self-link" href="#dom-sensoroptions-timeout"></a></dfn>;
 };
@@ -1804,17 +1801,16 @@ dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="d
      </ol>
    </ol>
    <h4 class="heading settled" data-level="5.1.2" id="sensorsensorid"><span class="secno">5.1.2. </span><span class="content">Sensor.sensorId</span><a class="self-link" href="#sensorsensorid"></a></h4>
-   <h4 class="heading settled" data-level="5.1.3" id="sensorthreshold"><span class="secno">5.1.3. </span><span class="content">Sensor.threshold</span><a class="self-link" href="#sensorthreshold"></a></h4>
-   <h4 class="heading settled" data-level="5.1.4" id="sensortimeout"><span class="secno">5.1.4. </span><span class="content">Sensor.timeout</span><a class="self-link" href="#sensortimeout"></a></h4>
-   <h4 class="heading settled" data-level="5.1.5" id="sensorreading"><span class="secno">5.1.5. </span><span class="content">Sensor.reading</span><a class="self-link" href="#sensorreading"></a></h4>
+   <h4 class="heading settled" data-level="5.1.3" id="sensortimeout"><span class="secno">5.1.3. </span><span class="content">Sensor.timeout</span><a class="self-link" href="#sensortimeout"></a></h4>
+   <h4 class="heading settled" data-level="5.1.4" id="sensorreading"><span class="secno">5.1.4. </span><span class="content">Sensor.reading</span><a class="self-link" href="#sensorreading"></a></h4>
    <p>The reading attribute of must always point to the latest <a data-link-type="dfn" href="#sensorreading0">SensorReading</a> whatever the <a data-link-type="dfn" href="#frequency">frequency</a> so that
 the reading attribute of two instances of the same Sensor interface
 associated with the same <a data-link-type="dfn" href="#sensor">sensor</a> hold the same <a data-link-type="dfn" href="#sensorreading0">SensorReading</a> during a single <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-loop">event loop</a> turn.</p>
-   <h4 class="heading settled" data-level="5.1.6" id="sensoronerror"><span class="secno">5.1.6. </span><span class="content">Sensor.onerror</span><a class="self-link" href="#sensoronerror"></a></h4>
-   <h4 class="heading settled" data-level="5.1.7" id="sensorondata"><span class="secno">5.1.7. </span><span class="content">Sensor.ondata</span><a class="self-link" href="#sensorondata"></a></h4>
-   <h4 class="heading settled" data-level="5.1.8" id="sensoronchange"><span class="secno">5.1.8. </span><span class="content">Sensor.onchange</span><a class="self-link" href="#sensoronchange"></a></h4>
-   <h4 class="heading settled" data-level="5.1.9" id="sensoroncalibration"><span class="secno">5.1.9. </span><span class="content">Sensor.oncalibration</span><a class="self-link" href="#sensoroncalibration"></a></h4>
-   <h4 class="heading settled" data-level="5.1.10" id="event-handlers"><span class="secno">5.1.10. </span><span class="content">Event handlers</span><a class="self-link" href="#event-handlers"></a></h4>
+   <h4 class="heading settled" data-level="5.1.5" id="sensoronerror"><span class="secno">5.1.5. </span><span class="content">Sensor.onerror</span><a class="self-link" href="#sensoronerror"></a></h4>
+   <h4 class="heading settled" data-level="5.1.6" id="sensorondata"><span class="secno">5.1.6. </span><span class="content">Sensor.ondata</span><a class="self-link" href="#sensorondata"></a></h4>
+   <h4 class="heading settled" data-level="5.1.7" id="sensoronchange"><span class="secno">5.1.7. </span><span class="content">Sensor.onchange</span><a class="self-link" href="#sensoronchange"></a></h4>
+   <h4 class="heading settled" data-level="5.1.8" id="sensoroncalibration"><span class="secno">5.1.8. </span><span class="content">Sensor.oncalibration</span><a class="self-link" href="#sensoroncalibration"></a></h4>
+   <h4 class="heading settled" data-level="5.1.9" id="event-handlers"><span class="secno">5.1.9. </span><span class="content">Event handlers</span><a class="self-link" href="#event-handlers"></a></h4>
    <p>The following are the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers">event handlers</a> (and their corresponding <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-type">event handler event types</a>) that MUST be supported as attributes by the objects implementing the <a data-link-type="dfn" href="#sensor">Sensor</a> interface:</p>
    <table class="simple">
     <thead>
@@ -2170,12 +2166,6 @@ for their editorial input.</p>
    <li><a href="#dom-sensor-sensor">Sensor(sensorOptions)</a><span>, in §5.1</span>
    <li><a href="#sensor-types">sensor types</a><span>, in §2</span>
    <li>
-    threshold
-    <ul>
-     <li><a href="#dom-sensor-threshold">attribute for Sensor</a><span>, in §5.1</span>
-     <li><a href="#dom-sensoroptions-threshold">dict-member for SensorOptions</a><span>, in §5.1</span>
-    </ul>
-   <li>
     timeout
     <ul>
      <li><a href="#dom-sensor-timeout">attribute for Sensor</a><span>, in §5.1</span>
@@ -2263,7 +2253,6 @@ for their editorial input.</p>
 interface <a class="idl-code" data-link-type="interface" href="#sensor0">Sensor</a> : <a data-link-type="idl-name" href="https://dom.spec.whatwg.org#interface-eventtarget">EventTarget</a> {
   static Promise&lt;<a data-link-type="idl-name" href="#sensorreading1">SensorReading</a>> <a href="#dom-sensor-requestreading">requestReading</a>(<a data-link-type="idl-name" href="#dictdef-requestreadingoptions">RequestReadingOptions</a> <a href="#dom-sensor-requestreading-requestreadingoptions-requestreadingoptions">requestReadingOptions</a>);
   readonly attribute DOMString <a data-readonly="" data-type="DOMString " href="#dom-sensor-sensorid">sensorId</a>;
-  attribute double? <a data-type="double? " href="#dom-sensor-threshold">threshold</a>;
   attribute double <a data-type="double " href="#dom-sensor-timeout">timeout</a>; 
   readonly attribute <a data-link-type="idl-name" href="#sensorreading1">SensorReading</a>? <a data-readonly="" data-type="SensorReading? " href="#dom-sensor-reading">reading</a>;
   attribute <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a> <a data-type="EventHandler " href="#dom-sensor-onerror">onerror</a>;
@@ -2283,7 +2272,6 @@ dictionary <a href="#dictdef-sensorreadingeventinit">SensorReadingEventInit</a> 
 
 dictionary <a href="#dictdef-sensoroptions">SensorOptions</a> {
   DOMString? <a data-type="DOMString? " href="#dom-sensoroptions-sensorid">sensorId</a>;
-  double? <a data-type="double? " href="#dom-sensoroptions-threshold">threshold</a>;
   double? <a data-type="double? " href="#dom-sensoroptions-frequency">frequency</a>;
   double? <a data-type="double? " href="#dom-sensoroptions-timeout">timeout</a>;
 };

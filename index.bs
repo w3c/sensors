@@ -336,7 +336,6 @@ TODO: define the following concepts
 interface Sensor : EventTarget {
   static Promise&lt;SensorReading&gt; requestReading(RequestReadingOptions requestReadingOptions);
   readonly attribute DOMString sensorId;
-  attribute double? threshold;
   attribute double timeout; 
   readonly attribute SensorReading? reading;
   attribute EventHandler onerror;
@@ -356,7 +355,6 @@ dictionary SensorReadingEventInit : EventInit {
 
 dictionary SensorOptions {
   DOMString? sensorId;
-  double? threshold;
   double? frequency;
   double? timeout;
 };
@@ -401,8 +399,6 @@ The <a>Sensor()</a> constructor must run these steps:
     1.  run the <a>read steps</a> for <var>sensor</var>.
 
 ### Sensor.sensorId
-
-### Sensor.threshold
 
 ### Sensor.timeout
 
