@@ -335,7 +335,6 @@ TODO: define the following concepts
 [Constructor(optional SensorOptions sensorOptions)]
 interface Sensor : EventTarget {
   static Promise&lt;SensorReading&gt; requestReading(RequestReadingOptions requestReadingOptions);
-  readonly attribute DOMString sensorId;
   attribute double timeout; 
   readonly attribute SensorReading? reading;
   attribute EventHandler onerror;
@@ -354,7 +353,6 @@ dictionary SensorReadingEventInit : EventInit {
 };
 
 dictionary SensorOptions {
-  DOMString? sensorId;
   double? frequency;
   double? timeout;
 };
@@ -373,11 +371,6 @@ The <a>Sensor()</a> constructor must run these steps:
     1.  <a>throw</a> a SecurityError.
 1.  If the <a>browsing context</a> is not a <a>top-level browsing context</a>, then:
     1.  <a>throw</a> a SecurityError.
-1.  If sensorOptions.sensorId is specified, then:
-    1.  If there is a <a>sensor</a> identified by sensorOptions.sensorId, then
-        1.  let <var>sensor</var> be a new <a interface>Sensor</a> object.
-        1.  associate <var>sensor</var> with that <a>sensor</a>
-    1. Otherwise, <a>throw</a> a TypeError.
 1.  Otherwise, if <a>identifying parameters</a> in sensorOptions are set, then:
     1.  If these <a>identifying parameters</a> allow a unique <a>sensor</a> to be identified, then:
         1.  let <var>sensor</var> be a new <a interface>Sensor</a> object.
@@ -397,8 +390,6 @@ The <a>Sensor()</a> constructor must run these steps:
         1.   let <var>latest_reading</var> be the most recent of those <a>SensorReadings</a>.
         2.   set the value of <var>sensor</var>'s reading attribute to <var>latest_reading</var>.
     1.  run the <a>read steps</a> for <var>sensor</var>.
-
-### Sensor.sensorId
 
 ### Sensor.timeout
 
@@ -460,7 +451,6 @@ A <dfn>SensorReading</dfn> represents the state of a <a>sensor</a> at a given po
 [Constructor()]
 interface SensorReading {
   readonly attribute DOMHighResTimeStamp timeStamp;
-  readonly attribute DOMString sensorId;
 };
 </pre>
 
@@ -469,10 +459,6 @@ interface SensorReading {
 Returns a timestamp of the time
 at which the <a>read steps</a> was carried out
 expressed in milliseconds that passed since the <a>time origin</a>.
-
-### SensorReading.sensorId
-
-Returns the id of the sensor the reading is taken from.
 
 Security and privacy considerations
 ===================================
