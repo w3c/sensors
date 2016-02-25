@@ -598,7 +598,14 @@ TODO: provide guidance on when to:
 Defining a default
 ------------------
 
-TODO: provide guidance on how and when to set a default <a>sensor</a>.
+Extension specifications should define a default <a>sensor</a>
+for each <a>sensor type</a> they define.
+Generally, devices are equipped with a single <a>sensor</a>
+of each <a lt="sensor types">type</a>,
+so defining a default <a>sensor</a>
+should be easy.
+For <a>sensor types</a> where multiple <a>sensors</a> are common,
+extension specifications may choose not to define a default sensor.
 
 Calibration {#calibration}
 -----------

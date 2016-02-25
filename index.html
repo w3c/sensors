@@ -1938,7 +1938,11 @@ exposing <a data-link-type="dfn" href="#low-level">low-level</a> sensor APIs, bu
      <p>add constructor parameters to tweak sensors settings (e.g. setting required accuracy).</p>
    </ul>
    <h3 class="heading settled" data-level="7.4" id="defining-a-default"><span class="secno">7.4. </span><span class="content">Defining a default</span><a class="self-link" href="#defining-a-default"></a></h3>
-   <p>TODO: provide guidance on how and when to set a default <a data-link-type="dfn" href="#sensor">sensor</a>.</p>
+   <p>Extension specifications should define a default <a data-link-type="dfn" href="#sensor">sensor</a> for each <a data-link-type="dfn" href="#sensor-types">sensor type</a> they define.
+Generally, devices are equipped with a single <a data-link-type="dfn" href="#sensor">sensor</a> of each <a data-link-type="dfn" href="#sensor-types">type</a>,
+so defining a default <a data-link-type="dfn" href="#sensor">sensor</a> should be easy.
+For <a data-link-type="dfn" href="#sensor-types">sensor types</a> where multiple <a data-link-type="dfn" href="#sensor">sensors</a> are common,
+extension specifications may choose not to define a default sensor.</p>
    <h3 class="heading settled" data-level="7.5" id="calibration0"><span class="secno">7.5. </span><span class="content">Calibration</span><a class="self-link" href="#calibration0"></a></h3>
    <p><a data-link-type="dfn" href="#output-data">Output data</a> emitted by <a class="idl-code" data-link-type="interface" href="#sensor0">Sensor</a> objects
 should always be <a data-link-type="dfn" href="#calibration">calibrated</a>.</p>
