@@ -1361,7 +1361,7 @@
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="http://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/Icons/w3c_home" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-02-16">16 February 2016</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-02-25">25 February 2016</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1517,10 +1517,10 @@ are corrected through <dfn data-dfn-type="dfn" data-noexport="" id="calibration"
 through a process called <a data-link-type="dfn" href="#sensor-fusion">sensor fusion</a>.</p>
    <p>Different <dfn data-dfn-type="dfn" data-noexport="" id="sensor-types">sensor types<a class="self-link" href="#sensor-types"></a></dfn> measure different physical quantities
 such as temperature, air pressure, heart-rate, or luminosity.</p>
-   <p>For the purpose of this specification we distinguish between <a data-link-type="dfn" href="#high-level">high-level</a> and <a data-link-type="dfn" href="#low-level">low-level</a> sensor types.</p>
+   <p>For the purpose of this specification we distinguish between <a data-link-type="dfn" href="#high-level">high-level</a> and <a data-link-type="dfn" href="#low-level">low-level</a> <a data-link-type="dfn" href="#sensor-types">sensor types</a>.</p>
    <p><a data-link-type="dfn" href="#sensor-types">Sensor types</a> which are characterized by their implementation
 are referred to as <dfn data-dfn-type="dfn" data-noexport="" id="low-level">low-level<a class="self-link" href="#low-level"></a></dfn> sensors.
-For example a Gyroscope is a <a data-link-type="dfn" href="#low-level">low-level</a> sensor type.</p>
+For example a Gyroscope is a <a data-link-type="dfn" href="#low-level">low-level</a> <a data-link-type="dfn" href="#sensor-types">sensor types</a>.</p>
    <p><a data-link-type="dfn" href="#sensor">Sensors</a> named after their <a data-link-type="dfn" href="#output-data">output data</a>,
 regardless of the implementation,
 are said to be <dfn data-dfn-type="dfn" data-noexport="" id="high-level">high-level<a class="self-link" href="#high-level"></a></dfn> sensors.
@@ -1531,8 +1531,7 @@ is purposefully left opaque
 wifi networks, etc. or any combination of the above)
 and depends on various, implementation-specific heuristics. <a data-link-type="dfn" href="#high-level">High-level</a> sensors are generally the fruits of
 applying algorithms to <a data-link-type="dfn" href="#low-level">low-level</a> sensors—<wbr>for example, a pedometer can be built using only the output of a gyroscope—<wbr>or of <a data-link-type="dfn" href="#sensor-fusion">sensor fusion</a>.</p>
-   <p>That said, the distinction between <a data-link-type="dfn" href="#high-level">high-level</a> and <a data-link-type="dfn" href="#low-level">low-level</a> sensor types
-is somewhat arbitrary and the line between the two is often blurred.
+   <p>That said, the distinction between <a data-link-type="dfn" href="#high-level">high-level</a> and <a data-link-type="dfn" href="#low-level">low-level</a> <a data-link-type="dfn" href="#sensor-types">sensor types</a> is somewhat arbitrary and the line between the two is often blurred.
 For instance, a barometer, which measures air pressure,
 would be considered <a data-link-type="dfn" href="#low-level">low-level</a> for most common purposes,
 even though it is the product of the <a data-link-type="dfn" href="#sensor-fusion">sensor fusion</a> of
@@ -1540,7 +1539,7 @@ resistive piezo-electric pressure and temperature sensors.
 Exposing the sensors that compose it would serve no practical purpose;
 Who cares about the temperature of a piezo-electric sensor?
 A pressure-altimeter would probably fall in the same category,
-while a nondescript altimeter—<wbr>which could get its data from either a barometer or a GPS signal—<wbr>would clearly be categorized as a <a data-link-type="dfn" href="#high-level">high-level</a> sensor type.</p>
+while a nondescript altimeter—<wbr>which could get its data from either a barometer or a GPS signal—<wbr>would clearly be categorized as a <a data-link-type="dfn" href="#high-level">high-level</a> <a data-link-type="dfn" href="#sensor-types">sensor type</a>.</p>
    <p>Because the distinction is somewhat blurry,
 extensions to this specification (see <a href="#extensibility">§7 Extensibility</a>)
 are encouraged to provide domain-specific definitions of <a data-link-type="dfn" href="#high-level">high-level</a> and <a data-link-type="dfn" href="#low-level">low-level</a> sensors
