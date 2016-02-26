@@ -372,7 +372,6 @@ TODO: define the following concepts
 - <dfn>identifying parameters</dfn>
 
 <pre class="idl">
-[Constructor(optional SensorOptions sensorOptions)]
 interface Sensor : EventTarget {
   static Promise&lt;SensorReading&gt; requestReading(RequestReadingOptions requestReadingOptions);
   attribute double timeout; 
@@ -402,34 +401,6 @@ dictionary RequestReadingOptions : SensorOptions {
 };
 
 </pre>
-
-### Sensor Constructor
-
-The <a>Sensor()</a> constructor must run these steps:
-
-1.  If the <a>incumbent settings object</a> is not a <a>secure context</a>, then:
-    1.  <a>throw</a> a SecurityError.
-1.  If the <a>browsing context</a> is not a <a>top-level browsing context</a>, then:
-    1.  <a>throw</a> a SecurityError.
-1.  Otherwise, if <a>identifying parameters</a> in sensorOptions are set, then:
-    1.  If these <a>identifying parameters</a> allow a unique <a>sensor</a> to be identified, then:
-        1.  let <var>sensor</var> be a new <a interface>Sensor</a> object.
-        1.  associate <var>sensor</var> with that <a>sensor</a>
-    1. Otherwise, <a>throw</a> a TypeError.
-1.  Otherwise, if a default sensor exists for this <a>sensor type</a>:
-    1.  let <var>sensor</var> be a new <a interface>Sensor</a> object.
-    1.  associate that <a>sensor</a> with it.
-1.  Otherwise, <a>throw</a> a TypeError.
-1.  Set <var>sensor</var>'s reading attribute to `null`.
-1.  return <var>sensor</var>.
-1.  Run these sub-steps <a>in parallel</a>:
-    1.  If <a>permission</a> is not granted,
-        <a>queue a task</a> to <a>fire an event</a> named error on <var>sensor</var>,
-        and terminate these sub-steps.
-    1.  If cached <a>SensorReadings</a> are available,
-        1.   let <var>latest_reading</var> be the most recent of those <a>SensorReadings</a>.
-        2.   set the value of <var>sensor</var>'s reading attribute to <var>latest_reading</var>.
-    1.  run the <a>read steps</a> for <var>sensor</var>.
 
 ### Sensor.timeout
 
@@ -499,6 +470,42 @@ interface SensorReading {
 Returns a timestamp of the time
 at which the <a>read steps</a> was carried out
 expressed in milliseconds that passed since the <a>time origin</a>.
+
+Abstract Operations
+===================
+
+Sensor Object Construction
+--------------------------
+
+: input
+:: <var>options</a>, a <a dictionary>SensorOptions</a> object.
+: output
+:: <var>sensor</var>, an instance of a subclass of <a>Sensor</a>.
+
+1.  If the <a>incumbent settings object</a> is not a <a>secure context</a>, then:
+    1.  <a>throw</a> a SecurityError.
+1.  If the <a>browsing context</a> is not a <a>top-level browsing context</a>, then:
+    1.  <a>throw</a> a SecurityError.
+1.  Otherwise, if <a>identifying parameters</a> in <var>options</a> are set, then:
+    1.  If these <a>identifying parameters</a> allow a unique <a>sensor</a> to be identified, then:
+        1.  let <var>sensor</var> be a new <a interface>Sensor</a> object.
+        1.  associate <var>sensor</var> with that <a>sensor</a>
+    1. Otherwise, <a>throw</a> a TypeError.
+1.  Otherwise, if a default sensor exists for this <a>sensor type</a>:
+    1.  let <var>sensor</var> be a new <a interface>Sensor</a> object.
+    1.  associate that <a>sensor</a> with it.
+1.  Otherwise, <a>throw</a> a TypeError.
+1.  Set <var>sensor</var>'s reading attribute to `null`.
+1.  return <var>sensor</var>.
+1.  Run these sub-steps <a>in parallel</a>:
+    1.  If <a>permission</a> is not granted,
+        <a>queue a task</a> to <a>fire an event</a> named error on <var>sensor</var>,
+        and terminate these sub-steps.
+    1.  If cached <a>SensorReadings</a> are available,
+        1.   let <var>latest_reading</var> be the most recent of those <a>SensorReadings</a>.
+        2.   set the value of <var>sensor</var>'s reading attribute to <var>latest_reading</var>.
+    1.  run the <a>read steps</a> for <var>sensor</var>.
+
 
 Security and privacy considerations
 ===================================
