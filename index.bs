@@ -150,8 +150,24 @@ more accurate data (often at the cost of increased latency).
 For example, the <a lt="output data">output</a> of a three-axis magnetometer
 needs to be combined with the <a lt="output data">output</a> of an accelerometer
 to provide a correct bearing.
-<a>Sensor fusion</a> can be carried out at either
-the hardware or software level.
+
+<dfn>Smart sensors</dfn> and <dfn>sensor hubs</dfn>
+have built-in conpute resources which allow them
+to carry out <a>calibration</a> and <a>sensor fusion</a> at the hardware level,
+freeing up CPU resources
+and lowering battery consumption
+in the process.
+
+But <a>sensor fusion</a> can also be carried out in software.
+This is particularly useful when performance requirements can only be met
+by relying on application-specific data.
+For example, head tracking for virtual or augmented reality applications,
+requires extremely low latency
+to avoid causing motion sickness.
+That low-latency is best provided
+by using the raw output of a gyroscope,
+and waiting for quick rotational movements of the head
+to compensate for drift.
 
 Note: <a>sensors</a> created through <a>sensor fusion</a> are sometimes
 called virtual or synthetic sensors.
