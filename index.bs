@@ -176,8 +176,32 @@ preferring instead to differentiate sensors as to whether they describe
 the kind of <a>output data</a> produced--these are <a>high-level</a> sensors--
 or how the sensor is implemented (<a>low-level</a> sensors).
 
-TODO: add a section about reading from a <a>sensor</a> and
-how this is exposed as an asynchronous operation.
+<a>Sensors</a> have two different <dfn>reporting modes</dfn>.
+When <a>output data</a> is reported at regular intervals,
+at an ajustable <dfn>frequency</dfn>,
+the <a>reporting mode</a> is said to be <dfn>periodic</dfn>.
+When it is only reported upon measurable change,
+the <a>reporting mode</a> is said to be <dfn>episodic</dfn>.
+
+<a>Episodic</a> <a>reporting mode</a> can gives the user agent
+more latitude to carry out power- or CPU-saving strategies
+and should generally be favored.
+<a>Periodic</a> <a>reporting mode</a>, on the other hand,
+allows a much more fine-grained approach
+and is essential for use cases with, for example,
+low latency requirements.
+
+Note: <a>reporting mode</a> is distinct from,
+but related to,
+<a>output data</a> acquisition.
+If <a>sensors</a> are polled at regular interval,
+as is generally the case,
+<a>reporting mode</a> can be either <a>periodic</a> or <a>episodic</a>.
+However, when the underlying implementation itself only provides <a>output data</a>
+when it measures change,
+perhaps because is is relying on <a>smart sensors</a> or a <a>sensor hubs</a>,
+the <a>reporting mode</a> cannot be <a>periodic</a>,
+as that would require data inference.
 
 An note on Feature Detection of Hardware Features {#feature-detection}
 =================================================
@@ -339,7 +363,7 @@ A <dfn interface>Sensor</dfn> object has an associated <a>sensor</a>.
 A <a interface>Sensor</a> object observes the changes in its associated <a>sensor</a>
 at regular intervals and reports those values by firing DOM events.
 
-<dfn>frequency</dfn> is measured in hertz (Hz).
+<a>Frequency</a> is measured in hertz (Hz).
 
 TODO: define the following concepts
 

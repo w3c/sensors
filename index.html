@@ -1361,7 +1361,7 @@
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="http://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/Icons/w3c_home" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-02-25">25 February 2016</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-02-26">26 February 2016</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1551,15 +1551,47 @@ This process provides <a data-link-type="dfn" href="#high-level">higher-level</a
 more accurate data (often at the cost of increased latency).
 For example, the <a data-link-type="dfn" href="#output-data">output</a> of a three-axis magnetometer
 needs to be combined with the <a data-link-type="dfn" href="#output-data">output</a> of an accelerometer
-to provide a correct bearing. <a data-link-type="dfn" href="#sensor-fusion">Sensor fusion</a> can be carried out at either
-the hardware or software level.</p>
+to provide a correct bearing.</p>
+   <p><dfn data-dfn-type="dfn" data-noexport="" id="smart-sensors">Smart sensors<a class="self-link" href="#smart-sensors"></a></dfn> and <dfn data-dfn-type="dfn" data-noexport="" id="sensor-hubs">sensor hubs<a class="self-link" href="#sensor-hubs"></a></dfn> have built-in conpute resources which allow them
+to carry out <a data-link-type="dfn" href="#calibration">calibration</a> and <a data-link-type="dfn" href="#sensor-fusion">sensor fusion</a> at the hardware level,
+freeing up CPU resources
+and lowering battery consumption
+in the process.</p>
+   <p>But <a data-link-type="dfn" href="#sensor-fusion">sensor fusion</a> can also be carried out in software.
+This is particularly useful when performance requirements can only be met
+by relying on application-specific data.
+For example, head tracking for virtual or augmented reality applications,
+requires extremely low latency
+to avoid causing motion sickness.
+That low-latency is best provided
+by using the raw output of a gyroscope,
+and waiting for quick rotational movements of the head
+to compensate for drift.</p>
    <p class="note" role="note">Note: <a data-link-type="dfn" href="#sensor">sensors</a> created through <a data-link-type="dfn" href="#sensor-fusion">sensor fusion</a> are sometimes
 called virtual or synthetic sensors.
 However, the specification doesn’t make any practical differences between them,
 preferring instead to differentiate sensors as to whether they describe
 the kind of <a data-link-type="dfn" href="#output-data">output data</a> produced--these are <a data-link-type="dfn" href="#high-level">high-level</a> sensors—<wbr>or how the sensor is implemented (<a data-link-type="dfn" href="#low-level">low-level</a> sensors).</p>
-   <p>TODO: add a section about reading from a <a data-link-type="dfn" href="#sensor">sensor</a> and
-how this is exposed as an asynchronous operation.</p>
+   <p><a data-link-type="dfn" href="#sensor">Sensors</a> have two different <dfn data-dfn-type="dfn" data-noexport="" id="reporting-modes">reporting modes<a class="self-link" href="#reporting-modes"></a></dfn>.
+When <a data-link-type="dfn" href="#output-data">output data</a> is reported at regular intervals,
+at an ajustable <dfn data-dfn-type="dfn" data-noexport="" id="frequency">frequency<a class="self-link" href="#frequency"></a></dfn>,
+the <a data-link-type="dfn" href="#reporting-modes">reporting mode</a> is said to be <dfn data-dfn-type="dfn" data-noexport="" id="periodic">periodic<a class="self-link" href="#periodic"></a></dfn>.
+When it is only reported upon measurable change,
+the <a data-link-type="dfn" href="#reporting-modes">reporting mode</a> is said to be <dfn data-dfn-type="dfn" data-noexport="" id="episodic">episodic<a class="self-link" href="#episodic"></a></dfn>.</p>
+   <p><a data-link-type="dfn" href="#episodic">Episodic</a> <a data-link-type="dfn" href="#reporting-modes">reporting mode</a> can gives the user agent
+more latitude to carry out power- or CPU-saving strategies
+and should generally be favored. <a data-link-type="dfn" href="#periodic">Periodic</a> <a data-link-type="dfn" href="#reporting-modes">reporting mode</a>, on the other hand,
+allows a much more fine-grained approach
+and is essential for use cases with, for example,
+low latency requirements.</p>
+   <p class="note" role="note">Note: <a data-link-type="dfn" href="#reporting-modes">reporting mode</a> is distinct from,
+but related to, <a data-link-type="dfn" href="#output-data">output data</a> acquisition.
+If <a data-link-type="dfn" href="#sensor">sensors</a> are polled at regular interval,
+as is generally the case, <a data-link-type="dfn" href="#reporting-modes">reporting mode</a> can be either <a data-link-type="dfn" href="#periodic">periodic</a> or <a data-link-type="dfn" href="#episodic">episodic</a>.
+However, when the underlying implementation itself only provides <a data-link-type="dfn" href="#output-data">output data</a> when it measures change,
+perhaps because is is relying on <a data-link-type="dfn" href="#smart-sensors">smart sensors</a> or a <a data-link-type="dfn" href="#sensor-hubs">sensor hubs</a>,
+the <a data-link-type="dfn" href="#reporting-modes">reporting mode</a> cannot be <a data-link-type="dfn" href="#periodic">periodic</a>,
+as that would require data inference.</p>
    <h2 class="heading settled" data-level="3" id="feature-detection"><span class="secno">3. </span><span class="content">An note on Feature Detection of Hardware Features</span><a class="self-link" href="#feature-detection"></a></h2>
    <p><em>This section is non-normative.</em></p>
    <p>Feature detection is an established Web development best practice.
@@ -1680,7 +1712,7 @@ define ways to uniquely identify each one.</p>
    <h3 class="heading settled" data-level="5.1" id="the-sensor-interface"><span class="secno">5.1. </span><span class="content">The Sensor Interface</span><a class="self-link" href="#the-sensor-interface"></a></h3>
    <p>A <dfn class="idl-code" data-dfn-type="interface" data-export="" id="sensor0">Sensor<a class="self-link" href="#sensor0"></a></dfn> object has an associated <a data-link-type="dfn" href="#sensor">sensor</a>.</p>
    <p>A <a class="idl-code" data-link-type="interface" href="#sensor0">Sensor</a> object observes the changes in its associated <a data-link-type="dfn" href="#sensor">sensor</a> at regular intervals and reports those values by firing DOM events.</p>
-   <p><dfn data-dfn-type="dfn" data-noexport="" id="frequency">frequency<a class="self-link" href="#frequency"></a></dfn> is measured in hertz (Hz).</p>
+   <p><a data-link-type="dfn" href="#frequency">Frequency</a> is measured in hertz (Hz).</p>
    <p>TODO: define the following concepts</p>
    <ul>
     <li data-md="">
@@ -2097,10 +2129,11 @@ for their editorial input.</p>
   <ul class="index">
    <li><a href="#calibration">calibration</a><span>, in §2</span>
    <li><a href="#conformant-user-agent">conformant user agent</a><span>, in §Unnumbered section</span>
+   <li><a href="#episodic">episodic</a><span>, in §2</span>
    <li>
     frequency
     <ul>
-     <li><a href="#frequency">definition of</a><span>, in §5.1</span>
+     <li><a href="#frequency">definition of</a><span>, in §2</span>
      <li><a href="#dom-sensoroptions-frequency">dict-member for SensorOptions</a><span>, in §5.1</span>
     </ul>
    <li><a href="#dom-requestreadingoptions-fromcache">fromCache</a><span>, in §5.1</span>
@@ -2112,6 +2145,7 @@ for their editorial input.</p>
    <li><a href="#dom-sensor-ondata">ondata</a><span>, in §5.1</span>
    <li><a href="#dom-sensor-onerror">onerror</a><span>, in §5.1</span>
    <li><a href="#output-data">output data</a><span>, in §2</span>
+   <li><a href="#periodic">periodic</a><span>, in §2</span>
    <li><a href="#permission">permission</a><span>, in §5.1</span>
    <li>
     reading
@@ -2121,24 +2155,27 @@ for their editorial input.</p>
      <li><a href="#dom-sensorreadingeventinit-reading">dict-member for SensorReadingEventInit</a><span>, in §5.1</span>
     </ul>
    <li><a href="#read-steps">read steps</a><span>, in §5.1</span>
+   <li><a href="#reporting-modes">reporting modes</a><span>, in §2</span>
    <li><a href="#dictdef-requestreadingoptions">RequestReadingOptions</a><span>, in §5.1</span>
    <li><a href="#dom-sensor-requestreading">requestReading(requestReadingOptions)</a><span>, in §5.1</span>
    <li><a href="#sensor0">Sensor</a><span>, in §5.1</span>
    <li><a href="#sensor">sensor</a><span>, in §2</span>
    <li><a href="#sensor-fusion">sensor fusion</a><span>, in §2</span>
+   <li><a href="#sensor-hubs">sensor hubs</a><span>, in §2</span>
    <li><a href="#dictdef-sensoroptions">SensorOptions</a><span>, in §5.1</span>
-   <li><a href="#dom-sensorreading-sensorreading">SensorReading()</a><span>, in §5.2</span>
    <li>
     SensorReading
     <ul>
      <li><a href="#sensorreading0">definition of</a><span>, in §5.2</span>
      <li><a href="#sensorreading1">(interface)</a><span>, in §5.2</span>
     </ul>
+   <li><a href="#dom-sensorreading-sensorreading">SensorReading()</a><span>, in §5.2</span>
    <li><a href="#sensorreadingevent">SensorReadingEvent</a><span>, in §5.1</span>
    <li><a href="#dictdef-sensorreadingeventinit">SensorReadingEventInit</a><span>, in §5.1</span>
    <li><a href="#dom-sensorreadingevent-sensorreadingevent">SensorReadingEvent(type, eventInitDict)</a><span>, in §5.1</span>
    <li><a href="#dom-sensor-sensor">Sensor(sensorOptions)</a><span>, in §5.1</span>
    <li><a href="#sensor-types">sensor types</a><span>, in §2</span>
+   <li><a href="#smart-sensors">Smart sensors</a><span>, in §2</span>
    <li>
     timeout
     <ul>
