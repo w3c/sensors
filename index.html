@@ -1361,7 +1361,7 @@
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="http://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/Icons/w3c_home" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-02-26">26 February 2016</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-02-27">27 February 2016</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1460,13 +1460,14 @@ that can be extended to accommodate different sensor types.</p>
      <a href="#extensibility"><span class="secno">8</span> <span class="content">Extensibility</span></a>
      <ol class="toc">
       <li><a href="#naming"><span class="secno">8.1</span> <span class="content">Naming</span></a>
-      <li><a href="#high-vs-low-level"><span class="secno">8.2</span> <span class="content">Exposing High-Level vs. Low-Level Sensors</span></a>
-      <li><a href="#multiple-sensors"><span class="secno">8.3</span> <span class="content">When is Enabling Multiple Sensors of the Same Type Not the Right Choice?</span></a>
-      <li><a href="#defining-a-default"><span class="secno">8.4</span> <span class="content">Defining a default</span></a>
-      <li><a href="#calibration0"><span class="secno">8.5</span> <span class="content">Calibration</span></a>
-      <li><a href="#permission-api"><span class="secno">8.6</span> <span class="content">Extending the Permission API</span></a>
-      <li><a href="#immutability-requirements"><span class="secno">8.7</span> <span class="content">Immutability requirements</span></a>
-      <li><a href="#example-webidl"><span class="secno">8.8</span> <span class="content">Example WebIDL</span></a>
+      <li><a href="#unit"><span class="secno">8.2</span> <span class="content">Unit</span></a>
+      <li><a href="#high-vs-low-level"><span class="secno">8.3</span> <span class="content">Exposing High-Level vs. Low-Level Sensors</span></a>
+      <li><a href="#multiple-sensors"><span class="secno">8.4</span> <span class="content">When is Enabling Multiple Sensors of the Same Type Not the Right Choice?</span></a>
+      <li><a href="#defining-a-default"><span class="secno">8.5</span> <span class="content">Defining a default</span></a>
+      <li><a href="#calibration0"><span class="secno">8.6</span> <span class="content">Calibration</span></a>
+      <li><a href="#permission-api"><span class="secno">8.7</span> <span class="content">Extending the Permission API</span></a>
+      <li><a href="#immutability-requirements"><span class="secno">8.8</span> <span class="content">Immutability requirements</span></a>
+      <li><a href="#example-webidl"><span class="secno">8.9</span> <span class="content">Example WebIDL</span></a>
      </ol>
     <li><a href="#acknowledgements"><span class="secno">9</span> <span class="content">Acknowledgements</span></a>
     <li>
@@ -1944,7 +1945,18 @@ hold <a data-link-type="dfn" href="#output-data">output data</a> should be named
 For example, the <code>TemperatureSensorReading</code> interface should hold
 the value of the <a data-link-type="dfn" href="#sensor">sensor</a>’s <a data-link-type="dfn" href="#output-data">output data</a> in
 a <code>temperature</code> attribute (and not a <code>value</code> or <code>temp</code> attribute).</p>
-   <h3 class="heading settled" data-level="8.2" id="high-vs-low-level"><span class="secno">8.2. </span><span class="content">Exposing High-Level vs. Low-Level Sensors</span><a class="self-link" href="#high-vs-low-level"></a></h3>
+   <p>A good starting point for naming are the
+Quantities, Units, Dimensions and Data Types Ontologies <a data-link-type="biblio" href="#biblio-qudt">[QUDT]</a>.</p>
+   <h3 class="heading settled" data-level="8.2" id="unit"><span class="secno">8.2. </span><span class="content">Unit</span><a class="self-link" href="#unit"></a></h3>
+   <p>Extension specification must specify the <a data-link-type="dfn" href="#output-data">Output data</a>’s unit.</p>
+   <p>As per the Technical Architecure Group’s (TAG) API Design Principles <a data-link-type="biblio" href="#biblio-api-design-principles">[API-DESIGN-PRINCIPLES]</a>,
+all time measurement should be in milliseconds.
+All other units should be specified using,
+in order of preference,
+and with the exception of temperature (for which Celsius should be favored of Kelvin),
+SI, SI derived units, and Non-SI units accepted for use with the SI,
+as described in the SI Brochure <a data-link-type="biblio" href="#biblio-si">[SI]</a>.</p>
+   <h3 class="heading settled" data-level="8.3" id="high-vs-low-level"><span class="secno">8.3. </span><span class="content">Exposing High-Level vs. Low-Level Sensors</span><a class="self-link" href="#high-vs-low-level"></a></h3>
    <p>So far, specifications exposing sensors to the Web platform
 have focused on <a data-link-type="dfn" href="#high-level">high-level</a> sensors APIs. <a data-link-type="biblio" href="#biblio-geolocation-api">[geolocation-API]</a> <a data-link-type="biblio" href="#biblio-orientation-event">[orientation-event]</a></p>
    <p>This was a reasonable approach for a number of reasons.
@@ -1972,7 +1984,7 @@ and design more performant systems.</p>
    <p>Following the precepts of the Extensible Web Manifesto <a data-link-type="biblio" href="#biblio-extennnnsible">[EXTENNNNSIBLE]</a>,
 extension specifications should focus primarily on
 exposing <a data-link-type="dfn" href="#low-level">low-level</a> sensor APIs, but should also expose <a data-link-type="dfn" href="#high-level">high-level</a> APIs when they are clear benefits in doing so.</p>
-   <h3 class="heading settled" data-level="8.3" id="multiple-sensors"><span class="secno">8.3. </span><span class="content">When is Enabling Multiple Sensors of the Same Type Not the Right Choice?</span><a class="self-link" href="#multiple-sensors"></a></h3>
+   <h3 class="heading settled" data-level="8.4" id="multiple-sensors"><span class="secno">8.4. </span><span class="content">When is Enabling Multiple Sensors of the Same Type Not the Right Choice?</span><a class="self-link" href="#multiple-sensors"></a></h3>
    <p>TODO: provide guidance on when to:</p>
    <ul>
     <li data-md="">
@@ -1982,16 +1994,16 @@ exposing <a data-link-type="dfn" href="#low-level">low-level</a> sensor APIs, bu
     <li data-md="">
      <p>add constructor parameters to tweak sensors settings (e.g. setting required accuracy).</p>
    </ul>
-   <h3 class="heading settled" data-level="8.4" id="defining-a-default"><span class="secno">8.4. </span><span class="content">Defining a default</span><a class="self-link" href="#defining-a-default"></a></h3>
+   <h3 class="heading settled" data-level="8.5" id="defining-a-default"><span class="secno">8.5. </span><span class="content">Defining a default</span><a class="self-link" href="#defining-a-default"></a></h3>
    <p>Extension specifications should define a default <a data-link-type="dfn" href="#sensor">sensor</a> for each <a data-link-type="dfn" href="#sensor-types">sensor type</a> they define.
 Generally, devices are equipped with a single <a data-link-type="dfn" href="#sensor">sensor</a> of each <a data-link-type="dfn" href="#sensor-types">type</a>,
 so defining a default <a data-link-type="dfn" href="#sensor">sensor</a> should be easy.
 For <a data-link-type="dfn" href="#sensor-types">sensor types</a> where multiple <a data-link-type="dfn" href="#sensor">sensors</a> are common,
 extension specifications may choose not to define a default sensor.</p>
-   <h3 class="heading settled" data-level="8.5" id="calibration0"><span class="secno">8.5. </span><span class="content">Calibration</span><a class="self-link" href="#calibration0"></a></h3>
+   <h3 class="heading settled" data-level="8.6" id="calibration0"><span class="secno">8.6. </span><span class="content">Calibration</span><a class="self-link" href="#calibration0"></a></h3>
    <p><a data-link-type="dfn" href="#output-data">Output data</a> emitted by <a class="idl-code" data-link-type="interface" href="#sensor0">Sensor</a> objects
 should always be <a data-link-type="dfn" href="#calibration">calibrated</a>.</p>
-   <h3 class="heading settled" data-level="8.6" id="permission-api"><span class="secno">8.6. </span><span class="content">Extending the Permission API</span><a class="self-link" href="#permission-api"></a></h3>
+   <h3 class="heading settled" data-level="8.7" id="permission-api"><span class="secno">8.7. </span><span class="content">Extending the Permission API</span><a class="self-link" href="#permission-api"></a></h3>
    <p>Provide guidance on how to extend the Permission API <a data-link-type="biblio" href="#biblio-permissions">[permissions]</a> for each <a data-link-type="dfn" href="#sensor-types">sensor types</a>.</p>
    <div class="issue no-marker" id="issue-d41d8cd90">
     <a class="self-link" href="#issue-d41d8cd90"></a><a class="marker" href="https://github.com/w3c/sensors/issues/22">Issue #22 on GitHub: “Simplify extension of the Permissions API for concrete sensor implementations”</a>
@@ -2020,10 +2032,10 @@ should always be <a data-link-type="dfn" href="#calibration">calibrated</a>.</p>
        Document current issue as a note in the Extensibility section of the spec.
     </ul>
    </div>
-   <h3 class="heading settled" data-level="8.7" id="immutability-requirements"><span class="secno">8.7. </span><span class="content">Immutability requirements</span><a class="self-link" href="#immutability-requirements"></a></h3>
+   <h3 class="heading settled" data-level="8.8" id="immutability-requirements"><span class="secno">8.8. </span><span class="content">Immutability requirements</span><a class="self-link" href="#immutability-requirements"></a></h3>
    <p>Attributes of the <a class="idl-code" data-link-type="interface" href="#sensorreading1">SensorReading</a> subclass that
 hold <a data-link-type="dfn" href="#output-data">output data</a> must be readonly.</p>
-   <h3 class="heading settled" data-level="8.8" id="example-webidl"><span class="secno">8.8. </span><span class="content">Example WebIDL</span><a class="self-link" href="#example-webidl"></a></h3>
+   <h3 class="heading settled" data-level="8.9" id="example-webidl"><span class="secno">8.9. </span><span class="content">Example WebIDL</span><a class="self-link" href="#example-webidl"></a></h3>
    <p>Here’s example WebIDL for a possible extension of this specification
 for proximity <a data-link-type="dfn" href="#sensor">sensors</a>.</p>
 <pre class="example" id="example-b23dffad"><a class="self-link" href="#example-b23dffad"></a>[Constructor(optional ProximitySensorOptions proximitySensorOptions)]
@@ -2223,7 +2235,7 @@ for their editorial input.</p>
      <li><a href="https://heycam.github.io/webidl/#dfn-throw">throw</a>
     </ul>
    <li>
-    <a data-link-type="biblio" href="#biblio-dom-ls">[dom-ls]</a> defines the following terms:
+    <a data-link-type="biblio" href="#biblio-dom">[dom]</a> defines the following terms:
     <ul>
      <li><a href="https://dom.spec.whatwg.org/#event">Event</a>
      <li><a href="https://dom.spec.whatwg.org/#dictdef-eventinit">EventInit</a>
@@ -2249,10 +2261,8 @@ for their editorial input.</p>
    <dd>Cameron McCormack; Boris Zbarsky. <a href="http://www.w3.org/TR/WebIDL-1/">WebIDL Level 1</a>. 4 August 2015. WD. URL: <a href="http://www.w3.org/TR/WebIDL-1/">http://www.w3.org/TR/WebIDL-1/</a>
    <dt id="biblio-dom"><a class="self-link" href="#biblio-dom"></a>[DOM]
    <dd>Anne van Kesteren; et al. <a href="http://www.w3.org/TR/dom/">W3C DOM4</a>. 19 November 2015. REC. URL: <a href="http://www.w3.org/TR/dom/">http://www.w3.org/TR/dom/</a>
-   <dt id="biblio-dom-ls"><a class="self-link" href="#biblio-dom-ls"></a>[DOM-LS]
-   <dd>Document Object Model URL: <a href="https://dom.spec.whatwg.org/">https://dom.spec.whatwg.org/</a>
    <dt id="biblio-hr-time-2"><a class="self-link" href="#biblio-hr-time-2"></a>[HR-TIME-2]
-   <dd>Ilya Grigorik; James Simonsen; Jatinder Mann. <a href="http://www.w3.org/TR/hr-time-2/">High Resolution Time Level 2</a>. 4 February 2016. WD. URL: <a href="http://www.w3.org/TR/hr-time-2/">http://www.w3.org/TR/hr-time-2/</a>
+   <dd>Ilya Grigorik; James Simonsen; Jatinder Mann. <a href="http://www.w3.org/TR/hr-time-2/">High Resolution Time Level 2</a>. 25 February 2016. WD. URL: <a href="http://www.w3.org/TR/hr-time-2/">http://www.w3.org/TR/hr-time-2/</a>
    <dt id="biblio-powerful-features"><a class="self-link" href="#biblio-powerful-features"></a>[POWERFUL-FEATURES]
    <dd>Mike West; Yan Zhu. <a href="http://www.w3.org/TR/powerful-features/">Privileged Contexts</a>. 24 April 2015. WD. URL: <a href="http://www.w3.org/TR/powerful-features/">http://www.w3.org/TR/powerful-features/</a>
    <dt id="biblio-rfc2119"><a class="self-link" href="#biblio-rfc2119"></a>[RFC2119]
@@ -2260,8 +2270,14 @@ for their editorial input.</p>
   </dl>
   <h3 class="no-num heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
   <dl>
+   <dt id="biblio-api-design-principles"><a class="self-link" href="#biblio-api-design-principles"></a>[API-DESIGN-PRINCIPLES]
+   <dd>Domenic Denicola. <a href="https://w3ctag.github.io/design-principles/">API Design Principles</a>. 29 December 2015. URL: <a href="https://w3ctag.github.io/design-principles/">https://w3ctag.github.io/design-principles/</a>
    <dt id="biblio-extennnnsible"><a class="self-link" href="#biblio-extennnnsible"></a>[EXTENNNNSIBLE]
-   <dd><a href="https://extensiblewebmanifesto.org/">The Extensible Web Manifesto</a>. June 10, 2013. URL: <a href="https://extensiblewebmanifesto.org/">https://extensiblewebmanifesto.org/</a>
+   <dd><a href="https://extensiblewebmanifesto.org/">The Extensible Web Manifesto</a>. 10 June 2013. URL: <a href="https://extensiblewebmanifesto.org/">https://extensiblewebmanifesto.org/</a>
+   <dt id="biblio-qudt"><a class="self-link" href="#biblio-qudt"></a>[QUDT]
+   <dd>Ralph Hodgson; et al. <a href="http://www.qudt.org/">QUDT - Quantities, Units, Dimensions and Data Types Ontologies</a>. 18 March 2014. URL: <a href="http://www.qudt.org/">http://www.qudt.org/</a>
+   <dt id="biblio-si"><a class="self-link" href="#biblio-si"></a>[SI]
+   <dd><a href="http://www.bipm.org/en/publications/si-brochure/">SI Brochure: The International System of Units (SI), 8th edition</a>. 2014. URL: <a href="http://www.bipm.org/en/publications/si-brochure/">http://www.bipm.org/en/publications/si-brochure/</a>
    <dt id="biblio-geolocation-api"><a class="self-link" href="#biblio-geolocation-api"></a>[geolocation-API]
    <dd>Andrei Popescu. <a href="http://www.w3.org/TR/geolocation-API/">Geolocation API Specification</a>. 28 May 2015. PER. URL: <a href="http://www.w3.org/TR/geolocation-API/">http://www.w3.org/TR/geolocation-API/</a>
    <dt id="biblio-orientation-event"><a class="self-link" href="#biblio-orientation-event"></a>[ORIENTATION-EVENT]

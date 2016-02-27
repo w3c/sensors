@@ -602,6 +602,22 @@ For example, the `TemperatureSensorReading` interface should hold
 the value of the <a>sensor</a>'s <a>output data</a> in
 a `temperature` attribute (and not a `value` or `temp` attribute).
 
+A good starting point for naming are the
+Quantities, Units, Dimensions and Data Types Ontologies [[QUDT]].
+
+Unit {#unit}
+----
+
+Extension specification must specify the <a>Output data</a>'s unit.
+
+As per the Technical Architecure Group's (TAG) API Design Principles [[API-DESIGN-PRINCIPLES]],
+all time measurement should be in milliseconds.
+All other units should be specified using,
+in order of preference,
+and with the exception of temperature (for which Celsius should be favored of Kelvin),
+SI, SI derived units, and Non-SI units accepted for use with the SI,
+as described in the SI Brochure [[SI]].
+
 Exposing High-Level vs. Low-Level Sensors {#high-vs-low-level}
 -----------------------------------------
 
