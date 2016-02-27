@@ -225,8 +225,8 @@ perhaps because is is relying on <a>smart sensors</a> or a <a>sensor hubs</a>,
 the <a>reporting mode</a> cannot be <a>periodic</a>,
 as that would require data inference.
 
-An note on Feature Detection of Hardware Features {#feature-detection}
-=================================================
+A note on Feature Detection of Hardware Features {#feature-detection}
+================================================
 
 <em>This section is non-normative.</em>
 
