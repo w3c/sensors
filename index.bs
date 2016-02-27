@@ -110,15 +110,18 @@ Terminology
 ===========
 
 A <dfn>sensor</dfn> measures different physical quantities
-and provide corresponding <dfn>output data</dfn>
-which is a source of information about the user and their environment.
+and provide corresponding <dfn>raw sensor readings</dfn>
+which are a source of information about the user and their environment.
 
-Known, <em>predictable</em> discrepancies between <a>sensor</a> <a>output data</a>
+Known, <em>predictable</em> discrepancies between <a>raw sensor readings</a>
 and the corresponding physical quantities being measured
-are corrected through <dfn>calibration</dfn>,
+are corrected through <dfn>calibration</dfn>.
 
 Known but <em>unpredictable</em> discrepancies need to be addressed dynamically
 through a process called <a>sensor fusion</a>.
+
+Calibrated <a>raw sensor readings</a> are referred to as <dfn>sensor readings</dfn>,
+whether or not they has undergone <a>sensor fusion</a>.
 
 Different <dfn>sensor types</dfn> measure different physical quantities
 such as temperature, air pressure, heart-rate, or luminosity.
@@ -130,7 +133,7 @@ For the purpose of this specification we distinguish between
 are referred to as <dfn>low-level</dfn> sensors.
 For example a Gyroscope is a <a>low-level</a> <a>sensor types</a>.
 
-<a>Sensors</a> named after their <a>output data</a>,
+<a>Sensors</a> named after their <a lt="sensor readings">readings</a>,
 regardless of the implementation,
 are said to be <dfn>high-level</dfn> sensors.
 For instance, geolocation sensors provide information about the user's location,
@@ -164,13 +167,12 @@ are encouraged to provide domain-specific definitions of
 <a>high-level</a> and <a>low-level</a> sensors
 for the given <a>sensor types</a> they are targeting.
 
-The <a>output data</a> of sensors can be combined with
-the output of other sensors
+<a>Sensor readings</a> from different sensor <a>types</a> can be combined together 
 through a process called <dfn>sensor fusion</dfn>.
 This process provides <a lt="high-level">higher-level</a> or
 more accurate data (often at the cost of increased latency).
-For example, the <a lt="output data">output</a> of a three-axis magnetometer
-needs to be combined with the <a lt="output data">output</a> of an accelerometer
+For example, the <a lt="sensor readings">readings</a> of a three-axis magnetometer
+needs to be combined with the <a lt="sensor readings">readings</a> of an accelerometer
 to provide a correct bearing.
 
 <dfn>Smart sensors</dfn> and <dfn>sensor hubs</dfn>
@@ -194,12 +196,12 @@ to compensate for drift.
 Note: <a>sensors</a> created through <a>sensor fusion</a> are sometimes
 called virtual or synthetic sensors.
 However, the specification doesn't make any practical differences between them,
-preferring instead to differentiate sensors as to whether they describe
-the kind of <a>output data</a> produced--these are <a>high-level</a> sensors--
+preferring instead to differentiate <a>sensors</a> as to whether they describe
+the kind of <a lt="sensor readings">readings</a> produced--these are <a>high-level</a> sensors--
 or how the sensor is implemented (<a>low-level</a> sensors).
 
 <a>Sensors</a> have two different <dfn>reporting modes</dfn>.
-When <a>output data</a> is reported at regular intervals,
+When <a>sensor readings</a> are reported at regular intervals,
 at an ajustable <dfn>frequency</dfn>,
 the <a>reporting mode</a> is said to be <dfn>periodic</dfn>.
 When it is only reported upon measurable change,
@@ -215,11 +217,11 @@ low latency requirements.
 
 Note: <a>reporting mode</a> is distinct from,
 but related to,
-<a>output data</a> acquisition.
+<a>sensor readings</a> acquisition.
 If <a>sensors</a> are polled at regular interval,
 as is generally the case,
 <a>reporting mode</a> can be either <a>periodic</a> or <a>episodic</a>.
-However, when the underlying implementation itself only provides <a>output data</a>
+However, when the underlying implementation itself only provides <a>sensor readings</a>
 when it measures change,
 perhaps because is is relying on <a>smart sensors</a> or a <a>sensor hubs</a>,
 the <a>reporting mode</a> cannot be <a>periodic</a>,
@@ -341,7 +343,7 @@ the default <a>sensor</a> is chosen.
     </pre>
 </div>
 
-Similarly, getting a single <a>output data</a> sample
+Similarly, getting a single <a>sensor reading</a>
 should be a simple process, and it is:
 
 <div class="example">
@@ -544,7 +546,7 @@ and the privacy risks that might be created.
 The potential risks of collection of such data over a longer period of time
 should also be considered.
 
-Variations in <a>output data</a>
+Variations in <a>sensor readings</a>
 as well as event firing rates
 offer the possibility of fingerprinting to identify users.
 Browser implementations may reduce the risk by
@@ -568,7 +570,7 @@ taking all aspects of their application into consideration.
 Browsing Context {#browsing-context}
 ----------------
 
-Sensor <a>output data</a> must only be available in the
+<a>Sensor readings</a> must only be available in the
 <a>top-level browsing context</a> to avoid the privacy risk of
 sharing the information defined in this specification
 (and specifications extending it)
@@ -579,10 +581,10 @@ the active tab, and not on the background tabs or within iframes.
 Secure Context {#secure-context}
 --------------
 
-Sensor <a>output data</a> is explicitly flagged by the
+<a>Sensor readings</a> are explicitly flagged by the
 Secure Contexts specification [[powerful-features]]
 as a high-value target for network attackers.
-As such, sensor <a>output data</a> must only be available
+As such, <a>sensor readings</a> must only be available
 within a <a>secure context</a>.
 
 Obtaining Explicit User Permission {#permissioning}
@@ -618,10 +620,10 @@ the distance at which an object is from it
 may see its associated interface called `ProximitySensor`.
 
 Attributes of the <a interface>SensorReading</a> subclass that
-hold <a>output data</a>
-should be named after the full name of this <a>output data</a>.
+hold <a>sensor readings</a> values
+should be named after the full name of these values.
 For example, the `TemperatureSensorReading` interface should hold
-the value of the <a>sensor</a>'s <a>output data</a> in
+the <a>sensor reading</a>'s value in
 a `temperature` attribute (and not a `value` or `temp` attribute).
 A good starting point for naming are the
 Quantities, Units, Dimensions and Data Types Ontologies [[QUDT]].
@@ -629,7 +631,7 @@ Quantities, Units, Dimensions and Data Types Ontologies [[QUDT]].
 Unit {#unit}
 ----
 
-Extension specification must specify the <a>Output data</a>'s unit.
+Extension specification must specify the unit of <a>sensor readings</a>.
 
 As per the Technical Architecure Group's (TAG) API Design Principles [[API-DESIGN-PRINCIPLES]],
 all time measurement should be in milliseconds.
@@ -691,12 +693,6 @@ should be easy.
 For <a>sensor types</a> where multiple <a>sensors</a> are common,
 extension specifications may choose not to define a default sensor.
 
-Calibration {#calibration}
------------
-
-<a>Output data</a> emitted by <a interface>Sensor</a> objects
-should always be <a lt="calibration">calibrated</a>.
-
 Extending the Permission API {#permission-api}
 ----------------------------
 
@@ -709,7 +705,7 @@ Immutability requirements
 -------------------------
 
 Attributes of the <a interface>SensorReading</a> subclass that
-hold <a>output data</a> must be readonly.
+hold <a>sensor readings</a> values must be readonly.
 
 Example WebIDL
 --------------

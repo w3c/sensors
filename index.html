@@ -1465,10 +1465,9 @@ that can be extended to accommodate different sensor types.</p>
       <li><a href="#high-vs-low-level"><span class="secno">9.3</span> <span class="content">Exposing High-Level vs. Low-Level Sensors</span></a>
       <li><a href="#multiple-sensors"><span class="secno">9.4</span> <span class="content">When is Enabling Multiple Sensors of the Same Type Not the Right Choice?</span></a>
       <li><a href="#defining-a-default"><span class="secno">9.5</span> <span class="content">Defining a default</span></a>
-      <li><a href="#calibration0"><span class="secno">9.6</span> <span class="content">Calibration</span></a>
-      <li><a href="#permission-api"><span class="secno">9.7</span> <span class="content">Extending the Permission API</span></a>
-      <li><a href="#immutability-requirements"><span class="secno">9.8</span> <span class="content">Immutability requirements</span></a>
-      <li><a href="#example-webidl"><span class="secno">9.9</span> <span class="content">Example WebIDL</span></a>
+      <li><a href="#permission-api"><span class="secno">9.6</span> <span class="content">Extending the Permission API</span></a>
+      <li><a href="#immutability-requirements"><span class="secno">9.7</span> <span class="content">Immutability requirements</span></a>
+      <li><a href="#example-webidl"><span class="secno">9.8</span> <span class="content">Example WebIDL</span></a>
      </ol>
     <li><a href="#acknowledgements"><span class="secno">10</span> <span class="content">Acknowledgements</span></a>
     <li>
@@ -1533,18 +1532,20 @@ A subsequent version of this specification might specify such an API,
 and the current API has been designed with this in mind.</p>
    <h2 class="heading settled" data-level="3" id="terminology"><span class="secno">3. </span><span class="content">Terminology</span><a class="self-link" href="#terminology"></a></h2>
    <p>A <dfn data-dfn-type="dfn" data-noexport="" id="sensor">sensor<a class="self-link" href="#sensor"></a></dfn> measures different physical quantities
-and provide corresponding <dfn data-dfn-type="dfn" data-noexport="" id="output-data">output data<a class="self-link" href="#output-data"></a></dfn> which is a source of information about the user and their environment.</p>
-   <p>Known, <em>predictable</em> discrepancies between <a data-link-type="dfn" href="#sensor">sensor</a> <a data-link-type="dfn" href="#output-data">output data</a> and the corresponding physical quantities being measured
-are corrected through <dfn data-dfn-type="dfn" data-noexport="" id="calibration">calibration<a class="self-link" href="#calibration"></a></dfn>,</p>
+and provide corresponding <dfn data-dfn-type="dfn" data-noexport="" id="raw-sensor-readings">raw sensor readings<a class="self-link" href="#raw-sensor-readings"></a></dfn> which are a source of information about the user and their environment.</p>
+   <p>Known, <em>predictable</em> discrepancies between <a data-link-type="dfn" href="#raw-sensor-readings">raw sensor readings</a> and the corresponding physical quantities being measured
+are corrected through <dfn data-dfn-type="dfn" data-noexport="" id="calibration">calibration<a class="self-link" href="#calibration"></a></dfn>.</p>
    <p>Known but <em>unpredictable</em> discrepancies need to be addressed dynamically
 through a process called <a data-link-type="dfn" href="#sensor-fusion">sensor fusion</a>.</p>
+   <p>Calibrated <a data-link-type="dfn" href="#raw-sensor-readings">raw sensor readings</a> are referred to as <dfn data-dfn-type="dfn" data-noexport="" id="sensor-readings">sensor readings<a class="self-link" href="#sensor-readings"></a></dfn>,
+whether or not they has undergone <a data-link-type="dfn" href="#sensor-fusion">sensor fusion</a>.</p>
    <p>Different <dfn data-dfn-type="dfn" data-noexport="" id="sensor-types">sensor types<a class="self-link" href="#sensor-types"></a></dfn> measure different physical quantities
 such as temperature, air pressure, heart-rate, or luminosity.</p>
    <p>For the purpose of this specification we distinguish between <a data-link-type="dfn" href="#high-level">high-level</a> and <a data-link-type="dfn" href="#low-level">low-level</a> <a data-link-type="dfn" href="#sensor-types">sensor types</a>.</p>
    <p><a data-link-type="dfn" href="#sensor-types">Sensor types</a> which are characterized by their implementation
 are referred to as <dfn data-dfn-type="dfn" data-noexport="" id="low-level">low-level<a class="self-link" href="#low-level"></a></dfn> sensors.
 For example a Gyroscope is a <a data-link-type="dfn" href="#low-level">low-level</a> <a data-link-type="dfn" href="#sensor-types">sensor types</a>.</p>
-   <p><a data-link-type="dfn" href="#sensor">Sensors</a> named after their <a data-link-type="dfn" href="#output-data">output data</a>,
+   <p><a data-link-type="dfn" href="#sensor">Sensors</a> named after their <a data-link-type="dfn" href="#sensor-readings">readings</a>,
 regardless of the implementation,
 are said to be <dfn data-dfn-type="dfn" data-noexport="" id="high-level">high-level<a class="self-link" href="#high-level"></a></dfn> sensors.
 For instance, geolocation sensors provide information about the user’s location,
@@ -1567,13 +1568,12 @@ while a nondescript altimeter—<wbr>which could get its data from either a baro
 extensions to this specification (see <a href="#extensibility">§9 Extensibility</a>)
 are encouraged to provide domain-specific definitions of <a data-link-type="dfn" href="#high-level">high-level</a> and <a data-link-type="dfn" href="#low-level">low-level</a> sensors
 for the given <a data-link-type="dfn" href="#sensor-types">sensor types</a> they are targeting.</p>
-   <p>The <a data-link-type="dfn" href="#output-data">output data</a> of sensors can be combined with
-the output of other sensors
+   <p><a data-link-type="dfn" href="#sensor-readings">Sensor readings</a> from different sensor <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-document-type">types</a> can be combined together
 through a process called <dfn data-dfn-type="dfn" data-noexport="" id="sensor-fusion">sensor fusion<a class="self-link" href="#sensor-fusion"></a></dfn>.
 This process provides <a data-link-type="dfn" href="#high-level">higher-level</a> or
 more accurate data (often at the cost of increased latency).
-For example, the <a data-link-type="dfn" href="#output-data">output</a> of a three-axis magnetometer
-needs to be combined with the <a data-link-type="dfn" href="#output-data">output</a> of an accelerometer
+For example, the <a data-link-type="dfn" href="#sensor-readings">readings</a> of a three-axis magnetometer
+needs to be combined with the <a data-link-type="dfn" href="#sensor-readings">readings</a> of an accelerometer
 to provide a correct bearing.</p>
    <p><dfn data-dfn-type="dfn" data-noexport="" id="smart-sensors">Smart sensors<a class="self-link" href="#smart-sensors"></a></dfn> and <dfn data-dfn-type="dfn" data-noexport="" id="sensor-hubs">sensor hubs<a class="self-link" href="#sensor-hubs"></a></dfn> have built-in conpute resources which allow them
 to carry out <a data-link-type="dfn" href="#calibration">calibration</a> and <a data-link-type="dfn" href="#sensor-fusion">sensor fusion</a> at the hardware level,
@@ -1593,10 +1593,10 @@ to compensate for drift.</p>
    <p class="note" role="note">Note: <a data-link-type="dfn" href="#sensor">sensors</a> created through <a data-link-type="dfn" href="#sensor-fusion">sensor fusion</a> are sometimes
 called virtual or synthetic sensors.
 However, the specification doesn’t make any practical differences between them,
-preferring instead to differentiate sensors as to whether they describe
-the kind of <a data-link-type="dfn" href="#output-data">output data</a> produced--these are <a data-link-type="dfn" href="#high-level">high-level</a> sensors—<wbr>or how the sensor is implemented (<a data-link-type="dfn" href="#low-level">low-level</a> sensors).</p>
+preferring instead to differentiate <a data-link-type="dfn" href="#sensor">sensors</a> as to whether they describe
+the kind of <a data-link-type="dfn" href="#sensor-readings">readings</a> produced--these are <a data-link-type="dfn" href="#high-level">high-level</a> sensors—<wbr>or how the sensor is implemented (<a data-link-type="dfn" href="#low-level">low-level</a> sensors).</p>
    <p><a data-link-type="dfn" href="#sensor">Sensors</a> have two different <dfn data-dfn-type="dfn" data-noexport="" id="reporting-modes">reporting modes<a class="self-link" href="#reporting-modes"></a></dfn>.
-When <a data-link-type="dfn" href="#output-data">output data</a> is reported at regular intervals,
+When <a data-link-type="dfn" href="#sensor-readings">sensor readings</a> are reported at regular intervals,
 at an ajustable <dfn data-dfn-type="dfn" data-noexport="" id="frequency">frequency<a class="self-link" href="#frequency"></a></dfn>,
 the <a data-link-type="dfn" href="#reporting-modes">reporting mode</a> is said to be <dfn data-dfn-type="dfn" data-noexport="" id="periodic">periodic<a class="self-link" href="#periodic"></a></dfn>.
 When it is only reported upon measurable change,
@@ -1608,10 +1608,10 @@ allows a much more fine-grained approach
 and is essential for use cases with, for example,
 low latency requirements.</p>
    <p class="note" role="note">Note: <a data-link-type="dfn" href="#reporting-modes">reporting mode</a> is distinct from,
-but related to, <a data-link-type="dfn" href="#output-data">output data</a> acquisition.
+but related to, <a data-link-type="dfn" href="#sensor-readings">sensor readings</a> acquisition.
 If <a data-link-type="dfn" href="#sensor">sensors</a> are polled at regular interval,
 as is generally the case, <a data-link-type="dfn" href="#reporting-modes">reporting mode</a> can be either <a data-link-type="dfn" href="#periodic">periodic</a> or <a data-link-type="dfn" href="#episodic">episodic</a>.
-However, when the underlying implementation itself only provides <a data-link-type="dfn" href="#output-data">output data</a> when it measures change,
+However, when the underlying implementation itself only provides <a data-link-type="dfn" href="#sensor-readings">sensor readings</a> when it measures change,
 perhaps because is is relying on <a data-link-type="dfn" href="#smart-sensors">smart sensors</a> or a <a data-link-type="dfn" href="#sensor-hubs">sensor hubs</a>,
 the <a data-link-type="dfn" href="#reporting-modes">reporting mode</a> cannot be <a data-link-type="dfn" href="#periodic">periodic</a>,
 as that would require data inference.</p>
@@ -1709,8 +1709,7 @@ the default <a data-link-type="dfn" href="#sensor">sensor</a> is chosen.</p>
     <span class="nx">updateMap</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
 <span class="p">};</span></pre>
    </div>
-   <p>Similarly, getting a single <a data-link-type="dfn" href="#output-data">output data</a> sample
-should be a simple process, and it is:</p>
+   <p>Similarly, getting a single <a data-link-type="dfn" href="#sensor-readings">sensor reading</a> should be a simple process, and it is:</p>
    <div class="example" id="example-80fe6781">
     <a class="self-link" href="#example-80fe6781"></a> Geolocating the user: 
 <pre class="highlight"><span class="nx">GeolocationSensor</span><span class="p">.</span><span class="nx">requestReading</span><span class="p">({</span> <span class="nx">accuracy</span><span class="o">:</span> <span class="s2">"high"</span> <span class="p">})</span>
@@ -1898,7 +1897,7 @@ consider how this information might be correlated with other information
 and the privacy risks that might be created.
 The potential risks of collection of such data over a longer period of time
 should also be considered.</p>
-   <p>Variations in <a data-link-type="dfn" href="#output-data">output data</a> as well as event firing rates
+   <p>Variations in <a data-link-type="dfn" href="#sensor-readings">sensor readings</a> as well as event firing rates
 offer the possibility of fingerprinting to identify users.
 Browser implementations may reduce the risk by
 limiting event rates available to web application developers.</p>
@@ -1914,16 +1913,16 @@ and allowing the user to disable it.</p>
 perform a privacy assessment of their application
 taking all aspects of their application into consideration.</p>
    <h3 class="heading settled" data-level="8.1" id="browsing-context"><span class="secno">8.1. </span><span class="content">Browsing Context</span><a class="self-link" href="#browsing-context"></a></h3>
-   <p>Sensor <a data-link-type="dfn" href="#output-data">output data</a> must only be available in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context">top-level browsing context</a> to avoid the privacy risk of
+   <p><a data-link-type="dfn" href="#sensor-readings">Sensor readings</a> must only be available in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context">top-level browsing context</a> to avoid the privacy risk of
 sharing the information defined in this specification
 (and specifications extending it)
 with contexts unfamiliar to the user.
 For example, a mobile device will only fire the event on
 the active tab, and not on the background tabs or within iframes.</p>
    <h3 class="heading settled" data-level="8.2" id="secure-context"><span class="secno">8.2. </span><span class="content">Secure Context</span><a class="self-link" href="#secure-context"></a></h3>
-   <p>Sensor <a data-link-type="dfn" href="#output-data">output data</a> is explicitly flagged by the
+   <p><a data-link-type="dfn" href="#sensor-readings">Sensor readings</a> are explicitly flagged by the
 Secure Contexts specification <a data-link-type="biblio" href="#biblio-powerful-features">[powerful-features]</a> as a high-value target for network attackers.
-As such, sensor <a data-link-type="dfn" href="#output-data">output data</a> must only be available
+As such, <a data-link-type="dfn" href="#sensor-readings">sensor readings</a> must only be available
 within a <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/powerfulfeatures/#secure-context">secure context</a>.</p>
    <h3 class="heading settled" data-level="8.3" id="permissioning"><span class="secno">8.3. </span><span class="content">Obtaining Explicit User Permission</span><a class="self-link" href="#permissioning"></a></h3>
    <div class="issue no-marker" id="issue-d41d8cd9">
@@ -1959,14 +1958,15 @@ For example, a <a data-link-type="dfn" href="#sensor">sensor</a> measuring
 the distance at which an object is from it
 may see its associated interface called <code>ProximitySensor</code>.</p>
    <p>Attributes of the <a class="idl-code" data-link-type="interface" href="#sensorreading1">SensorReading</a> subclass that
-hold <a data-link-type="dfn" href="#output-data">output data</a> should be named after the full name of this <a data-link-type="dfn" href="#output-data">output data</a>.
+hold <a data-link-type="dfn" href="#sensor-readings">sensor readings</a> values
+should be named after the full name of these values.
 For example, the <code>TemperatureSensorReading</code> interface should hold
-the value of the <a data-link-type="dfn" href="#sensor">sensor</a>’s <a data-link-type="dfn" href="#output-data">output data</a> in
+the <a data-link-type="dfn" href="#sensor-readings">sensor reading</a>’s value in
 a <code>temperature</code> attribute (and not a <code>value</code> or <code>temp</code> attribute).
 A good starting point for naming are the
 Quantities, Units, Dimensions and Data Types Ontologies <a data-link-type="biblio" href="#biblio-qudt">[QUDT]</a>.</p>
    <h3 class="heading settled" data-level="9.2" id="unit"><span class="secno">9.2. </span><span class="content">Unit</span><a class="self-link" href="#unit"></a></h3>
-   <p>Extension specification must specify the <a data-link-type="dfn" href="#output-data">Output data</a>’s unit.</p>
+   <p>Extension specification must specify the unit of <a data-link-type="dfn" href="#sensor-readings">sensor readings</a>.</p>
    <p>As per the Technical Architecure Group’s (TAG) API Design Principles <a data-link-type="biblio" href="#biblio-api-design-principles">[API-DESIGN-PRINCIPLES]</a>,
 all time measurement should be in milliseconds.
 All other units should be specified using,
@@ -2018,10 +2018,7 @@ Generally, devices are equipped with a single <a data-link-type="dfn" href="#sen
 so defining a default <a data-link-type="dfn" href="#sensor">sensor</a> should be easy.
 For <a data-link-type="dfn" href="#sensor-types">sensor types</a> where multiple <a data-link-type="dfn" href="#sensor">sensors</a> are common,
 extension specifications may choose not to define a default sensor.</p>
-   <h3 class="heading settled" data-level="9.6" id="calibration0"><span class="secno">9.6. </span><span class="content">Calibration</span><a class="self-link" href="#calibration0"></a></h3>
-   <p><a data-link-type="dfn" href="#output-data">Output data</a> emitted by <a class="idl-code" data-link-type="interface" href="#sensor0">Sensor</a> objects
-should always be <a data-link-type="dfn" href="#calibration">calibrated</a>.</p>
-   <h3 class="heading settled" data-level="9.7" id="permission-api"><span class="secno">9.7. </span><span class="content">Extending the Permission API</span><a class="self-link" href="#permission-api"></a></h3>
+   <h3 class="heading settled" data-level="9.6" id="permission-api"><span class="secno">9.6. </span><span class="content">Extending the Permission API</span><a class="self-link" href="#permission-api"></a></h3>
    <p>Provide guidance on how to extend the Permission API <a data-link-type="biblio" href="#biblio-permissions">[permissions]</a> for each <a data-link-type="dfn" href="#sensor-types">sensor types</a>.</p>
    <div class="issue no-marker" id="issue-d41d8cd90">
     <a class="self-link" href="#issue-d41d8cd90"></a><a class="marker" href="https://github.com/w3c/sensors/issues/22">Issue #22 on GitHub: “Simplify extension of the Permissions API for concrete sensor implementations”</a>
@@ -2050,10 +2047,10 @@ should always be <a data-link-type="dfn" href="#calibration">calibrated</a>.</p>
        Document current issue as a note in the Extensibility section of the spec.
     </ul>
    </div>
-   <h3 class="heading settled" data-level="9.8" id="immutability-requirements"><span class="secno">9.8. </span><span class="content">Immutability requirements</span><a class="self-link" href="#immutability-requirements"></a></h3>
+   <h3 class="heading settled" data-level="9.7" id="immutability-requirements"><span class="secno">9.7. </span><span class="content">Immutability requirements</span><a class="self-link" href="#immutability-requirements"></a></h3>
    <p>Attributes of the <a class="idl-code" data-link-type="interface" href="#sensorreading1">SensorReading</a> subclass that
-hold <a data-link-type="dfn" href="#output-data">output data</a> must be readonly.</p>
-   <h3 class="heading settled" data-level="9.9" id="example-webidl"><span class="secno">9.9. </span><span class="content">Example WebIDL</span><a class="self-link" href="#example-webidl"></a></h3>
+hold <a data-link-type="dfn" href="#sensor-readings">sensor readings</a> values must be readonly.</p>
+   <h3 class="heading settled" data-level="9.8" id="example-webidl"><span class="secno">9.8. </span><span class="content">Example WebIDL</span><a class="self-link" href="#example-webidl"></a></h3>
    <p>Here’s example WebIDL for a possible extension of this specification
 for proximity <a data-link-type="dfn" href="#sensor">sensors</a>.</p>
 <pre class="example" id="example-b23dffad"><a class="self-link" href="#example-b23dffad"></a>[Constructor(optional ProximitySensorOptions proximitySensorOptions)]
@@ -2187,9 +2184,9 @@ for their editorial input.</p>
    <li><a href="#dom-sensor-onchange">onchange</a><span>, in §6.1</span>
    <li><a href="#dom-sensor-ondata">ondata</a><span>, in §6.1</span>
    <li><a href="#dom-sensor-onerror">onerror</a><span>, in §6.1</span>
-   <li><a href="#output-data">output data</a><span>, in §3</span>
    <li><a href="#periodic">periodic</a><span>, in §3</span>
    <li><a href="#permission">permission</a><span>, in §6.1</span>
+   <li><a href="#raw-sensor-readings">raw sensor readings</a><span>, in §3</span>
    <li>
     reading
     <ul>
@@ -2216,6 +2213,7 @@ for their editorial input.</p>
    <li><a href="#sensorreadingevent">SensorReadingEvent</a><span>, in §6.1</span>
    <li><a href="#dictdef-sensorreadingeventinit">SensorReadingEventInit</a><span>, in §6.1</span>
    <li><a href="#dom-sensorreadingevent-sensorreadingevent">SensorReadingEvent(type, eventInitDict)</a><span>, in §6.1</span>
+   <li><a href="#sensor-readings">sensor readings</a><span>, in §3</span>
    <li><a href="#sensor-types">sensor types</a><span>, in §3</span>
    <li><a href="#smart-sensors">Smart sensors</a><span>, in §3</span>
    <li>
@@ -2257,6 +2255,7 @@ for their editorial input.</p>
     <ul>
      <li><a href="https://dom.spec.whatwg.org/#event">Event</a>
      <li><a href="https://dom.spec.whatwg.org/#dictdef-eventinit">EventInit</a>
+     <li><a href="https://dom.spec.whatwg.org/#concept-document-type">type</a>
     </ul>
    <li>
     <a data-link-type="biblio" href="#biblio-hr-time-2">[hr-time-2]</a> defines the following terms:
