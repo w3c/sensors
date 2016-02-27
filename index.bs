@@ -207,7 +207,7 @@ the <a>reporting mode</a> is said to be <dfn>periodic</dfn>.
 When it is only reported upon measurable change,
 the <a>reporting mode</a> is said to be <dfn>episodic</dfn>.
 
-<a>Episodic</a> <a>reporting mode</a> can gives the user agent
+<a>Episodic</a> <a>reporting modes</a> can give the user agent
 more latitude to carry out power- or CPU-saving strategies
 and should generally be favored.
 <a>Periodic</a> <a>reporting mode</a>, on the other hand,
