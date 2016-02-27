@@ -623,7 +623,6 @@ should be named after the full name of this <a>output data</a>.
 For example, the `TemperatureSensorReading` interface should hold
 the value of the <a>sensor</a>'s <a>output data</a> in
 a `temperature` attribute (and not a `value` or `temp` attribute).
-
 A good starting point for naming are the
 Quantities, Units, Dimensions and Data Types Ontologies [[QUDT]].
 
