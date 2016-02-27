@@ -65,8 +65,6 @@ Increasingly, sensor data is used in application development to
 enable new use cases such as geolocation,
 counting steps or head-tracking.
 This is especially true on mobile devices where new sensors are added regularly.
-It is also increasingly common in networked objects
-which are part of the Internet of Things.
 
 Exposing sensor data to the Web
 has so far been both slow-paced and ad-hoc.
@@ -83,6 +81,30 @@ promote consistency across sensor APIs,
 enable advanced use cases thanks to performant <a>low-level</a> APIs,
 and increase the pace at which new sensors can be exposed to the Web
 by simplifying the specification and implementation processes.
+
+Scope {#scope}
+=====
+
+The scope of this specification is currently limited
+to specifying primitives
+which enable expose data from local sensors.
+
+Exposing remote sensors
+or sensors found on personal area networks
+is out of scope.
+As work in these areas mature,
+it is possible that common, lower-level primitives be found,
+in which case this specification will be updated accordingly.
+This should have little to no effects on implementations, however.
+
+This specification also does not currently expose a
+sensor discovery API.
+This is because the limited number of sensors currently available to User Agents
+does not warrant such an API.
+Using feature detection, such as described in [[#feature-detection]],
+is good enough for now.
+A subsequent version of this specification might specify such an API,
+and the current API has been designed with this in mind.
 
 Terminology
 ===========
