@@ -502,7 +502,7 @@ Sensor Object Construction
 --------------------------
 
 : input
-:: <var>options</a>, a <a dictionary>SensorOptions</a> object.
+:: <var>options</var>, a <a dictionary>SensorOptions</a> object.
 : output
 :: <var>sensor</var>, an instance of a subclass of <a>Sensor</a>.
 
@@ -510,7 +510,7 @@ Sensor Object Construction
     1.  <a>throw</a> a SecurityError.
 1.  If the <a>browsing context</a> is not a <a>top-level browsing context</a>, then:
     1.  <a>throw</a> a SecurityError.
-1.  Otherwise, if <a>identifying parameters</a> in <var>options</a> are set, then:
+1.  Otherwise, if <a>identifying parameters</a> in <var>options</var> are set, then:
     1.  If these <a>identifying parameters</a> allow a unique <a>sensor</a> to be identified, then:
         1.  let <var>sensor</var> be a new <a interface>Sensor</a> object.
         1.  associate <var>sensor</var> with that <a>sensor</a>
