@@ -1709,13 +1709,6 @@ the default <a data-link-type="dfn" href="#sensor">sensor</a> is chosen.</p>
     <span class="nx">updateMap</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
 <span class="p">};</span></pre>
    </div>
-   <p>Similarly, getting a single <a data-link-type="dfn" href="#sensor-readings">sensor reading</a> should be a simple process, and it is:</p>
-   <div class="example" id="example-80fe6781">
-    <a class="self-link" href="#example-80fe6781"></a> Geolocating the user: 
-<pre class="highlight"><span class="nx">GeolocationSensor</span><span class="p">.</span><span class="nx">requestReading</span><span class="p">({</span> <span class="nx">accuracy</span><span class="o">:</span> <span class="s2">"high"</span> <span class="p">})</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">reading</span> <span class="o">=></span> <span class="p">{</span> <span class="nx">displayCoords</span><span class="p">(</span><span class="nx">reading</span><span class="p">.</span><span class="nx">coords</span><span class="p">);</span> <span class="p">})</span>
-    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=></span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">));</span></pre>
-   </div>
    <p class="note" role="note">Note: extension to this specification may choose not to define a default sensor
 when doing so wouldn’t make sense.
 For example, it might be difficult to agree on an obvious default <a data-link-type="dfn" href="#sensor">sensor</a> for
@@ -1724,11 +1717,10 @@ proximity <a data-link-type="dfn" href="#sensor">sensors</a>.</p>
 multiple <a data-link-type="dfn" href="#sensor">sensors</a> of the same <a data-link-type="dfn" href="#sensor-types">type</a> may coexist on the same device,
 specification extension will have to
 define ways to uniquely identify each one.</p>
-   <div class="example" id="example-5e1a1f40">
-    <a class="self-link" href="#example-5e1a1f40"></a> For example checking the pressure of the left rear tire: 
-<pre class="highlight"><span class="nx">DirectTirePressureSensor</span><span class="p">.</span><span class="nx">requestReading</span><span class="p">({</span> <span class="nx">position</span><span class="o">:</span> <span class="s2">"rear"</span><span class="p">,</span> <span class="nx">side</span><span class="o">:</span> <span class="s2">"left"</span> <span class="p">})</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">reading</span> <span class="o">=></span> <span class="p">{</span> <span class="nx">display</span><span class="p">(</span><span class="nx">reading</span><span class="p">.</span><span class="nx">pressure</span><span class="p">);</span> <span class="p">})</span>
-    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=></span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">));</span></pre>
+   <div class="example" id="example-00ebe05d">
+    <a class="self-link" href="#example-00ebe05d"></a> For example checking the pressure of the left rear tire: 
+<pre class="highlight"><span class="kd">let</span> <span class="nx">sensor</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DirectTirePressureSensor</span><span class="p">({</span> <span class="nx">position</span><span class="o">:</span> <span class="s2">"rear"</span><span class="p">,</span> <span class="nx">side</span><span class="o">:</span> <span class="s2">"left"</span> <span class="p">});</span>
+<span class="nx">sensor</span><span class="p">.</span><span class="nx">onchange</span> <span class="o">=</span> <span class="nx">event</span> <span class="o">=></span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">reading</span><span class="p">.</span><span class="nx">pressure</span><span class="p">);)</span> <span class="p">{</span></pre>
    </div>
    <h2 class="heading settled" data-level="6" id="api"><span class="secno">6. </span><span class="content">API</span><a class="self-link" href="#api"></a></h2>
    <h3 class="heading settled" data-level="6.1" id="the-sensor-interface"><span class="secno">6.1. </span><span class="content">The Sensor Interface</span><a class="self-link" href="#the-sensor-interface"></a></h3>
@@ -1744,7 +1736,6 @@ define ways to uniquely identify each one.</p>
     <li data-md="">
      <p><dfn data-dfn-type="dfn" data-noexport="" id="identifying-parameters">identifying parameters<a class="self-link" href="#identifying-parameters"></a></dfn></p>
 <pre class="idl">interface <a class="idl-code" data-link-type="interface" href="#sensor0">Sensor</a> : <a data-link-type="idl-name" href="https://dom.spec.whatwg.org#interface-eventtarget">EventTarget</a> {
-  static Promise&lt;<a data-link-type="idl-name" href="#sensorreading1">SensorReading</a>> <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="method" data-export="" data-lt="requestReading(requestReadingOptions)" id="dom-sensor-requestreading">requestReading<a class="self-link" href="#dom-sensor-requestreading"></a></dfn>(<a data-link-type="idl-name" href="#dictdef-requestreadingoptions">RequestReadingOptions</a> <dfn class="idl-code" data-dfn-for="Sensor/requestReading(requestReadingOptions)" data-dfn-type="argument" data-export="" id="dom-sensor-requestreading-requestreadingoptions-requestreadingoptions">requestReadingOptions<a class="self-link" href="#dom-sensor-requestreading-requestreadingoptions-requestreadingoptions"></a></dfn>);
   attribute double <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="double " id="dom-sensor-timeout">timeout<a class="self-link" href="#dom-sensor-timeout"></a></dfn>; 
   readonly attribute <a data-link-type="idl-name" href="#sensorreading1">SensorReading</a>? <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-readonly="" data-type="SensorReading? " id="dom-sensor-reading">reading<a class="self-link" href="#dom-sensor-reading"></a></dfn>;
   attribute <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a> <dfn class="idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="EventHandler " id="dom-sensor-onerror">onerror<a class="self-link" href="#dom-sensor-onerror"></a></dfn>;
@@ -1765,10 +1756,6 @@ dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="d
 dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-sensoroptions">SensorOptions<a class="self-link" href="#dictdef-sensoroptions"></a></dfn> {
   double? <dfn class="idl-code" data-dfn-for="SensorOptions" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-sensoroptions-frequency">frequency<a class="self-link" href="#dom-sensoroptions-frequency"></a></dfn>;
   double? <dfn class="idl-code" data-dfn-for="SensorOptions" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-sensoroptions-timeout">timeout<a class="self-link" href="#dom-sensoroptions-timeout"></a></dfn>;
-};
-
-dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-requestreadingoptions">RequestReadingOptions<a class="self-link" href="#dictdef-requestreadingoptions"></a></dfn> : <a data-link-type="idl-name" href="#dictdef-sensoroptions">SensorOptions</a> {
-  boolean? <dfn class="idl-code" data-default="false" data-dfn-for="RequestReadingOptions" data-dfn-type="dict-member" data-export="" data-type="boolean? " id="dom-requestreadingoptions-fromcache">fromCache<a class="self-link" href="#dom-requestreadingoptions-fromcache"></a></dfn> = false;
 };
 
 </pre>
@@ -2179,7 +2166,6 @@ for their editorial input.</p>
      <li><a href="#frequency">definition of</a><span>, in §3</span>
      <li><a href="#dom-sensoroptions-frequency">dict-member for SensorOptions</a><span>, in §6.1</span>
     </ul>
-   <li><a href="#dom-requestreadingoptions-fromcache">fromCache</a><span>, in §6.1</span>
    <li><a href="#high-level">high-level</a><span>, in §3</span>
    <li><a href="#identifying-parameters">identifying parameters</a><span>, in §6.1</span>
    <li><a href="#low-level">low-level</a><span>, in §3</span>
@@ -2199,8 +2185,6 @@ for their editorial input.</p>
     </ul>
    <li><a href="#read-steps">read steps</a><span>, in §6.1</span>
    <li><a href="#reporting-modes">reporting modes</a><span>, in §3</span>
-   <li><a href="#dictdef-requestreadingoptions">RequestReadingOptions</a><span>, in §6.1</span>
-   <li><a href="#dom-sensor-requestreading">requestReading(requestReadingOptions)</a><span>, in §6.1</span>
    <li><a href="#sensor0">Sensor</a><span>, in §6.1</span>
    <li><a href="#sensor">sensor</a><span>, in §3</span>
    <li><a href="#sensor-fusion">sensor fusion</a><span>, in §3</span>
@@ -2307,7 +2291,6 @@ for their editorial input.</p>
   </dl>
   <h2 class="no-num heading settled" id="idl-index"><span class="content">IDL Index</span><a class="self-link" href="#idl-index"></a></h2>
 <pre class="idl">interface <a class="idl-code" data-link-type="interface" href="#sensor0">Sensor</a> : <a data-link-type="idl-name" href="https://dom.spec.whatwg.org#interface-eventtarget">EventTarget</a> {
-  static Promise&lt;<a data-link-type="idl-name" href="#sensorreading1">SensorReading</a>> <a href="#dom-sensor-requestreading">requestReading</a>(<a data-link-type="idl-name" href="#dictdef-requestreadingoptions">RequestReadingOptions</a> <a href="#dom-sensor-requestreading-requestreadingoptions-requestreadingoptions">requestReadingOptions</a>);
   attribute double <a data-type="double " href="#dom-sensor-timeout">timeout</a>; 
   readonly attribute <a data-link-type="idl-name" href="#sensorreading1">SensorReading</a>? <a data-readonly="" data-type="SensorReading? " href="#dom-sensor-reading">reading</a>;
   attribute <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a> <a data-type="EventHandler " href="#dom-sensor-onerror">onerror</a>;
@@ -2328,10 +2311,6 @@ dictionary <a href="#dictdef-sensorreadingeventinit">SensorReadingEventInit</a> 
 dictionary <a href="#dictdef-sensoroptions">SensorOptions</a> {
   double? <a data-type="double? " href="#dom-sensoroptions-frequency">frequency</a>;
   double? <a data-type="double? " href="#dom-sensoroptions-timeout">timeout</a>;
-};
-
-dictionary <a href="#dictdef-requestreadingoptions">RequestReadingOptions</a> : <a data-link-type="idl-name" href="#dictdef-sensoroptions">SensorOptions</a> {
-  boolean? <a data-default="false" data-type="boolean? " href="#dom-requestreadingoptions-fromcache">fromCache</a> = false;
 };
 
 
