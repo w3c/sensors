@@ -1361,7 +1361,7 @@
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="http://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/Icons/w3c_home" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-02-29">29 February 2016</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-03-06">6 March 2016</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1538,7 +1538,7 @@ are corrected through <dfn data-dfn-type="dfn" data-noexport="" id="calibration"
    <p>Known but <em>unpredictable</em> discrepancies need to be addressed dynamically
 through a process called <a data-link-type="dfn" href="#sensor-fusion">sensor fusion</a>.</p>
    <p>Calibrated <a data-link-type="dfn" href="#raw-sensor-readings">raw sensor readings</a> are referred to as <dfn data-dfn-type="dfn" data-noexport="" id="sensor-readings">sensor readings<a class="self-link" href="#sensor-readings"></a></dfn>,
-whether or not they has undergone <a data-link-type="dfn" href="#sensor-fusion">sensor fusion</a>.</p>
+whether or not they have undergone <a data-link-type="dfn" href="#sensor-fusion">sensor fusion</a>.</p>
    <p>Different <dfn data-dfn-type="dfn" data-noexport="" id="sensor-types">sensor types<a class="self-link" href="#sensor-types"></a></dfn> measure different physical quantities
 such as temperature, air pressure, heart-rate, or luminosity.</p>
    <p>For the purpose of this specification we distinguish between <a data-link-type="dfn" href="#high-level">high-level</a> and <a data-link-type="dfn" href="#low-level">low-level</a> <a data-link-type="dfn" href="#sensor-types">sensor types</a>.</p>
@@ -1971,8 +1971,10 @@ Quantities, Units, Dimensions and Data Types Ontologies <a data-link-type="bibli
 all time measurement should be in milliseconds.
 All other units should be specified using,
 in order of preference,
-and with the exception of temperature (for which Celsius should be favored of Kelvin),
-SI, SI derived units, and Non-SI units accepted for use with the SI,
+and with the exception of temperature (for which Celsius should be favored over Kelvin),
+the International System of Units (SI),
+SI derived units, and
+Non-SI units accepted for use with the SI,
 as described in the SI Brochure <a data-link-type="biblio" href="#biblio-si">[SI]</a>.</p>
    <h3 class="heading settled" data-level="9.3" id="high-vs-low-level"><span class="secno">9.3. </span><span class="content">Exposing High-Level vs. Low-Level Sensors</span><a class="self-link" href="#high-vs-low-level"></a></h3>
    <p>So far, specifications exposing sensors to the Web platform
@@ -1994,7 +1996,8 @@ Indeed, <a data-link-type="dfn" href="#high-level">high-level</a> sensors:</p>
   decreasing the amount and type of information exposed.</p>
    </ul>
    <p>However, an increasing number of use cases
-such as virtual and augmented reality <a data-link-type="biblio" href="#biblio-sensor-use-cases">[sensor-use-cases]</a> require <a data-link-type="dfn" href="#low-level">low-level</a> access to sensors,
+such as virtual and augmented reality
+require <a data-link-type="dfn" href="#low-level">low-level</a> access to sensors,
 most notably for performance reasons.</p>
    <p>Providing <a data-link-type="dfn" href="#low-level">low-level</a> access
 enables Web application developers to leverage domain-specific constraints
@@ -2301,8 +2304,6 @@ for their editorial input.</p>
    <dd>Stephen Block; Andrei Popescu. <a href="http://www.w3.org/TR/orientation-event/">DeviceOrientation Event Specification</a>. 1 December 2011. LCWD. URL: <a href="http://www.w3.org/TR/orientation-event/">http://www.w3.org/TR/orientation-event/</a>
    <dt id="biblio-permissions"><a class="self-link" href="#biblio-permissions"></a>[PERMISSIONS]
    <dd>Mounir Lamouri; Marcos Caceres. <a href="http://www.w3.org/TR/permissions/">The Permissions API</a>. 7 April 2015. WD. URL: <a href="http://www.w3.org/TR/permissions/">http://www.w3.org/TR/permissions/</a>
-   <dt id="biblio-sensor-use-cases"><a class="self-link" href="#biblio-sensor-use-cases"></a>[SENSOR-USE-CASES]
-   <dd>Tobie Langel. <a href="http://w3c.github.io/sensors/usecases.html">Generic Sensor Use Cases</a>. October 5, 2015. ED. URL: <a href="http://w3c.github.io/sensors/usecases.html">http://w3c.github.io/sensors/usecases.html</a>
   </dl>
   <h2 class="no-num heading settled" id="idl-index"><span class="content">IDL Index</span><a class="self-link" href="#idl-index"></a></h2>
 <pre class="idl">interface <a class="idl-code" data-link-type="interface" href="#sensor0">Sensor</a> : <a data-link-type="idl-name" href="https://dom.spec.whatwg.org#interface-eventtarget">EventTarget</a> {
