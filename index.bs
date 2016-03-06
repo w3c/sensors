@@ -24,8 +24,6 @@ Boilerplate: omit issues-index, omit conformance
 </pre>
 <pre class="anchors">
 urlPrefix: https://dom.spec.whatwg.org; spec: DOM
-  type: dfn
-    text: fire an event; url: concept-event-fire
   type: interface
     text: EventTarget; url: interface-eventtarget
 urlPrefix: https://html.spec.whatwg.org/multipage/; spec: HTML
@@ -36,6 +34,7 @@ urlPrefix: https://html.spec.whatwg.org/multipage/; spec: HTML
       text: event handler event type
       text: queue a task
       text: event loop
+      text: fire a simple event
     urlPrefix: infrastructure.html
       text: in parallel
     urlPrefix: browsers.html
@@ -523,7 +522,7 @@ Sensor Object Construction
 1.  return <var>sensor</var>.
 1.  Run these sub-steps <a>in parallel</a>:
     1.  If <a>permission</a> is not granted,
-        <a>queue a task</a> to <a>fire an event</a> named error on <var>sensor</var>,
+        <a>queue a task</a> to <a>fire a simple event</a> named error on <var>sensor</var>,
         and terminate these sub-steps.
     1.  If cached <a>SensorReadings</a> are available,
         1.   let <var>latest_reading</var> be the most recent of those <a>SensorReadings</a>.

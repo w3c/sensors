@@ -1871,7 +1871,7 @@ expressed in milliseconds that passed since the <a data-link-type="dfn" href="ht
      <p>Run these sub-steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in parallel</a>:</p>
      <ol>
       <li data-md="">
-       <p>If <a data-link-type="dfn" href="#permission">permission</a> is not granted, <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task">queue a task</a> to <a data-link-type="dfn" href="https://dom.spec.whatwg.org#concept-event-fire">fire an event</a> named error on <var>sensor</var>,
+       <p>If <a data-link-type="dfn" href="#permission">permission</a> is not granted, <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task">queue a task</a> to <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#fire-a-simple-event">fire a simple event</a> named error on <var>sensor</var>,
   and terminate these sub-steps.</p>
       <li data-md="">
        <p>If cached <a data-link-type="dfn" href="#sensorreading0">SensorReadings</a> are available,</p>
@@ -2233,7 +2233,6 @@ for their editorial input.</p>
     <a data-link-type="biblio" href="#biblio-dom">[dom]</a> defines the following terms:
     <ul>
      <li><a href="https://dom.spec.whatwg.org#interface-eventtarget">EventTarget</a>
-     <li><a href="https://dom.spec.whatwg.org#concept-event-fire">fire an event</a>
     </ul>
    <li>
     <a data-link-type="biblio" href="#biblio-html">[HTML]</a> defines the following terms:
@@ -2243,6 +2242,7 @@ for their editorial input.</p>
      <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-type">event handler event type</a>
      <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers">event handlers</a>
      <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#event-loop">event loop</a>
+     <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#fire-a-simple-event">fire a simple event</a>
      <li><a href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in parallel</a>
      <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#incumbent-settings-object">incumbent settings object</a>
      <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task">queue a task</a>
