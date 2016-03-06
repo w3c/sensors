@@ -661,7 +661,7 @@ Indeed, <a>high-level</a> sensors:
     decreasing the amount and type of information exposed.
 
 However, an increasing number of use cases
-such as virtual and augmented reality [[sensor-use-cases]]
+such as virtual and augmented reality
 require <a>low-level</a> access to sensors,
 most notably for performance reasons.
 
