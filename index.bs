@@ -637,8 +637,10 @@ As per the Technical Architecure Group's (TAG) API Design Principles [[API-DESIG
 all time measurement should be in milliseconds.
 All other units should be specified using,
 in order of preference,
-and with the exception of temperature (for which Celsius should be favored of Kelvin),
-SI, SI derived units, and Non-SI units accepted for use with the SI,
+and with the exception of temperature (for which Celsius should be favored over Kelvin),
+the International System of Units (SI),
+SI derived units, and
+Non-SI units accepted for use with the SI,
 as described in the SI Brochure [[SI]].
 
 Exposing High-Level vs. Low-Level Sensors {#high-vs-low-level}
