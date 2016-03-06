@@ -342,19 +342,6 @@ the default <a>sensor</a> is chosen.
     </pre>
 </div>
 
-Similarly, getting a single <a>sensor reading</a>
-should be a simple process, and it is:
-
-<div class="example">
-    Geolocating the user:
-
-    <pre highlight="js">
-    GeolocationSensor.requestReading({ accuracy: "high" })
-        .then(reading => { displayCoords(reading.coords); })
-        .catch(err => console.log(err));
-    </pre>
-</div>
-
 Note: extension to this specification may choose not to define a default sensor
 when doing so wouldn't make sense.
 For example, it might be difficult to agree on an obvious default <a>sensor</a> for
@@ -370,9 +357,8 @@ define ways to uniquely identify each one.
     For example checking the pressure of the left rear tire: 
 
     <pre highlight="js">
-    DirectTirePressureSensor.requestReading({ position: "rear", side: "left" })
-        .then(reading => { display(reading.pressure); })
-        .catch(err => console.log(err));
+    let sensor = new DirectTirePressureSensor({ position: "rear", side: "left" });
+    sensor.onchange = event => console.log(event.reading.pressure);) {
     </pre>
 </div>
 
@@ -396,7 +382,6 @@ TODO: define the following concepts
 
 <pre class="idl">
 interface Sensor : EventTarget {
-  static Promise&lt;SensorReading&gt; requestReading(RequestReadingOptions requestReadingOptions);
   attribute double timeout; 
   readonly attribute SensorReading? reading;
   attribute EventHandler onerror;
@@ -417,10 +402,6 @@ dictionary SensorReadingEventInit : EventInit {
 dictionary SensorOptions {
   double? frequency;
   double? timeout;
-};
-
-dictionary RequestReadingOptions : SensorOptions {
-  boolean? fromCache = false;
 };
 
 </pre>
