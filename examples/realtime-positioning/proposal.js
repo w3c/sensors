@@ -1,4 +1,4 @@
-var sensor = new sensors.Geolocation({ accuracy: "high" });
+var sensor = new GeolocationSensor({ accuracy: "high" });
 
 sensor.onchange = function(event) {
     var coords = [event.data.latitude, event.data.longitude];
@@ -6,6 +6,6 @@ sensor.onchange = function(event) {
 };
 
 sensor.onerror = function(error) {
-    updateMap(e);
+    updateMap(error);
 };
 

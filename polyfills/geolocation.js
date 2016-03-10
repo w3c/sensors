@@ -1,6 +1,5 @@
 "use strict";
-window.sensors = window.sensors || {};
-window.sensors.Geolocation = window.sensors.Geolocation || function (options) {
+window.GeolocationSensor = window.GeolocationSensor || function (options) {
     var self = this;
     
     function onchange(position) {
@@ -27,7 +26,7 @@ window.sensors.Geolocation = window.sensors.Geolocation || function (options) {
     });
 };
 
-window.sensors.Geolocation.requestData = function(options) {
+window.GeolocationSensor.requestData = function(options) {
     return new Promise(function(resolve, reject) {
         function onsuccess(position) {
             resolve({

@@ -7,7 +7,7 @@ function map(element_id, info_box_id, token) {
     
     function resolution(latitude, zoomLevel) {
         var EARTH_CIRC = 6378137;
-        return Math.cos(latitude * PI/180) * 2 * Math.PI * EARTH_CIRC / (256 * Math.pow(2, zoomLevel));
+        return Math.cos(latitude * Math.PI/180) * 2 * Math.PI * EARTH_CIRC / (256 * Math.pow(2, zoomLevel));
     }
     
     function circleRadius(accuracy, latitude, zoomLevel) {
