@@ -118,7 +118,14 @@ window.GeolocationSensorReading = window.GeolocationSensorReading || (function()
 
 window.GeolocationSensor = window.GeolocationSensor || (function () {
     var privateData = new WeakMap();
-
+    function cleanup() {
+        var priv = privateData.get(this);
+        priv.watchId = null;
+        priv.startPromise = null;
+        priv.startPromiseReject = null;
+        privateData.set(this, priv);
+        this.reading = null;
+    }
     function GeolocationSensor(options) {
         privateData.set(this, { options: options || {} });
         Sensor.call(this);
@@ -127,48 +134,67 @@ window.GeolocationSensor = window.GeolocationSensor || (function () {
     GeolocationSensor.prototype.constructor = GeolocationSensor;
     
     GeolocationSensor.prototype.start = function() {
-        var options = privateData.get(this).options;
+        var priv = privateData.get(this);
+        var options = priv.options;
         var self = this;
+        if (!priv.startPromise) {
+            priv.startPromise = new Promise(function(resolve, reject) {
+                priv.startPromiseReject = reject;
+                function onreading(position) {
+                    var coords = position.coords;
+                    var reading = new GeolocationSensorReading({
+                        accuracy        : coords.accuracy,
+                        altitude        : coords.altitude,
+                        altitudeAccuracy: coords.altitudeAccuracy,
+                        heading         : coords.heading,
+                        latitude        : coords.latitude,
+                        longitude       : coords.longitude,
+                        speed           : coords.speed,
+                        timeStamp       : position.timestamp // watch out for the diff casing, here.
+                    });
+                    if (privateData.get(self).watchId != null) {
+                        self.reading = reading;
+                        var event = new SensorReadingEvent("reading", {
+                            reading: reading
+                        });
+                        resolve();
+                        self.dispatchEvent(event);
+                    }
+                }
         
-        return new Promise(function(resolve, reject) {
-            function onreading(position) {
-                var coords = position.coords;
-                var reading = new GeolocationSensorReading({
-                    accuracy        : coords.accuracy,
-                    altitude        : coords.altitude,
-                    altitudeAccuracy: coords.altitudeAccuracy,
-                    heading         : coords.heading,
-                    latitude        : coords.latitude,
-                    longitude       : coords.longitude,
-                    speed           : coords.speed,
-                    timeStamp       : position.timestamp // watch out for the diff casing, here.
+                function onerror(err) {
+                    var errEvent = new ErrorEvent("error", {
+                        message:  err.message,
+                        filename: err.filename,
+                        lineno:   err.lineno,
+                        colno:    err.colno,
+                        error:    err
+                    });
+                    cleanup.call(this);
+                    self.dispatchEvent(errEvent);
+                    reject(err);
+                }
+                
+                priv.watchId = navigator.geolocation.watchPosition(onreading, onerror, {
+                    enableHighAccuracy: options.accuracy == "high", 
+                    maximumAge: 0, 
+                    timeout: Infinity
                 });
-                self.reading = reading;
-                var event = new SensorReadingEvent("reading", {
-                    reading: reading
-                });
-                self.dispatchEvent(event);
-                resolve(reading);
-            }
-        
-            function onerror(err) {
-                var errEvent = new ErrorEvent("error", {
-                    message:  err.message,
-                    filename: err.filename,
-                    lineno:   err.lineno,
-                    colno:    err.colno,
-                    error:    err
-                });
-                self.dispatchEvent(errEvent);
-                reject(err);
-            }
-        
-            navigator.geolocation.watchPosition(onreading, onerror, {
-                enableHighAccuracy: options.accuracy == "high", 
-                maximumAge: 0, 
-                timeout: Infinity
             });
-        })
+        }
+        privateData.set(this, priv);
+        return priv.startPromise;
+        
+        
+    };
+    
+    GeolocationSensor.prototype.stop = function() {
+        var watchId = privateData.get(this).watchId;
+        if (watchId) {
+            navigator.geolocation.clearWatch(watchId);
+        }
+        privateData.get(this).startPromiseReject(new Error("abort"));
+        cleanup.call(this);
     };
     
     return GeolocationSensor;
