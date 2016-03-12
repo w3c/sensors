@@ -118,29 +118,54 @@ window.GeolocationSensorReading = window.GeolocationSensorReading || (function()
 
 window.GeolocationSensor = window.GeolocationSensor || (function () {
     var privateData = new WeakMap();
-    function cleanup() {
-        var priv = privateData.get(this);
-        priv.watchId = null;
-        priv.startPromise = null;
-        priv.startPromiseReject = null;
-        privateData.set(this, priv);
-        this.reading = null;
+    function setSlot(self, name, value) {
+        var priv = privateData.get(self) || {};
+        priv[name] = value;
+        privateData.set(self, priv);
+        
+    }
+    function getSlot(self, name) {
+        var priv = privateData.get(self) || {};
+        return priv[name];
+    }
+    function cleanup(self) {
+        setSlot(self, "state", "idle"); // one of idle/starting/reporting
+        setSlot(self, "_watchId", null);
+        setSlot(self, "_startPromise", null);
+        setSlot(self, "_startPromiseReject", null);
+        self.reading = null;
     }
     function GeolocationSensor(options) {
-        privateData.set(this, { options: options || {} });
+        setSlot(this, "options", options);
+        setSlot(this, "state", "idle");
         Sensor.call(this);
     }
     GeolocationSensor.prototype = Object.create(Sensor.prototype);
     GeolocationSensor.prototype.constructor = GeolocationSensor;
     
     GeolocationSensor.prototype.start = function() {
-        var priv = privateData.get(this);
-        var options = priv.options;
-        var self = this;
-        if (!priv.startPromise) {
-            priv.startPromise = new Promise(function(resolve, reject) {
-                priv.startPromiseReject = reject;
+        console.log(getSlot(this, "state"))
+        if (getSlot(this, "state") == "idle") {
+            var self = this;
+            setSlot(self, "state", "starting");
+            setSlot(self, "_startPromise", new Promise(function(resolve, reject) {
+                setSlot(self, "_startPromiseReject", reject);
+                
+                
                 function onreading(position) {
+                    var state = getSlot(self, "state");
+                    if (state == "idle") {
+                        // consumer no longer interested in sensor output
+                        // stop right here.
+                        return;
+                    }
+                    
+                    if (state == "starting") {
+                        // This is the first event after startup
+                        setSlot(self, "state", "reporting");
+                        resolve();
+                    }
+                    
                     var coords = position.coords;
                     var reading = new GeolocationSensorReading({
                         accuracy        : coords.accuracy,
@@ -152,14 +177,12 @@ window.GeolocationSensor = window.GeolocationSensor || (function () {
                         speed           : coords.speed,
                         timeStamp       : position.timestamp // watch out for the diff casing, here.
                     });
-                    if (privateData.get(self).watchId != null) {
-                        self.reading = reading;
-                        var event = new SensorReadingEvent("reading", {
-                            reading: reading
-                        });
-                        resolve();
-                        self.dispatchEvent(event);
-                    }
+                    
+                    self.reading = reading;
+                    var event = new SensorReadingEvent("reading", {
+                        reading: reading
+                    });
+                    self.dispatchEvent(event);
                 }
         
                 function onerror(err) {
@@ -170,33 +193,37 @@ window.GeolocationSensor = window.GeolocationSensor || (function () {
                         colno:    err.colno,
                         error:    err
                     });
-                    cleanup.call(this);
+                    cleanup(self);
                     self.dispatchEvent(errEvent);
                     reject(err);
                 }
                 
-                priv.watchId = navigator.geolocation.watchPosition(onreading, onerror, {
-                    enableHighAccuracy: options.accuracy == "high", 
+                setSlot(self, "_watchId", navigator.geolocation.watchPosition(onreading, onerror, {
+                    enableHighAccuracy: getSlot(self, "options").accuracy == "high", 
                     maximumAge: 0, 
                     timeout: Infinity
-                });
-            });
+                }));
+            }));
         }
-        privateData.set(this, priv);
-        return priv.startPromise;
-        
-        
+        return getSlot(this, "_startPromise");
     };
     
     GeolocationSensor.prototype.stop = function() {
-        var watchId = privateData.get(this).watchId;
-        if (watchId) {
-            navigator.geolocation.clearWatch(watchId);
+        var state = getSlot(self, "state");
+        if (state == "idle") {
+            return;
+        }        
+        
+        navigator.geolocation.clearWatch(getSlot(this, "_watchId"));
+        cleanup(this); // TODO cleanup needs cleanup
+        
+        if (state == "starting") {
+            var reject = getSlot(this, "_startPromiseReject");
+            reject(new Error("abort")); // TODO improve error message
         }
-        privateData.get(this).startPromiseReject(new Error("abort"));
-        cleanup.call(this);
     };
     
+    GeolocationSensor.prototype.reading = null;
     return GeolocationSensor;
 })();
 
