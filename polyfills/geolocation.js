@@ -76,19 +76,11 @@
             return false;
         }
         
-        function emitReading(reading, sensor) {
-            sensor.reading = reading;
-            var event = new SensorReadingEvent("reading", {
-                reading: reading
-            });
-            sensor.dispatchEvent(event);
-        }
-        
         function emitReadingToAll(reading) {
             // maybe we'd need active and non-active sensors queues?
             var sensors = Array.from(associatedSensors);
             sensors.forEach(function(sensor) {
-                emitReading(reading, sensor)
+                emitReading(sensor, reading)
             });
         }
         
@@ -108,10 +100,9 @@
                     activate(opt);
                     // do we resolve the promise immediately here?
                     // do we set sensor.reading to the current reading?
-                } else {
-                    emitReading(currentReading, sensor); // TODO maybe have an option to force new reading here.
-                    // resolvePromise
+                    // This is qualitative vs. quantitative.
                 }
+                emitReading(sensor, currentReading); // TODO maybe have an option to force new reading here.
             }
         }
         
@@ -138,9 +129,6 @@
             });
             if (state == "activating") {
                 state = "active";
-                Array.from(associatedSensors).forEach(function(sensor) {
-                    resolve(sensor, reading);
-                });
             }
             emitReadingToAll(reading);
         }
@@ -260,13 +248,19 @@
         rj(error);
     }
     
-    function resolve(self, reading) {
-        var resolve = getSlot(self, "_startPromiseResolve");
-        setSlot(self, "state", "active");
-        setSlot(self, "_startPromiseResolve", null);
-        setSlot(self, "_startPromiseReject", null);
-        self.reading = reading;
-        resolve();
+    function emitReading(sensor, reading) {
+        sensor.reading = reading;
+        if (sensor.state != "active") {
+            var resolve = getSlot(sensor, "_startPromiseResolve");
+            setSlot(sensor, "state", "active");
+            setSlot(sensor, "_startPromiseResolve", null);
+            setSlot(sensor, "_startPromiseReject", null);
+            resolve();
+        }
+        var event = new SensorReadingEvent("reading", {
+            reading: reading
+        });
+        sensor.dispatchEvent(event);
     }
     var GeolocationSensor = (function () {
         
