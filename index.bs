@@ -54,6 +54,8 @@ urlPrefix: https://w3c.github.io/webappsec/specs/powerfulfeatures/; spec: powerf
 urlPrefix: https://heycam.github.io/webidl/; spec: WebIDL
   type: dfn
     text: throw; url: dfn-throw
+    text: InvalidStateError
+    text: Promise; url: idl-promise
 </pre>
 
 
@@ -365,12 +367,28 @@ define ways to uniquely identify each one.
 API
 ===
 
+A <a>sensor</a> has an associated set of <dfn>active sensors</dfn>. This set is initially empty.
+
+A <a>sensor</a> has an associated <dfn>current reading</dfn> which is initially null.
+
+A <a>sensor</a> has an associated <dfn>periodic reporting mode flag</dfn>. This flag is initially unset.
+
+A <a>sensor</a> has an associated <dfn>minimum polling frequency</dfn> which is initially set to null.
+
 ## The Sensor Interface
 
 A <dfn interface>Sensor</dfn> object has an associated <a>sensor</a>.
 
-A <a interface>Sensor</a> object observes the changes in its associated <a>sensor</a>
-at regular intervals and reports those values by firing DOM events.
+A <dfn interface>Sensor</dfn> object has an associated <a>state</a>,
+which is one of "`idle`", "`activating`", and "`active`". It is initially "`idle`".
+
+A <dfn interface>Sensor</dfn> object has an associated <dfn>reporting mode</dfn>,
+which can be one of <a>auto</a> or <a>periodic</a>.
+
+// A <a interface>Sensor</a> object observes the changes in its associated <a>sensor</a>
+// at regular intervals and reports those values by firing DOM events.
+
+
 
 <a>Frequency</a> is measured in hertz (Hz).
 
@@ -383,11 +401,20 @@ TODO: define the following concepts
 <pre class="idl">
 interface Sensor : EventTarget {
   attribute double timeout; 
+  readonly attribute SensorState state;
   readonly attribute SensorReading? reading;
+  Promise &lt;void&gt; start();
+  void stop();
   attribute EventHandler onerror;
   attribute EventHandler ondata;
   attribute EventHandler onchange;
   attribute EventHandler oncalibration;
+};
+
+enum SensorState {
+  "idle",
+  "activating",
+  "active"
 };
 
 [Constructor(DOMString type, SensorReadingEventInit eventInitDict)]
@@ -406,15 +433,32 @@ dictionary SensorOptions {
 
 </pre>
 
+### Sensor.state
+
 ### Sensor.timeout
 
 ### Sensor.reading
 
-The reading attribute of must always point to the latest <a>SensorReading</a>
+When a Sensor's state is <a>active</a>,
+its reading attribute must always point to the latest <a>SensorReading</a>
 whatever the <a>frequency</a> so that
 the reading attribute of two instances of the same Sensor interface
 associated with the same <a>sensor</a>
 hold the same <a>SensorReading</a> during a single <a>event loop</a> turn.
+
+### Sensor.start
+<div algorithm="to start a sensor">
+The <dfn>start()</dfn> method must run these steps or their <a>equivalent</a>:
+
+    1.  Let |p| be a <a>Promise</a>.
+    1.  If |sensorInstance|'s <a>state</a> is not "`idle`", then
+        1.  throw an "<a>InvalidStateError</a>" exception and abort these steps.
+    1.  Set |sensorInstance|'s <a>state</a> to "`activating`".
+    1.  Invoke <a>Registering a Sensor</a> algorithm with |sensorInstance| and |p| as arguments.
+    1.  Return |p|.
+
+</div>
+### Sensor.stop
 
 ### Sensor.onerror
 
@@ -506,8 +550,8 @@ Sensor Object Construction
         <a>queue a task</a> to <a>fire a simple event</a> named error on <var>sensor</var>,
         and terminate these sub-steps.
     1.  If cached <a>SensorReadings</a> are available,
-        1.   let <var>latest_reading</var> be the most recent of those <a>SensorReadings</a>.
-        2.   set the value of <var>sensor</var>'s reading attribute to <var>latest_reading</var>.
+        1.  let <var>latest_reading</var> be the most recent of those <a>SensorReadings</a>.
+        1.  set the value of <var>sensor</var>'s reading attribute to <var>latest_reading</var>.
     1.  run the <a>read steps</a> for <var>sensor</var>.
 
 
@@ -822,7 +866,7 @@ for their editorial input.
     "should", "may", etc) used in introducing the algorithm.</p>
 
     <p>Conformance requirements phrased as algorithms or specific steps can be
-    implemented in any manner, so long as the end result is equivalent. In
+    implemented in any manner, so long as the end result is <dfn>equivalent</dfn>. In
     particular, the algorithms defined in this specification are intended to
     be easy to understand and are not intended to be performant. Implementers
     are encouraged to optimize.</p>
