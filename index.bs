@@ -380,7 +380,7 @@ A <a>sensor</a> has an associated <dfn>minimum polling frequency</dfn> which is 
 A <dfn interface>Sensor</dfn> object has an associated <a>sensor</a>.
 
 A <dfn interface>Sensor</dfn> object has an associated <a>state</a>,
-which is one of "`idle`", "`activating`", and "`active`". It is initially "`idle`".
+which is one of <a enum-value>"idle"</a>, <a enum-value>"activating"</a>, and <a enum-value>"active"</a>. It is initially <a enum-value>"idle"</a>.
 
 A <dfn interface>Sensor</dfn> object has an associated <dfn>reporting mode</dfn>,
 which can be one of <a>auto</a> or <a>periodic</a>.
@@ -451,9 +451,9 @@ hold the same <a>SensorReading</a> during a single <a>event loop</a> turn.
 The <dfn>start()</dfn> method must run these steps or their <a>equivalent</a>:
 
     1.  Let |p| be a <a>Promise</a>.
-    1.  If |sensorInstance|'s <a>state</a> is not "`idle`", then
+    1.  If |sensorInstance|'s <a>state</a> is not <a enum-value>"idle"</a>, then
         1.  throw an "<a>InvalidStateError</a>" exception and abort these steps.
-    1.  Set |sensorInstance|'s <a>state</a> to "`activating`".
+    1.  Set |sensorInstance|'s <a>state</a> to <a enum-value>"activating"</a>.
     1.  Invoke <a>Registering a Sensor</a> algorithm with |sensorInstance| and |p| as arguments.
     1.  Return |p|.
 
