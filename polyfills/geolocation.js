@@ -219,8 +219,8 @@
     }
     
     function emitReading(sensor, reading) {
-        sensor.reading = reading;
-        if (getSlot(sensor, "state") == "activating") {
+        setSlot(sensor, "reading", reading);
+        if (sensor.state == "activating") {
             var resolve = getSlot(sensor, "_startPromiseResolve");
             setSlot(sensor, "state", "active");
             setSlot(sensor, "_startPromiseResolve", null);
@@ -234,8 +234,8 @@
     }
     
     function emitError(sensor, err) {
-        sensor.reading = null;
-        if (getSlot(sensor, "state") == "activating") {
+        setSlot(sensor, "reading", null);
+        if (sensor.state == "activating") {
             var reject = getSlot(sensor, "_startPromiseReject");
             setSlot(sensor, "state", "idle"); // should this depend on the kind of error?
             setSlot(sensor, "_startPromiseResolve", null);
@@ -257,28 +257,39 @@
         function GeolocationSensor(options) {
             setSlot(this, "options", options || {});
             setSlot(this, "state", "idle");
+            setSlot(this, "reading", "null");
             Sensor.call(this);
         }
-        GeolocationSensor.prototype = Object.create(Sensor.prototype);
+        GeolocationSensor.prototype = Object.create(Sensor.prototype, {
+            state: {
+                get: function() {
+                    return getSlot(this, "state");
+                }
+            },
+            reading: {
+                get: function() {
+                    return getSlot(this, "reading");
+                }
+            }
+        });
         GeolocationSensor.prototype.constructor = GeolocationSensor;
     
         GeolocationSensor.prototype.start = function() {
-            console.log("start")
-            if (getSlot(this, "state") == "idle") {
-                setSlot(this, "state", "activating");
-                _geolocationSensor.register(this);
-                var self = this;
-                setSlot(this, "_startPromise", new Promise(function(resolve, reject) {
-                    setSlot(self, "_startPromiseResolve", resolve);
-                    setSlot(self, "_startPromiseReject", reject);
-                }));
-            }
-            return getSlot(this, "_startPromise");
+            var self = this;
+            return new Promise(function(resolve, reject) {
+                if (self.state != "idle") {
+                    throw new DOMException("Sensor already started.", "InvalidStateError");
+                }
+                setSlot(self, "state", "activating");
+                setSlot(self, "_startPromiseResolve", resolve);
+                setSlot(self, "_startPromiseReject", reject);
+                _geolocationSensor.register(self);
+            });
         };
     
         GeolocationSensor.prototype.stop = function() {
             console.log("stop")
-            var state = getSlot(this, "state");
+            var state = this.state;
             if (state == "idle") {
                 return;
             }
@@ -288,8 +299,6 @@
                 emitError(this, new Error("abort"));
             }
         };
-    
-        GeolocationSensor.prototype.reading = null;
         return GeolocationSensor;
     })();
     
