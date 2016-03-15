@@ -379,10 +379,10 @@ A <a>sensor</a> has an associated <dfn>minimum polling frequency</dfn> which is 
 
 A <dfn interface>Sensor</dfn> object has an associated <a>sensor</a>.
 
-A <dfn interface>Sensor</dfn> object has an associated <a>state</a>,
+A <a interface>Sensor</a> object has an associated <dfn>state</dfn>,
 which is one of <a enum-value>"idle"</a>, <a enum-value>"activating"</a>, and <a enum-value>"active"</a>. It is initially <a enum-value>"idle"</a>.
 
-A <dfn interface>Sensor</dfn> object has an associated <dfn>reporting mode</dfn>,
+A <a interface>Sensor</a> object has an associated <a>reporting mode</a>,
 which can be one of <a>auto</a> or <a>periodic</a>.
 
 // A <a interface>Sensor</a> object observes the changes in its associated <a>sensor</a>
@@ -439,7 +439,7 @@ dictionary SensorOptions {
 
 ### Sensor.reading
 
-When a Sensor's state is <a>active</a>,
+When a Sensor's state is <a enum-value>"active"</a>,
 its reading attribute must always point to the latest <a>SensorReading</a>
 whatever the <a>frequency</a> so that
 the reading attribute of two instances of the same Sensor interface
