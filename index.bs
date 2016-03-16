@@ -410,6 +410,7 @@ interface Sensor : EventTarget {
   attribute EventHandler ondata;
   attribute EventHandler onchange;
   attribute EventHandler oncalibration;
+  attribute EventHandler onstatechange;
 };
 
 enum SensorState {
@@ -498,6 +499,10 @@ The following are the <a>event handlers</a> (and their corresponding <a>event ha
       <td><strong><code>oncalibration</code></strong></td>
       <td><code>calibration</code></td>
     </tr>
+    <tr>
+      <td><strong><code>onstatechange</code></strong></td>
+      <td><code>statechange</code></td>
+    </tr>
   </tbody>
 </table>
 
@@ -554,6 +559,17 @@ Sensor Object Construction
         1.  let <var>latest_reading</var> be the most recent of those <a>SensorReadings</a>.
         1.  set the value of <var>sensor</var>'s reading attribute to <var>latest_reading</var>.
     1.  run the <a>read steps</a> for <var>sensor</var>.
+Update State
+------------
+
+: input
+:: |sensorInstance|, a <a interface>Sensor</a> object.
+:: |state|, a <a interface>Sensor</a> object's <a>state</a>.
+: output
+:: None
+
+1.  Set |sensorInstance|’s <a attribute>state</a> to |state|.
+1.  <a>Queue a task</a> to <a>fire a simple event</a> named `statechange` at |sensorInstance|.
 
 
 Security and privacy considerations
