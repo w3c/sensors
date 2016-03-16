@@ -10,4 +10,4 @@ You'll find the latest editor’s draft here: https://w3c.github.io/sensors/
 A usecase document is also in the works. It's available here: https://w3c.github.io/sensors/usecases.html
 
 [1]: https://github.com/w3c/sensors/issues
-[2]: ./contributing.md
+[2]: ./CONTRIBUTING.md
