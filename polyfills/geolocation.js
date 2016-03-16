@@ -1,5 +1,8 @@
 "use strict";
 (function (exports) {
+    function queueATask(fn) {
+        setTimeout(fn, 0);
+    }
     function Sensor() {
         if (this.constructor === Sensor) {
             throw new TypeError("Illegal constructor");
@@ -89,16 +92,19 @@
             var currentState = state;
             if (currentState == "idle") {
                 state = "activating";
-            }
-            if (canEmitCachedReading(sensor)) {
-                if (state == "active") {
-                    emitReading(sensor, currentReading);
-                } else {
+                activate(opt);
+            } else if (currentState == "activating") {
+                activate(opt);
+                if (canEmitCachedReading(sensor)) {
                     emitCachedReading(sensor, currentReading);
                 }
-            }
-            if (optChanged) {
-                activate(opt);
+            } else if (currentState == "active") {
+                if (optChanged) {
+                    activate(opt);
+                }
+                if (canEmitCachedReading(sensor)) {
+                    emitReading(sensor, currentReading);
+                }
             }
         }
         
@@ -238,46 +244,60 @@
     
     function emitCachedReading(sensor, reading) {
         setSlot(sensor, "reading", reading);
-        var event = new SensorReadingEvent("reading", {
-            reading: reading
-        });
-        sensor.dispatchEvent(event);        
+        queueATask(function() {
+            var event = new SensorReadingEvent("reading", {
+                reading: reading
+            });
+            sensor.dispatchEvent(event);
+        })
     }
     
     function emitReading(sensor, reading) {
         setSlot(sensor, "reading", reading);
         if (sensor.state == "activating") {
             var resolve = getSlot(sensor, "_startPromiseResolve");
-            setSlot(sensor, "state", "active");
+            setState(sensor, "active");
             setSlot(sensor, "_startPromiseResolve", null);
             setSlot(sensor, "_startPromiseReject", null);
             resolve();
         }
-        var event = new SensorReadingEvent("reading", {
-            reading: reading
+        queueATask(function() {
+            var event = new SensorReadingEvent("reading", {
+                reading: reading
+            });
+            sensor.dispatchEvent(event);
         });
-        sensor.dispatchEvent(event);
     }
     
     function emitError(sensor, err) {
         setSlot(sensor, "reading", null);
         if (sensor.state == "activating") {
             var reject = getSlot(sensor, "_startPromiseReject");
-            setSlot(sensor, "state", "idle"); // should this depend on the kind of error?
+            setState(sensor, "idle");
             setSlot(sensor, "_startPromiseResolve", null);
             setSlot(sensor, "_startPromiseReject", null);
             reject(err);
         }
-        var errEvent = new ErrorEvent("error", {
-            message:  err.message,
-            filename: err.filename,
-            lineno:   err.lineno,
-            colno:    err.colno,
-            error:    err
+        queueATask(function() {
+            var errEvent = new ErrorEvent("error", {
+                message:  err.message,
+                filename: err.filename,
+                lineno:   err.lineno,
+                colno:    err.colno,
+                error:    err
+            });
+            sensor.dispatchEvent(errEvent);
         });
-        sensor.dispatchEvent(errEvent);
     }
     
+    function setState(sensor, state) {
+        setSlot(sensor, "state", state);
+        queueATask(function() {
+            var event = new Event("statechange");
+            sensor.dispatchEvent(event);
+        });
+    }
+
     var GeolocationSensor = (function () {
         
         function GeolocationSensor(options) {
@@ -306,7 +326,7 @@
                 if (self.state != "idle") {
                     throw new DOMException("Sensor already started.", "InvalidStateError");
                 }
-                setSlot(self, "state", "activating");
+                setState(self, "activating");
                 setSlot(self, "_startPromiseResolve", resolve);
                 setSlot(self, "_startPromiseReject", reject);
                 _geolocationSensor.register(self);
@@ -319,7 +339,7 @@
             if (state == "idle") {
                 return;
             }
-            setSlot(this, "state", "idle");
+            setState(this, "idle");
             _geolocationSensor.deregister(this);
             if (state == "activating") {
                 emitError(this, new Error("abort"));
