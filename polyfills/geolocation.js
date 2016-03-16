@@ -124,7 +124,8 @@
                 latitude        : coords.latitude,
                 longitude       : coords.longitude,
                 speed           : coords.speed,
-                timeStamp       : position.timestamp // watch out for the diff casing, here.
+                // watch out for the diff casing, here.
+                timeStamp       : position.timestamp - performance.timing.navigationStart
             });
             if (state == "activating") {
                 state = "active";
