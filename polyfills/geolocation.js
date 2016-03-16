@@ -79,6 +79,15 @@
             return output;
         }
         
+        function requestsForcedUpdate(sensor) {
+            var maxAge = getSlot(sensor, "options").maxAge;
+            if (maxAge == null) {
+                return false;
+            }
+            var age = performance.now() - currentReading.timeStamp;
+            return age > maxAge;
+        }
+        
         function register(sensor) {
             associatedSensors.add(sensor);
             console.log("registrar", Array.from(associatedSensors))
@@ -93,7 +102,7 @@
             } else if (currentState == "activating") {
                 if (optChanged) activate(opt)
             } else if (currentState == "active") {
-                if (qualitativeOptChanged || getSlot(sensor, "options").forceRead) {
+                if (qualitativeOptChanged || requestsForcedUpdate(sensor)) {
                     activate(opt);
                 } else if (optChanged) {
                     activate(opt);
