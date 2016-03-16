@@ -295,6 +295,7 @@ and defensive programming which includes:
     	    let sensor = new GeolocationSensor({
     	        timeout: 3 * 1000 // 3 seconds
     	    });
+            sensor.start();
     	    sensor.onerror = error => gracefullyDegrade(error);
     	    sensor.onchange = data => updatePosition(data.coords);
     	} catch(error) {
