@@ -39,7 +39,6 @@
     var _geolocationSensor = (function() {
         var self = {};
         var SUPPORTED_REPORTING_MODES = ["auto"];
-        var QUALITATIVE_OPTIONS = ["accuracy"];
         var currentReportingMode = "auto";
         var associatedSensors = new Set();
         var state = "idle"; // one of idle, activating, active, primed,
@@ -70,23 +69,15 @@
             if (_options.accuracy !== opt.accuracy) return true;
             return false;
         }
-        
-        function haveQualitativeOptionsChanged(opt) {
-            if (!_options) return true;
-            var output = false;
-            QUALITATIVE_OPTIONS.forEach(function(key) {
-                if (_options[key] !== opt[key]) output = true;
-            });
-            return output;
-        }
-        
-        function requestsForcedUpdate(sensor) {
+
+        function canEmitCachedReading(sensor) {
+            if (!currentReading) return false;
             var maxAge = getSlot(sensor, "options").maxAge;
             if (maxAge == null) {
-                return false;
+                return true;
             }
             var age = performance.now() - currentReading.timeStamp;
-            return age > maxAge;
+            return age <= maxAge;
         }
         
         function register(sensor) {
@@ -94,29 +85,20 @@
             console.log("registrar", Array.from(associatedSensors))
             var opt = getOptions();
             var optChanged = haveOptionsChanged(opt);
-            var qualitativeOptChanged = haveQualitativeOptionsChanged(opt);
             _options = opt;
             var currentState = state;
             if (currentState == "idle") {
                 state = "activating";
-                activate(opt);
-            } else if (currentState == "primed") {
-                state = "activating";
-                activate(opt);
-                if (!qualitativeOptChanged && !requestsForcedUpdate(sensor)) {
-                    emitReading(sensor, currentReading);
-                }
-            } else if (currentState == "activating") {
-                if (optChanged) activate(opt)
-            } else if (currentState == "active") {
-                if (qualitativeOptChanged || requestsForcedUpdate(sensor)) {
-                    activate(opt);
-                } else if (optChanged) {
-                    activate(opt);
+            }
+            if (canEmitCachedReading(sensor)) {
+                if (state == "active") {
                     emitReading(sensor, currentReading);
                 } else {
-                    emitReading(sensor, currentReading);
+                    emitCachedReading(sensor, currentReading);
                 }
+            }
+            if (optChanged) {
+                activate(opt);
             }
         }
         
@@ -124,9 +106,8 @@
             associatedSensors.delete(sensor);
             console.log("registrar", Array.from(associatedSensors))
             if (associatedSensors.size == 0) {
-                state = "primed";
+                state = "idle";
                 _timeout = setTimeout(function() {
-                    state = "idle";
                     currentReading = null;
                 }, 20 * 1000)
                 navigator.geolocation.clearWatch(_watchId);
@@ -253,6 +234,14 @@
         var priv = privateData.get(self) || {};
         console.log("getSlot", name,  JSON.stringify(priv[name]))
         return priv[name];
+    }
+    
+    function emitCachedReading(sensor, reading) {
+        setSlot(sensor, "reading", reading);
+        var event = new SensorReadingEvent("reading", {
+            reading: reading
+        });
+        sensor.dispatchEvent(event);        
     }
     
     function emitReading(sensor, reading) {
