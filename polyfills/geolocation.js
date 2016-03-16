@@ -39,45 +39,52 @@
     var _geolocationSensor = (function() {
         var self = {};
         var SUPPORTED_REPORTING_MODES = ["auto"];
+        var QUALITATIVE_OPTIONS = ["accuracy"];
         var currentReportingMode = "auto";
         var associatedSensors = new Set();
         var state = "idle"; // one of idle, activating, active, deactivating,
         var currentReading = null;
         var cachedReading = null;
         var _watchId = null;
-        function _enableHighAccuracy() {
-            var enableHighAccuracy = false;
+        function _calculateAccuracy() {
+            var accuracy = "low";
             associatedSensors.forEach(function(sensor) {
                 if (getSlot(sensor, "options").accuracy == "high") {
-                    enableHighAccuracy = true;
+                    accuracy = "high";
                 }
             });
-            return enableHighAccuracy
+            return accuracy;
         }
         
         var _options = null;
         
         function getOptions() {
             return {
-                enableHighAccuracy: _enableHighAccuracy(), 
-                maximumAge: 0, 
-                timeout: Infinity
+                accuracy: _calculateAccuracy()
             };
         }
         
-        function hasOptionsChanged(opt) {
+        function haveOptionsChanged(opt) {
             if (!_options) return true;
-            if (_options.enableHighAccuracy !== opt.enableHighAccuracy) return true;
-            if (_options.maximumAge !== opt.maximumAge) return true;
-            if (_options.timeout !== opt.timeout) return true;
+            if (_options.accuracy !== opt.accuracy) return true;
             return false;
+        }
+        
+        function haveQualitativeOptionsChanged(opt) {
+            if (!_options) return true;
+            var output = false;
+            QUALITATIVE_OPTIONS.forEach(function(key) {
+                if (_options[key] !== opt[key]) output = true;
+            });
+            return output;
         }
         
         function register(sensor) {
             associatedSensors.add(sensor);
             console.log("registrar", Array.from(associatedSensors))
             var opt = getOptions();
-            var optChanged = hasOptionsChanged(opt);
+            var optChanged = haveOptionsChanged(opt);
+            var qualitativeOptChanged = haveQualitativeOptionsChanged(opt);
             _options = opt;
             var currentState = state;
             if (currentState == "idle") {
@@ -86,13 +93,14 @@
             } else if (currentState == "activating") {
                 if (optChanged) activate(opt)
             } else if (currentState == "active") {
-                if (optChanged) {
+                if (qualitativeOptChanged || getSlot(sensor, "options").forceRead) {
                     activate(opt);
-                    // do we resolve the promise immediately here?
-                    // do we set sensor.reading to the current reading?
-                    // This is qualitative vs. quantitative.
+                } else if (optChanged) {
+                    activate(opt);
+                    emitReading(sensor, currentReading);
+                } else {
+                    emitReading(sensor, currentReading);
                 }
-                emitReading(sensor, currentReading); // TODO maybe have an option to force new reading here.
             }
         }
         
@@ -136,7 +144,11 @@
             if (_watchId) {
                 navigator.geolocation.clearWatch(_watchId);
             }
-            _watchId = navigator.geolocation.watchPosition(ondata, onerror, options);
+            _watchId = navigator.geolocation.watchPosition(ondata, onerror, {
+                enableHighAccuracy: options.accuracy == "high",
+                maximumAge: 0, 
+                timeout: Infinity
+            });
         }
   
         self.register = register;

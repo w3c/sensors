@@ -1,4 +1,4 @@
-var sensor = new GeolocationSensor({ accuracy: "high" });
+var sensor = new GeolocationSensor({ accuracy: "low" });
 sensor.start();
 sensor.onreading = function(event) {
     var coords = [event.reading.latitude, event.reading.longitude];
