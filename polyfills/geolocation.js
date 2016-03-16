@@ -42,10 +42,11 @@
         var QUALITATIVE_OPTIONS = ["accuracy"];
         var currentReportingMode = "auto";
         var associatedSensors = new Set();
-        var state = "idle"; // one of idle, activating, active, deactivating,
+        var state = "idle"; // one of idle, activating, active, primed,
         var currentReading = null;
         var cachedReading = null;
         var _watchId = null;
+        var _timeout = null;
         function _calculateAccuracy() {
             var accuracy = "low";
             associatedSensors.forEach(function(sensor) {
@@ -99,6 +100,12 @@
             if (currentState == "idle") {
                 state = "activating";
                 activate(opt);
+            } else if (currentState == "primed") {
+                state = "activating";
+                activate(opt);
+                if (!qualitativeOptChanged && !requestsForcedUpdate(sensor)) {
+                    emitReading(sensor, currentReading);
+                }
             } else if (currentState == "activating") {
                 if (optChanged) activate(opt)
             } else if (currentState == "active") {
@@ -117,7 +124,11 @@
             associatedSensors.delete(sensor);
             console.log("registrar", Array.from(associatedSensors))
             if (associatedSensors.size == 0) {
-                state = "idle";
+                state = "primed";
+                _timeout = setTimeout(function() {
+                    state = "idle";
+                    currentReading = null;
+                }, 20 * 1000)
                 navigator.geolocation.clearWatch(_watchId);
                 _watchId = null;
             }
@@ -151,6 +162,10 @@
         }
         
         function activate(options) {
+            if (_timeout) {
+                clearTimeout(_timeout);
+                _timeout = null;
+            }
             if (_watchId) {
                 navigator.geolocation.clearWatch(_watchId);
             }
