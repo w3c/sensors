@@ -256,7 +256,7 @@
         setSlot(sensor, "reading", reading);
         if (sensor.state == "activating") {
             var resolve = getSlot(sensor, "_startPromiseResolve");
-            setState(sensor, "active");
+            updateState(sensor, "active");
             setSlot(sensor, "_startPromiseResolve", null);
             setSlot(sensor, "_startPromiseReject", null);
             resolve();
@@ -273,7 +273,7 @@
         setSlot(sensor, "reading", null);
         if (sensor.state == "activating") {
             var reject = getSlot(sensor, "_startPromiseReject");
-            setState(sensor, "idle");
+            updateState(sensor, "idle");
             setSlot(sensor, "_startPromiseResolve", null);
             setSlot(sensor, "_startPromiseReject", null);
             reject(err);
@@ -290,7 +290,7 @@
         });
     }
     
-    function setState(sensor, state) {
+    function updateState(sensor, state) {
         setSlot(sensor, "state", state);
         queueATask(function() {
             var event = new Event("statechange");
@@ -326,7 +326,7 @@
                 if (self.state != "idle") {
                     throw new DOMException("Sensor already started.", "InvalidStateError");
                 }
-                setState(self, "activating");
+                updateState(self, "activating");
                 setSlot(self, "_startPromiseResolve", resolve);
                 setSlot(self, "_startPromiseReject", reject);
                 _geolocationSensor.register(self);
@@ -339,7 +339,7 @@
             if (state == "idle") {
                 return;
             }
-            setState(this, "idle");
+            updateState(this, "idle");
             _geolocationSensor.deregister(this);
             if (state == "activating") {
                 emitError(this, new Error("abort"));
