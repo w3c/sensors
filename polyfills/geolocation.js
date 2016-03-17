@@ -96,7 +96,7 @@
             } else if (currentState == "activating") {
                 activate(opt);
                 if (canEmitCachedReading(sensor)) {
-                    emitCachedReading(sensor, currentReading);
+                    updateReadingFromCache(sensor, currentReading);
                 }
             } else if (currentState == "active") {
                 if (optChanged) {
@@ -242,7 +242,7 @@
         return priv[name];
     }
     
-    function emitCachedReading(sensor, reading) {
+    function updateReadingFromCache(sensor, reading) {
         setSlot(sensor, "reading", reading);
         queueATask(function() {
             var event = new SensorReadingEvent("reading", {

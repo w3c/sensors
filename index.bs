@@ -597,6 +597,20 @@ Sensor Object Construction
     1.  Let the <a attribute for=SensorReadingEvent>reading</a> attribute of |e| be initialized to |reading|.
     1.  <a>Queue a task</a> to <a>dispatch</a> |e| at |sensorInstance|.
 
+<h3 algorithm><dfn>Update Reading From Cache</dfn></h3>
+
+    : input
+    :: |sensorInstance|, a <a interface>Sensor</a> object.
+    :: |reading|, a <a interface>SensorReading</a> object.
+    : output
+    :: None
+    
+    1.  Set |sensorInstance|’s <a attribute for="Sensor">reading</a> to |reading|.
+    1.  Create an <a>event</a> |e| that uses the <a interface>SensorReadingEvent</a> interface, with the event type `reading`, which does not bubble, is not cancelable, and has no default action.
+    1.  Let the <a attribute for=SensorReadingEvent>reading</a> attribute of |e| be initialized to |reading|.
+    1.  <a>Queue a task</a> to <a>dispatch</a> |e| at |sensorInstance|.
+
+
 Security and privacy considerations
 ===================================
 
