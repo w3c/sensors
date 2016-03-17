@@ -103,7 +103,7 @@
                     activate(opt);
                 }
                 if (canEmitCachedReading(sensor)) {
-                    emitReading(sensor, currentReading);
+                    updateReading(sensor, currentReading);
                 }
             }
         }
@@ -138,7 +138,7 @@
                 state = "active";
             }
             Array.from(associatedSensors).forEach(function(sensor) {
-                emitReading(sensor, reading)
+                updateReading(sensor, reading)
             });
         }
         
@@ -252,7 +252,7 @@
         })
     }
     
-    function emitReading(sensor, reading) {
+    function updateReading(sensor, reading) {
         setSlot(sensor, "reading", reading);
         if (sensor.state == "activating") {
             var resolve = getSlot(sensor, "_startPromiseResolve");
