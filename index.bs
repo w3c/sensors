@@ -307,7 +307,7 @@ and defensive programming which includes:
     </pre>
 </div>
 
-Model
+Model {#model}
 =====
 
 <em>This section is non-normative</em>.
@@ -368,7 +368,7 @@ define ways to uniquely identify each one.
     </pre>
 </div>
 
-API
+API {#api}
 ===
 
 A <a>sensor</a> has an associated set of <dfn>active sensors</dfn>. This set is initially empty.
@@ -672,7 +672,7 @@ Obtaining Explicit User Permission {#permissioning}
 
 Issue(w3c/sensors#20):
 
-Extensibility
+Extensibility {#extensibility}
 =============
 
 <em>This section is non-normative.</em>
