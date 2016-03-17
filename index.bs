@@ -561,7 +561,7 @@ Sensor Object Construction
 
 
 
-<h3 algorithm><dfn>Update State</dfn></h3>
+<h3 algorithm dfn>Update State</h3>
 
     : input
     :: |sensorInstance|, a <a interface>Sensor</a> object.
@@ -572,7 +572,7 @@ Sensor Object Construction
     1.  Set |sensorInstance|’s <a attribute>state</a> to |state|.
     1.  <a>Queue a task</a> to <a>fire a simple event</a> named `statechange` at |sensorInstance|.
 
-<h3 algorithm><dfn>Update Reading</dfn></h3>
+<h3 algorithm dfn>Update Reading</h3>
 
     : input
     :: |sensorInstance|, a <a interface>Sensor</a> object.
@@ -589,7 +589,7 @@ Sensor Object Construction
     1.  Let the <a attribute for=SensorReadingEvent>reading</a> attribute of |e| be initialized to |reading|.
     1.  <a>Queue a task</a> to <a>dispatch</a> |e| at |sensorInstance|.
 
-<h3 algorithm><dfn>Update Reading From Cache</dfn></h3>
+<h3 algorithm dfn>Update Reading From Cache</h3>
 
     : input
     :: |sensorInstance|, a <a interface>Sensor</a> object.

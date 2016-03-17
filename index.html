@@ -1491,9 +1491,9 @@ that can be extended to accommodate different sensor types.</p>
      <a href="#abstract-operations"><span class="secno">7</span> <span class="content">Abstract Operations</span></a>
      <ol class="toc">
       <li><a href="#sensor-object-construction"><span class="secno">7.1</span> <span class="content">Sensor Object Construction</span></a>
-      <li><a href="#update-state"><span class="secno">7.2</span> <span class="content"><span>Update State</span></span></a>
-      <li><a href="#update-reading"><span class="secno">7.3</span> <span class="content"><span>Update Reading</span></span></a>
-      <li><a href="#update-reading-from-cache"><span class="secno">7.4</span> <span class="content"><span>Update Reading From Cache</span></span></a>
+      <li><a href="#update-state"><span class="secno">7.2</span> <span class="content">Update State</span></a>
+      <li><a href="#update-reading"><span class="secno">7.3</span> <span class="content">Update Reading</span></a>
+      <li><a href="#update-reading-from-cache"><span class="secno">7.4</span> <span class="content">Update Reading From Cache</span></a>
      </ol>
     <li>
      <a href="#security-and-privacy-considerations"><span class="secno">8</span> <span class="content">Security and privacy considerations</span></a>
@@ -1959,7 +1959,7 @@ expressed in milliseconds that passed since the <a data-link-type="dfn" href="ht
        <p>run the <a data-link-type="dfn" href="#read-steps" id="ref-for-read-steps-2">read steps</a> for <var>sensor</var>.</p>
      </ol>
    </ol>
-   <h3 class="heading settled" data-algorithm="Update State" data-level="7.2" id="update-state"><span class="secno">7.2. </span><span class="content"><dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="Update State" data-noexport="" id="update-state0">Update State<span class="dfn-panel" data-deco=""><b><a href="#update-state0">#update-state0</a></b><b>Referenced in:</b><span><a href="#ref-for-update-state0-1">7.3. Update Reading</a></span></span></dfn></span><a class="self-link" href="#update-state"></a></h3>
+   <h3 class="heading settled dfn-paneled" data-algorithm="Update State" data-dfn-type="dfn" data-level="7.2" data-lt="Update State" data-noexport="" id="update-state"><span class="secno">7.2. </span><span class="content">Update State</span><span class="dfn-panel" data-deco=""><b><a href="#update-state">#update-state</a></b><b>Referenced in:</b><span><a href="#ref-for-update-state-1">7.3. Update Reading</a></span></span></h3>
    <dl>
     <dt data-md="">
      <p>input</p>
@@ -1978,7 +1978,7 @@ expressed in milliseconds that passed since the <a data-link-type="dfn" href="ht
     <li data-md="">
      <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task">Queue a task</a> to <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#fire-a-simple-event">fire a simple event</a> named <code>statechange</code> at <var>sensorInstance</var>.</p>
    </ol>
-   <h3 class="heading settled" data-algorithm="Update Reading" data-level="7.3" id="update-reading"><span class="secno">7.3. </span><span class="content"><dfn data-dfn-type="dfn" data-noexport="" id="update-reading0">Update Reading<a class="self-link" href="#update-reading0"></a></dfn></span><a class="self-link" href="#update-reading"></a></h3>
+   <h3 class="heading settled" data-algorithm="Update Reading" data-dfn-type="dfn" data-level="7.3" data-lt="Update Reading" data-noexport="" id="update-reading"><span class="secno">7.3. </span><span class="content">Update Reading</span><a class="self-link" href="#update-reading"></a></h3>
    <dl>
     <dt data-md="">
      <p>input</p>
@@ -1998,7 +1998,7 @@ expressed in milliseconds that passed since the <a data-link-type="dfn" href="ht
      <p>If <var>sensorInstance</var>’s <a class="idl-code" data-link-type="attribute" href="#dom-sensor-state" id="ref-for-dom-sensor-state-2">state</a> is <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activating" id="ref-for-dom-sensorstate-activating-3">"activating"</a>:</p>
      <ol>
       <li data-md="">
-       <p>Invoke the <a data-link-type="dfn" href="#update-state0" id="ref-for-update-state0-1">update state</a> algorithm passing <var>sensorInstance</var> and <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-active" id="ref-for-dom-sensorstate-active-3">"active"</a> as the arguments.</p>
+       <p>Invoke the <a data-link-type="dfn" href="#update-state" id="ref-for-update-state-1">update state</a> algorithm passing <var>sensorInstance</var> and <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-active" id="ref-for-dom-sensorstate-active-3">"active"</a> as the arguments.</p>
       <li data-md="">
        <p>Resolve <var>sensorInstance</var>’s associated <a data-link-type="dfn" href="#starting-promise" id="ref-for-starting-promise-1">starting promise</a> with <code>undefined</code>.</p>
       <li data-md="">
@@ -2011,7 +2011,7 @@ expressed in milliseconds that passed since the <a data-link-type="dfn" href="ht
     <li data-md="">
      <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task">Queue a task</a> to <a data-link-type="dfn" href="https://dom.spec.whatwg.org#concept-event-dispatch">dispatch</a> <var>e</var> at <var>sensorInstance</var>.</p>
    </ol>
-   <h3 class="heading settled" data-algorithm="Update Reading From Cache" data-level="7.4" id="update-reading-from-cache"><span class="secno">7.4. </span><span class="content"><dfn data-dfn-type="dfn" data-noexport="" id="update-reading-from-cache0">Update Reading From Cache<a class="self-link" href="#update-reading-from-cache0"></a></dfn></span><a class="self-link" href="#update-reading-from-cache"></a></h3>
+   <h3 class="heading settled" data-algorithm="Update Reading From Cache" data-dfn-type="dfn" data-level="7.4" data-lt="Update Reading From Cache" data-noexport="" id="update-reading-from-cache"><span class="secno">7.4. </span><span class="content">Update Reading From Cache</span><a class="self-link" href="#update-reading-from-cache"></a></h3>
    <dl>
     <dt data-md="">
      <p>input</p>
@@ -2402,9 +2402,9 @@ for their editorial input.</p>
      <li><a href="#dom-sensoroptions-timeout">dict-member for SensorOptions</a><span>, in §6.1</span>
     </ul>
    <li><a href="#dom-sensorreading-timestamp">timeStamp</a><span>, in §6.2</span>
-   <li><a href="#update-reading0">Update Reading</a><span>, in §7.3</span>
-   <li><a href="#update-reading-from-cache0">Update Reading From Cache</a><span>, in §7.4</span>
-   <li><a href="#update-state0">Update State</a><span>, in §7.2</span>
+   <li><a href="#update-reading">Update Reading</a><span>, in §7.2</span>
+   <li><a href="#update-reading-from-cache">Update Reading From Cache</a><span>, in §7.3</span>
+   <li><a href="#update-state">Update State</a><span>, in §7.1</span>
   </ul>
   <h3 class="no-num no-ref heading settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
   <ul class="index">
