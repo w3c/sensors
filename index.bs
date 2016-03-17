@@ -568,9 +568,8 @@ Sensor Object Construction
 
 
 
-<h3 algorithm>Update State</h3>
 
-The <dfn>Update State</dfn> algorithm must run these steps or their <a>equivalent</a>:
+<h3 algorithm><dfn>Update State</dfn></h3>
 
     : input
     :: |sensorInstance|, a <a interface>Sensor</a> object.
