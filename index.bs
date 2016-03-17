@@ -415,7 +415,6 @@ interface Sensor : EventTarget {
   attribute EventHandler onerror;
   attribute EventHandler ondata;
   attribute EventHandler onchange;
-  attribute EventHandler oncalibration;
   attribute EventHandler onstatechange;
 };
 
@@ -474,9 +473,6 @@ The <dfn>start()</dfn> method must run these steps or their <a>equivalent</a>:
 
 ### Sensor.onchange
 
-### Sensor.oncalibration
-
-
 ### Event handlers
 
 The following are the <a>event handlers</a> (and their corresponding <a>event handler event types</a>) that MUST be supported as attributes by the objects implementing the <a>Sensor</a> interface:
@@ -500,10 +496,6 @@ The following are the <a>event handlers</a> (and their corresponding <a>event ha
     <tr>
       <td><strong><code>onerror</code></strong></td>
       <td><code>error</code></td>
-    </tr>
-    <tr>
-      <td><strong><code>oncalibration</code></strong></td>
-      <td><code>calibration</code></td>
     </tr>
     <tr>
       <td><strong><code>onstatechange</code></strong></td>
