@@ -580,9 +580,7 @@ Sensor Object Construction
     1.  Set |sensorInstance|’s <a attribute>state</a> to |state|.
     1.  <a>Queue a task</a> to <a>fire a simple event</a> named `statechange` at |sensorInstance|.
 
-<h3 algorithm>Update Reading</h3>
-
-The <dfn>Update Reading</dfn> algorithm must run these steps or their <a>equivalent</a>:
+<h3 algorithm><dfn>Update Reading</dfn></h3>
 
     : input
     :: |sensorInstance|, a <a interface>Sensor</a> object.
