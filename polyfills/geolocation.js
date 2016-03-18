@@ -142,9 +142,24 @@
             });
         }
         
-        function onerror(err) {
+        function onerror(error) {
+            var type;
+            switch(error.code) {
+                case error.TIMEOUT:
+                    type = "TimeoutError";
+                    break;
+                case error.PERMISSION_DENIED:
+                    type = "NotAllowedError";
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    type = "NotReadableError";
+                    break;
+                default:
+                    type = "UnknownError";
+            }
+            error = new DOMException(err.message, type);
             Array.from(associatedSensors).forEach(function(sensor) {
-                emitError(sensor, err)
+                emitError(sensor, error)
             });
         }
         
@@ -342,7 +357,7 @@
             updateState(this, "idle");
             _geolocationSensor.deregister(this);
             if (state == "activating") {
-                emitError(this, new Error("abort"));
+                emitError(this, new DOMException("The operation was aborted.", "AbortError"));
             }
         };
         return GeolocationSensor;
