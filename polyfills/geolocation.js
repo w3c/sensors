@@ -73,6 +73,33 @@
             return false;
         }
 
+        function retrieveThePermissionState() {
+            return navigator.permissions.query({ name: "geolocation" }).then(function(permission) {
+                return permission.state;
+            });
+        }
+        
+        function obtainPermission() {
+            return retrieveThePermissionState().then(function(state) {
+                return new Promise(function(resolve) {
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                        currentReading = currentReading || toReading(position); // let's add this cached data.
+                        console.log("Cache:", currentReading.timeStamp);
+                        resolve("granted");
+                    }, function(err) {
+                        if (err.code == err.PERMISSION_DENIED) {
+                            resolve("denied");
+                        } else {
+                            resolve(state);
+                        }
+                    }, {
+                        maximumAge:Infinity,
+                        timeout:0
+                    });
+                });
+            });
+        }
+        
         function canEmitCachedReading(sensor) {
             if (!currentReading) return false;
             var maxAge = getSlot(sensor, "options").maxAge;
@@ -84,28 +111,35 @@
         }
         
         function register(sensor) {
-            associatedSensors.add(sensor);
-            console.log("registrar", Array.from(associatedSensors))
-            var opt = getOptions();
-            var optChanged = haveOptionsChanged(opt);
-            _options = opt;
-            var currentState = state;
-            if (currentState == "idle") {
-                state = "activating";
-                activate(opt);
-            } else if (currentState == "activating") {
-                activate(opt);
-                if (canEmitCachedReading(sensor)) {
-                    updateReadingFromCache(sensor, currentReading);
+            obtainPermission().then(function(permissionState) {
+                console.log("permissionState:", permissionState);
+                if (permissionState == "granted") {
+                    associatedSensors.add(sensor);
+                    console.log("registrar", Array.from(associatedSensors))
+                    var opt = getOptions();
+                    var optChanged = haveOptionsChanged(opt);
+                    _options = opt;
+                    var currentState = state;
+                    if (currentState == "idle") {
+                        state = "activating";
+                        activate(opt);
+                    } else if (currentState == "activating") {
+                        activate(opt);
+                        if (canEmitCachedReading(sensor)) {
+                            updateReading(sensor, currentReading);
+                        }
+                    } else if (currentState == "active") {
+                        if (optChanged) {
+                            activate(opt);
+                        }
+                        if (canEmitCachedReading(sensor)) {
+                            updateReading(sensor, currentReading);
+                        }
+                    }
+                } else {
+                    emitError(sensor, new DOMException("Permission denied.", "NotAllowedError"));
                 }
-            } else if (currentState == "active") {
-                if (optChanged) {
-                    activate(opt);
-                }
-                if (canEmitCachedReading(sensor)) {
-                    updateReading(sensor, currentReading);
-                }
-            }
+            });
         }
         
         function deregister(sensor) {
@@ -121,9 +155,9 @@
             }
         }
         
-        function ondata(position) {
+        function toReading(position) {
             var coords = position.coords;
-            var reading = currentReading = new GeolocationSensorReading({
+            return new GeolocationSensorReading({
                 accuracy        : coords.accuracy,
                 altitude        : coords.altitude,
                 altitudeAccuracy: coords.altitudeAccuracy,
@@ -134,6 +168,10 @@
                 // watch out for the diff casing, here.
                 timeStamp       : position.timestamp - performance.timing.navigationStart
             });
+        }
+        
+        function ondata(position) {
+            var reading = currentReading = toReading(position);
             if (state == "activating") {
                 state = "active";
             }
@@ -257,24 +295,10 @@
         return priv[name];
     }
     
-    function updateReadingFromCache(sensor, reading) {
-        setSlot(sensor, "reading", reading);
-        queueATask(function() {
-            var event = new SensorReadingEvent("reading", {
-                reading: reading
-            });
-            sensor.dispatchEvent(event);
-        })
-    }
-    
     function updateReading(sensor, reading) {
         setSlot(sensor, "reading", reading);
         if (sensor.state == "activating") {
-            var resolve = getSlot(sensor, "_startPromiseResolve");
             updateState(sensor, "active");
-            setSlot(sensor, "_startPromiseResolve", null);
-            setSlot(sensor, "_startPromiseReject", null);
-            resolve();
         }
         queueATask(function() {
             var event = new SensorReadingEvent("reading", {
@@ -285,14 +309,7 @@
     }
     
     function emitError(sensor, err) {
-        setSlot(sensor, "reading", null);
-        if (sensor.state == "activating") {
-            var reject = getSlot(sensor, "_startPromiseReject");
-            updateState(sensor, "idle");
-            setSlot(sensor, "_startPromiseResolve", null);
-            setSlot(sensor, "_startPromiseReject", null);
-            reject(err);
-        }
+        updateState(sensor, "error");
         queueATask(function() {
             var errEvent = new ErrorEvent("error", {
                 message:  err.message,
@@ -336,28 +353,24 @@
         GeolocationSensor.prototype.constructor = GeolocationSensor;
     
         GeolocationSensor.prototype.start = function() {
-            var self = this;
-            return new Promise(function(resolve, reject) {
-                if (self.state != "idle") {
-                    throw new DOMException("Sensor already started.", "InvalidStateError");
-                }
-                updateState(self, "activating");
-                setSlot(self, "_startPromiseResolve", resolve);
-                setSlot(self, "_startPromiseReject", reject);
-                _geolocationSensor.register(self);
-            });
+            if (this.state == "activating" || this.state == "active") {
+                throw new DOMException("Sensor already started.", "InvalidStateError");
+            }
+            updateState(this, "activating");
+            _geolocationSensor.register(this);
         };
     
         GeolocationSensor.prototype.stop = function() {
             console.log("stop")
             var state = this.state;
-            if (state == "idle") {
-                return;
+            if (state == "idle" || state == "error") {
+                throw new DOMException("Sensor already stopped.", "InvalidStateError");
             }
-            updateState(this, "idle");
             _geolocationSensor.deregister(this);
             if (state == "activating") {
                 emitError(this, new DOMException("The operation was aborted.", "AbortError"));
+            } else {
+                updateState(this, "idle");
             }
         };
         return GeolocationSensor;
