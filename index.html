@@ -1717,11 +1717,11 @@ and defensive programming which includes:</p>
   enhanced by the possible usage of a sensor, not degraded by its
   absence.</p>
    </ol>
-   <div class="example" id="example-ccb670af">
-    <a class="self-link" href="#example-ccb670af"></a> 
+   <div class="example" id="example-297593cf">
+    <a class="self-link" href="#example-297593cf"></a> 
 <pre class="highlight"><span class="k">try</span> <span class="p">{</span> <span class="c1">// No need to feature detect thanks to try..catch block.</span>
     <span class="kd">let</span> <span class="nx">sensor</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">GeolocationSensor</span><span class="p">({});</span>
-      <span class="nx">sensor</span><span class="p">.</span><span class="nx">start</span><span class="p">();</span>
+    <span class="nx">sensor</span><span class="p">.</span><span class="nx">start</span><span class="p">();</span>
     <span class="nx">sensor</span><span class="p">.</span><span class="nx">onerror</span> <span class="o">=</span> <span class="nx">error</span> <span class="o">=></span> <span class="nx">gracefullyDegrade</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
     <span class="nx">sensor</span><span class="p">.</span><span class="nx">onchange</span> <span class="o">=</span> <span class="nx">data</span> <span class="o">=></span> <span class="nx">updatePosition</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">coords</span><span class="p">);</span>
 <span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>

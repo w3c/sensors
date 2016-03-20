@@ -294,14 +294,14 @@ and defensive programming which includes:
 
 <div class="example">
     <pre highlight="js">
-    	try { // No need to feature detect thanks to try..catch block.
-    	    let sensor = new GeolocationSensor({});
+        try { // No need to feature detect thanks to try..catch block.
+            let sensor = new GeolocationSensor({});
             sensor.start();
-    	    sensor.onerror = error => gracefullyDegrade(error);
-    	    sensor.onchange = data => updatePosition(data.coords);
-    	} catch(error) {
-    	    gracefullyDegrade(error);
-    	}
+            sensor.onerror = error => gracefullyDegrade(error);
+            sensor.onchange = data => updatePosition(data.coords);
+        } catch(error) {
+            gracefullyDegrade(error);
+        }
     </pre>
 </div>
 
