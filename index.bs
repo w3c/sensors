@@ -465,7 +465,7 @@ The <dfn>start()</dfn> method must run these steps or their <a>equivalent</a>:
         1.  throw an "<a>InvalidStateError</a>" exception and abort these steps.
     1.  Invoke the <a>update state</a> algorithm passing |sensorInstance| and <a enum-value>"activating"</a> as the arguments.
     1.  Run these sub-steps <a>in parallel</a>:
-        1.  Invoke <a>Registering a Sensor</a> algorithm with |sensorInstance| and as argument.
+        1.  Invoke <a>Registering a Sensor</a> algorithm with |sensorInstance| as argument.
 
 </div>
 ### Sensor.stop
