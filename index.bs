@@ -125,7 +125,7 @@ are corrected through <dfn>calibration</dfn>.
 Known but <em>unpredictable</em> discrepancies need to be addressed dynamically
 through a process called <a>sensor fusion</a>.
 
-Calibrated <a>raw sensor readings</a> are referred to as <dfn>sensor readings</dfn>,
+<a lt=calibration>Calibrated</a> <a>raw sensor readings</a> are referred to as <dfn>sensor readings</dfn>,
 whether or not they have undergone <a>sensor fusion</a>.
 
 Different <dfn>sensor types</dfn> measure different physical quantities
