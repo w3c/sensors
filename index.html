@@ -1485,6 +1485,8 @@ that can be extended to accommodate different sensor types.</p>
        <ol class="toc">
         <li><a href="#sensorreadingtimestamp"><span class="secno">6.2.1</span> <span class="content">SensorReading.timeStamp</span></a>
        </ol>
+      <li><a href="#the-sensorreadingevent-interface"><span class="secno">6.3</span> <span class="content">The SensorReadingEvent Interface</span></a>
+      <li><a href="#the-sensorerrorevent-interface"><span class="secno">6.4</span> <span class="content">The SensorErrorEvent Interface</span></a>
      </ol>
     <li>
      <a href="#abstract-operations"><span class="secno">7</span> <span class="content">Abstract Operations</span></a>
@@ -1810,25 +1812,6 @@ enum <dfn class="dfn-paneled idl-code" data-dfn-type="enum" data-export="" data-
   <dfn class="dfn-paneled idl-code" data-dfn-for="SensorState" data-dfn-type="enum-value" data-export="" data-lt="&quot;active&quot;" id="dom-sensorstate-active">"active"<span class="dfn-panel" data-deco=""><b><a href="#dom-sensorstate-active">#dom-sensorstate-active</a></b><b>Referenced in:</b><span><a href="#ref-for-dom-sensorstate-active-1">6.1. The Sensor Interface</a></span><span><a href="#ref-for-dom-sensorstate-active-2">6.1.2. Sensor.reading</a></span><span><a href="#ref-for-dom-sensorstate-active-3">7.7. Update Reading</a></span></span></dfn>,
   <dfn class="dfn-paneled idl-code" data-dfn-for="SensorState" data-dfn-type="enum-value" data-export="" data-lt="&quot;errored&quot;" id="dom-sensorstate-errored">"errored"<span class="dfn-panel" data-deco=""><b><a href="#dom-sensorstate-errored">#dom-sensorstate-errored</a></b><b>Referenced in:</b><span><a href="#ref-for-dom-sensorstate-errored-1">6.1. The Sensor Interface</a></span><span><a href="#ref-for-dom-sensorstate-errored-2">6.1.3. Sensor.start</a></span><span><a href="#ref-for-dom-sensorstate-errored-3">6.1.4. Sensor.stop</a></span><span><a href="#ref-for-dom-sensorstate-errored-4">7.8. Handle Errors</a></span></span></dfn>
 };
-
-[<dfn class="idl-code" data-dfn-for="SensorReadingEvent" data-dfn-type="constructor" data-export="" data-lt="SensorReadingEvent(type, eventInitDict)" id="dom-sensorreadingevent-sensorreadingevent">Constructor<a class="self-link" href="#dom-sensorreadingevent-sensorreadingevent"></a></dfn>(DOMString <dfn class="idl-code" data-dfn-for="SensorReadingEvent/SensorReadingEvent(type, eventInitDict)" data-dfn-type="argument" data-export="" id="dom-sensorreadingevent-sensorreadingevent-type-eventinitdict-type">type<a class="self-link" href="#dom-sensorreadingevent-sensorreadingevent-type-eventinitdict-type"></a></dfn>, <a data-link-type="idl-name" href="#dictdef-sensorreadingeventinit" id="ref-for-dictdef-sensorreadingeventinit-1">SensorReadingEventInit</a> <dfn class="idl-code" data-dfn-for="SensorReadingEvent/SensorReadingEvent(type, eventInitDict)" data-dfn-type="argument" data-export="" id="dom-sensorreadingevent-sensorreadingevent-type-eventinitdict-eventinitdict">eventInitDict<a class="self-link" href="#dom-sensorreadingevent-sensorreadingevent-type-eventinitdict-eventinitdict"></a></dfn>)]
-interface <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export="" data-lt="SensorReadingEvent" id="sensorreadingevent">SensorReadingEvent<span class="dfn-panel" data-deco=""><b><a href="#sensorreadingevent">#sensorreadingevent</a></b><b>Referenced in:</b><span><a href="#ref-for-sensorreadingevent-1">7.7. Update Reading</a></span></span></dfn> : <a data-link-type="idl-name" href="https://dom.spec.whatwg.org/#event">Event</a> {
-  readonly attribute <a data-link-type="idl-name" href="#sensorreading1" id="ref-for-sensorreading1-2">SensorReading</a> <dfn class="dfn-paneled idl-code" data-dfn-for="SensorReadingEvent" data-dfn-type="attribute" data-export="" data-lt="reading" data-readonly="" data-type="SensorReading " id="dom-sensorreadingevent-reading">reading<span class="dfn-panel" data-deco=""><b><a href="#dom-sensorreadingevent-reading">#dom-sensorreadingevent-reading</a></b><b>Referenced in:</b><span><a href="#ref-for-dom-sensorreadingevent-reading-1">7.7. Update Reading</a></span></span></dfn>;
-};
-
-dictionary <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export="" data-lt="SensorReadingEventInit" id="dictdef-sensorreadingeventinit">SensorReadingEventInit<span class="dfn-panel" data-deco=""><b><a href="#dictdef-sensorreadingeventinit">#dictdef-sensorreadingeventinit</a></b><b>Referenced in:</b><span><a href="#ref-for-dictdef-sensorreadingeventinit-1">6.1. The Sensor Interface</a></span></span></dfn> : <a data-link-type="idl-name" href="https://dom.spec.whatwg.org/#dictdef-eventinit">EventInit</a> {
-  <a data-link-type="idl-name" href="#sensorreading1" id="ref-for-sensorreading1-3">SensorReading</a> <dfn class="idl-code" data-dfn-for="SensorReadingEventInit" data-dfn-type="dict-member" data-export="" data-type="SensorReading " id="dom-sensorreadingeventinit-reading">reading<a class="self-link" href="#dom-sensorreadingeventinit-reading"></a></dfn>;
-};
-
-[<dfn class="idl-code" data-dfn-for="SensorErrorEvent" data-dfn-type="constructor" data-export="" data-lt="SensorErrorEvent(type, errorEventInitDict)" id="dom-sensorerrorevent-sensorerrorevent">Constructor<a class="self-link" href="#dom-sensorerrorevent-sensorerrorevent"></a></dfn>(DOMString <dfn class="idl-code" data-dfn-for="SensorErrorEvent/SensorErrorEvent(type, errorEventInitDict)" data-dfn-type="argument" data-export="" id="dom-sensorerrorevent-sensorerrorevent-type-erroreventinitdict-type">type<a class="self-link" href="#dom-sensorerrorevent-sensorerrorevent-type-erroreventinitdict-type"></a></dfn>, <a data-link-type="idl-name" href="#dictdef-sensorerroreventinit" id="ref-for-dictdef-sensorerroreventinit-1">SensorErrorEventInit</a> <dfn class="idl-code" data-dfn-for="SensorErrorEvent/SensorErrorEvent(type, errorEventInitDict)" data-dfn-type="argument" data-export="" id="dom-sensorerrorevent-sensorerrorevent-type-erroreventinitdict-erroreventinitdict">errorEventInitDict<a class="self-link" href="#dom-sensorerrorevent-sensorerrorevent-type-erroreventinitdict-erroreventinitdict"></a></dfn>)]
-interface <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export="" data-lt="SensorErrorEvent" id="sensorerrorevent">SensorErrorEvent<span class="dfn-panel" data-deco=""><b><a href="#sensorerrorevent">#sensorerrorevent</a></b><b>Referenced in:</b><span><a href="#ref-for-sensorerrorevent-1">7.8. Handle Errors</a></span></span></dfn> : <a data-link-type="idl-name" href="https://dom.spec.whatwg.org/#event">Event</a> {
-  readonly attribute Error <dfn class="dfn-paneled idl-code" data-dfn-for="SensorErrorEvent" data-dfn-type="attribute" data-export="" data-lt="error" data-readonly="" data-type="Error " id="dom-sensorerrorevent-error">error<span class="dfn-panel" data-deco=""><b><a href="#dom-sensorerrorevent-error">#dom-sensorerrorevent-error</a></b><b>Referenced in:</b><span><a href="#ref-for-dom-sensorerrorevent-error-1">7.8. Handle Errors</a></span></span></dfn>;
-};
-
-dictionary <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export="" data-lt="SensorErrorEventInit" id="dictdef-sensorerroreventinit">SensorErrorEventInit<span class="dfn-panel" data-deco=""><b><a href="#dictdef-sensorerroreventinit">#dictdef-sensorerroreventinit</a></b><b>Referenced in:</b><span><a href="#ref-for-dictdef-sensorerroreventinit-1">6.1. The Sensor Interface</a></span></span></dfn> : <a data-link-type="idl-name" href="https://dom.spec.whatwg.org/#dictdef-eventinit">EventInit</a> {
-  Error <dfn class="idl-code" data-dfn-for="SensorErrorEventInit" data-dfn-type="dict-member" data-export="" data-type="Error " id="dom-sensorerroreventinit-error">error<a class="self-link" href="#dom-sensorerroreventinit-error"></a></dfn>;
-};
-
 </pre>
    </ul>
    <h4 class="heading settled" data-level="6.1.1" id="sensorstate"><span class="secno">6.1.1. </span><span class="content">Sensor.state</span><a class="self-link" href="#sensorstate"></a></h4>
@@ -1911,7 +1894,7 @@ associated with the same <a data-link-type="dfn" href="#sensor" id="ref-for-sens
    <h3 class="heading settled" data-level="6.2" id="the-sensorreading-interface"><span class="secno">6.2. </span><span class="content">The SensorReading Interface</span><a class="self-link" href="#the-sensorreading-interface"></a></h3>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="SensorReading" data-noexport="" id="sensorreading0">SensorReading<span class="dfn-panel" data-deco=""><b><a href="#sensorreading0">#sensorreading0</a></b><b>Referenced in:</b><span><a href="#ref-for-sensorreading0-1">6.1.2. Sensor.reading</a> <a href="#ref-for-sensorreading0-2">(2)</a></span></span></dfn> represents the state of a <a data-link-type="dfn" href="#sensor" id="ref-for-sensor-23">sensor</a> at a given point in time.</p>
 <pre class="idl def">[<dfn class="idl-code" data-dfn-for="SensorReading" data-dfn-type="constructor" data-export="" data-lt="SensorReading()" id="dom-sensorreading-sensorreading">Constructor<a class="self-link" href="#dom-sensorreading-sensorreading"></a></dfn>()]
-interface <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export="" data-lt="SensorReading" id="sensorreading1">SensorReading<span class="dfn-panel" data-deco=""><b><a href="#sensorreading1">#sensorreading1</a></b><b>Referenced in:</b><span><a href="#ref-for-sensorreading1-1">6.1. The Sensor Interface</a> <a href="#ref-for-sensorreading1-2">(2)</a> <a href="#ref-for-sensorreading1-3">(3)</a></span><span><a href="#ref-for-sensorreading1-4">7.7. Update Reading</a></span><span><a href="#ref-for-sensorreading1-5">9.1. Naming</a></span><span><a href="#ref-for-sensorreading1-6">9.7. Immutability requirements</a></span></span></dfn> {
+interface <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export="" data-lt="SensorReading" id="sensorreading1">SensorReading<span class="dfn-panel" data-deco=""><b><a href="#sensorreading1">#sensorreading1</a></b><b>Referenced in:</b><span><a href="#ref-for-sensorreading1-1">6.1. The Sensor Interface</a></span><span><a href="#ref-for-sensorreading1-2">6.3. The SensorReadingEvent Interface</a> <a href="#ref-for-sensorreading1-3">(2)</a></span><span><a href="#ref-for-sensorreading1-4">7.7. Update Reading</a></span><span><a href="#ref-for-sensorreading1-5">9.1. Naming</a></span><span><a href="#ref-for-sensorreading1-6">9.7. Immutability requirements</a></span></span></dfn> {
   readonly attribute <a data-link-type="idl-name" href="http://w3c.github.io/hr-time/#dom-domhighrestimestamp">DOMHighResTimeStamp</a> <dfn class="idl-code" data-dfn-for="SensorReading" data-dfn-type="attribute" data-export="" data-readonly="" data-type="DOMHighResTimeStamp " id="dom-sensorreading-timestamp">timeStamp<a class="self-link" href="#dom-sensorreading-timestamp"></a></dfn>;
 };
 </pre>
@@ -1919,6 +1902,26 @@ interface <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-expor
    <p>Returns a timestamp of the time
 at which the <a data-link-type="dfn" href="#read-steps" id="ref-for-read-steps-1">read steps</a> was carried out
 expressed in milliseconds that passed since the <a data-link-type="dfn" href="http://w3c.github.io/hr-time/#time-origin">time origin</a>.</p>
+   <h3 class="heading settled" data-level="6.3" id="the-sensorreadingevent-interface"><span class="secno">6.3. </span><span class="content">The SensorReadingEvent Interface</span><a class="self-link" href="#the-sensorreadingevent-interface"></a></h3>
+<pre class="idl def">[<dfn class="idl-code" data-dfn-for="SensorReadingEvent" data-dfn-type="constructor" data-export="" data-lt="SensorReadingEvent(type, eventInitDict)" id="dom-sensorreadingevent-sensorreadingevent">Constructor<a class="self-link" href="#dom-sensorreadingevent-sensorreadingevent"></a></dfn>(DOMString <dfn class="idl-code" data-dfn-for="SensorReadingEvent/SensorReadingEvent(type, eventInitDict)" data-dfn-type="argument" data-export="" id="dom-sensorreadingevent-sensorreadingevent-type-eventinitdict-type">type<a class="self-link" href="#dom-sensorreadingevent-sensorreadingevent-type-eventinitdict-type"></a></dfn>, <a data-link-type="idl-name" href="#dictdef-sensorreadingeventinit" id="ref-for-dictdef-sensorreadingeventinit-1">SensorReadingEventInit</a> <dfn class="idl-code" data-dfn-for="SensorReadingEvent/SensorReadingEvent(type, eventInitDict)" data-dfn-type="argument" data-export="" id="dom-sensorreadingevent-sensorreadingevent-type-eventinitdict-eventinitdict">eventInitDict<a class="self-link" href="#dom-sensorreadingevent-sensorreadingevent-type-eventinitdict-eventinitdict"></a></dfn>)]
+interface <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export="" data-lt="SensorReadingEvent" id="sensorreadingevent">SensorReadingEvent<span class="dfn-panel" data-deco=""><b><a href="#sensorreadingevent">#sensorreadingevent</a></b><b>Referenced in:</b><span><a href="#ref-for-sensorreadingevent-1">7.7. Update Reading</a></span></span></dfn> : <a data-link-type="idl-name" href="https://dom.spec.whatwg.org/#event">Event</a> {
+  readonly attribute <a data-link-type="idl-name" href="#sensorreading1" id="ref-for-sensorreading1-2">SensorReading</a> <dfn class="dfn-paneled idl-code" data-dfn-for="SensorReadingEvent" data-dfn-type="attribute" data-export="" data-lt="reading" data-readonly="" data-type="SensorReading " id="dom-sensorreadingevent-reading">reading<span class="dfn-panel" data-deco=""><b><a href="#dom-sensorreadingevent-reading">#dom-sensorreadingevent-reading</a></b><b>Referenced in:</b><span><a href="#ref-for-dom-sensorreadingevent-reading-1">7.7. Update Reading</a></span></span></dfn>;
+};
+
+dictionary <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export="" data-lt="SensorReadingEventInit" id="dictdef-sensorreadingeventinit">SensorReadingEventInit<span class="dfn-panel" data-deco=""><b><a href="#dictdef-sensorreadingeventinit">#dictdef-sensorreadingeventinit</a></b><b>Referenced in:</b><span><a href="#ref-for-dictdef-sensorreadingeventinit-1">6.3. The SensorReadingEvent Interface</a></span></span></dfn> : <a data-link-type="idl-name" href="https://dom.spec.whatwg.org/#dictdef-eventinit">EventInit</a> {
+  <a data-link-type="idl-name" href="#sensorreading1" id="ref-for-sensorreading1-3">SensorReading</a> <dfn class="idl-code" data-dfn-for="SensorReadingEventInit" data-dfn-type="dict-member" data-export="" data-type="SensorReading " id="dom-sensorreadingeventinit-reading">reading<a class="self-link" href="#dom-sensorreadingeventinit-reading"></a></dfn>;
+};
+</pre>
+   <h3 class="heading settled" data-level="6.4" id="the-sensorerrorevent-interface"><span class="secno">6.4. </span><span class="content">The SensorErrorEvent Interface</span><a class="self-link" href="#the-sensorerrorevent-interface"></a></h3>
+<pre class="idl def">[<dfn class="idl-code" data-dfn-for="SensorErrorEvent" data-dfn-type="constructor" data-export="" data-lt="SensorErrorEvent(type, errorEventInitDict)" id="dom-sensorerrorevent-sensorerrorevent">Constructor<a class="self-link" href="#dom-sensorerrorevent-sensorerrorevent"></a></dfn>(DOMString <dfn class="idl-code" data-dfn-for="SensorErrorEvent/SensorErrorEvent(type, errorEventInitDict)" data-dfn-type="argument" data-export="" id="dom-sensorerrorevent-sensorerrorevent-type-erroreventinitdict-type">type<a class="self-link" href="#dom-sensorerrorevent-sensorerrorevent-type-erroreventinitdict-type"></a></dfn>, <a data-link-type="idl-name" href="#dictdef-sensorerroreventinit" id="ref-for-dictdef-sensorerroreventinit-1">SensorErrorEventInit</a> <dfn class="idl-code" data-dfn-for="SensorErrorEvent/SensorErrorEvent(type, errorEventInitDict)" data-dfn-type="argument" data-export="" id="dom-sensorerrorevent-sensorerrorevent-type-erroreventinitdict-erroreventinitdict">errorEventInitDict<a class="self-link" href="#dom-sensorerrorevent-sensorerrorevent-type-erroreventinitdict-erroreventinitdict"></a></dfn>)]
+interface <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export="" data-lt="SensorErrorEvent" id="sensorerrorevent">SensorErrorEvent<span class="dfn-panel" data-deco=""><b><a href="#sensorerrorevent">#sensorerrorevent</a></b><b>Referenced in:</b><span><a href="#ref-for-sensorerrorevent-1">7.8. Handle Errors</a></span></span></dfn> : <a data-link-type="idl-name" href="https://dom.spec.whatwg.org/#event">Event</a> {
+  readonly attribute Error <dfn class="dfn-paneled idl-code" data-dfn-for="SensorErrorEvent" data-dfn-type="attribute" data-export="" data-lt="error" data-readonly="" data-type="Error " id="dom-sensorerrorevent-error">error<span class="dfn-panel" data-deco=""><b><a href="#dom-sensorerrorevent-error">#dom-sensorerrorevent-error</a></b><b>Referenced in:</b><span><a href="#ref-for-dom-sensorerrorevent-error-1">7.8. Handle Errors</a></span></span></dfn>;
+};
+
+dictionary <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export="" data-lt="SensorErrorEventInit" id="dictdef-sensorerroreventinit">SensorErrorEventInit<span class="dfn-panel" data-deco=""><b><a href="#dictdef-sensorerroreventinit">#dictdef-sensorerroreventinit</a></b><b>Referenced in:</b><span><a href="#ref-for-dictdef-sensorerroreventinit-1">6.4. The SensorErrorEvent Interface</a></span></span></dfn> : <a data-link-type="idl-name" href="https://dom.spec.whatwg.org/#dictdef-eventinit">EventInit</a> {
+  Error <dfn class="idl-code" data-dfn-for="SensorErrorEventInit" data-dfn-type="dict-member" data-export="" data-type="Error " id="dom-sensorerroreventinit-error">error<a class="self-link" href="#dom-sensorerroreventinit-error"></a></dfn>;
+};
+</pre>
    <h2 class="heading settled" data-level="7" id="abstract-operations"><span class="secno">7. </span><span class="content">Abstract Operations</span><a class="self-link" href="#abstract-operations"></a></h2>
    <h3 class="heading settled" data-algorithm="Construct Sensor Object" data-dfn-type="dfn" data-level="7.1" data-lt="Construct Sensor Object" data-noexport="" id="construct-sensor-object"><span class="secno">7.1. </span><span class="content">Construct Sensor Object</span><a class="self-link" href="#construct-sensor-object"></a></h3>
    <dl>
@@ -2456,8 +2459,8 @@ for their editorial input.</p>
    <li>
     error
     <ul>
-     <li><a href="#dom-sensorerrorevent-error">attribute for SensorErrorEvent</a><span>, in §6.1</span>
-     <li><a href="#dom-sensorerroreventinit-error">dict-member for SensorErrorEventInit</a><span>, in §6.1</span>
+     <li><a href="#dom-sensorerrorevent-error">attribute for SensorErrorEvent</a><span>, in §6.4</span>
+     <li><a href="#dom-sensorerroreventinit-error">dict-member for SensorErrorEventInit</a><span>, in §6.4</span>
     </ul>
    <li><a href="#dom-sensorstate-errored">"errored"</a><span>, in §6.1</span>
    <li><a href="#find-current-reporting-mode-of-a-sensor">Find Current Reporting Mode of a Sensor</a><span>, in §7.3</span>
@@ -2485,17 +2488,17 @@ for their editorial input.</p>
     reading
     <ul>
      <li><a href="#dom-sensor-reading">attribute for Sensor</a><span>, in §6.1</span>
-     <li><a href="#dom-sensorreadingevent-reading">attribute for SensorReadingEvent</a><span>, in §6.1</span>
-     <li><a href="#dom-sensorreadingeventinit-reading">dict-member for SensorReadingEventInit</a><span>, in §6.1</span>
+     <li><a href="#dom-sensorreadingevent-reading">attribute for SensorReadingEvent</a><span>, in §6.3</span>
+     <li><a href="#dom-sensorreadingeventinit-reading">dict-member for SensorReadingEventInit</a><span>, in §6.3</span>
     </ul>
    <li><a href="#read-steps">read steps</a><span>, in §6.1</span>
    <li><a href="#registering-a-sensor">Registering a Sensor</a><span>, in §7.1</span>
    <li><a href="#reporting-modes">reporting modes</a><span>, in §3</span>
    <li><a href="#sensor0">Sensor</a><span>, in §6.1</span>
    <li><a href="#sensor">sensor</a><span>, in §6</span>
-   <li><a href="#sensorerrorevent">SensorErrorEvent</a><span>, in §6.1</span>
-   <li><a href="#dictdef-sensorerroreventinit">SensorErrorEventInit</a><span>, in §6.1</span>
-   <li><a href="#dom-sensorerrorevent-sensorerrorevent">SensorErrorEvent(type, errorEventInitDict)</a><span>, in §6.1</span>
+   <li><a href="#sensorerrorevent">SensorErrorEvent</a><span>, in §6.4</span>
+   <li><a href="#dictdef-sensorerroreventinit">SensorErrorEventInit</a><span>, in §6.4</span>
+   <li><a href="#dom-sensorerrorevent-sensorerrorevent">SensorErrorEvent(type, errorEventInitDict)</a><span>, in §6.4</span>
    <li><a href="#sensor-fusion">sensor fusion</a><span>, in §3</span>
    <li><a href="#sensor-hubs">sensor hubs</a><span>, in §3</span>
    <li><a href="#dictdef-sensoroptions">SensorOptions</a><span>, in §6.1</span>
@@ -2506,9 +2509,9 @@ for their editorial input.</p>
      <li><a href="#sensorreading1">(interface)</a><span>, in §6.2</span>
     </ul>
    <li><a href="#dom-sensorreading-sensorreading">SensorReading()</a><span>, in §6.2</span>
-   <li><a href="#sensorreadingevent">SensorReadingEvent</a><span>, in §6.1</span>
-   <li><a href="#dictdef-sensorreadingeventinit">SensorReadingEventInit</a><span>, in §6.1</span>
-   <li><a href="#dom-sensorreadingevent-sensorreadingevent">SensorReadingEvent(type, eventInitDict)</a><span>, in §6.1</span>
+   <li><a href="#sensorreadingevent">SensorReadingEvent</a><span>, in §6.3</span>
+   <li><a href="#dictdef-sensorreadingeventinit">SensorReadingEventInit</a><span>, in §6.3</span>
+   <li><a href="#dom-sensorreadingevent-sensorreadingevent">SensorReadingEvent(type, eventInitDict)</a><span>, in §6.3</span>
    <li><a href="#sensor-readings">sensor readings</a><span>, in §3</span>
    <li><a href="#enumdef-sensorstate">SensorState</a><span>, in §6.1</span>
    <li><a href="#sensor-types">sensor types</a><span>, in §3</span>
@@ -2642,6 +2645,11 @@ enum <a href="#enumdef-sensorstate">SensorState</a> {
   <a href="#dom-sensorstate-errored">"errored"</a>
 };
 
+[<a href="#dom-sensorreading-sensorreading">Constructor</a>()]
+interface <a href="#sensorreading1">SensorReading</a> {
+  readonly attribute <a data-link-type="idl-name" href="http://w3c.github.io/hr-time/#dom-domhighrestimestamp">DOMHighResTimeStamp</a> <a data-readonly="" data-type="DOMHighResTimeStamp " href="#dom-sensorreading-timestamp">timeStamp</a>;
+};
+
 [<a href="#dom-sensorreadingevent-sensorreadingevent">Constructor</a>(DOMString <a href="#dom-sensorreadingevent-sensorreadingevent-type-eventinitdict-type">type</a>, <a data-link-type="idl-name" href="#dictdef-sensorreadingeventinit">SensorReadingEventInit</a> <a href="#dom-sensorreadingevent-sensorreadingevent-type-eventinitdict-eventinitdict">eventInitDict</a>)]
 interface <a href="#sensorreadingevent">SensorReadingEvent</a> : <a data-link-type="idl-name" href="https://dom.spec.whatwg.org/#event">Event</a> {
   readonly attribute <a data-link-type="idl-name" href="#sensorreading1">SensorReading</a> <a data-readonly="" data-type="SensorReading " href="#dom-sensorreadingevent-reading">reading</a>;
@@ -2658,12 +2666,6 @@ interface <a href="#sensorerrorevent">SensorErrorEvent</a> : <a data-link-type="
 
 dictionary <a href="#dictdef-sensorerroreventinit">SensorErrorEventInit</a> : <a data-link-type="idl-name" href="https://dom.spec.whatwg.org/#dictdef-eventinit">EventInit</a> {
   Error <a data-type="Error " href="#dom-sensorerroreventinit-error">error</a>;
-};
-
-
-[<a href="#dom-sensorreading-sensorreading">Constructor</a>()]
-interface <a href="#sensorreading1">SensorReading</a> {
-  readonly attribute <a data-link-type="idl-name" href="http://w3c.github.io/hr-time/#dom-domhighrestimestamp">DOMHighResTimeStamp</a> <a data-readonly="" data-type="DOMHighResTimeStamp " href="#dom-sensorreading-timestamp">timeStamp</a>;
 };
 
 </pre>

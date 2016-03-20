@@ -423,25 +423,6 @@ enum SensorState {
   "active",
   "errored"
 };
-
-[Constructor(DOMString type, SensorReadingEventInit eventInitDict)]
-interface SensorReadingEvent : Event {
-  readonly attribute SensorReading reading;
-};
-
-dictionary SensorReadingEventInit : EventInit {
-  SensorReading reading;
-};
-
-[Constructor(DOMString type, SensorErrorEventInit errorEventInitDict)]
-interface SensorErrorEvent : Event {
-  readonly attribute Error error;
-};
-
-dictionary SensorErrorEventInit : EventInit {
-  Error error;
-};
-
 </pre>
 
 ### Sensor.state
@@ -540,7 +521,35 @@ Returns a timestamp of the time
 at which the <a>read steps</a> was carried out
 expressed in milliseconds that passed since the <a>time origin</a>.
 
-Abstract Operations
+The SensorReadingEvent Interface
+--------------------------------
+
+<pre class="idl">
+[Constructor(DOMString type, SensorReadingEventInit eventInitDict)]
+interface SensorReadingEvent : Event {
+  readonly attribute SensorReading reading;
+};
+
+dictionary SensorReadingEventInit : EventInit {
+  SensorReading reading;
+};
+</pre>
+
+The SensorErrorEvent Interface
+------------------------------
+
+<pre class="idl">
+[Constructor(DOMString type, SensorErrorEventInit errorEventInitDict)]
+interface SensorErrorEvent : Event {
+  readonly attribute Error error;
+};
+
+dictionary SensorErrorEventInit : EventInit {
+  Error error;
+};
+</pre>
+
+Abstract Operations {#abstract-operations}
 ===================
 
 <h3 algorithm dfn>Construct Sensor Object</h3>
