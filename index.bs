@@ -627,6 +627,7 @@ Find the polling frequency of a Sensor
     : output
     :: None
     
+    1.  Set |sensorInstance|’s <a attribute for="Sensor">reading</a> to `null`.
     1.  Invoke the <a>update state</a> algorithm passing |sensorInstance| and <a enum-value>"errored"</a> as the arguments.
     1.  Create an <a>event</a> |e| that uses the <a interface>SensorErrorEvent</a> interface, with the event type `error`, which does not bubble, is not cancelable, is <a>trusted</a>, and has no default action.
     1.  Let the <a attribute for=SensorErrorEvent>error</a> attribute of |e| be initialized to |error|.
