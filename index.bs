@@ -883,6 +883,25 @@ for proximity <a>sensors</a>.
 Acknowledgements
 ================
 
+First and foremost, I would like to thank Anssi Kostiainen
+for his continuous and dedicates support and input throughout
+the development of this specification.
+
+Special thanks to Rick Waldron for
+driving the discussion around a generic sensor API design for the Web,
+sketching the original API on which this is based,
+providing implementation feedback from his work on Johnny-Five,
+and continuous input during the development of this specification.
+
+Special thanks to Boris Smus, Tim Volodine, and Rich Tibbett
+for their initial work on exposing sensors to the Web with consistency.
+
+Thanks to Anne van Kesteren
+for his tireless help both in person and through IRC.
+
+Thanks also to Frederick Hirsch and Dominique Hazaël-Massieux (via the HTML5Apps project)
+for both their administrative help and technical input.
+
 The following people have greatly contributed to this specification through extensive discussions on GitHub:
 Anssi Kostiainen,
 Boris Smus,
@@ -891,7 +910,7 @@ Claes Nilsson,
 Dave Raggett,
 David Mark Clements,
 Domenic Denicola,
-Dominique Hazael-Massieux (via the HTML5Apps project),
+Dominique Hazaël-Massieux (via the HTML5Apps project),
 Francesco Iovine,
 Frederick Hirsch,
 gmandyam,
@@ -918,7 +937,7 @@ and Zoltan Kis.
 
 We'd also like to thank
 Anssi Kostiainen,
-Dominique Hazael-Massieux,
+Dominique Hazaël-Massieux,
 Erik Wilde,
 and
 Michael[tm] Smith
