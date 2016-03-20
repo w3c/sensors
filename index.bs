@@ -38,6 +38,7 @@ urlPrefix: https://html.spec.whatwg.org/multipage/; spec: HTML
       text: queue a task
       text: event loop
       text: fire a simple event
+      text: trusted; url: concept-events-trusted
     urlPrefix: infrastructure.html
       text: in parallel
     urlPrefix: browsers.html
@@ -384,7 +385,7 @@ A <a>sensor</a> has an associated <dfn>minimum polling frequency</dfn> which is 
 A <dfn interface>Sensor</dfn> object has an associated <a>sensor</a>.
 
 A <a interface>Sensor</a> object has an associated <dfn>state</dfn>,
-which is one of <a enum-value>"idle"</a>, <a enum-value>"activating"</a>, and <a enum-value>"active"</a>. It is initially <a enum-value>"idle"</a>.
+which is one of <a enum-value>"idle"</a>, <a enum-value>"activating"</a>, <a enum-value>"active"</a>, and <a enum-value>"errored"</a>. It is initially <a enum-value>"idle"</a>.
 
 A <a interface>Sensor</a> object has an associated <a>reporting mode</a>,
 which can be one of <a>auto</a> or <a>periodic</a>.
@@ -421,7 +422,8 @@ interface Sensor : EventTarget {
 enum SensorState {
   "idle",
   "activating",
-  "active"
+  "active",
+  "errored"
 };
 
 [Constructor(DOMString type, SensorReadingEventInit eventInitDict)]
@@ -431,6 +433,15 @@ interface SensorReadingEvent : Event {
 
 dictionary SensorReadingEventInit : EventInit {
   SensorReading reading;
+};
+
+[Constructor(DOMString type, SensorErrorEventInit errorEventInitDict)]
+interface SensorErrorEvent : Event {
+  readonly attribute Error error;
+};
+
+dictionary SensorErrorEventInit : EventInit {
+  Error error;
 };
 
 dictionary SensorOptions {
@@ -580,18 +591,18 @@ Abstract Operations
     1.  Create an <a>event</a> |e| that uses the <a interface>SensorReadingEvent</a> interface, with the event type `reading`, which does not bubble, is not cancelable, and has no default action.
     1.  Let the <a attribute for=SensorReadingEvent>reading</a> attribute of |e| be initialized to |reading|.
     1.  <a>Queue a task</a> to <a>dispatch</a> |e| at |sensorInstance|.
-
-<h3 algorithm dfn>Update Reading From Cache</h3>
+    
+<h3 algorithm dfn>Handle Errors</h3>
 
     : input
     :: |sensorInstance|, a <a interface>Sensor</a> object.
-    :: |reading|, a <a interface>SensorReading</a> object.
+    :: |error|, an Error object.
     : output
     :: None
     
-    1.  Set |sensorInstance|’s <a attribute for="Sensor">reading</a> to |reading|.
-    1.  Create an <a>event</a> |e| that uses the <a interface>SensorReadingEvent</a> interface, with the event type `reading`, which does not bubble, is not cancelable, and has no default action.
-    1.  Let the <a attribute for=SensorReadingEvent>reading</a> attribute of |e| be initialized to |reading|.
+    1.  Invoke the <a>update state</a> algorithm passing |sensorInstance| and <a enum-value>"errored"</a> as the arguments.
+    1.  Create an <a>event</a> |e| that uses the <a interface>SensorErrorEvent</a> interface, with the event type `error`, which does not bubble, is not cancelable, is <a>trusted</a>, and has no default action.
+    1.  Let the <a attribute for=SensorErrorEvent>error</a> attribute of |e| be initialized to |error|.
     1.  <a>Queue a task</a> to <a>dispatch</a> |e| at |sensorInstance|.
 
 
