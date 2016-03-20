@@ -114,7 +114,7 @@ and the current API has been designed with this in mind.
 Terminology
 ===========
 
-A <dfn>sensor</dfn> measures different physical quantities
+A <a>sensor</a> measures different physical quantities
 and provide corresponding <dfn>raw sensor readings</dfn>
 which are a source of information about the user and their environment.
 
@@ -466,15 +466,26 @@ hold the same <a>SensorReading</a> during a single <a>event loop</a> turn.
 <div algorithm="to start a sensor">
 The <dfn>start()</dfn> method must run these steps or their <a>equivalent</a>:
 
-    1.  Let |p| be a <a>Promise</a>.
-    1.  If |sensorInstance|'s <a>state</a> is not <a enum-value>"idle"</a>, then
+    1.  If |sensorInstance|'s <a>state</a> is neither <a enum-value>"idle"</a> nor <a enum-value>"errored"</a>,
         1.  throw an "<a>InvalidStateError</a>" exception and abort these steps.
-    1.  Set |sensorInstance|'s <a>state</a> to <a enum-value>"activating"</a>.
-    1.  Invoke <a>Registering a Sensor</a> algorithm with |sensorInstance| and |p| as arguments.
-    1.  Return |p|.
+    1.  Invoke the <a>update state</a> algorithm passing |sensorInstance| and <a enum-value>"activating"</a> as the arguments.
+    1.  Run these sub-steps <a>in parallel</a>:
+        1.  Invoke <a>Registering a Sensor</a> algorithm with |sensorInstance| and as argument.
 
 </div>
 ### Sensor.stop
+<div algorithm="to stop a sensor">
+The <dfn>stop()</dfn> method must run these steps or their <a>equivalent</a>:
+
+    1.  If |sensorInstance|'s <a>state</a> is either <a enum-value>"idle"</a> or <a enum-value>"errored"</a>, then
+        1.  throw an "<a>InvalidStateError</a>" exception and abort these steps.
+    1.  Set |sensorInstance|’s <a attribute for="Sensor">reading</a> to `null`.
+    1.  Invoke the <a>update state</a> algorithm passing |sensorInstance| and <a enum-value>"idle"</a> as the arguments.
+    1.  Run these sub-steps <a>in parallel</a>:
+        1.  Invoke <a>Unregistering a Sensor</a> algorithm with |sensorInstance| as arguments.
+
+</div>
+
 
 ### Sensor.onerror
 
@@ -561,6 +572,24 @@ Abstract Operations
 
 Find Current Reporting Mode of a Sensor
 ---------------------------------------
+<h3 algorithm dfn>Registering a Sensor</h3>
+
+: input
+:: |sensorInstance|, a <a>Sensor</a> object.
+: output
+:: None
+
+1. Add |sensorInstance| to its associated <a>sensor</a>'s set of <a>activated Sensor objects</a>.
+
+<h3 algorithm dfn>Unregistering a Sensor</h3>
+
+: input
+:: |sensorInstance|, a <a>Sensor</a> object.
+: output
+:: None
+
+1. Remove |sensorInstance| from its associated <a>sensor</a>'s set of <a>activated Sensor objects</a>.
+
 
 : input
 :: |sensor|, a <a>sensor</a>.
