@@ -373,7 +373,7 @@ API {#api}
 
 A <a>sensor</a> has an associated set of <dfn>active sensors</dfn>. This set is initially empty.
 
-A <a>sensor</a> has an associated <dfn>current reading</dfn> which is initially null.
+A <a>sensor</a> has an associated <dfn>current reading</dfn>.
 
 A <a>sensor</a> has an associated <dfn>periodic reporting mode flag</dfn>. This flag is initially unset.
 
