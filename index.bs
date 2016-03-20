@@ -288,17 +288,14 @@ and defensive programming which includes:
 
 1.  checking for error thrown when instantiating a <a interface>Sensor</a> object,
 2.  listening to errors emitted by it,
-3.  setting an appropriate timeout for your particular use case,
-4.  handling all of the above graciously so that the user's experienced is
+3.  handling all of the above graciously so that the user's experienced is
     enhanced by the possible usage of a sensor, not degraded by its
     absence.
 
 <div class="example">
     <pre highlight="js">
     	try { // No need to feature detect thanks to try..catch block.
-    	    let sensor = new GeolocationSensor({
-    	        timeout: 3 * 1000 // 3 seconds
-    	    });
+    	    let sensor = new GeolocationSensor({});
             sensor.start();
     	    sensor.onerror = error => gracefullyDegrade(error);
     	    sensor.onchange = data => updatePosition(data.coords);
@@ -406,7 +403,6 @@ TODO: define the following concepts
 
 <pre class="idl">
 interface Sensor : EventTarget {
-  attribute double timeout; 
   readonly attribute SensorState state;
   readonly attribute SensorReading? reading;
   Promise &lt;void&gt; start();
@@ -444,14 +440,12 @@ dictionary SensorErrorEventInit : EventInit {
 
 dictionary SensorOptions {
   double? frequency;
-  double? timeout;
 };
 
 </pre>
 
 ### Sensor.state
 
-### Sensor.timeout
 
 ### Sensor.reading
 
