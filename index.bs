@@ -204,7 +204,7 @@ preferring instead to differentiate <a>sensors</a> as to whether they describe
 the kind of <a lt="sensor readings">readings</a> produced--these are <a>high-level</a> sensors--
 or how the sensor is implemented (<a>low-level</a> sensors).
 
-<a>Sensors</a> have two different <dfn>reporting modes</dfn>.
+<a>Sensors</a> have different <dfn>reporting modes</dfn>.
 When <a>sensor readings</a> are reported at regular intervals,
 at an ajustable <dfn>frequency</dfn>,
 the <a>reporting mode</a> is said to be <dfn>periodic</dfn>.
