@@ -413,6 +413,10 @@ interface Sensor : EventTarget {
   attribute EventHandler onstatechange;
 };
 
+dictionary SensorOptions {
+  double? frequency;
+};
+
 enum SensorState {
   "idle",
   "activating",
@@ -438,14 +442,11 @@ dictionary SensorErrorEventInit : EventInit {
   Error error;
 };
 
-dictionary SensorOptions {
-  double? frequency;
-};
-
 </pre>
 
 ### Sensor.state
 
+The <a attribute for="Sensor">state</a> attribute represents a <a>Sensor</a> object's <a>state</a>.
 
 ### Sensor.reading
 
