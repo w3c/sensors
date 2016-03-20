@@ -378,8 +378,6 @@ A <a>sensor</a> has an associated <dfn>current reading</dfn>.
 
 A <a>sensor</a> has an associated <dfn>periodic reporting mode flag</dfn>. This flag is initially unset.
 
-A <a>sensor</a> has an associated <dfn>minimum polling frequency</dfn> which is initially set to null.
-
 ## The Sensor Interface
 
 A <dfn interface>Sensor</dfn> object has an associated <a>sensor</a>.
