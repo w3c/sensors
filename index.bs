@@ -371,7 +371,7 @@ define ways to uniquely identify each one.
 API {#api}
 ===
 
-A <a>sensor</a> has an associated set of <dfn>active sensors</dfn>. This set is initially empty.
+A <dfn>sensor</dfn> has an associated set of <dfn>activated Sensor objects</dfn>. This set is initially empty.
 
 A <a>sensor</a> has an associated <dfn>current reading</dfn>.
 
