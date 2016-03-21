@@ -61,7 +61,7 @@ urlPrefix: https://heycam.github.io/webidl/; spec: WebIDL
     text: InvalidStateError
     text: Promise; url: idl-promise
 urlPrefix: https://w3c.github.io/permissions/; spec: permissions-api
-  type: interface
+  type: dfn
     text: permission state;                url: idl-def-PermissionState
     text: permission;                      url: idl-def-Permission
     text: PermissionDescriptor;            url: idl-def-PermissionDescriptor
@@ -377,6 +377,16 @@ define ways to uniquely identify each one.
 API {#api}
 ===
 
+A <a>sensor type</a> has one or many associated <a>sensors</a>.
+
+A <a>sensor type</a> has an associated subclass of the <a interface>Sensor</a> interface.
+
+A <a>sensor type</a> may have a default <a>sensor</a>.
+
+A <a>sensor type</a> has more than one <a>sensor</a>,
+it must have a set of associated <dfn>identifying parameters</dfn>
+to select the right <a>sensor</a> to a associate to each new <a instance>Sensor</a> objects.
+
 A <dfn>sensor</dfn> has an associated set of <dfn>activated Sensor objects</dfn>. This set is initially empty.
 
 A <a>sensor</a> has an associated <dfn>current reading</dfn>.
@@ -410,9 +420,7 @@ which which is initially set to null.
 
 TODO: define the following concepts
 
-- <dfn>permission</dfn>
 - <dfn>read steps</dfn>
-- <dfn>identifying parameters</dfn>
 
 <pre class="idl">
 interface Sensor : EventTarget {
