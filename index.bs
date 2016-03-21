@@ -60,6 +60,14 @@ urlPrefix: https://heycam.github.io/webidl/; spec: WebIDL
     text: throw; url: dfn-throw
     text: InvalidStateError
     text: Promise; url: idl-promise
+urlPrefix: https://w3c.github.io/permissions/; spec: permissions-api
+  type: interface
+    text: permission state;                url: idl-def-PermissionState
+    text: permission;                      url: idl-def-Permission
+    text: PermissionDescriptor;            url: idl-def-PermissionDescriptor
+  type: dfn
+    text: associated PermissionDescriptor; url: dfn-associated-permissiondescriptor
+    text: retrieving the permission state; url: dfn-retrieve-the-permission-state
 </pre>
 
 
@@ -375,6 +383,11 @@ A <a>sensor</a> has an associated <dfn>current reading</dfn>.
 
 A <a>sensor</a> has an associated <dfn>periodic reporting mode flag</dfn>. This flag is initially unset.
 
+A <a>sensor</a> has an associated abstract operation to
+<dfn lt="retrieve the sensor permission">retrieve its permission</dfn> which
+takes a <a interface>Sensor</a> object as input and
+returns a <a>permission</a> and, eventually, its <a>associated PermissionDescriptor</a>.
+
 ## The Sensor Interface
 
 A <dfn interface>Sensor</dfn> object has an associated <a>sensor</a>.
@@ -554,73 +567,73 @@ Abstract Operations {#abstract-operations}
 
 <h3 algorithm dfn>Construct Sensor Object</h3>
 
-: input
-:: |options|, a <a dictionary>SensorOptions</a> object.
-: output
-:: |sensorInstance|, a <a interface>Sensor</a> object.
-
-1.  If the <a>incumbent settings object</a> is not a <a>secure context</a>, then:
-    1.  <a>throw</a> a SecurityError.
-1.  If the <a>browsing context</a> is not a <a>top-level browsing context</a>, then:
-    1.  <a>throw</a> a SecurityError.
-1.  Otherwise, if <a>identifying parameters</a> in |options| are set, then:
-    1.  If these <a>identifying parameters</a> allow a unique <a>sensor</a> to be identified, then:
+    : input
+    :: |options|, a <a dictionary>SensorOptions</a> object.
+    : output
+    :: |sensorInstance|, a <a interface>Sensor</a> object.
+    
+    1.  If the <a>incumbent settings object</a> is not a <a>secure context</a>, then:
+        1.  <a>throw</a> a SecurityError.
+    1.  If the <a>browsing context</a> is not a <a>top-level browsing context</a>, then:
+        1.  <a>throw</a> a SecurityError.
+    1.  Otherwise, if <a>identifying parameters</a> in |options| are set, then:
+        1.  If these <a>identifying parameters</a> allow a unique <a>sensor</a> to be identified, then:
+            1.  let |sensorInstance| be a new <a interface>Sensor</a> object.
+            1.  associate |sensorInstance| with that <a>sensor</a>
+        1. Otherwise, <a>throw</a> a TypeError.
+    1.  Otherwise, if a default sensor exists for this <a>sensor type</a>:
         1.  let |sensorInstance| be a new <a interface>Sensor</a> object.
-        1.  associate |sensorInstance| with that <a>sensor</a>
-    1. Otherwise, <a>throw</a> a TypeError.
-1.  Otherwise, if a default sensor exists for this <a>sensor type</a>:
-    1.  let |sensorInstance| be a new <a interface>Sensor</a> object.
-    1.  associate that <a>sensor</a> with it.
-1.  Otherwise, <a>throw</a> a TypeError.
-1.  Set |sensorInstance|'s <a for="Sensor" attribute>reading</a> attribute to `null`.
-1.  Set |sensorInstance|'s <a>state</a> to <a enum-value>"idle"</a>.
-1.  return |sensorInstance|.
+        1.  associate that <a>sensor</a> with it.
+    1.  Otherwise, <a>throw</a> a TypeError.
+    1.  Set |sensorInstance|'s <a for="Sensor" attribute>reading</a> attribute to `null`.
+    1.  Set |sensorInstance|'s <a>state</a> to <a enum-value>"idle"</a>.
+    1.  return |sensorInstance|.
 
 <h3 algorithm dfn>Registering a Sensor</h3>
 
-: input
-:: |sensorInstance|, a <a>Sensor</a> object.
-: output
-:: None
-
-1. Add |sensorInstance| to its associated <a>sensor</a>'s set of <a>activated Sensor objects</a>.
+    : input
+    :: |sensorInstance|, a <a>Sensor</a> object.
+    : output
+    :: None
+    
+    1. Add |sensorInstance| to its associated <a>sensor</a>'s set of <a>activated Sensor objects</a>.
 
 <h3 algorithm dfn>Unregistering a Sensor</h3>
 
-: input
-:: |sensorInstance|, a <a>Sensor</a> object.
-: output
-:: None
-
-1. Remove |sensorInstance| from its associated <a>sensor</a>'s set of <a>activated Sensor objects</a>.
+    : input
+    :: |sensorInstance|, a <a>Sensor</a> object.
+    : output
+    :: None
+    
+    1. Remove |sensorInstance| from its associated <a>sensor</a>'s set of <a>activated Sensor objects</a>.
 
 <h3 algorithm dfn>Find Current Reporting Mode of a Sensor</h3>
-
-: input
-:: |sensor|, a <a>sensor</a>.
-: output
-:: |mode|, a <a>reporting mode</a>.
-
-1. let |mode| be <a>auto</a>.
-1.  For each |sensorInstance| in |sensor|'s set of <a>activated Sensor objects</a>:
-    1. if |sensorInstance|'s <a>frequency</a> is not `null`,
-        1. set |mode| to <a>periodic</a>
-1. return |mode|.
+    
+    : input
+    :: |sensor|, a <a>sensor</a>.
+    : output
+    :: |mode|, a <a>reporting mode</a>.
+    
+    1. let |mode| be <a>auto</a>.
+    1.  For each |sensorInstance| in |sensor|'s set of <a>activated Sensor objects</a>:
+        1. if |sensorInstance|'s <a>frequency</a> is not `null`,
+            1. set |mode| to <a>periodic</a>
+    1. return |mode|.
 
 
 <h3 algorithm dfn>Find the polling frequency of a Sensor</h3>
-
-: input
-:: |sensor|, a <a>sensor</a>.
-: output
-:: |frequency|, a <a>frequency</a>.
-
-1. let |frequency| be `null`.
-1.  For each |sensorInstance| in |sensor|'s set of <a>activated Sensor objects</a>:
-    1. let |f| be |sensorInstance|'s <a>frequency</a>.
-    1. if |f| is not `null` and |f| is greater than |frequency|,
-        1. set |frequency| to |f|.
-1. return |frequency|.
+    
+    : input
+    :: |sensor|, a <a>sensor</a>.
+    : output
+    :: |frequency|, a <a>frequency</a>.
+    
+    1. let |frequency| be `null`.
+    1.  For each |sensorInstance| in |sensor|'s set of <a>activated Sensor objects</a>:
+        1. let |f| be |sensorInstance|'s <a>frequency</a>.
+        1. if |f| is not `null` and |f| is greater than |frequency|,
+            1. set |frequency| to |f|.
+    1. return |frequency|.
 
 
 <h3 algorithm dfn>Update State</h3>
@@ -666,6 +679,21 @@ Abstract Operations {#abstract-operations}
     1.  <a>Queue a task</a> to <a>dispatch</a> |e| at |sensorInstance|.
 
 
+<h3 algorithm dfn>Request Sensor Access</h3>
+
+    : input
+    :: |sensorInstance|, a <a interface>Sensor</a> object.
+    : output
+    :: a <a>permission state</a>.
+    
+    1.  Let |s| be the <a>sensor</a> associated with |sensorInstance|.
+    1.  let |permission| be the result of invoking the abstract operation <a>retrieve the sensor permission</a> associated with |s|,
+        passing it |sensorInstance| as argument.
+    1.  Let |state| be the result of <a>retrieving the permission state</a> for |permission|.
+    1.  If |state| is "granted",
+        1. register the sensor.
+    1.  If |state| is "denied",
+        1. more here.
 Security and privacy considerations
 ===================================
 
