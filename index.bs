@@ -111,8 +111,8 @@ is good enough for now.
 A subsequent version of this specification might specify such an API,
 and the current API has been designed with this in mind.
 
-Terminology
-===========
+Concepts {#concepts}
+========
 
 A <a>sensor</a> measures different physical quantities
 and provide corresponding <dfn>raw sensor readings</dfn>
