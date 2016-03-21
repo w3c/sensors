@@ -665,10 +665,12 @@ Abstract Operations {#abstract-operations}
     
     1.  Set |sensorInstance|’s <a attribute for="Sensor">reading</a> to |reading|.
     1.  If |sensorInstance|'s <a attribute>state</a> is <a enum-value>"activating"</a>:
-        1. Invoke the <a>update state</a> algorithm passing |sensorInstance| and <a enum-value>"active"</a> as the arguments.
-        1. Resolve |sensorInstance|'s associated <a>starting promise</a> with `undefined`.
-        1. Set |sensorInstance|'s associated <a>starting promise</a> to null.
-    1.  Create an <a>event</a> |e| that uses the <a interface>SensorReadingEvent</a> interface, with the event type `reading`, which does not bubble, is not cancelable, and has no default action.
+        1.  Invoke the <a>update state</a> algorithm passing |sensorInstance|
+            and <a enum-value>"active"</a> as the arguments.
+        1.  Resolve |sensorInstance|'s associated <a>starting promise</a> with `undefined`.
+        1.  Set |sensorInstance|'s associated <a>starting promise</a> to null.
+    1.  Create an <a>event</a> |e| that uses the <a interface>SensorReadingEvent</a> interface,
+        with the event type `reading`, which does not bubble, is not cancelable, is <a>trusted</a>, and has no default action.
     1.  Let the <a attribute for=SensorReadingEvent>reading</a> attribute of |e| be initialized to |reading|.
     1.  <a>Queue a task</a> to <a>dispatch</a> |e| at |sensorInstance|.
     
@@ -682,7 +684,8 @@ Abstract Operations {#abstract-operations}
     
     1.  Set |sensorInstance|’s <a attribute for="Sensor">reading</a> to `null`.
     1.  Invoke the <a>update state</a> algorithm passing |sensorInstance| and <a enum-value>"errored"</a> as the arguments.
-    1.  Create an <a>event</a> |e| that uses the <a interface>SensorErrorEvent</a> interface, with the event type `error`, which does not bubble, is not cancelable, is <a>trusted</a>, and has no default action.
+    1.  Create an <a>event</a> |e| that uses the <a interface>SensorErrorEvent</a> interface,
+        with the event type `error`, which does not bubble, is not cancelable, is <a>trusted</a>, and has no default action.
     1.  Let the <a attribute for=SensorErrorEvent>error</a> attribute of |e| be initialized to |error|.
     1.  <a>Queue a task</a> to <a>dispatch</a> |e| at |sensorInstance|.
 
