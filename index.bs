@@ -476,7 +476,7 @@ API {#api}
 The Sensor Interface {#the-sensor-interface}
 --------------------
 
-A <a interface>Sensor</a> object has an associated <a>sensor</a>.
+A <dfn interface>Sensor</dfn> object has an associated <a>sensor</a>.
 
 A <a interface>Sensor</a> object has an associated <dfn>state</dfn>,
 which is one of <a enum-value>"idle"</a>, <a enum-value>"activating"</a>, <a enum-value>"active"</a>, and <a enum-value>"errored"</a>. It is initially <a enum-value>"idle"</a>.
@@ -595,7 +595,7 @@ that must be supported as attributes by the objects implementing the <a>Sensor</
 The SensorReading Interface {#the-sensor-reading-interface}
 ---------------------------
 
-A <a interface>SensorReading</a> represents the state of a <a>sensor</a> at a given point in time.
+A <dfn interface>SensorReading</dfn> represents the state of a <a>sensor</a> at a given point in time.
 
 <pre class="idl">
 
