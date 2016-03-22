@@ -455,7 +455,10 @@ to select the right <a>sensor</a> to a associate to each new <a instance>Sensor<
 Sensor {#model-sensor}
 ------
 
-A <dfn id=concept-sensor>sensor</dfn> has an associated set of <dfn>activated Sensor objects</dfn>. This set is initially empty.
+A <dfn id=concept-sensor>sensor</dfn> has an associated <dfn>Sensor interface subclass</dfn>
+and an associated <dfn>SensorReading interface subclass</dfn>.
+
+A <a>sensor</a> has an associated set of <dfn>activated Sensor objects</dfn>. This set is initially empty.
 
 A <a>sensor</a> has an associated <dfn>current reading</dfn>.
 
@@ -463,12 +466,20 @@ A <a>sensor</a> has an associated set of <dfn>supported reporting modes</dfn>,
 which cannot be empty and must be picked from the following:
 <a>auto</a> and <a>periodic</a>.
 
+A <a>sensor</a> has an associated <dfn>reporting flag</dfn> which is initially unset.
+
 A <a>sensor</a> has an associated <dfn>current reporting mode</dfn> which is initially undefined.
 
 A <a>sensor</a> has an associated abstract operation to
 <dfn lt="retrieve the sensor permission">retrieve its permission</dfn> which
 takes a <a interface>Sensor</a> object as input and
 returns a <a>permission</a> and, eventually, its <a>associated PermissionDescriptor</a>.
+
+A <a>sensor</a> has an associated abstract operation to
+<dfn lt="Construct SensorReading Object">construct a SensorReading object</dfn>
+which takes the <a>sensor readings</a> emitted by the <a>sensor</a> and
+returns an initialized <a interface>SensorReading</a> object
+which uses the <a>sensor</a>'s associated <a>SensorReading interface subclass</a>.
 
 API {#api}
 ===
@@ -732,6 +743,27 @@ Abstract Operations {#abstract-operations}
     
     1.  Set |sensorInstance|’s <a attribute>state</a> to |state|.
     1.  <a>Queue a task</a> to <a>fire a simple event</a> named `statechange` at |sensorInstance|.
+
+<h3 algorithm dfn>Update Current Reading</h3>
+
+    : input
+    :: |sensor|, a <a>sensor</a>.
+    :: |reading|, a <a>sensor reading</a>.
+    : output
+    :: None
+    
+    1.  If |sensor|’s <a>reporting flag</a> is set,
+        1. abort these steps.
+    1.  Set |sensor|’s <a>reporting flag</a>.
+    1.  Let |readingInstance| be the result of invoking |sensor|'s associated
+        <a>Construct SensorReading Object</a> operation,
+        passing it |reading| as argument.
+    1.  Set |sensor|’s <a>current reading</a> to |readingInstance|.
+    1.  For each |sensorInstance| in |sensor|'s set of <a>activated Sensor objects</a>:
+        1.  Invoke the <a>update reading</a> algorithm passing |sensorInstance|
+            and |readingInstance| as arguments.
+    1.  Unset |sensor|’s <a>reporting flag</a>.
+    
 
 <h3 algorithm dfn>Update Reading</h3>
 
