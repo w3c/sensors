@@ -1897,24 +1897,24 @@ associated with the same <a data-link-type="dfn" href="#concept-sensor" id="ref-
      The <dfn class="css" data-dfn-type="function" data-export="" id="funcdef-start">start()<a class="self-link" href="#funcdef-start"></a></dfn> method must run these steps or their <a data-link-type="dfn" href="#equivalent" id="ref-for-equivalent-1">equivalent</a>: 
     <ol>
      <li data-md="">
-      <p>If <var>sensorInstance</var>’s <a data-link-type="dfn" href="#state" id="ref-for-state-2">state</a> is neither <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-idle" id="ref-for-dom-sensorstate-idle-3">"idle"</a> nor <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-errored" id="ref-for-dom-sensorstate-errored-2">"errored"</a>,</p>
+      <p>If <var>sensor_instance</var>’s <a data-link-type="dfn" href="#state" id="ref-for-state-2">state</a> is neither <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-idle" id="ref-for-dom-sensorstate-idle-3">"idle"</a> nor <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-errored" id="ref-for-dom-sensorstate-errored-2">"errored"</a>,</p>
       <ol>
        <li data-md="">
         <p>throw an "<a data-link-type="dfn" href="https://heycam.github.io/webidl/#invalidstateerror">InvalidStateError</a>" exception and abort these steps.</p>
       </ol>
      <li data-md="">
-      <p>Invoke the <a data-link-type="dfn" href="#update-state" id="ref-for-update-state-1">update state</a> algorithm passing <var>sensorInstance</var> and <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activating" id="ref-for-dom-sensorstate-activating-2">"activating"</a> as the arguments.</p>
+      <p>Invoke the <a data-link-type="dfn" href="#update-state" id="ref-for-update-state-1">update state</a> algorithm passing <var>sensor_instance</var> and <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activating" id="ref-for-dom-sensorstate-activating-2">"activating"</a> as the arguments.</p>
      <li data-md="">
       <p>Run these sub-steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in parallel</a>:</p>
       <ol>
        <li data-md="">
         <p>Let <var>state</var> be the result of invoking the <a data-link-type="dfn" href="#request-sensor-access" id="ref-for-request-sensor-access-1">Request Sensor Access</a> abstract operation,
-  passing it <var>sensorInstance</var> as argument.</p>
+  passing it <var>sensor_instance</var> as argument.</p>
        <li data-md="">
         <p>If <var>state</var> is "granted",</p>
         <ol>
          <li data-md="">
-          <p>Invoke <a data-link-type="dfn" href="#register-a-sensor" id="ref-for-register-a-sensor-1">Register a Sensor</a> passing it <var>sensorInstance</var> as argument.</p>
+          <p>Invoke <a data-link-type="dfn" href="#register-a-sensor" id="ref-for-register-a-sensor-1">Register a Sensor</a> passing it <var>sensor_instance</var> as argument.</p>
          <li data-md="">
           <p>Abort these sub-steps.</p>
         </ol>
@@ -1925,7 +1925,7 @@ associated with the same <a data-link-type="dfn" href="#concept-sensor" id="ref-
           <p>let <var>e</var> be the result of <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-create-exception">creating an exception</a> named <a data-link-type="dfn" href="https://heycam.github.io/webidl/#notallowederror">NotAllowedError</a>.</p>
          <li data-md="">
           <p>Invoke the <a data-link-type="dfn" href="#handle-errors" id="ref-for-handle-errors-1">Handle Errors</a> abstract operation,
-  passing it <var>e</var> and <var>sensorInstance</var> as arguments.</p>
+  passing it <var>e</var> and <var>sensor_instance</var> as arguments.</p>
          <li data-md="">
           <p>Abort these sub-steps.</p>
         </ol>
@@ -1939,20 +1939,20 @@ associated with the same <a data-link-type="dfn" href="#concept-sensor" id="ref-
      The <dfn class="css" data-dfn-type="function" data-export="" id="funcdef-stop">stop()<a class="self-link" href="#funcdef-stop"></a></dfn> method must run these steps or their <a data-link-type="dfn" href="#equivalent" id="ref-for-equivalent-2">equivalent</a>: 
     <ol>
      <li data-md="">
-      <p>If <var>sensorInstance</var>’s <a data-link-type="dfn" href="#state" id="ref-for-state-3">state</a> is either <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-idle" id="ref-for-dom-sensorstate-idle-4">"idle"</a> or <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-errored" id="ref-for-dom-sensorstate-errored-3">"errored"</a>, then</p>
+      <p>If <var>sensor_instance</var>’s <a data-link-type="dfn" href="#state" id="ref-for-state-3">state</a> is either <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-idle" id="ref-for-dom-sensorstate-idle-4">"idle"</a> or <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-errored" id="ref-for-dom-sensorstate-errored-3">"errored"</a>, then</p>
       <ol>
        <li data-md="">
         <p>throw an "<a data-link-type="dfn" href="https://heycam.github.io/webidl/#invalidstateerror">InvalidStateError</a>" exception and abort these steps.</p>
       </ol>
      <li data-md="">
-      <p>Set <var>sensorInstance</var>’s <a class="idl-code" data-link-type="attribute" href="#dom-sensor-reading" id="ref-for-dom-sensor-reading-1">reading</a> to <code>null</code>.</p>
+      <p>Set <var>sensor_instance</var>’s <a class="idl-code" data-link-type="attribute" href="#dom-sensor-reading" id="ref-for-dom-sensor-reading-1">reading</a> to <code>null</code>.</p>
      <li data-md="">
-      <p>Invoke the <a data-link-type="dfn" href="#update-state" id="ref-for-update-state-2">update state</a> algorithm passing <var>sensorInstance</var> and <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-idle" id="ref-for-dom-sensorstate-idle-5">"idle"</a> as the arguments.</p>
+      <p>Invoke the <a data-link-type="dfn" href="#update-state" id="ref-for-update-state-2">update state</a> algorithm passing <var>sensor_instance</var> and <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-idle" id="ref-for-dom-sensorstate-idle-5">"idle"</a> as the arguments.</p>
      <li data-md="">
       <p>Run these sub-steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in parallel</a>:</p>
       <ol>
        <li data-md="">
-        <p>Invoke <a data-link-type="dfn" href="#unregister-a-sensor" id="ref-for-unregister-a-sensor-1">Unregister a Sensor</a> passing it <var>sensorInstance</var> as argument.</p>
+        <p>Invoke <a data-link-type="dfn" href="#unregister-a-sensor" id="ref-for-unregister-a-sensor-1">Unregister a Sensor</a> passing it <var>sensor_instance</var> as argument.</p>
       </ol>
      <li data-md="">
       <p>return <code>undefined</code>.</p>
@@ -2024,7 +2024,7 @@ dictionary <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-exp
     <dt data-md="">
      <p>output</p>
     <dd data-md="">
-     <p><var>sensorInstance</var>, a <a class="idl-code" data-link-type="interface" href="#sensor" id="ref-for-sensor-8">Sensor</a> object.</p>
+     <p><var>sensor_instance</var>, a <a class="idl-code" data-link-type="interface" href="#sensor" id="ref-for-sensor-8">Sensor</a> object.</p>
    </dl>
    <ol>
     <li data-md="">
@@ -2048,9 +2048,9 @@ dictionary <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-exp
         <li data-md="">
          <p>let <var>sensor</var> be that <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-37">sensor</a>,</p>
         <li data-md="">
-         <p>let <var>sensorInstance</var> be a new <a class="idl-code" data-link-type="interface" href="#sensor" id="ref-for-sensor-9">Sensor</a> object,</p>
+         <p>let <var>sensor_instance</var> be a new <a class="idl-code" data-link-type="interface" href="#sensor" id="ref-for-sensor-9">Sensor</a> object,</p>
         <li data-md="">
-         <p>associate <var>sensorInstance</var> with <var>sensor</var>.</p>
+         <p>associate <var>sensor_instance</var> with <var>sensor</var>.</p>
        </ol>
       <li data-md="">
        <p>Otherwise, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-throw">throw</a> a TypeError.</p>
@@ -2061,9 +2061,9 @@ dictionary <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-exp
       <li data-md="">
        <p>let <var>sensor</var> be that <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-38">sensor</a>,</p>
       <li data-md="">
-       <p>let <var>sensorInstance</var> be a new <a class="idl-code" data-link-type="interface" href="#sensor" id="ref-for-sensor-10">Sensor</a> object,</p>
+       <p>let <var>sensor_instance</var> be a new <a class="idl-code" data-link-type="interface" href="#sensor" id="ref-for-sensor-10">Sensor</a> object,</p>
       <li data-md="">
-       <p>associate <var>sensorInstance</var> with <var>sensor</var>.</p>
+       <p>associate <var>sensor_instance</var> with <var>sensor</var>.</p>
      </ol>
     <li data-md="">
      <p>Otherwise, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-throw">throw</a> a TypeError.</p>
@@ -2078,7 +2078,7 @@ dictionary <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-exp
        <p>If <var>sensor</var> <a data-link-type="dfn" href="#supports-periodic-reporting-mode" id="ref-for-supports-periodic-reporting-mode-2">supports periodic reporting mode</a>,</p>
        <ol>
         <li data-md="">
-         <p>Set <var>sensorInstance</var>’s <a data-link-type="dfn" href="#desired-frequency" id="ref-for-desired-frequency-1">desired frequency</a> to <var>frequency</var>.</p>
+         <p>Set <var>sensor_instance</var>’s <a data-link-type="dfn" href="#desired-frequency" id="ref-for-desired-frequency-1">desired frequency</a> to <var>frequency</var>.</p>
        </ol>
       <li data-md="">
        <p>Otherwise,</p>
@@ -2088,18 +2088,18 @@ dictionary <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-exp
        </ol>
      </ol>
     <li data-md="">
-     <p>Set <var>sensorInstance</var>’s <a class="idl-code" data-link-type="attribute" href="#dom-sensor-reading" id="ref-for-dom-sensor-reading-2">reading</a> attribute to <code>null</code>.</p>
+     <p>Set <var>sensor_instance</var>’s <a class="idl-code" data-link-type="attribute" href="#dom-sensor-reading" id="ref-for-dom-sensor-reading-2">reading</a> attribute to <code>null</code>.</p>
     <li data-md="">
-     <p>Set <var>sensorInstance</var>’s <a data-link-type="dfn" href="#state" id="ref-for-state-4">state</a> to <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-idle" id="ref-for-dom-sensorstate-idle-6">"idle"</a>.</p>
+     <p>Set <var>sensor_instance</var>’s <a data-link-type="dfn" href="#state" id="ref-for-state-4">state</a> to <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-idle" id="ref-for-dom-sensorstate-idle-6">"idle"</a>.</p>
     <li data-md="">
-     <p>return <var>sensorInstance</var>.</p>
+     <p>return <var>sensor_instance</var>.</p>
    </ol>
    <h3 class="heading settled dfn-paneled" data-algorithm="Register a Sensor" data-dfn-type="dfn" data-level="9.2" data-lt="Register a Sensor" data-noexport="" id="register-a-sensor"><span class="secno">9.2. </span><span class="content">Register a Sensor</span><span class="dfn-panel" data-deco=""><b><a href="#register-a-sensor">#register-a-sensor</a></b><b>Referenced in:</b><span><a href="#ref-for-register-a-sensor-1">8.1.3. Sensor.start()</a></span></span></h3>
    <dl>
     <dt data-md="">
      <p>input</p>
     <dd data-md="">
-     <p><var>sensorInstance</var>, a <a class="idl-code" data-link-type="interface" href="#sensor" id="ref-for-sensor-11">Sensor</a> object.</p>
+     <p><var>sensor_instance</var>, a <a class="idl-code" data-link-type="interface" href="#sensor" id="ref-for-sensor-11">Sensor</a> object.</p>
     <dt data-md="">
      <p>output</p>
     <dd data-md="">
@@ -2107,19 +2107,19 @@ dictionary <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-exp
    </dl>
    <ol>
     <li data-md="">
-     <p>Let <var>sensor</var> be the <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-39">sensor</a> associated with <var>sensorInstance</var>.</p>
+     <p>Let <var>sensor</var> be the <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-39">sensor</a> associated with <var>sensor_instance</var>.</p>
     <li data-md="">
-     <p>Add <var>sensorInstance</var> to <var>sensor</var>’s set of <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects-1">activated Sensor objects</a>.</p>
+     <p>Add <var>sensor_instance</var> to <var>sensor</var>’s set of <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects-1">activated Sensor objects</a>.</p>
     <li data-md="">
      <p>Invoke the <a data-link-type="dfn" href="#set-sensor-settings" id="ref-for-set-sensor-settings-1">Set Sensor Settings</a> abstract operation,
   passing it <var>sensor</var> as argument.</p>
     <li data-md="">
      <p>Let <var>current_reading</var> be <var>sensor</var>’s associated <a data-link-type="dfn" href="#current-reading" id="ref-for-current-reading-2">current reading</a>.</p>
     <li data-md="">
-     <p>If <var>current_reading</var> is not <code>null</code> and <var>sensorInstance</var>’s state is still <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activating" id="ref-for-dom-sensorstate-activating-3">"activating"</a>, then</p>
+     <p>If <var>current_reading</var> is not <code>null</code> and <var>sensor_instance</var>’s state is still <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activating" id="ref-for-dom-sensorstate-activating-3">"activating"</a>, then</p>
      <ol>
       <li data-md="">
-       <p>invoke the <a data-link-type="dfn" href="#update-reading" id="ref-for-update-reading-1">Update Reading</a> operation, passing it <var>sensorInstance</var> and <var>current_reading</var> as arguments.</p>
+       <p>invoke the <a data-link-type="dfn" href="#update-reading" id="ref-for-update-reading-1">Update Reading</a> operation, passing it <var>sensor_instance</var> and <var>current_reading</var> as arguments.</p>
      </ol>
    </ol>
    <h3 class="heading settled dfn-paneled" data-algorithm="Unregister a Sensor" data-dfn-type="dfn" data-level="9.3" data-lt="Unregister a Sensor" data-noexport="" id="unregister-a-sensor"><span class="secno">9.3. </span><span class="content">Unregister a Sensor</span><span class="dfn-panel" data-deco=""><b><a href="#unregister-a-sensor">#unregister-a-sensor</a></b><b>Referenced in:</b><span><a href="#ref-for-unregister-a-sensor-1">8.1.4. Sensor.stop()</a></span></span></h3>
@@ -2127,7 +2127,7 @@ dictionary <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-exp
     <dt data-md="">
      <p>input</p>
     <dd data-md="">
-     <p><var>sensorInstance</var>, a <a class="idl-code" data-link-type="interface" href="#sensor" id="ref-for-sensor-12">Sensor</a> object.</p>
+     <p><var>sensor_instance</var>, a <a class="idl-code" data-link-type="interface" href="#sensor" id="ref-for-sensor-12">Sensor</a> object.</p>
     <dt data-md="">
      <p>output</p>
     <dd data-md="">
@@ -2135,9 +2135,9 @@ dictionary <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-exp
    </dl>
    <ol>
     <li data-md="">
-     <p>Let <var>sensor</var> be the <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-40">sensor</a> associated with <var>sensorInstance</var>.</p>
+     <p>Let <var>sensor</var> be the <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-40">sensor</a> associated with <var>sensor_instance</var>.</p>
     <li data-md="">
-     <p>Remove <var>sensorInstance</var> from <var>sensor</var>’s set of <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects-2">activated Sensor objects</a>.</p>
+     <p>Remove <var>sensor_instance</var> from <var>sensor</var>’s set of <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects-2">activated Sensor objects</a>.</p>
     <li data-md="">
      <p>If <var>sensor</var>’s set of <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects-3">activated Sensor objects</a> is empty then,</p>
      <ol>
@@ -2223,10 +2223,10 @@ dictionary <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-exp
     <li data-md="">
      <p>let <var>mode</var> be <a data-link-type="dfn" href="#auto" id="ref-for-auto-5">auto</a>.</p>
     <li data-md="">
-     <p>For each <var>sensorInstance</var> in <var>sensor</var>’s set of <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects-4">activated Sensor objects</a>:</p>
+     <p>For each <var>sensor_instance</var> in <var>sensor</var>’s set of <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects-4">activated Sensor objects</a>:</p>
      <ol>
       <li data-md="">
-       <p>if <var>sensorInstance</var>’s <a data-link-type="dfn" href="#frequency" id="ref-for-frequency-4">frequency</a> is not <code>null</code>,</p>
+       <p>if <var>sensor_instance</var>’s <a data-link-type="dfn" href="#frequency" id="ref-for-frequency-4">frequency</a> is not <code>null</code>,</p>
        <ol>
         <li data-md="">
          <p>set <var>mode</var> to <a data-link-type="dfn" href="#periodic" id="ref-for-periodic-7">periodic</a></p>
@@ -2250,10 +2250,10 @@ dictionary <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-exp
     <li data-md="">
      <p>let <var>frequency</var> be <code>null</code>.</p>
     <li data-md="">
-     <p>For each <var>sensorInstance</var> in <var>sensor</var>’s set of <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects-5">activated Sensor objects</a>:</p>
+     <p>For each <var>sensor_instance</var> in <var>sensor</var>’s set of <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects-5">activated Sensor objects</a>:</p>
      <ol>
       <li data-md="">
-       <p>let <var>f</var> be <var>sensorInstance</var>’s <a data-link-type="dfn" href="#frequency" id="ref-for-frequency-6">frequency</a>.</p>
+       <p>let <var>f</var> be <var>sensor_instance</var>’s <a data-link-type="dfn" href="#frequency" id="ref-for-frequency-6">frequency</a>.</p>
       <li data-md="">
        <p>if <var>f</var> is not <code>null</code> and <var>f</var> is greater than <var>frequency</var>,</p>
        <ol>
@@ -2269,7 +2269,7 @@ dictionary <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-exp
     <dt data-md="">
      <p>input</p>
     <dd data-md="">
-     <p><var>sensorInstance</var>, a <a class="idl-code" data-link-type="interface" href="#sensor" id="ref-for-sensor-13">Sensor</a> object.</p>
+     <p><var>sensor_instance</var>, a <a class="idl-code" data-link-type="interface" href="#sensor" id="ref-for-sensor-13">Sensor</a> object.</p>
     <dd data-md="">
      <p><var>state</var>, a <a class="idl-code" data-link-type="interface" href="#sensor" id="ref-for-sensor-14">Sensor</a> object’s <a data-link-type="dfn" href="#state" id="ref-for-state-5">state</a>.</p>
     <dt data-md="">
@@ -2279,9 +2279,9 @@ dictionary <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-exp
    </dl>
    <ol>
     <li data-md="">
-     <p>Set <var>sensorInstance</var>’s <a class="idl-code" data-link-type="attribute" href="#dom-sensor-state" id="ref-for-dom-sensor-state-2">state</a> to <var>state</var>.</p>
+     <p>Set <var>sensor_instance</var>’s <a class="idl-code" data-link-type="attribute" href="#dom-sensor-state" id="ref-for-dom-sensor-state-2">state</a> to <var>state</var>.</p>
     <li data-md="">
-     <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task">Queue a task</a> to <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#fire-a-simple-event">fire a simple event</a> named <code>statechange</code> at <var>sensorInstance</var>.</p>
+     <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task">Queue a task</a> to <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#fire-a-simple-event">fire a simple event</a> named <code>statechange</code> at <var>sensor_instance</var>.</p>
    </ol>
    <h3 class="heading settled dfn-paneled" data-algorithm="Update Current Reading" data-dfn-type="dfn" data-level="9.8" data-lt="Update Current Reading" data-noexport="" id="update-current-reading"><span class="secno">9.8. </span><span class="content">Update Current Reading</span><span class="dfn-panel" data-deco=""><b><a href="#update-current-reading">#update-current-reading</a></b><b>Referenced in:</b><span><a href="#ref-for-update-current-reading-1">9.4. Set Sensor Settings</a></span></span></h3>
    <dl>
@@ -2311,10 +2311,10 @@ dictionary <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-exp
     <li data-md="">
      <p>Set <var>sensor</var>’s <a data-link-type="dfn" href="#current-reading" id="ref-for-current-reading-3">current reading</a> to <var>readingInstance</var>.</p>
     <li data-md="">
-     <p>For each <var>sensorInstance</var> in <var>sensor</var>’s set of <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects-6">activated Sensor objects</a>:</p>
+     <p>For each <var>sensor_instance</var> in <var>sensor</var>’s set of <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects-6">activated Sensor objects</a>:</p>
      <ol>
       <li data-md="">
-       <p>Invoke the <a data-link-type="dfn" href="#update-reading" id="ref-for-update-reading-2">update reading</a> algorithm passing <var>sensorInstance</var> and <var>readingInstance</var> as arguments.</p>
+       <p>Invoke the <a data-link-type="dfn" href="#update-reading" id="ref-for-update-reading-2">update reading</a> algorithm passing <var>sensor_instance</var> and <var>readingInstance</var> as arguments.</p>
      </ol>
     <li data-md="">
      <p>Unset <var>sensor</var>’s <a data-link-type="dfn" href="#reporting-flag" id="ref-for-reporting-flag-3">reporting flag</a>.</p>
@@ -2324,7 +2324,7 @@ dictionary <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-exp
     <dt data-md="">
      <p>input</p>
     <dd data-md="">
-     <p><var>sensorInstance</var>, a <a class="idl-code" data-link-type="interface" href="#sensor" id="ref-for-sensor-15">Sensor</a> object.</p>
+     <p><var>sensor_instance</var>, a <a class="idl-code" data-link-type="interface" href="#sensor" id="ref-for-sensor-15">Sensor</a> object.</p>
     <dd data-md="">
      <p><var>reading</var>, a <a class="idl-code" data-link-type="interface" href="#sensorreading" id="ref-for-sensorreading-9">SensorReading</a> object.</p>
     <dt data-md="">
@@ -2334,12 +2334,12 @@ dictionary <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-exp
    </dl>
    <ol>
     <li data-md="">
-     <p>Set <var>sensorInstance</var>’s <a class="idl-code" data-link-type="attribute" href="#dom-sensor-reading" id="ref-for-dom-sensor-reading-3">reading</a> to <var>reading</var>.</p>
+     <p>Set <var>sensor_instance</var>’s <a class="idl-code" data-link-type="attribute" href="#dom-sensor-reading" id="ref-for-dom-sensor-reading-3">reading</a> to <var>reading</var>.</p>
     <li data-md="">
-     <p>If <var>sensorInstance</var>’s <a class="idl-code" data-link-type="attribute" href="#dom-sensor-state" id="ref-for-dom-sensor-state-3">state</a> is <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activating" id="ref-for-dom-sensorstate-activating-4">"activating"</a>:</p>
+     <p>If <var>sensor_instance</var>’s <a class="idl-code" data-link-type="attribute" href="#dom-sensor-state" id="ref-for-dom-sensor-state-3">state</a> is <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activating" id="ref-for-dom-sensorstate-activating-4">"activating"</a>:</p>
      <ol>
       <li data-md="">
-       <p>Invoke the <a data-link-type="dfn" href="#update-state" id="ref-for-update-state-3">update state</a> algorithm passing <var>sensorInstance</var> and <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-active" id="ref-for-dom-sensorstate-active-3">"active"</a> as the arguments.</p>
+       <p>Invoke the <a data-link-type="dfn" href="#update-state" id="ref-for-update-state-3">update state</a> algorithm passing <var>sensor_instance</var> and <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-active" id="ref-for-dom-sensorstate-active-3">"active"</a> as the arguments.</p>
      </ol>
     <li data-md="">
      <p>Create an <a data-link-type="dfn" href="https://dom.spec.whatwg.org#concept-event">event</a> <var>e</var> that uses the <a class="idl-code" data-link-type="interface" href="#sensorreadingevent" id="ref-for-sensorreadingevent-1">SensorReadingEvent</a> interface,
@@ -2347,14 +2347,14 @@ dictionary <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-exp
     <li data-md="">
      <p>Let the <a class="idl-code" data-link-type="attribute" href="#dom-sensorreadingevent-reading" id="ref-for-dom-sensorreadingevent-reading-2">reading</a> attribute of <var>e</var> be initialized to <var>reading</var>.</p>
     <li data-md="">
-     <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task">Queue a task</a> to <a data-link-type="dfn" href="https://dom.spec.whatwg.org#concept-event-dispatch">dispatch</a> <var>e</var> at <var>sensorInstance</var>.</p>
+     <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task">Queue a task</a> to <a data-link-type="dfn" href="https://dom.spec.whatwg.org#concept-event-dispatch">dispatch</a> <var>e</var> at <var>sensor_instance</var>.</p>
    </ol>
    <h3 class="heading settled dfn-paneled" data-algorithm="Handle Errors" data-dfn-type="dfn" data-level="9.10" data-lt="Handle Errors" data-noexport="" id="handle-errors"><span class="secno">9.10. </span><span class="content">Handle Errors</span><span class="dfn-panel" data-deco=""><b><a href="#handle-errors">#handle-errors</a></b><b>Referenced in:</b><span><a href="#ref-for-handle-errors-1">8.1.3. Sensor.start()</a></span></span></h3>
    <dl>
     <dt data-md="">
      <p>input</p>
     <dd data-md="">
-     <p><var>sensorInstance</var>, a <a class="idl-code" data-link-type="interface" href="#sensor" id="ref-for-sensor-16">Sensor</a> object.</p>
+     <p><var>sensor_instance</var>, a <a class="idl-code" data-link-type="interface" href="#sensor" id="ref-for-sensor-16">Sensor</a> object.</p>
     <dd data-md="">
      <p><var>error</var>, an <a data-link-type="dfn" href="https://heycam.github.io/webidl/#error">Error</a> object.</p>
     <dt data-md="">
@@ -2364,23 +2364,23 @@ dictionary <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-exp
    </dl>
    <ol>
     <li data-md="">
-     <p>Set <var>sensorInstance</var>’s <a class="idl-code" data-link-type="attribute" href="#dom-sensor-reading" id="ref-for-dom-sensor-reading-4">reading</a> to <code>null</code>.</p>
+     <p>Set <var>sensor_instance</var>’s <a class="idl-code" data-link-type="attribute" href="#dom-sensor-reading" id="ref-for-dom-sensor-reading-4">reading</a> to <code>null</code>.</p>
     <li data-md="">
-     <p>Invoke the <a data-link-type="dfn" href="#update-state" id="ref-for-update-state-4">update state</a> algorithm passing <var>sensorInstance</var> and <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-errored" id="ref-for-dom-sensorstate-errored-4">"errored"</a> as the arguments.</p>
+     <p>Invoke the <a data-link-type="dfn" href="#update-state" id="ref-for-update-state-4">update state</a> algorithm passing <var>sensor_instance</var> and <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-errored" id="ref-for-dom-sensorstate-errored-4">"errored"</a> as the arguments.</p>
     <li data-md="">
      <p>Create an <a data-link-type="dfn" href="https://dom.spec.whatwg.org#concept-event">event</a> <var>e</var> that uses the <a class="idl-code" data-link-type="interface" href="#sensorerrorevent" id="ref-for-sensorerrorevent-1">SensorErrorEvent</a> interface,
   with the event type <code>error</code>, which does not bubble, is not cancelable, is <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-events-trusted">trusted</a>, and has no default action.</p>
     <li data-md="">
      <p>Let the <a class="idl-code" data-link-type="attribute" href="#dom-sensorerrorevent-error" id="ref-for-dom-sensorerrorevent-error-1">error</a> attribute of <var>e</var> be initialized to <var>error</var>.</p>
     <li data-md="">
-     <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task">Queue a task</a> to <a data-link-type="dfn" href="https://dom.spec.whatwg.org#concept-event-dispatch">dispatch</a> <var>e</var> at <var>sensorInstance</var>.</p>
+     <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task">Queue a task</a> to <a data-link-type="dfn" href="https://dom.spec.whatwg.org#concept-event-dispatch">dispatch</a> <var>e</var> at <var>sensor_instance</var>.</p>
    </ol>
    <h3 class="heading settled dfn-paneled" data-algorithm="Request Sensor Access" data-dfn-type="dfn" data-level="9.11" data-lt="Request Sensor Access" data-noexport="" id="request-sensor-access"><span class="secno">9.11. </span><span class="content">Request Sensor Access</span><span class="dfn-panel" data-deco=""><b><a href="#request-sensor-access">#request-sensor-access</a></b><b>Referenced in:</b><span><a href="#ref-for-request-sensor-access-1">8.1.3. Sensor.start()</a></span></span></h3>
    <dl>
     <dt data-md="">
      <p>input</p>
     <dd data-md="">
-     <p><var>sensorInstance</var>, a <a class="idl-code" data-link-type="interface" href="#sensor" id="ref-for-sensor-17">Sensor</a> object.</p>
+     <p><var>sensor_instance</var>, a <a class="idl-code" data-link-type="interface" href="#sensor" id="ref-for-sensor-17">Sensor</a> object.</p>
     <dt data-md="">
      <p>output</p>
     <dd data-md="">
@@ -2388,10 +2388,10 @@ dictionary <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-exp
    </dl>
    <ol>
     <li data-md="">
-     <p>Let <var>sensor</var> be the <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-45">sensor</a> associated with <var>sensorInstance</var>.</p>
+     <p>Let <var>sensor</var> be the <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-45">sensor</a> associated with <var>sensor_instance</var>.</p>
     <li data-md="">
      <p>let <var>permission</var> be the result of invoking the abstract operation <a data-link-type="dfn" href="#retrieve-the-sensor-permission" id="ref-for-retrieve-the-sensor-permission-1">retrieve the sensor permission</a> associated with <var>sensor</var>,
-  passing it <var>sensorInstance</var> as argument.</p>
+  passing it <var>sensor_instance</var> as argument.</p>
     <li data-md="">
      <p>Let <var>state</var> be the result of <a data-link-type="dfn" href="https://w3c.github.io/permissions/#dfn-retrieve-the-permission-state">retrieving the permission state</a> for <var>permission</var>.</p>
     <li data-md="">

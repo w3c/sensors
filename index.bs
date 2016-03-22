@@ -552,19 +552,19 @@ hold the same <a interface>SensorReading</a> during a single <a>event loop</a> t
 <div algorithm="to start a sensor">
 The <dfn>start()</dfn> method must run these steps or their <a>equivalent</a>:
 
-    1.  If |sensorInstance|'s <a>state</a> is neither <a enum-value>"idle"</a> nor <a enum-value>"errored"</a>,
+    1.  If |sensor_instance|'s <a>state</a> is neither <a enum-value>"idle"</a> nor <a enum-value>"errored"</a>,
         1.  throw an "<a>InvalidStateError</a>" exception and abort these steps.
-    1.  Invoke the <a>update state</a> algorithm passing |sensorInstance| and <a enum-value>"activating"</a> as the arguments.
+    1.  Invoke the <a>update state</a> algorithm passing |sensor_instance| and <a enum-value>"activating"</a> as the arguments.
     1.  Run these sub-steps <a>in parallel</a>:
         1.  Let |state| be the result of invoking the <a>Request Sensor Access</a> abstract operation,
-            passing it |sensorInstance| as argument.
+            passing it |sensor_instance| as argument.
         1.  If |state| is "granted",
-            1.  Invoke <a>Register a Sensor</a> passing it |sensorInstance| as argument.
+            1.  Invoke <a>Register a Sensor</a> passing it |sensor_instance| as argument.
             1.  Abort these sub-steps.
         1.  If |state| is "denied",
             1.  let |e| be the result of <a>creating an exception</a> named <a>NotAllowedError</a>.
             1.  Invoke the <a>Handle Errors</a> abstract operation,
-                passing it |e| and |sensorInstance| as arguments.
+                passing it |e| and |sensor_instance| as arguments.
             1.  Abort these sub-steps.
     1.  return `undefined`.
 </div>
@@ -574,12 +574,12 @@ The <dfn>start()</dfn> method must run these steps or their <a>equivalent</a>:
 <div algorithm="to stop a sensor">
 The <dfn>stop()</dfn> method must run these steps or their <a>equivalent</a>:
 
-    1.  If |sensorInstance|'s <a>state</a> is either <a enum-value>"idle"</a> or <a enum-value>"errored"</a>, then
+    1.  If |sensor_instance|'s <a>state</a> is either <a enum-value>"idle"</a> or <a enum-value>"errored"</a>, then
         1.  throw an "<a>InvalidStateError</a>" exception and abort these steps.
-    1.  Set |sensorInstance|’s <a attribute for="Sensor">reading</a> to `null`.
-    1.  Invoke the <a>update state</a> algorithm passing |sensorInstance| and <a enum-value>"idle"</a> as the arguments.
+    1.  Set |sensor_instance|’s <a attribute for="Sensor">reading</a> to `null`.
+    1.  Invoke the <a>update state</a> algorithm passing |sensor_instance| and <a enum-value>"idle"</a> as the arguments.
     1.  Run these sub-steps <a>in parallel</a>:
-        1.  Invoke <a>Unregister a Sensor</a> passing it |sensorInstance| as argument.
+        1.  Invoke <a>Unregister a Sensor</a> passing it |sensor_instance| as argument.
     1.  return `undefined`.
 
 </div>
@@ -684,7 +684,7 @@ Abstract Operations {#abstract-operations}
     : input
     :: |options|, a <a dictionary>SensorOptions</a> object.
     : output
-    :: |sensorInstance|, a <a interface>Sensor</a> object.
+    :: |sensor_instance|, a <a interface>Sensor</a> object.
     
     1.  If the <a>incumbent settings object</a> is not a <a>secure context</a>, then:
         1.  <a>throw</a> a SecurityError.
@@ -693,50 +693,50 @@ Abstract Operations {#abstract-operations}
     1.  Otherwise, if <a>identifying parameters</a> in |options| are set, then:
         1.  If these <a>identifying parameters</a> allow a unique <a>sensor</a> to be identified, then:
             1.  let |sensor| be that <a>sensor</a>,
-            1.  let |sensorInstance| be a new <a interface>Sensor</a> object,
-            1.  associate |sensorInstance| with |sensor|.
+            1.  let |sensor_instance| be a new <a interface>Sensor</a> object,
+            1.  associate |sensor_instance| with |sensor|.
         1. Otherwise, <a>throw</a> a TypeError.
     1.  Otherwise, if a <a>default sensor</a> exists for this <a>sensor type</a>:
         1.  let |sensor| be that <a>sensor</a>,
-        1.  let |sensorInstance| be a new <a interface>Sensor</a> object,
-        1.  associate |sensorInstance| with |sensor|.
+        1.  let |sensor_instance| be a new <a interface>Sensor</a> object,
+        1.  associate |sensor_instance| with |sensor|.
     1.  Otherwise, <a>throw</a> a TypeError.
     1.  If |sensor| <a>supports periodic reporting mode</a>,
     1.  Let |frequency| be the value of the <a member>frequency</a> member of |options|.
     1.  If |frequency| is not `null`,
         1.  If |sensor| <a>supports periodic reporting mode</a>,
-            1.  Set |sensorInstance|'s <a>desired frequency</a> to |frequency|.
+            1.  Set |sensor_instance|'s <a>desired frequency</a> to |frequency|.
         1.  Otherwise,
             1.  <a>throw</a> a TypeError.
-    1.  Set |sensorInstance|'s <a for="Sensor" attribute>reading</a> attribute to `null`.
-    1.  Set |sensorInstance|'s <a>state</a> to <a enum-value>"idle"</a>.
-    1.  return |sensorInstance|.
+    1.  Set |sensor_instance|'s <a for="Sensor" attribute>reading</a> attribute to `null`.
+    1.  Set |sensor_instance|'s <a>state</a> to <a enum-value>"idle"</a>.
+    1.  return |sensor_instance|.
 
 <h3 algorithm dfn>Register a Sensor</h3>
 
     : input
-    :: |sensorInstance|, a <a interface>Sensor</a> object.
+    :: |sensor_instance|, a <a interface>Sensor</a> object.
     : output
     :: None
     
-    1.  Let |sensor| be the <a>sensor</a> associated with |sensorInstance|.
-    1.  Add |sensorInstance| to |sensor|'s set of <a>activated Sensor objects</a>.
+    1.  Let |sensor| be the <a>sensor</a> associated with |sensor_instance|.
+    1.  Add |sensor_instance| to |sensor|'s set of <a>activated Sensor objects</a>.
     1.  Invoke the <a>Set Sensor Settings</a> abstract operation,
         passing it |sensor| as argument.
     1.  Let |current_reading| be |sensor|'s associated <a>current reading</a>.
-    1.  If |current_reading| is not `null` and |sensorInstance|'s state is still <a enum-value>"activating"</a>, then
+    1.  If |current_reading| is not `null` and |sensor_instance|'s state is still <a enum-value>"activating"</a>, then
         1.  invoke the <a>Update Reading</a> operation, passing it
-            |sensorInstance| and |current_reading| as arguments.
+            |sensor_instance| and |current_reading| as arguments.
 
 <h3 algorithm dfn>Unregister a Sensor</h3>
 
     : input
-    :: |sensorInstance|, a <a interface>Sensor</a> object.
+    :: |sensor_instance|, a <a interface>Sensor</a> object.
     : output
     :: None
     
-    1.  Let |sensor| be the <a>sensor</a> associated with |sensorInstance|.
-    1.  Remove |sensorInstance| from |sensor|'s set of <a>activated Sensor objects</a>.
+    1.  Let |sensor| be the <a>sensor</a> associated with |sensor_instance|.
+    1.  Remove |sensor_instance| from |sensor|'s set of <a>activated Sensor objects</a>.
     1.  If |sensor|'s set of <a>activated Sensor objects</a> is empty then,
         1.  Set <a>current reporting mode</a> to `undefined`.
         1.  Set <a>current polling frequency</a> to `null`.
@@ -795,8 +795,8 @@ Abstract Operations {#abstract-operations}
     :: |mode|, a <a>reporting mode</a>.
     
     1. let |mode| be <a>auto</a>.
-    1.  For each |sensorInstance| in |sensor|'s set of <a>activated Sensor objects</a>:
-        1. if |sensorInstance|'s <a>frequency</a> is not `null`,
+    1.  For each |sensor_instance| in |sensor|'s set of <a>activated Sensor objects</a>:
+        1. if |sensor_instance|'s <a>frequency</a> is not `null`,
             1. set |mode| to <a>periodic</a>
     1. return |mode|.
 
@@ -809,8 +809,8 @@ Abstract Operations {#abstract-operations}
     :: |frequency|, a <a>frequency</a>.
     
     1. let |frequency| be `null`.
-    1.  For each |sensorInstance| in |sensor|'s set of <a>activated Sensor objects</a>:
-        1. let |f| be |sensorInstance|'s <a>frequency</a>.
+    1.  For each |sensor_instance| in |sensor|'s set of <a>activated Sensor objects</a>:
+        1. let |f| be |sensor_instance|'s <a>frequency</a>.
         1. if |f| is not `null` and |f| is greater than |frequency|,
             1. set |frequency| to |f|.
     1. return |frequency|.
@@ -819,13 +819,13 @@ Abstract Operations {#abstract-operations}
 <h3 algorithm dfn>Update State</h3>
 
     : input
-    :: |sensorInstance|, a <a interface>Sensor</a> object.
+    :: |sensor_instance|, a <a interface>Sensor</a> object.
     :: |state|, a <a interface>Sensor</a> object's <a>state</a>.
     : output
     :: None
     
-    1.  Set |sensorInstance|’s <a attribute>state</a> to |state|.
-    1.  <a>Queue a task</a> to <a>fire a simple event</a> named `statechange` at |sensorInstance|.
+    1.  Set |sensor_instance|’s <a attribute>state</a> to |state|.
+    1.  <a>Queue a task</a> to <a>fire a simple event</a> named `statechange` at |sensor_instance|.
 
 <h3 algorithm dfn>Update Current Reading</h3>
 
@@ -842,8 +842,8 @@ Abstract Operations {#abstract-operations}
         <a>Construct SensorReading Object</a> operation,
         passing it |reading| as argument.
     1.  Set |sensor|’s <a>current reading</a> to |readingInstance|.
-    1.  For each |sensorInstance| in |sensor|'s set of <a>activated Sensor objects</a>:
-        1.  Invoke the <a>update reading</a> algorithm passing |sensorInstance|
+    1.  For each |sensor_instance| in |sensor|'s set of <a>activated Sensor objects</a>:
+        1.  Invoke the <a>update reading</a> algorithm passing |sensor_instance|
             and |readingInstance| as arguments.
     1.  Unset |sensor|’s <a>reporting flag</a>.
     
@@ -851,46 +851,46 @@ Abstract Operations {#abstract-operations}
 <h3 algorithm dfn>Update Reading</h3>
 
     : input
-    :: |sensorInstance|, a <a interface>Sensor</a> object.
+    :: |sensor_instance|, a <a interface>Sensor</a> object.
     :: |reading|, a <a interface>SensorReading</a> object.
     : output
     :: None
     
-    1.  Set |sensorInstance|’s <a attribute for="Sensor">reading</a> to |reading|.
-    1.  If |sensorInstance|'s <a attribute>state</a> is <a enum-value>"activating"</a>:
-        1.  Invoke the <a>update state</a> algorithm passing |sensorInstance|
+    1.  Set |sensor_instance|’s <a attribute for="Sensor">reading</a> to |reading|.
+    1.  If |sensor_instance|'s <a attribute>state</a> is <a enum-value>"activating"</a>:
+        1.  Invoke the <a>update state</a> algorithm passing |sensor_instance|
             and <a enum-value>"active"</a> as the arguments.
     1.  Create an <a>event</a> |e| that uses the <a interface>SensorReadingEvent</a> interface,
         with the event type `reading`, which does not bubble, is not cancelable, is <a>trusted</a>, and has no default action.
     1.  Let the <a attribute for=SensorReadingEvent>reading</a> attribute of |e| be initialized to |reading|.
-    1.  <a>Queue a task</a> to <a>dispatch</a> |e| at |sensorInstance|.
+    1.  <a>Queue a task</a> to <a>dispatch</a> |e| at |sensor_instance|.
     
 <h3 algorithm dfn>Handle Errors</h3>
 
     : input
-    :: |sensorInstance|, a <a interface>Sensor</a> object.
+    :: |sensor_instance|, a <a interface>Sensor</a> object.
     :: |error|, an <a>Error</a> object.
     : output
     :: None
     
-    1.  Set |sensorInstance|’s <a attribute for="Sensor">reading</a> to `null`.
-    1.  Invoke the <a>update state</a> algorithm passing |sensorInstance| and <a enum-value>"errored"</a> as the arguments.
+    1.  Set |sensor_instance|’s <a attribute for="Sensor">reading</a> to `null`.
+    1.  Invoke the <a>update state</a> algorithm passing |sensor_instance| and <a enum-value>"errored"</a> as the arguments.
     1.  Create an <a>event</a> |e| that uses the <a interface>SensorErrorEvent</a> interface,
         with the event type `error`, which does not bubble, is not cancelable, is <a>trusted</a>, and has no default action.
     1.  Let the <a attribute for=SensorErrorEvent>error</a> attribute of |e| be initialized to |error|.
-    1.  <a>Queue a task</a> to <a>dispatch</a> |e| at |sensorInstance|.
+    1.  <a>Queue a task</a> to <a>dispatch</a> |e| at |sensor_instance|.
 
 
 <h3 algorithm dfn>Request Sensor Access</h3>
 
     : input
-    :: |sensorInstance|, a <a interface>Sensor</a> object.
+    :: |sensor_instance|, a <a interface>Sensor</a> object.
     : output
     :: a <a>permission state</a>.
     
-    1.  Let |sensor| be the <a>sensor</a> associated with |sensorInstance|.
+    1.  Let |sensor| be the <a>sensor</a> associated with |sensor_instance|.
     1.  let |permission| be the result of invoking the abstract operation <a>retrieve the sensor permission</a> associated with |sensor|,
-        passing it |sensorInstance| as argument.
+        passing it |sensor_instance| as argument.
     1.  Let |state| be the result of <a>retrieving the permission state</a> for |permission|.
     1.  If |state| is "prompt",
         1.  Prompt the user in a user-agent-specific manner for permission to provide access to |sensor|
