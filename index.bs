@@ -838,13 +838,13 @@ Abstract Operations {#abstract-operations}
     1.  If |sensor|’s <a>reporting flag</a> is set,
         1. abort these steps.
     1.  Set |sensor|’s <a>reporting flag</a>.
-    1.  Let |readingInstance| be the result of invoking |sensor| <a>type</a>'s associated
+    1.  Let |reading_instance| be the result of invoking |sensor| <a>type</a>'s associated
         <a>Construct SensorReading Object</a> operation,
         passing it |reading| as argument.
-    1.  Set |sensor|’s <a>current reading</a> to |readingInstance|.
+    1.  Set |sensor|’s <a>current reading</a> to |reading_instance|.
     1.  For each |sensor_instance| in |sensor|'s set of <a>activated Sensor objects</a>:
         1.  Invoke the <a>update reading</a> algorithm passing |sensor_instance|
-            and |readingInstance| as arguments.
+            and |reading_instance| as arguments.
     1.  Unset |sensor|’s <a>reporting flag</a>.
     
 

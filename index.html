@@ -2306,15 +2306,15 @@ dictionary <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-exp
     <li data-md="">
      <p>Set <var>sensor</var>’s <a data-link-type="dfn" href="#reporting-flag" id="ref-for-reporting-flag-2">reporting flag</a>.</p>
     <li data-md="">
-     <p>Let <var>readingInstance</var> be the result of invoking <var>sensor</var> <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-document-type">type</a>’s associated <a data-link-type="dfn" href="#construct-sensorreading-object" id="ref-for-construct-sensorreading-object-1">Construct SensorReading Object</a> operation,
+     <p>Let <var>reading_instance</var> be the result of invoking <var>sensor</var> <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-document-type">type</a>’s associated <a data-link-type="dfn" href="#construct-sensorreading-object" id="ref-for-construct-sensorreading-object-1">Construct SensorReading Object</a> operation,
   passing it <var>reading</var> as argument.</p>
     <li data-md="">
-     <p>Set <var>sensor</var>’s <a data-link-type="dfn" href="#current-reading" id="ref-for-current-reading-3">current reading</a> to <var>readingInstance</var>.</p>
+     <p>Set <var>sensor</var>’s <a data-link-type="dfn" href="#current-reading" id="ref-for-current-reading-3">current reading</a> to <var>reading_instance</var>.</p>
     <li data-md="">
      <p>For each <var>sensor_instance</var> in <var>sensor</var>’s set of <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects-6">activated Sensor objects</a>:</p>
      <ol>
       <li data-md="">
-       <p>Invoke the <a data-link-type="dfn" href="#update-reading" id="ref-for-update-reading-2">update reading</a> algorithm passing <var>sensor_instance</var> and <var>readingInstance</var> as arguments.</p>
+       <p>Invoke the <a data-link-type="dfn" href="#update-reading" id="ref-for-update-reading-2">update reading</a> algorithm passing <var>sensor_instance</var> and <var>reading_instance</var> as arguments.</p>
      </ol>
     <li data-md="">
      <p>Unset <var>sensor</var>’s <a data-link-type="dfn" href="#reporting-flag" id="ref-for-reporting-flag-3">reporting flag</a>.</p>
