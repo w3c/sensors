@@ -468,12 +468,9 @@ A <a>sensor</a> has an associated abstract operation to
 takes a <a interface>Sensor</a> object as input and
 returns a <a>permission</a> and, eventually, its <a>associated PermissionDescriptor</a>.
 
-API {#api}
-===
+<h3 dfn interface>Sensor</h3>
 
-## The Sensor Interface
-
-A <dfn interface>Sensor</dfn> object has an associated <a>sensor</a>.
+A <a interface>Sensor</a> object has an associated <a>sensor</a>.
 
 A <a interface>Sensor</a> object has an associated <dfn>state</dfn>,
 which is one of <a enum-value>"idle"</a>, <a enum-value>"activating"</a>, <a enum-value>"active"</a>, and <a enum-value>"errored"</a>. It is initially <a enum-value>"idle"</a>.
@@ -488,6 +485,11 @@ at regular intervals and reports those values by firing DOM events.
 TODO: define the following concepts
 
 - <dfn>read steps</dfn>
+
+API {#api}
+===
+
+## The Sensor Interface
 
 <pre class="idl">
 interface Sensor : EventTarget {
