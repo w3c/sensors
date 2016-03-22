@@ -254,6 +254,67 @@ and defensive programming which includes:
     </pre>
 </div>
 
+Security and privacy considerations
+===================================
+
+Privacy risks can arise when <a>sensors</a> are used
+with each other,
+in combination with other functionality,
+or when used over time,
+specifically with the risk of correlation of data
+and user identification through fingerprinting.
+Web application developers using these JavaScript APIs should
+consider how this information might be correlated with other information
+and the privacy risks that might be created.
+The potential risks of collection of such data over a longer period of time
+should also be considered.
+
+Variations in <a>sensor readings</a>
+as well as event firing rates
+offer the possibility of fingerprinting to identify users.
+Browser implementations may reduce the risk by
+limiting event rates available to web application developers.
+
+Note: do we really want this mitigation strategy?
+
+If the same JavaScript code using the API can be
+used simultaneously in different window contexts on the same device
+it may be possible for that code to correlate the user across those two contexts,
+creating unanticipated tracking mechanisms.
+
+Browser implementations should consider providing the user
+an indication of when the <a>sensor</a> is used
+and allowing the user to disable it.
+
+Web application developers that use <a>sensors</a> should
+perform a privacy assessment of their application
+taking all aspects of their application into consideration.
+
+Browsing Context {#browsing-context}
+----------------
+
+<a>Sensor readings</a> must only be available in the
+<a>top-level browsing context</a> to avoid the privacy risk of
+sharing the information defined in this specification
+(and specifications extending it)
+with contexts unfamiliar to the user.
+For example, a mobile device will only fire the event on
+the active tab, and not on the background tabs or within iframes.
+
+Secure Context {#secure-context}
+--------------
+
+<a>Sensor readings</a> are explicitly flagged by the
+Secure Contexts specification [[powerful-features]]
+as a high-value target for network attackers.
+As such, <a>sensor readings</a> must only be available
+within a <a>secure context</a>.
+
+Obtaining Explicit User Permission {#permissioning}
+----------------------------------
+
+Issue(w3c/sensors#20):
+
 Concepts {#concepts}
 ========
 
@@ -706,66 +767,6 @@ Abstract Operations {#abstract-operations}
         1. register the sensor.
     1.  If |state| is "denied",
         1. more here.
-Security and privacy considerations
-===================================
-
-Privacy risks can arise when <a>sensors</a> are used
-with each other,
-in combination with other functionality,
-or when used over time,
-specifically with the risk of correlation of data
-and user identification through fingerprinting.
-Web application developers using these JavaScript APIs should
-consider how this information might be correlated with other information
-and the privacy risks that might be created.
-The potential risks of collection of such data over a longer period of time
-should also be considered.
-
-Variations in <a>sensor readings</a>
-as well as event firing rates
-offer the possibility of fingerprinting to identify users.
-Browser implementations may reduce the risk by
-limiting event rates available to web application developers.
-
-Note: do we really want this mitigation strategy?
-
-If the same JavaScript code using the API can be
-used simultaneously in different window contexts on the same device
-it may be possible for that code to correlate the user across those two contexts,
-creating unanticipated tracking mechanisms.
-
-Browser implementations should consider providing the user
-an indication of when the <a>sensor</a> is used
-and allowing the user to disable it.
-
-Web application developers that use <a>sensors</a> should
-perform a privacy assessment of their application
-taking all aspects of their application into consideration.
-
-Browsing Context {#browsing-context}
-----------------
-
-<a>Sensor readings</a> must only be available in the
-<a>top-level browsing context</a> to avoid the privacy risk of
-sharing the information defined in this specification
-(and specifications extending it)
-with contexts unfamiliar to the user.
-For example, a mobile device will only fire the event on
-the active tab, and not on the background tabs or within iframes.
-
-Secure Context {#secure-context}
---------------
-
-<a>Sensor readings</a> are explicitly flagged by the
-Secure Contexts specification [[powerful-features]]
-as a high-value target for network attackers.
-As such, <a>sensor readings</a> must only be available
-within a <a>secure context</a>.
-
-Obtaining Explicit User Permission {#permissioning}
-----------------------------------
-
-Issue(w3c/sensors#20):
 
 Extensibility {#extensibility}
 =============
