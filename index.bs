@@ -181,6 +181,79 @@ define ways to uniquely identify each one.
     </pre>
 </div>
 
+A note on Feature Detection of Hardware Features {#feature-detection}
+================================================
+
+<em>This section is non-normative.</em>
+
+Feature detection is an established Web development best practice.
+Resources on the topic are plentiful on and offline and
+the purpose of this section is not to discuss it further,
+but rather to put it in the context of detecting hardware-dependent features.
+
+Consider the below feature detection examples:
+
+<div class="example">
+    <pre highlight="js">
+        if (typeof Gyroscope === "function") {
+            // run in circles...
+        }
+        
+        if ("ProximitySensor" in window) {
+            // watch out!
+        }
+        
+        if (window.AmbientLightSensor) {
+            // go dark...
+        }
+        
+        // etc.
+    </pre>
+</div>
+
+All of these tell you something about the presence
+and possible characteristics of an API.
+They do not tell you anything, however, about whether
+that API is actually connected to a real hardware sensor,
+whether that sensor works,
+if its still connected,
+or even whether the user is going to allow you to access it.
+Note you can check the latter using the Permissions API [[permissions]].
+
+In an ideal world, information about the underlying status
+would be available upfront.
+The problem with this is twofold.
+First, getting this information out of the hardware is costly,
+in both performance and battery time,
+and would sit in the critical path.
+Secondly, the status of the underlying hardware can evolve over time.
+The user can revoke permission, the connection to the sensor be severed,
+the operating system may decide to limit sensor usage below a certain battery threshold,
+etc.
+
+Therefore, an effective strategy is to combine feature detection,
+which checks whether an API for the sought-after sensor actually exists,
+and defensive programming which includes:
+
+1.  checking for error thrown when instantiating a <a interface>Sensor</a> object,
+2.  listening to errors emitted by it,
+3.  handling all of the above graciously so that the user's experience is
+    enhanced by the possible usage of a sensor, not degraded by its
+    absence.
+
+<div class="example">
+    <pre highlight="js">
+        try { // No need to feature detect thanks to try..catch block.
+            let sensor = new GeolocationSensor({});
+            sensor.start();
+            sensor.onerror = error => gracefullyDegrade(error);
+            sensor.onchange = data => updatePosition(data.coords);
+        } catch(error) {
+            gracefullyDegrade(error);
+        }
+    </pre>
+</div>
+
 Concepts {#concepts}
 ========
 
@@ -301,79 +374,6 @@ when it measures change,
 perhaps because is is relying on <a>smart sensors</a> or a <a>sensor hubs</a>,
 the <a>reporting mode</a> cannot be <a>periodic</a>,
 as that would require data inference.
-
-A note on Feature Detection of Hardware Features {#feature-detection}
-================================================
-
-<em>This section is non-normative.</em>
-
-Feature detection is an established Web development best practice.
-Resources on the topic are plentiful on and offline and
-the purpose of this section is not to discuss it further,
-but rather to put it in the context of detecting hardware-dependent features.
-
-Consider the below feature detection examples:
-
-<div class="example">
-    <pre highlight="js">
-        if (typeof Gyroscope === "function") {
-            // run in circles...
-        }
-        
-        if ("ProximitySensor" in window) {
-            // watch out!
-        }
-        
-        if (window.AmbientLightSensor) {
-            // go dark...
-        }
-        
-        // etc.
-    </pre>
-</div>
-
-All of these tell you something about the presence
-and possible characteristics of an API.
-They do not tell you anything, however, about whether
-that API is actually connected to a real hardware sensor,
-whether that sensor works,
-if its still connected,
-or even whether the user is going to allow you to access it.
-Note you can check the latter using the Permissions API [[permissions]].
-
-In an ideal world, information about the underlying status
-would be available upfront.
-The problem with this is twofold.
-First, getting this information out of the hardware is costly,
-in both performance and battery time,
-and would sit in the critical path.
-Secondly, the status of the underlying hardware can evolve over time.
-The user can revoke permission, the connection to the sensor be severed,
-the operating system may decide to limit sensor usage below a certain battery threshold,
-etc.
-
-Therefore, an effective strategy is to combine feature detection,
-which checks whether an API for the sought-after sensor actually exists,
-and defensive programming which includes:
-
-1.  checking for error thrown when instantiating a <a interface>Sensor</a> object,
-2.  listening to errors emitted by it,
-3.  handling all of the above graciously so that the user's experience is
-    enhanced by the possible usage of a sensor, not degraded by its
-    absence.
-
-<div class="example">
-    <pre highlight="js">
-        try { // No need to feature detect thanks to try..catch block.
-            let sensor = new GeolocationSensor({});
-            sensor.start();
-            sensor.onerror = error => gracefullyDegrade(error);
-            sensor.onchange = data => updatePosition(data.coords);
-        } catch(error) {
-            gracefullyDegrade(error);
-        }
-    </pre>
-</div>
 
 Model {#model}
 =====
