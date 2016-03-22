@@ -941,6 +941,8 @@ for their initial work on exposing sensors to the Web with consistency.
 Thanks to Anne van Kesteren
 for his tireless help both in person and through IRC.
 
+Thanks to Domenic Denicola and Jake Archibald for their help.
+
 Thanks also to Frederick Hirsch and Dominique Hazaël-Massieux (via the HTML5Apps project)
 for both their administrative help and technical input.
 
