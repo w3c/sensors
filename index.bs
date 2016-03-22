@@ -254,7 +254,7 @@ and defensive programming which includes:
     </pre>
 </div>
 
-Security and privacy considerations
+Security and privacy considerations {#security-and-privacy}
 ===================================
 
 Privacy risks can arise when <a>sensors</a> are used
@@ -492,7 +492,8 @@ TODO: define the following concepts
 API {#api}
 ===
 
-## The Sensor Interface
+The Sensor Interface {#the-sensor-interface}
+--------------------
 
 <pre class="idl">
 interface Sensor : EventTarget {
@@ -517,11 +518,11 @@ enum SensorState {
 };
 </pre>
 
-### Sensor.state {#sensor-state}
+### Sensor.state ### {#sensor-state}
 
 The <a attribute for="Sensor">state</a> attribute represents a <a>Sensor</a> object's <a>state</a>.
 
-### Sensor.reading {#sensor-reading}
+### Sensor.reading ### {#sensor-reading}
 
 When a Sensor's state is <a enum-value>"active"</a>,
 its reading attribute must always point to the latest <a>SensorReading</a>
@@ -530,7 +531,7 @@ the reading attribute of two instances of the same Sensor interface
 associated with the same <a>sensor</a>
 hold the same <a>SensorReading</a> during a single <a>event loop</a> turn.
 
-### Sensor.start() {#sensor-start}
+### Sensor.start() ### {#sensor-start}
 
 <div algorithm="to start a sensor">
 The <dfn>start()</dfn> method must run these steps or their <a>equivalent</a>:
@@ -544,7 +545,7 @@ The <dfn>start()</dfn> method must run these steps or their <a>equivalent</a>:
 
 </div>
 
-### Sensor.stop() {#sensor-stop}
+### Sensor.stop() ### {#sensor-stop}
 
 <div algorithm="to stop a sensor">
 The <dfn>stop()</dfn> method must run these steps or their <a>equivalent</a>:
@@ -560,13 +561,13 @@ The <dfn>stop()</dfn> method must run these steps or their <a>equivalent</a>:
 </div>
 
 
-### Sensor.onerror {#sensor-onerror}
+### Sensor.onerror ### {#sensor-onerror}
 
-### Sensor.onchange {#sensor-onchange}
+### Sensor.onchange ### {#sensor-onchange}
 
-### Sensor.onstatechange {#sensor-onstatechange}
+### Sensor.onstatechange ### {#sensor-onstatechange}
 
-### Event handlers {#event-handlers}
+### Event handlers ### {#event-handlers}
 
 The following are the <a>event handlers</a>
 (and their corresponding <a>event handler event types</a>)
@@ -595,7 +596,7 @@ that must be supported as attributes by the objects implementing the <a>Sensor</
   </tbody>
 </table>
 
-The SensorReading Interface
+The SensorReading Interface {#the-sensor-reading-interface}
 ---------------------------
 
 A <dfn>SensorReading</dfn> represents the state of a <a>sensor</a> at a given point in time.
@@ -608,13 +609,13 @@ interface SensorReading {
 };
 </pre>
 
-### SensorReading.timeStamp
+### SensorReading.timeStamp ### {#sensor-reading-timestamp}
 
 Returns a timestamp of the time
 at which the <a>read steps</a> was carried out
 expressed in milliseconds that passed since the <a>time origin</a>.
 
-The SensorReadingEvent Interface
+The SensorReadingEvent Interface {#the-sensor-reading-event-interface}
 --------------------------------
 
 <pre class="idl">
@@ -628,7 +629,13 @@ dictionary SensorReadingEventInit : EventInit {
 };
 </pre>
 
-The SensorErrorEvent Interface
+### SensorReadingEvent.reading ### {#sensor-reading-event-reading}
+
+The <dfn attribute for=SensorReadingEvent>reading</dfn> attribute references
+the <a>current reading</a> at the time of <a>event</a> <a>dispatch</a>.
+
+
+The SensorErrorEvent Interface {#the-sensor-error-event-interface}
 ------------------------------
 
 <pre class="idl">
@@ -641,6 +648,9 @@ dictionary SensorErrorEventInit : EventInit {
   Error error;
 };
 </pre>
+
+### SensorErrorEvent.error ### {#sensor-error-event-error}
+
 
 Abstract Operations {#abstract-operations}
 ===================
