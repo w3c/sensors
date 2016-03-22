@@ -340,7 +340,7 @@ For the purpose of this specification we distinguish between
 
 <a>Sensor types</a> which are characterized by their implementation
 are referred to as <dfn>low-level</dfn> sensors.
-For example a Gyroscope is a <a>low-level</a> <a>sensor types</a>.
+For example a Gyroscope is a <a>low-level</a> <a>sensor type</a>.
 
 <a>Sensors</a> named after their <a lt="sensor readings">readings</a>,
 regardless of the implementation,
