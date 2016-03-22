@@ -424,10 +424,9 @@ interface Sensor : EventTarget {
   readonly attribute SensorReading? reading;
   void start();
   void stop();
-  attribute EventHandler onerror;
-  attribute EventHandler ondata;
   attribute EventHandler onchange;
   attribute EventHandler onstatechange;
+  attribute EventHandler onerror;
 };
 
 dictionary SensorOptions {
@@ -484,8 +483,6 @@ The <dfn>stop()</dfn> method must run these steps or their <a>equivalent</a>:
 
 ### Sensor.onerror
 
-### Sensor.ondata
-
 ### Sensor.onchange
 
 ### Event handlers
@@ -501,20 +498,16 @@ The following are the <a>event handlers</a> (and their corresponding <a>event ha
   </thead>
   <tbody>
     <tr>
-      <td><strong><code>ondata</code></strong></td>
-      <td><code>data</code></td>
-    </tr>
-    <tr>
       <td><strong><code>onchange</code></strong></td>
       <td><code>change</code></td>
     </tr>
     <tr>
-      <td><strong><code>onerror</code></strong></td>
-      <td><code>error</code></td>
-    </tr>
-    <tr>
       <td><strong><code>onstatechange</code></strong></td>
       <td><code>statechange</code></td>
+    </tr>
+    <tr>
+      <td><strong><code>onerror</code></strong></td>
+      <td><code>error</code></td>
     </tr>
   </tbody>
 </table>
