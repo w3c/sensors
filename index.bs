@@ -439,9 +439,10 @@ as that would require data inference.
 Model {#model}
 =====
 
-<h3 dfn>Sensor Type</h3>
+Sensor Type {#model-sensor-type}
+-----------
 
-A <a>sensor type</a> has one or many associated <a>sensors</a>.
+A <dfn>sensor type</dfn> has one or many associated <a>sensors</a>.
 
 A <a>sensor type</a> has an associated subclass of the <a interface>Sensor</a> interface.
 
@@ -451,9 +452,10 @@ If a <a>sensor type</a> has more than one <a>sensor</a>,
 it must have a set of associated <dfn>identifying parameters</dfn>
 to select the right <a>sensor</a> to a associate to each new <a instance>Sensor</a> objects.
 
-<h3 dfn>Sensor</h3>
+Sensor {#model-sensor}
+------
 
-A <a>sensor</a> has an associated set of <dfn>activated Sensor objects</dfn>. This set is initially empty.
+A <dfn>sensor</dfn> has an associated set of <dfn>activated Sensor objects</dfn>. This set is initially empty.
 
 A <a>sensor</a> has an associated <dfn>current reading</dfn>.
 
@@ -468,9 +470,10 @@ A <a>sensor</a> has an associated abstract operation to
 takes a <a interface>Sensor</a> object as input and
 returns a <a>permission</a> and, eventually, its <a>associated PermissionDescriptor</a>.
 
-<h3 dfn interface>Sensor</h3>
+Sensor Interface {#sensor-interface}
+----------------
 
-A <a interface>Sensor</a> object has an associated <a>sensor</a>.
+A <dfn interface>Sensor</dfn> object has an associated <a>sensor</a>.
 
 A <a interface>Sensor</a> object has an associated <dfn>state</dfn>,
 which is one of <a enum-value>"idle"</a>, <a enum-value>"activating"</a>, <a enum-value>"active"</a>, and <a enum-value>"errored"</a>. It is initially <a enum-value>"idle"</a>.
@@ -514,11 +517,11 @@ enum SensorState {
 };
 </pre>
 
-### Sensor.state
+### Sensor.state {#sensor-state}
 
 The <a attribute for="Sensor">state</a> attribute represents a <a>Sensor</a> object's <a>state</a>.
 
-### Sensor.reading
+### Sensor.reading {#sensor-reading}
 
 When a Sensor's state is <a enum-value>"active"</a>,
 its reading attribute must always point to the latest <a>SensorReading</a>
@@ -527,7 +530,8 @@ the reading attribute of two instances of the same Sensor interface
 associated with the same <a>sensor</a>
 hold the same <a>SensorReading</a> during a single <a>event loop</a> turn.
 
-### Sensor.start
+### Sensor.start() {#sensor-start}
+
 <div algorithm="to start a sensor">
 The <dfn>start()</dfn> method must run these steps or their <a>equivalent</a>:
 
@@ -539,7 +543,9 @@ The <dfn>start()</dfn> method must run these steps or their <a>equivalent</a>:
     1.  return `undefined`.
 
 </div>
-### Sensor.stop
+
+### Sensor.stop() {#sensor-stop}
+
 <div algorithm="to stop a sensor">
 The <dfn>stop()</dfn> method must run these steps or their <a>equivalent</a>:
 
@@ -554,13 +560,13 @@ The <dfn>stop()</dfn> method must run these steps or their <a>equivalent</a>:
 </div>
 
 
-### Sensor.onerror
+### Sensor.onerror {#sensor-onerror}
 
-### Sensor.onchange
+### Sensor.onchange {#sensor-onchange}
 
-### Sensor.onstatechange
+### Sensor.onstatechange {#sensor-onstatechange}
 
-### Event handlers
+### Event handlers {#event-handlers}
 
 The following are the <a>event handlers</a>
 (and their corresponding <a>event handler event types</a>)
@@ -783,7 +789,7 @@ Extension specifications are encouraged to focus on a single <a>sensor type</a>,
 exposing both <a lt="high-level">high</a> and <a lt="low-level">low</a> level
 as appropriate.
 
-Naming
+Naming {#naming}
 ------
 
 <a interface>Sensor</a> interfaces for <a>low-level</a> sensors should be
@@ -861,7 +867,7 @@ TODO: provide guidance on when to:
 - create different interfaces that inherit from <a interface>Sensor</a>,
 - add constructor parameters to tweak sensors settings (e.g. setting required accuracy).
 
-Defining a default
+Defining a Default {#defining-a-default}
 ------------------
 
 Extension specifications should define a default <a>sensor</a>
@@ -881,13 +887,13 @@ for each <a>sensor types</a>.
 
 Issue(w3c/sensors#22):
 
-Immutability requirements
+Immutability Requirements {#immutability-requirement}
 -------------------------
 
 Attributes of the <a interface>SensorReading</a> subclass that
 hold <a>sensor readings</a> values must be readonly.
 
-Example WebIDL
+Example WebIDL {#example-webidl}
 --------------
 
 Here's example WebIDL for a possible extension of this specification
@@ -932,7 +938,7 @@ for proximity <a>sensors</a>.
     };
 </pre>
 
-Acknowledgements
+Acknowledgements {#acknowledgements}
 ================
 
 First and foremost, I would like to thank Anssi Kostiainen
