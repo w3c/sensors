@@ -510,16 +510,6 @@ which is one of <a enum-value>"idle"</a>, <a enum-value>"activating"</a>, <a enu
 
 A <a interface>Sensor</a> object has an associated <dfn>desired frequency</dfn>. It is initially `null`.
 
-<!--
-A <a interface>Sensor</a> object observes the changes in its associated <a>sensor</a>
-at regular intervals and reports those values by firing DOM events.
--->
-
-TODO: define the following concepts
-
-- <dfn>read steps</dfn>
-
-
 <pre class="idl">
 interface Sensor : EventTarget {
   readonly attribute SensorState state;
@@ -645,7 +635,7 @@ interface SensorReading {
 ### SensorReading.timeStamp ### {#sensor-reading-timestamp}
 
 Returns a timestamp of the time
-at which the <a>read steps</a> was carried out
+at which the <a lt="sensor reading">reading</a> was obtained from the <a>sensor</a>
 expressed in milliseconds that passed since the <a>time origin</a>.
 
 The SensorReadingEvent Interface {#the-sensor-reading-event-interface}
