@@ -487,7 +487,9 @@ The <dfn>stop()</dfn> method must run these steps or their <a>equivalent</a>:
 
 ### Event handlers
 
-The following are the <a>event handlers</a> (and their corresponding <a>event handler event types</a>) that MUST be supported as attributes by the objects implementing the <a>Sensor</a> interface:
+The following are the <a>event handlers</a>
+(and their corresponding <a>event handler event types</a>)
+that must be supported as attributes by the objects implementing the <a>Sensor</a> interface:
 
 <table class="simple">
   <thead>
