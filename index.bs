@@ -4,6 +4,7 @@ Status: ED
 ED: https://w3c.github.io/sensors/
 Shortname: generic-sensor
 TR: http://www.w3.org/TR/generic-sensor/
+Previous Version: https://www.w3.org/TR/2015/WD-generic-sensor-20151015/
 Editor: Tobie Langel 78102, Intel Corporation, tobie@sensors.codespeaks.com
 Editor: Rick Waldron, jQuery Foundation
 Group: dap
