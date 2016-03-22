@@ -167,7 +167,7 @@ would be considered <a>low-level</a> for most common purposes,
 even though it is the product of the <a>sensor fusion</a> of
 resistive piezo-electric pressure and temperature sensors.
 Exposing the sensors that compose it would serve no practical purpose;
-Who cares about the temperature of a piezo-electric sensor?
+who cares about the temperature of a piezo-electric sensor?
 A pressure-altimeter would probably fall in the same category,
 while a nondescript altimeter--
 which could get its data from either a barometer or a GPS signal--
@@ -188,7 +188,7 @@ needs to be combined with the <a lt="sensor readings">readings</a> of an acceler
 to provide a correct bearing.
 
 <dfn>Smart sensors</dfn> and <dfn>sensor hubs</dfn>
-have built-in conpute resources which allow them
+have built-in compute resources which allow them
 to carry out <a>calibration</a> and <a>sensor fusion</a> at the hardware level,
 freeing up CPU resources
 and lowering battery consumption
@@ -295,7 +295,7 @@ and defensive programming which includes:
 
 1.  checking for error thrown when instantiating a <a interface>Sensor</a> object,
 2.  listening to errors emitted by it,
-3.  handling all of the above graciously so that the user's experienced is
+3.  handling all of the above graciously so that the user's experience is
     enhanced by the possible usage of a sensor, not degraded by its
     absence.
 
@@ -407,10 +407,10 @@ which is one of <a enum-value>"idle"</a>, <a enum-value>"activating"</a>, <a enu
 A <a interface>Sensor</a> object has an associated <a>reporting mode</a>,
 which can be one of <a>auto</a> or <a>periodic</a>.
 
-// A <a interface>Sensor</a> object observes the changes in its associated <a>sensor</a>
-// at regular intervals and reports those values by firing DOM events.
-
-
+<!--
+A <a interface>Sensor</a> object observes the changes in its associated <a>sensor</a>
+at regular intervals and reports those values by firing DOM events.
+-->
 
 <a>Frequency</a> is measured in hertz (Hz).
 
