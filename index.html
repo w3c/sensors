@@ -2148,10 +2148,14 @@ dictionary <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-exp
        <p>Set <a data-link-type="dfn" href="#current-polling-frequency" id="ref-for-current-polling-frequency-2">current polling frequency</a> to <var>frequency</var>.</p>
      </ol>
     <li data-md="">
-     <p>If <var>settings_changed</var> is <code>true</code> Update the user-agent-specific way in which <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-14">sensor readings</a> are obtained from <var>sensor</var> to account for <var>sensor</var>’s <a data-link-type="dfn" href="#current-reporting-mode" id="ref-for-current-reporting-mode-3">current reporting mode</a> and <a data-link-type="dfn" href="#current-polling-frequency" id="ref-for-current-polling-frequency-3">current polling frequency</a>.
+     <p>If <var>settings_changed</var> is <code>true</code></p>
+     <ol>
+      <li data-md="">
+       <p>Update the user-agent-specific way in which <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-14">sensor readings</a> are obtained from <var>sensor</var> to account for <var>sensor</var>’s <a data-link-type="dfn" href="#current-reporting-mode" id="ref-for-current-reporting-mode-3">current reporting mode</a> and <a data-link-type="dfn" href="#current-polling-frequency" id="ref-for-current-polling-frequency-3">current polling frequency</a>.
   To report <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-15">sensor readings</a>, <var>sensor</var> must use
   the <a data-link-type="dfn" href="#update-current-reading" id="ref-for-update-current-reading-1">Update Current Reading</a> abstract operation,
   passing <var>sensor</var> and the latest <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-16">sensor readings</a> as arguments.</p>
+     </ol>
     <li data-md="">
      <p>Let <var>current_reading</var> be <var>sensor</var>’s associated <a data-link-type="dfn" href="#current-reading" id="ref-for-current-reading-2">current reading</a>.</p>
     <li data-md="">

@@ -734,11 +734,11 @@ Abstract Operations {#abstract-operations}
         1.  set |settings_changed| to `true`.
         1.  Set <a>current polling frequency</a> to |frequency|.
     1.  If |settings_changed| is `true`
-        Update the user-agent-specific way in which <a>sensor readings</a> are obtained from |sensor|
-        to account for |sensor|'s <a>current reporting mode</a> and <a>current polling frequency</a>.
-        To report <a>sensor readings</a>, |sensor| must use
-        the <a>Update Current Reading</a> abstract operation,
-        passing |sensor| and the latest <a>sensor readings</a> as arguments.
+        1.  Update the user-agent-specific way in which <a>sensor readings</a> are obtained from |sensor|
+            to account for |sensor|'s <a>current reporting mode</a> and <a>current polling frequency</a>.
+            To report <a>sensor readings</a>, |sensor| must use
+            the <a>Update Current Reading</a> abstract operation,
+            passing |sensor| and the latest <a>sensor readings</a> as arguments.
     1.  Let |current_reading| be |sensor|'s associated <a>current reading</a>.
     1.  If |current_reading| is not `null` and |sensorInstance|'s state is still <a enum-value>"activating"</a>, then
         1.  invoke the <a>Update Reading</a> operation, passing it
