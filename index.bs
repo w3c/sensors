@@ -58,7 +58,9 @@ urlPrefix: https://w3c.github.io/webappsec/specs/powerfulfeatures/; spec: powerf
 urlPrefix: https://heycam.github.io/webidl/; spec: WebIDL
   type: dfn
     text: throw; url: dfn-throw
+    text: creating an exception; url: dfn-create-exception
     text: InvalidStateError
+    text: NotAllowedError
     text: Error
 urlPrefix: https://w3c.github.io/permissions/; spec: permissions-api
   type: dfn
@@ -449,7 +451,7 @@ A <a>sensor type</a> has an associated <dfn>Sensor subclass</dfn>.
 
 A <a>sensor type</a> has an associated <dfn>SensorReading subclass</dfn>.
 
-A <a>sensor type</a> may have a default <a>sensor</a>.
+A <a>sensor type</a> may have a <dfn>default sensor</dfn>.
 
 If a <a>sensor type</a> has more than one <a>sensor</a>,
 it must have a set of associated <dfn>identifying parameters</dfn>
@@ -466,15 +468,21 @@ Sensor {#model-sensor}
 
 A <dfn id=concept-sensor>sensor</dfn> has an associated set of <dfn>activated Sensor objects</dfn>. This set is initially empty.
 
-A <a>sensor</a> has an associated <dfn>current reading</dfn>.
+A <a>sensor</a> has an associated <dfn>current reading</dfn>, which is initially `null`.
 
 A <a>sensor</a> has an associated set of <dfn>supported reporting modes</dfn>,
 which cannot be empty and must be picked from the following:
 <a>auto</a> and <a>periodic</a>.
 
+A sensor is said to <dfn lt="supports periodic reporting mode">support periodic reporting mode</dfn> if
+its set of <a>supported reporting modes</a>
+contains the <a>periodic</a> <a>reporting mode</a>.
+
 A <a>sensor</a> has an associated <dfn>reporting flag</dfn> which is initially unset.
 
-A <a>sensor</a> has an associated <dfn>current reporting mode</dfn> which is initially undefined.
+A <a>sensor</a> has an associated <dfn>current reporting mode</dfn> which is initially `undefined`.
+
+A <a>sensor</a> has an associated <dfn>current polling frequency</dfn> which is initially `null`.
 
 A <a>sensor</a> has an associated abstract operation to
 <dfn lt="retrieve the sensor permission">retrieve its permission</dfn> which
@@ -491,6 +499,8 @@ A <dfn interface>Sensor</dfn> object has an associated <a>sensor</a>.
 
 A <a interface>Sensor</a> object has an associated <dfn>state</dfn>,
 which is one of <a enum-value>"idle"</a>, <a enum-value>"activating"</a>, <a enum-value>"active"</a>, and <a enum-value>"errored"</a>. It is initially <a enum-value>"idle"</a>.
+
+A <a interface>Sensor</a> object has an associated <dfn>desired frequency</dfn>. It is initially `null`.
 
 <!--
 A <a interface>Sensor</a> object observes the changes in its associated <a>sensor</a>
@@ -547,9 +557,17 @@ The <dfn>start()</dfn> method must run these steps or their <a>equivalent</a>:
         1.  throw an "<a>InvalidStateError</a>" exception and abort these steps.
     1.  Invoke the <a>update state</a> algorithm passing |sensorInstance| and <a enum-value>"activating"</a> as the arguments.
     1.  Run these sub-steps <a>in parallel</a>:
-        1.  Invoke <a>Register a Sensor</a> passing it |sensorInstance| as argument.
+        1.  Let |state| be the result of invoking the <a>Request Sensor Access</a> abstract operation,
+            passing it |sensorInstance| as argument.
+        1.  If |state| is "granted",
+            1.  Invoke <a>Register a Sensor</a> passing it |sensorInstance| as argument.
+            1.  Abort these sub-steps.
+        1.  If |state| is "denied",
+            1.  let |e| be the result of <a>creating an exception</a> named <a>NotAllowedError</a>.
+            1.  Invoke the <a>Handle Errors</a> abstract operation,
+                passing it |e| and |sensorInstance| as arguments.
+            1.  Abort these sub-steps.
     1.  return `undefined`.
-
 </div>
 
 ### Sensor.stop() ### {#sensor-stop}
@@ -675,13 +693,22 @@ Abstract Operations {#abstract-operations}
         1.  <a>throw</a> a SecurityError.
     1.  Otherwise, if <a>identifying parameters</a> in |options| are set, then:
         1.  If these <a>identifying parameters</a> allow a unique <a>sensor</a> to be identified, then:
-            1.  let |sensorInstance| be a new <a interface>Sensor</a> object.
-            1.  associate |sensorInstance| with that <a>sensor</a>
+            1.  let |sensor| be that <a>sensor</a>,
+            1.  let |sensorInstance| be a new <a interface>Sensor</a> object,
+            1.  associate |sensorInstance| with |sensor|.
         1. Otherwise, <a>throw</a> a TypeError.
-    1.  Otherwise, if a default sensor exists for this <a>sensor type</a>:
-        1.  let |sensorInstance| be a new <a interface>Sensor</a> object.
-        1.  associate that <a>sensor</a> with it.
+    1.  Otherwise, if a <a>default sensor</a> exists for this <a>sensor type</a>:
+        1.  let |sensor| be that <a>sensor</a>,
+        1.  let |sensorInstance| be a new <a interface>Sensor</a> object,
+        1.  associate |sensorInstance| with |sensor|.
     1.  Otherwise, <a>throw</a> a TypeError.
+    1.  If |sensor| <a>supports periodic reporting mode</a>,
+    1.  Let |frequency| be the value of the <a member>frequency</a> member of |options|.
+    1.  If |frequency| is not `null`,
+        1.  If |sensor| <a>supports periodic reporting mode</a>,
+            1.  Set |sensorInstance|'s <a>desired frequency</a> to |frequency|.
+        1.  Otherwise,
+            1.  <a>throw</a> a TypeError.
     1.  Set |sensorInstance|'s <a for="Sensor" attribute>reading</a> attribute to `null`.
     1.  Set |sensorInstance|'s <a>state</a> to <a enum-value>"idle"</a>.
     1.  return |sensorInstance|.
@@ -693,7 +720,29 @@ Abstract Operations {#abstract-operations}
     : output
     :: None
     
-    1. Add |sensorInstance| to its associated <a>sensor</a>'s set of <a>activated Sensor objects</a>.
+    1.  Let |settings_changed| be `false`.
+    1.  Let |sensor| be the <a>sensor</a> associated with |sensorInstance|.
+    1.  Add |sensorInstance| to |sensor|'s set of <a>activated Sensor objects</a>.
+    1.  Let |mode| be the result of invoking the <a>find current reporting mode of a sensor</a> abstract operation,
+        with |sensor| as argument.
+    1.  If |mode| is different from |sensor|'s <a>current reporting mode</a>,
+        1.  set |settings_changed| to `true`.
+        1.  Set <a>current reporting mode</a> to |mode|.
+    1.  Let |frequency| be the result of invoking the <a>Find the polling frequency of a Sensor</a> abstract operation,
+        with |sensor| as argument.
+    1.  If |frequency| is different from |sensor|'s <a>current polling frequency</a>,
+        1.  set |settings_changed| to `true`.
+        1.  Set <a>current polling frequency</a> to |frequency|.
+    1.  If |settings_changed| is `true`
+        Update the user-agent-specific way in which <a>sensor readings</a> are obtained from |sensor|
+        to account for |sensor|'s <a>current reporting mode</a> and <a>current polling frequency</a>.
+        To report <a>sensor readings</a>, |sensor| must use
+        the <a>Update Current Reading</a> abstract operation,
+        passing |sensor| and the latest <a>sensor readings</a> as arguments.
+    1.  Let |current_reading| be |sensor|'s associated <a>current reading</a>.
+    1.  If |current_reading| is not `null` and |sensorInstance|'s state is still <a enum-value>"activating"</a>, then
+        1.  invoke the <a>Update Reading</a> operation, passing it
+            |sensorInstance| and |current_reading| as arguments.
 
 <h3 algorithm dfn>Unregister a Sensor</h3>
 
@@ -805,14 +854,17 @@ Abstract Operations {#abstract-operations}
     : output
     :: a <a>permission state</a>.
     
-    1.  Let |s| be the <a>sensor</a> associated with |sensorInstance|.
-    1.  let |permission| be the result of invoking the abstract operation <a>retrieve the sensor permission</a> associated with |s|,
+    1.  Let |sensor| be the <a>sensor</a> associated with |sensorInstance|.
+    1.  let |permission| be the result of invoking the abstract operation <a>retrieve the sensor permission</a> associated with |sensor|,
         passing it |sensorInstance| as argument.
     1.  Let |state| be the result of <a>retrieving the permission state</a> for |permission|.
-    1.  If |state| is "granted",
-        1. register the sensor.
-    1.  If |state| is "denied",
-        1. more here.
+    1.  If |state| is "prompt",
+        1.  Prompt the user in a user-agent-specific manner for permission to provide access to |sensor|
+            1.  If permission is granted,
+                1. set |state| to "granted",
+            1.  else,
+                1. set |state| to "denied".
+    1.  return |state|.
 
 Extensibility {#extensibility}
 =============
