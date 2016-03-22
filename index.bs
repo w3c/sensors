@@ -528,6 +528,10 @@ let |current_visibility_state| be the result of running the <a>steps to determin
 of the <a>Document</a>.
 If |current_visibility_state| is "visible", enable the sensor task source, otherwise, disable it.
 
+Note: user agents are encouraged to stop sensor polling
+when <a>sensor task sources</a> are disabled in order
+to save battery.
+
 <pre class="idl">
 interface Sensor : EventTarget {
   readonly attribute SensorState state;
