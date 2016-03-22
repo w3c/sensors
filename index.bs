@@ -447,7 +447,7 @@ A <a>sensor type</a> has an associated subclass of the <a interface>Sensor</a> i
 
 A <a>sensor type</a> may have a default <a>sensor</a>.
 
-A <a>sensor type</a> has more than one <a>sensor</a>,
+If a <a>sensor type</a> has more than one <a>sensor</a>,
 it must have a set of associated <dfn>identifying parameters</dfn>
 to select the right <a>sensor</a> to a associate to each new <a instance>Sensor</a> objects.
 
