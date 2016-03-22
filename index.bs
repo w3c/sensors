@@ -486,6 +486,8 @@ The <dfn>stop()</dfn> method must run these steps or their <a>equivalent</a>:
 
 ### Sensor.onchange
 
+### Sensor.onstatechange
+
 ### Event handlers
 
 The following are the <a>event handlers</a>
