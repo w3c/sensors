@@ -369,7 +369,7 @@ define ways to uniquely identify each one.
 
     <pre highlight="js">
     let sensor = new DirectTirePressureSensor({ position: "rear", side: "left" });
-    sensor.onchange = event => console.log(event.reading.pressure);) {
+    sensor.onchange = event => console.log(event.reading.pressure);
     </pre>
 </div>
 

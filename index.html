@@ -1348,10 +1348,8 @@ Possible extra rowspan handling
 .highlight .n { color: #0077aa } /* Name */
 .highlight .o { color: #999999 } /* Operator */
 .highlight .p { color: #999999 } /* Punctuation */
-.highlight .ch { color: #708090 } /* Comment.Hashbang */
 .highlight .cm { color: #708090 } /* Comment.Multiline */
 .highlight .cp { color: #708090 } /* Comment.Preproc */
-.highlight .cpf { color: #708090 } /* Comment.PreprocFile */
 .highlight .c1 { color: #708090 } /* Comment.Single */
 .highlight .cs { color: #708090 } /* Comment.Special */
 .highlight .kc { color: #990055 } /* Keyword.Constant */
@@ -1678,7 +1676,7 @@ but rather to put it in the context of detecting hardware-dependent features.</p
    <p>Consider the below feature detection examples:</p>
    <div class="example" id="example-e20db9c8">
     <a class="self-link" href="#example-e20db9c8"></a> 
-<pre class="highlight"><span></span><span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">Gyroscope</span> <span class="o">===</span> <span class="s2">"function"</span><span class="p">)</span> <span class="p">{</span>
+<pre class="highlight"><span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">Gyroscope</span> <span class="o">===</span> <span class="s2">"function"</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// run in circles...</span>
 <span class="p">}</span>
         
@@ -1725,7 +1723,7 @@ and defensive programming which includes:</p>
    </ol>
    <div class="example" id="example-297593cf">
     <a class="self-link" href="#example-297593cf"></a> 
-<pre class="highlight"><span></span><span class="k">try</span> <span class="p">{</span> <span class="c1">// No need to feature detect thanks to try..catch block.</span>
+<pre class="highlight"><span class="k">try</span> <span class="p">{</span> <span class="c1">// No need to feature detect thanks to try..catch block.</span>
     <span class="kd">let</span> <span class="nx">sensor</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">GeolocationSensor</span><span class="p">({});</span>
     <span class="nx">sensor</span><span class="p">.</span><span class="nx">start</span><span class="p">();</span>
     <span class="nx">sensor</span><span class="p">.</span><span class="nx">onerror</span> <span class="o">=</span> <span class="nx">error</span> <span class="o">=></span> <span class="nx">gracefullyDegrade</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
@@ -1749,7 +1747,7 @@ the device’s default (and often unique) <a data-link-type="dfn" href="#sensor"
 the default <a data-link-type="dfn" href="#sensor" id="ref-for-sensor-12">sensor</a> is chosen.</p>
    <div class="example" id="example-4ec6b87a">
     <a class="self-link" href="#example-4ec6b87a"></a> Listening to geolocation changes: 
-<pre class="highlight"><span></span><span class="kd">let</span> <span class="nx">sensor</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">GeolocationSensor</span><span class="p">({</span> <span class="nx">accuracy</span><span class="o">:</span> <span class="s2">"high"</span> <span class="p">});</span>
+<pre class="highlight"><span class="kd">let</span> <span class="nx">sensor</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">GeolocationSensor</span><span class="p">({</span> <span class="nx">accuracy</span><span class="o">:</span> <span class="s2">"high"</span> <span class="p">});</span>
 
 <span class="nx">sensor</span><span class="p">.</span><span class="nx">onchange</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">coords</span> <span class="o">=</span> <span class="p">[</span><span class="nx">event</span><span class="p">.</span><span class="nx">reading</span><span class="p">.</span><span class="nx">latitude</span><span class="p">,</span> <span class="nx">event</span><span class="p">.</span><span class="nx">reading</span><span class="p">.</span><span class="nx">longitude</span><span class="p">];</span>
@@ -1768,10 +1766,10 @@ proximity <a data-link-type="dfn" href="#sensor" id="ref-for-sensor-14">sensors<
 multiple <a data-link-type="dfn" href="#sensor" id="ref-for-sensor-15">sensors</a> of the same <a data-link-type="dfn" href="#sensor-types" id="ref-for-sensor-types-12">type</a> may coexist on the same device,
 specification extension will have to
 define ways to uniquely identify each one.</p>
-   <div class="example" id="example-00ebe05d">
-    <a class="self-link" href="#example-00ebe05d"></a> For example checking the pressure of the left rear tire: 
-<pre class="highlight"><span></span><span class="kd">let</span> <span class="nx">sensor</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DirectTirePressureSensor</span><span class="p">({</span> <span class="nx">position</span><span class="o">:</span> <span class="s2">"rear"</span><span class="p">,</span> <span class="nx">side</span><span class="o">:</span> <span class="s2">"left"</span> <span class="p">});</span>
-<span class="nx">sensor</span><span class="p">.</span><span class="nx">onchange</span> <span class="o">=</span> <span class="nx">event</span> <span class="o">=></span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">reading</span><span class="p">.</span><span class="nx">pressure</span><span class="p">);)</span> <span class="p">{</span></pre>
+   <div class="example" id="example-6819b29f">
+    <a class="self-link" href="#example-6819b29f"></a> For example checking the pressure of the left rear tire: 
+<pre class="highlight"><span class="kd">let</span> <span class="nx">sensor</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DirectTirePressureSensor</span><span class="p">({</span> <span class="nx">position</span><span class="o">:</span> <span class="s2">"rear"</span><span class="p">,</span> <span class="nx">side</span><span class="o">:</span> <span class="s2">"left"</span> <span class="p">});</span>
+<span class="nx">sensor</span><span class="p">.</span><span class="nx">onchange</span> <span class="o">=</span> <span class="nx">event</span> <span class="o">=></span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">reading</span><span class="p">.</span><span class="nx">pressure</span><span class="p">);</span></pre>
    </div>
    <h2 class="heading settled" data-level="6" id="api"><span class="secno">6. </span><span class="content">API</span><a class="self-link" href="#api"></a></h2>
    <p>A <a data-link-type="dfn" href="#sensor-types" id="ref-for-sensor-types-13">sensor type</a> has one or many associated <a data-link-type="dfn" href="#sensor" id="ref-for-sensor-16">sensors</a>.</p>
