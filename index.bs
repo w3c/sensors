@@ -464,7 +464,7 @@ A <a>sensor type</a> may have a <dfn>default sensor</dfn>.
 
 If a <a>sensor type</a> has more than one <a>sensor</a>,
 it must have a set of associated <dfn>identifying parameters</dfn>
-to select the right <a>sensor</a> to a associate to each new <a instance>Sensor</a> objects.
+to select the right <a>sensor</a> to a associate to each new <a interface>Sensor</a> objects.
 
 A <a>sensor type</a> has an associated abstract operation to
 <dfn lt="Construct SensorReading Object">construct a SensorReading object</dfn>
@@ -723,7 +723,7 @@ Abstract Operations {#abstract-operations}
         1.  associate |sensor_instance| with |sensor|.
     1.  Otherwise, <a>throw</a> a TypeError.
     1.  If |sensor| <a>supports periodic reporting mode</a>,
-    1.  Let |frequency| be the value of the <a member>frequency</a> member of |options|.
+    1.  Let |frequency| be the value of the <a dict-member>frequency</a> member of |options|.
     1.  If |frequency| is not `null`,
         1.  If |sensor| <a>supports periodic reporting mode</a>,
             1.  Set |sensor_instance|'s <a>desired frequency</a> to |frequency|.
