@@ -1853,7 +1853,7 @@ it must have a set of associated <dfn class="dfn-paneled" data-dfn-type="dfn" da
    <p>A <a data-link-type="dfn" href="#sensor" id="ref-for-sensor-24">sensor</a> has an associated <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="current reading" data-noexport="" id="current-reading">current reading<span class="dfn-panel" data-deco=""><b><a href="#current-reading">#current-reading</a></b><b>Referenced in:</b><span><a href="#ref-for-current-reading-1">8.3.1. SensorReadingEvent.reading</a></span></span></dfn>.</p>
    <p>A <a data-link-type="dfn" href="#sensor" id="ref-for-sensor-25">sensor</a> has an associated set of <dfn data-dfn-type="dfn" data-noexport="" id="supported-reporting-modes">supported reporting modes<a class="self-link" href="#supported-reporting-modes"></a></dfn>,
 which cannot be empty and must be picked from the following: <a data-link-type="dfn" href="#auto" id="ref-for-auto-3">auto</a> and <a data-link-type="dfn" href="#periodic" id="ref-for-periodic-4">periodic</a>.</p>
-   <p>A <a data-link-type="dfn" href="#sensor" id="ref-for-sensor-26">sensor</a> has an associated <dfn data-dfn-type="dfn" data-noexport="" id="current-working-mode">current working mode<a class="self-link" href="#current-working-mode"></a></dfn> which is initially null.</p>
+   <p>A <a data-link-type="dfn" href="#sensor" id="ref-for-sensor-26">sensor</a> has an associated <dfn data-dfn-type="dfn" data-noexport="" id="current-reporting-mode">current reporting mode<a class="self-link" href="#current-reporting-mode"></a></dfn> which is initially undefined.</p>
    <p>A <a data-link-type="dfn" href="#sensor" id="ref-for-sensor-27">sensor</a> has an associated abstract operation to <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="retrieve the sensor permission" data-noexport="" id="retrieve-the-sensor-permission">retrieve its permission<span class="dfn-panel" data-deco=""><b><a href="#retrieve-the-sensor-permission">#retrieve-the-sensor-permission</a></b><b>Referenced in:</b><span><a href="#ref-for-retrieve-the-sensor-permission-1">9.9. Request Sensor Access</a></span></span></dfn> which
 takes a <a class="idl-code" data-link-type="interface" href="#sensor0" id="ref-for-sensor0-4">Sensor</a> object as input and
 returns a <a data-link-type="dfn" href="https://w3c.github.io/permissions/#idl-def-Permission">permission</a> and, eventually, its <a data-link-type="dfn" href="https://w3c.github.io/permissions/#dfn-associated-permissiondescriptor">associated PermissionDescriptor</a>.</p>
@@ -2510,7 +2510,7 @@ for their editorial input.</p>
    <li><a href="#conformant-user-agent">conformant user agent</a><span>, in §Unnumbered section</span>
    <li><a href="#construct-sensor-object">Construct Sensor Object</a><span>, in §9</span>
    <li><a href="#current-reading">current reading</a><span>, in §7.2</span>
-   <li><a href="#current-working-mode">current working mode</a><span>, in §7.2</span>
+   <li><a href="#current-reporting-mode">current reporting mode</a><span>, in §7.2</span>
    <li><a href="#equivalent">equivalent</a><span>, in §Unnumbered section</span>
    <li>
     error
