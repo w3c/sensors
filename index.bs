@@ -42,6 +42,8 @@ urlPrefix: https://html.spec.whatwg.org/multipage/; spec: HTML
     urlPrefix: infrastructure.html
       text: in parallel
     urlPrefix: browsers.html
+      text: origin; url: origin-2
+      text: navigating; url: navigate
       text: browsing context
       text: top-level browsing context
   type: interface
@@ -468,7 +470,13 @@ Sensor {#model-sensor}
 
 A <dfn id=concept-sensor>sensor</dfn> has an associated set of <dfn>activated Sensor objects</dfn>. This set is initially empty.
 
-A <a>sensor</a> has an associated <dfn>current reading</dfn>, which is initially `null`.
+A <a>sensor</a> has an associated <dfn>current reading</dfn>,
+which can initially be `null` or
+be set to a <a>sensor reading</a> cached in a user-agent-specific way.
+    
+Note: there are additional privacy concerns when using cached <a lt="sensor readings">readings</a>
+which predate either <a>navigating</a> to resources in the current <a>origin</a>,
+or being granted permission to access the <a>sensor</a>.
 
 A <a>sensor</a> has an associated set of <dfn>supported reporting modes</dfn>,
 which cannot be empty and must be picked from the following:
@@ -537,7 +545,7 @@ enum SensorState {
 
 ### Sensor.state ### {#sensor-state}
 
-The <a attribute for="Sensor">state</a> attribute represents a <a>Sensor</a> object's <a>state</a>.
+The <a attribute for="Sensor">state</a> attribute represents a <a interface>Sensor</a> object's <a>state</a>.
 
 ### Sensor.reading ### {#sensor-reading}
 
@@ -716,13 +724,45 @@ Abstract Operations {#abstract-operations}
 <h3 algorithm dfn>Register a Sensor</h3>
 
     : input
-    :: |sensorInstance|, a <a>Sensor</a> object.
+    :: |sensorInstance|, a <a interface>Sensor</a> object.
     : output
     :: None
     
-    1.  Let |settings_changed| be `false`.
     1.  Let |sensor| be the <a>sensor</a> associated with |sensorInstance|.
     1.  Add |sensorInstance| to |sensor|'s set of <a>activated Sensor objects</a>.
+    1.  Invoke the <a>Set Sensor Settings</a> abstract operation,
+        passing it |sensor| as argument.
+    1.  Let |current_reading| be |sensor|'s associated <a>current reading</a>.
+    1.  If |current_reading| is not `null` and |sensorInstance|'s state is still <a enum-value>"activating"</a>, then
+        1.  invoke the <a>Update Reading</a> operation, passing it
+            |sensorInstance| and |current_reading| as arguments.
+
+<h3 algorithm dfn>Unregister a Sensor</h3>
+
+    : input
+    :: |sensorInstance|, a <a interface>Sensor</a> object.
+    : output
+    :: None
+    
+    1.  Let |sensor| be the <a>sensor</a> associated with |sensorInstance|.
+    1.  Remove |sensorInstance| from |sensor|'s set of <a>activated Sensor objects</a>.
+    1.  If |sensor|'s set of <a>activated Sensor objects</a> is empty then,
+        1.  Set <a>current reporting mode</a> to `undefined`.
+        1.  Set <a>current polling frequency</a> to `null`.
+        1.  Update the user-agent-specific way in which <a>sensor readings</a> are obtained from |sensor|
+            to no longer provide <a lt ="sensor readings">readings</a>.
+        1.  Abort these steps.
+    1.  Invoke the <a>Set Sensor Settings</a> abstract operation,
+        passing it |sensor| as argument.
+    
+<h3 algorithm dfn>Set Sensor Settings</h3>
+
+    : input
+    :: |sensor|, a <a>sensor</a>.
+    : output
+    :: None
+
+    1.  Let |settings_changed| be `false`.
     1.  Let |mode| be the result of invoking the <a>find current reporting mode of a sensor</a> abstract operation,
         with |sensor| as argument.
     1.  If |mode| is different from |sensor|'s <a>current reporting mode</a>,
@@ -736,22 +776,25 @@ Abstract Operations {#abstract-operations}
     1.  If |settings_changed| is `true`
         1.  Update the user-agent-specific way in which <a>sensor readings</a> are obtained from |sensor|
             to account for |sensor|'s <a>current reporting mode</a> and <a>current polling frequency</a>.
-            To report <a>sensor readings</a>, |sensor| must use
-            the <a>Update Current Reading</a> abstract operation,
-            passing |sensor| and the latest <a>sensor readings</a> as arguments.
-    1.  Let |current_reading| be |sensor|'s associated <a>current reading</a>.
-    1.  If |current_reading| is not `null` and |sensorInstance|'s state is still <a enum-value>"activating"</a>, then
-        1.  invoke the <a>Update Reading</a> operation, passing it
-            |sensorInstance| and |current_reading| as arguments.
+            
+            If <a>current reporting mode</a> is <a>periodic</a>,
+            <a>sensor readings</a> must be reported periodically,
+            at the <a>current polling frequency</a>,
+            capped, obviously, by the limits of the underlying hardware.
+            
+            Note: there is not guarantee that the <a>current polling frequency</a>
+            can be respected. Actual <a>frequency</a> can be calculated using
+            the <a interface>SensorReading</a>'s <a attribute for=SensorReading>timeStamp</a>.
+            
+            If the <a>current reporting mode</a> is set to <a>auto</a>,
+            the user-agent can decide on the best reporting strategy
+            for this particular |sensor| and <a>sensor type</a>.
+            
+            In all cases, 
+            |sensor| must use the <a>Update Current Reading</a> abstract operation
+            to report <a>sensor readings</a>,
+            passing it |sensor| and the latest <a>sensor reading</a> as arguments.
 
-<h3 algorithm dfn>Unregister a Sensor</h3>
-
-    : input
-    :: |sensorInstance|, a <a>Sensor</a> object.
-    : output
-    :: None
-    
-    1. Remove |sensorInstance| from its associated <a>sensor</a>'s set of <a>activated Sensor objects</a>.
 
 <h3 algorithm dfn>Find Current Reporting Mode of a Sensor</h3>
     
