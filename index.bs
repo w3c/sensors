@@ -97,6 +97,8 @@ by simplifying the specification and implementation processes.
 Scope {#scope}
 =====
 
+<em>This section is non-normative</em>.
+
 The scope of this specification is currently limited
 to specifying primitives
 which enable expose data from local sensors.
@@ -118,6 +120,67 @@ is good enough for now.
 A subsequent version of this specification might specify such an API,
 and the current API has been designed with this in mind.
 
+Background {#background}
+==========
+
+<em>This section is non-normative</em>.
+
+The Generic Sensor API is designed to make the most common use cases straightforward
+while still enabling more complex use cases.
+
+Most devices deployed today do not carry more than one
+<a>sensor</a> of each <a lt="sensor types">type</a>.
+This shouldn't come as a surprise since use cases for more than
+a <a>sensor</a> of a given <a lt="sensor types">type</a> are rare
+and generally limited to specific <a>sensor types</a> such as
+proximity sensors.
+
+The API therefore makes it easy to interact with
+the device's default (and often unique) <a>sensor</a>
+for each <a lt="sensor types">type</a>
+simply by instantiating the corresponding <a interface>Sensor</a> subclass.
+
+Indeed, without specific information identifying a particular <a>sensor</a>
+of a given <a lt="sensor type">type</a>,
+the default <a>sensor</a> is chosen.
+
+<div class="example">
+    Listening to geolocation changes:
+
+    <pre highlight="js">
+    let sensor = new GeolocationSensor({ accuracy: "high" });
+
+    sensor.onchange = function(event) {
+        var coords = [event.reading.latitude, event.reading.longitude];
+        updateMap(null, coords, reading.data.accuracy);
+    };
+
+    sensor.onerror = function(error) {
+        updateMap(error);
+    };
+    </pre>
+</div>
+
+Note: extension to this specification may choose not to define a default sensor
+when doing so wouldn't make sense.
+For example, it might be difficult to agree on an obvious default <a>sensor</a> for
+proximity <a>sensors</a>.
+
+In cases where
+multiple <a>sensors</a> of the same <a lt="sensor type">type</a>
+may coexist on the same device,
+specification extension will have to
+define ways to uniquely identify each one.
+
+<div class="example">
+    For example checking the pressure of the left rear tire: 
+
+    <pre highlight="js">
+    let sensor = new DirectTirePressureSensor({ position: "rear", side: "left" });
+    sensor.onchange = event => console.log(event.reading.pressure);
+    </pre>
+</div>
+
 Concepts {#concepts}
 ========
 
@@ -135,7 +198,7 @@ through a process called <a>sensor fusion</a>.
 <a lt=calibration>Calibrated</a> <a>raw sensor readings</a> are referred to as <dfn>sensor readings</dfn>,
 whether or not they have undergone <a>sensor fusion</a>.
 
-Different <dfn>sensor types</dfn> measure different physical quantities
+Different <a>sensor types</a> measure different physical quantities
 such as temperature, air pressure, heart-rate, or luminosity.
 
 For the purpose of this specification we distinguish between
@@ -315,66 +378,7 @@ and defensive programming which includes:
 Model {#model}
 =====
 
-<em>This section is non-normative</em>.
-
-The Generic Sensor API is designed to make the most common use cases straightforward
-while still enabling more complex use cases.
-
-Most devices deployed today do not carry more than one
-<a>sensor</a> of each <a lt="sensor types">type</a>.
-This shouldn't come as a surprise since use cases for more than
-a <a>sensor</a> of a given <a lt="sensor types">type</a> are rare
-and generally limited to specific <a>sensor types</a> such as
-proximity sensors.
-
-The API therefore makes it easy to interact with
-the device's default (and often unique) <a>sensor</a>
-for each <a lt="sensor types">type</a>
-simply by instantiating the corresponding <a interface>Sensor</a> subclass.
-
-Indeed, without specific information identifying a particular <a>sensor</a>
-of a given <a lt="sensor type">type</a>,
-the default <a>sensor</a> is chosen.
-
-<div class="example">
-    Listening to geolocation changes:
-
-    <pre highlight="js">
-    let sensor = new GeolocationSensor({ accuracy: "high" });
-
-    sensor.onchange = function(event) {
-        var coords = [event.reading.latitude, event.reading.longitude];
-        updateMap(null, coords, reading.data.accuracy);
-    };
-
-    sensor.onerror = function(error) {
-        updateMap(error);
-    };
-    </pre>
-</div>
-
-Note: extension to this specification may choose not to define a default sensor
-when doing so wouldn't make sense.
-For example, it might be difficult to agree on an obvious default <a>sensor</a> for
-proximity <a>sensors</a>.
-
-In cases where
-multiple <a>sensors</a> of the same <a lt="sensor type">type</a>
-may coexist on the same device,
-specification extension will have to
-define ways to uniquely identify each one.
-
-<div class="example">
-    For example checking the pressure of the left rear tire: 
-
-    <pre highlight="js">
-    let sensor = new DirectTirePressureSensor({ position: "rear", side: "left" });
-    sensor.onchange = event => console.log(event.reading.pressure);
-    </pre>
-</div>
-
-API {#api}
-===
+<h3 dfn>Sensor Type</h3>
 
 A <a>sensor type</a> has one or many associated <a>sensors</a>.
 
@@ -386,7 +390,9 @@ A <a>sensor type</a> has more than one <a>sensor</a>,
 it must have a set of associated <dfn>identifying parameters</dfn>
 to select the right <a>sensor</a> to a associate to each new <a instance>Sensor</a> objects.
 
-A <dfn>sensor</dfn> has an associated set of <dfn>activated Sensor objects</dfn>. This set is initially empty.
+<h3 dfn>Sensor</h3>
+
+A <a>sensor</a> has an associated set of <dfn>activated Sensor objects</dfn>. This set is initially empty.
 
 A <a>sensor</a> has an associated <dfn>current reading</dfn>.
 
@@ -400,6 +406,9 @@ A <a>sensor</a> has an associated abstract operation to
 <dfn lt="retrieve the sensor permission">retrieve its permission</dfn> which
 takes a <a interface>Sensor</a> object as input and
 returns a <a>permission</a> and, eventually, its <a>associated PermissionDescriptor</a>.
+
+API {#api}
+===
 
 ## The Sensor Interface
 
