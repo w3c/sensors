@@ -444,7 +444,9 @@ Sensor Type {#model-sensor-type}
 
 A <dfn>sensor type</dfn> has one or many associated <a>sensors</a>.
 
-A <a>sensor type</a> has an associated subclass of the <a interface>Sensor</a> interface.
+A <a>sensor type</a> has an associated <dfn>Sensor subclass</dfn>.
+
+A <a>sensor type</a> has an associated <dfn>SensorReading subclass</dfn>.
 
 A <a>sensor type</a> may have a default <a>sensor</a>.
 
@@ -452,13 +454,16 @@ If a <a>sensor type</a> has more than one <a>sensor</a>,
 it must have a set of associated <dfn>identifying parameters</dfn>
 to select the right <a>sensor</a> to a associate to each new <a instance>Sensor</a> objects.
 
+A <a>sensor type</a> has an associated abstract operation to
+<dfn lt="Construct SensorReading Object">construct a SensorReading object</dfn>
+which takes the <a>sensor readings</a> emitted by the <a>sensor</a> and
+returns an initialized <a interface>SensorReading</a> object
+which uses the <a>sensor type</a>'s associated <a>SensorReading subclass</a>.
+
 Sensor {#model-sensor}
 ------
 
-A <dfn id=concept-sensor>sensor</dfn> has an associated <dfn>Sensor interface subclass</dfn>
-and an associated <dfn>SensorReading interface subclass</dfn>.
-
-A <a>sensor</a> has an associated set of <dfn>activated Sensor objects</dfn>. This set is initially empty.
+A <dfn id=concept-sensor>sensor</dfn> has an associated set of <dfn>activated Sensor objects</dfn>. This set is initially empty.
 
 A <a>sensor</a> has an associated <dfn>current reading</dfn>.
 
@@ -474,12 +479,6 @@ A <a>sensor</a> has an associated abstract operation to
 <dfn lt="retrieve the sensor permission">retrieve its permission</dfn> which
 takes a <a interface>Sensor</a> object as input and
 returns a <a>permission</a> and, eventually, its <a>associated PermissionDescriptor</a>.
-
-A <a>sensor</a> has an associated abstract operation to
-<dfn lt="Construct SensorReading Object">construct a SensorReading object</dfn>
-which takes the <a>sensor readings</a> emitted by the <a>sensor</a> and
-returns an initialized <a interface>SensorReading</a> object
-which uses the <a>sensor</a>'s associated <a>SensorReading interface subclass</a>.
 
 API {#api}
 ===
@@ -755,7 +754,7 @@ Abstract Operations {#abstract-operations}
     1.  If |sensor|’s <a>reporting flag</a> is set,
         1. abort these steps.
     1.  Set |sensor|’s <a>reporting flag</a>.
-    1.  Let |readingInstance| be the result of invoking |sensor|'s associated
+    1.  Let |readingInstance| be the result of invoking |sensor| <a>type</a>'s associated
         <a>Construct SensorReading Object</a> operation,
         passing it |reading| as argument.
     1.  Set |sensor|’s <a>current reading</a> to |readingInstance|.
