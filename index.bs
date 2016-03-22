@@ -59,6 +59,7 @@ urlPrefix: https://heycam.github.io/webidl/; spec: WebIDL
   type: dfn
     text: throw; url: dfn-throw
     text: InvalidStateError
+    text: Error
 urlPrefix: https://w3c.github.io/permissions/; spec: permissions-api
   type: dfn
     text: permission state;                url: idl-def-PermissionState
@@ -785,7 +786,7 @@ Abstract Operations {#abstract-operations}
 
     : input
     :: |sensorInstance|, a <a interface>Sensor</a> object.
-    :: |error|, an Error object.
+    :: |error|, an <a>Error</a> object.
     : output
     :: None
     
