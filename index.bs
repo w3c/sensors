@@ -390,7 +390,11 @@ A <dfn>sensor</dfn> has an associated set of <dfn>activated Sensor objects</dfn>
 
 A <a>sensor</a> has an associated <dfn>current reading</dfn>.
 
-A <a>sensor</a> has an associated <dfn>periodic reporting mode flag</dfn>. This flag is initially unset.
+A <a>sensor</a> has an associated set of <dfn>supported reporting modes</dfn>,
+which cannot be empty and must be picked from the following:
+<a>auto</a> and <a>periodic</a>.
+
+A <a>sensor</a> has an associated <dfn>current working mode</dfn> which is initially null.
 
 A <a>sensor</a> has an associated abstract operation to
 <dfn lt="retrieve the sensor permission">retrieve its permission</dfn> which
@@ -403,9 +407,6 @@ A <dfn interface>Sensor</dfn> object has an associated <a>sensor</a>.
 
 A <a interface>Sensor</a> object has an associated <dfn>state</dfn>,
 which is one of <a enum-value>"idle"</a>, <a enum-value>"activating"</a>, <a enum-value>"active"</a>, and <a enum-value>"errored"</a>. It is initially <a enum-value>"idle"</a>.
-
-A <a interface>Sensor</a> object has an associated <a>reporting mode</a>,
-which can be one of <a>auto</a> or <a>periodic</a>.
 
 <!--
 A <a interface>Sensor</a> object observes the changes in its associated <a>sensor</a>
