@@ -223,7 +223,7 @@ that API is actually connected to a real hardware sensor,
 whether that sensor works,
 if its still connected,
 or even whether the user is going to allow you to access it.
-Note you can check the latter using the Permissions API [[permissions]].
+Note you can check the latter using the Permissions API [[PERMISSIONS]].
 
 In an ideal world, information about the underlying status
 would be available upfront.
@@ -310,7 +310,7 @@ Secure Context {#secure-context}
 --------------
 
 <a>Sensor readings</a> are explicitly flagged by the
-Secure Contexts specification [[powerful-features]]
+Secure Contexts specification [[POWERFUL-FEATURES]]
 as a high-value target for network attackers.
 As such, <a>sensor readings</a> must only be available
 within a <a>secure context</a>.
@@ -318,7 +318,8 @@ within a <a>secure context</a>.
 Obtaining Explicit User Permission {#permissioning}
 ----------------------------------
 
-Issue(w3c/sensors#20):
+Permission to access <a>sensor readings</a> must be obtained
+through the Permissions API [[!PERMISSIONS]].
 
 Concepts {#concepts}
 ========
@@ -954,7 +955,7 @@ Exposing High-Level vs. Low-Level Sensors {#high-vs-low-level}
 -----------------------------------------
 
 So far, specifications exposing sensors to the Web platform
-have focused on <a>high-level</a> sensors APIs. [[geolocation-API]] [[orientation-event]]
+have focused on <a>high-level</a> sensors APIs. [[GEOLOCATION-API]] [[ORIENTATION-EVENT]]
 
 This was a reasonable approach for a number of reasons.
 Indeed, <a>high-level</a> sensors:
@@ -1005,7 +1006,7 @@ extension specifications may choose not to define a default sensor.
 Extending the Permission API {#permission-api}
 ----------------------------
 
-Provide guidance on how to extend the Permission API [[permissions]]
+Provide guidance on how to extend the Permission API [[PERMISSIONS]]
 for each <a>sensor types</a>.
 
 Issue(w3c/sensors#22):
