@@ -59,7 +59,6 @@ urlPrefix: https://heycam.github.io/webidl/; spec: WebIDL
   type: dfn
     text: throw; url: dfn-throw
     text: InvalidStateError
-    text: Promise; url: idl-promise
 urlPrefix: https://w3c.github.io/permissions/; spec: permissions-api
   type: dfn
     text: permission state;                url: idl-def-PermissionState
@@ -408,9 +407,6 @@ which is one of <a enum-value>"idle"</a>, <a enum-value>"activating"</a>, <a enu
 A <a interface>Sensor</a> object has an associated <a>reporting mode</a>,
 which can be one of <a>auto</a> or <a>periodic</a>.
 
-A <a interface>Sensor</a> object has an associated <dfn>starting promise</dfn>,
-which which is initially set to null.
-
 // A <a interface>Sensor</a> object observes the changes in its associated <a>sensor</a>
 // at regular intervals and reports those values by firing DOM events.
 
@@ -426,7 +422,7 @@ TODO: define the following concepts
 interface Sensor : EventTarget {
   readonly attribute SensorState state;
   readonly attribute SensorReading? reading;
-  Promise &lt;void&gt; start();
+  void start();
   void stop();
   attribute EventHandler onerror;
   attribute EventHandler ondata;
@@ -667,8 +663,6 @@ Abstract Operations {#abstract-operations}
     1.  If |sensorInstance|'s <a attribute>state</a> is <a enum-value>"activating"</a>:
         1.  Invoke the <a>update state</a> algorithm passing |sensorInstance|
             and <a enum-value>"active"</a> as the arguments.
-        1.  Resolve |sensorInstance|'s associated <a>starting promise</a> with `undefined`.
-        1.  Set |sensorInstance|'s associated <a>starting promise</a> to null.
     1.  Create an <a>event</a> |e| that uses the <a interface>SensorReadingEvent</a> interface,
         with the event type `reading`, which does not bubble, is not cancelable, is <a>trusted</a>, and has no default action.
     1.  Let the <a attribute for=SensorReadingEvent>reading</a> attribute of |e| be initialized to |reading|.
