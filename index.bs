@@ -455,7 +455,7 @@ to select the right <a>sensor</a> to a associate to each new <a instance>Sensor<
 Sensor {#model-sensor}
 ------
 
-A <dfn>sensor</dfn> has an associated set of <dfn>activated Sensor objects</dfn>. This set is initially empty.
+A <dfn id=concept-sensor>sensor</dfn> has an associated set of <dfn>activated Sensor objects</dfn>. This set is initially empty.
 
 A <a>sensor</a> has an associated <dfn>current reading</dfn>.
 
@@ -470,10 +470,13 @@ A <a>sensor</a> has an associated abstract operation to
 takes a <a interface>Sensor</a> object as input and
 returns a <a>permission</a> and, eventually, its <a>associated PermissionDescriptor</a>.
 
-Sensor Interface {#sensor-interface}
-----------------
+API {#api}
+===
 
-A <dfn interface>Sensor</dfn> object has an associated <a>sensor</a>.
+The Sensor Interface {#the-sensor-interface}
+--------------------
+
+A <a interface>Sensor</a> object has an associated <a>sensor</a>.
 
 A <a interface>Sensor</a> object has an associated <dfn>state</dfn>,
 which is one of <a enum-value>"idle"</a>, <a enum-value>"activating"</a>, <a enum-value>"active"</a>, and <a enum-value>"errored"</a>. It is initially <a enum-value>"idle"</a>.
@@ -487,11 +490,6 @@ TODO: define the following concepts
 
 - <dfn>read steps</dfn>
 
-API {#api}
-===
-
-The Sensor Interface {#the-sensor-interface}
---------------------
 
 <pre class="idl">
 interface Sensor : EventTarget {
@@ -523,11 +521,11 @@ The <a attribute for="Sensor">state</a> attribute represents a <a>Sensor</a> obj
 ### Sensor.reading ### {#sensor-reading}
 
 When a Sensor's state is <a enum-value>"active"</a>,
-its reading attribute must always point to the latest <a>SensorReading</a>
+its reading attribute must always point to the latest <a interface>SensorReading</a>
 whatever the <a>frequency</a> so that
 the reading attribute of two instances of the same Sensor interface
 associated with the same <a>sensor</a>
-hold the same <a>SensorReading</a> during a single <a>event loop</a> turn.
+hold the same <a interface>SensorReading</a> during a single <a>event loop</a> turn.
 
 ### Sensor.start() ### {#sensor-start}
 
@@ -597,7 +595,7 @@ that must be supported as attributes by the objects implementing the <a>Sensor</
 The SensorReading Interface {#the-sensor-reading-interface}
 ---------------------------
 
-A <dfn>SensorReading</dfn> represents the state of a <a>sensor</a> at a given point in time.
+A <a interface>SensorReading</a> represents the state of a <a>sensor</a> at a given point in time.
 
 <pre class="idl">
 
