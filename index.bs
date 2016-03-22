@@ -51,22 +51,22 @@ urlPrefix: https://html.spec.whatwg.org/multipage/; spec: HTML
   type: interface
     urlPrefix: webappapis.html
       text: EventHandler
-urlPrefix: http://w3c.github.io/hr-time/; spec: hr-time-2
+urlPrefix: http://w3c.github.io/hr-time/; spec: HR-TIME-2
   type: interface
     text: DOMHighResTimeStamp; url: dom-domhighrestimestamp
   type: dfn
     text: time origin
-urlPrefix: https://w3c.github.io/webappsec/specs/powerfulfeatures/; spec: powerful-features
+urlPrefix: https://w3c.github.io/webappsec/specs/powerfulfeatures/; spec: POWERFUL-FEATURES
   type: dfn
     text: secure context
-urlPrefix: https://heycam.github.io/webidl/; spec: WebIDL
+urlPrefix: https://heycam.github.io/webidl/; spec: WEBIDL
   type: dfn
     text: throw; url: dfn-throw
     text: creating an exception; url: dfn-create-exception
     text: InvalidStateError
     text: NotAllowedError
     text: Error
-urlPrefix: https://w3c.github.io/permissions/; spec: permissions-api
+urlPrefix: https://w3c.github.io/permissions/; spec: PERMISSIONS
   type: dfn
     text: permission state;                url: idl-def-PermissionState
     text: permission;                      url: idl-def-Permission
@@ -74,7 +74,7 @@ urlPrefix: https://w3c.github.io/permissions/; spec: permissions-api
   type: dfn
     text: associated PermissionDescriptor; url: dfn-associated-permissiondescriptor
     text: retrieving the permission state; url: dfn-retrieve-the-permission-state
-urlPrefix: https://w3c.github.io/page-visibility; spec: page-visibility
+urlPrefix: https://w3c.github.io/page-visibility; spec: PAGE-VISIBILITY
   type: dfn
     text: visibility states; url: dfn-visibility-states
     text: steps to determine the visibility state; url: dfn-steps-to-determine-the-visibility-state
