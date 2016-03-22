@@ -36,6 +36,8 @@ urlPrefix: https://html.spec.whatwg.org/multipage/; spec: HTML
       text: event handlers
       text: event handler event type
       text: queue a task
+      text: task source
+      text: task; url: concept-task
       text: event loop
       text: fire a simple event
       text: trusted; url: concept-events-trusted
@@ -72,6 +74,10 @@ urlPrefix: https://w3c.github.io/permissions/; spec: permissions-api
   type: dfn
     text: associated PermissionDescriptor; url: dfn-associated-permissiondescriptor
     text: retrieving the permission state; url: dfn-retrieve-the-permission-state
+urlPrefix: https://w3c.github.io/page-visibility; spec: page-visibility
+  type: dfn
+    text: visibility states; url: dfn-visibility-states
+    text: steps to determine the visibility state; url: dfn-steps-to-determine-the-visibility-state
 </pre>
 
 
@@ -510,6 +516,17 @@ A <a interface>Sensor</a> object has an associated <dfn>state</dfn>,
 which is one of <a enum-value>"idle"</a>, <a enum-value>"activating"</a>, <a enum-value>"active"</a>, and <a enum-value>"errored"</a>. It is initially <a enum-value>"idle"</a>.
 
 A <a interface>Sensor</a> object has an associated <dfn>desired frequency</dfn>. It is initially `null`.
+
+Each <a interface>Sensor</a> object has a <a>task source</a>
+called a <dfn>sensor task source</dfn>, initially empty.
+A <a>sensor task source</a> can be enabled or disabled, and is initially enabled.
+When enabled, the <a>event loop</a> must use it as one of its <a>task sources</a>.
+The <a>task source</a> for the <a>tasks</a> mentioned in this specification is the <a>sensor task source</a>.
+
+When the <a>visibility state</a> of the <a>Document</a> in the <a>top-level browsing context</a> changes,
+let |current_visibility_state| be the result of running the <a>steps to determine the visibility state</a>
+of the <a>Document</a>.
+If |current_visibility_state| is "visible", enable the sensor task source, otherwise, disable it.
 
 <pre class="idl">
 interface Sensor : EventTarget {
