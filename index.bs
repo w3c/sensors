@@ -632,7 +632,7 @@ dictionary SensorReadingEventInit : EventInit {
 ### SensorReadingEvent.reading ### {#sensor-reading-event-reading}
 
 The <dfn attribute for=SensorReadingEvent>reading</dfn> attribute references
-the <a>current reading</a> at the time of <a>event</a> <a>dispatch</a>.
+the <a>current reading</a> at the time of <a lt=dispatch>event dispatch</a>.
 
 
 The SensorErrorEvent Interface {#the-sensor-error-event-interface}
