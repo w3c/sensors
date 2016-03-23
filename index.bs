@@ -150,7 +150,7 @@ proximity sensors.
 The API therefore makes it easy to interact with
 the device's default (and often unique) <a>sensor</a>
 for each <a lt="sensor types">type</a>
-simply by instantiating the corresponding <a interface>Sensor</a> subclass.
+simply by instantiating the corresponding {{Sensor}} subclass.
 
 Indeed, without specific information identifying a particular <a>sensor</a>
 of a given <a lt="sensor type">type</a>,
@@ -247,7 +247,7 @@ Therefore, an effective strategy is to combine feature detection,
 which checks whether an API for the sought-after sensor actually exists,
 and defensive programming which includes:
 
-1.  checking for error thrown when instantiating a <a interface>Sensor</a> object,
+1.  checking for error thrown when instantiating a {{Sensor}} object,
 2.  listening to errors emitted by it,
 3.  handling all of the above graciously so that the user's experience is
     enhanced by the possible usage of a sensor, not degraded by its
@@ -465,12 +465,12 @@ A <a>sensor type</a> may have a <dfn>default sensor</dfn>.
 
 If a <a>sensor type</a> has more than one <a>sensor</a>,
 it must have a set of associated <dfn>identifying parameters</dfn>
-to select the right <a>sensor</a> to a associate to each new <a interface>Sensor</a> objects.
+to select the right <a>sensor</a> to a associate to each new {{Sensor}} objects.
 
 A <a>sensor type</a> has an associated abstract operation to
 <dfn lt="Construct SensorReading Object">construct a SensorReading object</dfn>
 which takes the <a>sensor readings</a> emitted by the <a>sensor</a> and
-returns an initialized <a interface>SensorReading</a> object
+returns an initialized {{SensorReading}} object
 which uses the <a>sensor type</a>'s associated <a>SensorReading subclass</a>.
 
 Sensor {#model-sensor}
@@ -502,7 +502,7 @@ A <a>sensor</a> has an associated <dfn>current polling frequency</dfn> which is 
 
 A <a>sensor</a> has an associated abstract operation to
 <dfn lt="retrieve the sensor permission">retrieve its permission</dfn> which
-takes a <a interface>Sensor</a> object as input and
+takes a {{Sensor}} object as input and
 returns a <a>permission</a> and, eventually, its <a>associated PermissionDescriptor</a>.
 
 API {#api}
@@ -510,29 +510,6 @@ API {#api}
 
 The Sensor Interface {#the-sensor-interface}
 --------------------
-
-A <dfn interface>Sensor</dfn> object has an associated <a>sensor</a>.
-
-A <a interface>Sensor</a> object has an associated <dfn>state</dfn>,
-which is one of <a enum-value>"idle"</a>, <a enum-value>"activating"</a>, <a enum-value>"active"</a>, and <a enum-value>"errored"</a>. It is initially <a enum-value>"idle"</a>.
-
-A <a interface>Sensor</a> object has an associated <dfn>desired frequency</dfn>. It is initially `null`.
-
-Each <a interface>Sensor</a> object has a <a>task source</a>
-called a <dfn>sensor task source</dfn>, initially empty.
-A <a>sensor task source</a> can be enabled or disabled, and is initially enabled.
-When enabled, the <a>event loop</a> must use it as one of its <a>task sources</a>.
-The <a>task source</a> for the <a>tasks</a> mentioned in this specification is the <a>sensor task source</a>.
-
-When the <a>visibility state</a> of the <a>Document</a> in the <a>top-level browsing context</a> changes,
-let |current_visibility_state| be the result of running the <a>steps to determine the visibility state</a>
-of the <a>Document</a>.
-If |current_visibility_state| is "visible", enable the sensor task source, otherwise, disable it.
-
-Note: user agents are encouraged to stop sensor polling
-when <a>sensor task sources</a> are disabled in order
-to save battery.
-
 <pre class="idl">
 interface Sensor : EventTarget {
   readonly attribute SensorState state;
@@ -556,18 +533,40 @@ enum SensorState {
 };
 </pre>
 
+A {{Sensor}} object has an associated <a>sensor</a>.
+
+A {{Sensor}} object has an associated <dfn>state</dfn>,
+which is one of <a enum-value>"idle"</a>, <a enum-value>"activating"</a>, <a enum-value>"active"</a>, and <a enum-value>"errored"</a>. It is initially <a enum-value>"idle"</a>.
+
+A {{Sensor}} object has an associated <dfn>desired frequency</dfn>. It is initially `null`.
+
+Each {{Sensor}} object has a <a>task source</a>
+called a <dfn>sensor task source</dfn>, initially empty.
+A <a>sensor task source</a> can be enabled or disabled, and is initially enabled.
+When enabled, the <a>event loop</a> must use it as one of its <a>task sources</a>.
+The <a>task source</a> for the <a>tasks</a> mentioned in this specification is the <a>sensor task source</a>.
+
+When the <a>visibility state</a> of the <a>Document</a> in the <a>top-level browsing context</a> changes,
+let |current_visibility_state| be the result of running the <a>steps to determine the visibility state</a>
+of the <a>Document</a>.
+If |current_visibility_state| is "visible", enable the sensor task source, otherwise, disable it.
+
+Note: user agents are encouraged to stop sensor polling
+when <a>sensor task sources</a> are disabled in order
+to save battery.
+
 ### Sensor.state ### {#sensor-state}
 
-The <a attribute for="Sensor">state</a> attribute represents a <a interface>Sensor</a> object's <a>state</a>.
+The <a attribute for="Sensor">state</a> attribute represents a {{Sensor}} object's <a>state</a>.
 
 ### Sensor.reading ### {#sensor-reading}
 
 When a Sensor's state is <a enum-value>"active"</a>,
-its reading attribute must always point to the latest <a interface>SensorReading</a>
+its reading attribute must always point to the latest {{SensorReading}}
 whatever the <a>frequency</a> so that
 the reading attribute of two instances of the same Sensor interface
 associated with the same <a>sensor</a>
-hold the same <a interface>SensorReading</a> during a single <a>event loop</a> turn.
+hold the same {{SensorReading}} during a single <a>event loop</a> turn.
 
 ### Sensor.start() ### {#sensor-start}
 
@@ -645,15 +644,14 @@ that must be supported as attributes by the objects implementing the <a>Sensor</
 The SensorReading Interface {#the-sensor-reading-interface}
 ---------------------------
 
-A <dfn interface>SensorReading</dfn> represents the state of a <a>sensor</a> at a given point in time.
-
 <pre class="idl">
-
 [Constructor()]
 interface SensorReading {
   readonly attribute DOMHighResTimeStamp timeStamp;
 };
 </pre>
+
+A {{SensorReading}} represents the state of a <a>sensor</a> at a given point in time.
 
 ### SensorReading.timeStamp ### {#sensor-reading-timestamp}
 
@@ -697,7 +695,6 @@ dictionary SensorErrorEventInit : EventInit {
 
 ### SensorErrorEvent.error ### {#sensor-error-event-error}
 
-
 Abstract Operations {#abstract-operations}
 ===================
 
@@ -706,7 +703,7 @@ Abstract Operations {#abstract-operations}
     : input
     :: |options|, a <a dictionary>SensorOptions</a> object.
     : output
-    :: |sensor_instance|, a <a interface>Sensor</a> object.
+    :: |sensor_instance|, a {{Sensor}} object.
     
     1.  If the <a>incumbent settings object</a> is not a <a>secure context</a>, then:
         1.  <a>throw</a> a SecurityError.
@@ -715,12 +712,12 @@ Abstract Operations {#abstract-operations}
     1.  Otherwise, if <a>identifying parameters</a> in |options| are set, then:
         1.  If these <a>identifying parameters</a> allow a unique <a>sensor</a> to be identified, then:
             1.  let |sensor| be that <a>sensor</a>,
-            1.  let |sensor_instance| be a new <a interface>Sensor</a> object,
+            1.  let |sensor_instance| be a new {{Sensor}} object,
             1.  associate |sensor_instance| with |sensor|.
         1. Otherwise, <a>throw</a> a TypeError.
     1.  Otherwise, if a <a>default sensor</a> exists for this <a>sensor type</a>:
         1.  let |sensor| be that <a>sensor</a>,
-        1.  let |sensor_instance| be a new <a interface>Sensor</a> object,
+        1.  let |sensor_instance| be a new {{Sensor}} object,
         1.  associate |sensor_instance| with |sensor|.
     1.  Otherwise, <a>throw</a> a TypeError.
     1.  If |sensor| <a>supports periodic reporting mode</a>,
@@ -737,7 +734,7 @@ Abstract Operations {#abstract-operations}
 <h3 algorithm dfn>Register a Sensor</h3>
 
     : input
-    :: |sensor_instance|, a <a interface>Sensor</a> object.
+    :: |sensor_instance|, a {{Sensor}} object.
     : output
     :: None
     
@@ -753,7 +750,7 @@ Abstract Operations {#abstract-operations}
 <h3 algorithm dfn>Unregister a Sensor</h3>
 
     : input
-    :: |sensor_instance|, a <a interface>Sensor</a> object.
+    :: |sensor_instance|, a {{Sensor}} object.
     : output
     :: None
     
@@ -797,7 +794,7 @@ Abstract Operations {#abstract-operations}
             
             Note: there is not guarantee that the <a>current polling frequency</a>
             can be respected. Actual <a>frequency</a> can be calculated using
-            the <a interface>SensorReading</a>'s <a attribute for=SensorReading>timeStamp</a>.
+            the {{SensorReading}}'s <a attribute for=SensorReading>timeStamp</a>.
             
             If the <a>current reporting mode</a> is set to <a>auto</a>,
             the user-agent can decide on the best reporting strategy
@@ -841,8 +838,8 @@ Abstract Operations {#abstract-operations}
 <h3 algorithm dfn>Update State</h3>
 
     : input
-    :: |sensor_instance|, a <a interface>Sensor</a> object.
-    :: |state|, a <a interface>Sensor</a> object's <a>state</a>.
+    :: |sensor_instance|, a {{Sensor}} object.
+    :: |state|, a {{Sensor}} object's <a>state</a>.
     : output
     :: None
     
@@ -873,8 +870,8 @@ Abstract Operations {#abstract-operations}
 <h3 algorithm dfn>Update Reading</h3>
 
     : input
-    :: |sensor_instance|, a <a interface>Sensor</a> object.
-    :: |reading|, a <a interface>SensorReading</a> object.
+    :: |sensor_instance|, a {{Sensor}} object.
+    :: |reading|, a {{SensorReading}} object.
     : output
     :: None
     
@@ -882,7 +879,7 @@ Abstract Operations {#abstract-operations}
     1.  If |sensor_instance|'s <a attribute>state</a> is <a enum-value>"activating"</a>:
         1.  Invoke the <a>update state</a> algorithm passing |sensor_instance|
             and <a enum-value>"active"</a> as the arguments.
-    1.  Create an <a>event</a> |e| that uses the <a interface>SensorReadingEvent</a> interface,
+    1.  Create an <a>event</a> |e| that uses the {{SensorReadingEvent}} interface,
         with the event type `reading`, which does not bubble, is not cancelable, is <a>trusted</a>, and has no default action.
     1.  Let the <a attribute for=SensorReadingEvent>reading</a> attribute of |e| be initialized to |reading|.
     1.  <a>Queue a task</a> to <a>dispatch</a> |e| at |sensor_instance|.
@@ -890,14 +887,14 @@ Abstract Operations {#abstract-operations}
 <h3 algorithm dfn>Handle Errors</h3>
 
     : input
-    :: |sensor_instance|, a <a interface>Sensor</a> object.
+    :: |sensor_instance|, a {{Sensor}} object.
     :: |error|, an <a>Error</a> object.
     : output
     :: None
     
     1.  Set |sensor_instance|’s <a attribute for="Sensor">reading</a> to `null`.
     1.  Invoke the <a>update state</a> algorithm passing |sensor_instance| and <a enum-value>"errored"</a> as the arguments.
-    1.  Create an <a>event</a> |e| that uses the <a interface>SensorErrorEvent</a> interface,
+    1.  Create an <a>event</a> |e| that uses the {{SensorErrorEvent}} interface,
         with the event type `error`, which does not bubble, is not cancelable, is <a>trusted</a>, and has no default action.
     1.  Let the <a attribute for=SensorErrorEvent>error</a> attribute of |e| be initialized to |error|.
     1.  <a>Queue a task</a> to <a>dispatch</a> |e| at |sensor_instance|.
@@ -906,7 +903,7 @@ Abstract Operations {#abstract-operations}
 <h3 algorithm dfn>Request Sensor Access</h3>
 
     : input
-    :: |sensor_instance|, a <a interface>Sensor</a> object.
+    :: |sensor_instance|, a {{Sensor}} object.
     : output
     :: a <a>permission state</a>.
     
@@ -938,18 +935,18 @@ as appropriate.
 Naming {#naming}
 ------
 
-<a interface>Sensor</a> interfaces for <a>low-level</a> sensors should be
+{{Sensor}} interfaces for <a>low-level</a> sensors should be
 named after their associated <a>sensor</a>.
 So for example, the interface associated with a gyroscope
 should be simply named `Gyroscope`.
-<a interface>Sensor</a> interfaces for <a>high-level</a> sensors should be
+{{Sensor}} interfaces for <a>high-level</a> sensors should be
 named by combining the physical quantity the <a>sensor</a> measures
 with the "Sensor" suffix.
 For example, a <a>sensor</a> measuring
 the distance at which an object is from it
 may see its associated interface called `ProximitySensor`.
 
-Attributes of the <a interface>SensorReading</a> subclass that
+Attributes of the {{SensorReading}} subclass that
 hold <a>sensor readings</a> values
 should be named after the full name of these values.
 For example, the `TemperatureSensorReading` interface should hold
@@ -1010,7 +1007,7 @@ When is Enabling Multiple Sensors of the Same Type Not the Right Choice? {#multi
 TODO: provide guidance on when to:
 
 - allow multiple sensors of the same type to be instantiated,
-- create different interfaces that inherit from <a interface>Sensor</a>,
+- create different interfaces that inherit from {{Sensor}},
 - add constructor parameters to tweak sensors settings (e.g. setting required accuracy).
 
 Defining a Default {#defining-a-default}
@@ -1036,7 +1033,7 @@ Issue(w3c/sensors#22):
 Immutability Requirements {#immutability-requirement}
 -------------------------
 
-Attributes of the <a interface>SensorReading</a> subclass that
+Attributes of the {{SensorReading}} subclass that
 hold <a>sensor readings</a> values must be readonly.
 
 Example WebIDL {#example-webidl}
