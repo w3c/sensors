@@ -463,6 +463,10 @@ A <a>sensor type</a> has an associated <dfn export>SensorReading subclass</dfn>.
 
 A <a>sensor type</a> may have a <dfn export>default sensor</dfn>.
 
+A <a>sensor type</a> has an associated set of <dfn>supported reporting modes</dfn>,
+which cannot be empty and must be picked from the following:
+<a>auto</a> and <a>periodic</a>.
+
 If a <a>sensor type</a> has more than one <a>sensor</a>,
 it must have a set of associated <dfn export>identifying parameters</dfn>
 to select the right <a>sensor</a> to associate to each new {{Sensor}} objects.
@@ -480,18 +484,14 @@ A <dfn id=concept-sensor>sensor</dfn> has an associated set of <dfn>activated Se
 
 A <a>sensor</a> has an associated <dfn>current reading</dfn>,
 which can initially be `null` or
-be set to a <a>sensor reading</a> cached in a user-agent-specific way.
+be set to a {{SensorReading}} object, that was cached in a user-agent-specific way.
     
 Note: there are additional privacy concerns when using cached <a lt="sensor readings">readings</a>
 which predate either <a>navigating</a> to resources in the current <a>origin</a>,
 or being granted permission to access the <a>sensor</a>.
 
-A <a>sensor</a> has an associated set of <dfn>supported reporting modes</dfn>,
-which cannot be empty and must be picked from the following:
-<a>auto</a> and <a>periodic</a>.
-
 A <a>sensor</a> is said to <dfn lt="supports periodic reporting mode">support periodic reporting mode</dfn> if
-its set of <a>supported reporting modes</a>
+its associated <a>sensor type</a>'s <a>supported reporting modes</a>
 contains the <a>periodic</a> <a>reporting mode</a>.
 
 A <a>sensor</a> has an associated <dfn>reporting flag</dfn> which is initially unset.
