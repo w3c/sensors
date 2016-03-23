@@ -457,18 +457,18 @@ Sensor Type {#model-sensor-type}
 
 A <dfn>sensor type</dfn> has one or many associated <a>sensors</a>.
 
-A <a>sensor type</a> has an associated <dfn>Sensor subclass</dfn>.
+A <a>sensor type</a> has an associated <dfn export>Sensor subclass</dfn>.
 
-A <a>sensor type</a> has an associated <dfn>SensorReading subclass</dfn>.
+A <a>sensor type</a> has an associated <dfn export>SensorReading subclass</dfn>.
 
-A <a>sensor type</a> may have a <dfn>default sensor</dfn>.
+A <a>sensor type</a> may have a <dfn export>default sensor</dfn>.
 
 If a <a>sensor type</a> has more than one <a>sensor</a>,
-it must have a set of associated <dfn>identifying parameters</dfn>
-to select the right <a>sensor</a> to a associate to each new {{Sensor}} objects.
+it must have a set of associated <dfn export>identifying parameters</dfn>
+to select the right <a>sensor</a> to associate to each new {{Sensor}} objects.
 
 A <a>sensor type</a> has an associated abstract operation to
-<dfn lt="Construct SensorReading Object">construct a SensorReading object</dfn>
+<dfn export lt="Construct SensorReading Object">construct a SensorReading object</dfn>
 which takes the <a>sensor readings</a> emitted by the <a>sensor</a> and
 returns an initialized {{SensorReading}} object
 which uses the <a>sensor type</a>'s associated <a>SensorReading subclass</a>.
@@ -490,7 +490,7 @@ A <a>sensor</a> has an associated set of <dfn>supported reporting modes</dfn>,
 which cannot be empty and must be picked from the following:
 <a>auto</a> and <a>periodic</a>.
 
-A sensor is said to <dfn lt="supports periodic reporting mode">support periodic reporting mode</dfn> if
+A <a>sensor</a> is said to <dfn lt="supports periodic reporting mode">support periodic reporting mode</dfn> if
 its set of <a>supported reporting modes</a>
 contains the <a>periodic</a> <a>reporting mode</a>.
 
@@ -561,17 +561,17 @@ The <a attribute for="Sensor">state</a> attribute represents a {{Sensor}} object
 
 ### Sensor.reading ### {#sensor-reading}
 
-When a Sensor's state is <a enum-value>"active"</a>,
-its reading attribute must always point to the latest {{SensorReading}}
+When a {{Sensor}}'s <a>state</a> is <a enum-value>"active"</a>,
+its <a attribute for="Sensor">reading</a> attribute must always point to the <a>current reading</a>
 whatever the <a>frequency</a> so that
-the reading attribute of two instances of the same Sensor interface
+the <a attribute for="Sensor">reading</a> attribute of two instances of the same {{Sensor}} interface
 associated with the same <a>sensor</a>
 hold the same {{SensorReading}} during a single <a>event loop</a> turn.
 
 ### Sensor.start() ### {#sensor-start}
 
 <div algorithm="to start a sensor">
-The <dfn>start()</dfn> method must run these steps or their <a>equivalent</a>:
+The <a>start()</a> method must run these steps or their <a>equivalent</a>:
 
     1.  If |sensor_instance|'s <a>state</a> is neither <a enum-value>"idle"</a> nor <a enum-value>"errored"</a>,
         1.  throw an "<a>InvalidStateError</a>" exception and abort these steps.
@@ -593,7 +593,7 @@ The <dfn>start()</dfn> method must run these steps or their <a>equivalent</a>:
 ### Sensor.stop() ### {#sensor-stop}
 
 <div algorithm="to stop a sensor">
-The <dfn>stop()</dfn> method must run these steps or their <a>equivalent</a>:
+The <a>stop()</a> method must run these steps or their <a>equivalent</a>:
 
     1.  If |sensor_instance|'s <a>state</a> is either <a enum-value>"idle"</a> or <a enum-value>"errored"</a>, then
         1.  throw an "<a>InvalidStateError</a>" exception and abort these steps.
@@ -1012,14 +1012,14 @@ TODO: provide guidance on when to:
 Defining a Default {#defining-a-default}
 ------------------
 
-Extension specifications should define a default <a>sensor</a>
+Extension specifications should define a <a>default sensor</a>
 for each <a>sensor type</a> they define.
 Generally, devices are equipped with a single <a>sensor</a>
 of each <a lt="sensor types">type</a>,
-so defining a default <a>sensor</a>
+so defining a <a>default sensor</a>
 should be easy.
 For <a>sensor types</a> where multiple <a>sensors</a> are common,
-extension specifications may choose not to define a default sensor.
+extension specifications may choose not to define a <a>default sensor</a>.
 
 Extending the Permission API {#permission-api}
 ----------------------------
@@ -1103,6 +1103,8 @@ Thanks to Domenic Denicola and Jake Archibald for their help.
 
 Thanks also to Frederick Hirsch and Dominique Hazaël-Massieux (via the HTML5Apps project)
 for both their administrative help and technical input.
+
+Thanks to Tab Atkins for making Bikeshed and taking the time to explain its subtelties.
 
 The following people have greatly contributed to this specification through extensive discussions on GitHub:
 Anssi Kostiainen,
