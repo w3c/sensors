@@ -553,7 +553,7 @@ be set to a <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-r
 or being granted permission to access the <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-24">sensor</a>.</p>
    <p>A <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-25">sensor</a> has an associated set of <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="supported reporting modes" data-noexport="" id="supported-reporting-modes">supported reporting modes<span class="dfn-panel" data-deco=""><b><a href="#supported-reporting-modes">#supported-reporting-modes</a></b><b>Referenced in:</b><span><a href="#ref-for-supported-reporting-modes-1">7.2. Sensor</a></span></span></dfn>,
 which cannot be empty and must be picked from the following: <a data-link-type="dfn" href="#auto" id="ref-for-auto-3">auto</a> and <a data-link-type="dfn" href="#periodic" id="ref-for-periodic-4">periodic</a>.</p>
-   <p>A sensor is said to <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="supports periodic reporting mode" data-noexport="" id="supports-periodic-reporting-mode">support periodic reporting mode<span class="dfn-panel" data-deco=""><b><a href="#supports-periodic-reporting-mode">#supports-periodic-reporting-mode</a></b><b>Referenced in:</b><span><a href="#ref-for-supports-periodic-reporting-mode-1">9.1. Construct Sensor Object</a> <a href="#ref-for-supports-periodic-reporting-mode-2">(2)</a></span></span></dfn> if
+   <p>A sensor is said to <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="supports periodic reporting mode" data-noexport="" id="supports-periodic-reporting-mode">support periodic reporting mode<span class="dfn-panel" data-deco=""><b><a href="#supports-periodic-reporting-mode">#supports-periodic-reporting-mode</a></b><b>Referenced in:</b><span><a href="#ref-for-supports-periodic-reporting-mode-1">9.1. Construct Sensor Object</a></span></span></dfn> if
 its set of <a data-link-type="dfn" href="#supported-reporting-modes" id="ref-for-supported-reporting-modes-1">supported reporting modes</a> contains the <a data-link-type="dfn" href="#periodic" id="ref-for-periodic-5">periodic</a> <a data-link-type="dfn" href="#reporting-modes" id="ref-for-reporting-modes-8">reporting mode</a>.</p>
    <p>A <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-26">sensor</a> has an associated <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="reporting flag" data-noexport="" id="reporting-flag">reporting flag<span class="dfn-panel" data-deco=""><b><a href="#reporting-flag">#reporting-flag</a></b><b>Referenced in:</b><span><a href="#ref-for-reporting-flag-1">9.8. Update Current Reading</a> <a href="#ref-for-reporting-flag-2">(2)</a> <a href="#ref-for-reporting-flag-3">(3)</a></span></span></dfn> which is initially unset.</p>
    <p>A <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-27">sensor</a> has an associated <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="current reporting mode" data-noexport="" id="current-reporting-mode">current reporting mode<span class="dfn-panel" data-deco=""><b><a href="#current-reporting-mode">#current-reporting-mode</a></b><b>Referenced in:</b><span><a href="#ref-for-current-reporting-mode-1">9.3. Unregister a Sensor</a></span><span><a href="#ref-for-current-reporting-mode-2">9.4. Set Sensor Settings</a> <a href="#ref-for-current-reporting-mode-3">(2)</a> <a href="#ref-for-current-reporting-mode-4">(3)</a> <a href="#ref-for-current-reporting-mode-5">(4)</a> <a href="#ref-for-current-reporting-mode-6">(5)</a></span></span></dfn> which is initially <code>undefined</code>.</p>
@@ -781,14 +781,12 @@ dictionary <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-exp
     <li data-md="">
      <p>Otherwise, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-throw">throw</a> a TypeError.</p>
     <li data-md="">
-     <p>If <var>sensor</var> <a data-link-type="dfn" href="#supports-periodic-reporting-mode" id="ref-for-supports-periodic-reporting-mode-1">supports periodic reporting mode</a>,</p>
-    <li data-md="">
      <p>Let <var>frequency</var> be the value of the <a class="idl-code" data-link-type="dict-member" href="#dom-sensoroptions-frequency" id="ref-for-dom-sensoroptions-frequency-1">frequency</a> member of <var>options</var>.</p>
     <li data-md="">
      <p>If <var>frequency</var> is not <code>null</code>,</p>
      <ol>
       <li data-md="">
-       <p>If <var>sensor</var> <a data-link-type="dfn" href="#supports-periodic-reporting-mode" id="ref-for-supports-periodic-reporting-mode-2">supports periodic reporting mode</a>,</p>
+       <p>If <var>sensor</var> <a data-link-type="dfn" href="#supports-periodic-reporting-mode" id="ref-for-supports-periodic-reporting-mode-1">supports periodic reporting mode</a>,</p>
        <ol>
         <li data-md="">
          <p>Set <var>sensor_instance</var>’s <a data-link-type="dfn" href="#desired-frequency" id="ref-for-desired-frequency-1">desired frequency</a> to <var>frequency</var>.</p>
@@ -852,7 +850,7 @@ dictionary <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-exp
     <li data-md="">
      <p>Remove <var>sensor_instance</var> from <var>sensor</var>’s set of <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects-2">activated Sensor objects</a>.</p>
     <li data-md="">
-     <p>If <var>sensor</var>’s set of <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects-3">activated Sensor objects</a> is empty then,</p>
+     <p>If <var>sensor</var>’s set of <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects-3">activated Sensor objects</a> is empty,</p>
      <ol>
       <li data-md="">
        <p>Set <a data-link-type="dfn" href="#current-reporting-mode" id="ref-for-current-reporting-mode-1">current reporting mode</a> to <code>undefined</code>.</p>
