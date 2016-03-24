@@ -783,27 +783,32 @@ Abstract Operations {#abstract-operations}
         1.  set |settings_changed| to `true`.
         1.  Set <a>current polling frequency</a> to |frequency|.
     1.  If |settings_changed| is `true`
-        1.  Update the user-agent-specific way in which <a>sensor readings</a> are obtained from |sensor|
-            to account for |sensor|'s <a>current reporting mode</a> and <a>current polling frequency</a>.
-            
-            If <a>current reporting mode</a> is <a>periodic</a>,
-            <a>sensor readings</a> must be reported periodically,
-            at the <a>current polling frequency</a>,
-            capped, obviously, by the limits of the underlying hardware.
+        1.  Invoke the <a>Observe a Sensor</a> abstract operation, passing it |sensor| as argument.
+
+
+<h3 algorithm dfn>Observe a Sensor</h3>
+
+    : input
+    :: |sensor|, a <a>sensor</a>.
+    : output
+    :: None
+    
+    1.  If |sensor|'s <a>current reporting mode</a> is <a>periodic</a>,
+        1.  let |frequency| be the <a>current polling frequency</a>,
+            capped by the upper and lower bounds of the underlying hardware.
+        1.  Invoke the <a>Update Current Reading</a> abstract operation
+            at a <a>frequency</a> of |frequency| passing it |sensor| and
+            the latest <a>sensor reading</a> as arguments.
             
             Note: there is not guarantee that the <a>current polling frequency</a>
-            can be respected. Actual <a>frequency</a> can be calculated using
-            the {{SensorReading}}'s <a attribute for=SensorReading>timeStamp</a>.
-            
-            If the <a>current reporting mode</a> is set to <a>auto</a>,
-            the user-agent can decide on the best reporting strategy
+            can be respected. The actual <a>frequency</a> can be calculated using
+            {{SensorReading}} <a attribute for=SensorReading>timeStamp</a> attributes.
+    1.  If the <a>current reporting mode</a> is set to <a>auto</a>,
+        1.  the user-agent can decide on the best reporting strategy
             for this particular |sensor| and <a>sensor type</a>.
-            
-            In all cases, 
-            |sensor| must use the <a>Update Current Reading</a> abstract operation
-            to report <a>sensor readings</a>,
+        1.  The user-agent must invoke the <a>Update Current Reading</a> abstract operation
+            at to report fresh <a lt="sensor readings">readings</a>,
             passing it |sensor| and the latest <a>sensor reading</a> as arguments.
-
 
 <h3 algorithm dfn>Find Current Reporting Mode of a Sensor</h3>
     
