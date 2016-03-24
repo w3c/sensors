@@ -701,7 +701,7 @@ dictionary SensorErrorEventInit : EventInit {
 Abstract Operations {#abstract-operations}
 ===================
 
-<h3 algorithm dfn>Construct Sensor Object</h3>
+<h3 export algorithm dfn>Construct Sensor Object</h3>
 
     : input
     :: |options|, a <a dictionary>SensorOptions</a> object.
