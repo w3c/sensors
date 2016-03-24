@@ -904,7 +904,7 @@ Abstract Operations {#abstract-operations}
     : input
     :: |sensor_instance|, a {{Sensor}} object.
     : output
-    :: a <a>permission state</a>.
+    :: |state|, a <a>permission state</a>.
     
     1.  Let |sensor| be the <a>sensor</a> associated with |sensor_instance|.
     1.  let |permission| be the result of invoking the abstract operation <a>retrieve the sensor permission</a> associated with |sensor|,
