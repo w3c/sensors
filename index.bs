@@ -1038,20 +1038,13 @@ At least the following definitions must be specified in each extension specifica
 An extension specification may specify the following defintions:
 
 -   A {{SensorOptions}} subclass.
--   A <a>default sensor</a>.
+-   A <a>default sensor</a>. Generally, devices are equipped with a single <a>sensor</a>
+    of each <a lt="sensor types">type</a>,
+    so defining a <a>default sensor</a> should be straightforward.
+    For <a>sensor types</a> where multiple <a>sensors</a> are common,
+    extension specifications may choose not to define a <a>default sensor</a>,
+    especially when doing so would not make sense.
 -   A set of <a>identifying parameters</a>. TODO: replace that by an abstract operation.
-
-Defining a Default {#defining-a-default}
-------------------
-
-Extension specifications should define a <a>default sensor</a>
-for each <a>sensor type</a> they define.
-Generally, devices are equipped with a single <a>sensor</a>
-of each <a lt="sensor types">type</a>,
-so defining a <a>default sensor</a>
-should be easy.
-For <a>sensor types</a> where multiple <a>sensors</a> are common,
-extension specifications may choose not to define a <a>default sensor</a>.
 
 Extending the Permission API {#permission-api}
 ----------------------------
