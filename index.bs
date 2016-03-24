@@ -912,10 +912,10 @@ Abstract Operations {#abstract-operations}
     1.  Let |state| be the result of <a>retrieving the permission state</a> for |permission|.
     1.  If |state| is "prompt",
         1.  Prompt the user in a user-agent-specific manner for permission to provide access to |sensor|
-            1.  If permission is granted,
-                1. set |state| to "granted",
-            1.  else,
-                1. set |state| to "denied".
+        1.  If permission is granted,
+            1. set |state| to "granted",
+        1.  else,
+            1. set |state| to "denied".
     1.  return |state|.
 
 Extensibility {#extensibility}

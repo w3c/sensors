@@ -1110,19 +1110,17 @@ dictionary <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-exp
      <ol>
       <li data-md="">
        <p>Prompt the user in a user-agent-specific manner for permission to provide access to <var>sensor</var></p>
+      <li data-md="">
+       <p>If permission is granted,</p>
        <ol>
         <li data-md="">
-         <p>If permission is granted,</p>
-         <ol>
-          <li data-md="">
-           <p>set <var>state</var> to "granted",</p>
-         </ol>
+         <p>set <var>state</var> to "granted",</p>
+       </ol>
+      <li data-md="">
+       <p>else,</p>
+       <ol>
         <li data-md="">
-         <p>else,</p>
-         <ol>
-          <li data-md="">
-           <p>set <var>state</var> to "denied".</p>
-         </ol>
+         <p>set <var>state</var> to "denied".</p>
        </ol>
      </ol>
     <li data-md="">
