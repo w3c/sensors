@@ -460,10 +460,12 @@ A <dfn>sensor type</dfn> has one or many associated <a>sensors</a>.
 A <a>sensor type</a> has an associated <dfn export>Sensor subclass</dfn>.
 
 A <a>sensor type</a> has an associated <dfn export>SensorReading subclass</dfn>.
+Attributes of the <a>SensorReading subclass</a> subclass that
+hold <a>sensor readings</a> must be readonly.
 
 A <a>sensor type</a> may have a <dfn export>default sensor</dfn>.
 
-A <a>sensor type</a> has an associated set of <dfn>supported reporting modes</dfn>,
+A <a>sensor type</a> has an associated set of <dfn export>supported reporting modes</dfn>,
 which cannot be empty and must be picked from the following:
 <a>auto</a> and <a>periodic</a>.
 
@@ -501,7 +503,7 @@ A <a>sensor</a> has an associated <dfn>current reporting mode</dfn> which is ini
 A <a>sensor</a> has an associated <dfn>current polling frequency</dfn> which is initially `null`.
 
 A <a>sensor</a> has an associated abstract operation to
-<dfn lt="retrieve the sensor permission">retrieve its permission</dfn> which
+<dfn export lt="retrieve the sensor permission">retrieve its permission</dfn> which
 takes a {{Sensor}} object as input and
 returns a <a>permission</a> and, eventually, its <a>associated PermissionDescriptor</a>.
 
@@ -1014,6 +1016,31 @@ TODO: provide guidance on when to:
 - create different interfaces that inherit from {{Sensor}},
 - add constructor parameters to tweak sensors settings (e.g. setting required accuracy).
 
+Definition Requirements {#definition-reqs}
+-----------------------
+
+At least the following definitions must be specified in each extension specification.
+
+-   A <a>Sensor subclass</a> which is constructible and takes
+    an optional {{SensorOptions}} dictionary as argument.
+-   A <a>SensorReading subclass</a> which is constructible and
+    whose attributes which hold <a>sensor readings</a> are readonly.
+-   A abstract operation to
+    <a lt="Construct SensorReading Object">construct a SensorReading object</a>
+    which takes the <a>sensor readings</a> emitted by the <a>sensor</a> and
+    returns an initialized <a>SensorReading subclass</a> object.
+-   The <a>sensor type</a>'s <a>supported reporting modes</a>.
+-   A abstract operation to
+    <a lt="retrieve the sensor permission">retrieve sensor permission</a> which
+    takes a <a>Sensor subclass</a> object as input and
+    returns a <a>permission</a> and, eventually, its <a>associated PermissionDescriptor</a>.
+
+An extension specification may specify the following defintions:
+
+-   A {{SensorOptions}} subclass.
+-   A <a>default sensor</a>.
+-   A set of <a>identifying parameters</a>. TODO: replace that by an abstract operation.
+
 Defining a Default {#defining-a-default}
 ------------------
 
@@ -1033,12 +1060,6 @@ Provide guidance on how to extend the Permission API [[PERMISSIONS]]
 for each <a>sensor types</a>.
 
 Issue(w3c/sensors#22):
-
-Immutability Requirements {#immutability-requirement}
--------------------------
-
-Attributes of the {{SensorReading}} subclass that
-hold <a>sensor readings</a> values must be readonly.
 
 Example WebIDL {#example-webidl}
 --------------
