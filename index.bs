@@ -649,7 +649,6 @@ The SensorReading Interface {#the-sensor-reading-interface}
 ---------------------------
 
 <pre class="idl">
-[Constructor()]
 interface SensorReading {
   readonly attribute DOMHighResTimeStamp timeStamp;
 };

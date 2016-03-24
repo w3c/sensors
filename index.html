@@ -1997,8 +1997,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
       <td><code>error</code>
    </table>
    <h3 class="heading settled" data-level="8.2" id="the-sensor-reading-interface"><span class="secno">8.2. </span><span class="content">The SensorReading Interface</span><a class="self-link" href="#the-sensor-reading-interface"></a></h3>
-<pre class="idl def">[<dfn class="idl-code" data-dfn-for="SensorReading" data-dfn-type="constructor" data-export="" data-lt="SensorReading()" id="dom-sensorreading-sensorreading">Constructor<a class="self-link" href="#dom-sensorreading-sensorreading"></a></dfn>()]
-interface <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export="" data-lt="SensorReading" id="sensorreading">SensorReading<span class="dfn-panel" data-deco=""><b><a href="#sensorreading">#sensorreading</a></b><b>Referenced in:</b><span><a href="#ref-for-sensorreading-1">7.1. Sensor Type</a></span><span><a href="#ref-for-sensorreading-2">7.2. Sensor</a></span><span><a href="#ref-for-sensorreading-3">8.1. The Sensor Interface</a></span><span><a href="#ref-for-sensorreading-4">8.1.2. Sensor.reading</a></span><span><a href="#ref-for-sensorreading-5">8.2. The SensorReading Interface</a></span><span><a href="#ref-for-sensorreading-6">8.3. The SensorReadingEvent Interface</a> <a href="#ref-for-sensorreading-7">(2)</a></span><span><a href="#ref-for-sensorreading-8">9.5. Observe a Sensor</a></span><span><a href="#ref-for-sensorreading-9">9.10. Update Reading</a></span><span><a href="#ref-for-sensorreading-10">10.1. Naming</a></span></span></dfn> {
+<pre class="idl def">interface <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export="" data-lt="SensorReading" id="sensorreading">SensorReading<span class="dfn-panel" data-deco=""><b><a href="#sensorreading">#sensorreading</a></b><b>Referenced in:</b><span><a href="#ref-for-sensorreading-1">7.1. Sensor Type</a></span><span><a href="#ref-for-sensorreading-2">7.2. Sensor</a></span><span><a href="#ref-for-sensorreading-3">8.1. The Sensor Interface</a></span><span><a href="#ref-for-sensorreading-4">8.1.2. Sensor.reading</a></span><span><a href="#ref-for-sensorreading-5">8.2. The SensorReading Interface</a></span><span><a href="#ref-for-sensorreading-6">8.3. The SensorReadingEvent Interface</a> <a href="#ref-for-sensorreading-7">(2)</a></span><span><a href="#ref-for-sensorreading-8">9.5. Observe a Sensor</a></span><span><a href="#ref-for-sensorreading-9">9.10. Update Reading</a></span><span><a href="#ref-for-sensorreading-10">10.1. Naming</a></span></span></dfn> {
   readonly attribute <a data-link-type="idl-name" href="http://w3c.github.io/hr-time/#dom-domhighrestimestamp">DOMHighResTimeStamp</a> <dfn class="dfn-paneled idl-code" data-dfn-for="SensorReading" data-dfn-type="attribute" data-export="" data-lt="timeStamp" data-readonly="" data-type="DOMHighResTimeStamp " id="dom-sensorreading-timestamp">timeStamp<span class="dfn-panel" data-deco=""><b><a href="#dom-sensorreading-timestamp">#dom-sensorreading-timestamp</a></b><b>Referenced in:</b><span><a href="#ref-for-dom-sensorreading-timestamp-1">9.5. Observe a Sensor</a></span></span></dfn>;
 };
 </pre>
@@ -2795,7 +2794,6 @@ for their editorial input.</p>
    <li><a href="#sensor-hubs">sensor hubs</a><span>, in §6</span>
    <li><a href="#dictdef-sensoroptions">SensorOptions</a><span>, in §8.1</span>
    <li><a href="#sensorreading">SensorReading</a><span>, in §8.2</span>
-   <li><a href="#dom-sensorreading-sensorreading">SensorReading()</a><span>, in §8.2</span>
    <li><a href="#sensorreadingevent">SensorReadingEvent</a><span>, in §8.3</span>
    <li><a href="#dictdef-sensorreadingeventinit">SensorReadingEventInit</a><span>, in §8.3</span>
    <li><a href="#dom-sensorreadingevent-sensorreadingevent">SensorReadingEvent(type, eventInitDict)</a><span>, in §8.3</span>
@@ -2951,7 +2949,6 @@ enum <a href="#enumdef-sensorstate">SensorState</a> {
   <a href="#dom-sensorstate-errored">"errored"</a>
 };
 
-[<a href="#dom-sensorreading-sensorreading">Constructor</a>()]
 interface <a href="#sensorreading">SensorReading</a> {
   readonly attribute <a data-link-type="idl-name" href="http://w3c.github.io/hr-time/#dom-domhighrestimestamp">DOMHighResTimeStamp</a> <a data-readonly="" data-type="DOMHighResTimeStamp " href="#dom-sensorreading-timestamp">timeStamp</a>;
 };
