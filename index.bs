@@ -1021,7 +1021,7 @@ TODO: provide guidance on when to:
 Definition Requirements {#definition-reqs}
 -----------------------
 
-At least the following definitions must be specified in each extension specification.
+At least the following definitions must be specified in each extension specification:
 
 -   A <a>Sensor subclass</a> which is constructible and takes
     an optional {{SensorOptions}} dictionary as argument.
