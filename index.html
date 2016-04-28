@@ -1305,6 +1305,7 @@ Possible extra rowspan handling
     }
   </style>
   <meta content="Bikeshed 1.0.0" name="generator">
+<style>svg.drag-handle { display: none; }</style>
 <style>
         .dfn-panel {
             display: inline-block;
@@ -1402,7 +1403,7 @@ Possible extra rowspan handling
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="http://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-04-14">14 April 2016</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-04-28">28 April 2016</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2007,6 +2008,11 @@ that must be supported as attributes by the objects implementing the <a data-lin
    <h4 class="heading settled" data-level="8.2.1" id="sensor-reading-timestamp"><span class="secno">8.2.1. </span><span class="content">SensorReading.timeStamp</span><a class="self-link" href="#sensor-reading-timestamp"></a></h4>
    <p>Returns a timestamp of the time
 at which the <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-17">reading</a> was obtained from the <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-34">sensor</a> expressed in milliseconds that passed since the <a data-link-type="dfn" href="http://w3c.github.io/hr-time/#time-origin">time origin</a>.</p>
+   <div class="issue no-marker" id="issue-d41d8cd9">
+    <a class="self-link" href="#issue-d41d8cd9"></a><a class="marker" href="https://github.com/w3c/sensors/issues/101">Issue #101 on GitHub: “Eventually rename the SensorReading timeStamp attribute for consistency with DOM events.”</a>
+    <p>The DOM standard wants events to expose a <code>DOMHighResTimestamp</code> time stamp. It's <a href="https://github.com/whatwg/dom/issues/23">up for debate</a> right now whether it would be Web-compatible to modify the <code>timeStamp</code> attribute or whether a new attribute needs to be added to the spec instead.</p>
+    <p>For consistency, <code>SensorReading</code> <code>timeStamp</code> attribute, which is a <code>DOMHighResTimestamp</code>, will be renamed to whatever ends up being chosen for events.</p>
+   </div>
    <h3 class="heading settled" data-level="8.3" id="the-sensor-reading-event-interface"><span class="secno">8.3. </span><span class="content">The SensorReadingEvent Interface</span><a class="self-link" href="#the-sensor-reading-event-interface"></a></h3>
 <pre class="idl def">[<dfn class="idl-code" data-dfn-for="SensorReadingEvent" data-dfn-type="constructor" data-export="" data-lt="SensorReadingEvent(type, eventInitDict)" id="dom-sensorreadingevent-sensorreadingevent">Constructor<a class="self-link" href="#dom-sensorreadingevent-sensorreadingevent"></a></dfn>(DOMString <dfn class="idl-code" data-dfn-for="SensorReadingEvent/SensorReadingEvent(type, eventInitDict)" data-dfn-type="argument" data-export="" id="dom-sensorreadingevent-sensorreadingevent-type-eventinitdict-type">type<a class="self-link" href="#dom-sensorreadingevent-sensorreadingevent-type-eventinitdict-type"></a></dfn>, <a data-link-type="idl-name" href="#dictdef-sensorreadingeventinit" id="ref-for-dictdef-sensorreadingeventinit-1">SensorReadingEventInit</a> <dfn class="idl-code" data-dfn-for="SensorReadingEvent/SensorReadingEvent(type, eventInitDict)" data-dfn-type="argument" data-export="" id="dom-sensorreadingevent-sensorreadingevent-type-eventinitdict-eventinitdict">eventInitDict<a class="self-link" href="#dom-sensorreadingevent-sensorreadingevent-type-eventinitdict-eventinitdict"></a></dfn>)]
 interface <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export="" data-lt="SensorReadingEvent" id="sensorreadingevent">SensorReadingEvent<span class="dfn-panel" data-deco=""><b><a href="#sensorreadingevent">#sensorreadingevent</a></b><b>Referenced in:</b><span><a href="#ref-for-sensorreadingevent-1">9.10. Update Reading</a></span></span></dfn> : <a data-link-type="idl-name" href="https://dom.spec.whatwg.org/#event">Event</a> {
@@ -2565,32 +2571,39 @@ exposing <a data-link-type="dfn" href="#low-level" id="ref-for-low-level-13">low
    </ul>
    <h3 class="heading settled" data-level="10.6" id="permission-api"><span class="secno">10.6. </span><span class="content">Extending the Permission API</span><a class="self-link" href="#permission-api"></a></h3>
    <p>Provide guidance on how to extend the Permission API <a data-link-type="biblio" href="#biblio-permissions">[PERMISSIONS]</a> for each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-29">sensor types</a>.</p>
-   <div class="issue no-marker" id="issue-d41d8cd9">
-    <a class="self-link" href="#issue-d41d8cd9"></a><a class="marker" href="https://github.com/w3c/sensors/issues/22">Issue #22 on GitHub: “Simplify extension of the Permissions API for concrete sensor implementations”</a>
+   <div class="issue no-marker" id="issue-d41d8cd90">
+    <a class="self-link" href="#issue-d41d8cd90"></a><a class="marker" href="https://github.com/w3c/sensors/issues/22">Issue #22 on GitHub: “Simplify extension of the Permissions API for concrete sensor implementations”</a>
     <p>Accessing sensor data has multiple privacy implications and is therefore subject to permissioning. The <a href="https://w3c.github.io/permissions/">Permission API</a> allows developers to check whether the permission to access a given API was already granted (or denied) by the user on a per origin basis.</p>
     <p>Currently, exposing that status through the Permissions API requires a modification of the Permission API spec itself. Ideally, we'd want sped editors authoring concrete sensor specs to be able to extend the Permission API within the same document.</p>
     <p>This needs concertation with the editors of the Permissions API.</p>
     <p><strong>Actions:</strong></p>
     <ul class="task-list">
      <li class="task-list-item">
+       <span class="handle js-handle"> <svg aria-hidden="true" class="drag-handle" height="15" version="1.1" viewBox="0 0 16 15" width="16"><path d="M12,4V5H4V4h8ZM4,8h8V7H4V8Zm0,3h8V10H4v1Z"></path></svg> </span> 
       <input checked="" class="task-list-item-checkbox" disabled="" type="checkbox">
        Liaise with <a class="user-mention" href="https://github.com/mounirlamouri">@mounirlamouri</a> and <a class="user-mention" href="https://github.com/marcoscaceres">@marcoscaceres</a> 
      <li class="task-list-item">
+       <span class="handle js-handle"> <svg aria-hidden="true" class="drag-handle" height="15" version="1.1" viewBox="0 0 16 15" width="16"><path d="M12,4V5H4V4h8ZM4,8h8V7H4V8Zm0,3h8V10H4v1Z"></path></svg> </span> 
       <input checked="" class="task-list-item-checkbox" disabled="" type="checkbox">
        Investigate relationship to <a href="https://w3c.github.io/permissions/">Permissions API</a>.
      <li class="task-list-item">
+       <span class="handle js-handle"> <svg aria-hidden="true" class="drag-handle" height="15" version="1.1" viewBox="0 0 16 15" width="16"><path d="M12,4V5H4V4h8ZM4,8h8V7H4V8Zm0,3h8V10H4v1Z"></path></svg> </span> 
       <input checked="" class="task-list-item-checkbox" disabled="" type="checkbox">
        Try to find a solution that doesn't imply a <a href="https://w3c.github.io/permissions/">Permissions API</a> update for every concrete Sensor spec.
      <li class="task-list-item">
+       <span class="handle js-handle"> <svg aria-hidden="true" class="drag-handle" height="15" version="1.1" viewBox="0 0 16 15" width="16"><path d="M12,4V5H4V4h8ZM4,8h8V7H4V8Zm0,3h8V10H4v1Z"></path></svg> </span> 
       <input checked="" class="task-list-item-checkbox" disabled="" type="checkbox">
        Email @public-script-coord about <code>partial enum</code> proposal
      <li class="task-list-item">
+       <span class="handle js-handle"> <svg aria-hidden="true" class="drag-handle" height="15" version="1.1" viewBox="0 0 16 15" width="16"><path d="M12,4V5H4V4h8ZM4,8h8V7H4V8Zm0,3h8V10H4v1Z"></path></svg> </span> 
       <input checked="" class="task-list-item-checkbox" disabled="" type="checkbox">
        Wait for @public-script-coord feedback
      <li class="task-list-item">
+       <span class="handle js-handle"> <svg aria-hidden="true" class="drag-handle" height="15" version="1.1" viewBox="0 0 16 15" width="16"><path d="M12,4V5H4V4h8ZM4,8h8V7H4V8Zm0,3h8V10H4v1Z"></path></svg> </span> 
       <input class="task-list-item-checkbox" disabled="" type="checkbox">
        Document current issue as a note in the Extensibility section of the spec.
      <li class="task-list-item">
+       <span class="handle js-handle"> <svg aria-hidden="true" class="drag-handle" height="15" version="1.1" viewBox="0 0 16 15" width="16"><path d="M12,4V5H4V4h8ZM4,8h8V7H4V8Zm0,3h8V10H4v1Z"></path></svg> </span> 
       <input class="task-list-item-checkbox" disabled="" type="checkbox">
        Rewrite the permission seeking abstract operations once <a class="issue-link js-issue-link" data-error-text="Failed to load issue title" data-id="139764016" data-permission-text="Issue title is private" data-url="https://github.com/w3c/permissions/issues/66" href="https://github.com/w3c/permissions/pull/66">w3c/permissions#66</a> lands..
     </ul>

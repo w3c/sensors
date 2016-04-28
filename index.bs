@@ -84,6 +84,7 @@ urlPrefix: https://w3c.github.io/page-visibility; spec: PAGE-VISIBILITY
     text: visibility states; url: dfn-visibility-states
     text: steps to determine the visibility state; url: dfn-steps-to-determine-the-visibility-state
 </pre>
+<style>svg.drag-handle { display: none; }</style>
 
 
 Introduction {#intro}
@@ -663,6 +664,8 @@ A {{SensorReading}} represents the state of a <a>sensor</a> at a given point in 
 Returns a timestamp of the time
 at which the <a lt="sensor reading">reading</a> was obtained from the <a>sensor</a>
 expressed in milliseconds that passed since the <a>time origin</a>.
+
+Issue(101):
 
 The SensorReadingEvent Interface {#the-sensor-reading-event-interface}
 --------------------------------
