@@ -84,8 +84,6 @@ urlPrefix: https://w3c.github.io/page-visibility; spec: PAGE-VISIBILITY
     text: visibility states; url: dfn-visibility-states
     text: steps to determine the visibility state; url: dfn-steps-to-determine-the-visibility-state
 </pre>
-<style>svg.drag-handle { display: none; }</style>
-
 
 Introduction {#intro}
 =====================
