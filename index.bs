@@ -287,7 +287,7 @@ should also be considered.
 Variations in <a>sensor readings</a>
 as well as event firing rates
 offer the possibility of fingerprinting to identify users.
-Browser implementations may reduce the risk by
+User agents may reduce the risk by
 limiting event rates available to web application developers.
 
 Note: do we really want this mitigation strategy?
@@ -297,7 +297,7 @@ used simultaneously in different window contexts on the same device
 it may be possible for that code to correlate the user across those two contexts,
 creating unanticipated tracking mechanisms.
 
-Browser implementations should consider providing the user
+User agents should consider providing the user
 an indication of when the <a>sensor</a> is used
 and allowing the user to disable it.
 

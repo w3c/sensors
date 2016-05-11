@@ -1402,7 +1402,7 @@ Possible extra rowspan handling
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="http://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-04-29">29 April 2016</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-05-11">11 May 2016</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1723,14 +1723,14 @@ The potential risks of collection of such data over a longer period of time
 should also be considered.</p>
    <p>Variations in <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-1">sensor readings</a> as well as event firing rates
 offer the possibility of fingerprinting to identify users.
-Browser implementations may reduce the risk by
+User agents may reduce the risk by
 limiting event rates available to web application developers.</p>
    <p class="note" role="note">Note: do we really want this mitigation strategy?</p>
    <p>If the same JavaScript code using the API can be
 used simultaneously in different window contexts on the same device
 it may be possible for that code to correlate the user across those two contexts,
 creating unanticipated tracking mechanisms.</p>
-   <p>Browser implementations should consider providing the user
+   <p>User agents should consider providing the user
 an indication of when the <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-10">sensor</a> is used
 and allowing the user to disable it.</p>
    <p>Web application developers that use <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-11">sensors</a> should
@@ -2576,7 +2576,7 @@ exposing <a data-link-type="dfn" href="#low-level" id="ref-for-low-level-13">low
     <p>Currently, exposing that status through the Permissions API requires a modification of the Permission API spec itself. Ideally, we'd want sped editors authoring concrete sensor specs to be able to extend the Permission API within the same document.</p>
     <p>This needs concertation with the editors of the Permissions API.</p>
     <p><strong>Actions:</strong></p>
-    <ul class="task-list">
+    <ul class="contains-task-list">
      <li class="task-list-item">
       <input checked="" class="task-list-item-checkbox" disabled="" type="checkbox">
        Liaise with <a class="user-mention" href="https://github.com/mounirlamouri">@mounirlamouri</a> and <a class="user-mention" href="https://github.com/marcoscaceres">@marcoscaceres</a> 
