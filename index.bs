@@ -305,6 +305,8 @@ Web application developers that use <a>sensors</a> should
 perform a privacy assessment of their application
 taking all aspects of their application into consideration.
 
+Ability to detect a full working set of sensors on a device can form an identifier and could be used to fingerprinting
+
 Browsing Context {#browsing-context}
 ----------------
 
