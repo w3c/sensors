@@ -167,7 +167,7 @@ the default <a>sensor</a> is chosen.
 
     sensor.onchange = function(event) {
         var coords = [event.reading.latitude, event.reading.longitude];
-        updateMap(null, coords, reading.data.accuracy);
+        updateMap(null, coords, event.reading.accuracy);
     };
 
     sensor.onerror = function(error) {
@@ -262,7 +262,7 @@ and defensive programming which includes:
             let sensor = new GeolocationSensor({});
             sensor.start();
             sensor.onerror = error => gracefullyDegrade(error);
-            sensor.onchange = data => updatePosition(data.coords);
+            sensor.onchange = event => updatePosition(event.reading.coords);
         } catch(error) {
             gracefullyDegrade(error);
         }
