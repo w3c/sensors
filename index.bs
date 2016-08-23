@@ -305,9 +305,11 @@ Web application developers that use <a>sensors</a> should
 perform a privacy assessment of their application
 taking all aspects of their application into consideration.
 
-Ability to detect a full working set of sensors on a device can form an identifier and could be used to fingerprinting
+Ability to detect a full working set of sensors on a device can form an
+identifier and could be used to fingerprinting.
 
-A combination of selected sensors can potentially be used to form an out of band communication channel between devices.
+A combination of selected sensors can potentially be used to form an out of
+band communication channel between devices.
 
 Sensors can potentially be used in cross-device linking and tracking of a user.
 
