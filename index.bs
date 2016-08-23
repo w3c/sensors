@@ -1,5 +1,6 @@
 <pre class="metadata">
 Title: Generic Sensor API
+Level: 1
 Status: ED
 ED: https://w3c.github.io/sensors/
 Shortname: generic-sensor
@@ -20,7 +21,6 @@ Version History: https://github.com/w3c/sensors/commits/gh-pages/index.bs
 Indent: 2
 Repository: w3c/sensors
 Markup Shorthands: markdown on
-Inline Github Issues: true
 !Issue Tracking: <a href="https://github.com/w3c/sensors/milestones/Level%201">Level 1 Issues</a>
 !Issue Tracking: <a href="https://github.com/w3c/sensors/milestones/Level%202">Level 2 Issues</a>
 !Test Suite: <a href="https://github.com/w3c/web-platform-tests/tree/master/generic-sensor">web-platform-tests on GitHub</a>
@@ -144,7 +144,7 @@ The Generic Sensor API is designed to make the most common use cases straightfor
 while still enabling more complex use cases.
 
 Most devices deployed today do not carry more than one
-<a>sensor</a> of each <a lt="sensor types">type</a>.
+<a>sensor</a> of each <a lt="sensor type">sensor types</a>.
 This shouldn't come as a surprise since use cases for more than
 a <a>sensor</a> of a given <a lt="sensor types">type</a> are rare
 and generally limited to specific <a>sensor types</a> such as
@@ -392,7 +392,7 @@ are encouraged to provide domain-specific definitions of
 <a>high-level</a> and <a>low-level</a> sensors
 for the given <a>sensor types</a> they are targeting.
 
-<a>Sensor readings</a> from different sensor <a>types</a> can be combined together 
+<a>Sensor readings</a> from different <a>sensor types</a> can be combined together 
 through a process called <dfn>sensor fusion</dfn>.
 This process provides <a lt="high-level">higher-level</a> or
 more accurate data (often at the cost of increased latency).
@@ -867,7 +867,7 @@ Abstract Operations {#abstract-operations}
     1.  If |sensor|’s <a>reporting flag</a> is set,
         1. abort these steps.
     1.  Set |sensor|’s <a>reporting flag</a>.
-    1.  Let |reading_instance| be the result of invoking |sensor| <a>type</a>'s associated
+    1.  Let |reading_instance| be the result of invoking <a>sensor type</a>'s associated
         <a>Construct SensorReading Object</a> operation,
         passing it |reading| as argument.
     1.  Set |sensor|’s <a>current reading</a> to |reading_instance|.
@@ -1064,7 +1064,7 @@ Example WebIDL {#example-webidl}
 Here's example WebIDL for a possible extension of this specification
 for proximity <a>sensors</a>.
 
-<pre class=example highlight=WEBidl >
+<pre class=example>
     [Constructor(optional ProximitySensorOptions proximitySensorOptions)]
     interface ProximitySensor : Sensor {
       readonly attribute ProximitySensorReading? reading;
