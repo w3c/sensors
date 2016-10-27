@@ -173,6 +173,7 @@ the default <a>sensor</a> is chosen.
     sensor.onerror = function(error) {
         updateMap(error);
     };
+    sensor.start();
     </pre>
 </div>
 
@@ -193,6 +194,7 @@ define ways to uniquely identify each one.
     <pre highlight="js">
     let sensor = new DirectTirePressureSensor({ position: "rear", side: "left" });
     sensor.onchange = event => console.log(event.reading.pressure);
+    sensor.start();
     </pre>
 </div>
 
