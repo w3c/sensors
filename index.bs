@@ -97,7 +97,7 @@ Exposing sensor data to the Web
 has so far been both slow-paced and ad-hoc.
 Few sensors are already exposed to the Web.
 When they are, it is often in ways that limit their possible use cases
-(for example by exposing abstractions that are too <a>high-level</a>
+(for example by exposing abstractions that are too [=high-level=]
 and which don't perform well enough).
 APIs also vary greatly from one sensor to the next
 which increases the cognitive burden of Web application developers
@@ -105,7 +105,7 @@ and slows development.
 
 The goal of the Generic Sensor API is to
 promote consistency across sensor APIs,
-enable advanced use cases thanks to performant <a>low-level</a> APIs,
+enable advanced use cases thanks to performant [=low-level=] APIs,
 and increase the pace at which new sensors can be exposed to the Web
 by simplifying the specification and implementation processes.
 
@@ -144,20 +144,20 @@ The Generic Sensor API is designed to make the most common use cases straightfor
 while still enabling more complex use cases.
 
 Most devices deployed today do not carry more than one
-<a>sensor</a> of each <a lt="sensor type">sensor types</a>.
+[=sensor=] of each <a lt="sensor type">sensor types</a>.
 This shouldn't come as a surprise since use cases for more than
-a <a>sensor</a> of a given <a lt="sensor types">type</a> are rare
-and generally limited to specific <a>sensor types</a> such as
+a [=sensor=] of a given <a lt="sensor types">type</a> are rare
+and generally limited to specific [=sensor types=] such as
 proximity sensors.
 
 The API therefore makes it easy to interact with
-the device's default (and often unique) <a>sensor</a>
+the device's default (and often unique) [=sensor=]
 for each <a lt="sensor types">type</a>
 simply by instantiating the corresponding {{Sensor}} subclass.
 
-Indeed, without specific information identifying a particular <a>sensor</a>
+Indeed, without specific information identifying a particular [=sensor=]
 of a given <a lt="sensor type">type</a>,
-the default <a>sensor</a> is chosen.
+the default [=sensor=] is chosen.
 
 <div class="example">
     Listening to geolocation changes:
@@ -179,11 +179,11 @@ the default <a>sensor</a> is chosen.
 
 Note: extension to this specification may choose not to define a default sensor
 when doing so wouldn't make sense.
-For example, it might be difficult to agree on an obvious default <a>sensor</a> for
-proximity <a>sensors</a>.
+For example, it might be difficult to agree on an obvious default [=sensor=] for
+proximity [=sensors=].
 
 In cases where
-multiple <a>sensors</a> of the same <a lt="sensor type">type</a>
+multiple [=sensors=] of the same <a lt="sensor type">type</a>
 may coexist on the same device,
 specification extension will have to
 define ways to uniquely identify each one.
@@ -274,7 +274,7 @@ and defensive programming which includes:
 Security and privacy considerations {#security-and-privacy}
 ===================================
 
-Privacy risks can arise when <a>sensors</a> are used
+Privacy risks can arise when [=sensors=] are used
 with each other,
 in combination with other functionality,
 or when used over time,
@@ -286,7 +286,7 @@ and the privacy risks that might be created.
 The potential risks of collection of such data over a longer period of time
 should also be considered.
 
-Variations in <a>sensor readings</a>
+Variations in [=sensor readings=]
 as well as event firing rates
 offer the possibility of fingerprinting to identify users.
 User agents may reduce the risk by
@@ -300,10 +300,10 @@ it may be possible for that code to correlate the user across those two contexts
 creating unanticipated tracking mechanisms.
 
 User agents should consider providing the user
-an indication of when the <a>sensor</a> is used
+an indication of when the [=sensor=] is used
 and allowing the user to disable it.
 
-Web application developers that use <a>sensors</a> should
+Web application developers that use [=sensors=] should
 perform a privacy assessment of their application
 taking all aspects of their application into consideration.
 
@@ -318,8 +318,8 @@ Sensors can potentially be used in cross-device linking and tracking of a user.
 Browsing Context {#browsing-context}
 ----------------
 
-<a>Sensor readings</a> must only be available in the
-<a>top-level browsing context</a> to avoid the privacy risk of
+[=Sensor readings=] must only be available in the
+[=top-level browsing context=] to avoid the privacy risk of
 sharing the information defined in this specification
 (and specifications extending it)
 with contexts unfamiliar to the user.
@@ -329,46 +329,46 @@ the active tab, and not on the background tabs or within iframes.
 Secure Context {#secure-context}
 --------------
 
-<a>Sensor readings</a> are explicitly flagged by the
+[=Sensor readings=] are explicitly flagged by the
 Secure Contexts specification [[POWERFUL-FEATURES]]
 as a high-value target for network attackers.
-As such, <a>sensor readings</a> must only be available
-within a <a>secure context</a>.
+As such, [=sensor readings=] must only be available
+within a [=secure context=].
 
 Obtaining Explicit User Permission {#permissioning}
 ----------------------------------
 
-Permission to access <a>sensor readings</a> must be obtained
+Permission to access [=sensor readings=] must be obtained
 through the Permissions API [[!PERMISSIONS]].
 
 Concepts {#concepts}
 ========
 
-A <a>sensor</a> measures different physical quantities
+A [=sensor=] measures different physical quantities
 and provide corresponding <dfn>raw sensor readings</dfn>
 which are a source of information about the user and their environment.
 
-Known, <em>predictable</em> discrepancies between <a>raw sensor readings</a>
+Known, <em>predictable</em> discrepancies between [=raw sensor readings=]
 and the corresponding physical quantities being measured
 are corrected through <dfn>calibration</dfn>.
 
 Known but <em>unpredictable</em> discrepancies need to be addressed dynamically
-through a process called <a>sensor fusion</a>.
+through a process called [=sensor fusion=].
 
-<a lt=calibration>Calibrated</a> <a>raw sensor readings</a> are referred to as <dfn>sensor readings</dfn>,
-whether or not they have undergone <a>sensor fusion</a>.
+<a lt=calibration>Calibrated</a> [=raw sensor readings=] are referred to as <dfn>sensor readings</dfn>,
+whether or not they have undergone [=sensor fusion=].
 
-Different <a>sensor types</a> measure different physical quantities
+Different [=sensor types=] measure different physical quantities
 such as temperature, air pressure, heart-rate, or luminosity.
 
 For the purpose of this specification we distinguish between
-<a>high-level</a> and <a>low-level</a> <a>sensor types</a>.
+[=high-level=] and [=low-level=] [=sensor types=].
 
-<a>Sensor types</a> which are characterized by their implementation
+[=Sensor types=] which are characterized by their implementation
 are referred to as <dfn>low-level</dfn> sensors.
-For example a Gyroscope is a <a>low-level</a> <a>sensor type</a>.
+For example a Gyroscope is a [=low-level=] [=sensor type=].
 
-<a>Sensors</a> named after their <a lt="sensor readings">readings</a>,
+[=Sensors=] named after their <a lt="sensor readings">readings</a>,
 regardless of the implementation,
 are said to be <dfn>high-level</dfn> sensors.
 For instance, geolocation sensors provide information about the user's location,
@@ -377,32 +377,32 @@ is purposefully left opaque
 (it could come from a GPS chip, network cell triangulation,
 wifi networks, etc. or any combination of the above)
 and depends on various, implementation-specific heuristics.
-<a>High-level</a> sensors are generally the fruits of
-applying algorithms to <a>low-level</a> sensors--
+[=High-level=] sensors are generally the fruits of
+applying algorithms to [=low-level=] sensors--
 for example, a pedometer can be built using only the output of a gyroscope--
-or of <a>sensor fusion</a>.
+or of [=sensor fusion=].
 
 That said, the distinction between
-<a>high-level</a> and <a>low-level</a> <a>sensor types</a>
+[=high-level=] and [=low-level=] [=sensor types=]
 is somewhat arbitrary and the line between the two is often blurred.
 For instance, a barometer, which measures air pressure,
-would be considered <a>low-level</a> for most common purposes,
-even though it is the product of the <a>sensor fusion</a> of
+would be considered [=low-level=] for most common purposes,
+even though it is the product of the [=sensor fusion=] of
 resistive piezo-electric pressure and temperature sensors.
 Exposing the sensors that compose it would serve no practical purpose;
 who cares about the temperature of a piezo-electric sensor?
 A pressure-altimeter would probably fall in the same category,
 while a nondescript altimeter--
 which could get its data from either a barometer or a GPS signal--
-would clearly be categorized as a <a>high-level</a> <a>sensor type</a>.
+would clearly be categorized as a [=high-level=] [=sensor type=].
 
 Because the distinction is somewhat blurry,
 extensions to this specification (see [[#extensibility]])
 are encouraged to provide domain-specific definitions of
-<a>high-level</a> and <a>low-level</a> sensors
-for the given <a>sensor types</a> they are targeting.
+[=high-level=] and [=low-level=] sensors
+for the given [=sensor types=] they are targeting.
 
-<a>Sensor readings</a> from different <a>sensor types</a> can be combined together 
+[=Sensor readings=] from different [=sensor types=] can be combined together 
 through a process called <dfn>sensor fusion</dfn>.
 This process provides <a lt="high-level">higher-level</a> or
 more accurate data (often at the cost of increased latency).
@@ -412,12 +412,12 @@ to provide a correct bearing.
 
 <dfn>Smart sensors</dfn> and <dfn>sensor hubs</dfn>
 have built-in compute resources which allow them
-to carry out <a>calibration</a> and <a>sensor fusion</a> at the hardware level,
+to carry out [=calibration=] and [=sensor fusion=] at the hardware level,
 freeing up CPU resources
 and lowering battery consumption
 in the process.
 
-But <a>sensor fusion</a> can also be carried out in software.
+But [=sensor fusion=] can also be carried out in software.
 This is particularly useful when performance requirements can only be met
 by relying on application-specific data.
 For example, head tracking for virtual or augmented reality applications,
@@ -428,38 +428,38 @@ by using the raw output of a gyroscope,
 and waiting for quick rotational movements of the head
 to compensate for drift.
 
-Note: <a>sensors</a> created through <a>sensor fusion</a> are sometimes
+Note: [=sensors=] created through [=sensor fusion=] are sometimes
 called virtual or synthetic sensors.
 However, the specification doesn't make any practical differences between them,
-preferring instead to differentiate <a>sensors</a> as to whether they describe
-the kind of <a lt="sensor readings">readings</a> produced--these are <a>high-level</a> sensors--
-or how the sensor is implemented (<a>low-level</a> sensors).
+preferring instead to differentiate [=sensors=] as to whether they describe
+the kind of <a lt="sensor readings">readings</a> produced--these are [=high-level=] sensors--
+or how the sensor is implemented ([=low-level=] sensors).
 
-<a>Sensors</a> have different <dfn>reporting modes</dfn>.
-When <a>sensor readings</a> are reported at regular intervals,
+[=Sensors=] have different <dfn>reporting modes</dfn>.
+When [=sensor readings=] are reported at regular intervals,
 at an ajustable <dfn>frequency</dfn> measured in hertz (Hz),
-the <a>reporting mode</a> is said to be <dfn>periodic</dfn>.
+the [=reporting mode=] is said to be <dfn>periodic</dfn>.
 When it is only reported upon measurable change,
-the <a>sensor</a> is said to be in <dfn>auto</dfn> <a>reporting mode</a>.
+the [=sensor=] is said to be in <dfn>auto</dfn> [=reporting mode=].
 
-<a>Auto</a> <a>reporting mode</a> can give the user agent
+[=Auto=] [=reporting mode=] can give the user agent
 more latitude to carry out power- or CPU-saving strategies
 and should generally be favored.
-<a>Periodic</a> <a>reporting mode</a>, on the other hand,
+[=Periodic=] [=reporting mode=], on the other hand,
 allows a much more fine-grained approach
 and is essential for use cases with, for example,
 low latency requirements.
 
-Note: <a>reporting mode</a> is distinct from,
+Note: [=reporting mode=] is distinct from,
 but related to,
-<a>sensor readings</a> acquisition.
-If <a>sensors</a> are polled at regular interval,
+[=sensor readings=] acquisition.
+If [=sensors=] are polled at regular interval,
 as is generally the case,
-<a>reporting mode</a> can be either <a>periodic</a> or <a>auto</a>.
-However, when the underlying implementation itself only provides <a>sensor readings</a>
+[=reporting mode=] can be either [=periodic=] or [=auto=].
+However, when the underlying implementation itself only provides [=sensor readings=]
 when it measures change,
-perhaps because is is relying on <a>smart sensors</a> or a <a>sensor hubs</a>,
-the <a>reporting mode</a> cannot be <a>periodic</a>,
+perhaps because is is relying on [=smart sensors=] or a [=sensor hubs=],
+the [=reporting mode=] cannot be [=periodic=],
 as that would require data inference.
 
 Model {#model}
@@ -468,57 +468,57 @@ Model {#model}
 Sensor Type {#model-sensor-type}
 -----------
 
-A <dfn>sensor type</dfn> has one or many associated <a>sensors</a>.
+A <dfn>sensor type</dfn> has one or many associated [=sensors=].
 
-A <a>sensor type</a> has an associated <dfn export>Sensor subclass</dfn>.
+A [=sensor type=] has an associated <dfn export>Sensor subclass</dfn>.
 
-A <a>sensor type</a> has an associated <dfn export>SensorReading subclass</dfn>.
-Attributes of the <a>SensorReading subclass</a> subclass that
-hold <a>sensor readings</a> must be readonly.
+A [=sensor type=] has an associated <dfn export>SensorReading subclass</dfn>.
+Attributes of the [=SensorReading subclass=] subclass that
+hold [=sensor readings=] must be readonly.
 
-A <a>sensor type</a> may have a <dfn export>default sensor</dfn>.
+A [=sensor type=] may have a <dfn export>default sensor</dfn>.
 
-A <a>sensor type</a> has an associated set of <dfn export>supported reporting modes</dfn>,
+A [=sensor type=] has an associated set of <dfn export>supported reporting modes</dfn>,
 which cannot be empty and must be picked from the following:
-<a>auto</a> and <a>periodic</a>.
+[=auto=] and [=periodic=].
 
-If a <a>sensor type</a> has more than one <a>sensor</a>,
+If a [=sensor type=] has more than one [=sensor=],
 it must have a set of associated <dfn export>identifying parameters</dfn>
-to select the right <a>sensor</a> to associate to each new {{Sensor}} objects.
+to select the right [=sensor=] to associate to each new {{Sensor}} objects.
 
-A <a>sensor type</a> has an associated abstract operation to
+A [=sensor type=] has an associated abstract operation to
 <dfn export lt="Construct SensorReading Object">construct a SensorReading object</dfn>
-which takes the <a>sensor readings</a> emitted by the <a>sensor</a> and
+which takes the [=sensor readings=] emitted by the [=sensor=] and
 returns an initialized {{SensorReading}} object
-which uses the <a>sensor type</a>'s associated <a>SensorReading subclass</a>.
+which uses the [=sensor type=]'s associated [=SensorReading subclass=].
 
 Sensor {#model-sensor}
 ------
 
 A <dfn id=concept-sensor>sensor</dfn> has an associated set of <dfn>activated Sensor objects</dfn>. This set is initially empty.
 
-A <a>sensor</a> has an associated <dfn>current reading</dfn>,
+A [=sensor=] has an associated <dfn>current reading</dfn>,
 which can initially be `null` or
 be set to a {{SensorReading}} object, that was cached in a user-agent-specific way.
     
 Note: there are additional privacy concerns when using cached <a lt="sensor readings">readings</a>
-which predate either <a>navigating</a> to resources in the current <a>origin</a>,
-or being granted permission to access the <a>sensor</a>.
+which predate either [=navigating=] to resources in the current [=origin=],
+or being granted permission to access the [=sensor=].
 
-A <a>sensor</a> is said to <dfn lt="supports periodic reporting mode">support periodic reporting mode</dfn> if
-its associated <a>sensor type</a>'s <a>supported reporting modes</a>
-contains the <a>periodic</a> <a>reporting mode</a>.
+A [=sensor=] is said to <dfn lt="supports periodic reporting mode">support periodic reporting mode</dfn> if
+its associated [=sensor type=]'s [=supported reporting modes=]
+contains the [=periodic=] [=reporting mode=].
 
-A <a>sensor</a> has an associated <dfn>reporting flag</dfn> which is initially unset.
+A [=sensor=] has an associated <dfn>reporting flag</dfn> which is initially unset.
 
-A <a>sensor</a> has an associated <dfn>current reporting mode</dfn> which is initially `undefined`.
+A [=sensor=] has an associated <dfn>current reporting mode</dfn> which is initially `undefined`.
 
-A <a>sensor</a> has an associated <dfn>current polling frequency</dfn> which is initially `null`.
+A [=sensor=] has an associated <dfn>current polling frequency</dfn> which is initially `null`.
 
-A <a>sensor</a> has an associated abstract operation to
+A [=sensor=] has an associated abstract operation to
 <dfn export lt="retrieve the sensor permission">retrieve its permission</dfn> which
 takes a {{Sensor}} object as input and
-returns a <a>permission</a> and, eventually, its <a>associated PermissionDescriptor</a>.
+returns a [=permission=] and, eventually, its [=associated PermissionDescriptor=].
 
 API {#api}
 ===
@@ -548,58 +548,58 @@ enum SensorState {
 };
 </pre>
 
-A {{Sensor}} object has an associated <a>sensor</a>.
+A {{Sensor}} object has an associated [=sensor=].
 
 A {{Sensor}} object has an associated <dfn>state</dfn>,
 which is one of <a enum-value>"idle"</a>, <a enum-value>"activating"</a>, <a enum-value>"active"</a>, and <a enum-value>"errored"</a>. It is initially <a enum-value>"idle"</a>.
 
 A {{Sensor}} object has an associated <dfn>desired frequency</dfn>. It is initially `null`.
 
-Each {{Sensor}} object has a <a>task source</a>
+Each {{Sensor}} object has a [=task source=]
 called a <dfn>sensor task source</dfn>, initially empty.
-A <a>sensor task source</a> can be enabled or disabled, and is initially enabled.
-When enabled, the <a>event loop</a> must use it as one of its <a>task sources</a>.
-The <a>task source</a> for the <a>tasks</a> mentioned in this specification is the <a>sensor task source</a>.
+A [=sensor task source=] can be enabled or disabled, and is initially enabled.
+When enabled, the [=event loop=] must use it as one of its [=task sources=].
+The [=task source=] for the [=tasks=] mentioned in this specification is the [=sensor task source=].
 
-When the <a>visibility state</a> of the <a>Document</a> in the <a>top-level browsing context</a> changes,
-let |current_visibility_state| be the result of running the <a>steps to determine the visibility state</a>
-of the <a>Document</a>.
+When the [=visibility state=] of the [=Document=] in the [=top-level browsing context=] changes,
+let |current_visibility_state| be the result of running the [=steps to determine the visibility state=]
+of the [=Document=].
 If |current_visibility_state| is "visible", enable the sensor task source, otherwise, disable it.
 
 Note: user agents are encouraged to stop sensor polling
-when <a>sensor task sources</a> are disabled in order
+when [=sensor task sources=] are disabled in order
 to save battery.
 
 ### Sensor.state ### {#sensor-state}
 
-The <a attribute for="Sensor">state</a> attribute represents a {{Sensor}} object's <a>state</a>.
+The <a attribute for="Sensor">state</a> attribute represents a {{Sensor}} object's [=state=].
 
 ### Sensor.reading ### {#sensor-reading}
 
-When a {{Sensor}}'s <a>state</a> is <a enum-value>"active"</a>,
-its <a attribute for="Sensor">reading</a> attribute must always point to the <a>current reading</a>
-whatever the <a>frequency</a> so that
+When a {{Sensor}}'s [=state=] is <a enum-value>"active"</a>,
+its <a attribute for="Sensor">reading</a> attribute must always point to the [=current reading=]
+whatever the [=frequency=] so that
 the <a attribute for="Sensor">reading</a> attribute of two instances of the same {{Sensor}} interface
-associated with the same <a>sensor</a>
-hold the same {{SensorReading}} during a single <a>event loop</a> turn.
+associated with the same [=sensor=]
+hold the same {{SensorReading}} during a single [=event loop=] turn.
 
 ### Sensor.start() ### {#sensor-start}
 
 <div algorithm="to start a sensor">
-The <a>start()</a> method must run these steps or their <a>equivalent</a>:
+The {{Sensor/start()}} method must run these steps or their [=equivalent=]:
 
-    1.  If |sensor_instance|'s <a>state</a> is neither <a enum-value>"idle"</a> nor <a enum-value>"errored"</a>,
-        1.  throw an "<a>InvalidStateError</a>" exception and abort these steps.
-    1.  Invoke the <a>update state</a> algorithm passing |sensor_instance| and <a enum-value>"activating"</a> as the arguments.
-    1.  Run these sub-steps <a>in parallel</a>:
-        1.  Let |state| be the result of invoking the <a>Request Sensor Access</a> abstract operation,
+    1.  If |sensor_instance|'s [=state=] is neither <a enum-value>"idle"</a> nor <a enum-value>"errored"</a>,
+        1.  throw an "[=InvalidStateError=]" exception and abort these steps.
+    1.  Invoke the [=update state=] algorithm passing |sensor_instance| and <a enum-value>"activating"</a> as the arguments.
+    1.  Run these sub-steps [=in parallel=]:
+        1.  Let |state| be the result of invoking the [=Request Sensor Access=] abstract operation,
             passing it |sensor_instance| as argument.
         1.  If |state| is "granted",
-            1.  Invoke <a>Register a Sensor</a> passing it |sensor_instance| as argument.
+            1.  Invoke [=Register a Sensor=] passing it |sensor_instance| as argument.
             1.  Abort these sub-steps.
         1.  If |state| is "denied",
-            1.  let |e| be the result of <a>creating an exception</a> named <a>NotAllowedError</a>.
-            1.  Invoke the <a>Handle Errors</a> abstract operation,
+            1.  let |e| be the result of [=creating an exception=] named [=NotAllowedError=].
+            1.  Invoke the [=Handle Errors=] abstract operation,
                 passing it |e| and |sensor_instance| as arguments.
             1.  Abort these sub-steps.
     1.  return `undefined`.
@@ -608,14 +608,14 @@ The <a>start()</a> method must run these steps or their <a>equivalent</a>:
 ### Sensor.stop() ### {#sensor-stop}
 
 <div algorithm="to stop a sensor">
-The <a>stop()</a> method must run these steps or their <a>equivalent</a>:
+The {{Sensor/stop()}} method must run these steps or their [=equivalent=]:
 
-    1.  If |sensor_instance|'s <a>state</a> is either <a enum-value>"idle"</a> or <a enum-value>"errored"</a>, then
-        1.  throw an "<a>InvalidStateError</a>" exception and abort these steps.
+    1.  If |sensor_instance|'s [=state=] is either <a enum-value>"idle"</a> or <a enum-value>"errored"</a>, then
+        1.  throw an "[=InvalidStateError=]" exception and abort these steps.
     1.  Set |sensor_instance|’s <a attribute for="Sensor">reading</a> to `null`.
-    1.  Invoke the <a>update state</a> algorithm passing |sensor_instance| and <a enum-value>"idle"</a> as the arguments.
-    1.  Run these sub-steps <a>in parallel</a>:
-        1.  Invoke <a>Unregister a Sensor</a> passing it |sensor_instance| as argument.
+    1.  Invoke the [=update state=] algorithm passing |sensor_instance| and <a enum-value>"idle"</a> as the arguments.
+    1.  Run these sub-steps [=in parallel=]:
+        1.  Invoke [=Unregister a Sensor=] passing it |sensor_instance| as argument.
     1.  return `undefined`.
 
 </div>
@@ -629,9 +629,9 @@ The <a>stop()</a> method must run these steps or their <a>equivalent</a>:
 
 ### Event handlers ### {#event-handlers}
 
-The following are the <a>event handlers</a>
-(and their corresponding <a>event handler event types</a>)
-that must be supported as attributes by the objects implementing the <a>Sensor</a> interface:
+The following are the [=event handlers=]
+(and their corresponding [=event handler event types=])
+that must be supported as attributes by the objects implementing the [=Sensor=] interface:
 
 <table class="simple">
   <thead>
@@ -665,13 +665,13 @@ interface SensorReading {
 };
 </pre>
 
-A {{SensorReading}} represents the state of a <a>sensor</a> at a given point in time.
+A {{SensorReading}} represents the state of a [=sensor=] at a given point in time.
 
 ### SensorReading.timeStamp ### {#sensor-reading-timestamp}
 
 Returns a timestamp of the time
-at which the <a lt="sensor reading">reading</a> was obtained from the <a>sensor</a>
-expressed in milliseconds that passed since the <a>time origin</a>.
+at which the <a lt="sensor reading">reading</a> was obtained from the [=sensor=]
+expressed in milliseconds that passed since the [=time origin=].
 
 Issue(101):
 
@@ -692,7 +692,7 @@ dictionary SensorReadingEventInit : EventInit {
 ### SensorReadingEvent.reading ### {#sensor-reading-event-reading}
 
 The <dfn attribute for=SensorReadingEvent>reading</dfn> attribute references
-the <a>current reading</a> at the time of <a lt=dispatch>event dispatch</a>.
+the [=current reading=] at the time of <a lt=dispatch>event dispatch</a>.
 
 
 The SensorErrorEvent Interface {#the-sensor-error-event-interface}
@@ -721,29 +721,29 @@ Abstract Operations {#abstract-operations}
     : output
     :: |sensor_instance|, a {{Sensor}} object.
     
-    1.  If the <a>incumbent settings object</a> is not a <a>secure context</a>, then:
-        1.  <a>throw</a> a SecurityError.
-    1.  If the <a>browsing context</a> is not a <a>top-level browsing context</a>, then:
-        1.  <a>throw</a> a SecurityError.
-    1.  Otherwise, if <a>identifying parameters</a> in |options| are set, then:
-        1.  If these <a>identifying parameters</a> allow a unique <a>sensor</a> to be identified, then:
-            1.  let |sensor| be that <a>sensor</a>,
+    1.  If the [=incumbent settings object=] is not a [=secure context=], then:
+        1.  [=throw=] a SecurityError.
+    1.  If the [=browsing context=] is not a [=top-level browsing context=], then:
+        1.  [=throw=] a SecurityError.
+    1.  Otherwise, if [=identifying parameters=] in |options| are set, then:
+        1.  If these [=identifying parameters=] allow a unique [=sensor=] to be identified, then:
+            1.  let |sensor| be that [=sensor=],
             1.  let |sensor_instance| be a new {{Sensor}} object,
             1.  associate |sensor_instance| with |sensor|.
-        1. Otherwise, <a>throw</a> a TypeError.
-    1.  Otherwise, if a <a>default sensor</a> exists for this <a>sensor type</a>:
-        1.  let |sensor| be that <a>sensor</a>,
+        1. Otherwise, [=throw=] a TypeError.
+    1.  Otherwise, if a [=default sensor=] exists for this [=sensor type=]:
+        1.  let |sensor| be that [=sensor=],
         1.  let |sensor_instance| be a new {{Sensor}} object,
         1.  associate |sensor_instance| with |sensor|.
-    1.  Otherwise, <a>throw</a> a TypeError.
+    1.  Otherwise, [=throw=] a TypeError.
     1.  Let |frequency| be the value of the <a dict-member>frequency</a> member of |options|.
     1.  If |frequency| is not `null`,
-        1.  If |sensor| <a>supports periodic reporting mode</a>,
-            1.  Set |sensor_instance|'s <a>desired frequency</a> to |frequency|.
+        1.  If |sensor| [=supports periodic reporting mode=],
+            1.  Set |sensor_instance|'s [=desired frequency=] to |frequency|.
         1.  Otherwise,
-            1.  <a>throw</a> a TypeError.
+            1.  [=throw=] a TypeError.
     1.  Set |sensor_instance|'s <a for="Sensor" attribute>reading</a> attribute to `null`.
-    1.  Set |sensor_instance|'s <a>state</a> to <a enum-value>"idle"</a>.
+    1.  Set |sensor_instance|'s [=state=] to <a enum-value>"idle"</a>.
     1.  return |sensor_instance|.
 
 <h3 algorithm dfn>Register a Sensor</h3>
@@ -753,13 +753,13 @@ Abstract Operations {#abstract-operations}
     : output
     :: None
     
-    1.  Let |sensor| be the <a>sensor</a> associated with |sensor_instance|.
-    1.  Add |sensor_instance| to |sensor|'s set of <a>activated Sensor objects</a>.
-    1.  Invoke the <a>Set Sensor Settings</a> abstract operation,
+    1.  Let |sensor| be the [=sensor=] associated with |sensor_instance|.
+    1.  Add |sensor_instance| to |sensor|'s set of [=activated Sensor objects=].
+    1.  Invoke the [=Set Sensor Settings=] abstract operation,
         passing it |sensor| as argument.
-    1.  Let |current_reading| be |sensor|'s associated <a>current reading</a>.
+    1.  Let |current_reading| be |sensor|'s associated [=current reading=].
     1.  If |current_reading| is not `null` and |sensor_instance|'s state is still <a enum-value>"activating"</a>, then
-        1.  invoke the <a>Update Reading</a> operation, passing it
+        1.  invoke the [=Update Reading=] operation, passing it
             |sensor_instance| and |current_reading| as arguments.
 
 <h3 algorithm dfn>Unregister a Sensor</h3>
@@ -769,87 +769,87 @@ Abstract Operations {#abstract-operations}
     : output
     :: None
     
-    1.  Let |sensor| be the <a>sensor</a> associated with |sensor_instance|.
-    1.  Remove |sensor_instance| from |sensor|'s set of <a>activated Sensor objects</a>.
-    1.  If |sensor|'s set of <a>activated Sensor objects</a> is empty,
-        1.  Set <a>current reporting mode</a> to `undefined`.
-        1.  Set <a>current polling frequency</a> to `null`.
-        1.  Update the user-agent-specific way in which <a>sensor readings</a> are obtained from |sensor|
+    1.  Let |sensor| be the [=sensor=] associated with |sensor_instance|.
+    1.  Remove |sensor_instance| from |sensor|'s set of [=activated Sensor objects=].
+    1.  If |sensor|'s set of [=activated Sensor objects=] is empty,
+        1.  Set [=current reporting mode=] to `undefined`.
+        1.  Set [=current polling frequency=] to `null`.
+        1.  Update the user-agent-specific way in which [=sensor readings=] are obtained from |sensor|
             to no longer provide <a lt ="sensor readings">readings</a>.
         1.  Abort these steps.
-    1.  Invoke the <a>Set Sensor Settings</a> abstract operation,
+    1.  Invoke the [=Set Sensor Settings=] abstract operation,
         passing it |sensor| as argument.
     
 <h3 algorithm dfn>Set Sensor Settings</h3>
 
     : input
-    :: |sensor|, a <a>sensor</a>.
+    :: |sensor|, a [=sensor=].
     : output
     :: None
 
     1.  Let |settings_changed| be `false`.
-    1.  Let |mode| be the result of invoking the <a>find current reporting mode of a sensor</a> abstract operation,
+    1.  Let |mode| be the result of invoking the [=find current reporting mode of a sensor=] abstract operation,
         with |sensor| as argument.
-    1.  If |mode| is different from |sensor|'s <a>current reporting mode</a>,
+    1.  If |mode| is different from |sensor|'s [=current reporting mode=],
         1.  set |settings_changed| to `true`.
-        1.  Set <a>current reporting mode</a> to |mode|.
-    1.  Let |frequency| be the result of invoking the <a>Find the polling frequency of a Sensor</a> abstract operation,
+        1.  Set [=current reporting mode=] to |mode|.
+    1.  Let |frequency| be the result of invoking the [=Find the polling frequency of a Sensor=] abstract operation,
         with |sensor| as argument.
-    1.  If |frequency| is different from |sensor|'s <a>current polling frequency</a>,
+    1.  If |frequency| is different from |sensor|'s [=current polling frequency=],
         1.  set |settings_changed| to `true`.
-        1.  Set <a>current polling frequency</a> to |frequency|.
+        1.  Set [=current polling frequency=] to |frequency|.
     1.  If |settings_changed| is `true`
-        1.  Invoke the <a>Observe a Sensor</a> abstract operation, passing it |sensor| as argument.
+        1.  Invoke the [=Observe a Sensor=] abstract operation, passing it |sensor| as argument.
 
 
 <h3 algorithm dfn>Observe a Sensor</h3>
 
     : input
-    :: |sensor|, a <a>sensor</a>.
+    :: |sensor|, a [=sensor=].
     : output
     :: None
     
-    1.  If |sensor|'s <a>current reporting mode</a> is <a>periodic</a>,
-        1.  let |frequency| be the <a>current polling frequency</a>,
+    1.  If |sensor|'s [=current reporting mode=] is [=periodic=],
+        1.  let |frequency| be the [=current polling frequency=],
             capped by the upper and lower bounds of the underlying hardware.
-        1.  Invoke the <a>Update Current Reading</a> abstract operation
-            at a <a>frequency</a> of |frequency| passing it |sensor| and
-            the latest <a>sensor reading</a> as arguments.
+        1.  Invoke the [=Update Current Reading=] abstract operation
+            at a [=frequency=] of |frequency| passing it |sensor| and
+            the latest [=sensor reading=] as arguments.
             
-            Note: there is not guarantee that the <a>current polling frequency</a>
-            can be respected. The actual <a>frequency</a> can be calculated using
+            Note: there is not guarantee that the [=current polling frequency=]
+            can be respected. The actual [=frequency=] can be calculated using
             {{SensorReading}} <a attribute for=SensorReading>timeStamp</a> attributes.
-    1.  If the <a>current reporting mode</a> is set to <a>auto</a>,
+    1.  If the [=current reporting mode=] is set to [=auto=],
         1.  the user-agent can decide on the best reporting strategy
-            for this particular |sensor| and <a>sensor type</a>.
-        1.  The user-agent must invoke the <a>Update Current Reading</a> abstract operation
+            for this particular |sensor| and [=sensor type=].
+        1.  The user-agent must invoke the [=Update Current Reading=] abstract operation
             at to report fresh <a lt="sensor readings">readings</a>,
-            passing it |sensor| and the latest <a>sensor reading</a> as arguments.
+            passing it |sensor| and the latest [=sensor reading=] as arguments.
 
 <h3 algorithm dfn>Find Current Reporting Mode of a Sensor</h3>
     
     : input
-    :: |sensor|, a <a>sensor</a>.
+    :: |sensor|, a [=sensor=].
     : output
-    :: |mode|, a <a>reporting mode</a>.
+    :: |mode|, a [=reporting mode=].
     
-    1. let |mode| be <a>auto</a>.
-    1.  For each |sensor_instance| in |sensor|'s set of <a>activated Sensor objects</a>:
-        1. if |sensor_instance|'s <a>frequency</a> is not `null`,
-            1. set |mode| to <a>periodic</a>
+    1. let |mode| be [=auto=].
+    1.  For each |sensor_instance| in |sensor|'s set of [=activated Sensor objects=]:
+        1. if |sensor_instance|'s [=frequency=] is not `null`,
+            1. set |mode| to [=periodic=]
     1. return |mode|.
 
 
 <h3 algorithm dfn>Find the polling frequency of a Sensor</h3>
     
     : input
-    :: |sensor|, a <a>sensor</a>.
+    :: |sensor|, a [=sensor=].
     : output
-    :: |frequency|, a <a>frequency</a>.
+    :: |frequency|, a [=frequency=].
     
     1. let |frequency| be `null`.
-    1.  For each |sensor_instance| in |sensor|'s set of <a>activated Sensor objects</a>:
-        1. let |f| be |sensor_instance|'s <a>frequency</a>.
+    1.  For each |sensor_instance| in |sensor|'s set of [=activated Sensor objects=]:
+        1. let |f| be |sensor_instance|'s [=frequency=].
         1. if |f| is not `null` and |f| is greater than |frequency|,
             1. set |frequency| to |f|.
     1. return |frequency|.
@@ -859,32 +859,32 @@ Abstract Operations {#abstract-operations}
 
     : input
     :: |sensor_instance|, a {{Sensor}} object.
-    :: |state|, a {{Sensor}} object's <a>state</a>.
+    :: |state|, a {{Sensor}} object's [=state=].
     : output
     :: None
     
     1.  Set |sensor_instance|’s <a attribute>state</a> to |state|.
-    1.  <a>Queue a task</a> to <a>fire a simple event</a> named `statechange` at |sensor_instance|.
+    1.  [=Queue a task=] to [=fire a simple event=] named `statechange` at |sensor_instance|.
 
 <h3 algorithm dfn>Update Current Reading</h3>
 
     : input
-    :: |sensor|, a <a>sensor</a>.
-    :: |reading|, a <a>sensor reading</a>.
+    :: |sensor|, a [=sensor=].
+    :: |reading|, a [=sensor reading=].
     : output
     :: None
     
-    1.  If |sensor|’s <a>reporting flag</a> is set,
+    1.  If |sensor|’s [=reporting flag=] is set,
         1. abort these steps.
-    1.  Set |sensor|’s <a>reporting flag</a>.
-    1.  Let |reading_instance| be the result of invoking <a>sensor type</a>'s associated
-        <a>Construct SensorReading Object</a> operation,
+    1.  Set |sensor|’s [=reporting flag=].
+    1.  Let |reading_instance| be the result of invoking [=sensor type=]'s associated
+        [=Construct SensorReading Object=] operation,
         passing it |reading| as argument.
-    1.  Set |sensor|’s <a>current reading</a> to |reading_instance|.
-    1.  For each |sensor_instance| in |sensor|'s set of <a>activated Sensor objects</a>:
-        1.  Invoke the <a>update reading</a> algorithm passing |sensor_instance|
+    1.  Set |sensor|’s [=current reading=] to |reading_instance|.
+    1.  For each |sensor_instance| in |sensor|'s set of [=activated Sensor objects=]:
+        1.  Invoke the [=update reading=] algorithm passing |sensor_instance|
             and |reading_instance| as arguments.
-    1.  Unset |sensor|’s <a>reporting flag</a>.
+    1.  Unset |sensor|’s [=reporting flag=].
     
 
 <h3 algorithm dfn>Update Reading</h3>
@@ -897,27 +897,27 @@ Abstract Operations {#abstract-operations}
     
     1.  Set |sensor_instance|’s <a attribute for="Sensor">reading</a> to |reading|.
     1.  If |sensor_instance|'s <a attribute>state</a> is <a enum-value>"activating"</a>:
-        1.  Invoke the <a>update state</a> algorithm passing |sensor_instance|
+        1.  Invoke the [=update state=] algorithm passing |sensor_instance|
             and <a enum-value>"active"</a> as the arguments.
-    1.  Create an <a>event</a> |e| that uses the {{SensorReadingEvent}} interface,
-        with the event type `reading`, which does not bubble, is not cancelable, is <a>trusted</a>, and has no default action.
+    1.  Create an [=event=] |e| that uses the {{SensorReadingEvent}} interface,
+        with the event type `reading`, which does not bubble, is not cancelable, is [=trusted=], and has no default action.
     1.  Let the <a attribute for=SensorReadingEvent>reading</a> attribute of |e| be initialized to |reading|.
-    1.  <a>Queue a task</a> to <a>dispatch</a> |e| at |sensor_instance|.
+    1.  [=Queue a task=] to [=dispatch=] |e| at |sensor_instance|.
     
 <h3 algorithm dfn>Handle Errors</h3>
 
     : input
     :: |sensor_instance|, a {{Sensor}} object.
-    :: |error|, an <a>Error</a> object.
+    :: |error|, an [=Error=] object.
     : output
     :: None
     
     1.  Set |sensor_instance|’s <a attribute for="Sensor">reading</a> to `null`.
-    1.  Invoke the <a>update state</a> algorithm passing |sensor_instance| and <a enum-value>"errored"</a> as the arguments.
-    1.  Create an <a>event</a> |e| that uses the {{SensorErrorEvent}} interface,
-        with the event type `error`, which does not bubble, is not cancelable, is <a>trusted</a>, and has no default action.
+    1.  Invoke the [=update state=] algorithm passing |sensor_instance| and <a enum-value>"errored"</a> as the arguments.
+    1.  Create an [=event=] |e| that uses the {{SensorErrorEvent}} interface,
+        with the event type `error`, which does not bubble, is not cancelable, is [=trusted=], and has no default action.
     1.  Let the <a attribute for=SensorErrorEvent>error</a> attribute of |e| be initialized to |error|.
-    1.  <a>Queue a task</a> to <a>dispatch</a> |e| at |sensor_instance|.
+    1.  [=Queue a task=] to [=dispatch=] |e| at |sensor_instance|.
 
 
 <h3 algorithm dfn>Request Sensor Access</h3>
@@ -925,12 +925,12 @@ Abstract Operations {#abstract-operations}
     : input
     :: |sensor_instance|, a {{Sensor}} object.
     : output
-    :: |state|, a <a>permission state</a>.
+    :: |state|, a [=permission state=].
     
-    1.  Let |sensor| be the <a>sensor</a> associated with |sensor_instance|.
-    1.  let |permission| be the result of invoking the abstract operation <a>retrieve the sensor permission</a> associated with |sensor|,
+    1.  Let |sensor| be the [=sensor=] associated with |sensor_instance|.
+    1.  let |permission| be the result of invoking the abstract operation [=retrieve the sensor permission=] associated with |sensor|,
         passing it |sensor_instance| as argument.
-    1.  Let |state| be the result of <a>retrieving the permission state</a> for |permission|.
+    1.  Let |state| be the result of [=retrieving the permission state=] for |permission|.
     1.  If |state| is "prompt",
         1.  prompt the user in a user-agent-specific manner for permission to provide access to |sensor|.
         1.  If permission is granted,
@@ -946,31 +946,31 @@ Extensibility {#extensibility}
 
 Its purpose is to describe
 how this specification can be extended to specify APIs for
-different <a>sensor types</a>.
+different [=sensor types=].
 
-Extension specifications are encouraged to focus on a single <a>sensor type</a>,
+Extension specifications are encouraged to focus on a single [=sensor type=],
 exposing both <a lt="high-level">high</a> and <a lt="low-level">low</a> level
 as appropriate.
 
 Naming {#naming}
 ------
 
-{{Sensor}} interfaces for <a>low-level</a> sensors should be
-named after their associated <a>sensor</a>.
+{{Sensor}} interfaces for [=low-level=] sensors should be
+named after their associated [=sensor=].
 So for example, the interface associated with a gyroscope
 should be simply named `Gyroscope`.
-{{Sensor}} interfaces for <a>high-level</a> sensors should be
-named by combining the physical quantity the <a>sensor</a> measures
+{{Sensor}} interfaces for [=high-level=] sensors should be
+named by combining the physical quantity the [=sensor=] measures
 with the "Sensor" suffix.
-For example, a <a>sensor</a> measuring
+For example, a [=sensor=] measuring
 the distance at which an object is from it
 may see its associated interface called `ProximitySensor`.
 
 Attributes of the {{SensorReading}} subclass that
-hold <a>sensor readings</a> values
+hold [=sensor readings=] values
 should be named after the full name of these values.
 For example, the `TemperatureSensorReading` interface should hold
-the <a>sensor reading</a>'s value in
+the [=sensor reading=]'s value in
 a `temperature` attribute (and not a `value` or `temp` attribute).
 A good starting point for naming are the
 Quantities, Units, Dimensions and Data Types Ontologies [[QUDT]].
@@ -978,7 +978,7 @@ Quantities, Units, Dimensions and Data Types Ontologies [[QUDT]].
 Unit {#unit}
 ----
 
-Extension specification must specify the unit of <a>sensor readings</a>.
+Extension specification must specify the unit of [=sensor readings=].
 
 As per the Technical Architecure Group's (TAG) API Design Principles [[API-DESIGN-PRINCIPLES]],
 all time measurement should be in milliseconds.
@@ -994,10 +994,10 @@ Exposing High-Level vs. Low-Level Sensors {#high-vs-low-level}
 -----------------------------------------
 
 So far, specifications exposing sensors to the Web platform
-have focused on <a>high-level</a> sensors APIs. [[GEOLOCATION-API]] [[ORIENTATION-EVENT]]
+have focused on [=high-level=] sensors APIs. [[GEOLOCATION-API]] [[ORIENTATION-EVENT]]
 
 This was a reasonable approach for a number of reasons.
-Indeed, <a>high-level</a> sensors:
+Indeed, [=high-level=] sensors:
 
 -   convey developer intent clearly,
 -   do not require intimate knowledge of how the underlying hardware sensors functions,
@@ -1009,17 +1009,17 @@ Indeed, <a>high-level</a> sensors:
 
 However, an increasing number of use cases
 such as virtual and augmented reality
-require <a>low-level</a> access to sensors,
+require [=low-level=] access to sensors,
 most notably for performance reasons.
 
-Providing <a>low-level</a> access
+Providing [=low-level=] access
 enables Web application developers to leverage domain-specific constraints
 and design more performant systems.
 
 Following the precepts of the Extensible Web Manifesto [[EXTENNNNSIBLE]],
 extension specifications should focus primarily on
-exposing <a>low-level</a> sensor APIs, but should also expose
-<a>high-level</a> APIs when they are clear benefits in doing so.
+exposing [=low-level=] sensor APIs, but should also expose
+[=high-level=] APIs when they are clear benefits in doing so.
 
 When is Enabling Multiple Sensors of the Same Type Not the Right Choice? {#multiple-sensors}
 ------------------------------------------------------------------------
@@ -1035,36 +1035,36 @@ Definition Requirements {#definition-reqs}
 
 At least the following definitions must be specified in each extension specification:
 
--   A <a>Sensor subclass</a> which is constructible and takes
+-   A [=Sensor subclass=] which is constructible and takes
     an optional {{SensorOptions}} dictionary as argument.
--   A <a>SensorReading subclass</a> which is constructible and
-    whose attributes which hold <a>sensor readings</a> are readonly.
+-   A [=SensorReading subclass=] which is constructible and
+    whose attributes which hold [=sensor readings=] are readonly.
 -   A abstract operation to
     <a lt="Construct SensorReading Object">construct a SensorReading object</a>
-    which takes the <a>sensor readings</a> emitted by the <a>sensor</a> and
-    returns an initialized <a>SensorReading subclass</a> object.
--   The <a>sensor type</a>'s <a>supported reporting modes</a>.
+    which takes the [=sensor readings=] emitted by the [=sensor=] and
+    returns an initialized [=SensorReading subclass=] object.
+-   The [=sensor type=]'s [=supported reporting modes=].
 -   A abstract operation to
     <a lt="retrieve the sensor permission">retrieve sensor permission</a> which
-    takes a <a>Sensor subclass</a> object as input and
-    returns a <a>permission</a> and, eventually, its <a>associated PermissionDescriptor</a>.
+    takes a [=Sensor subclass=] object as input and
+    returns a [=permission=] and, eventually, its [=associated PermissionDescriptor=].
 
 An extension specification may specify the following defintions:
 
 -   A {{SensorOptions}} subclass.
--   A <a>default sensor</a>. Generally, devices are equipped with a single <a>sensor</a>
+-   A [=default sensor=]. Generally, devices are equipped with a single [=sensor=]
     of each <a lt="sensor types">type</a>,
-    so defining a <a>default sensor</a> should be straightforward.
-    For <a>sensor types</a> where multiple <a>sensors</a> are common,
-    extension specifications may choose not to define a <a>default sensor</a>,
+    so defining a [=default sensor=] should be straightforward.
+    For [=sensor types=] where multiple [=sensors=] are common,
+    extension specifications may choose not to define a [=default sensor=],
     especially when doing so would not make sense.
--   A set of <a>identifying parameters</a>. TODO: replace that by an abstract operation.
+-   A set of [=identifying parameters=]. TODO: replace that by an abstract operation.
 
 Extending the Permission API {#permission-api}
 ----------------------------
 
 Provide guidance on how to extend the Permission API [[PERMISSIONS]]
-for each <a>sensor types</a>.
+for each [=sensor types=].
 
 Issue(w3c/sensors#22):
 
@@ -1072,7 +1072,7 @@ Example WebIDL {#example-webidl}
 --------------
 
 Here's example WebIDL for a possible extension of this specification
-for proximity <a>sensors</a>.
+for proximity [=sensors=].
 
 <pre class=example>
     [Constructor(optional ProximitySensorOptions proximitySensorOptions)]
@@ -1203,10 +1203,10 @@ for their editorial input.
         <p>This is an example of an informative example.</p>
     </div>
 
-    <p>Because this document doesn't itself define APIs for specific <a>sensor types</a>--
+    <p>Because this document doesn't itself define APIs for specific [=sensor types=]--
     that is the role of extensions to this specification--
     all examples are inevitably (wishful) fabrications.
-    Although all of the <a>sensors</a> used a examples
+    Although all of the [=sensors=] used a examples
     would be great candidates for building atop the Generic Sensor API,
     their inclusion in this document does not imply that the relevant Working Groups
     are planning to do so.
