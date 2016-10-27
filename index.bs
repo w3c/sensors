@@ -144,19 +144,19 @@ The Generic Sensor API is designed to make the most common use cases straightfor
 while still enabling more complex use cases.
 
 Most devices deployed today do not carry more than one
-[=sensor=] of each <a lt="sensor type">sensor types</a>.
+[=sensor=] of each [=sensor type|sensor types=].
 This shouldn't come as a surprise since use cases for more than
-a [=sensor=] of a given <a lt="sensor types">type</a> are rare
+a [=sensor=] of a given [=sensor types|type=] are rare
 and generally limited to specific [=sensor types=] such as
 proximity sensors.
 
 The API therefore makes it easy to interact with
 the device's default (and often unique) [=sensor=]
-for each <a lt="sensor types">type</a>
+for each [=sensor types|type=]
 simply by instantiating the corresponding {{Sensor}} subclass.
 
 Indeed, without specific information identifying a particular [=sensor=]
-of a given <a lt="sensor type">type</a>,
+of a given [=sensor type|type=],
 the default [=sensor=] is chosen.
 
 <div class="example">
@@ -183,7 +183,7 @@ For example, it might be difficult to agree on an obvious default [=sensor=] for
 proximity [=sensors=].
 
 In cases where
-multiple [=sensors=] of the same <a lt="sensor type">type</a>
+multiple [=sensors=] of the same [=sensor type|type=]
 may coexist on the same device,
 specification extension will have to
 define ways to uniquely identify each one.
@@ -355,7 +355,7 @@ are corrected through <dfn>calibration</dfn>.
 Known but <em>unpredictable</em> discrepancies need to be addressed dynamically
 through a process called [=sensor fusion=].
 
-<a lt=calibration>Calibrated</a> [=raw sensor readings=] are referred to as <dfn>sensor readings</dfn>,
+[=calibration|Calibrated=] [=raw sensor readings=] are referred to as <dfn>sensor readings</dfn>,
 whether or not they have undergone [=sensor fusion=].
 
 Different [=sensor types=] measure different physical quantities
@@ -368,7 +368,7 @@ For the purpose of this specification we distinguish between
 are referred to as <dfn>low-level</dfn> sensors.
 For example a Gyroscope is a [=low-level=] [=sensor type=].
 
-[=Sensors=] named after their <a lt="sensor readings">readings</a>,
+[=Sensors=] named after their [=sensor readings|readings=],
 regardless of the implementation,
 are said to be <dfn>high-level</dfn> sensors.
 For instance, geolocation sensors provide information about the user's location,
@@ -404,10 +404,10 @@ for the given [=sensor types=] they are targeting.
 
 [=Sensor readings=] from different [=sensor types=] can be combined together 
 through a process called <dfn>sensor fusion</dfn>.
-This process provides <a lt="high-level">higher-level</a> or
+This process provides [=high-level|higher-level=] or
 more accurate data (often at the cost of increased latency).
-For example, the <a lt="sensor readings">readings</a> of a three-axis magnetometer
-needs to be combined with the <a lt="sensor readings">readings</a> of an accelerometer
+For example, the [=sensor readings|readings=] of a three-axis magnetometer
+needs to be combined with the [=sensor readings|readings=] of an accelerometer
 to provide a correct bearing.
 
 <dfn>Smart sensors</dfn> and <dfn>sensor hubs</dfn>
@@ -432,7 +432,7 @@ Note: [=sensors=] created through [=sensor fusion=] are sometimes
 called virtual or synthetic sensors.
 However, the specification doesn't make any practical differences between them,
 preferring instead to differentiate [=sensors=] as to whether they describe
-the kind of <a lt="sensor readings">readings</a> produced--these are [=high-level=] sensors--
+the kind of [=sensor readings|readings=] produced--these are [=high-level=] sensors--
 or how the sensor is implemented ([=low-level=] sensors).
 
 [=Sensors=] have different <dfn>reporting modes</dfn>.
@@ -501,7 +501,7 @@ A [=sensor=] has an associated <dfn>current reading</dfn>,
 which can initially be `null` or
 be set to a {{SensorReading}} object, that was cached in a user-agent-specific way.
     
-Note: there are additional privacy concerns when using cached <a lt="sensor readings">readings</a>
+Note: there are additional privacy concerns when using cached [=sensor readings|readings=]
 which predate either [=navigating=] to resources in the current [=origin=],
 or being granted permission to access the [=sensor=].
 
@@ -670,7 +670,7 @@ A {{SensorReading}} represents the state of a [=sensor=] at a given point in tim
 ### SensorReading.timeStamp ### {#sensor-reading-timestamp}
 
 Returns a timestamp of the time
-at which the <a lt="sensor reading">reading</a> was obtained from the [=sensor=]
+at which the [=sensor reading|reading=] was obtained from the [=sensor=]
 expressed in milliseconds that passed since the [=time origin=].
 
 Issue(101):
@@ -692,7 +692,7 @@ dictionary SensorReadingEventInit : EventInit {
 ### SensorReadingEvent.reading ### {#sensor-reading-event-reading}
 
 The <dfn attribute for=SensorReadingEvent>reading</dfn> attribute references
-the [=current reading=] at the time of <a lt=dispatch>event dispatch</a>.
+the [=current reading=] at the time of [=dispatch|event dispatch=].
 
 
 The SensorErrorEvent Interface {#the-sensor-error-event-interface}
@@ -823,7 +823,7 @@ Abstract Operations {#abstract-operations}
         1.  the user-agent can decide on the best reporting strategy
             for this particular |sensor| and [=sensor type=].
         1.  The user-agent must invoke the [=Update Current Reading=] abstract operation
-            at to report fresh <a lt="sensor readings">readings</a>,
+            at to report fresh [=sensor readings|readings=],
             passing it |sensor| and the latest [=sensor reading=] as arguments.
 
 <h3 algorithm dfn>Find Current Reporting Mode of a Sensor</h3>
@@ -949,7 +949,7 @@ how this specification can be extended to specify APIs for
 different [=sensor types=].
 
 Extension specifications are encouraged to focus on a single [=sensor type=],
-exposing both <a lt="high-level">high</a> and <a lt="low-level">low</a> level
+exposing both [=high-level|high=] and [=low-level|low=] level
 as appropriate.
 
 Naming {#naming}
@@ -1040,12 +1040,12 @@ At least the following definitions must be specified in each extension specifica
 -   A [=SensorReading subclass=] which is constructible and
     whose attributes which hold [=sensor readings=] are readonly.
 -   A abstract operation to
-    <a lt="Construct SensorReading Object">construct a SensorReading object</a>
+    [=Construct SensorReading Object|construct a SensorReading object=]
     which takes the [=sensor readings=] emitted by the [=sensor=] and
     returns an initialized [=SensorReading subclass=] object.
 -   The [=sensor type=]'s [=supported reporting modes=].
 -   A abstract operation to
-    <a lt="retrieve the sensor permission">retrieve sensor permission</a> which
+    [=retrieve the sensor permission|retrieve sensor permission=] which
     takes a [=Sensor subclass=] object as input and
     returns a [=permission=] and, eventually, its [=associated PermissionDescriptor=].
 
@@ -1053,7 +1053,7 @@ An extension specification may specify the following defintions:
 
 -   A {{SensorOptions}} subclass.
 -   A [=default sensor=]. Generally, devices are equipped with a single [=sensor=]
-    of each <a lt="sensor types">type</a>,
+    of each [=sensor types|type=],
     so defining a [=default sensor=] should be straightforward.
     For [=sensor types=] where multiple [=sensors=] are common,
     extension specifications may choose not to define a [=default sensor=],
