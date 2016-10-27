@@ -415,6 +415,19 @@
 	 border-left: 0.5em solid #DEF;
 	}
 
+	/* Put nice boxes around each algorithm. */
+	[data-algorithm]:not(.heading) {
+	  padding: .5em;
+	  border: thin solid #ddd; border-radius: .5em;
+	  margin: .5em 0;
+	}
+	[data-algorithm]:not(.heading) > :first-child {
+	  margin-top: 0;
+	}
+	[data-algorithm]:not(.heading) > :last-child {
+	  margin-bottom: 0;
+	}
+
 	/* Style for switch/case <dl>s */
 	dl.switch > dd > ol.only,
 	dl.switch > dd > .only > ol {
@@ -1415,7 +1428,7 @@ pre.idl.highlight { color: #708090; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="http://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-08-26">26 August 2016</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-10-27">27 October 2016</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1633,16 +1646,16 @@ the device’s default (and often unique) <a data-link-type="dfn" href="#concept
 the default <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-5">sensor</a> is chosen.</p>
    <div class="example" id="example-83e37544">
     <a class="self-link" href="#example-83e37544"></a> Listening to geolocation changes: 
-<pre class="highlight"><span></span><span class="kd">let</span> <span class="nx">sensor</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">GeolocationSensor</span><span class="p">({</span> <span class="nx">accuracy</span><span class="o">:</span> <span class="s2">"high"</span> <span class="p">});</span>
+<pre class="highlight"><span class="kd">let</span> sensor <span class="o">=</span> <span class="k">new</span> GeolocationSensor<span class="p">(</span><span class="p">{</span> accuracy<span class="o">:</span> <span class="s2">"high"</span> <span class="p">}</span><span class="p">)</span><span class="p">;</span>
 
-<span class="nx">sensor</span><span class="p">.</span><span class="nx">onchange</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">coords</span> <span class="o">=</span> <span class="p">[</span><span class="nx">event</span><span class="p">.</span><span class="nx">reading</span><span class="p">.</span><span class="nx">latitude</span><span class="p">,</span> <span class="nx">event</span><span class="p">.</span><span class="nx">reading</span><span class="p">.</span><span class="nx">longitude</span><span class="p">];</span>
-    <span class="nx">updateMap</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">coords</span><span class="p">,</span> <span class="nx">event</span><span class="p">.</span><span class="nx">reading</span><span class="p">.</span><span class="nx">accuracy</span><span class="p">);</span>
-<span class="p">};</span>
+sensor<span class="p">.</span>onchange <span class="o">=</span> <span class="kd">function</span><span class="p">(</span>event<span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> coords <span class="o">=</span> <span class="p">[</span>event<span class="p">.</span>reading<span class="p">.</span>latitude<span class="p">,</span> event<span class="p">.</span>reading<span class="p">.</span>longitude<span class="p">]</span><span class="p">;</span>
+    updateMap<span class="p">(</span><span class="kc">null</span><span class="p">,</span> coords<span class="p">,</span> event<span class="p">.</span>reading<span class="p">.</span>accuracy<span class="p">)</span><span class="p">;</span>
+<span class="p">}</span><span class="p">;</span>
 
-<span class="nx">sensor</span><span class="p">.</span><span class="nx">onerror</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">updateMap</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
-<span class="p">};</span>
+sensor<span class="p">.</span>onerror <span class="o">=</span> <span class="kd">function</span><span class="p">(</span>error<span class="p">)</span> <span class="p">{</span>
+    updateMap<span class="p">(</span>error<span class="p">)</span><span class="p">;</span>
+<span class="p">}</span><span class="p">;</span>
 </pre>
    </div>
    <p class="note" role="note">Note: extension to this specification may choose not to define a default sensor
@@ -1655,8 +1668,8 @@ specification extension will have to
 define ways to uniquely identify each one.</p>
    <div class="example" id="example-6819b29f">
     <a class="self-link" href="#example-6819b29f"></a> For example checking the pressure of the left rear tire: 
-<pre class="highlight"><span></span><span class="kd">let</span> <span class="nx">sensor</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DirectTirePressureSensor</span><span class="p">({</span> <span class="nx">position</span><span class="o">:</span> <span class="s2">"rear"</span><span class="p">,</span> <span class="nx">side</span><span class="o">:</span> <span class="s2">"left"</span> <span class="p">});</span>
-<span class="nx">sensor</span><span class="p">.</span><span class="nx">onchange</span> <span class="o">=</span> <span class="nx">event</span> <span class="o">=></span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">reading</span><span class="p">.</span><span class="nx">pressure</span><span class="p">);</span>
+<pre class="highlight"><span class="kd">let</span> sensor <span class="o">=</span> <span class="k">new</span> DirectTirePressureSensor<span class="p">(</span><span class="p">{</span> position<span class="o">:</span> <span class="s2">"rear"</span><span class="p">,</span> side<span class="o">:</span> <span class="s2">"left"</span> <span class="p">}</span><span class="p">)</span><span class="p">;</span>
+sensor<span class="p">.</span>onchange <span class="o">=</span> event <span class="o">=</span><span class="o">></span> console<span class="p">.</span>log<span class="p">(</span>event<span class="p">.</span>reading<span class="p">.</span>pressure<span class="p">)</span><span class="p">;</span>
 </pre>
    </div>
    <h2 class="heading settled" data-level="4" id="feature-detection"><span class="secno">4. </span><span class="content">A note on Feature Detection of Hardware Features</span><a class="self-link" href="#feature-detection"></a></h2>
@@ -1668,20 +1681,20 @@ but rather to put it in the context of detecting hardware-dependent features.</p
    <p>Consider the below feature detection examples:</p>
    <div class="example" id="example-e20db9c8">
     <a class="self-link" href="#example-e20db9c8"></a> 
-<pre class="highlight"><span></span><span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">Gyroscope</span> <span class="o">===</span> <span class="s2">"function"</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// run in circles...</span>
-<span class="p">}</span>
+<pre class="highlight"><span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> Gyroscope <span class="o">===</span> <span class="s2">"function"</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// run in circles...
+</span><span class="p">}</span>
         
-<span class="k">if</span> <span class="p">(</span><span class="s2">"ProximitySensor"</span> <span class="k">in</span> <span class="nb">window</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// watch out!</span>
-<span class="p">}</span>
+<span class="k">if</span> <span class="p">(</span><span class="s2">"ProximitySensor"</span> <span class="k">in</span> window<span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// watch out!
+</span><span class="p">}</span>
         
-<span class="k">if</span> <span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">AmbientLightSensor</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// go dark...</span>
-<span class="p">}</span>
+<span class="k">if</span> <span class="p">(</span>window<span class="p">.</span>AmbientLightSensor<span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// go dark...
+</span><span class="p">}</span>
         
-<span class="c1">// etc.</span>
-</pre>
+<span class="c1">// etc.
+</span></pre>
    </div>
    <p>All of these tell you something about the presence
 and possible characteristics of an API.
@@ -1716,13 +1729,13 @@ and defensive programming which includes:</p>
    </ol>
    <div class="example" id="example-a18661d1">
     <a class="self-link" href="#example-a18661d1"></a> 
-<pre class="highlight"><span></span><span class="k">try</span> <span class="p">{</span> <span class="c1">// No need to feature detect thanks to try..catch block.</span>
-    <span class="kd">let</span> <span class="nx">sensor</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">GeolocationSensor</span><span class="p">({});</span>
-    <span class="nx">sensor</span><span class="p">.</span><span class="nx">start</span><span class="p">();</span>
-    <span class="nx">sensor</span><span class="p">.</span><span class="nx">onerror</span> <span class="o">=</span> <span class="nx">error</span> <span class="o">=></span> <span class="nx">gracefullyDegrade</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
-    <span class="nx">sensor</span><span class="p">.</span><span class="nx">onchange</span> <span class="o">=</span> <span class="nx">event</span> <span class="o">=></span> <span class="nx">updatePosition</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">reading</span><span class="p">.</span><span class="nx">coords</span><span class="p">);</span>
-<span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">gracefullyDegrade</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+<pre class="highlight"><span class="k">try</span> <span class="p">{</span> <span class="c1">// No need to feature detect thanks to try..catch block.
+</span>    <span class="kd">let</span> sensor <span class="o">=</span> <span class="k">new</span> GeolocationSensor<span class="p">(</span><span class="p">{</span><span class="p">}</span><span class="p">)</span><span class="p">;</span>
+    sensor<span class="p">.</span>start<span class="p">(</span><span class="p">)</span><span class="p">;</span>
+    sensor<span class="p">.</span>onerror <span class="o">=</span> error <span class="o">=</span><span class="o">></span> gracefullyDegrade<span class="p">(</span>error<span class="p">)</span><span class="p">;</span>
+    sensor<span class="p">.</span>onchange <span class="o">=</span> event <span class="o">=</span><span class="o">></span> updatePosition<span class="p">(</span>event<span class="p">.</span>reading<span class="p">.</span>coords<span class="p">)</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">catch</span><span class="p">(</span>error<span class="p">)</span> <span class="p">{</span>
+    gracefullyDegrade<span class="p">(</span>error<span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
 </pre>
    </div>
@@ -2037,7 +2050,7 @@ at which the <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-
 };
 
 <span class="kt">dictionary</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-sensorreadingeventinit">SensorReadingEventInit</dfn> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#dictdef-eventinit">EventInit</a> {
-  <a class="n" data-link-type="idl-name" href="#sensorreading" id="ref-for-sensorreading-7">SensorReading</a> <dfn class="nv idl-code" data-dfn-for="SensorReadingEventInit" data-dfn-type="dict-member" data-export="" data-type="SensorReading " id="dom-sensorreadingeventinit-reading">reading<a class="self-link" href="#dom-sensorreadingeventinit-reading"></a></dfn>;
+  <span class="kt">required</span> <a class="n" data-link-type="idl-name" href="#sensorreading" id="ref-for-sensorreading-7">SensorReading</a> <dfn class="nv idl-code" data-dfn-for="SensorReadingEventInit" data-dfn-type="dict-member" data-export="" data-type="SensorReading " id="dom-sensorreadingeventinit-reading">reading<a class="self-link" href="#dom-sensorreadingeventinit-reading"></a></dfn>;
 };
 </pre>
    <h4 class="heading settled" data-level="8.3.1" id="sensor-reading-event-reading"><span class="secno">8.3.1. </span><span class="content">SensorReadingEvent.reading</span><a class="self-link" href="#sensor-reading-event-reading"></a></h4>
@@ -2050,7 +2063,7 @@ the <a data-link-type="dfn" href="#current-reading" id="ref-for-current-reading-
 };
 
 <span class="kt">dictionary</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-sensorerroreventinit">SensorErrorEventInit</dfn> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#dictdef-eventinit">EventInit</a> {
-  <span class="kt">Error</span> <dfn class="nv idl-code" data-dfn-for="SensorErrorEventInit" data-dfn-type="dict-member" data-export="" data-type="Error " id="dom-sensorerroreventinit-error">error<a class="self-link" href="#dom-sensorerroreventinit-error"></a></dfn>;
+  <span class="kt">required</span> <span class="kt">Error</span> <dfn class="nv idl-code" data-dfn-for="SensorErrorEventInit" data-dfn-type="dict-member" data-export="" data-type="Error " id="dom-sensorerroreventinit-error">error<a class="self-link" href="#dom-sensorerroreventinit-error"></a></dfn>;
 };
 </pre>
    <h4 class="heading settled" data-level="8.4.1" id="sensor-error-event-error"><span class="secno">8.4.1. </span><span class="content">SensorErrorEvent.error</span><a class="self-link" href="#sensor-error-event-error"></a></h4>
@@ -2826,8 +2839,11 @@ for their editorial input.</p>
    <li>
     <a data-link-type="biblio">[WHATWG-DOM]</a> defines the following terms:
     <ul>
+     <li><a href="https://dom.spec.whatwg.org/#event">Event</a>
+     <li><a href="https://dom.spec.whatwg.org/#dictdef-eventinit">EventInit</a>
      <li><a href="https://dom.spec.whatwg.org#interface-eventtarget">EventTarget</a>
      <li><a href="https://dom.spec.whatwg.org#concept-event-dispatch">dispatch</a>
+     <li><a href="https://dom.spec.whatwg.org/#concept-document">document</a>
      <li><a href="https://dom.spec.whatwg.org#concept-event">event</a>
     </ul>
    <li>
@@ -2883,19 +2899,12 @@ for their editorial input.</p>
      <li><a href="https://heycam.github.io/webidl/#notallowederror">notallowederror</a>
      <li><a href="https://heycam.github.io/webidl/#dfn-throw">throw</a>
     </ul>
-   <li>
-    <a data-link-type="biblio">[WHATWG-DOM]</a> defines the following terms:
-    <ul>
-     <li><a href="https://dom.spec.whatwg.org/#event">Event</a>
-     <li><a href="https://dom.spec.whatwg.org/#dictdef-eventinit">EventInit</a>
-     <li><a href="https://dom.spec.whatwg.org/#concept-document">document</a>
-    </ul>
   </ul>
   <h2 class="no-num no-ref heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
   <h3 class="no-num no-ref heading settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
   <dl>
    <dt id="biblio-hr-time-2">[HR-TIME-2]
-   <dd>Ilya Grigorik; James Simonsen; Jatinder Mann. <a href="https://w3c.github.io/hr-time/">High Resolution Time Level 2</a>. 20 July 2016. WD. URL: <a href="https://w3c.github.io/hr-time/">https://w3c.github.io/hr-time/</a>
+   <dd>Ilya Grigorik; James Simonsen; Jatinder Mann. <a href="https://w3c.github.io/hr-time/">High Resolution Time Level 2</a>. 8 October 2016. WD. URL: <a href="https://w3c.github.io/hr-time/">https://w3c.github.io/hr-time/</a>
    <dt id="biblio-html">[HTML]
    <dd>Ian Hickson. <a href="https://html.spec.whatwg.org/multipage/">HTML Standard</a>. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a>
    <dt id="biblio-page-visibility">[PAGE-VISIBILITY]
@@ -2903,11 +2912,11 @@ for their editorial input.</p>
    <dt id="biblio-permissions">[PERMISSIONS]
    <dd>Mounir Lamouri; Marcos Caceres. <a href="https://w3c.github.io/permissions/">The Permissions API</a>. 7 April 2015. WD. URL: <a href="https://w3c.github.io/permissions/">https://w3c.github.io/permissions/</a>
    <dt id="biblio-powerful-features">[POWERFUL-FEATURES]
-   <dd>Mike West. <a href="https://w3c.github.io/webappsec-secure-contexts/">Secure Contexts</a>. 19 July 2016. WD. URL: <a href="https://w3c.github.io/webappsec-secure-contexts/">https://w3c.github.io/webappsec-secure-contexts/</a>
+   <dd>Mike West. <a href="https://w3c.github.io/webappsec-secure-contexts/">Secure Contexts</a>. 15 September 2016. CR. URL: <a href="https://w3c.github.io/webappsec-secure-contexts/">https://w3c.github.io/webappsec-secure-contexts/</a>
    <dt id="biblio-rfc2119">[RFC2119]
    <dd>S. Bradner. <a href="https://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>. March 1997. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc2119">https://tools.ietf.org/html/rfc2119</a>
    <dt id="biblio-webidl-1">[WebIDL-1]
-   <dd>Cameron McCormack; Boris Zbarsky. <a href="https://heycam.github.io/webidl/">WebIDL Level 1</a>. 8 March 2016. CR. URL: <a href="https://heycam.github.io/webidl/">https://heycam.github.io/webidl/</a>
+   <dd>Cameron McCormack; Boris Zbarsky. <a href="https://heycam.github.io/webidl/">WebIDL Level 1</a>. 15 September 2016. PR. URL: <a href="https://heycam.github.io/webidl/">https://heycam.github.io/webidl/</a>
    <dt id="biblio-whatwg-dom">[WHATWG-DOM]
    <dd>Anne van Kesteren. <a href="https://dom.spec.whatwg.org/">DOM Standard</a>. Living Standard. URL: <a href="https://dom.spec.whatwg.org/">https://dom.spec.whatwg.org/</a>
   </dl>
@@ -2958,7 +2967,7 @@ for their editorial input.</p>
 };
 
 <span class="kt">dictionary</span> <a class="nv" href="#dictdef-sensorreadingeventinit">SensorReadingEventInit</a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#dictdef-eventinit">EventInit</a> {
-  <a class="n" data-link-type="idl-name" href="#sensorreading">SensorReading</a> <a class="nv" data-type="SensorReading " href="#dom-sensorreadingeventinit-reading">reading</a>;
+  <span class="kt">required</span> <a class="n" data-link-type="idl-name" href="#sensorreading">SensorReading</a> <a class="nv" data-type="SensorReading " href="#dom-sensorreadingeventinit-reading">reading</a>;
 };
 
 [<a class="nv" href="#dom-sensorerrorevent-sensorerrorevent">Constructor</a>(<span class="kt">DOMString</span> <a class="nv" href="#dom-sensorerrorevent-sensorerrorevent-type-erroreventinitdict-type">type</a>, <a class="n" data-link-type="idl-name" href="#dictdef-sensorerroreventinit">SensorErrorEventInit</a> <a class="nv" href="#dom-sensorerrorevent-sensorerrorevent-type-erroreventinitdict-erroreventinitdict">errorEventInitDict</a>)]
@@ -2967,7 +2976,7 @@ for their editorial input.</p>
 };
 
 <span class="kt">dictionary</span> <a class="nv" href="#dictdef-sensorerroreventinit">SensorErrorEventInit</a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#dictdef-eventinit">EventInit</a> {
-  <span class="kt">Error</span> <a class="nv" data-type="Error " href="#dom-sensorerroreventinit-error">error</a>;
+  <span class="kt">required</span> <span class="kt">Error</span> <a class="nv" data-type="Error " href="#dom-sensorerroreventinit-error">error</a>;
 };
 
 </pre>

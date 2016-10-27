@@ -683,7 +683,7 @@ interface SensorReadingEvent : Event {
 };
 
 dictionary SensorReadingEventInit : EventInit {
-  SensorReading reading;
+  required SensorReading reading;
 };
 </pre>
 
@@ -703,7 +703,7 @@ interface SensorErrorEvent : Event {
 };
 
 dictionary SensorErrorEventInit : EventInit {
-  Error error;
+  required Error error;
 };
 </pre>
 
