@@ -905,8 +905,9 @@ Abstract Operations {#abstract-operations}
     1.  If |sensor|’s [=reporting flag=] is set,
         1. abort these steps.
     1.  Set |sensor|’s [=reporting flag=].
-    1.  Let |reading_instance| be the result of invoking [=sensor type=]'s associated
-        [=Construct SensorReading Object=] operation,
+    1.  Let |reading_instance| be the result of invoking the
+        [=Construct SensorReading Object=] operation
+        associated with |sensor|'s [=sensor type|type=],
         passing it |reading| as argument.
     1.  Set |sensor|’s [=current reading=] to |reading_instance|.
     1.  For each |sensor_instance| in |sensor|'s set of [=activated Sensor objects=]:
