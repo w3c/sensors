@@ -2287,7 +2287,7 @@ the <a data-link-type="dfn" href="#current-reading" id="ref-for-current-reading-
         <p>Invoke the <a data-link-type="dfn" href="#update-current-reading" id="ref-for-update-current-reading-1">Update Current Reading</a> abstract operation
   at a <a data-link-type="dfn" href="#frequency" id="ref-for-frequency-2">frequency</a> of <var>frequency</var> passing it <var>sensor</var> and
   the latest <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-20">sensor reading</a> as arguments.</p>
-        <p class="note" role="note">Note: there is not guarantee that the <a data-link-type="dfn" href="#current-polling-frequency" id="ref-for-current-polling-frequency-5">current polling frequency</a> can be respected. The actual <a data-link-type="dfn" href="#frequency" id="ref-for-frequency-3">frequency</a> can be calculated using <code class="idl"><a data-link-type="idl" href="#sensorreading" id="ref-for-sensorreading-8">SensorReading</a></code> <a class="idl-code" data-link-type="attribute" href="#dom-sensorreading-timestamp" id="ref-for-dom-sensorreading-timestamp-1">timeStamp</a> attributes.</p>
+        <p class="note" role="note">Note: there is not guarantee that the <a data-link-type="dfn" href="#current-polling-frequency" id="ref-for-current-polling-frequency-5">current polling frequency</a> can be respected. The actual <a data-link-type="dfn" href="#frequency" id="ref-for-frequency-3">frequency</a> can be calculated using <code class="idl"><a data-link-type="idl" href="#sensorreading" id="ref-for-sensorreading-8">SensorReading</a></code> <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensorreading-timestamp" id="ref-for-dom-sensorreading-timestamp-1">timeStamp</a></code> attributes.</p>
       </ol>
      <li data-md="">
       <p>If the <a data-link-type="dfn" href="#current-reporting-mode" id="ref-for-current-reporting-mode-5">current reporting mode</a> is set to <a data-link-type="dfn" href="#auto" id="ref-for-auto-4">auto</a>,</p>
@@ -2378,7 +2378,7 @@ the <a data-link-type="dfn" href="#current-reading" id="ref-for-current-reading-
     </dl>
     <ol>
      <li data-md="">
-      <p>Set <var>sensor_instance</var>’s <a class="idl-code" data-link-type="attribute" href="#dom-sensor-state" id="ref-for-dom-sensor-state-2">state</a> to <var>state</var>.</p>
+      <p>Set <var>sensor_instance</var>’s <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensor-state" id="ref-for-dom-sensor-state-2">state</a></code> to <var>state</var>.</p>
      <li data-md="">
       <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task">Queue a task</a> to <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#fire-a-simple-event">fire a simple event</a> named <code>statechange</code> at <var>sensor_instance</var>.</p>
     </ol>
@@ -2440,7 +2440,7 @@ the <a data-link-type="dfn" href="#current-reading" id="ref-for-current-reading-
      <li data-md="">
       <p>Set <var>sensor_instance</var>’s <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensor-reading" id="ref-for-dom-sensor-reading-5">reading</a></code> to <var>reading</var>.</p>
      <li data-md="">
-      <p>If <var>sensor_instance</var>’s <a class="idl-code" data-link-type="attribute" href="#dom-sensor-state" id="ref-for-dom-sensor-state-3">state</a> is <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activating" id="ref-for-dom-sensorstate-activating-4">"activating"</a>:</p>
+      <p>If <var>sensor_instance</var>’s <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensor-state" id="ref-for-dom-sensor-state-3">state</a></code> is <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activating" id="ref-for-dom-sensorstate-activating-4">"activating"</a>:</p>
       <ol>
        <li data-md="">
         <p>Invoke the <a data-link-type="dfn" href="#update-state" id="ref-for-update-state-3">update state</a> algorithm passing <var>sensor_instance</var> and <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-active" id="ref-for-dom-sensorstate-active-3">"active"</a> as the arguments.</p>
@@ -2449,7 +2449,7 @@ the <a data-link-type="dfn" href="#current-reading" id="ref-for-current-reading-
       <p>Create an <a data-link-type="dfn" href="https://dom.spec.whatwg.org#concept-event">event</a> <var>e</var> that uses the <code class="idl"><a data-link-type="idl" href="#sensorreadingevent" id="ref-for-sensorreadingevent-1">SensorReadingEvent</a></code> interface,
   with the event type <code>reading</code>, which does not bubble, is not cancelable, is <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-events-trusted">trusted</a>, and has no default action.</p>
      <li data-md="">
-      <p>Let the <a class="idl-code" data-link-type="attribute" href="#dom-sensorreadingevent-reading" id="ref-for-dom-sensorreadingevent-reading-2">reading</a> attribute of <var>e</var> be initialized to <var>reading</var>.</p>
+      <p>Let the <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensorreadingevent-reading" id="ref-for-dom-sensorreadingevent-reading-2">reading</a></code> attribute of <var>e</var> be initialized to <var>reading</var>.</p>
      <li data-md="">
       <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task">Queue a task</a> to <a data-link-type="dfn" href="https://dom.spec.whatwg.org#concept-event-dispatch">dispatch</a> <var>e</var> at <var>sensor_instance</var>.</p>
     </ol>
@@ -2477,7 +2477,7 @@ the <a data-link-type="dfn" href="#current-reading" id="ref-for-current-reading-
       <p>Create an <a data-link-type="dfn" href="https://dom.spec.whatwg.org#concept-event">event</a> <var>e</var> that uses the <code class="idl"><a data-link-type="idl" href="#sensorerrorevent" id="ref-for-sensorerrorevent-1">SensorErrorEvent</a></code> interface,
   with the event type <code>error</code>, which does not bubble, is not cancelable, is <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-events-trusted">trusted</a>, and has no default action.</p>
      <li data-md="">
-      <p>Let the <a class="idl-code" data-link-type="attribute" href="#dom-sensorerrorevent-error" id="ref-for-dom-sensorerrorevent-error-1">error</a> attribute of <var>e</var> be initialized to <var>error</var>.</p>
+      <p>Let the <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensorerrorevent-error" id="ref-for-dom-sensorerrorevent-error-1">error</a></code> attribute of <var>e</var> be initialized to <var>error</var>.</p>
      <li data-md="">
       <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task">Queue a task</a> to <a data-link-type="dfn" href="https://dom.spec.whatwg.org#concept-event-dispatch">dispatch</a> <var>e</var> at <var>sensor_instance</var>.</p>
     </ol>

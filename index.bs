@@ -832,7 +832,7 @@ Abstract Operations {#abstract-operations}
 
             Note: there is not guarantee that the [=current polling frequency=]
             can be respected. The actual [=frequency=] can be calculated using
-            {{SensorReading}} <a attribute for=SensorReading>timeStamp</a> attributes.
+            {{SensorReading}} {{SensorReading/timeStamp!!attribute}} attributes.
     1.  If the [=current reporting mode=] is set to [=auto=],
         1.  the user-agent can decide on the best reporting strategy
             for this particular |sensor| and [=sensor type=].
@@ -887,7 +887,7 @@ Abstract Operations {#abstract-operations}
     : output
     :: None
 
-    1.  Set |sensor_instance|’s <a attribute>state</a> to |state|.
+    1.  Set |sensor_instance|’s {{Sensor/state!!attribute}} to |state|.
     1.  [=Queue a task=] to [=fire a simple event=] named `statechange` at |sensor_instance|.
 </div>
 
@@ -928,12 +928,12 @@ Abstract Operations {#abstract-operations}
     :: None
 
     1.  Set |sensor_instance|’s {{Sensor/reading!!attribute}} to |reading|.
-    1.  If |sensor_instance|'s <a attribute>state</a> is <a enum-value>"activating"</a>:
+    1.  If |sensor_instance|'s {{Sensor/state!!attribute}} is <a enum-value>"activating"</a>:
         1.  Invoke the [=update state=] algorithm passing |sensor_instance|
             and <a enum-value>"active"</a> as the arguments.
     1.  Create an [=event=] |e| that uses the {{SensorReadingEvent}} interface,
         with the event type `reading`, which does not bubble, is not cancelable, is [=trusted=], and has no default action.
-    1.  Let the <a attribute for=SensorReadingEvent>reading</a> attribute of |e| be initialized to |reading|.
+    1.  Let the {{SensorReadingEvent/reading!!attribute}} attribute of |e| be initialized to |reading|.
     1.  [=Queue a task=] to [=dispatch=] |e| at |sensor_instance|.
 </div>
 
@@ -952,7 +952,7 @@ Abstract Operations {#abstract-operations}
     1.  Invoke the [=update state=] algorithm passing |sensor_instance| and <a enum-value>"errored"</a> as the arguments.
     1.  Create an [=event=] |e| that uses the {{SensorErrorEvent}} interface,
         with the event type `error`, which does not bubble, is not cancelable, is [=trusted=], and has no default action.
-    1.  Let the <a attribute for=SensorErrorEvent>error</a> attribute of |e| be initialized to |error|.
+    1.  Let the {{SensorErrorEvent/error!!attribute}} attribute of |e| be initialized to |error|.
     1.  [=Queue a task=] to [=dispatch=] |e| at |sensor_instance|.
 </div>
 
