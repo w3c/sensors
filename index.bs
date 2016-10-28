@@ -572,14 +572,14 @@ to save battery.
 
 ### Sensor.state ### {#sensor-state}
 
-The <a attribute for="Sensor">state</a> attribute represents a {{Sensor}} object's [=state=].
+The {{Sensor/state!!attribute}} attribute represents a {{Sensor}} object's [=state=].
 
 ### Sensor.reading ### {#sensor-reading}
 
 When a {{Sensor}}'s [=state=] is <a enum-value>"active"</a>,
-its <a attribute for="Sensor">reading</a> attribute must always point to the [=current reading=]
+its {{Sensor/reading!!attribute}} attribute must always point to the [=current reading=]
 whatever the [=frequency=] so that
-the <a attribute for="Sensor">reading</a> attribute of two instances of the same {{Sensor}} interface
+the {{Sensor/reading!!attribute}} attribute of two instances of the same {{Sensor}} interface
 associated with the same [=sensor=]
 hold the same {{SensorReading}} during a single [=event loop=] turn.
 
@@ -612,7 +612,7 @@ The {{Sensor/stop()}} method must run these steps or their [=equivalent=]:
 
     1.  If |sensor_instance|'s [=state=] is either <a enum-value>"idle"</a> or <a enum-value>"errored"</a>, then
         1.  throw an "[=InvalidStateError=]" exception and abort these steps.
-    1.  Set |sensor_instance|’s <a attribute for="Sensor">reading</a> to `null`.
+    1.  Set |sensor_instance|’s {{Sensor/reading!!attribute}} to `null`.
     1.  Invoke the [=update state=] algorithm passing |sensor_instance| and <a enum-value>"idle"</a> as the arguments.
     1.  Run these sub-steps [=in parallel=]:
         1.  Invoke [=Unregister a Sensor=] passing it |sensor_instance| as argument.
@@ -717,7 +717,7 @@ Abstract Operations {#abstract-operations}
 <h3 export algorithm dfn>Construct Sensor Object</h3>
 
     : input
-    :: |options|, a <a dictionary>SensorOptions</a> object.
+    :: |options|, a {{SensorOptions}} object.
     : output
     :: |sensor_instance|, a {{Sensor}} object.
     
@@ -736,13 +736,13 @@ Abstract Operations {#abstract-operations}
         1.  let |sensor_instance| be a new {{Sensor}} object,
         1.  associate |sensor_instance| with |sensor|.
     1.  Otherwise, [=throw=] a TypeError.
-    1.  Let |frequency| be the value of the <a dict-member>frequency</a> member of |options|.
+    1.  Let |frequency| be the value of the {{frequency!!dict-member}} member of |options|.
     1.  If |frequency| is not `null`,
         1.  If |sensor| [=supports periodic reporting mode=],
             1.  Set |sensor_instance|'s [=desired frequency=] to |frequency|.
         1.  Otherwise,
             1.  [=throw=] a TypeError.
-    1.  Set |sensor_instance|'s <a for="Sensor" attribute>reading</a> attribute to `null`.
+    1.  Set |sensor_instance|'s {{Sensor/reading!!attribute}} attribute to `null`.
     1.  Set |sensor_instance|'s [=state=] to <a enum-value>"idle"</a>.
     1.  return |sensor_instance|.
 
@@ -775,7 +775,7 @@ Abstract Operations {#abstract-operations}
         1.  Set [=current reporting mode=] to `undefined`.
         1.  Set [=current polling frequency=] to `null`.
         1.  Update the user-agent-specific way in which [=sensor readings=] are obtained from |sensor|
-            to no longer provide <a lt ="sensor readings">readings</a>.
+            to no longer provide [=sensor readings|readings=].
         1.  Abort these steps.
     1.  Invoke the [=Set Sensor Settings=] abstract operation,
         passing it |sensor| as argument.
@@ -895,7 +895,7 @@ Abstract Operations {#abstract-operations}
     : output
     :: None
     
-    1.  Set |sensor_instance|’s <a attribute for="Sensor">reading</a> to |reading|.
+    1.  Set |sensor_instance|’s {{Sensor/reading!!attribute}} to |reading|.
     1.  If |sensor_instance|'s <a attribute>state</a> is <a enum-value>"activating"</a>:
         1.  Invoke the [=update state=] algorithm passing |sensor_instance|
             and <a enum-value>"active"</a> as the arguments.
@@ -912,7 +912,7 @@ Abstract Operations {#abstract-operations}
     : output
     :: None
     
-    1.  Set |sensor_instance|’s <a attribute for="Sensor">reading</a> to `null`.
+    1.  Set |sensor_instance|’s {{Sensor/reading!!attribute}} to `null`.
     1.  Invoke the [=update state=] algorithm passing |sensor_instance| and <a enum-value>"errored"</a> as the arguments.
     1.  Create an [=event=] |e| that uses the {{SensorErrorEvent}} interface,
         with the event type `error`, which does not bubble, is not cancelable, is [=trusted=], and has no default action.

@@ -1941,11 +1941,11 @@ If <var>current_visibility_state</var> is "visible", enable the sensor task sour
 when <a data-link-type="dfn" href="#sensor-task-source" id="ref-for-sensor-task-source-3">sensor task sources</a> are disabled in order
 to save battery.</p>
    <h4 class="heading settled" data-level="8.1.1" id="sensor-state"><span class="secno">8.1.1. </span><span class="content">Sensor.state</span><a class="self-link" href="#sensor-state"></a></h4>
-   <p>The <a class="idl-code" data-link-type="attribute" href="#dom-sensor-state" id="ref-for-dom-sensor-state-1">state</a> attribute represents a <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-9">Sensor</a></code> object’s <a data-link-type="dfn" href="#state" id="ref-for-state-1">state</a>.</p>
+   <p>The <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensor-state" id="ref-for-dom-sensor-state-1">state</a></code> attribute represents a <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-9">Sensor</a></code> object’s <a data-link-type="dfn" href="#state" id="ref-for-state-1">state</a>.</p>
    <h4 class="heading settled" data-level="8.1.2" id="sensor-reading"><span class="secno">8.1.2. </span><span class="content">Sensor.reading</span><a class="self-link" href="#sensor-reading"></a></h4>
    <p>When a <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-10">Sensor</a></code>'s <a data-link-type="dfn" href="#state" id="ref-for-state-2">state</a> is <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-active" id="ref-for-dom-sensorstate-active-2">"active"</a>,
-its <a class="idl-code" data-link-type="attribute" href="#dom-sensor-reading" id="ref-for-dom-sensor-reading-1">reading</a> attribute must always point to the <a data-link-type="dfn" href="#current-reading" id="ref-for-current-reading-1">current reading</a> whatever the <a data-link-type="dfn" href="#frequency" id="ref-for-frequency-1">frequency</a> so that
-the <a class="idl-code" data-link-type="attribute" href="#dom-sensor-reading" id="ref-for-dom-sensor-reading-2">reading</a> attribute of two instances of the same <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-11">Sensor</a></code> interface
+its <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensor-reading" id="ref-for-dom-sensor-reading-1">reading</a></code> attribute must always point to the <a data-link-type="dfn" href="#current-reading" id="ref-for-current-reading-1">current reading</a> whatever the <a data-link-type="dfn" href="#frequency" id="ref-for-frequency-1">frequency</a> so that
+the <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensor-reading" id="ref-for-dom-sensor-reading-2">reading</a></code> attribute of two instances of the same <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-11">Sensor</a></code> interface
 associated with the same <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-31">sensor</a> hold the same <code class="idl"><a data-link-type="idl" href="#sensorreading" id="ref-for-sensorreading-4">SensorReading</a></code> during a single <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-loop">event loop</a> turn.</p>
    <h4 class="heading settled" data-level="8.1.3" id="sensor-start"><span class="secno">8.1.3. </span><span class="content">Sensor.start()</span><a class="self-link" href="#sensor-start"></a></h4>
    <div class="algorithm" data-algorithm="to start a sensor">
@@ -2000,7 +2000,7 @@ associated with the same <a data-link-type="dfn" href="#concept-sensor" id="ref-
         <p>throw an "<a data-link-type="dfn" href="https://heycam.github.io/webidl/#invalidstateerror">InvalidStateError</a>" exception and abort these steps.</p>
       </ol>
      <li data-md="">
-      <p>Set <var>sensor_instance</var>’s <a class="idl-code" data-link-type="attribute" href="#dom-sensor-reading" id="ref-for-dom-sensor-reading-3">reading</a> to <code>null</code>.</p>
+      <p>Set <var>sensor_instance</var>’s <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensor-reading" id="ref-for-dom-sensor-reading-3">reading</a></code> to <code>null</code>.</p>
      <li data-md="">
       <p>Invoke the <a data-link-type="dfn" href="#update-state" id="ref-for-update-state-2">update state</a> algorithm passing <var>sensor_instance</var> and <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-idle" id="ref-for-dom-sensorstate-idle-5">"idle"</a> as the arguments.</p>
      <li data-md="">
@@ -2075,7 +2075,7 @@ the <a data-link-type="dfn" href="#current-reading" id="ref-for-current-reading-
     <dt data-md="">
      <p>input</p>
     <dd data-md="">
-     <p><var>options</var>, a <a class="idl-code" data-link-type="dictionary" href="#dictdef-sensoroptions" id="ref-for-dictdef-sensoroptions-1">SensorOptions</a> object.</p>
+     <p><var>options</var>, a <code class="idl"><a data-link-type="idl" href="#dictdef-sensoroptions" id="ref-for-dictdef-sensoroptions-1">SensorOptions</a></code> object.</p>
     <dt data-md="">
      <p>output</p>
     <dd data-md="">
@@ -2123,7 +2123,7 @@ the <a data-link-type="dfn" href="#current-reading" id="ref-for-current-reading-
     <li data-md="">
      <p>Otherwise, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-throw">throw</a> a TypeError.</p>
     <li data-md="">
-     <p>Let <var>frequency</var> be the value of the <a class="idl-code" data-link-type="dict-member" href="#dom-sensoroptions-frequency" id="ref-for-dom-sensoroptions-frequency-1">frequency</a> member of <var>options</var>.</p>
+     <p>Let <var>frequency</var> be the value of the <code class="idl"><a class="idl-code" data-link-type="dict-member" href="#dom-sensoroptions-frequency" id="ref-for-dom-sensoroptions-frequency-1">frequency</a></code> member of <var>options</var>.</p>
     <li data-md="">
      <p>If <var>frequency</var> is not <code>null</code>,</p>
      <ol>
@@ -2141,7 +2141,7 @@ the <a data-link-type="dfn" href="#current-reading" id="ref-for-current-reading-
        </ol>
      </ol>
     <li data-md="">
-     <p>Set <var>sensor_instance</var>’s <a class="idl-code" data-link-type="attribute" href="#dom-sensor-reading" id="ref-for-dom-sensor-reading-4">reading</a> attribute to <code>null</code>.</p>
+     <p>Set <var>sensor_instance</var>’s <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensor-reading" id="ref-for-dom-sensor-reading-4">reading</a></code> attribute to <code>null</code>.</p>
     <li data-md="">
      <p>Set <var>sensor_instance</var>’s <a data-link-type="dfn" href="#state" id="ref-for-state-5">state</a> to <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-idle" id="ref-for-dom-sensorstate-idle-6">"idle"</a>.</p>
     <li data-md="">
@@ -2412,7 +2412,7 @@ the <a data-link-type="dfn" href="#current-reading" id="ref-for-current-reading-
    </dl>
    <ol>
     <li data-md="">
-     <p>Set <var>sensor_instance</var>’s <a class="idl-code" data-link-type="attribute" href="#dom-sensor-reading" id="ref-for-dom-sensor-reading-5">reading</a> to <var>reading</var>.</p>
+     <p>Set <var>sensor_instance</var>’s <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensor-reading" id="ref-for-dom-sensor-reading-5">reading</a></code> to <var>reading</var>.</p>
     <li data-md="">
      <p>If <var>sensor_instance</var>’s <a class="idl-code" data-link-type="attribute" href="#dom-sensor-state" id="ref-for-dom-sensor-state-3">state</a> is <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activating" id="ref-for-dom-sensorstate-activating-4">"activating"</a>:</p>
      <ol>
@@ -2442,7 +2442,7 @@ the <a data-link-type="dfn" href="#current-reading" id="ref-for-current-reading-
    </dl>
    <ol>
     <li data-md="">
-     <p>Set <var>sensor_instance</var>’s <a class="idl-code" data-link-type="attribute" href="#dom-sensor-reading" id="ref-for-dom-sensor-reading-6">reading</a> to <code>null</code>.</p>
+     <p>Set <var>sensor_instance</var>’s <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensor-reading" id="ref-for-dom-sensor-reading-6">reading</a></code> to <code>null</code>.</p>
     <li data-md="">
      <p>Invoke the <a data-link-type="dfn" href="#update-state" id="ref-for-update-state-4">update state</a> algorithm passing <var>sensor_instance</var> and <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-errored" id="ref-for-dom-sensorstate-errored-4">"errored"</a> as the arguments.</p>
     <li data-md="">
