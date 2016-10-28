@@ -1182,6 +1182,19 @@ Possible extra rowspan handling
     }
   </style>
   <meta content="Bikeshed 1.0.0" name="generator">
+<style>
+    #toc .current,
+    #toc .current-parent {
+      border-right-width: 3px;
+      border-right-style: solid;
+      border-right-color: #3980B5;
+    }
+
+    #toc .current {
+      background: rgba(75%, 75%, 75%, .25);
+      border-right-color: #054572;
+    }
+</style>
 <style>/* style-md-lists */
 
             /* This is a weird hack for me not yet following the commonmark spec
@@ -2739,6 +2752,128 @@ for their editorial input.</p>
    <h3 class="no-ref no-num heading settled" id="conformance-classes"><span class="content">Conformance Classes</span><a class="self-link" href="#conformance-classes"></a></h3>
    <p>A <dfn data-dfn-type="dfn" data-noexport="" id="conformant-user-agent">conformant user agent<a class="self-link" href="#conformant-user-agent"></a></dfn> must implement all the requirements
     listed in this specification that are applicable to user agents.</p>
+<script>
+    // Scrollspy
+    var createScrollSpy = (function() {
+
+        function targetId(element) {
+            return (element.href || "").split("#")[1] || null;
+        }
+
+        function getScrollTop() {
+            return (window.pageYOffset !== undefined)
+                ? window.pageYOffset
+                : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+        }
+
+        function addClassToParents(element, className, parentClassName) {
+            do {
+                element = element.parentNode;
+            } while (element && element.tagName != "LI")
+            if (element) {
+                var a = element.querySelector("a");
+                if (a) a.className = className;
+                addClassToParents(element, parentClassName ? parentClassName : className);
+            }
+        }
+
+        function getPosition(element, container) {
+            var eR = element.getBoundingClientRect();
+            var cR = container.getBoundingClientRect();
+            if (eR.bottom < cR.top) return "above";
+            if (eR.top > cR.bottom) return "below";
+            return "visible";
+        }
+
+        function createScrollSpy(options) {
+            options = options || {};
+
+            var OFFSET = 80,
+                previous = null,
+                current = null,
+                currentNav = null,
+                tocContainer,
+                toc,
+                sections;
+
+            tocContainer = document.querySelector(options.id);
+            toc = [].slice.call(tocContainer.querySelectorAll("a"), 0);
+            sections = toc.reduce(function(sections, a) {
+                var id = targetId(a);
+                var section = id ? document.getElementById(id) : null;
+                if (section) { sections.push(section); }
+                return sections;
+            }, []);
+
+            function onscroll(event) {
+                var scrollTop = (options.offset || 0) + getScrollTop();
+                current = sections.filter(function(section){
+                    return section.offsetTop < scrollTop;
+                }).pop();
+                current = current ? current.id : null;
+
+                if (previous !== current) {
+                    previous = current;
+                    toc.forEach(function(a) {
+                        if (targetId(a) == current) {
+                            currentNav = a;
+                        } else {
+                            a.className = "";
+                        }
+                    });
+                    if (options.markParents) {
+                        addClassToParents(currentNav, options.className, options.parentClassName)
+                    } else {
+                        currentNav.className = options.className;
+                    }
+                    if (options.scrollIntoView && typeof currentNav.scrollIntoView == "function") {
+                        var p = getPosition(currentNav, tocContainer);
+                        if (p == "above") {
+                            currentNav.scrollIntoView(true);
+                        } else if (p == "below") {
+                            currentNav.scrollIntoView(false);
+                        }
+                    }
+                }
+            }
+
+            return {
+                start: function() {
+                    window.addEventListener("scroll", onscroll, false);
+                },
+
+                stop: function() {
+                    window.removeEventListener("scroll", onscroll, false);
+                    toc.forEach(function(a) {
+                        a.className = "";
+                    });
+                }
+            }
+        }
+
+        return createScrollSpy;
+    })();
+
+    (function() {
+        var spy = createScrollSpy({
+            offset: 80,
+            id: "#toc",
+            className: "current",
+            parentClassName: "current-parent",
+            markParents: true,
+            scrollIntoView: true
+        });
+
+        var mm = window.matchMedia('screen and (min-width: 78em)');
+        if (mm.matches) {
+            spy.start();
+        }
+        mm.addListener(function(m) {
+            if (m.matches) spy.start();
+            else spy.stop();
+        });
+    })();
+</script>
   </main>
 <script src="https://www.w3.org/scripts/TR/2016/fixup.js"></script>
   <h2 class="no-num no-ref heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
