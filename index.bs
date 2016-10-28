@@ -714,7 +714,9 @@ dictionary SensorErrorEventInit : EventInit {
 Abstract Operations {#abstract-operations}
 ===================
 
-<h3 export algorithm dfn>Construct Sensor Object</h3>
+<h3 dfn export>Construct Sensor Object</h3>
+
+<div algorithm="construct sensor object">
 
     : input
     :: |options|, a {{SensorOptions}} object.
@@ -745,8 +747,12 @@ Abstract Operations {#abstract-operations}
     1.  Set |sensor_instance|'s {{Sensor/reading!!attribute}} attribute to `null`.
     1.  Set |sensor_instance|'s [=state=] to <a enum-value>"idle"</a>.
     1.  return |sensor_instance|.
+</div>
 
-<h3 algorithm dfn>Register a Sensor</h3>
+
+<h3 dfn>Register a Sensor</h3>
+
+<div algorithm="register a sensor">
 
     : input
     :: |sensor_instance|, a {{Sensor}} object.
@@ -761,8 +767,12 @@ Abstract Operations {#abstract-operations}
     1.  If |current_reading| is not `null` and |sensor_instance|'s state is still <a enum-value>"activating"</a>, then
         1.  invoke the [=Update Reading=] operation, passing it
             |sensor_instance| and |current_reading| as arguments.
+</div>
 
-<h3 algorithm dfn>Unregister a Sensor</h3>
+
+<h3 dfn>Unregister a Sensor</h3>
+
+<div algorithm="unregister a sensor">
 
     : input
     :: |sensor_instance|, a {{Sensor}} object.
@@ -779,8 +789,12 @@ Abstract Operations {#abstract-operations}
         1.  Abort these steps.
     1.  Invoke the [=Set Sensor Settings=] abstract operation,
         passing it |sensor| as argument.
-    
-<h3 algorithm dfn>Set Sensor Settings</h3>
+</div>
+
+
+<h3 dfn>Set Sensor Settings</h3>
+
+<div algorithm="set sensor settings">
 
     : input
     :: |sensor|, a [=sensor=].
@@ -800,9 +814,12 @@ Abstract Operations {#abstract-operations}
         1.  Set [=current polling frequency=] to |frequency|.
     1.  If |settings_changed| is `true`
         1.  Invoke the [=Observe a Sensor=] abstract operation, passing it |sensor| as argument.
+</div>
 
 
-<h3 algorithm dfn>Observe a Sensor</h3>
+<h3 dfn>Observe a Sensor</h3>
+
+<div algorithm="observe a sensor">
 
     : input
     :: |sensor|, a [=sensor=].
@@ -825,8 +842,12 @@ Abstract Operations {#abstract-operations}
         1.  The user-agent must invoke the [=Update Current Reading=] abstract operation
             at to report fresh [=sensor readings|readings=],
             passing it |sensor| and the latest [=sensor reading=] as arguments.
+</div>
 
-<h3 algorithm dfn>Find Current Reporting Mode of a Sensor</h3>
+
+<h3 dfn>Find Current Reporting Mode of a Sensor</h3>
+
+<div algorithm="find current reporting mode of a sensor">
     
     : input
     :: |sensor|, a [=sensor=].
@@ -838,9 +859,12 @@ Abstract Operations {#abstract-operations}
         1. if |sensor_instance|'s [=frequency=] is not `null`,
             1. set |mode| to [=periodic=]
     1. return |mode|.
+</div>
 
 
-<h3 algorithm dfn>Find the polling frequency of a Sensor</h3>
+<h3 dfn>Find the polling frequency of a Sensor</h3>
+
+<div algorithm="find the polling frequency of a sensor">
     
     : input
     :: |sensor|, a [=sensor=].
@@ -853,9 +877,12 @@ Abstract Operations {#abstract-operations}
         1. if |f| is not `null` and |f| is greater than |frequency|,
             1. set |frequency| to |f|.
     1. return |frequency|.
+</div>
 
 
-<h3 algorithm dfn>Update State</h3>
+<h3 dfn>Update State</h3>
+
+<div algorithm="update state">
 
     : input
     :: |sensor_instance|, a {{Sensor}} object.
@@ -865,8 +892,12 @@ Abstract Operations {#abstract-operations}
     
     1.  Set |sensor_instance|’s <a attribute>state</a> to |state|.
     1.  [=Queue a task=] to [=fire a simple event=] named `statechange` at |sensor_instance|.
+</div>
 
-<h3 algorithm dfn>Update Current Reading</h3>
+
+<h3 dfn>Update Current Reading</h3>
+
+<div algorithm="update current reading">
 
     : input
     :: |sensor|, a [=sensor=].
@@ -885,9 +916,12 @@ Abstract Operations {#abstract-operations}
         1.  Invoke the [=update reading=] algorithm passing |sensor_instance|
             and |reading_instance| as arguments.
     1.  Unset |sensor|’s [=reporting flag=].
-    
+</div>
 
-<h3 algorithm dfn>Update Reading</h3>
+
+<h3 dfn>Update Reading</h3>
+
+<div algorithm="update reading">
 
     : input
     :: |sensor_instance|, a {{Sensor}} object.
@@ -903,8 +937,12 @@ Abstract Operations {#abstract-operations}
         with the event type `reading`, which does not bubble, is not cancelable, is [=trusted=], and has no default action.
     1.  Let the <a attribute for=SensorReadingEvent>reading</a> attribute of |e| be initialized to |reading|.
     1.  [=Queue a task=] to [=dispatch=] |e| at |sensor_instance|.
-    
-<h3 algorithm dfn>Handle Errors</h3>
+</div>
+
+
+<h3 dfn>Handle Errors</h3>
+
+<div algorithm="handle errors">
 
     : input
     :: |sensor_instance|, a {{Sensor}} object.
@@ -918,9 +956,12 @@ Abstract Operations {#abstract-operations}
         with the event type `error`, which does not bubble, is not cancelable, is [=trusted=], and has no default action.
     1.  Let the <a attribute for=SensorErrorEvent>error</a> attribute of |e| be initialized to |error|.
     1.  [=Queue a task=] to [=dispatch=] |e| at |sensor_instance|.
+</div>
 
 
-<h3 algorithm dfn>Request Sensor Access</h3>
+<h3 dfn>Request Sensor Access</h3>
+
+<div algorithm="request sensor access">
 
     : input
     :: |sensor_instance|, a {{Sensor}} object.
@@ -938,6 +979,7 @@ Abstract Operations {#abstract-operations}
         1.  else,
             1. set |state| to "denied".
     1.  return |state|.
+</div>
 
 Extensibility {#extensibility}
 =============
