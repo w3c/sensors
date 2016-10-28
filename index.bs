@@ -670,8 +670,6 @@ Returns a timestamp of the time
 at which the [=sensor reading|reading=] was obtained from the [=sensor=]
 expressed in milliseconds that passed since the [=time origin=].
 
-Issue(101):
-
 The SensorReadingEvent Interface {#the-sensor-reading-event-interface}
 --------------------------------
 
@@ -1105,8 +1103,6 @@ Extending the Permission API {#permission-api}
 
 Provide guidance on how to extend the Permission API [[PERMISSIONS]]
 for each [=sensor types=].
-
-Issue(w3c/sensors#22):
 
 Example WebIDL {#example-webidl}
 --------------
