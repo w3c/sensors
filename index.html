@@ -1680,8 +1680,8 @@ proximity <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sen
 multiple <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-8">sensors</a> of the same <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-6">type</a> may coexist on the same device,
 specification extension will have to
 define ways to uniquely identify each one.</p>
-   <div class="example" id="example-ca014cda">
-    <a class="self-link" href="#example-ca014cda"></a> For example checking the pressure of the left rear tire: 
+   <div class="example" id="example-1e642d41">
+    <a class="self-link" href="#example-1e642d41"></a> For example checking the pressure of the left rear tire: 
 <pre class="highlight"><span class="kd">let</span> sensor <span class="o">=</span> <span class="k">new</span> DirectTirePressureSensor<span class="p">(</span><span class="p">{</span> position<span class="o">:</span> <span class="s2">"rear"</span><span class="p">,</span> side<span class="o">:</span> <span class="s2">"left"</span> <span class="p">}</span><span class="p">)</span><span class="p">;</span>
 sensor<span class="p">.</span>onchange <span class="o">=</span> event <span class="o">=</span><span class="o">></span> console<span class="p">.</span>log<span class="p">(</span>event<span class="p">.</span>reading<span class="p">.</span>pressure<span class="p">)</span><span class="p">;</span>
 sensor<span class="p">.</span>start<span class="p">(</span><span class="p">)</span><span class="p">;</span>
@@ -1694,20 +1694,20 @@ Resources on the topic are plentiful on and offline and
 the purpose of this section is not to discuss it further,
 but rather to put it in the context of detecting hardware-dependent features.</p>
    <p>Consider the below feature detection examples:</p>
-   <div class="example" id="example-e20db9c8">
-    <a class="self-link" href="#example-e20db9c8"></a> 
+   <div class="example" id="example-6dd6f109">
+    <a class="self-link" href="#example-6dd6f109"></a> 
 <pre class="highlight"><span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> Gyroscope <span class="o">===</span> <span class="s2">"function"</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// run in circles...
 </span><span class="p">}</span>
-        
+
 <span class="k">if</span> <span class="p">(</span><span class="s2">"ProximitySensor"</span> <span class="k">in</span> window<span class="p">)</span> <span class="p">{</span>
     <span class="c1">// watch out!
 </span><span class="p">}</span>
-        
+
 <span class="k">if</span> <span class="p">(</span>window<span class="p">.</span>AmbientLightSensor<span class="p">)</span> <span class="p">{</span>
     <span class="c1">// go dark...
 </span><span class="p">}</span>
-        
+
 <span class="c1">// etc.
 </span></pre>
    </div>
@@ -2644,7 +2644,7 @@ exposing <a data-link-type="dfn" href="#low-level" id="ref-for-low-level-13">low
    <h3 class="heading settled" data-level="10.7" id="example-webidl"><span class="secno">10.7. </span><span class="content">Example WebIDL</span><a class="self-link" href="#example-webidl"></a></h3>
    <p>Here’s example WebIDL for a possible extension of this specification
 for proximity <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-52">sensors</a>.</p>
-<pre class="example" id="example-b23dffad"><a class="self-link" href="#example-b23dffad"></a>[Constructor(optional ProximitySensorOptions proximitySensorOptions)]
+<pre class="example" id="example-9118c4ac"><a class="self-link" href="#example-9118c4ac"></a>[Constructor(optional ProximitySensorOptions proximitySensorOptions)]
 interface ProximitySensor : Sensor {
   readonly attribute ProximitySensorReading? reading;
 };
@@ -2659,7 +2659,7 @@ dictionary ProximitySensorOptions : SensorOptions {
     ProximitySensorPosition? position;
     ProximitySensorDirection? direction;
 };
-    
+
 enum ProximitySensorPosition {
     "top-left",
     "top",

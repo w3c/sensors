@@ -189,7 +189,7 @@ specification extension will have to
 define ways to uniquely identify each one.
 
 <div class="example">
-    For example checking the pressure of the left rear tire: 
+    For example checking the pressure of the left rear tire:
 
     <pre highlight="js">
     let sensor = new DirectTirePressureSensor({ position: "rear", side: "left" });
@@ -215,15 +215,15 @@ Consider the below feature detection examples:
         if (typeof Gyroscope === "function") {
             // run in circles...
         }
-        
+
         if ("ProximitySensor" in window) {
             // watch out!
         }
-        
+
         if (window.AmbientLightSensor) {
             // go dark...
         }
-        
+
         // etc.
     </pre>
 </div>
@@ -402,7 +402,7 @@ are encouraged to provide domain-specific definitions of
 [=high-level=] and [=low-level=] sensors
 for the given [=sensor types=] they are targeting.
 
-[=Sensor readings=] from different [=sensor types=] can be combined together 
+[=Sensor readings=] from different [=sensor types=] can be combined together
 through a process called <dfn>sensor fusion</dfn>.
 This process provides [=high-level|higher-level=] or
 more accurate data (often at the cost of increased latency).
@@ -500,7 +500,7 @@ A <dfn id=concept-sensor>sensor</dfn> has an associated set of <dfn>activated Se
 A [=sensor=] has an associated <dfn>current reading</dfn>,
 which can initially be `null` or
 be set to a {{SensorReading}} object, that was cached in a user-agent-specific way.
-    
+
 Note: there are additional privacy concerns when using cached [=sensor readings|readings=]
 which predate either [=navigating=] to resources in the current [=origin=],
 or being granted permission to access the [=sensor=].
@@ -722,7 +722,7 @@ Abstract Operations {#abstract-operations}
     :: |options|, a {{SensorOptions}} object.
     : output
     :: |sensor_instance|, a {{Sensor}} object.
-    
+
     1.  If the [=incumbent settings object=] is not a [=secure context=], then:
         1.  [=throw=] a SecurityError.
     1.  If the [=browsing context=] is not a [=top-level browsing context=], then:
@@ -758,7 +758,7 @@ Abstract Operations {#abstract-operations}
     :: |sensor_instance|, a {{Sensor}} object.
     : output
     :: None
-    
+
     1.  Let |sensor| be the [=sensor=] associated with |sensor_instance|.
     1.  Add |sensor_instance| to |sensor|'s set of [=activated Sensor objects=].
     1.  Invoke the [=Set Sensor Settings=] abstract operation,
@@ -778,7 +778,7 @@ Abstract Operations {#abstract-operations}
     :: |sensor_instance|, a {{Sensor}} object.
     : output
     :: None
-    
+
     1.  Let |sensor| be the [=sensor=] associated with |sensor_instance|.
     1.  Remove |sensor_instance| from |sensor|'s set of [=activated Sensor objects=].
     1.  If |sensor|'s set of [=activated Sensor objects=] is empty,
@@ -825,14 +825,14 @@ Abstract Operations {#abstract-operations}
     :: |sensor|, a [=sensor=].
     : output
     :: None
-    
+
     1.  If |sensor|'s [=current reporting mode=] is [=periodic=],
         1.  let |frequency| be the [=current polling frequency=],
             capped by the upper and lower bounds of the underlying hardware.
         1.  Invoke the [=Update Current Reading=] abstract operation
             at a [=frequency=] of |frequency| passing it |sensor| and
             the latest [=sensor reading=] as arguments.
-            
+
             Note: there is not guarantee that the [=current polling frequency=]
             can be respected. The actual [=frequency=] can be calculated using
             {{SensorReading}} <a attribute for=SensorReading>timeStamp</a> attributes.
@@ -848,12 +848,12 @@ Abstract Operations {#abstract-operations}
 <h3 dfn>Find Current Reporting Mode of a Sensor</h3>
 
 <div algorithm="find current reporting mode of a sensor">
-    
+
     : input
     :: |sensor|, a [=sensor=].
     : output
     :: |mode|, a [=reporting mode=].
-    
+
     1. let |mode| be [=auto=].
     1.  For each |sensor_instance| in |sensor|'s set of [=activated Sensor objects=]:
         1. if |sensor_instance|'s [=frequency=] is not `null`,
@@ -865,12 +865,12 @@ Abstract Operations {#abstract-operations}
 <h3 dfn>Find the polling frequency of a Sensor</h3>
 
 <div algorithm="find the polling frequency of a sensor">
-    
+
     : input
     :: |sensor|, a [=sensor=].
     : output
     :: |frequency|, a [=frequency=].
-    
+
     1. let |frequency| be `null`.
     1.  For each |sensor_instance| in |sensor|'s set of [=activated Sensor objects=]:
         1. let |f| be |sensor_instance|'s [=frequency=].
@@ -889,7 +889,7 @@ Abstract Operations {#abstract-operations}
     :: |state|, a {{Sensor}} object's [=state=].
     : output
     :: None
-    
+
     1.  Set |sensor_instance|’s <a attribute>state</a> to |state|.
     1.  [=Queue a task=] to [=fire a simple event=] named `statechange` at |sensor_instance|.
 </div>
@@ -904,7 +904,7 @@ Abstract Operations {#abstract-operations}
     :: |reading|, a [=sensor reading=].
     : output
     :: None
-    
+
     1.  If |sensor|’s [=reporting flag=] is set,
         1. abort these steps.
     1.  Set |sensor|’s [=reporting flag=].
@@ -928,7 +928,7 @@ Abstract Operations {#abstract-operations}
     :: |reading|, a {{SensorReading}} object.
     : output
     :: None
-    
+
     1.  Set |sensor_instance|’s {{Sensor/reading!!attribute}} to |reading|.
     1.  If |sensor_instance|'s <a attribute>state</a> is <a enum-value>"activating"</a>:
         1.  Invoke the [=update state=] algorithm passing |sensor_instance|
@@ -949,7 +949,7 @@ Abstract Operations {#abstract-operations}
     :: |error|, an [=Error=] object.
     : output
     :: None
-    
+
     1.  Set |sensor_instance|’s {{Sensor/reading!!attribute}} to `null`.
     1.  Invoke the [=update state=] algorithm passing |sensor_instance| and <a enum-value>"errored"</a> as the arguments.
     1.  Create an [=event=] |e| that uses the {{SensorErrorEvent}} interface,
@@ -967,7 +967,7 @@ Abstract Operations {#abstract-operations}
     :: |sensor_instance|, a {{Sensor}} object.
     : output
     :: |state|, a [=permission state=].
-    
+
     1.  Let |sensor| be the [=sensor=] associated with |sensor_instance|.
     1.  let |permission| be the result of invoking the abstract operation [=retrieve the sensor permission=] associated with |sensor|,
         passing it |sensor_instance| as argument.
@@ -1132,7 +1132,7 @@ for proximity [=sensors=].
         ProximitySensorPosition? position;
         ProximitySensorDirection? direction;
     };
-    
+
     enum ProximitySensorPosition {
         "top-left",
         "top",
