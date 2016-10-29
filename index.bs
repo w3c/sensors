@@ -436,12 +436,15 @@ or how the sensor is implemented ([=low-level=] sensors).
 When [=sensor readings=] are reported at regular intervals,
 at an ajustable <dfn>frequency</dfn> measured in hertz (Hz),
 the [=reporting mode=] is said to be <dfn>periodic</dfn>.
-When it is only reported upon measurable change,
-the [=sensor=] is said to be in <dfn>auto</dfn> [=reporting mode=].
+When there is no specific requirments set on the [=reporting mode=],
+the [=reporting mode=] is <dfn>implementation specific</dfn>.
 
-[=Auto=] [=reporting mode=] can give the user agent
-more latitude to carry out power- or CPU-saving strategies
-and should generally be favored.
+In [=implementation specific=] [=reporting mode=],
+[=sensor readings=] may be provided at regular intervals, irregularly, 
+or only when a [=sensor readings|reading=] change is observed.
+The [=implementation specific=] [=reporting mode=] allows user agents
+more latitude to carry out power- or CPU-saving strategies,
+which is why it should generally be favored.
 [=Periodic=] [=reporting mode=], on the other hand,
 allows a much more fine-grained approach
 and is essential for use cases with, for example,
@@ -452,7 +455,7 @@ but related to,
 [=sensor readings=] acquisition.
 If [=sensors=] are polled at regular interval,
 as is generally the case,
-[=reporting mode=] can be either [=periodic=] or [=auto=].
+[=reporting mode=] can be either [=periodic=] or [=implementation specific=].
 However, when the underlying implementation itself only provides [=sensor readings=]
 when it measures change,
 perhaps because is is relying on [=smart sensors=] or a [=sensor hubs=],
@@ -477,7 +480,7 @@ A [=sensor type=] may have a <dfn export>default sensor</dfn>.
 
 A [=sensor type=] has an associated set of <dfn export>supported reporting modes</dfn>,
 which cannot be empty and must be picked from the following:
-[=auto=] and [=periodic=].
+[=implementation specific=] and [=periodic=].
 
 If a [=sensor type=] has more than one [=sensor=],
 it must have a set of associated <dfn export>identifying parameters</dfn>
@@ -812,7 +815,7 @@ Abstract Operations {#abstract-operations}
             Note: there is not guarantee that the [=current polling frequency=]
             can be respected. The actual [=frequency=] can be calculated using
             {{SensorReading}} {{SensorReading/timeStamp!!attribute}} attributes.
-    1.  If the [=current reporting mode=] is set to [=auto=],
+    1.  If the [=current reporting mode=] is set to [=implementation specific=],
         1.  the user-agent can decide on the best reporting strategy
             for this particular |sensor| and [=sensor type=].
         1.  The user-agent must invoke the [=Update Current Reading=] abstract operation
@@ -830,7 +833,7 @@ Abstract Operations {#abstract-operations}
     : output
     :: |mode|, a [=reporting mode=].
 
-    1. let |mode| be [=auto=].
+    1. let |mode| be [=implementation specific=].
     1.  For each |sensor_instance| in |sensor|'s set of [=activated Sensor objects=]:
         1. if |sensor_instance|'s [=frequency=] is not `null`,
             1. set |mode| to [=periodic=]
