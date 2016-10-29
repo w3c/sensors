@@ -436,19 +436,27 @@ or how the sensor is implemented ([=low-level=] sensors).
 When [=sensor readings=] are reported at regular intervals,
 at an ajustable <dfn>frequency</dfn> measured in hertz (Hz),
 the [=reporting mode=] is said to be <dfn>periodic</dfn>.
-When there is no specific requirments set on the [=reporting mode=],
-the [=reporting mode=] is <dfn>implementation specific</dfn>.
+On [=sensor types=] with support for [=periodic|periodic reporting mode=],
+[=periodic|periodic reporting mode=] is triggered
+by requesting a specific [=frequency=].
 
-In [=implementation specific=] [=reporting mode=],
+[=Sensor types=] which do not support [=periodic|periodic reporting mode=]
+are said to operate in an <dfn>implementation specific</dfn> way.
+When the [=reporting mode=] is [=implementation specific=],
 [=sensor readings=] may be provided at regular intervals, irregularly, 
 or only when a [=sensor readings|reading=] change is observed.
-The [=implementation specific=] [=reporting mode=] allows user agents
-more latitude to carry out power- or CPU-saving strategies,
-which is why it should generally be favored.
-[=Periodic=] [=reporting mode=], on the other hand,
+This allows user agents more latitude to
+carry out power- or CPU-saving strategies,
+and support multiple hardware configurations,
+which is why it should generally be preferred.
+[=periodic|Periodic reporting mode=], on the other hand,
 allows a much more fine-grained approach
 and is essential for use cases with, for example,
 low latency requirements.
+
+[=Sensors=] which support [=periodic|periodic reporting mode=]
+<dfn>fallback</dfn> to [=implementation specific|implementation specific reporting mode=]
+when no requirements are made as to what [=frequency=] they should operate at.
 
 Note: [=reporting mode=] is distinct from,
 but related to,
@@ -507,7 +515,7 @@ or being granted permission to access the [=sensor=].
 
 A [=sensor=] is said to <dfn lt="supports periodic reporting mode">support periodic reporting mode</dfn> if
 its associated [=sensor type=]'s [=supported reporting modes=]
-contains the [=periodic=] [=reporting mode=].
+contains the [=periodic|periodic reporting mode=].
 
 A [=sensor=] has an associated <dfn>reporting flag</dfn> which is initially unset.
 
