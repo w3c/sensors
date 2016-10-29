@@ -329,8 +329,9 @@ Secure Context {#secure-context}
 [=Sensor readings=] are explicitly flagged by the
 Secure Contexts specification [[POWERFUL-FEATURES]]
 as a high-value target for network attackers.
-As such, [=sensor readings=] must only be available
-within a [=secure context=].
+Thus all interfaces defined by this specification
+or extension specifications
+must only be available within a [=secure context=].
 
 Obtaining Explicit User Permission {#permissioning}
 ----------------------------------
@@ -542,6 +543,7 @@ API {#api}
 The Sensor Interface {#the-sensor-interface}
 --------------------
 <pre class="idl">
+[SecureContext]
 interface Sensor : EventTarget {
   readonly attribute SensorState state;
   readonly attribute SensorReading? reading;
@@ -676,6 +678,7 @@ The SensorReading Interface {#the-sensor-reading-interface}
 ---------------------------
 
 <pre class="idl">
+[SecureContext]
 interface SensorReading {
   readonly attribute DOMHighResTimeStamp timeStamp;
 };
@@ -694,7 +697,7 @@ The SensorErrorEvent Interface {#the-sensor-error-event-interface}
 ------------------------------
 
 <pre class="idl">
-[Constructor(DOMString type, SensorErrorEventInit errorEventInitDict)]
+[SecureContext, Constructor(DOMString type, SensorErrorEventInit errorEventInitDict)]
 interface SensorErrorEvent : Event {
   readonly attribute Error error;
 };
@@ -989,6 +992,12 @@ Extension specifications are encouraged to focus on a single [=sensor type=],
 exposing both [=high-level|high=] and [=low-level|low=] level
 as appropriate.
 
+Security {#security}
+--------
+
+All interfaces defined by extension specifications
+should only be available within a [=secure context=].
+
 Naming {#naming}
 ------
 
@@ -1110,11 +1119,12 @@ Here's example WebIDL for a possible extension of this specification
 for proximity [=sensors=].
 
 <pre class=example>
-    [Constructor(optional ProximitySensorOptions proximitySensorOptions)]
+    [SecureContext, Constructor(optional ProximitySensorOptions proximitySensorOptions)]
     interface ProximitySensor : Sensor {
       readonly attribute ProximitySensorReading? reading;
     };
 
+    [SecureContext]
     interface ProximitySensorReading : SensorReading {
         readonly attribute unrestricted double distance;
     };
