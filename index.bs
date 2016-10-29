@@ -423,11 +423,11 @@ in the process.
 But [=sensor fusion=] can also be carried out in software.
 This is particularly useful when performance requirements can only be met
 by relying on application-specific data.
-For example, head tracking for virtual or augmented reality applications,
+For example, head tracking for virtual or augmented reality applications
 requires extremely low latency
 to avoid causing motion sickness.
 That low-latency is best provided
-by using the raw output of a gyroscope,
+by using the raw output of a gyroscope
 and waiting for quick rotational movements of the head
 to compensate for drift.
 
