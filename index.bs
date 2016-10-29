@@ -341,6 +341,9 @@ through the Permissions API [[!PERMISSIONS]].
 Concepts {#concepts}
 ========
 
+Sensors {#concepts-sensors}
+-------
+
 A [=sensor=] measures different physical quantities
 and provide corresponding <dfn>raw sensor readings</dfn>
 which are a source of information about the user and their environment.
@@ -354,6 +357,9 @@ through a process called [=sensor fusion=].
 
 [=calibration|Calibrated=] [=raw sensor readings=] are referred to as <dfn>sensor readings</dfn>,
 whether or not they have undergone [=sensor fusion=].
+
+Sensor Types {#concepts-sensor-types}
+-----------
 
 Different [=sensor types=] measure different physical quantities
 such as temperature, air pressure, heart-rate, or luminosity.
@@ -432,6 +438,9 @@ preferring instead to differentiate [=sensors=] as to whether they describe
 the kind of [=sensor readings|readings=] produced--these are [=high-level=] sensors--
 or how the sensor is implemented ([=low-level=] sensors).
 
+Reporting Modes {#concepts-reporting-modes}
+---------------
+
 [=Sensors=] have different <dfn>reporting modes</dfn>.
 When [=sensor readings=] are reported at regular intervals,
 at an ajustable <dfn>frequency</dfn> measured in hertz (Hz),
@@ -447,8 +456,7 @@ When the [=reporting mode=] is [=implementation specific=],
 or only when a [=sensor readings|reading=] change is observed.
 This allows user agents more latitude to
 carry out power- or CPU-saving strategies,
-and support multiple hardware configurations,
-which is why it should generally be preferred.
+and support multiple hardware configurations.
 [=periodic|Periodic reporting mode=], on the other hand,
 allows a much more fine-grained approach
 and is essential for use cases with, for example,
