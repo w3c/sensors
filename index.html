@@ -1441,7 +1441,7 @@ pre.idl.highlight { color: #708090; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="http://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-10-29">29 October 2016</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-10-30">30 October 2016</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1793,7 +1793,7 @@ the active tab, and not on the background tabs or within iframes.</p>
 Secure Contexts specification <a data-link-type="biblio" href="#biblio-powerful-features">[POWERFUL-FEATURES]</a> as a high-value target for network attackers.
 Thus all interfaces defined by this specification
 or extension specifications
-must only be available within a <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/powerfulfeatures/#secure-context">secure context</a>.</p>
+must only be available within a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#secure-context">secure context</a>.</p>
    <h3 class="heading settled" data-level="5.3" id="permissioning"><span class="secno">5.3. </span><span class="content">Obtaining Explicit User Permission</span><a class="self-link" href="#permissioning"></a></h3>
    <p>Permission to access <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-4">sensor readings</a> must be obtained
 through the Permissions API <a data-link-type="biblio" href="#biblio-permissions">[PERMISSIONS]</a>.</p>
@@ -1922,7 +1922,7 @@ returns a <a data-link-type="dfn" href="https://w3c.github.io/permissions/#idl-d
    <h2 class="heading settled" data-level="8" id="api"><span class="secno">8. </span><span class="content">API</span><a class="self-link" href="#api"></a></h2>
    <h3 class="heading settled" data-level="8.1" id="the-sensor-interface"><span class="secno">8.1. </span><span class="content">The Sensor Interface</span><a class="self-link" href="#the-sensor-interface"></a></h3>
 <pre class="idl highlight def">[<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext">SecureContext</a>]
-<span class="kt">interface</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="interface" data-export="" id="sensor">Sensor</dfn> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org#interface-eventtarget">EventTarget</a> {
+<span class="kt">interface</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="interface" data-export="" id="sensor">Sensor</dfn> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget">EventTarget</a> {
   <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="#enumdef-sensorstate" id="ref-for-enumdef-sensorstate-1">SensorState</a> <dfn class="nv dfn-paneled idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-readonly="" data-type="SensorState" id="dom-sensor-state">state</dfn>;
   <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="#sensorreading" id="ref-for-sensorreading-3">SensorReading</a>? <dfn class="nv dfn-paneled idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-readonly="" data-type="SensorReading?" id="dom-sensor-reading">reading</dfn>;
   <span class="kt">void</span> <dfn class="nv dfn-paneled idl-code" data-dfn-for="Sensor" data-dfn-type="method" data-export="" data-lt="start()" id="dom-sensor-start">start</dfn>();
@@ -1972,7 +1972,7 @@ associated with the same <a data-link-type="dfn" href="#concept-sensor" id="ref-
       <p>If <var>sensor_instance</var>’s <a data-link-type="dfn" href="#state" id="ref-for-state-3">state</a> is neither <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-idle" id="ref-for-dom-sensorstate-idle-3">"idle"</a> nor <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-errored" id="ref-for-dom-sensorstate-errored-2">"errored"</a>,</p>
       <ol>
        <li data-md="">
-        <p>throw an "<a data-link-type="dfn" href="https://heycam.github.io/webidl/#invalidstateerror">InvalidStateError</a>" exception and abort these steps.</p>
+        <p>throw an "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://heycam.github.io/webidl/#invalidstateerror">InvalidStateError</a></code>" exception and abort these steps.</p>
       </ol>
      <li data-md="">
       <p>Invoke the <a data-link-type="dfn" href="#update-state" id="ref-for-update-state-1">update state</a> algorithm passing <var>sensor_instance</var> and <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activating" id="ref-for-dom-sensorstate-activating-2">"activating"</a> as the arguments.</p>
@@ -1994,7 +1994,7 @@ associated with the same <a data-link-type="dfn" href="#concept-sensor" id="ref-
         <p>If <var>state</var> is "denied",</p>
         <ol>
          <li data-md="">
-          <p>let <var>e</var> be the result of <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-create-exception">creating an exception</a> named <a data-link-type="dfn" href="https://heycam.github.io/webidl/#notallowederror">NotAllowedError</a>.</p>
+          <p>let <var>e</var> be the result of <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-create-exception">creating an exception</a> named "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://heycam.github.io/webidl/#notallowederror">NotAllowedError</a></code>".</p>
          <li data-md="">
           <p>Invoke the <a data-link-type="dfn" href="#handle-errors" id="ref-for-handle-errors-1">Handle Errors</a> abstract operation,
   passing it <var>e</var> and <var>sensor_instance</var> as arguments.</p>
@@ -2014,7 +2014,7 @@ associated with the same <a data-link-type="dfn" href="#concept-sensor" id="ref-
       <p>If <var>sensor_instance</var>’s <a data-link-type="dfn" href="#state" id="ref-for-state-4">state</a> is either <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-idle" id="ref-for-dom-sensorstate-idle-4">"idle"</a> or <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-errored" id="ref-for-dom-sensorstate-errored-3">"errored"</a>, then</p>
       <ol>
        <li data-md="">
-        <p>throw an "<a data-link-type="dfn" href="https://heycam.github.io/webidl/#invalidstateerror">InvalidStateError</a>" exception and abort these steps.</p>
+        <p>throw an "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://heycam.github.io/webidl/#invalidstateerror">InvalidStateError</a></code>" exception and abort these steps.</p>
       </ol>
      <li data-md="">
       <p>Set <var>sensor_instance</var>’s <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensor-reading" id="ref-for-dom-sensor-reading-3">reading</a></code> to <code>null</code>.</p>
@@ -2088,7 +2088,7 @@ at which the <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-
     </dl>
     <ol>
      <li data-md="">
-      <p>If the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#incumbent-settings-object">incumbent settings object</a> is not a <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/powerfulfeatures/#secure-context">secure context</a>, then:</p>
+      <p>If the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#incumbent-settings-object">incumbent settings object</a> is not a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#secure-context">secure context</a>, then:</p>
       <ol>
        <li data-md="">
         <p><a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-throw">throw</a> a SecurityError.</p>
@@ -2458,7 +2458,7 @@ at which the <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-
      <dd data-md="">
       <p><var>sensor_instance</var>, a <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-20">Sensor</a></code> object.</p>
      <dd data-md="">
-      <p><var>error</var>, an <a data-link-type="dfn" href="https://heycam.github.io/webidl/#error">Error</a> object.</p>
+      <p><var>error</var>, an <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-exception">exception</a>.</p>
      <dt data-md="">
       <p>output</p>
      <dd data-md="">
@@ -2530,7 +2530,7 @@ exposing both <a data-link-type="dfn" href="#high-level" id="ref-for-high-level-
 as appropriate.</p>
    <h3 class="heading settled" data-level="10.1" id="security"><span class="secno">10.1. </span><span class="content">Security</span><a class="self-link" href="#security"></a></h3>
    <p>All interfaces defined by extension specifications
-should only be available within a <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/powerfulfeatures/#secure-context">secure context</a>.</p>
+should only be available within a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#secure-context">secure context</a>.</p>
    <h3 class="heading settled" data-level="10.2" id="naming"><span class="secno">10.2. </span><span class="content">Naming</span><a class="self-link" href="#naming"></a></h3>
    <p><code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-22">Sensor</a></code> interfaces for <a data-link-type="dfn" href="#low-level" id="ref-for-low-level-10">low-level</a> sensors should be
 named after their associated <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-46">sensor</a>.
@@ -2987,7 +2987,7 @@ for their editorial input.</p>
     <ul>
      <li><a href="https://dom.spec.whatwg.org/#event">Event</a>
      <li><a href="https://dom.spec.whatwg.org/#dictdef-eventinit">EventInit</a>
-     <li><a href="https://dom.spec.whatwg.org#interface-eventtarget">EventTarget</a>
+     <li><a href="https://dom.spec.whatwg.org/#eventtarget">EventTarget</a>
      <li><a href="https://dom.spec.whatwg.org#concept-event-dispatch">dispatch</a>
      <li><a href="https://dom.spec.whatwg.org/#concept-document">document</a>
      <li><a href="https://dom.spec.whatwg.org#concept-event">event</a>
@@ -3003,8 +3003,8 @@ for their editorial input.</p>
     <ul>
      <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a>
      <li><a href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">browsing context</a>
+     <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers">event handler</a>
      <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-type">event handler event type</a>
-     <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers">event handlers</a>
      <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#event-loop">event loop</a>
      <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#fire-a-simple-event">fire a simple event</a>
      <li><a href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in parallel</a>
@@ -3034,16 +3034,16 @@ for their editorial input.</p>
    <li>
     <a data-link-type="biblio">[POWERFUL-FEATURES]</a> defines the following terms:
     <ul>
-     <li><a href="https://w3c.github.io/webappsec/specs/powerfulfeatures/#secure-context">secure context</a>
+     <li><a href="https://w3c.github.io/webappsec-secure-contexts/#secure-context">secure context</a>
     </ul>
    <li>
     <a data-link-type="biblio">[WebIDL]</a> defines the following terms:
     <ul>
+     <li><a href="https://heycam.github.io/webidl/#invalidstateerror">InvalidStateError</a>
+     <li><a href="https://heycam.github.io/webidl/#notallowederror">NotAllowedError</a>
      <li><a href="https://heycam.github.io/webidl/#SecureContext">SecureContext</a>
-     <li><a href="https://heycam.github.io/webidl/#dfn-create-exception">creating an exception</a>
-     <li><a href="https://heycam.github.io/webidl/#error">error</a>
-     <li><a href="https://heycam.github.io/webidl/#invalidstateerror">invalidstateerror</a>
-     <li><a href="https://heycam.github.io/webidl/#notallowederror">notallowederror</a>
+     <li><a href="https://heycam.github.io/webidl/#dfn-create-exception">created</a>
+     <li><a href="https://heycam.github.io/webidl/#dfn-exception">exception</a>
      <li><a href="https://heycam.github.io/webidl/#dfn-throw">throw</a>
     </ul>
   </ul>
@@ -3084,7 +3084,7 @@ for their editorial input.</p>
   </dl>
   <h2 class="no-num no-ref heading settled" id="idl-index"><span class="content">IDL Index</span><a class="self-link" href="#idl-index"></a></h2>
 <pre class="idl def">[<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext">SecureContext</a>]
-<span class="kt">interface</span> <a class="nv" href="#sensor">Sensor</a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org#interface-eventtarget">EventTarget</a> {
+<span class="kt">interface</span> <a class="nv" href="#sensor">Sensor</a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget">EventTarget</a> {
   <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="#enumdef-sensorstate">SensorState</a> <a class="nv" data-readonly="" data-type="SensorState" href="#dom-sensor-state">state</a>;
   <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="#sensorreading">SensorReading</a>? <a class="nv" data-readonly="" data-type="SensorReading?" href="#dom-sensor-reading">reading</a>;
   <span class="kt">void</span> <a class="nv" href="#dom-sensor-start">start</a>();

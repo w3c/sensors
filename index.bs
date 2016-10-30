@@ -26,48 +26,24 @@ Default Biblio Status: current
 </pre>
 <pre class="anchors">
 urlPrefix: https://dom.spec.whatwg.org; spec: DOM
-  type: interface
-    text: EventTarget; url: interface-eventtarget
   type: dfn
     text: dispatch; url: concept-event-dispatch
     text: event; url: concept-event
 urlPrefix: https://html.spec.whatwg.org/multipage/; spec: HTML
   type: dfn
     urlPrefix: webappapis.html
-      text: incumbent settings object
-      text: event handlers
-      text: event handler event type
-      text: queue a task
-      text: task source
       text: task; url: concept-task
-      text: event loop
       text: fire a simple event
       text: trusted; url: concept-events-trusted
-    urlPrefix: infrastructure.html
-      text: in parallel
     urlPrefix: browsers.html
       text: origin; url: origin-2
       text: navigating; url: navigate
       text: browsing context
-      text: top-level browsing context
-  type: interface
-    urlPrefix: webappapis.html
-      text: EventHandler
 urlPrefix: http://w3c.github.io/hr-time/; spec: HR-TIME-2
   type: interface
     text: DOMHighResTimeStamp; url: dom-domhighrestimestamp
   type: dfn
     text: time origin
-urlPrefix: https://w3c.github.io/webappsec/specs/powerfulfeatures/; spec: POWERFUL-FEATURES
-  type: dfn
-    text: secure context
-urlPrefix: https://heycam.github.io/webidl/; spec: WEBIDL
-  type: dfn
-    text: throw; url: dfn-throw
-    text: creating an exception; url: dfn-create-exception
-    text: InvalidStateError
-    text: NotAllowedError
-    text: Error
 urlPrefix: https://w3c.github.io/permissions/; spec: PERMISSIONS
   type: dfn
     text: permission state;                url: idl-def-PermissionState
@@ -607,7 +583,7 @@ hold the same {{SensorReading}} during a single [=event loop=] turn.
 The {{Sensor/start()}} method must run these steps or their [=equivalent=]:
 
     1.  If |sensor_instance|'s [=state=] is neither <a enum-value>"idle"</a> nor <a enum-value>"errored"</a>,
-        1.  throw an "[=InvalidStateError=]" exception and abort these steps.
+        1.  throw an "{{InvalidStateError!!exception}}" exception and abort these steps.
     1.  Invoke the [=update state=] algorithm passing |sensor_instance| and <a enum-value>"activating"</a> as the arguments.
     1.  Run these sub-steps [=in parallel=]:
         1.  Let |state| be the result of invoking the [=Request Sensor Access=] abstract operation,
@@ -616,7 +592,7 @@ The {{Sensor/start()}} method must run these steps or their [=equivalent=]:
             1.  Invoke [=Register a Sensor=] passing it |sensor_instance| as argument.
             1.  Abort these sub-steps.
         1.  If |state| is "denied",
-            1.  let |e| be the result of [=creating an exception=] named [=NotAllowedError=].
+            1.  let |e| be the result of [=created|creating an exception=] named "{{NotAllowedError!!exception}}".
             1.  Invoke the [=Handle Errors=] abstract operation,
                 passing it |e| and |sensor_instance| as arguments.
             1.  Abort these sub-steps.
@@ -629,7 +605,7 @@ The {{Sensor/start()}} method must run these steps or their [=equivalent=]:
 The {{Sensor/stop()}} method must run these steps or their [=equivalent=]:
 
     1.  If |sensor_instance|'s [=state=] is either <a enum-value>"idle"</a> or <a enum-value>"errored"</a>, then
-        1.  throw an "[=InvalidStateError=]" exception and abort these steps.
+        1.  throw an "{{InvalidStateError!!exception}}" exception and abort these steps.
     1.  Set |sensor_instance|’s {{Sensor/reading!!attribute}} to `null`.
     1.  Invoke the [=update state=] algorithm passing |sensor_instance| and <a enum-value>"idle"</a> as the arguments.
     1.  Run these sub-steps [=in parallel=]:
@@ -944,7 +920,7 @@ Abstract Operations {#abstract-operations}
 
     : input
     :: |sensor_instance|, a {{Sensor}} object.
-    :: |error|, an [=Error=] object.
+    :: |error|, an [=exception=].
     : output
     :: None
 
