@@ -429,7 +429,7 @@ by requesting a specific [=frequency=].
 [=Sensor types=] which do not support [=periodic|periodic reporting mode=]
 are said to operate in an <dfn>implementation specific</dfn> way.
 When the [=reporting mode=] is [=implementation specific=],
-[=sensor readings=] may be provided at regular intervals, irregularly, 
+[=sensor readings=] may be provided at regular intervals, irregularly,
 or only when a [=sensor readings|reading=] change is observed.
 This allows user agents more latitude to
 carry out power- or CPU-saving strategies,
@@ -544,8 +544,12 @@ enum SensorState {
 
 A {{Sensor}} object has an associated [=sensor=].
 
-A {{Sensor}} object has an associated <dfn>state</dfn>,
-which is one of <a enum-value>"idle"</a>, <a enum-value>"activating"</a>, <a enum-value>"active"</a>, and <a enum-value>"errored"</a>. It is initially <a enum-value>"idle"</a>.
+A {{Sensor}} object has an associated <dfn>state</dfn> which is one of
+<a enum-value>"idle"</a>,
+<a enum-value>"activating"</a>,
+<a enum-value>"active"</a>, and
+<a enum-value>"errored"</a>.
+It is initially <a enum-value>"idle"</a>.
 
 A {{Sensor}} object has an associated <dfn>desired frequency</dfn>. It is initially `null`.
 
