@@ -851,7 +851,7 @@ Abstract Operations {#abstract-operations}
 
     1. let |frequency| be `null`.
     1.  For each |sensor_instance| in |sensor|'s set of [=activated Sensor objects=]:
-        1. let |f| be |sensor_instance|'s [=frequency=].
+        1. let |f| be |sensor_instance|'s [=desired frequency=].
         1. if |f| is not `null` and |f| is greater than |frequency|,
             1. set |frequency| to |f|.
     1. return |frequency|.
