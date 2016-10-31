@@ -815,11 +815,11 @@ Abstract Operations {#abstract-operations}
             can be respected. The actual [=frequency=] can be calculated using
             {{SensorReading}} {{SensorReading/timeStamp!!attribute}} attributes.
     1.  If the [=current reporting mode=] is set to [=implementation specific=],
+        1.  Immediately invoke the [=Update Current Reading=] abstract operation
+            to report fresh [=sensor readings|readings=],
+            passing it |sensor| and the latest [=sensor reading=] as arguments.
         1.  the user-agent can decide on the best reporting strategy
             for this particular |sensor| and [=sensor type=].
-        1.  The user-agent must invoke the [=Update Current Reading=] abstract operation
-            at to report fresh [=sensor readings|readings=],
-            passing it |sensor| and the latest [=sensor reading=] as arguments.
 </div>
 
 

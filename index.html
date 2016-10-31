@@ -1441,7 +1441,7 @@ pre.idl.highlight { color: #708090; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="http://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-10-30">30 October 2016</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-10-31">31 October 2016</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2291,12 +2291,12 @@ at which the <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-
       <p>If the <a data-link-type="dfn" href="#current-reporting-mode" id="ref-for-current-reporting-mode-5">current reporting mode</a> is set to <a data-link-type="dfn" href="#implementation-specific" id="ref-for-implementation-specific-5">implementation specific</a>,</p>
       <ol>
        <li data-md="">
+        <p>Immediately invoke the <a data-link-type="dfn" href="#update-current-reading" id="ref-for-update-current-reading-2">Update Current Reading</a> abstract operation
+  to report fresh <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-22">readings</a>,
+  passing it <var>sensor</var> and the latest <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-23">sensor reading</a> as arguments.</p>
+       <li data-md="">
         <p>the user-agent can decide on the best reporting strategy
   for this particular <var>sensor</var> and <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-26">sensor type</a>.</p>
-       <li data-md="">
-        <p>The user-agent must invoke the <a data-link-type="dfn" href="#update-current-reading" id="ref-for-update-current-reading-2">Update Current Reading</a> abstract operation
-  at to report fresh <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-22">readings</a>,
-  passing it <var>sensor</var> and the latest <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-23">sensor reading</a> as arguments.</p>
       </ol>
     </ol>
    </div>
