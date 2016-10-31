@@ -668,7 +668,7 @@ A {{SensorReading}} represents the state of a [=sensor=] at a given point in tim
 
 ### SensorReading.timeStamp ### {#sensor-reading-timestamp}
 
-Returns a timestamp of the time
+Returns a high resolution timestamp of the time
 at which the [=sensor reading|reading=] was obtained from the [=sensor=]
 expressed in milliseconds that passed since the [=time origin=].
 
