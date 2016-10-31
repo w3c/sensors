@@ -526,7 +526,6 @@ interface Sensor : EventTarget {
   void start();
   void stop();
   attribute EventHandler onchange;
-  attribute EventHandler onstatechange;
   attribute EventHandler onerror;
 };
 
@@ -570,7 +569,7 @@ to save battery.
 
 ### Sensor.state ### {#sensor-state}
 
-The {{Sensor/state!!attribute}} attribute represents a {{Sensor}} object's [=state=].
+The [=state=] attribute represents a {{Sensor}} object's [=state=].
 
 ### Sensor.reading ### {#sensor-reading}
 
@@ -588,7 +587,7 @@ The {{Sensor/start()}} method must run these steps or their [=equivalent=]:
 
     1.  If |sensor_instance|'s [=state=] is neither <a enum-value>"idle"</a> nor <a enum-value>"errored"</a>,
         1.  throw an "{{InvalidStateError!!exception}}" exception and abort these steps.
-    1.  Invoke the [=update state=] algorithm passing |sensor_instance| and <a enum-value>"activating"</a> as the arguments.
+    1.  Set |sensor_instance|’s [=state=] to <a enum-value>"activating"</a>.
     1.  Run these sub-steps [=in parallel=]:
         1.  Let |state| be the result of invoking the [=Request Sensor Access=] abstract operation,
             passing it |sensor_instance| as argument.
@@ -611,7 +610,7 @@ The {{Sensor/stop()}} method must run these steps or their [=equivalent=]:
     1.  If |sensor_instance|'s [=state=] is either <a enum-value>"idle"</a> or <a enum-value>"errored"</a>, then
         1.  throw an "{{InvalidStateError!!exception}}" exception and abort these steps.
     1.  Set |sensor_instance|’s {{Sensor/reading!!attribute}} to `null`.
-    1.  Invoke the [=update state=] algorithm passing |sensor_instance| and <a enum-value>"idle"</a> as the arguments.
+    1.  Set |sensor_instance|’s [=state=] to <a enum-value>"idle"</a>.
     1.  Run these sub-steps [=in parallel=]:
         1.  Invoke [=Unregister a Sensor=] passing it |sensor_instance| as argument.
     1.  return `undefined`.
@@ -622,8 +621,6 @@ The {{Sensor/stop()}} method must run these steps or their [=equivalent=]:
 ### Sensor.onerror ### {#sensor-onerror}
 
 ### Sensor.onchange ### {#sensor-onchange}
-
-### Sensor.onstatechange ### {#sensor-onstatechange}
 
 ### Event handlers ### {#event-handlers}
 
@@ -642,10 +639,6 @@ that must be supported as attributes by the objects implementing the [=Sensor=] 
     <tr>
       <td><strong><code>onchange</code></strong></td>
       <td><code>change</code></td>
-    </tr>
-    <tr>
-      <td><strong><code>onstatechange</code></strong></td>
-      <td><code>statechange</code></td>
     </tr>
     <tr>
       <td><strong><code>onerror</code></strong></td>
@@ -858,21 +851,6 @@ Abstract Operations {#abstract-operations}
 </div>
 
 
-<h3 dfn>Update State</h3>
-
-<div algorithm="update state">
-
-    : input
-    :: |sensor_instance|, a {{Sensor}} object.
-    :: |state|, a {{Sensor}} object's [=state=].
-    : output
-    :: None
-
-    1.  Set |sensor_instance|’s {{Sensor/state!!attribute}} to |state|.
-    1.  [=Queue a task=] to [=fire a simple event=] named `statechange` at |sensor_instance|.
-</div>
-
-
 <h3 dfn>Update Current Reading</h3>
 
 <div algorithm="update current reading">
@@ -909,9 +887,8 @@ Abstract Operations {#abstract-operations}
     :: None
 
     1.  Set |sensor_instance|’s {{Sensor/reading!!attribute}} to |reading|.
-    1.  If |sensor_instance|'s {{Sensor/state!!attribute}} is <a enum-value>"activating"</a>:
-        1.  Invoke the [=update state=] algorithm passing |sensor_instance|
-            and <a enum-value>"active"</a> as the arguments.
+    1.  If |sensor_instance|'s [=state=] is <a enum-value>"activating"</a>:
+        1.  Set |sensor_instance|’s [=state=] <a enum-value>"active"</a>.
     1.  Create an [=event=] |e| that uses the {{Event}} interface,
         with the event type `reading`, which does not bubble, is not cancelable, is [=trusted=], and has no default action.
     1.  [=Queue a task=] to [=dispatch=] |e| at |sensor_instance|.
@@ -929,7 +906,7 @@ Abstract Operations {#abstract-operations}
     :: None
 
     1.  Set |sensor_instance|’s {{Sensor/reading!!attribute}} to `null`.
-    1.  Invoke the [=update state=] algorithm passing |sensor_instance| and <a enum-value>"errored"</a> as the arguments.
+    1.  Set |sensor_instance|’s [=state=] to <a enum-value>"errored"</a>.
     1.  Create an [=event=] |e| that uses the {{SensorErrorEvent}} interface,
         with the event type `error`, which does not bubble, is not cancelable, is [=trusted=], and has no default action.
     1.  Let the {{SensorErrorEvent/error!!attribute}} attribute of |e| be initialized to |error|.
