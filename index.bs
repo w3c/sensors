@@ -717,7 +717,7 @@ Abstract Operations {#abstract-operations}
         1.  associate |sensor_instance| with |sensor|.
     1.  Otherwise, [=throw=] a TypeError.
     1.  Let |frequency| be the value of the {{frequency!!dict-member}} member of |options|.
-    1.  If |frequency| is not `null`,
+    1.  If |frequency| is [=present=],
         1.  If |sensor| [=supports periodic reporting mode=],
             1.  Set |sensor_instance|'s [=desired frequency=] to |frequency|.
         1.  Otherwise,
