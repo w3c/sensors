@@ -1936,12 +1936,12 @@ returns a <a data-link-type="dfn" href="https://w3c.github.io/permissions/#idl-d
 <span class="kt">enum</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="enum" data-export="" id="enumdef-sensorstate">SensorState</dfn> {
   <dfn class="s dfn-paneled idl-code" data-dfn-for="SensorState" data-dfn-type="enum-value" data-export="" data-lt="&quot;idle&quot;|idle" id="dom-sensorstate-idle">"idle"</dfn>,
   <dfn class="s dfn-paneled idl-code" data-dfn-for="SensorState" data-dfn-type="enum-value" data-export="" data-lt="&quot;activating&quot;|activating" id="dom-sensorstate-activating">"activating"</dfn>,
-  <dfn class="s dfn-paneled idl-code" data-dfn-for="SensorState" data-dfn-type="enum-value" data-export="" data-lt="&quot;active&quot;|active" id="dom-sensorstate-active">"active"</dfn>,
+  <dfn class="s dfn-paneled idl-code" data-dfn-for="SensorState" data-dfn-type="enum-value" data-export="" data-lt="&quot;activated&quot;|activated" id="dom-sensorstate-activated">"activated"</dfn>,
   <dfn class="s dfn-paneled idl-code" data-dfn-for="SensorState" data-dfn-type="enum-value" data-export="" data-lt="&quot;errored&quot;|errored" id="dom-sensorstate-errored">"errored"</dfn>
 };
 </pre>
    <p>A <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-5">Sensor</a></code> object has an associated <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-30">sensor</a>.</p>
-   <p>A <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-6">Sensor</a></code> object has an associated <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="state">state</dfn> which is one of <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-idle" id="ref-for-dom-sensorstate-idle-1">"idle"</a>, <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activating" id="ref-for-dom-sensorstate-activating-1">"activating"</a>, <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-active" id="ref-for-dom-sensorstate-active-1">"active"</a>, and <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-errored" id="ref-for-dom-sensorstate-errored-1">"errored"</a>.
+   <p>A <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-6">Sensor</a></code> object has an associated <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="state">state</dfn> which is one of <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-idle" id="ref-for-dom-sensorstate-idle-1">"idle"</a>, <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activating" id="ref-for-dom-sensorstate-activating-1">"activating"</a>, <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activated" id="ref-for-dom-sensorstate-activated-1">"activated"</a>, and <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-errored" id="ref-for-dom-sensorstate-errored-1">"errored"</a>.
 It is initially <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-idle" id="ref-for-dom-sensorstate-idle-2">"idle"</a>.</p>
    <p>A <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-7">Sensor</a></code> object has an associated <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="desired-frequency">desired frequency</dfn>. It is initially <code>null</code>.</p>
    <p>Each <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-8">Sensor</a></code> object has a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#task-source">task source</a> called a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="sensor-task-source">sensor task source</dfn>, initially empty.
@@ -1957,7 +1957,7 @@ to save battery.</p>
    <h4 class="heading settled" data-level="8.1.1" id="sensor-state"><span class="secno">8.1.1. </span><span class="content">Sensor.state</span><a class="self-link" href="#sensor-state"></a></h4>
    <p>The <a data-link-type="dfn" href="#state" id="ref-for-state-1">state</a> attribute represents a <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-9">Sensor</a></code> object’s <a data-link-type="dfn" href="#state" id="ref-for-state-2">state</a>.</p>
    <h4 class="heading settled" data-level="8.1.2" id="sensor-reading"><span class="secno">8.1.2. </span><span class="content">Sensor.reading</span><a class="self-link" href="#sensor-reading"></a></h4>
-   <p>When a <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-10">Sensor</a></code>'s <a data-link-type="dfn" href="#state" id="ref-for-state-3">state</a> is <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-active" id="ref-for-dom-sensorstate-active-2">"active"</a>,
+   <p>When a <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-10">Sensor</a></code>'s <a data-link-type="dfn" href="#state" id="ref-for-state-3">state</a> is <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activated" id="ref-for-dom-sensorstate-activated-2">"activated"</a>,
 its <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensor-reading" id="ref-for-dom-sensor-reading-1">reading</a></code> attribute must always point to the <a data-link-type="dfn" href="#current-reading" id="ref-for-current-reading-1">current reading</a> whatever the <a data-link-type="dfn" href="#frequency" id="ref-for-frequency-3">frequency</a> so that
 the <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensor-reading" id="ref-for-dom-sensor-reading-2">reading</a></code> attribute of two instances of the same <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-11">Sensor</a></code> interface
 associated with the same <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-31">sensor</a> hold the same <code class="idl"><a data-link-type="idl" href="#sensorreading" id="ref-for-sensorreading-4">SensorReading</a></code> during a single <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-loop">event loop</a> turn.</p>
@@ -2413,7 +2413,7 @@ at which the <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-
       <p>If <var>sensor_instance</var>’s <a data-link-type="dfn" href="#state" id="ref-for-state-9">state</a> is <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activating" id="ref-for-dom-sensorstate-activating-4">"activating"</a>:</p>
       <ol>
        <li data-md="">
-        <p>Set <var>sensor_instance</var>’s <a data-link-type="dfn" href="#state" id="ref-for-state-10">state</a> <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-active" id="ref-for-dom-sensorstate-active-3">"active"</a>.</p>
+        <p>Set <var>sensor_instance</var>’s <a data-link-type="dfn" href="#state" id="ref-for-state-10">state</a> <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activated" id="ref-for-dom-sensorstate-activated-3">"activated"</a>.</p>
       </ol>
      <li data-md="">
       <p>Create an <a data-link-type="dfn" href="https://dom.spec.whatwg.org#concept-event">event</a> <var>e</var> that uses the <code class="idl"><a data-link-type="idl" href="https://dom.spec.whatwg.org/#event">Event</a></code> interface,
@@ -2868,11 +2868,11 @@ for their editorial input.</p>
   <h2 class="no-num no-ref heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
   <h3 class="no-num no-ref heading settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
   <ul class="index">
+   <li><a href="#dom-sensorstate-activated">activated</a><span>, in §8.1</span>
+   <li><a href="#dom-sensorstate-activated">"activated"</a><span>, in §8.1</span>
    <li><a href="#activated-sensor-objects">activated Sensor objects</a><span>, in §7.2</span>
    <li><a href="#dom-sensorstate-activating">"activating"</a><span>, in §8.1</span>
    <li><a href="#dom-sensorstate-activating">activating</a><span>, in §8.1</span>
-   <li><a href="#dom-sensorstate-active">active</a><span>, in §8.1</span>
-   <li><a href="#dom-sensorstate-active">"active"</a><span>, in §8.1</span>
    <li><a href="#calibration">calibration</a><span>, in §6.1</span>
    <li><a href="#conformant-user-agent">conformant user agent</a><span>, in §Unnumbered section</span>
    <li><a href="#construct-sensor-object">Construct Sensor Object</a><span>, in §9</span>
@@ -3070,7 +3070,7 @@ for their editorial input.</p>
 <span class="kt">enum</span> <a class="nv" href="#enumdef-sensorstate">SensorState</a> {
   <a class="s" href="#dom-sensorstate-idle">"idle"</a>,
   <a class="s" href="#dom-sensorstate-activating">"activating"</a>,
-  <a class="s" href="#dom-sensorstate-active">"active"</a>,
+  <a class="s" href="#dom-sensorstate-activated">"activated"</a>,
   <a class="s" href="#dom-sensorstate-errored">"errored"</a>
 };
 
@@ -3415,12 +3415,12 @@ for their editorial input.</p>
     <li><a href="#ref-for-dom-sensorstate-activating-4">9.9. Update Reading</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="dom-sensorstate-active">
-   <b><a href="#dom-sensorstate-active">#dom-sensorstate-active</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="dom-sensorstate-activated">
+   <b><a href="#dom-sensorstate-activated">#dom-sensorstate-activated</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-sensorstate-active-1">8.1. The Sensor Interface</a>
-    <li><a href="#ref-for-dom-sensorstate-active-2">8.1.2. Sensor.reading</a>
-    <li><a href="#ref-for-dom-sensorstate-active-3">9.9. Update Reading</a>
+    <li><a href="#ref-for-dom-sensorstate-activated-1">8.1. The Sensor Interface</a>
+    <li><a href="#ref-for-dom-sensorstate-activated-2">8.1.2. Sensor.reading</a>
+    <li><a href="#ref-for-dom-sensorstate-activated-3">9.9. Update Reading</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-sensorstate-errored">

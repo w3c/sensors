@@ -536,7 +536,7 @@ dictionary SensorOptions {
 enum SensorState {
   "idle",
   "activating",
-  "active",
+  "activated",
   "errored"
 };
 </pre>
@@ -546,7 +546,7 @@ A {{Sensor}} object has an associated [=sensor=].
 A {{Sensor}} object has an associated <dfn>state</dfn> which is one of
 <a enum-value>"idle"</a>,
 <a enum-value>"activating"</a>,
-<a enum-value>"active"</a>, and
+<a enum-value>"activated"</a>, and
 <a enum-value>"errored"</a>.
 It is initially <a enum-value>"idle"</a>.
 
@@ -573,7 +573,7 @@ The [=state=] attribute represents a {{Sensor}} object's [=state=].
 
 ### Sensor.reading ### {#sensor-reading}
 
-When a {{Sensor}}'s [=state=] is <a enum-value>"active"</a>,
+When a {{Sensor}}'s [=state=] is <a enum-value>"activated"</a>,
 its {{Sensor/reading!!attribute}} attribute must always point to the [=current reading=]
 whatever the [=frequency=] so that
 the {{Sensor/reading!!attribute}} attribute of two instances of the same {{Sensor}} interface
@@ -888,7 +888,7 @@ Abstract Operations {#abstract-operations}
 
     1.  Set |sensor_instance|’s {{Sensor/reading!!attribute}} to |reading|.
     1.  If |sensor_instance|'s [=state=] is <a enum-value>"activating"</a>:
-        1.  Set |sensor_instance|’s [=state=] <a enum-value>"active"</a>.
+        1.  Set |sensor_instance|’s [=state=] <a enum-value>"activated"</a>.
     1.  Create an [=event=] |e| that uses the {{Event}} interface,
         with the event type `reading`, which does not bubble, is not cancelable, is [=trusted=], and has no default action.
     1.  [=Queue a task=] to [=dispatch=] |e| at |sensor_instance|.
