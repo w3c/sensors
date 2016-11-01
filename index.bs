@@ -590,12 +590,12 @@ The {{Sensor/start()}} method must run these steps or their [=equivalent=]:
         1.  throw an "{{InvalidStateError!!exception}}" exception and abort these steps.
     1.  Set |sensor_instance|’s [=state=] to <a enum-value>"activating"</a>.
     1.  Run these sub-steps [=in parallel=]:
-        1.  Let |state| be the result of invoking the [=Request Sensor Access=] abstract operation,
+        1.  Let |permission_state| be the result of invoking the [=Request Sensor Access=] abstract operation,
             passing it |sensor_instance| as argument.
-        1.  If |state| is "granted",
+        1.  If |permission_state| is "granted",
             1.  Invoke [=Register a Sensor=] passing it |sensor_instance| as argument.
             1.  Abort these sub-steps.
-        1.  If |state| is "denied",
+        1.  If |permission_state| is "denied",
             1.  let |e| be the result of [=created|creating an exception=] named "{{NotAllowedError!!exception}}".
             1.  Invoke the [=Handle Errors=] abstract operation,
                 passing it |e| and |sensor_instance| as arguments.

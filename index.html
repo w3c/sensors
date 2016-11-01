@@ -1979,10 +1979,10 @@ associated with the same <a data-link-type="dfn" href="#concept-sensor" id="ref-
       <p>Run these sub-steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in parallel</a>:</p>
       <ol>
        <li data-md="">
-        <p>Let <var>state</var> be the result of invoking the <a data-link-type="dfn" href="#request-sensor-access" id="ref-for-request-sensor-access-1">Request Sensor Access</a> abstract operation,
+        <p>Let <var>permission_state</var> be the result of invoking the <a data-link-type="dfn" href="#request-sensor-access" id="ref-for-request-sensor-access-1">Request Sensor Access</a> abstract operation,
   passing it <var>sensor_instance</var> as argument.</p>
        <li data-md="">
-        <p>If <var>state</var> is "granted",</p>
+        <p>If <var>permission_state</var> is "granted",</p>
         <ol>
          <li data-md="">
           <p>Invoke <a data-link-type="dfn" href="#register-a-sensor" id="ref-for-register-a-sensor-1">Register a Sensor</a> passing it <var>sensor_instance</var> as argument.</p>
@@ -1990,7 +1990,7 @@ associated with the same <a data-link-type="dfn" href="#concept-sensor" id="ref-
           <p>Abort these sub-steps.</p>
         </ol>
        <li data-md="">
-        <p>If <var>state</var> is "denied",</p>
+        <p>If <var>permission_state</var> is "denied",</p>
         <ol>
          <li data-md="">
           <p>let <var>e</var> be the result of <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-create-exception">creating an exception</a> named "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://heycam.github.io/webidl/#notallowederror">NotAllowedError</a></code>".</p>
