@@ -526,6 +526,7 @@ interface Sensor : EventTarget {
   void start();
   void stop();
   attribute EventHandler onchange;
+  attribute EventHandler onactivate;
   attribute EventHandler onerror;
 };
 
@@ -617,10 +618,13 @@ The {{Sensor/stop()}} method must run these steps or their [=equivalent=]:
 
 </div>
 
+### Sensor.onchange ### {#sensor-onchange}
+
+### Sensor.onactivate ### {#sensor-onactivate}
+
+{{Sensor/onactivate}} is an {{EventHandler}} which is called when the [=state=] transitions from <a enum-value>"activating"</a> to <a enum-value>"activated"</a>.
 
 ### Sensor.onerror ### {#sensor-onerror}
-
-### Sensor.onchange ### {#sensor-onchange}
 
 ### Event handlers ### {#event-handlers}
 
@@ -639,6 +643,10 @@ that must be supported as attributes by the objects implementing the [=Sensor=] 
     <tr>
       <td><strong><code>onchange</code></strong></td>
       <td><code>change</code></td>
+    </tr>
+    <tr>
+      <td><strong><code>onactivate</code></strong></td>
+      <td><code>activate</code></td>
     </tr>
     <tr>
       <td><strong><code>onerror</code></strong></td>
@@ -889,6 +897,7 @@ Abstract Operations {#abstract-operations}
     1.  Set |sensor_instance|’s {{Sensor/reading!!attribute}} to |reading|.
     1.  If |sensor_instance|'s [=state=] is <a enum-value>"activating"</a>:
         1.  Set |sensor_instance|’s [=state=] <a enum-value>"activated"</a>.
+        1.  [=Fire an event=] named "activate" at |sensor_instance|.
     1.  Create an [=event=] |e| that uses the {{Event}} interface,
         with the event type `reading`, which does not bubble, is not cancelable, is [=trusted=], and has no default action.
     1.  [=Queue a task=] to [=dispatch=] |e| at |sensor_instance|.
