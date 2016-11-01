@@ -58,8 +58,8 @@ urlPrefix: https://w3c.github.io/page-visibility; spec: PAGE-VISIBILITY
     text: steps to determine the visibility state; url: dfn-steps-to-determine-the-visibility-state
 </pre>
 
-Introduction {#intro}
-=====================
+
+<h2 id="intro">Introduction</h2>
 
 Increasingly, sensor data is used in application development to
 enable new use cases such as geolocation,
@@ -82,8 +82,8 @@ enable advanced use cases thanks to performant [=low-level=] APIs,
 and increase the pace at which new sensors can be exposed to the Web
 by simplifying the specification and implementation processes.
 
-Scope {#scope}
-=====
+
+<h2 id="scope">Scope</h2>
 
 <em>This section is non-normative</em>.
 
@@ -108,8 +108,8 @@ is good enough for now.
 A subsequent version of this specification might specify such an API,
 and the current API has been designed with this in mind.
 
-Background {#background}
-==========
+
+<h2 id="background">Background</h2>
 
 <em>This section is non-normative</em>.
 
@@ -171,8 +171,8 @@ define ways to uniquely identify each one.
     </pre>
 </div>
 
-A note on Feature Detection of Hardware Features {#feature-detection}
-================================================
+
+<h2 id="feature-detection">A note on Feature Detection of Hardware Features</h2>
 
 <em>This section is non-normative.</em>
 
@@ -244,8 +244,8 @@ and defensive programming which includes:
     </pre>
 </div>
 
-Security and privacy considerations {#security-and-privacy}
-===================================
+
+<h2 id="security-and-privacy">Security and privacy considerations</h2>
 
 Privacy risks can arise when [=sensors=] are used
 with each other,
@@ -288,8 +288,8 @@ band communication channel between devices.
 
 Sensors can potentially be used in cross-device linking and tracking of a user.
 
-Browsing Context {#browsing-context}
-----------------
+
+<h3 id="browsing-context">Browsing Context</h3>
 
 [=Sensor readings=] must only be available in the
 [=top-level browsing context=] to avoid the privacy risk of
@@ -299,8 +299,8 @@ with contexts unfamiliar to the user.
 For example, a mobile device will only fire the event on
 the active tab, and not on the background tabs or within iframes.
 
-Secure Context {#secure-context}
---------------
+
+<h3 id="secure-context">Secure Context</h3>
 
 [=Sensor readings=] are explicitly flagged by the
 Secure Contexts specification [[POWERFUL-FEATURES]]
@@ -309,17 +309,17 @@ Thus all interfaces defined by this specification
 or extension specifications
 must only be available within a [=secure context=].
 
-Obtaining Explicit User Permission {#permissioning}
-----------------------------------
+
+<h3 id="permissioning">Obtaining Explicit User Permission</h3>
 
 Permission to access [=sensor readings=] must be obtained
 through the Permissions API [[!PERMISSIONS]].
 
-Concepts {#concepts}
-========
 
-Sensors {#concepts-sensors}
--------
+<h2 id="concepts">Concepts</h2>
+
+
+<h3 id="concepts-sensors">Sensors</h3>
 
 A [=sensor=] measures different physical quantities
 and provide corresponding <dfn>raw sensor readings</dfn>
@@ -335,8 +335,8 @@ through a process called [=sensor fusion=].
 [=calibration|Calibrated=] [=raw sensor readings=] are referred to as <dfn>sensor readings</dfn>,
 whether or not they have undergone [=sensor fusion=].
 
-Sensor Types {#concepts-sensor-types}
------------
+
+<h3 id="concepts-sensor-types">Sensor Types</h3>
 
 Different [=sensor types=] measure different physical quantities
 such as temperature, air pressure, heart-rate, or luminosity.
@@ -415,8 +415,8 @@ preferring instead to differentiate [=sensors=] as to whether they describe
 the kind of [=sensor readings|readings=] produced--these are [=high-level=] sensors--
 or how the sensor is implemented ([=low-level=] sensors).
 
-Reporting Modes {#concepts-reporting-modes}
----------------
+
+<h3 id="concepts-reporting-modes">Reporting Modes</h3>
 
 [=Sensors=] have different <dfn>reporting modes</dfn>.
 When [=sensor readings=] are reported at regular intervals,
@@ -455,11 +455,11 @@ perhaps because is is relying on [=smart sensors=] or a [=sensor hubs=],
 the [=reporting mode=] cannot be [=periodic=],
 as that would require data inference.
 
-Model {#model}
-=====
 
-Sensor Type {#model-sensor-type}
------------
+<h2 id="model">Model</h2>
+
+
+<h3 id="model-sensor-type">Sensor Type</h3>
 
 A <dfn>sensor type</dfn> has one or many associated [=sensors=].
 
@@ -485,8 +485,8 @@ which takes the [=sensor readings=] emitted by the [=sensor=] and
 returns an initialized {{SensorReading}} object
 which uses the [=sensor type=]'s associated [=SensorReading subclass=].
 
-Sensor {#model-sensor}
-------
+
+<h3 id="model-sensor">Sensor</h3>
 
 A <dfn id=concept-sensor>sensor</dfn> has an associated set of <dfn>activated Sensor objects</dfn>. This set is initially empty.
 
@@ -513,11 +513,11 @@ A [=sensor=] has an associated abstract operation to
 takes a {{Sensor}} object as input and
 returns a [=permission=] and, eventually, its [=associated PermissionDescriptor=].
 
-API {#api}
-===
 
-The Sensor Interface {#the-sensor-interface}
---------------------
+<h2 id="api">API</h2>
+
+
+<h3 id="the-sensor-interface">The Sensor Interface</h3>
 <pre class="idl">
 [SecureContext]
 interface Sensor : EventTarget {
@@ -659,8 +659,8 @@ that must be supported as attributes by the objects implementing the [=Sensor=] 
   </tbody>
 </table>
 
-The SensorReading Interface {#the-sensor-reading-interface}
----------------------------
+
+<h3 id="the-sensor-reading-interface">The SensorReading Interface</h3>
 
 <pre class="idl">
 [SecureContext]
@@ -678,8 +678,8 @@ at which the [=sensor reading|reading=] was obtained from the [=sensor=]
 expressed in milliseconds that passed since the [=time origin=].
 
 
-The SensorErrorEvent Interface {#the-sensor-error-event-interface}
-------------------------------
+
+<h3 id="the-sensor-error-event-interface">The SensorErrorEvent Interface</h3>
 
 <pre class="idl">
 [SecureContext, Constructor(DOMString type, SensorErrorEventInit errorEventInitDict)]
@@ -694,8 +694,8 @@ dictionary SensorErrorEventInit : EventInit {
 
 ### SensorErrorEvent.error ### {#sensor-error-event-error}
 
-Abstract Operations {#abstract-operations}
-===================
+
+<h2 id="abstract-operations">Abstract Operations</h2>
 
 <h3 dfn export>Construct Sensor Object</h3>
 
@@ -945,8 +945,8 @@ Abstract Operations {#abstract-operations}
     1.  return |state|.
 </div>
 
-Extensibility {#extensibility}
-=============
+
+<h2 id="extensibility">Extensibility</h2>
 
 <em>This section is non-normative.</em>
 
@@ -958,14 +958,14 @@ Extension specifications are encouraged to focus on a single [=sensor type=],
 exposing both [=high-level|high=] and [=low-level|low=] level
 as appropriate.
 
-Security {#security}
---------
+
+<h3 id="security">Security</h3>
 
 All interfaces defined by extension specifications
 should only be available within a [=secure context=].
 
-Naming {#naming}
-------
+
+<h3 id="naming">Naming</h3>
 
 {{Sensor}} interfaces for [=low-level=] sensors should be
 named after their associated [=sensor=].
@@ -987,8 +987,8 @@ a `temperature` attribute (and not a `value` or `temp` attribute).
 A good starting point for naming are the
 Quantities, Units, Dimensions and Data Types Ontologies [[QUDT]].
 
-Unit {#unit}
-----
+
+<h3 id="unit">Unit</h3>
 
 Extension specification must specify the unit of [=sensor readings=].
 
@@ -1002,8 +1002,8 @@ SI derived units, and
 Non-SI units accepted for use with the SI,
 as described in the SI Brochure [[SI]].
 
-Exposing High-Level vs. Low-Level Sensors {#high-vs-low-level}
------------------------------------------
+
+<h3 id="high-vs-low-level">Exposing High-Level vs. Low-Level Sensors</h3>
 
 So far, specifications exposing sensors to the Web platform
 have focused on [=high-level=] sensors APIs. [[GEOLOCATION-API]] [[ORIENTATION-EVENT]]
@@ -1033,8 +1033,8 @@ extension specifications should focus primarily on
 exposing [=low-level=] sensor APIs, but should also expose
 [=high-level=] APIs when they are clear benefits in doing so.
 
-When is Enabling Multiple Sensors of the Same Type Not the Right Choice? {#multiple-sensors}
-------------------------------------------------------------------------
+
+<h3 id="multiple-sensors">When is Enabling Multiple Sensors of the Same Type Not the Right Choice?</h3>
 
 TODO: provide guidance on when to:
 
@@ -1042,8 +1042,8 @@ TODO: provide guidance on when to:
 - create different interfaces that inherit from {{Sensor}},
 - add constructor parameters to tweak sensors settings (e.g. setting required accuracy).
 
-Definition Requirements {#definition-reqs}
------------------------
+
+<h3 id="definition-reqs">Definition Requirements</h3>
 
 At least the following definitions must be specified in each extension specification:
 
@@ -1072,14 +1072,14 @@ An extension specification may specify the following defintions:
     especially when doing so would not make sense.
 -   A set of [=identifying parameters=]. TODO: replace that by an abstract operation.
 
-Extending the Permission API {#permission-api}
-----------------------------
+
+<h3 id="permission-api">Extending the Permission API</h3>
 
 Provide guidance on how to extend the Permission API [[PERMISSIONS]]
 for each [=sensor types=].
 
-Example WebIDL {#example-webidl}
---------------
+
+<h3 id="example-webidl">Example WebIDL</h3>
 
 Here's example WebIDL for a possible extension of this specification
 for proximity [=sensors=].
@@ -1124,8 +1124,8 @@ for proximity [=sensors=].
     };
 </pre>
 
-Acknowledgements {#acknowledgements}
-================
+
+<h2 id="acknowledgements">Acknowledgements</h2>
 
 First and foremost, I would like to thank Anssi Kostiainen
 for his continuous and dedicates support and input throughout
