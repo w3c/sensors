@@ -277,7 +277,7 @@ an indication of when the [=sensor=] is used
 and allowing the user to disable it.
 
 Web application developers that use [=sensors=] should
-perform a privacy assessment of their application
+perform a privacy impact assessment of their application
 taking all aspects of their application into consideration.
 
 Ability to detect a full working set of sensors on a device can form an
