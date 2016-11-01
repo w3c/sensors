@@ -620,11 +620,15 @@ The {{Sensor/stop()}} method must run these steps or their [=equivalent=]:
 
 ### Sensor.onchange ### {#sensor-onchange}
 
+{{Sensor/onchange}} is an {{EventHandler}} which is called whenever a new [=sensor reading|reading=] is available.
+
 ### Sensor.onactivate ### {#sensor-onactivate}
 
 {{Sensor/onactivate}} is an {{EventHandler}} which is called when the [=state=] transitions from <a enum-value>"activating"</a> to <a enum-value>"activated"</a>.
 
 ### Sensor.onerror ### {#sensor-onerror}
+
+{{Sensor/onerror}} is an {{EventHandler}} which is called whenever an [=exception type|exception=] cannot be handled synchronously.
 
 ### Event handlers ### {#event-handlers}
 
