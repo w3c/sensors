@@ -2425,10 +2425,7 @@ at which the <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-
         <p><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire">Fire an event</a> named "activate" at <var>sensor_instance</var>.</p>
       </ol>
      <li data-md="">
-      <p>Create an <a data-link-type="dfn" href="https://dom.spec.whatwg.org#concept-event">event</a> <var>e</var> that uses the <code class="idl"><a data-link-type="idl" href="https://dom.spec.whatwg.org/#event">Event</a></code> interface,
-  with the event type <code>reading</code>, which does not bubble, is not cancelable, is <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-events-trusted">trusted</a>, and has no default action.</p>
-     <li data-md="">
-      <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task">Queue a task</a> to <a data-link-type="dfn" href="https://dom.spec.whatwg.org#concept-event-dispatch">dispatch</a> <var>e</var> at <var>sensor_instance</var>.</p>
+      <p><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire">Fire an event</a> named "reading" at <var>sensor_instance</var>.</p>
     </ol>
    </div>
    <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="9.10" data-lt="Handle Errors" data-noexport="" id="handle-errors"><span class="secno">9.10. </span><span class="content">Handle Errors</span></h3>
@@ -2451,12 +2448,7 @@ at which the <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-
      <li data-md="">
       <p>Set <var>sensor_instance</var>’s <a data-link-type="dfn" href="#state" id="ref-for-state-12">state</a> to <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-errored" id="ref-for-dom-sensorstate-errored-4">"errored"</a>.</p>
      <li data-md="">
-      <p>Create an <a data-link-type="dfn" href="https://dom.spec.whatwg.org#concept-event">event</a> <var>e</var> that uses the <code class="idl"><a data-link-type="idl" href="#sensorerrorevent" id="ref-for-sensorerrorevent-1">SensorErrorEvent</a></code> interface,
-  with the event type <code>error</code>, which does not bubble, is not cancelable, is <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-events-trusted">trusted</a>, and has no default action.</p>
-     <li data-md="">
-      <p>Let the <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensorerrorevent-error" id="ref-for-dom-sensorerrorevent-error-1">error</a></code> attribute of <var>e</var> be initialized to <var>error</var>.</p>
-     <li data-md="">
-      <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task">Queue a task</a> to <a data-link-type="dfn" href="https://dom.spec.whatwg.org#concept-event-dispatch">dispatch</a> <var>e</var> at <var>sensor_instance</var>.</p>
+      <p><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire">Fire an event</a> named "error" at <var>sensor_instance</var> using <code class="idl"><a data-link-type="idl" href="#sensorerrorevent" id="ref-for-sensorerrorevent-1">SensorErrorEvent</a></code> with its <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensorerrorevent-error" id="ref-for-dom-sensorerrorevent-error-1">error</a></code> attribute initialized to <var>error</var>.</p>
     </ol>
    </div>
    <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="9.11" data-lt="Request Sensor Access" data-noexport="" id="request-sensor-access"><span class="secno">9.11. </span><span class="content">Request Sensor Access</span></h3>
@@ -2968,9 +2960,7 @@ for their editorial input.</p>
      <li><a href="https://dom.spec.whatwg.org/#event">Event</a>
      <li><a href="https://dom.spec.whatwg.org/#dictdef-eventinit">EventInit</a>
      <li><a href="https://dom.spec.whatwg.org/#eventtarget">EventTarget</a>
-     <li><a href="https://dom.spec.whatwg.org#concept-event-dispatch">dispatch</a>
      <li><a href="https://dom.spec.whatwg.org/#concept-document">document</a>
-     <li><a href="https://dom.spec.whatwg.org#concept-event">event</a>
      <li><a href="https://dom.spec.whatwg.org/#concept-event-fire">fire an event</a>
     </ul>
    <li>
@@ -2991,11 +2981,9 @@ for their editorial input.</p>
      <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#incumbent-settings-object">incumbent settings object</a>
      <li><a href="https://html.spec.whatwg.org/multipage/browsers.html#navigate">navigating</a>
      <li><a href="https://html.spec.whatwg.org/multipage/browsers.html#origin-2">origin</a>
-     <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task">queue a task</a>
      <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-task">task</a>
      <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#task-source">task source</a>
      <li><a href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context">top-level browsing context</a>
-     <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-events-trusted">trusted</a>
     </ul>
    <li>
     <a data-link-type="biblio">[page-visibility]</a> defines the following terms:

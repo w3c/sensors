@@ -898,9 +898,7 @@ Abstract Operations {#abstract-operations}
     1.  If |sensor_instance|'s [=state=] is <a enum-value>"activating"</a>:
         1.  Set |sensor_instance|’s [=state=] <a enum-value>"activated"</a>.
         1.  [=Fire an event=] named "activate" at |sensor_instance|.
-    1.  Create an [=event=] |e| that uses the {{Event}} interface,
-        with the event type `reading`, which does not bubble, is not cancelable, is [=trusted=], and has no default action.
-    1.  [=Queue a task=] to [=dispatch=] |e| at |sensor_instance|.
+    1.  [=Fire an event=] named "reading" at |sensor_instance|.
 </div>
 
 
@@ -916,10 +914,8 @@ Abstract Operations {#abstract-operations}
 
     1.  Set |sensor_instance|’s {{Sensor/reading!!attribute}} to `null`.
     1.  Set |sensor_instance|’s [=state=] to <a enum-value>"errored"</a>.
-    1.  Create an [=event=] |e| that uses the {{SensorErrorEvent}} interface,
-        with the event type `error`, which does not bubble, is not cancelable, is [=trusted=], and has no default action.
-    1.  Let the {{SensorErrorEvent/error!!attribute}} attribute of |e| be initialized to |error|.
-    1.  [=Queue a task=] to [=dispatch=] |e| at |sensor_instance|.
+    1.  [=Fire an event=] named "error" at |sensor_instance| using {{SensorErrorEvent}}
+        with its {{SensorErrorEvent/error!!attribute}} attribute initialized to |error|.
 </div>
 
 
