@@ -1087,7 +1087,6 @@ for proximity [=sensors=].
 <pre class=example>
     [SecureContext, Constructor(optional ProximitySensorOptions proximitySensorOptions)]
     interface ProximitySensor : Sensor {
-      readonly attribute ProximitySensorReading? reading;
     };
 
     [SecureContext]
