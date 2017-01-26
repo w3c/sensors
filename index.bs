@@ -296,7 +296,7 @@ User agents should consider providing the user
 an indication of when the [=sensor=] is used
 and allowing the user to disable it.
 Additionally, user agents may consider
-allowing the user to verify past sensor use patterns.
+allowing the user to verify past and current sensor use patterns.
 
 Web application developers that use [=sensors=] should
 perform a privacy impact assessment of their application
