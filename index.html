@@ -1924,18 +1924,20 @@ it must have a set of associated <dfn class="dfn-paneled" data-dfn-type="dfn" da
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="concept-sensor">sensor</dfn> has an associated <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set">set</a> of <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="activated-sensor-objects">activated Sensor objects</dfn>.
 This set is initially <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-is-empty">empty</a>.</p>
    <p>A <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-23">sensor</a> has an associated <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="latest-reading">latest reading</dfn> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map">map</a> which holds the latest available <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-15">sensor readings</a>.</p>
-   <p>The <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-1">latest reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map">map</a> contains an <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry">entry</a> whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-key">key</a> is "timestamp" and
+   <p class="issue" id="issue-504d2531"><a class="self-link" href="#issue-504d2531"></a> does the <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-1">latest reading</a> map need to be
+tied to an origin?</p>
+   <p>The <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-2">latest reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map">map</a> contains an <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry">entry</a> whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-key">key</a> is "timestamp" and
 whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-value">value</a> is a high resolution timestamp of the time
-at which the <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-2">latest reading</a> was obtained
-expressed in milliseconds that passed since the <a data-link-type="dfn" href="http://w3c.github.io/hr-time/#time-origin">time origin</a>. <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-3">latest reading</a>["timestamp"] is initially set to <code>null</code>,
-unless the <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-4">latest reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map">map</a> caches a previous <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-16">reading</a>.</p>
-   <p>The other <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry">entries</a> of the <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-5">latest reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map">map</a> hold the values of the different quantities measured by the <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-24">sensor</a>.
+at which the <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-3">latest reading</a> was obtained
+expressed in milliseconds that passed since the <a data-link-type="dfn" href="http://w3c.github.io/hr-time/#time-origin">time origin</a>. <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-4">latest reading</a>["timestamp"] is initially set to <code>null</code>,
+unless the <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-5">latest reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map">map</a> caches a previous <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-16">reading</a>.</p>
+   <p>The other <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry">entries</a> of the <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-6">latest reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map">map</a> hold the values of the different quantities measured by the <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-24">sensor</a>.
 The <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-key">keys</a> of these <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry">entries</a> must match
 the <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-attribute">attribute</a> names defined by
 the <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-21">sensor type</a>'s associated interface,
 so that the getter of the <code>foo</code> attribute
-can simply return <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-6">latest reading</a>["foo"].</p>
-   <p>The [map/value] of all <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-7">latest reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry">entries</a> is initially set to <code>null</code>.</p>
+can simply return <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-7">latest reading</a>["foo"].</p>
+   <p>The [map/value] of all <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-8">latest reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry">entries</a> is initially set to <code>null</code>.</p>
    <p>A <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-25">sensor</a> <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="supports-periodic-reporting-mode">supports periodic reporting mode</dfn> if
 its associated <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-22">sensor type</a> does.</p>
    <p>A <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-26">sensor</a> has an associated <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="reporting-flag">reporting flag</dfn> which is initially unset.</p>
@@ -2020,7 +2022,7 @@ with the internal slots described in the following table:</p>
    <h4 class="heading settled" data-level="8.1.2" id="sensor-state"><span class="secno">8.1.2. </span><span class="content">Sensor.state</span><a class="self-link" href="#sensor-state"></a></h4>
    <p>The getter of the <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensor-state" id="ref-for-dom-sensor-state-1">state</a></code> attribute returns <emu-val>this</emu-val>.[[state]].</p>
    <h4 class="heading settled" data-level="8.1.3" id="sensor-timestamp"><span class="secno">8.1.3. </span><span class="content">Sensor.timestamp</span><a class="self-link" href="#sensor-timestamp"></a></h4>
-   <p>The getter of the <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensor-timestamp" id="ref-for-dom-sensor-timestamp-1">timestamp</a></code> attribute returns <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-8">latest reading</a>["timestamp"].</p>
+   <p>The getter of the <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensor-timestamp" id="ref-for-dom-sensor-timestamp-1">timestamp</a></code> attribute returns <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-9">latest reading</a>["timestamp"].</p>
    <h4 class="heading settled" data-level="8.1.4" id="sensor-start"><span class="secno">8.1.4. </span><span class="content">Sensor.start()</span><a class="self-link" href="#sensor-start"></a></h4>
    <div class="algorithm" data-algorithm="to start a sensor">
      The <code class="idl"><a data-link-type="idl" href="#dom-sensor-start" id="ref-for-dom-sensor-start-1">start()</a></code> method must run these steps or their <a data-link-type="dfn" href="#equivalent" id="ref-for-equivalent-1">equivalent</a>: 
@@ -2475,7 +2477,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
         <p>abort these steps.</p>
       </ol>
      <li data-md="">
-      <p>If <var>reading_timestamp</var> is equal <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-9">latest reading</a>["timestamp"],</p>
+      <p>If <var>reading_timestamp</var> is equal <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-10">latest reading</a>["timestamp"],</p>
       <ol>
        <li data-md="">
         <p>abort these steps.</p>
@@ -2483,14 +2485,14 @@ that must be supported as attributes by the objects implementing the <a data-lin
      <li data-md="">
       <p>Set <var>sensor</var>’s <a data-link-type="dfn" href="#reporting-flag" id="ref-for-reporting-flag-2">reporting flag</a>.</p>
      <li data-md="">
-      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set">Set</a> <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-10">latest reading</a>["timestamp"] to <var>reading_timestamp</var>.</p>
+      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set">Set</a> <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-11">latest reading</a>["timestamp"] to <var>reading_timestamp</var>.</p>
      <li data-md="">
-      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-iterate">For each</a> <var>key</var> → <var>value</var> of <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-11">latest reading</a>.</p>
+      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-iterate">For each</a> <var>key</var> → <var>value</var> of <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-12">latest reading</a>.</p>
       <ol>
        <li data-md="">
         <p>If <var>key</var> is "timestamp", <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#iteration-continue">continue</a>.</p>
        <li data-md="">
-        <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set">Set</a> <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-12">latest reading</a>[<var>key</var>] to the corresponding
+        <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set">Set</a> <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-13">latest reading</a>[<var>key</var>] to the corresponding
   value of <var>reading</var>.</p>
       </ol>
       <p class="issue" id="issue-0a097748"><a class="self-link" href="#issue-0a097748"></a> Maybe compare <var>value</var> with corresponding
@@ -3377,9 +3379,9 @@ for their editorial input.</p>
   <aside class="dfn-panel" data-for="latest-reading">
    <b><a href="#latest-reading">#latest-reading</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-latest-reading-1">7.2. Sensor</a> <a href="#ref-for-latest-reading-2">(2)</a> <a href="#ref-for-latest-reading-3">(3)</a> <a href="#ref-for-latest-reading-4">(4)</a> <a href="#ref-for-latest-reading-5">(5)</a> <a href="#ref-for-latest-reading-6">(6)</a> <a href="#ref-for-latest-reading-7">(7)</a>
-    <li><a href="#ref-for-latest-reading-8">8.1.3. Sensor.timestamp</a>
-    <li><a href="#ref-for-latest-reading-9">9.9. Update latest reading</a> <a href="#ref-for-latest-reading-10">(2)</a> <a href="#ref-for-latest-reading-11">(3)</a> <a href="#ref-for-latest-reading-12">(4)</a>
+    <li><a href="#ref-for-latest-reading-1">7.2. Sensor</a> <a href="#ref-for-latest-reading-2">(2)</a> <a href="#ref-for-latest-reading-3">(3)</a> <a href="#ref-for-latest-reading-4">(4)</a> <a href="#ref-for-latest-reading-5">(5)</a> <a href="#ref-for-latest-reading-6">(6)</a> <a href="#ref-for-latest-reading-7">(7)</a> <a href="#ref-for-latest-reading-8">(8)</a>
+    <li><a href="#ref-for-latest-reading-9">8.1.3. Sensor.timestamp</a>
+    <li><a href="#ref-for-latest-reading-10">9.9. Update latest reading</a> <a href="#ref-for-latest-reading-11">(2)</a> <a href="#ref-for-latest-reading-12">(3)</a> <a href="#ref-for-latest-reading-13">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="supports-periodic-reporting-mode">

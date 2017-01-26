@@ -523,6 +523,9 @@ This set is initially [=set/is empty|empty=].
 A [=sensor=] has an associated <dfn>latest reading</dfn> [=ordered map|map=]
 which holds the latest available [=sensor readings=].
 
+Issue: does the [=latest reading=] map need to be
+tied to an origin?
+
 The [=latest reading=] [=ordered map|map=]
 contains an [=map/entry=]
 whose [=map/key=] is "timestamp" and
