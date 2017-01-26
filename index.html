@@ -1554,14 +1554,15 @@ that can be extended to accommodate different sensor types.</p>
       <li><a href="#connect-to-sensor"><span class="secno">9.2</span> <span class="content">Connect to Sensor</span></a>
       <li><a href="#register-a-sensor-object"><span class="secno">9.3</span> <span class="content">Register a Sensor Object</span></a>
       <li><a href="#unregister-a-sensor"><span class="secno">9.4</span> <span class="content">Unregister a Sensor</span></a>
-      <li><a href="#set-sensor-settings"><span class="secno">9.5</span> <span class="content">Set Sensor Settings</span></a>
-      <li><a href="#observe-a-sensor"><span class="secno">9.6</span> <span class="content">Observe a Sensor</span></a>
-      <li><a href="#is-current-reporting-mode-periodic"><span class="secno">9.7</span> <span class="content">Is Current Reporting Mode Periodic</span></a>
-      <li><a href="#find-the-polling-frequency-of-a-sensor"><span class="secno">9.8</span> <span class="content">Find the polling frequency of a Sensor</span></a>
-      <li><a href="#update-latest-reading"><span class="secno">9.9</span> <span class="content">Update latest reading</span></a>
-      <li><a href="#update-observers"><span class="secno">9.10</span> <span class="content">Update Observers</span></a>
-      <li><a href="#handle-errors"><span class="secno">9.11</span> <span class="content">Handle Errors</span></a>
-      <li><a href="#request-sensor-access"><span class="secno">9.12</span> <span class="content">Request Sensor Access</span></a>
+      <li><a href="#revoke-sensor-permission"><span class="secno">9.5</span> <span class="content">Revoke sensor permission</span></a>
+      <li><a href="#set-sensor-settings"><span class="secno">9.6</span> <span class="content">Set Sensor Settings</span></a>
+      <li><a href="#observe-a-sensor"><span class="secno">9.7</span> <span class="content">Observe a Sensor</span></a>
+      <li><a href="#is-current-reporting-mode-periodic"><span class="secno">9.8</span> <span class="content">Is Current Reporting Mode Periodic</span></a>
+      <li><a href="#find-the-polling-frequency-of-a-sensor"><span class="secno">9.9</span> <span class="content">Find the polling frequency of a Sensor</span></a>
+      <li><a href="#update-latest-reading"><span class="secno">9.10</span> <span class="content">Update latest reading</span></a>
+      <li><a href="#update-observers"><span class="secno">9.11</span> <span class="content">Update Observers</span></a>
+      <li><a href="#handle-errors"><span class="secno">9.12</span> <span class="content">Handle Errors</span></a>
+      <li><a href="#request-sensor-access"><span class="secno">9.13</span> <span class="content">Request Sensor Access</span></a>
      </ol>
     <li>
      <a href="#extensibility"><span class="secno">10</span> <span class="content">Extensibility</span></a>
@@ -1922,14 +1923,23 @@ and thus "on change" sensors would be useful.</p>
    <p class="issue" id="issue-d36d1a2e"><a class="self-link" href="#issue-d36d1a2e"></a> A diagram would really help here.</p>
    <h3 class="heading settled" data-level="7.1" id="model-sensor-type"><span class="secno">7.1. </span><span class="content">Sensor Type</span><a class="self-link" href="#model-sensor-type"></a></h3>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="sensor-type">sensor type</dfn> has an associated <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-interface">interface</a> whose <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-inherited-interfaces">inherited interfaces</a> contains <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-3">Sensor</a></code>.</p>
-   <p>A <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-19">sensor type</a> has one or many associated <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-20">sensors</a>.</p>
-   <p>If a <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-20">sensor type</a> has more than one <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-21">sensor</a>,
-it must have a set of associated <dfn class="dfn-paneled" data-dfn-type="dfn" data-export="" id="identifying-parameters">identifying parameters</dfn> to select the right <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-22">sensor</a> to associate to each new <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-4">Sensor</a></code> objects.</p>
+   <p>A <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-19">sensor type</a> has a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set">set</a> of <dfn class="dfn-paneled" data-dfn-type="dfn" data-export="" id="associated-sensors">associated sensors</dfn>.</p>
+   <p>If a <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-20">sensor type</a> has more than one <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-20">sensor</a>,
+it must have a set of associated <dfn class="dfn-paneled" data-dfn-type="dfn" data-export="" id="identifying-parameters">identifying parameters</dfn> to select the right <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-21">sensor</a> to associate to each new <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-4">Sensor</a></code> objects.</p>
    <p>A <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-21">sensor type</a> may have a <dfn class="dfn-paneled" data-dfn-type="dfn" data-export="" id="default-sensor">default sensor</dfn>.</p>
+   <p>A <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-22">sensor type</a> has an <a data-link-type="dfn" href="https://w3c.github.io/permissions/#permission-revocation-algorithm">permission revocation algorithm</a> which, when invoked, must run the following steps:</p>
+   <ol>
+    <li data-md="">
+     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate">For each</a> <var>sensor</var> in <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-23">sensor type</a>'s <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set">set</a> of <a data-link-type="dfn" href="#associated-sensors" id="ref-for-associated-sensors-1">associated sensors</a>,</p>
+     <ol>
+      <li data-md="">
+       <p>Invoke the <a data-link-type="dfn" href="#revoke-sensor-permission" id="ref-for-revoke-sensor-permission-1">revoke sensor permission</a> abstract operation with <var>sensor</var> as argument.</p>
+     </ol>
+   </ol>
    <h3 class="heading settled" data-level="7.2" id="model-sensor"><span class="secno">7.2. </span><span class="content">Sensor</span><a class="self-link" href="#model-sensor"></a></h3>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="concept-sensor">sensor</dfn> has an associated <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set">set</a> of <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="activated-sensor-objects">activated Sensor objects</dfn>.
 This set is initially <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-is-empty">empty</a>.</p>
-   <p>A <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-23">sensor</a> has an associated <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="latest-reading">latest reading</dfn> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map">map</a> which holds the latest available <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-15">sensor readings</a>.</p>
+   <p>A <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-22">sensor</a> has an associated <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="latest-reading">latest reading</dfn> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map">map</a> which holds the latest available <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-15">sensor readings</a>.</p>
    <p class="issue" id="issue-504d2531"><a class="self-link" href="#issue-504d2531"></a> does the <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-1">latest reading</a> map need to be
 tied to an origin?</p>
    <p>The <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-2">latest reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map">map</a> contains an <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry">entry</a> whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-key">key</a> is "timestamp" and
@@ -1937,19 +1947,19 @@ whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-value">va
 at which the <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-3">latest reading</a> was obtained
 expressed in milliseconds that passed since the <a data-link-type="dfn" href="http://w3c.github.io/hr-time/#time-origin">time origin</a>. <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-4">latest reading</a>["timestamp"] is initially set to <code>null</code>,
 unless the <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-5">latest reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map">map</a> caches a previous <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-16">reading</a>.</p>
-   <p>The other <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry">entries</a> of the <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-6">latest reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map">map</a> hold the values of the different quantities measured by the <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-24">sensor</a>.
+   <p>The other <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry">entries</a> of the <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-6">latest reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map">map</a> hold the values of the different quantities measured by the <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-23">sensor</a>.
 The <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-key">keys</a> of these <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry">entries</a> must match
 the <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-attribute">attribute</a> names defined by
-the <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-22">sensor type</a>'s associated interface,
+the <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-24">sensor type</a>'s associated interface,
 so that the getter of the <code>foo</code> attribute
 can simply return <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-7">latest reading</a>["foo"].</p>
    <p>The [map/value] of all <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-8">latest reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry">entries</a> is initially set to <code>null</code>.</p>
-   <p>A <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-25">sensor</a> <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="supports-periodic-reporting-mode">supports periodic reporting mode</dfn> if
-its associated <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-23">sensor type</a> does.</p>
-   <p>A <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-26">sensor</a> has an associated <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="reporting-flag">reporting flag</dfn> which is initially unset.</p>
-   <p>A <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-27">sensor</a> has an associated <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="periodic-reporting-mode-flag">periodic reporting mode flag</dfn> which is initially unset.</p>
-   <p>A <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-28">sensor</a> has an associated <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="current-polling-frequency">current polling frequency</dfn> which is initially <code>null</code>.</p>
-   <p>A <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-29">sensor</a> has an associated abstract operation to <dfn class="dfn-paneled" data-dfn-type="dfn" data-export="" data-lt="retrieve the sensor permission" id="retrieve-the-sensor-permission">retrieve its permission</dfn> which
+   <p>A <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-24">sensor</a> <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="supports-periodic-reporting-mode">supports periodic reporting mode</dfn> if
+its associated <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-25">sensor type</a> does.</p>
+   <p>A <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-25">sensor</a> has an associated <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="reporting-flag">reporting flag</dfn> which is initially unset.</p>
+   <p>A <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-26">sensor</a> has an associated <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="periodic-reporting-mode-flag">periodic reporting mode flag</dfn> which is initially unset.</p>
+   <p>A <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-27">sensor</a> has an associated <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="current-polling-frequency">current polling frequency</dfn> which is initially <code>null</code>.</p>
+   <p>A <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-28">sensor</a> has an associated abstract operation to <dfn class="dfn-paneled" data-dfn-type="dfn" data-export="" data-lt="retrieve the sensor permission" id="retrieve-the-sensor-permission">retrieve its permission</dfn> which
 takes a <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-5">Sensor</a></code> object as input and
 returns a <a data-link-type="dfn" href="https://w3c.github.io/permissions/#idl-def-Permission">permission</a> and, eventually, its <a data-link-type="dfn" href="https://w3c.github.io/permissions/#dfn-associated-permissiondescriptor">associated PermissionDescriptor</a>.</p>
    <h2 class="heading settled" data-level="8" id="api"><span class="secno">8. </span><span class="content">API</span><a class="self-link" href="#api"></a></h2>
@@ -1977,7 +1987,7 @@ returns a <a data-link-type="dfn" href="https://w3c.github.io/permissions/#idl-d
   <dfn class="s dfn-paneled idl-code" data-dfn-for="SensorState" data-dfn-type="enum-value" data-export="" data-lt="&quot;errored&quot;|errored" id="dom-sensorstate-errored">"errored"</dfn>
 };
 </pre>
-   <p>A <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-6">Sensor</a></code> object has an associated <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-30">sensor</a>.</p>
+   <p>A <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-6">Sensor</a></code> object has an associated <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-29">sensor</a>.</p>
    <p>Each <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-7">Sensor</a></code> object has a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#task-source">task source</a> called a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="sensor-task-source">sensor task source</dfn>, initially empty.
 A <a data-link-type="dfn" href="#sensor-task-source" id="ref-for-sensor-task-source-1">sensor task source</a> can be enabled or disabled,
 and is initially enabled.
@@ -2023,7 +2033,7 @@ with the internal slots described in the following table:</p>
                 It is initially <code>true</code>.
      <tr>
       <td><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="identifyingparameters">[[identifyingParameters]]</dfn>
-      <td> A <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-24">sensor type</a>-epecific group of <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-dictionary-member">dictionary members</a> used to select the correct <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-31">sensor</a> to associate to this <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-11">Sensor</a></code> object. 
+      <td> A <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-26">sensor type</a>-epecific group of <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-dictionary-member">dictionary members</a> used to select the correct <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-30">sensor</a> to associate to this <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-11">Sensor</a></code> object. 
    </table>
    <h4 class="heading settled" data-level="8.1.2" id="sensor-state"><span class="secno">8.1.2. </span><span class="content">Sensor.state</span><a class="self-link" href="#sensor-state"></a></h4>
    <p>The getter of the <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensor-state" id="ref-for-dom-sensor-state-1">state</a></code> attribute returns <emu-val>this</emu-val>.[[state]].</p>
@@ -2108,7 +2118,7 @@ and use <code>onchange</code> when the data changed?</p>
    <p><code class="idl"><a data-link-type="idl" href="#dom-sensor-onerror" id="ref-for-dom-sensor-onerror-1">onerror</a></code> is an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a></code> which is called whenever an <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-exception-type">exception</a> cannot be handled synchronously.</p>
    <h4 class="heading settled" data-level="8.1.9" id="event-handlers"><span class="secno">8.1.9. </span><span class="content">Event handlers</span><a class="self-link" href="#event-handlers"></a></h4>
    <p>The following are the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers">event handlers</a> (and their corresponding <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-type">event handler event types</a>)
-that must be supported as attributes by the objects implementing the <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-32">Sensor</a> interface:</p>
+that must be supported as attributes by the objects implementing the <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-31">Sensor</a> interface:</p>
    <table class="simple">
     <thead>
      <tr>
@@ -2166,7 +2176,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
      <li data-md="">
       <p>Let <var>sensor_instance</var> be a new <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-13">Sensor</a></code> object,</p>
      <li data-md="">
-      <p>If <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-33">sensor</a> <a data-link-type="dfn" href="#supports-periodic-reporting-mode" id="ref-for-supports-periodic-reporting-mode-1">supports periodic reporting mode</a> and <var>options</var>.<code class="idl"><a class="idl-code" data-link-type="dict-member" href="#dom-sensoroptions-frequency" id="ref-for-dom-sensoroptions-frequency-1">frequency</a></code> is <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-present">present</a>, then</p>
+      <p>If <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-32">sensor</a> <a data-link-type="dfn" href="#supports-periodic-reporting-mode" id="ref-for-supports-periodic-reporting-mode-1">supports periodic reporting mode</a> and <var>options</var>.<code class="idl"><a class="idl-code" data-link-type="dict-member" href="#dom-sensoroptions-frequency" id="ref-for-dom-sensoroptions-frequency-1">frequency</a></code> is <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-present">present</a>, then</p>
       <ol>
        <li data-md="">
         <p>Set <var>sensor_instance</var>.<a data-link-type="dfn" href="#desiredpollingfrequency" id="ref-for-desiredpollingfrequency-1">[[desiredPollingFrequency]]</a> to <var>options</var>.<code class="idl"><a class="idl-code" data-link-type="dict-member" href="#dom-sensoroptions-frequency" id="ref-for-dom-sensoroptions-frequency-2">frequency</a></code>.</p>
@@ -2199,17 +2209,17 @@ that must be supported as attributes by the objects implementing the <a data-lin
     <ol>
      <li data-md="">
       <p>If <var>sensor_instance</var>.<a data-link-type="dfn" href="#identifyingparameters" id="ref-for-identifyingparameters-2">[[identifyingParameters]]</a> is set and <var>sensor_instance</var>.<a data-link-type="dfn" href="#identifyingparameters" id="ref-for-identifyingparameters-3">[[identifyingParameters]]</a> allows
-  a unique <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-34">sensor</a> to be identified, then:</p>
+  a unique <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-33">sensor</a> to be identified, then:</p>
       <ol>
        <li data-md="">
-        <p>let <var>sensor</var> be that <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-35">sensor</a>,</p>
+        <p>let <var>sensor</var> be that <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-34">sensor</a>,</p>
        <li data-md="">
         <p>associate <var>sensor_instance</var> with <var>sensor</var>.</p>
        <li data-md="">
         <p>Return <code>true</code>.</p>
       </ol>
      <li data-md="">
-      <p>If the <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-25">sensor type</a> of <var>sensor_instance</var> has an associated <a data-link-type="dfn" href="#default-sensor" id="ref-for-default-sensor-1">default sensor</a> and there is a corresponding <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-36">sensor</a> on the device, then</p>
+      <p>If the <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-27">sensor type</a> of <var>sensor_instance</var> has an associated <a data-link-type="dfn" href="#default-sensor" id="ref-for-default-sensor-1">default sensor</a> and there is a corresponding <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-35">sensor</a> on the device, then</p>
       <ol>
        <li data-md="">
         <p>associate <var>sensor_instance</var> with <a data-link-type="dfn" href="#default-sensor" id="ref-for-default-sensor-2">default sensor</a>.</p>
@@ -2240,7 +2250,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
     </dl>
     <ol>
      <li data-md="">
-      <p>Let <var>sensor</var> be the <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-37">sensor</a> associated with <var>sensor_instance</var>.</p>
+      <p>Let <var>sensor</var> be the <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-36">sensor</a> associated with <var>sensor_instance</var>.</p>
      <li data-md="">
       <p>Add <var>sensor_instance</var> to <var>sensor</var>’s set of <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects-1">activated Sensor objects</a>.</p>
      <li data-md="">
@@ -2262,7 +2272,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
     </dl>
     <ol>
      <li data-md="">
-      <p>Let <var>sensor</var> be the <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-38">sensor</a> associated with <var>sensor_instance</var>.</p>
+      <p>Let <var>sensor</var> be the <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-37">sensor</a> associated with <var>sensor_instance</var>.</p>
      <li data-md="">
       <p>Remove <var>sensor_instance</var> from <var>sensor</var>’s set of <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects-2">activated Sensor objects</a>.</p>
      <li data-md="">
@@ -2282,7 +2292,41 @@ that must be supported as attributes by the objects implementing the <a data-lin
   passing it <var>sensor</var> as argument.</p>
     </ol>
    </div>
-   <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="9.5" data-lt="Set Sensor Settings" data-noexport="" id="set-sensor-settings"><span class="secno">9.5. </span><span class="content">Set Sensor Settings</span></h3>
+   <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="9.5" data-lt="Revoke sensor permission" data-noexport="" id="revoke-sensor-permission"><span class="secno">9.5. </span><span class="content">Revoke sensor permission</span></h3>
+   <div class="algorithm" data-algorithm="revoke sensor permission">
+    <dl>
+     <dt data-md="">
+      <p>input</p>
+     <dd data-md="">
+      <p><var>sensor</var>, a <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-38">sensor</a>.</p>
+     <dt data-md="">
+      <p>output</p>
+     <dd data-md="">
+      <p>None</p>
+    </dl>
+    <ol>
+     <li data-md="">
+      <p>let <var>activated_sensors</var> be <var>sensor</var>’s associated <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set">set</a> of <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects-4">activated Sensor objects</a>.</p>
+     <li data-md="">
+      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate">For each</a> <var>s</var> of <var>activated_sensors</var>,</p>
+      <ol>
+       <li data-md="">
+        <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-remove">Remove</a> <var>s</var> from <var>activated_sensors</var>.</p>
+       <li data-md="">
+        <p>let <var>e</var> be the result of <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-create-exception">creating</a> a "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://heycam.github.io/webidl/#notallowederror">NotAllowedError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#dfn-DOMException">DOMException</a></code>.</p>
+       <li data-md="">
+        <p>Invoke the <a data-link-type="dfn" href="#handle-errors" id="ref-for-handle-errors-3">Handle Errors</a> abstract operation,
+  passing it <var>e</var> and <var>s</var> as arguments.</p>
+      </ol>
+     <li data-md="">
+      <p>Unset <var>sensor</var>’s <a data-link-type="dfn" href="#periodic-reporting-mode-flag" id="ref-for-periodic-reporting-mode-flag-2">periodic reporting mode flag</a>.</p>
+     <li data-md="">
+      <p>Set <var>sensor</var>’s <a data-link-type="dfn" href="#current-polling-frequency" id="ref-for-current-polling-frequency-2">current polling frequency</a> to <code>null</code>.</p>
+     <li data-md="">
+      <p>Update the user-agent-specific way in which <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-21">sensor readings</a> are obtained from <var>sensor</var> to no longer provide <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-22">readings</a>.</p>
+    </ol>
+   </div>
+   <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="9.6" data-lt="Set Sensor Settings" data-noexport="" id="set-sensor-settings"><span class="secno">9.6. </span><span class="content">Set Sensor Settings</span></h3>
    <div class="algorithm" data-algorithm="set sensor settings">
     <dl>
      <dt data-md="">
@@ -2302,32 +2346,32 @@ that must be supported as attributes by the objects implementing the <a data-lin
   the <a data-link-type="dfn" href="#is-current-reporting-mode-periodic" id="ref-for-is-current-reporting-mode-periodic-1">Is Current Reporting Mode Periodic</a> abstract operation,
   with <var>sensor</var> as argument.</p>
      <li data-md="">
-      <p>If <var>is_periodic</var> is <code>false</code> and the <a data-link-type="dfn" href="#periodic-reporting-mode-flag" id="ref-for-periodic-reporting-mode-flag-2">periodic reporting mode flag</a> is set, then</p>
+      <p>If <var>is_periodic</var> is <code>false</code> and the <a data-link-type="dfn" href="#periodic-reporting-mode-flag" id="ref-for-periodic-reporting-mode-flag-3">periodic reporting mode flag</a> is set, then</p>
       <ol>
        <li data-md="">
         <p>set <var>settings_changed</var> to <code>true</code>.</p>
        <li data-md="">
-        <p>Unset the <a data-link-type="dfn" href="#periodic-reporting-mode-flag" id="ref-for-periodic-reporting-mode-flag-3">periodic reporting mode flag</a>.</p>
+        <p>Unset the <a data-link-type="dfn" href="#periodic-reporting-mode-flag" id="ref-for-periodic-reporting-mode-flag-4">periodic reporting mode flag</a>.</p>
       </ol>
      <li data-md="">
-      <p>Otherwise if <var>is_periodic</var> is <code>true</code> and the <a data-link-type="dfn" href="#periodic-reporting-mode-flag" id="ref-for-periodic-reporting-mode-flag-4">periodic reporting mode flag</a> is unset, then</p>
+      <p>Otherwise if <var>is_periodic</var> is <code>true</code> and the <a data-link-type="dfn" href="#periodic-reporting-mode-flag" id="ref-for-periodic-reporting-mode-flag-5">periodic reporting mode flag</a> is unset, then</p>
       <ol>
        <li data-md="">
         <p>set <var>settings_changed</var> to <code>true</code>.</p>
        <li data-md="">
-        <p>Set the <a data-link-type="dfn" href="#periodic-reporting-mode-flag" id="ref-for-periodic-reporting-mode-flag-5">periodic reporting mode flag</a>.</p>
+        <p>Set the <a data-link-type="dfn" href="#periodic-reporting-mode-flag" id="ref-for-periodic-reporting-mode-flag-6">periodic reporting mode flag</a>.</p>
       </ol>
      <li data-md="">
       <p>Let <var>frequency</var> be the result of invoking
   the <a data-link-type="dfn" href="#find-the-polling-frequency-of-a-sensor" id="ref-for-find-the-polling-frequency-of-a-sensor-1">Find the polling frequency of a Sensor</a> abstract operation,
   with <var>sensor</var> as argument.</p>
      <li data-md="">
-      <p>If <var>frequency</var> is different from <var>sensor</var>’s <a data-link-type="dfn" href="#current-polling-frequency" id="ref-for-current-polling-frequency-2">current polling frequency</a>,</p>
+      <p>If <var>frequency</var> is different from <var>sensor</var>’s <a data-link-type="dfn" href="#current-polling-frequency" id="ref-for-current-polling-frequency-3">current polling frequency</a>,</p>
       <ol>
        <li data-md="">
         <p>set <var>settings_changed</var> to <code>true</code>.</p>
        <li data-md="">
-        <p>Set <a data-link-type="dfn" href="#current-polling-frequency" id="ref-for-current-polling-frequency-3">current polling frequency</a> to <var>frequency</var>.</p>
+        <p>Set <a data-link-type="dfn" href="#current-polling-frequency" id="ref-for-current-polling-frequency-4">current polling frequency</a> to <var>frequency</var>.</p>
       </ol>
      <li data-md="">
       <p>If <var>settings_changed</var> is <code>true</code></p>
@@ -2339,7 +2383,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
     </ol>
     <p class="issue" id="issue-9a4dcce1"><a class="self-link" href="#issue-9a4dcce1"></a> This abstract operation needs to return <var>settings_changed</var> instead of the <a data-link-type="dfn" href="#observe-a-sensor" id="ref-for-observe-a-sensor-2">Observe a Sensor</a> abstract operation itself.</p>
    </div>
-   <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="9.6" data-lt="Observe a Sensor" data-noexport="" id="observe-a-sensor"><span class="secno">9.6. </span><span class="content">Observe a Sensor</span></h3>
+   <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="9.7" data-lt="Observe a Sensor" data-noexport="" id="observe-a-sensor"><span class="secno">9.7. </span><span class="content">Observe a Sensor</span></h3>
    <div class="algorithm" data-algorithm="observe a sensor">
     <p class="issue" id="issue-43b6e658"><a class="self-link" href="#issue-43b6e658"></a> This needs to be refactored in an abstract operation
     that has access to the <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-17">Sensor</a></code> instance <var>sensor_instance</var> that just got started.</p>
@@ -2363,10 +2407,10 @@ that must be supported as attributes by the objects implementing the <a data-lin
   do not provide values immediately?
   Fire a dedicated event to signal brokenness?</p>
      <li data-md="">
-      <p>If <var>sensor</var>’s <a data-link-type="dfn" href="#periodic-reporting-mode-flag" id="ref-for-periodic-reporting-mode-flag-6">periodic reporting mode flag</a> is set,</p>
+      <p>If <var>sensor</var>’s <a data-link-type="dfn" href="#periodic-reporting-mode-flag" id="ref-for-periodic-reporting-mode-flag-7">periodic reporting mode flag</a> is set,</p>
       <ol>
        <li data-md="">
-        <p>let <var>frequency</var> be the <a data-link-type="dfn" href="#current-polling-frequency" id="ref-for-current-polling-frequency-4">current polling frequency</a>,
+        <p>let <var>frequency</var> be the <a data-link-type="dfn" href="#current-polling-frequency" id="ref-for-current-polling-frequency-5">current polling frequency</a>,
   capped by the upper and lower bounds of the underlying hardware.</p>
         <p class="issue" id="issue-045f373a"><a class="self-link" href="#issue-045f373a"></a> Should this max polling frequency be reflected in the <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-18">Sensor</a></code> interface?
   E.g. Through a dedicated attribute?</p>
@@ -2378,7 +2422,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
        <li data-md="">
         <p class="issue" id="issue-63b367e3"><a class="self-link" href="#issue-63b367e3"></a> Hook into the <code>requestAnimationFrame</code> framework <a data-link-type="biblio" href="#biblio-html">[HTML]</a> to invoke the <a data-link-type="dfn" href="#update-latest-reading" id="ref-for-update-latest-reading-1">update latest reading</a> abstract operation
   with every new frame passing it <var>sensor</var> and
-  the latest <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-21">sensor reading</a> as arguments.</p>
+  the latest <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-23">sensor reading</a> as arguments.</p>
         <p class="issue" id="issue-c1d5eff3"><a class="self-link" href="#issue-c1d5eff3"></a> Relying on <code>requestAnimationFrame</code> gives us a perfect point
   to buffer readings > 60Hz and to pass them to together with every new frame.
   That’s a level 2 feature.</p>
@@ -2386,16 +2430,16 @@ that must be supported as attributes by the objects implementing the <a data-lin
   rather than wait for it to be polled.</p>
       </ol>
      <li data-md="">
-      <p>If the <a data-link-type="dfn" href="#periodic-reporting-mode-flag" id="ref-for-periodic-reporting-mode-flag-7">periodic reporting mode flag</a> is unset,</p>
+      <p>If the <a data-link-type="dfn" href="#periodic-reporting-mode-flag" id="ref-for-periodic-reporting-mode-flag-8">periodic reporting mode flag</a> is unset,</p>
       <ol>
        <li data-md="">
         <p>the user-agent can decide on the best reporting strategy
-  for this particular <var>sensor</var> and <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-26">sensor type</a>.</p>
+  for this particular <var>sensor</var> and <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-28">sensor type</a>.</p>
         <p class="issue" id="issue-9c23a829"><a class="self-link" href="#issue-9c23a829"></a> This needs to be defined better.</p>
       </ol>
     </ol>
    </div>
-   <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="9.7" data-lt="Is Current Reporting Mode Periodic" data-noexport="" id="is-current-reporting-mode-periodic"><span class="secno">9.7. </span><span class="content">Is Current Reporting Mode Periodic</span></h3>
+   <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="9.8" data-lt="Is Current Reporting Mode Periodic" data-noexport="" id="is-current-reporting-mode-periodic"><span class="secno">9.8. </span><span class="content">Is Current Reporting Mode Periodic</span></h3>
    <div class="algorithm" data-algorithm="is current reporting mode periodic">
     <dl>
      <dt data-md="">
@@ -2411,7 +2455,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
      <li data-md="">
       <p>Let <var>result</var> be <code>false</code>.</p>
      <li data-md="">
-      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate">For each</a> <var>sensor_instance</var> in <var>sensor</var>’s set of <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects-4">activated Sensor objects</a>:</p>
+      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate">For each</a> <var>sensor_instance</var> in <var>sensor</var>’s set of <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects-5">activated Sensor objects</a>:</p>
       <ol>
        <li data-md="">
         <p>if <var>sensor_instance</var>.<a data-link-type="dfn" href="#desiredpollingfrequency" id="ref-for-desiredpollingfrequency-2">[[desiredPollingFrequency]]</a> is set,</p>
@@ -2424,7 +2468,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
       <p>return <var>result</var>.</p>
     </ol>
    </div>
-   <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="9.8" data-lt="Find the polling frequency of a Sensor" data-noexport="" id="find-the-polling-frequency-of-a-sensor"><span class="secno">9.8. </span><span class="content">Find the polling frequency of a Sensor</span></h3>
+   <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="9.9" data-lt="Find the polling frequency of a Sensor" data-noexport="" id="find-the-polling-frequency-of-a-sensor"><span class="secno">9.9. </span><span class="content">Find the polling frequency of a Sensor</span></h3>
    <div class="algorithm" data-algorithm="find the polling frequency of a sensor">
     <dl>
      <dt data-md="">
@@ -2440,7 +2484,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
      <li data-md="">
       <p>Let <var>frequency</var> be <code>null</code>.</p>
      <li data-md="">
-      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate">For each</a> <var>sensor_instance</var> in <var>sensor</var>’s set of <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects-5">activated Sensor objects</a>:</p>
+      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate">For each</a> <var>sensor_instance</var> in <var>sensor</var>’s set of <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects-6">activated Sensor objects</a>:</p>
       <ol>
        <li data-md="">
         <p>let <var>f</var> be <var>sensor_instance</var>.<a data-link-type="dfn" href="#desiredpollingfrequency" id="ref-for-desiredpollingfrequency-3">[[desiredPollingFrequency]]</a>.</p>
@@ -2455,7 +2499,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
       <p>return <var>frequency</var>.</p>
     </ol>
    </div>
-   <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="9.9" data-lt="Update latest reading" data-noexport="" id="update-latest-reading"><span class="secno">9.9. </span><span class="content">Update latest reading</span></h3>
+   <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="9.10" data-lt="Update latest reading" data-noexport="" id="update-latest-reading"><span class="secno">9.10. </span><span class="content">Update latest reading</span></h3>
    <div class="algorithm" data-algorithm="update latest reading">
     <dl>
      <dt data-md="">
@@ -2463,7 +2507,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
      <dd data-md="">
       <p><var>sensor</var>, a <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-44">sensor</a>.</p>
      <dd data-md="">
-      <p><var>reading</var>, a <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-22">sensor reading</a>.</p>
+      <p><var>reading</var>, a <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-24">sensor reading</a>.</p>
      <dd data-md="">
       <p><var>reading_timestamp</var>, the timestamp at which <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-45">sensor</a> was polled.</p>
     </dl>
@@ -2508,7 +2552,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
       <p>Unset <var>sensor</var>’s <a data-link-type="dfn" href="#reporting-flag" id="ref-for-reporting-flag-3">reporting flag</a>.</p>
     </ol>
    </div>
-   <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="9.10" data-lt="Update Observers" data-noexport="" id="update-observers"><span class="secno">9.10. </span><span class="content">Update Observers</span></h3>
+   <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="9.11" data-lt="Update Observers" data-noexport="" id="update-observers"><span class="secno">9.11. </span><span class="content">Update Observers</span></h3>
    <div class="algorithm" data-algorithm="update observers">
     <dl>
      <dt data-md="">
@@ -2545,7 +2589,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
       <p class="issue" id="issue-3c3e5a61"><a class="self-link" href="#issue-3c3e5a61"></a> Should these last steps be done from within a new task?</p>
     </ol>
    </div>
-   <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="9.11" data-lt="Handle Errors" data-noexport="" id="handle-errors"><span class="secno">9.11. </span><span class="content">Handle Errors</span></h3>
+   <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="9.12" data-lt="Handle Errors" data-noexport="" id="handle-errors"><span class="secno">9.12. </span><span class="content">Handle Errors</span></h3>
    <div class="algorithm" data-algorithm="handle errors">
     <dl>
      <dt data-md="">
@@ -2566,7 +2610,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
       <p><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire">Fire an event</a> named "error" at <var>sensor_instance</var> using <code class="idl"><a data-link-type="idl" href="#sensorerrorevent" id="ref-for-sensorerrorevent-1">SensorErrorEvent</a></code> with its <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensorerrorevent-error" id="ref-for-dom-sensorerrorevent-error-1">error</a></code> attribute initialized to <var>error</var>.</p>
     </ol>
    </div>
-   <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="9.12" data-lt="Request Sensor Access" data-noexport="" id="request-sensor-access"><span class="secno">9.12. </span><span class="content">Request Sensor Access</span></h3>
+   <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="9.13" data-lt="Request Sensor Access" data-noexport="" id="request-sensor-access"><span class="secno">9.13. </span><span class="content">Request Sensor Access</span></h3>
    <div class="algorithm" data-algorithm="request sensor access">
     <dl>
      <dt data-md="">
@@ -2612,8 +2656,8 @@ that must be supported as attributes by the objects implementing the <a data-lin
    <p><em>This section is non-normative.</em></p>
    <p>Its purpose is to describe
 how this specification can be extended to specify APIs for
-different <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-27">sensor types</a>.</p>
-   <p>Extension specifications are encouraged to focus on a single <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-28">sensor type</a>,
+different <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-29">sensor types</a>.</p>
+   <p>Extension specifications are encouraged to focus on a single <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-30">sensor type</a>,
 exposing both <a data-link-type="dfn" href="#high-level" id="ref-for-high-level-9">high</a> and <a data-link-type="dfn" href="#low-level" id="ref-for-low-level-9">low</a> level
 as appropriate.</p>
    <h3 class="heading settled" data-level="10.1" id="security"><span class="secno">10.1. </span><span class="content">Security</span><a class="self-link" href="#security"></a></h3>
@@ -2630,15 +2674,15 @@ For example, a <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concep
 the distance at which an object is from it
 may see its associated interface called <code>ProximitySensor</code>.</p>
    <p>Attributes of the <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-24">Sensor</a></code> subclass that
-hold <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-23">sensor readings</a> values
+hold <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-25">sensor readings</a> values
 should be named after the full name of these values.
 For example, the <code>Thermometer</code> interface should hold
-the <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-24">sensor reading</a>'s value in
+the <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-26">sensor reading</a>'s value in
 a <code>temperature</code> attribute (and not a <code>value</code> or <code>temp</code> attribute).
 A good starting point for naming are the
 Quantities, Units, Dimensions and Data Types Ontologies <a data-link-type="biblio" href="#biblio-qudt">[QUDT]</a>.</p>
    <h3 class="heading settled" data-level="10.3" id="unit"><span class="secno">10.3. </span><span class="content">Unit</span><a class="self-link" href="#unit"></a></h3>
-   <p>Extension specification must specify the unit of <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-25">sensor readings</a>.</p>
+   <p>Extension specification must specify the unit of <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-27">sensor readings</a>.</p>
    <p>As per the Technical Architecture Group’s (TAG) API Design Principles <a data-link-type="biblio" href="#biblio-api-design-principles">[API-DESIGN-PRINCIPLES]</a>,
 all time measurement should be in milliseconds.
 All other units should be specified using,
@@ -2689,36 +2733,36 @@ exposing <a data-link-type="dfn" href="#low-level" id="ref-for-low-level-13">low
    </ul>
    <h3 class="heading settled" data-level="10.6" id="definition-reqs"><span class="secno">10.6. </span><span class="content">Definition Requirements</span><a class="self-link" href="#definition-reqs"></a></h3>
    <p>The following definitions must be specified for
-each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-29">sensor type</a> in extension specifications:</p>
+each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-31">sensor type</a> in extension specifications:</p>
    <ul>
     <li data-md="">
      <p>An <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-interface">interface</a> whose <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-inherited-interfaces">inherited interfaces</a> contains <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-26">Sensor</a></code>.
   This interface must be constructible.
   Its [<code class="idl"><a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Constructor">Constructor</a></code>] must take, as argument,
   an optional <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-dictionary">dictionary</a> whose <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-inherited-dictionaries">inherited dictionaries</a> contains <code class="idl"><a data-link-type="idl" href="#dictdef-sensoroptions" id="ref-for-dictdef-sensoroptions-2">SensorOptions</a></code>.
-  Its attributes which expose <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-26">sensor readings</a> are readonly and
+  Its attributes which expose <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-28">sensor readings</a> are readonly and
   have getters must return the  if disturbed, and <code>null</code> otherwise.</p>
     <li data-md="">
      <p>A abstract operation to <a data-link-type="dfn" href="#retrieve-the-sensor-permission" id="ref-for-retrieve-the-sensor-permission-2">retrieve sensor permission</a> which
-  takes an object implementing the <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-30">sensor type</a>'s associated interface as input and
+  takes an object implementing the <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-32">sensor type</a>'s associated interface as input and
   returns a <a data-link-type="dfn" href="https://w3c.github.io/permissions/#idl-def-Permission">permission</a> and, eventually, its <a data-link-type="dfn" href="https://w3c.github.io/permissions/#dfn-associated-permissiondescriptor">associated PermissionDescriptor</a>.</p>
    </ul>
    <p>An extension specification may specify the following definitions
-for each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-31">sensor types</a>:</p>
+for each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-33">sensor types</a>:</p>
    <ul>
     <li data-md="">
      <p>A <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-dictionary">dictionary</a> whose <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-inherited-dictionaries">inherited dictionaries</a> contains <code class="idl"><a data-link-type="idl" href="#dictdef-sensoroptions" id="ref-for-dictdef-sensoroptions-3">SensorOptions</a></code>.</p>
     <li data-md="">
-     <p>A <a data-link-type="dfn" href="#default-sensor" id="ref-for-default-sensor-3">default sensor</a>. Generally, devices are equipped with a single <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-50">sensor</a> of each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-32">type</a>,
+     <p>A <a data-link-type="dfn" href="#default-sensor" id="ref-for-default-sensor-3">default sensor</a>. Generally, devices are equipped with a single <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-50">sensor</a> of each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-34">type</a>,
   so defining a <a data-link-type="dfn" href="#default-sensor" id="ref-for-default-sensor-4">default sensor</a> should be straightforward.
-  For <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-33">sensor types</a> where multiple <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-51">sensors</a> are common,
+  For <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-35">sensor types</a> where multiple <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-51">sensors</a> are common,
   extension specifications may choose not to define a <a data-link-type="dfn" href="#default-sensor" id="ref-for-default-sensor-5">default sensor</a>,
   especially when doing so would not make sense.</p>
     <li data-md="">
      <p>A set of <a data-link-type="dfn" href="#identifying-parameters" id="ref-for-identifying-parameters-3">identifying parameters</a>. TODO: replace that by an abstract operation.</p>
    </ul>
    <h3 class="heading settled" data-level="10.7" id="permission-api"><span class="secno">10.7. </span><span class="content">Extending the Permission API</span><a class="self-link" href="#permission-api"></a></h3>
-   <p>Provide guidance on how to extend the Permission API <a data-link-type="biblio" href="#biblio-permissions">[PERMISSIONS]</a> for each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-34">sensor types</a>.</p>
+   <p>Provide guidance on how to extend the Permission API <a data-link-type="biblio" href="#biblio-permissions">[PERMISSIONS]</a> for each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-36">sensor types</a>.</p>
    <h3 class="heading settled" data-level="10.8" id="example-webidl"><span class="secno">10.8. </span><span class="content">Example WebIDL</span><a class="self-link" href="#example-webidl"></a></h3>
    <p>Here’s example WebIDL for a possible extension of this specification
 for proximity <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-52">sensors</a>.</p>
@@ -2984,6 +3028,7 @@ for their editorial input.</p>
    <li><a href="#activated-sensor-objects">activated Sensor objects</a><span>, in §7.2</span>
    <li><a href="#dom-sensorstate-activating">"activating"</a><span>, in §8.1</span>
    <li><a href="#dom-sensorstate-activating">activating</a><span>, in §8.1</span>
+   <li><a href="#associated-sensors">associated sensors</a><span>, in §7.1</span>
    <li><a href="#calibration">calibration</a><span>, in §6.1</span>
    <li><a href="#conformant-user-agent">conformant user agent</a><span>, in §Unnumbered section</span>
    <li><a href="#connect-to-sensor">Connect to Sensor</a><span>, in §9.1</span>
@@ -3001,25 +3046,25 @@ for their editorial input.</p>
    <li><a href="#dom-sensorstate-errored">errored</a><span>, in §8.1</span>
    <li><a href="#dom-sensorstate-errored">"errored"</a><span>, in §8.1</span>
    <li><a href="#fallback">fallback</a><span>, in §6.3</span>
-   <li><a href="#find-the-polling-frequency-of-a-sensor">Find the polling frequency of a Sensor</a><span>, in §9.7</span>
+   <li><a href="#find-the-polling-frequency-of-a-sensor">Find the polling frequency of a Sensor</a><span>, in §9.8</span>
    <li>
     frequency
     <ul>
      <li><a href="#frequency">definition of</a><span>, in §6.3</span>
      <li><a href="#dom-sensoroptions-frequency">dict-member for SensorOptions</a><span>, in §8.1</span>
     </ul>
-   <li><a href="#handle-errors">Handle Errors</a><span>, in §9.10</span>
+   <li><a href="#handle-errors">Handle Errors</a><span>, in §9.11</span>
    <li><a href="#high-level">high-level</a><span>, in §6.2</span>
    <li><a href="#identifying-parameters">identifying parameters</a><span>, in §7.1</span>
    <li><a href="#identifyingparameters">[[identifyingParameters]]</a><span>, in §8.1.1</span>
    <li><a href="#dom-sensorstate-idle">"idle"</a><span>, in §8.1</span>
    <li><a href="#dom-sensorstate-idle">idle</a><span>, in §8.1</span>
    <li><a href="#implementation-specific">implementation specific</a><span>, in §6.3</span>
-   <li><a href="#is-current-reporting-mode-periodic">Is Current Reporting Mode Periodic</a><span>, in §9.6</span>
+   <li><a href="#is-current-reporting-mode-periodic">Is Current Reporting Mode Periodic</a><span>, in §9.7</span>
    <li><a href="#lasteventfiredat">[[lastEventFiredAt]]</a><span>, in §8.1.1</span>
    <li><a href="#latest-reading">latest reading</a><span>, in §7.2</span>
    <li><a href="#low-level">low-level</a><span>, in §6.2</span>
-   <li><a href="#observe-a-sensor">Observe a Sensor</a><span>, in §9.5</span>
+   <li><a href="#observe-a-sensor">Observe a Sensor</a><span>, in §9.6</span>
    <li><a href="#dom-sensor-onactivate">onactivate</a><span>, in §8.1</span>
    <li><a href="#dom-sensor-onchange">onchange</a><span>, in §8.1</span>
    <li><a href="#dom-sensor-onerror">onerror</a><span>, in §8.1</span>
@@ -3030,8 +3075,9 @@ for their editorial input.</p>
    <li><a href="#register-a-sensor-object">Register a Sensor Object</a><span>, in §9.2</span>
    <li><a href="#reporting-flag">reporting flag</a><span>, in §7.2</span>
    <li><a href="#reporting-modes">reporting modes</a><span>, in §6.3</span>
-   <li><a href="#request-sensor-access">Request Sensor Access</a><span>, in §9.11</span>
+   <li><a href="#request-sensor-access">Request Sensor Access</a><span>, in §9.12</span>
    <li><a href="#retrieve-the-sensor-permission">retrieve the sensor permission</a><span>, in §7.2</span>
+   <li><a href="#revoke-sensor-permission">Revoke sensor permission</a><span>, in §9.4</span>
    <li><a href="#sensor">Sensor</a><span>, in §8.1</span>
    <li><a href="#concept-sensor">sensor</a><span>, in §7.2</span>
    <li><a href="#sensorerrorevent">SensorErrorEvent</a><span>, in §8.2</span>
@@ -3044,7 +3090,7 @@ for their editorial input.</p>
    <li><a href="#enumdef-sensorstate">SensorState</a><span>, in §8.1</span>
    <li><a href="#sensor-task-source">sensor task source</a><span>, in §8.1</span>
    <li><a href="#sensor-type">sensor type</a><span>, in §7.1</span>
-   <li><a href="#set-sensor-settings">Set Sensor Settings</a><span>, in §9.4</span>
+   <li><a href="#set-sensor-settings">Set Sensor Settings</a><span>, in §9.5</span>
    <li><a href="#smart-sensors">Smart sensors</a><span>, in §6.2</span>
    <li><a href="#dom-sensor-start">start()</a><span>, in §8.1</span>
    <li><a href="#dom-sensor-state">state</a><span>, in §8.1</span>
@@ -3055,8 +3101,8 @@ for their editorial input.</p>
    <li><a href="#dom-sensorstate-unconnected">unconnected</a><span>, in §8.1</span>
    <li><a href="#dom-sensorstate-unconnected">"unconnected"</a><span>, in §8.1</span>
    <li><a href="#unregister-a-sensor">Unregister a Sensor</a><span>, in §9.3</span>
-   <li><a href="#update-latest-reading">Update latest reading</a><span>, in §9.8</span>
-   <li><a href="#update-observers">Update Observers</a><span>, in §9.9</span>
+   <li><a href="#update-latest-reading">Update latest reading</a><span>, in §9.9</span>
+   <li><a href="#update-observers">Update Observers</a><span>, in §9.10</span>
    <li><a href="#waitingforupdate">[[waitingForUpdate]]</a><span>, in §8.1.1</span>
   </ul>
   <h3 class="no-num no-ref heading settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
@@ -3102,6 +3148,7 @@ for their editorial input.</p>
      <li><a href="https://infra.spec.whatwg.org/#map-key">key</a>
      <li><a href="https://infra.spec.whatwg.org/#ordered-map">ordered map</a>
      <li><a href="https://infra.spec.whatwg.org/#ordered-set">ordered set</a>
+     <li><a href="https://infra.spec.whatwg.org/#list-remove">remove</a>
      <li><a href="https://infra.spec.whatwg.org/#map-set">set</a>
      <li><a href="https://infra.spec.whatwg.org/#map-value">value</a>
     </ul>
@@ -3118,6 +3165,11 @@ for their editorial input.</p>
      <li><a href="https://w3c.github.io/permissions/#idl-def-Permission">permission</a>
      <li><a href="https://w3c.github.io/permissions/#idl-def-PermissionState">permission state</a>
      <li><a href="https://w3c.github.io/permissions/#dfn-retrieve-the-permission-state">retrieving the permission state</a>
+    </ul>
+   <li>
+    <a data-link-type="biblio">[PERMISSIONS]</a> defines the following terms:
+    <ul>
+     <li><a href="https://w3c.github.io/permissions/#permission-revocation-algorithm">permission revocation algorithm</a>
     </ul>
    <li>
     <a data-link-type="biblio">[POWERFUL-FEATURES]</a> defines the following terms:
@@ -3245,11 +3297,12 @@ for their editorial input.</p>
     <li><a href="#ref-for-sensor-readings-17">8.1.1. Sensor internal slots</a>
     <li><a href="#ref-for-sensor-readings-18">8.1.6. Sensor.onchange</a>
     <li><a href="#ref-for-sensor-readings-19">9.4. Unregister a Sensor</a> <a href="#ref-for-sensor-readings-20">(2)</a>
-    <li><a href="#ref-for-sensor-readings-21">9.6. Observe a Sensor</a>
-    <li><a href="#ref-for-sensor-readings-22">9.9. Update latest reading</a>
-    <li><a href="#ref-for-sensor-readings-23">10.2. Naming</a> <a href="#ref-for-sensor-readings-24">(2)</a>
-    <li><a href="#ref-for-sensor-readings-25">10.3. Unit</a>
-    <li><a href="#ref-for-sensor-readings-26">10.6. Definition Requirements</a>
+    <li><a href="#ref-for-sensor-readings-21">9.5. Revoke sensor permission</a> <a href="#ref-for-sensor-readings-22">(2)</a>
+    <li><a href="#ref-for-sensor-readings-23">9.7. Observe a Sensor</a>
+    <li><a href="#ref-for-sensor-readings-24">9.10. Update latest reading</a>
+    <li><a href="#ref-for-sensor-readings-25">10.2. Naming</a> <a href="#ref-for-sensor-readings-26">(2)</a>
+    <li><a href="#ref-for-sensor-readings-27">10.3. Unit</a>
+    <li><a href="#ref-for-sensor-readings-28">10.6. Definition Requirements</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="low-level">
@@ -3302,7 +3355,7 @@ for their editorial input.</p>
    <ul>
     <li><a href="#ref-for-frequency-1">6.3. Reporting Modes</a> <a href="#ref-for-frequency-2">(2)</a>
     <li><a href="#ref-for-frequency-3">9.1. Construct Sensor Object</a>
-    <li><a href="#ref-for-frequency-4">9.8. Find the polling frequency of a Sensor</a>
+    <li><a href="#ref-for-frequency-4">9.9. Find the polling frequency of a Sensor</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="periodic">
@@ -3324,14 +3377,20 @@ for their editorial input.</p>
     <li><a href="#ref-for-sensor-type-7">5. Security and privacy considerations</a>
     <li><a href="#ref-for-sensor-type-8">6.2. Sensor Types</a> <a href="#ref-for-sensor-type-9">(2)</a> <a href="#ref-for-sensor-type-10">(3)</a> <a href="#ref-for-sensor-type-11">(4)</a> <a href="#ref-for-sensor-type-12">(5)</a> <a href="#ref-for-sensor-type-13">(6)</a> <a href="#ref-for-sensor-type-14">(7)</a> <a href="#ref-for-sensor-type-15">(8)</a>
     <li><a href="#ref-for-sensor-type-16">6.3. Reporting Modes</a> <a href="#ref-for-sensor-type-17">(2)</a> <a href="#ref-for-sensor-type-18">(3)</a>
-    <li><a href="#ref-for-sensor-type-19">7.1. Sensor Type</a> <a href="#ref-for-sensor-type-20">(2)</a> <a href="#ref-for-sensor-type-21">(3)</a>
-    <li><a href="#ref-for-sensor-type-22">7.2. Sensor</a> <a href="#ref-for-sensor-type-23">(2)</a>
-    <li><a href="#ref-for-sensor-type-24">8.1.1. Sensor internal slots</a>
-    <li><a href="#ref-for-sensor-type-25">9.2. Connect to Sensor</a>
-    <li><a href="#ref-for-sensor-type-26">9.6. Observe a Sensor</a>
-    <li><a href="#ref-for-sensor-type-27">10. Extensibility</a> <a href="#ref-for-sensor-type-28">(2)</a>
-    <li><a href="#ref-for-sensor-type-29">10.6. Definition Requirements</a> <a href="#ref-for-sensor-type-30">(2)</a> <a href="#ref-for-sensor-type-31">(3)</a> <a href="#ref-for-sensor-type-32">(4)</a> <a href="#ref-for-sensor-type-33">(5)</a>
-    <li><a href="#ref-for-sensor-type-34">10.7. Extending the Permission API</a>
+    <li><a href="#ref-for-sensor-type-19">7.1. Sensor Type</a> <a href="#ref-for-sensor-type-20">(2)</a> <a href="#ref-for-sensor-type-21">(3)</a> <a href="#ref-for-sensor-type-22">(4)</a> <a href="#ref-for-sensor-type-23">(5)</a>
+    <li><a href="#ref-for-sensor-type-24">7.2. Sensor</a> <a href="#ref-for-sensor-type-25">(2)</a>
+    <li><a href="#ref-for-sensor-type-26">8.1.1. Sensor internal slots</a>
+    <li><a href="#ref-for-sensor-type-27">9.2. Connect to Sensor</a>
+    <li><a href="#ref-for-sensor-type-28">9.7. Observe a Sensor</a>
+    <li><a href="#ref-for-sensor-type-29">10. Extensibility</a> <a href="#ref-for-sensor-type-30">(2)</a>
+    <li><a href="#ref-for-sensor-type-31">10.6. Definition Requirements</a> <a href="#ref-for-sensor-type-32">(2)</a> <a href="#ref-for-sensor-type-33">(3)</a> <a href="#ref-for-sensor-type-34">(4)</a> <a href="#ref-for-sensor-type-35">(5)</a>
+    <li><a href="#ref-for-sensor-type-36">10.7. Extending the Permission API</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="associated-sensors">
+   <b><a href="#associated-sensors">#associated-sensors</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-associated-sensors-1">7.1. Sensor Type</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="identifying-parameters">
@@ -3356,21 +3415,22 @@ for their editorial input.</p>
     <li><a href="#ref-for-concept-sensor-12">6.1. Sensors</a> <a href="#ref-for-concept-sensor-13">(2)</a>
     <li><a href="#ref-for-concept-sensor-14">6.2. Sensor Types</a> <a href="#ref-for-concept-sensor-15">(2)</a> <a href="#ref-for-concept-sensor-16">(3)</a>
     <li><a href="#ref-for-concept-sensor-17">6.3. Reporting Modes</a> <a href="#ref-for-concept-sensor-18">(2)</a> <a href="#ref-for-concept-sensor-19">(3)</a>
-    <li><a href="#ref-for-concept-sensor-20">7.1. Sensor Type</a> <a href="#ref-for-concept-sensor-21">(2)</a> <a href="#ref-for-concept-sensor-22">(3)</a>
-    <li><a href="#ref-for-concept-sensor-23">7.2. Sensor</a> <a href="#ref-for-concept-sensor-24">(2)</a> <a href="#ref-for-concept-sensor-25">(3)</a> <a href="#ref-for-concept-sensor-26">(4)</a> <a href="#ref-for-concept-sensor-27">(5)</a> <a href="#ref-for-concept-sensor-28">(6)</a> <a href="#ref-for-concept-sensor-29">(7)</a>
-    <li><a href="#ref-for-concept-sensor-30">8.1. The Sensor Interface</a>
-    <li><a href="#ref-for-concept-sensor-31">8.1.1. Sensor internal slots</a>
-    <li><a href="#ref-for-concept-sensor-32">8.1.9. Event handlers</a>
-    <li><a href="#ref-for-concept-sensor-33">9.1. Construct Sensor Object</a>
-    <li><a href="#ref-for-concept-sensor-34">9.2. Connect to Sensor</a> <a href="#ref-for-concept-sensor-35">(2)</a> <a href="#ref-for-concept-sensor-36">(3)</a>
-    <li><a href="#ref-for-concept-sensor-37">9.3. Register a Sensor Object</a>
-    <li><a href="#ref-for-concept-sensor-38">9.4. Unregister a Sensor</a>
-    <li><a href="#ref-for-concept-sensor-39">9.5. Set Sensor Settings</a>
-    <li><a href="#ref-for-concept-sensor-40">9.6. Observe a Sensor</a> <a href="#ref-for-concept-sensor-41">(2)</a>
-    <li><a href="#ref-for-concept-sensor-42">9.7. Is Current Reporting Mode Periodic</a>
-    <li><a href="#ref-for-concept-sensor-43">9.8. Find the polling frequency of a Sensor</a>
-    <li><a href="#ref-for-concept-sensor-44">9.9. Update latest reading</a> <a href="#ref-for-concept-sensor-45">(2)</a>
-    <li><a href="#ref-for-concept-sensor-46">9.12. Request Sensor Access</a>
+    <li><a href="#ref-for-concept-sensor-20">7.1. Sensor Type</a> <a href="#ref-for-concept-sensor-21">(2)</a>
+    <li><a href="#ref-for-concept-sensor-22">7.2. Sensor</a> <a href="#ref-for-concept-sensor-23">(2)</a> <a href="#ref-for-concept-sensor-24">(3)</a> <a href="#ref-for-concept-sensor-25">(4)</a> <a href="#ref-for-concept-sensor-26">(5)</a> <a href="#ref-for-concept-sensor-27">(6)</a> <a href="#ref-for-concept-sensor-28">(7)</a>
+    <li><a href="#ref-for-concept-sensor-29">8.1. The Sensor Interface</a>
+    <li><a href="#ref-for-concept-sensor-30">8.1.1. Sensor internal slots</a>
+    <li><a href="#ref-for-concept-sensor-31">8.1.9. Event handlers</a>
+    <li><a href="#ref-for-concept-sensor-32">9.1. Construct Sensor Object</a>
+    <li><a href="#ref-for-concept-sensor-33">9.2. Connect to Sensor</a> <a href="#ref-for-concept-sensor-34">(2)</a> <a href="#ref-for-concept-sensor-35">(3)</a>
+    <li><a href="#ref-for-concept-sensor-36">9.3. Register a Sensor Object</a>
+    <li><a href="#ref-for-concept-sensor-37">9.4. Unregister a Sensor</a>
+    <li><a href="#ref-for-concept-sensor-38">9.5. Revoke sensor permission</a>
+    <li><a href="#ref-for-concept-sensor-39">9.6. Set Sensor Settings</a>
+    <li><a href="#ref-for-concept-sensor-40">9.7. Observe a Sensor</a> <a href="#ref-for-concept-sensor-41">(2)</a>
+    <li><a href="#ref-for-concept-sensor-42">9.8. Is Current Reporting Mode Periodic</a>
+    <li><a href="#ref-for-concept-sensor-43">9.9. Find the polling frequency of a Sensor</a>
+    <li><a href="#ref-for-concept-sensor-44">9.10. Update latest reading</a> <a href="#ref-for-concept-sensor-45">(2)</a>
+    <li><a href="#ref-for-concept-sensor-46">9.13. Request Sensor Access</a>
     <li><a href="#ref-for-concept-sensor-47">10.2. Naming</a> <a href="#ref-for-concept-sensor-48">(2)</a> <a href="#ref-for-concept-sensor-49">(3)</a>
     <li><a href="#ref-for-concept-sensor-50">10.6. Definition Requirements</a> <a href="#ref-for-concept-sensor-51">(2)</a>
     <li><a href="#ref-for-concept-sensor-52">10.8. Example WebIDL</a>
@@ -3381,8 +3441,9 @@ for their editorial input.</p>
    <ul>
     <li><a href="#ref-for-activated-sensor-objects-1">9.3. Register a Sensor Object</a>
     <li><a href="#ref-for-activated-sensor-objects-2">9.4. Unregister a Sensor</a> <a href="#ref-for-activated-sensor-objects-3">(2)</a>
-    <li><a href="#ref-for-activated-sensor-objects-4">9.7. Is Current Reporting Mode Periodic</a>
-    <li><a href="#ref-for-activated-sensor-objects-5">9.8. Find the polling frequency of a Sensor</a>
+    <li><a href="#ref-for-activated-sensor-objects-4">9.5. Revoke sensor permission</a>
+    <li><a href="#ref-for-activated-sensor-objects-5">9.8. Is Current Reporting Mode Periodic</a>
+    <li><a href="#ref-for-activated-sensor-objects-6">9.9. Find the polling frequency of a Sensor</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="latest-reading">
@@ -3390,7 +3451,7 @@ for their editorial input.</p>
    <ul>
     <li><a href="#ref-for-latest-reading-1">7.2. Sensor</a> <a href="#ref-for-latest-reading-2">(2)</a> <a href="#ref-for-latest-reading-3">(3)</a> <a href="#ref-for-latest-reading-4">(4)</a> <a href="#ref-for-latest-reading-5">(5)</a> <a href="#ref-for-latest-reading-6">(6)</a> <a href="#ref-for-latest-reading-7">(7)</a> <a href="#ref-for-latest-reading-8">(8)</a>
     <li><a href="#ref-for-latest-reading-9">8.1.3. Sensor.timestamp</a>
-    <li><a href="#ref-for-latest-reading-10">9.9. Update latest reading</a> <a href="#ref-for-latest-reading-11">(2)</a> <a href="#ref-for-latest-reading-12">(3)</a> <a href="#ref-for-latest-reading-13">(4)</a>
+    <li><a href="#ref-for-latest-reading-10">9.10. Update latest reading</a> <a href="#ref-for-latest-reading-11">(2)</a> <a href="#ref-for-latest-reading-12">(3)</a> <a href="#ref-for-latest-reading-13">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="supports-periodic-reporting-mode">
@@ -3402,29 +3463,31 @@ for their editorial input.</p>
   <aside class="dfn-panel" data-for="reporting-flag">
    <b><a href="#reporting-flag">#reporting-flag</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-reporting-flag-1">9.9. Update latest reading</a> <a href="#ref-for-reporting-flag-2">(2)</a> <a href="#ref-for-reporting-flag-3">(3)</a>
+    <li><a href="#ref-for-reporting-flag-1">9.10. Update latest reading</a> <a href="#ref-for-reporting-flag-2">(2)</a> <a href="#ref-for-reporting-flag-3">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="periodic-reporting-mode-flag">
    <b><a href="#periodic-reporting-mode-flag">#periodic-reporting-mode-flag</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-periodic-reporting-mode-flag-1">9.4. Unregister a Sensor</a>
-    <li><a href="#ref-for-periodic-reporting-mode-flag-2">9.5. Set Sensor Settings</a> <a href="#ref-for-periodic-reporting-mode-flag-3">(2)</a> <a href="#ref-for-periodic-reporting-mode-flag-4">(3)</a> <a href="#ref-for-periodic-reporting-mode-flag-5">(4)</a>
-    <li><a href="#ref-for-periodic-reporting-mode-flag-6">9.6. Observe a Sensor</a> <a href="#ref-for-periodic-reporting-mode-flag-7">(2)</a>
+    <li><a href="#ref-for-periodic-reporting-mode-flag-2">9.5. Revoke sensor permission</a>
+    <li><a href="#ref-for-periodic-reporting-mode-flag-3">9.6. Set Sensor Settings</a> <a href="#ref-for-periodic-reporting-mode-flag-4">(2)</a> <a href="#ref-for-periodic-reporting-mode-flag-5">(3)</a> <a href="#ref-for-periodic-reporting-mode-flag-6">(4)</a>
+    <li><a href="#ref-for-periodic-reporting-mode-flag-7">9.7. Observe a Sensor</a> <a href="#ref-for-periodic-reporting-mode-flag-8">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="current-polling-frequency">
    <b><a href="#current-polling-frequency">#current-polling-frequency</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-current-polling-frequency-1">9.4. Unregister a Sensor</a>
-    <li><a href="#ref-for-current-polling-frequency-2">9.5. Set Sensor Settings</a> <a href="#ref-for-current-polling-frequency-3">(2)</a>
-    <li><a href="#ref-for-current-polling-frequency-4">9.6. Observe a Sensor</a>
+    <li><a href="#ref-for-current-polling-frequency-2">9.5. Revoke sensor permission</a>
+    <li><a href="#ref-for-current-polling-frequency-3">9.6. Set Sensor Settings</a> <a href="#ref-for-current-polling-frequency-4">(2)</a>
+    <li><a href="#ref-for-current-polling-frequency-5">9.7. Observe a Sensor</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="retrieve-the-sensor-permission">
    <b><a href="#retrieve-the-sensor-permission">#retrieve-the-sensor-permission</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-retrieve-the-sensor-permission-1">9.12. Request Sensor Access</a>
+    <li><a href="#ref-for-retrieve-the-sensor-permission-1">9.13. Request Sensor Access</a>
     <li><a href="#ref-for-retrieve-the-sensor-permission-2">10.6. Definition Requirements</a>
    </ul>
   </aside>
@@ -3440,10 +3503,10 @@ for their editorial input.</p>
     <li><a href="#ref-for-sensor-12">9.1. Construct Sensor Object</a> <a href="#ref-for-sensor-13">(2)</a> <a href="#ref-for-sensor-14">(3)</a>
     <li><a href="#ref-for-sensor-15">9.3. Register a Sensor Object</a>
     <li><a href="#ref-for-sensor-16">9.4. Unregister a Sensor</a>
-    <li><a href="#ref-for-sensor-17">9.6. Observe a Sensor</a> <a href="#ref-for-sensor-18">(2)</a>
-    <li><a href="#ref-for-sensor-19">9.10. Update Observers</a>
-    <li><a href="#ref-for-sensor-20">9.11. Handle Errors</a>
-    <li><a href="#ref-for-sensor-21">9.12. Request Sensor Access</a>
+    <li><a href="#ref-for-sensor-17">9.7. Observe a Sensor</a> <a href="#ref-for-sensor-18">(2)</a>
+    <li><a href="#ref-for-sensor-19">9.11. Update Observers</a>
+    <li><a href="#ref-for-sensor-20">9.12. Handle Errors</a>
+    <li><a href="#ref-for-sensor-21">9.13. Request Sensor Access</a>
     <li><a href="#ref-for-sensor-22">10.2. Naming</a> <a href="#ref-for-sensor-23">(2)</a> <a href="#ref-for-sensor-24">(3)</a>
     <li><a href="#ref-for-sensor-25">10.5. When is Enabling Multiple Sensors of the Same Type Not the Right Choice?</a>
     <li><a href="#ref-for-sensor-26">10.6. Definition Requirements</a>
@@ -3526,7 +3589,7 @@ for their editorial input.</p>
     <li><a href="#ref-for-dom-sensorstate-activating-2">8.1.4. Sensor.start()</a> <a href="#ref-for-dom-sensorstate-activating-3">(2)</a>
     <li><a href="#ref-for-dom-sensorstate-activating-4">8.1.5. Sensor.stop()</a>
     <li><a href="#ref-for-dom-sensorstate-activating-5">8.1.7. Sensor.onactivate</a>
-    <li><a href="#ref-for-dom-sensorstate-activating-6">9.10. Update Observers</a>
+    <li><a href="#ref-for-dom-sensorstate-activating-6">9.11. Update Observers</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-sensorstate-activated">
@@ -3536,7 +3599,7 @@ for their editorial input.</p>
     <li><a href="#ref-for-dom-sensorstate-activated-2">8.1.4. Sensor.start()</a>
     <li><a href="#ref-for-dom-sensorstate-activated-3">8.1.5. Sensor.stop()</a>
     <li><a href="#ref-for-dom-sensorstate-activated-4">8.1.7. Sensor.onactivate</a>
-    <li><a href="#ref-for-dom-sensorstate-activated-5">9.10. Update Observers</a>
+    <li><a href="#ref-for-dom-sensorstate-activated-5">9.11. Update Observers</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-sensorstate-idle">
@@ -3550,7 +3613,7 @@ for their editorial input.</p>
    <b><a href="#dom-sensorstate-errored">#dom-sensorstate-errored</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-sensorstate-errored-1">8.1.1. Sensor internal slots</a>
-    <li><a href="#ref-for-dom-sensorstate-errored-2">9.11. Handle Errors</a>
+    <li><a href="#ref-for-dom-sensorstate-errored-2">9.12. Handle Errors</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="sensor-task-source">
@@ -3566,28 +3629,28 @@ for their editorial input.</p>
     <li><a href="#ref-for-state-3">8.1.5. Sensor.stop()</a> <a href="#ref-for-state-4">(2)</a>
     <li><a href="#ref-for-state-5">8.1.7. Sensor.onactivate</a>
     <li><a href="#ref-for-state-6">9.1. Construct Sensor Object</a>
-    <li><a href="#ref-for-state-7">9.10. Update Observers</a> <a href="#ref-for-state-8">(2)</a>
-    <li><a href="#ref-for-state-9">9.11. Handle Errors</a>
+    <li><a href="#ref-for-state-7">9.11. Update Observers</a> <a href="#ref-for-state-8">(2)</a>
+    <li><a href="#ref-for-state-9">9.12. Handle Errors</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="desiredpollingfrequency">
    <b><a href="#desiredpollingfrequency">#desiredpollingfrequency</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-desiredpollingfrequency-1">9.1. Construct Sensor Object</a>
-    <li><a href="#ref-for-desiredpollingfrequency-2">9.7. Is Current Reporting Mode Periodic</a>
-    <li><a href="#ref-for-desiredpollingfrequency-3">9.8. Find the polling frequency of a Sensor</a>
+    <li><a href="#ref-for-desiredpollingfrequency-2">9.8. Is Current Reporting Mode Periodic</a>
+    <li><a href="#ref-for-desiredpollingfrequency-3">9.9. Find the polling frequency of a Sensor</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="lasteventfiredat">
    <b><a href="#lasteventfiredat">#lasteventfiredat</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-lasteventfiredat-1">9.10. Update Observers</a>
+    <li><a href="#ref-for-lasteventfiredat-1">9.11. Update Observers</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="waitingforupdate">
    <b><a href="#waitingforupdate">#waitingforupdate</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-waitingforupdate-1">9.10. Update Observers</a> <a href="#ref-for-waitingforupdate-2">(2)</a>
+    <li><a href="#ref-for-waitingforupdate-1">9.11. Update Observers</a> <a href="#ref-for-waitingforupdate-2">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="identifyingparameters">
@@ -3600,13 +3663,13 @@ for their editorial input.</p>
   <aside class="dfn-panel" data-for="sensorerrorevent">
    <b><a href="#sensorerrorevent">#sensorerrorevent</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-sensorerrorevent-1">9.11. Handle Errors</a>
+    <li><a href="#ref-for-sensorerrorevent-1">9.12. Handle Errors</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-sensorerrorevent-error">
    <b><a href="#dom-sensorerrorevent-error">#dom-sensorerrorevent-error</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-sensorerrorevent-error-1">9.11. Handle Errors</a>
+    <li><a href="#ref-for-dom-sensorerrorevent-error-1">9.12. Handle Errors</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dictdef-sensorerroreventinit">
@@ -3634,6 +3697,12 @@ for their editorial input.</p>
     <li><a href="#ref-for-unregister-a-sensor-1">8.1.5. Sensor.stop()</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="revoke-sensor-permission">
+   <b><a href="#revoke-sensor-permission">#revoke-sensor-permission</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-revoke-sensor-permission-1">7.1. Sensor Type</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="set-sensor-settings">
    <b><a href="#set-sensor-settings">#set-sensor-settings</a></b><b>Referenced in:</b>
    <ul>
@@ -3644,31 +3713,31 @@ for their editorial input.</p>
   <aside class="dfn-panel" data-for="observe-a-sensor">
    <b><a href="#observe-a-sensor">#observe-a-sensor</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-observe-a-sensor-1">9.5. Set Sensor Settings</a> <a href="#ref-for-observe-a-sensor-2">(2)</a>
+    <li><a href="#ref-for-observe-a-sensor-1">9.6. Set Sensor Settings</a> <a href="#ref-for-observe-a-sensor-2">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="is-current-reporting-mode-periodic">
    <b><a href="#is-current-reporting-mode-periodic">#is-current-reporting-mode-periodic</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-is-current-reporting-mode-periodic-1">9.5. Set Sensor Settings</a>
+    <li><a href="#ref-for-is-current-reporting-mode-periodic-1">9.6. Set Sensor Settings</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="find-the-polling-frequency-of-a-sensor">
    <b><a href="#find-the-polling-frequency-of-a-sensor">#find-the-polling-frequency-of-a-sensor</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-find-the-polling-frequency-of-a-sensor-1">9.5. Set Sensor Settings</a>
+    <li><a href="#ref-for-find-the-polling-frequency-of-a-sensor-1">9.6. Set Sensor Settings</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="update-latest-reading">
    <b><a href="#update-latest-reading">#update-latest-reading</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-update-latest-reading-1">9.6. Observe a Sensor</a>
+    <li><a href="#ref-for-update-latest-reading-1">9.7. Observe a Sensor</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="update-observers">
    <b><a href="#update-observers">#update-observers</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-update-observers-1">9.6. Observe a Sensor</a>
+    <li><a href="#ref-for-update-observers-1">9.7. Observe a Sensor</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="handle-errors">
@@ -3676,6 +3745,7 @@ for their editorial input.</p>
    <ul>
     <li><a href="#ref-for-handle-errors-1">8.1.4. Sensor.start()</a>
     <li><a href="#ref-for-handle-errors-2">9.2. Connect to Sensor</a>
+    <li><a href="#ref-for-handle-errors-3">9.5. Revoke sensor permission</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="request-sensor-access">

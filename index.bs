@@ -512,7 +512,7 @@ Issue: A diagram would really help here.
 A <dfn>sensor type</dfn> has an associated [=interface=]
 whose [=inherited interfaces=] contains {{Sensor}}.
 
-A [=sensor type=] has one or many associated [=sensors=].
+A [=sensor type=] has a [=ordered set|set=] of <dfn export>associated sensors</dfn>.
 
 If a [=sensor type=] has more than one [=sensor=],
 it must have a set of associated <dfn export>identifying parameters</dfn>
@@ -520,6 +520,10 @@ to select the right [=sensor=] to associate to each new {{Sensor}} objects.
 
 A [=sensor type=] may have a <dfn export>default sensor</dfn>.
 
+A [=sensor type=] has an [=permission revocation algorithm=]
+which, when invoked, must run the following steps:
+1.  [=set/For each=] |sensor| in [=sensor type=]'s [=ordered set|set=] of [=associated sensors=], 
+    1.  Invoke the [=revoke sensor permission=] abstract operation with |sensor| as argument. 
 
 <h3 id="model-sensor">Sensor</h3>
 
@@ -898,6 +902,29 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
         1.  Abort these steps.
     1.  Invoke the [=Set Sensor Settings=] abstract operation,
         passing it |sensor| as argument.
+</div>
+
+<h3 dfn>Revoke sensor permission</h3>
+
+<div algorithm="revoke sensor permission">
+
+    : input
+    :: |sensor|, a [=sensor=].
+    : output
+    :: None
+    
+    1.  let |activated_sensors| be |sensor|'s associated [=ordered set|set=] of [=activated Sensor objects=].
+    1.  [=set/For each=] |s| of |activated_sensors|,
+        1.  [=set/Remove=] |s| from |activated_sensors|.
+        1.  let |e| be the result of [=created|creating=]
+            a "{{NotAllowedError!!exception}}" {{DOMException}}.
+        1.  Invoke the [=Handle Errors=] abstract operation,
+            passing it |e| and |s| as arguments.
+    1.  Unset |sensor|'s [=periodic reporting mode flag=].
+    1.  Set |sensor|'s [=current polling frequency=] to `null`.
+    1.  Update the user-agent-specific way in which [=sensor readings=] are obtained from |sensor|
+        to no longer provide [=sensor readings|readings=].
+
 </div>
 
 
