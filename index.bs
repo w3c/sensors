@@ -9,7 +9,7 @@ TR: https://www.w3.org/TR/generic-sensor/
 Previous Version: https://www.w3.org/TR/2016/WD-generic-sensor-20160324/
 Previous Version: https://www.w3.org/TR/2015/WD-generic-sensor-20151015/
 Editor: Tobie Langel 78102, Intel Corporation, http://tobie.me, tobie@sensors.codespeaks.com
-Editor: Rick Waldron 50572, jQuery Foundation
+Editor: Rick Waldron 50572, JS Foundation
 Abstract:
   This specification defines a framework for exposing sensor data
   to the Open Web Platform in a consistent way.
