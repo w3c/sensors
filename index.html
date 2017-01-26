@@ -1758,6 +1758,10 @@ and defensive programming which includes:</p>
 </pre>
    </div>
    <h2 class="heading settled" data-level="5" id="security-and-privacy"><span class="secno">5. </span><span class="content">Security and privacy considerations</span><a class="self-link" href="#security-and-privacy"></a></h2>
+   <p class="issue" id="issue-ced21f0a"><a class="self-link" href="#issue-ced21f0a"></a> This section needs to be reorganized.
+It probably needs a section that lists threats
+and one that lists mitigation strategies,
+with links between both.</p>
    <p>Privacy risks can arise when <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-9">sensors</a> are used
 with each other,
 in combination with other functionality,
@@ -1774,8 +1778,7 @@ offer the possibility of fingerprinting to identify users.
 User agents may reduce the risk by
 limiting event rates available to web application developers.</p>
    <p class="note" role="note">Note: do we really want this mitigation strategy?</p>
-   <p>Frequency polling in <a data-link-type="dfn">periodic reporting</a> mode
-might allow the fingerprinting of hardware or implementation types,
+   <p>Frequency polling in <a data-link-type="dfn" href="#periodic" id="ref-for-periodic-1">periodic</a> <a data-link-type="dfn" href="#reporting-modes" id="ref-for-reporting-modes-1">reporting mode</a> might allow the fingerprinting of hardware or implementation types,
 by probing which actual frequencies are supported by the platform.</p>
    <p>Minimizing the accuracy of a sensor’s readout
 generally decreases the risk of fingerprinting.
@@ -1891,26 +1894,26 @@ and those which don’t.</p>
    <p><a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-17">Sensors</a> have different <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="reporting-modes">reporting modes</dfn>.
 When <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-10">sensor readings</a> are reported at regular intervals,
 at an adjustable <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="frequency">frequency</dfn> measured in hertz (Hz),
-the <a data-link-type="dfn" href="#reporting-modes" id="ref-for-reporting-modes-1">reporting mode</a> is said to be <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="periodic">periodic</dfn>.
-On <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-17">sensor types</a> with support for <a data-link-type="dfn" href="#periodic" id="ref-for-periodic-1">periodic reporting mode</a>, <a data-link-type="dfn" href="#periodic" id="ref-for-periodic-2">periodic reporting mode</a> is triggered
+the <a data-link-type="dfn" href="#reporting-modes" id="ref-for-reporting-modes-2">reporting mode</a> is said to be <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="periodic">periodic</dfn>.
+On <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-17">sensor types</a> with support for <a data-link-type="dfn" href="#periodic" id="ref-for-periodic-2">periodic reporting mode</a>, <a data-link-type="dfn" href="#periodic" id="ref-for-periodic-3">periodic reporting mode</a> is triggered
 by requesting a specific <a data-link-type="dfn" href="#frequency" id="ref-for-frequency-1">frequency</a>.</p>
-   <p><a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-18">Sensor types</a> which do not support <a data-link-type="dfn" href="#periodic" id="ref-for-periodic-3">periodic reporting mode</a> are said to operate in an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="implementation-specific">implementation specific</dfn> way.
-When the <a data-link-type="dfn" href="#reporting-modes" id="ref-for-reporting-modes-2">reporting mode</a> is <a data-link-type="dfn" href="#implementation-specific" id="ref-for-implementation-specific-1">implementation specific</a>, <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-11">sensor readings</a> may be provided at regular intervals, irregularly,
+   <p><a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-18">Sensor types</a> which do not support <a data-link-type="dfn" href="#periodic" id="ref-for-periodic-4">periodic reporting mode</a> are said to operate in an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="implementation-specific">implementation specific</dfn> way.
+When the <a data-link-type="dfn" href="#reporting-modes" id="ref-for-reporting-modes-3">reporting mode</a> is <a data-link-type="dfn" href="#implementation-specific" id="ref-for-implementation-specific-1">implementation specific</a>, <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-11">sensor readings</a> may be provided at regular intervals, irregularly,
 or only when a <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-12">reading</a> change is observed.
 This allows user agents more latitude to
 carry out power- or CPU-saving strategies,
-and support multiple hardware configurations. <a data-link-type="dfn" href="#periodic" id="ref-for-periodic-4">Periodic reporting mode</a>, on the other hand,
+and support multiple hardware configurations. <a data-link-type="dfn" href="#periodic" id="ref-for-periodic-5">Periodic reporting mode</a>, on the other hand,
 allows a much more fine-grained approach
 and is essential for use cases with, for example,
 low latency requirements.</p>
-   <p><a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-18">Sensors</a> which support <a data-link-type="dfn" href="#periodic" id="ref-for-periodic-5">periodic reporting mode</a> <dfn data-dfn-type="dfn" data-noexport="" id="fallback">fallback<a class="self-link" href="#fallback"></a></dfn> to <a data-link-type="dfn" href="#implementation-specific" id="ref-for-implementation-specific-2">implementation specific reporting mode</a> when no requirements are made as to what <a data-link-type="dfn" href="#frequency" id="ref-for-frequency-2">frequency</a> they should operate at.</p>
-   <p class="note" role="note">Note: <a data-link-type="dfn" href="#reporting-modes" id="ref-for-reporting-modes-3">reporting mode</a> is distinct from,
+   <p><a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-18">Sensors</a> which support <a data-link-type="dfn" href="#periodic" id="ref-for-periodic-6">periodic reporting mode</a> <dfn data-dfn-type="dfn" data-noexport="" id="fallback">fallback<a class="self-link" href="#fallback"></a></dfn> to <a data-link-type="dfn" href="#implementation-specific" id="ref-for-implementation-specific-2">implementation specific reporting mode</a> when no requirements are made as to what <a data-link-type="dfn" href="#frequency" id="ref-for-frequency-2">frequency</a> they should operate at.</p>
+   <p class="note" role="note">Note: <a data-link-type="dfn" href="#reporting-modes" id="ref-for-reporting-modes-4">reporting mode</a> is distinct from,
 but related to, <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-13">sensor readings</a> acquisition.
 If <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-19">sensors</a> are polled at regular interval,
-as is generally the case, <a data-link-type="dfn" href="#reporting-modes" id="ref-for-reporting-modes-4">reporting mode</a> can be either <a data-link-type="dfn" href="#periodic" id="ref-for-periodic-6">periodic</a> or <a data-link-type="dfn" href="#implementation-specific" id="ref-for-implementation-specific-3">implementation specific</a>.
+as is generally the case, <a data-link-type="dfn" href="#reporting-modes" id="ref-for-reporting-modes-5">reporting mode</a> can be either <a data-link-type="dfn" href="#periodic" id="ref-for-periodic-7">periodic</a> or <a data-link-type="dfn" href="#implementation-specific" id="ref-for-implementation-specific-3">implementation specific</a>.
 However, when the underlying implementation itself only provides <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-14">sensor readings</a> when it measures change,
 perhaps because is is relying on <a data-link-type="dfn" href="#smart-sensors" id="ref-for-smart-sensors-1">smart sensors</a> or a <a data-link-type="dfn" href="#sensor-hubs" id="ref-for-sensor-hubs-1">sensor hubs</a>,
-the <a data-link-type="dfn" href="#reporting-modes" id="ref-for-reporting-modes-5">reporting mode</a> cannot be <a data-link-type="dfn" href="#periodic" id="ref-for-periodic-7">periodic</a>,
+the <a data-link-type="dfn" href="#reporting-modes" id="ref-for-reporting-modes-6">reporting mode</a> cannot be <a data-link-type="dfn" href="#periodic" id="ref-for-periodic-8">periodic</a>,
 as that would require data inference.</p>
    <p class="issue" id="issue-ac15beaf"><a class="self-link" href="#issue-ac15beaf"></a> This lacks a description of
 the different data acquisition modes,
@@ -3350,7 +3353,8 @@ for their editorial input.</p>
   <aside class="dfn-panel" data-for="reporting-modes">
    <b><a href="#reporting-modes">#reporting-modes</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-reporting-modes-1">6.3. Reporting Modes</a> <a href="#ref-for-reporting-modes-2">(2)</a> <a href="#ref-for-reporting-modes-3">(3)</a> <a href="#ref-for-reporting-modes-4">(4)</a> <a href="#ref-for-reporting-modes-5">(5)</a>
+    <li><a href="#ref-for-reporting-modes-1">5. Security and privacy considerations</a>
+    <li><a href="#ref-for-reporting-modes-2">6.3. Reporting Modes</a> <a href="#ref-for-reporting-modes-3">(2)</a> <a href="#ref-for-reporting-modes-4">(3)</a> <a href="#ref-for-reporting-modes-5">(4)</a> <a href="#ref-for-reporting-modes-6">(5)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="frequency">
@@ -3364,7 +3368,8 @@ for their editorial input.</p>
   <aside class="dfn-panel" data-for="periodic">
    <b><a href="#periodic">#periodic</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-periodic-1">6.3. Reporting Modes</a> <a href="#ref-for-periodic-2">(2)</a> <a href="#ref-for-periodic-3">(3)</a> <a href="#ref-for-periodic-4">(4)</a> <a href="#ref-for-periodic-5">(5)</a> <a href="#ref-for-periodic-6">(6)</a> <a href="#ref-for-periodic-7">(7)</a>
+    <li><a href="#ref-for-periodic-1">5. Security and privacy considerations</a>
+    <li><a href="#ref-for-periodic-2">6.3. Reporting Modes</a> <a href="#ref-for-periodic-3">(2)</a> <a href="#ref-for-periodic-4">(3)</a> <a href="#ref-for-periodic-5">(4)</a> <a href="#ref-for-periodic-6">(5)</a> <a href="#ref-for-periodic-7">(6)</a> <a href="#ref-for-periodic-8">(7)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="implementation-specific">

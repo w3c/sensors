@@ -262,6 +262,11 @@ and defensive programming which includes:
 
 <h2 id="security-and-privacy">Security and privacy considerations</h2>
 
+Issue: This section needs to be reorganized.
+It probably needs a section that lists threats
+and one that lists mitigation strategies,
+with links between both.
+
 Privacy risks can arise when [=sensors=] are used
 with each other,
 in combination with other functionality,
@@ -282,7 +287,7 @@ limiting event rates available to web application developers.
 
 Note: do we really want this mitigation strategy?
 
-Frequency polling in [=periodic reporting=] mode
+Frequency polling in [=periodic=] [=reporting mode=]
 might allow the fingerprinting of hardware or implementation types,
 by probing which actual frequencies are supported by the platform.
 
