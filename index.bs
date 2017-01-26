@@ -282,6 +282,10 @@ limiting event rates available to web application developers.
 
 Note: do we really want this mitigation strategy?
 
+Frequency polling in [=periodic reporting=] mode
+might allow the fingerprinting of hardware or implementation types,
+by probing which actual frequencies are supported by the platform.
+
 Minimizing the accuracy of a sensor's readout
 generally decreases the risk of fingerprinting.
 User agents should not provide unnecessarily verbose readouts of sensors data.
