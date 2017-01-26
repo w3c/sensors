@@ -282,6 +282,11 @@ limiting event rates available to web application developers.
 
 Note: do we really want this mitigation strategy?
 
+Minimizing the accuracy of a sensor's readout
+generally decreases the risk of fingerprinting.
+User agents should not provide unnecessarily verbose readouts of sensors data.
+Each [=sensor type=] should be assessed individually.
+
 If the same JavaScript code using the API can be
 used simultaneously in different window contexts on the same device
 it may be possible for that code to correlate the user across those two contexts,
@@ -290,6 +295,8 @@ creating unanticipated tracking mechanisms.
 User agents should consider providing the user
 an indication of when the [=sensor=] is used
 and allowing the user to disable it.
+Additionally, user agents may consider
+allowing the user to verify past sensor use patterns.
 
 Web application developers that use [=sensors=] should
 perform a privacy impact assessment of their application
@@ -1314,6 +1321,8 @@ for both their administrative help and technical input.
 
 Thanks to Tab Atkins for making Bikeshed and taking the time to explain its subtleties.
 
+Thanks to Lukasz Olejnik and Maryam Mehr for their contributions around privacy and security.
+
 The following people have greatly contributed to this specification through extensive discussions on GitHub:
 Anssi Kostiainen,
 Boris Smus,
@@ -1329,6 +1338,7 @@ gmandyam,
 Jafar Husain,
 Johannes Hund,
 Kris Kowal,
+Lukasz Olejnik,
 Marcos Caceres,
 Marijn Kruisselbrink,
 Mark Foltz,
