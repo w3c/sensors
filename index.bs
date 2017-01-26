@@ -100,7 +100,7 @@ to specifying primitives
 which enable expose data from local sensors.
 
 Exposing remote sensors
-or sensors found on personal area networks
+or sensors found on personal area networks (e.g. Bluetooth)
 is out of scope.
 As work in these areas mature,
 it is possible that common, lower-level primitives be found,
