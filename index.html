@@ -1443,7 +1443,7 @@ pre.idl.highlight { color: #708090; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="http://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-01-26">26 January 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-01-27">27 January 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1967,7 +1967,7 @@ its associated <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-ty
    <p>A <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-27">sensor</a> has an associated <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="current-polling-frequency">current polling frequency</dfn> which is initially <code>null</code>.</p>
    <p>A <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-28">sensor</a> has an associated abstract operation to <dfn class="dfn-paneled" data-dfn-type="dfn" data-export="" data-lt="retrieve the sensor permission" id="retrieve-the-sensor-permission">retrieve its permission</dfn> which
 takes a <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-5">Sensor</a></code> object as input and
-returns a <a data-link-type="dfn" href="https://w3c.github.io/permissions/#idl-def-Permission">permission</a> and, eventually, its <a data-link-type="dfn" href="https://w3c.github.io/permissions/#dfn-associated-permissiondescriptor">associated PermissionDescriptor</a>.</p>
+returns a <a data-link-type="dfn" href="https://w3c.github.io/permissions/#permission-descriptor-type">permission descriptor type</a>.</p>
    <h2 class="heading settled" data-level="8" id="api"><span class="secno">8. </span><span class="content">API</span><a class="self-link" href="#api"></a></h2>
    <h3 class="heading settled" data-level="8.1" id="the-sensor-interface"><span class="secno">8.1. </span><span class="content">The Sensor Interface</span><a class="self-link" href="#the-sensor-interface"></a></h3>
 <pre class="idl highlight def">[<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext">SecureContext</a>]
@@ -2626,7 +2626,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
      <dt data-md="">
       <p>output</p>
      <dd data-md="">
-      <p><var>state</var>, a <a data-link-type="dfn" href="https://w3c.github.io/permissions/#idl-def-PermissionState">permission state</a>.</p>
+      <p><var>state</var>, a <a data-link-type="dfn" href="https://w3c.github.io/permissions/#permission-state">permission state</a>.</p>
     </dl>
     <ol>
      <li data-md="">
@@ -2635,7 +2635,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
       <p>let <var>permission</var> be the result of invoking the abstract operation <a data-link-type="dfn" href="#retrieve-the-sensor-permission" id="ref-for-retrieve-the-sensor-permission-1">retrieve the sensor permission</a> associated with <var>sensor</var>,
   passing it <var>sensor_instance</var> as argument.</p>
      <li data-md="">
-      <p>Let <var>state</var> be the result of <a data-link-type="dfn" href="https://w3c.github.io/permissions/#dfn-retrieve-the-permission-state">retrieving the permission state</a> for <var>permission</var>.</p>
+      <p>Let <var>state</var> be the result of obtaining the <a data-link-type="dfn" href="https://w3c.github.io/permissions/#permission-state">permission state</a> for <var>permission</var>.</p>
      <li data-md="">
       <p>If <var>state</var> is "prompt",</p>
       <ol>
@@ -2751,7 +2751,7 @@ each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-31">sen
     <li data-md="">
      <p>A abstract operation to <a data-link-type="dfn" href="#retrieve-the-sensor-permission" id="ref-for-retrieve-the-sensor-permission-2">retrieve sensor permission</a> which
   takes an object implementing the <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-32">sensor type</a>'s associated interface as input and
-  returns a <a data-link-type="dfn" href="https://w3c.github.io/permissions/#idl-def-Permission">permission</a> and, eventually, its <a data-link-type="dfn" href="https://w3c.github.io/permissions/#dfn-associated-permissiondescriptor">associated PermissionDescriptor</a>.</p>
+  returns a <a data-link-type="dfn" href="https://w3c.github.io/permissions/#permission-descriptor-type">permission descriptor type</a>.</p>
    </ul>
    <p>An extension specification may specify the following definitions
 for each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-33">sensor types</a>:</p>
@@ -3167,15 +3167,9 @@ for their editorial input.</p>
    <li>
     <a data-link-type="biblio">[PERMISSIONS]</a> defines the following terms:
     <ul>
-     <li><a href="https://w3c.github.io/permissions/#dfn-associated-permissiondescriptor">associated permissiondescriptor</a>
-     <li><a href="https://w3c.github.io/permissions/#idl-def-Permission">permission</a>
-     <li><a href="https://w3c.github.io/permissions/#idl-def-PermissionState">permission state</a>
-     <li><a href="https://w3c.github.io/permissions/#dfn-retrieve-the-permission-state">retrieving the permission state</a>
-    </ul>
-   <li>
-    <a data-link-type="biblio">[PERMISSIONS]</a> defines the following terms:
-    <ul>
+     <li><a href="https://w3c.github.io/permissions/#permission-descriptor-type">permission descriptor type</a>
      <li><a href="https://w3c.github.io/permissions/#permission-revocation-algorithm">permission revocation algorithm</a>
+     <li><a href="https://w3c.github.io/permissions/#permission-state">permission state</a>
     </ul>
    <li>
     <a data-link-type="biblio">[POWERFUL-FEATURES]</a> defines the following terms:
