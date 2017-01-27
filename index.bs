@@ -589,7 +589,7 @@ returns a [=permission descriptor type=].
 [SecureContext]
 interface Sensor : EventTarget {
   readonly attribute SensorState state;
-  readonly attribute DOMHighResTimeStamp timestamp;
+  readonly attribute DOMHighResTimeStamp? timestamp;
   void start();
   void stop();
   attribute EventHandler onchange;
