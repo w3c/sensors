@@ -44,12 +44,6 @@ urlPrefix: http://w3c.github.io/hr-time/; spec: HR-TIME-2
     text: DOMHighResTimeStamp; url: dom-domhighrestimestamp
   type: dfn
     text: time origin
-urlPrefix: https://w3c.github.io/permissions/; spec: PERMISSIONS
-  type: dfn
-    text: permission state;                url: permission-state
-    text: permission descriptor;           url: dictdef-permissiondescriptor
-    text: permission descriptor type;      url: permission-descriptor-type
-    text: reading the current permission state; url: reading-current-states
 urlPrefix: https://w3c.github.io/page-visibility; spec: PAGE-VISIBILITY
   type: dfn
     text: visibility states; url: dfn-visibility-states
@@ -583,7 +577,7 @@ A [=sensor=] has an associated <dfn>current polling frequency</dfn> which is ini
 A [=sensor=] has an associated abstract operation to
 <dfn export lt="retrieve the sensor permission">retrieve its permission</dfn> which
 takes a {{Sensor}} object as input and
-returns a [=permission descriptor=] and, eventually, its [=permission descriptor type=].
+returns a [=permission descriptor type=].
 
 
 <h2 id="api">API</h2>
@@ -1144,7 +1138,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     1.  Let |sensor| be the [=sensor=] associated with |sensor_instance|.
     1.  let |permission| be the result of invoking the abstract operation [=retrieve the sensor permission=] associated with |sensor|,
         passing it |sensor_instance| as argument.
-    1.  Let |state| be the result of [=reading the current permission state=] for |permission|.
+    1.  Let |state| be the result of obtaining the [=permission state=] for |permission|.
     1.  If |state| is "prompt",
         1.  prompt the user in a user-agent-specific manner for permission to provide access to |sensor|.
         1.  If permission is granted,
@@ -1268,7 +1262,7 @@ each [=sensor type=] in extension specifications:
 -   A abstract operation to
     [=retrieve the sensor permission|retrieve sensor permission=] which
     takes an object implementing the [=sensor type=]'s associated interface as input and
-    returns a [=permission descriptor=] and, eventually, its [=permission descriptor type=].
+    returns a [=permission descriptor type=].
 
 An extension specification may specify the following definitions
 for each [=sensor types=]:

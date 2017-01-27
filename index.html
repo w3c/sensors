@@ -1183,7 +1183,7 @@ Possible extra rowspan handling
       background-attachment: fixed;
     }
   </style>
-  <meta content="Bikeshed version 6f5fe05144647376f0e7a3006f9a181963f53c1d" name="generator">
+  <meta content="Bikeshed version 237216488a585c6f0fbfeb6dc67a26c10fd1d88d" name="generator">
 <style>
     #toc .current,
     #toc .current-parent {
@@ -1443,7 +1443,7 @@ pre.idl.highlight { color: #708090; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="http://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-01-26">26 January 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-01-27">27 January 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1675,7 +1675,7 @@ sensor<span class="p">.</span>onerror <span class="o">=</span> <span class="kd">
 sensor<span class="p">.</span>start<span class="p">(</span><span class="p">)</span><span class="p">;</span>
 </pre>
    </div>
-   <p class="note" role="note"><span>Note:</span> extension to this specification may choose not to define a default sensor
+   <p class="note" role="note">Note: extension to this specification may choose not to define a default sensor
 when doing so wouldn’t make sense.
 For example, it might be difficult to agree on an obvious default <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-6">sensor</a> for
 proximity <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-7">sensors</a>.</p>
@@ -1777,7 +1777,7 @@ should also be considered.</p>
 offer the possibility of fingerprinting to identify users.
 User agents may reduce the risk by
 limiting event rates available to web application developers.</p>
-   <p class="note" role="note"><span>Note:</span> do we really want this mitigation strategy?</p>
+   <p class="note" role="note">Note: do we really want this mitigation strategy?</p>
    <p>Frequency polling in <a data-link-type="dfn" href="#periodic" id="ref-for-periodic-1">periodic</a> <a data-link-type="dfn" href="#reporting-modes" id="ref-for-reporting-modes-1">reporting mode</a> might allow the fingerprinting of hardware or implementation types,
 by probing which actual frequencies are supported by the platform.</p>
    <p>Minimizing the accuracy of a sensor’s readout
@@ -1808,7 +1808,7 @@ sharing the information defined in this specification
 with contexts unfamiliar to the user.
 For example, a mobile device will only fire the event on
 the active tab, and not on the background tabs or within iframes.</p>
-   <p class="note" role="note"><span>Note:</span> <a href="https://docs.google.com/document/d/1k0Ua-ZWlM_PsFCFdLMa8kaVTo32PeNZ4G7FFHqpFx4E/edit">Feature Policy</a> should allow securely lifting those restrictions once it matures.</p>
+   <p class="note" role="note">Note: <a href="https://docs.google.com/document/d/1k0Ua-ZWlM_PsFCFdLMa8kaVTo32PeNZ4G7FFHqpFx4E/edit">Feature Policy</a> should allow securely lifting those restrictions once it matures.</p>
    <h3 class="heading settled" data-level="5.2" id="secure-context"><span class="secno">5.2. </span><span class="content">Secure Context</span><a class="self-link" href="#secure-context"></a></h3>
    <p><a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-3">Sensor readings</a> are explicitly flagged by the
 Secure Contexts specification <a data-link-type="biblio" href="#biblio-powerful-features">[POWERFUL-FEATURES]</a> as a high-value target for network attackers.
@@ -1881,7 +1881,7 @@ That low-latency is best provided
 by using the raw output of a gyroscope
 and waiting for quick rotational movements of the head
 to compensate for drift.</p>
-   <p class="note" role="note"><span>Note:</span> <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-15">sensors</a> created through <a data-link-type="dfn" href="#sensor-fusion" id="ref-for-sensor-fusion-7">sensor fusion</a> are sometimes
+   <p class="note" role="note">Note: <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-15">sensors</a> created through <a data-link-type="dfn" href="#sensor-fusion" id="ref-for-sensor-fusion-7">sensor fusion</a> are sometimes
 called virtual or synthetic sensors.
 However, the specification doesn’t make any practical differences between them,
 preferring instead to differentiate <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-16">sensors</a> as to whether they describe
@@ -1907,7 +1907,7 @@ allows a much more fine-grained approach
 and is essential for use cases with, for example,
 low latency requirements.</p>
    <p><a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-18">Sensors</a> which support <a data-link-type="dfn" href="#periodic" id="ref-for-periodic-6">periodic reporting mode</a> <dfn data-dfn-type="dfn" data-noexport="" id="fallback">fallback<a class="self-link" href="#fallback"></a></dfn> to <a data-link-type="dfn" href="#implementation-specific" id="ref-for-implementation-specific-2">implementation specific reporting mode</a> when no requirements are made as to what <a data-link-type="dfn" href="#frequency" id="ref-for-frequency-2">frequency</a> they should operate at.</p>
-   <p class="note" role="note"><span>Note:</span> <a data-link-type="dfn" href="#reporting-modes" id="ref-for-reporting-modes-4">reporting mode</a> is distinct from,
+   <p class="note" role="note">Note: <a data-link-type="dfn" href="#reporting-modes" id="ref-for-reporting-modes-4">reporting mode</a> is distinct from,
 but related to, <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-13">sensor readings</a> acquisition.
 If <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-19">sensors</a> are polled at regular interval,
 as is generally the case, <a data-link-type="dfn" href="#reporting-modes" id="ref-for-reporting-modes-5">reporting mode</a> can be either <a data-link-type="dfn" href="#periodic" id="ref-for-periodic-7">periodic</a> or <a data-link-type="dfn" href="#implementation-specific" id="ref-for-implementation-specific-3">implementation specific</a>.
@@ -1967,7 +1967,7 @@ its associated <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-ty
    <p>A <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-27">sensor</a> has an associated <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="current-polling-frequency">current polling frequency</dfn> which is initially <code>null</code>.</p>
    <p>A <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-28">sensor</a> has an associated abstract operation to <dfn class="dfn-paneled" data-dfn-type="dfn" data-export="" data-lt="retrieve the sensor permission" id="retrieve-the-sensor-permission">retrieve its permission</dfn> which
 takes a <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-5">Sensor</a></code> object as input and
-returns a <a data-link-type="dfn" href="https://w3c.github.io/permissions/#dictdef-permissiondescriptor">permission descriptor</a> and, eventually, its <a data-link-type="dfn" href="https://w3c.github.io/permissions/#permission-descriptor-type">permission descriptor type</a>.</p>
+returns a <a data-link-type="dfn" href="https://w3c.github.io/permissions/#permission-descriptor-type">permission descriptor type</a>.</p>
    <h2 class="heading settled" data-level="8" id="api"><span class="secno">8. </span><span class="content">API</span><a class="self-link" href="#api"></a></h2>
    <h3 class="heading settled" data-level="8.1" id="the-sensor-interface"><span class="secno">8.1. </span><span class="content">The Sensor Interface</span><a class="self-link" href="#the-sensor-interface"></a></h3>
 <pre class="idl highlight def">[<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext">SecureContext</a>]
@@ -2008,7 +2008,7 @@ the <a data-link-type="dfn" href="https://w3c.github.io/page-visibility#dfn-step
 If <var>current_visibility_state</var> is "visible",
 enable the sensor task source,
 otherwise, disable it.</p>
-   <p class="note" role="note"><span>Note:</span> user agents are encouraged to stop sensor polling
+   <p class="note" role="note">Note: user agents are encouraged to stop sensor polling
 when <a data-link-type="dfn" href="#sensor-task-source" id="ref-for-sensor-task-source-3">sensor task sources</a> are disabled in order
 to save battery.</p>
    <h4 class="heading settled" data-level="8.1.1" id="sensor-internal-slots"><span class="secno">8.1.1. </span><span class="content">Sensor internal slots</span><a class="self-link" href="#sensor-internal-slots"></a></h4>
@@ -2187,7 +2187,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
        <li data-md="">
         <p>Set <var>sensor_instance</var>.<a data-link-type="dfn" href="#desiredpollingfrequency" id="ref-for-desiredpollingfrequency-1">[[desiredPollingFrequency]]</a> to <var>options</var>.<code class="idl"><a class="idl-code" data-link-type="dict-member" href="#dom-sensoroptions-frequency" id="ref-for-dom-sensoroptions-frequency-2">frequency</a></code>.</p>
       </ol>
-      <p class="note" role="note"><span>Note:</span> there is not guarantee that the requested <var>options</var>.<code class="idl"><a class="idl-code" data-link-type="dict-member" href="#dom-sensoroptions-frequency" id="ref-for-dom-sensoroptions-frequency-3">frequency</a></code> can be respected. The actual <a data-link-type="dfn" href="#frequency" id="ref-for-frequency-3">frequency</a> can be calculated using <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-14">Sensor</a></code> <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensor-timestamp" id="ref-for-dom-sensor-timestamp-2">timestamp</a></code> attributes.</p>
+      <p class="note" role="note">Note: there is not guarantee that the requested <var>options</var>.<code class="idl"><a class="idl-code" data-link-type="dict-member" href="#dom-sensoroptions-frequency" id="ref-for-dom-sensoroptions-frequency-3">frequency</a></code> can be respected. The actual <a data-link-type="dfn" href="#frequency" id="ref-for-frequency-3">frequency</a> can be calculated using <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-14">Sensor</a></code> <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensor-timestamp" id="ref-for-dom-sensor-timestamp-2">timestamp</a></code> attributes.</p>
      <li data-md="">
       <p>If <a data-link-type="dfn" href="#identifying-parameters" id="ref-for-identifying-parameters-1">identifying parameters</a> in <var>options</var> are set, then:</p>
       <ol>
@@ -2635,7 +2635,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
       <p>let <var>permission</var> be the result of invoking the abstract operation <a data-link-type="dfn" href="#retrieve-the-sensor-permission" id="ref-for-retrieve-the-sensor-permission-1">retrieve the sensor permission</a> associated with <var>sensor</var>,
   passing it <var>sensor_instance</var> as argument.</p>
      <li data-md="">
-      <p>Let <var>state</var> be the result of <a data-link-type="dfn" href="https://w3c.github.io/permissions/#reading-current-states">reading the current permission state</a> for <var>permission</var>.</p>
+      <p>Let <var>state</var> be the result of obtaining the <a data-link-type="dfn" href="https://w3c.github.io/permissions/#permission-state">permission state</a> for <var>permission</var>.</p>
      <li data-md="">
       <p>If <var>state</var> is "prompt",</p>
       <ol>
@@ -2751,7 +2751,7 @@ each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-31">sen
     <li data-md="">
      <p>A abstract operation to <a data-link-type="dfn" href="#retrieve-the-sensor-permission" id="ref-for-retrieve-the-sensor-permission-2">retrieve sensor permission</a> which
   takes an object implementing the <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-32">sensor type</a>'s associated interface as input and
-  returns a <a data-link-type="dfn" href="https://w3c.github.io/permissions/#dictdef-permissiondescriptor">permission descriptor</a> and, eventually, its <a data-link-type="dfn" href="https://w3c.github.io/permissions/#permission-descriptor-type">permission descriptor type</a>.</p>
+  returns a <a data-link-type="dfn" href="https://w3c.github.io/permissions/#permission-descriptor-type">permission descriptor type</a>.</p>
    </ul>
    <p>An extension specification may specify the following definitions
 for each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-33">sensor types</a>:</p>
@@ -3167,15 +3167,9 @@ for their editorial input.</p>
    <li>
     <a data-link-type="biblio">[PERMISSIONS]</a> defines the following terms:
     <ul>
-     <li><a href="https://w3c.github.io/permissions/#dictdef-permissiondescriptor">permission descriptor</a>
      <li><a href="https://w3c.github.io/permissions/#permission-descriptor-type">permission descriptor type</a>
-     <li><a href="https://w3c.github.io/permissions/#permission-state">permission state</a>
-     <li><a href="https://w3c.github.io/permissions/#reading-current-states">reading the current permission state</a>
-    </ul>
-   <li>
-    <a data-link-type="biblio">[PERMISSIONS]</a> defines the following terms:
-    <ul>
      <li><a href="https://w3c.github.io/permissions/#permission-revocation-algorithm">permission revocation algorithm</a>
+     <li><a href="https://w3c.github.io/permissions/#permission-state">permission state</a>
     </ul>
    <li>
     <a data-link-type="biblio">[POWERFUL-FEATURES]</a> defines the following terms:
