@@ -2052,11 +2052,7 @@ with the internal slots described in the following table:</p>
      <li data-md="">
       <p>Let <var>sensor_state</var> be the value of sensor_instance|.<a data-link-type="dfn" href="#state" id="ref-for-state-1">[[state]]</a>.</p>
      <li data-md="">
-      <p>If <var>sensor_state</var> is either <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activating" id="ref-for-dom-sensorstate-activating-2">"activating"</a> or <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activated" id="ref-for-dom-sensorstate-activated-2">"activated"</a>,</p>
-      <ol>
-       <li data-md="">
-        <p><a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-throw">throw</a> an "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://heycam.github.io/webidl/#invalidstateerror">InvalidStateError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#dfn-DOMException">DOMException</a></code> and abort these steps.</p>
-      </ol>
+      <p>If <var>sensor_state</var> is either <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activating" id="ref-for-dom-sensorstate-activating-2">"activating"</a> or <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activated" id="ref-for-dom-sensorstate-activated-2">"activated"</a>, then return.</p>
      <li data-md="">
       <p>Set <var>sensor_instance</var>.<a data-link-type="dfn" href="#state" id="ref-for-state-2">[[state]]</a> to <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activating" id="ref-for-dom-sensorstate-activating-3">"activating"</a>.</p>
      <li data-md="">
@@ -2098,11 +2094,7 @@ with the internal slots described in the following table:</p>
      The <code class="idl"><a data-link-type="idl" href="#dom-sensor-stop" id="ref-for-dom-sensor-stop-1">stop()</a></code> method must run these steps or their <a data-link-type="dfn" href="#equivalent" id="ref-for-equivalent-2">equivalent</a>: 
     <ol>
      <li data-md="">
-      <p>If <var>sensor_instance</var>.<a data-link-type="dfn" href="#state" id="ref-for-state-3">[[state]]</a> is neither <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activating" id="ref-for-dom-sensorstate-activating-4">"activating"</a> nor <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activated" id="ref-for-dom-sensorstate-activated-3">"activated"</a>, then</p>
-      <ol>
-       <li data-md="">
-        <p><a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-throw">throw</a> an "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://heycam.github.io/webidl/#invalidstateerror">InvalidStateError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#dfn-DOMException">DOMException</a></code> and abort these steps.</p>
-      </ol>
+      <p>If <var>sensor_instance</var>.<a data-link-type="dfn" href="#state" id="ref-for-state-3">[[state]]</a> is neither <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activating" id="ref-for-dom-sensorstate-activating-4">"activating"</a> nor <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activated" id="ref-for-dom-sensorstate-activated-3">"activated"</a>, then return.</p>
      <li data-md="">
       <p>Set <var>sensor_instance</var>.<a data-link-type="dfn" href="#state" id="ref-for-state-4">[[state]]</a> to <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-idle" id="ref-for-dom-sensorstate-idle-2">"idle"</a>.</p>
      <li data-md="">
@@ -3182,7 +3174,6 @@ for their editorial input.</p>
      <li><a href="https://heycam.github.io/webidl/#Constructor">Constructor</a>
      <li><a href="https://heycam.github.io/webidl/#dfn-DOMException">DOMException</a>
      <li><a href="https://heycam.github.io/webidl/#idl-Error">Error</a>
-     <li><a href="https://heycam.github.io/webidl/#invalidstateerror">InvalidStateError</a>
      <li><a href="https://heycam.github.io/webidl/#notallowederror">NotAllowedError</a>
      <li><a href="https://heycam.github.io/webidl/#notreadableerror">NotReadableError</a>
      <li><a href="https://heycam.github.io/webidl/#SecureContext">SecureContext</a>
