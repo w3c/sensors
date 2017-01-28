@@ -699,9 +699,7 @@ The getter of the {{Sensor/timestamp!!attribute}} attribute returns
 The {{Sensor/start()}} method must run these steps or their [=equivalent=]:
     1.  Let |sensor_state| be the value of sensor_instance|.[=[[state]]=].
     1.  If |sensor_state| is either <a enum-value>"activating"</a>
-        or <a enum-value>"activated"</a>,
-        1.  [=throw=] an "{{InvalidStateError!!exception}}" {{DOMException}}
-            and abort these steps.
+        or <a enum-value>"activated"</a>, then return.
     1.  Set |sensor_instance|.[=[[state]]=] to <a enum-value>"activating"</a>.
     1.  Run these sub-steps [=in parallel=]:
         1.  If |sensor_state| is <a enum-value>"unconnected"</a>, then:
@@ -726,9 +724,7 @@ The {{Sensor/start()}} method must run these steps or their [=equivalent=]:
 The {{Sensor/stop()}} method must run these steps or their [=equivalent=]:
 
     1.  If |sensor_instance|.[=[[state]]=] is neither <a enum-value>"activating"</a>
-        nor <a enum-value>"activated"</a>, then
-        1.  [=throw=] an "{{InvalidStateError!!exception}}" {{DOMException}}
-            and abort these steps.
+        nor <a enum-value>"activated"</a>, then return.
     1.  Set |sensor_instance|.[=[[state]]=] to <a enum-value>"idle"</a>.
     1.  Run these sub-steps [=in parallel=]:
         1.  Invoke [=Unregister a Sensor=] passing it |sensor_instance| as argument.
