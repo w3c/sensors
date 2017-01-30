@@ -5,11 +5,11 @@ SOURCE_BRANCH="master"
 TARGET_BRANCH="gh-pages"
 
 function doCompile {
-  curl https://api.csswg.org/bikeshed/ -F file=@index.bs > out/index.html
+  curl https://api.csswg.org/bikeshed/?md-level=1 -F file=@index.bs > out/index.html
 }
 
 # Pull requests and commits to other branches shouldn't try to deploy, just build to verify
-if [[ "$TRAVIS_PULL_REQUEST" != "false" || "$TRAVIS_BRANCH" != "$SOURCE_BRANCH" ]]; then
+if [[ "$TRAVIS_PULL_REQUEST" == "true" || "$TRAVIS_BRANCH" != "$SOURCE_BRANCH" ]]; then
   echo "Skipping deploy; just doing a build."
   mkdir out
   doCompile
