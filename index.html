@@ -1183,7 +1183,7 @@ Possible extra rowspan handling
       background-attachment: fixed;
     }
   </style>
-  <meta content="Bikeshed version 7d5b85d5220bc9cd2c3f6f91ad51efdd41a94cd6" name="generator">
+  <meta content="Bikeshed version 108b329dea0b65829ab3050d2b667fd8aa4dc7c1" name="generator">
 <style>
     #toc .current,
     #toc .current-parent {
@@ -1443,7 +1443,7 @@ pre.idl.highlight { color: #708090; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="http://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-02-08">8 February 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-02-15">15 February 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2106,7 +2106,7 @@ with the internal slots described in the following table:</p>
    </div>
    <h4 class="heading settled" data-level="8.1.6" id="sensor-onchange"><span class="secno">8.1.6. </span><span class="content">Sensor.onchange</span><a class="self-link" href="#sensor-onchange"></a></h4>
    <p><code class="idl"><a data-link-type="idl" href="#dom-sensor-onchange" id="ref-for-dom-sensor-onchange-1">onchange</a></code> is an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a></code> which is called whenever a new <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-18">reading</a> is available.</p>
-   <p class="issue" id="issue-482bcf28"><a class="self-link" href="#issue-482bcf28"></a> Should this be renamed <code>onreading</code>?
+   <p class="issue" id="issue-ededc85e"><a class="self-link" href="#issue-ededc85e"></a> Should this be renamed <code>onreading</code>?
 Should we instead add an <code>ondata</code> <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a></code> for continuous data
 and use <code>onchange</code> when the data changed?</p>
    <h4 class="heading settled" data-level="8.1.7" id="sensor-onactivate"><span class="secno">8.1.7. </span><span class="content">Sensor.onactivate</span><a class="self-link" href="#sensor-onactivate"></a></h4>
@@ -2382,7 +2382,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
    </div>
    <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="9.7" data-lt="Observe a Sensor" data-noexport="" id="observe-a-sensor"><span class="secno">9.7. </span><span class="content">Observe a Sensor</span></h3>
    <div class="algorithm" data-algorithm="observe a sensor">
-    <p class="issue" id="issue-43b6e658"><a class="self-link" href="#issue-43b6e658"></a> This needs to be refactored in an abstract operation
+    <p class="issue" id="issue-02380d4b"><a class="self-link" href="#issue-02380d4b"></a> This needs to be refactored in an abstract operation
     that has access to the <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-17">Sensor</a></code> instance <var>sensor_instance</var> that just got started.</p>
     <dl>
      <dt data-md="">
@@ -2409,7 +2409,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
        <li data-md="">
         <p>let <var>frequency</var> be the <a data-link-type="dfn" href="#current-polling-frequency" id="ref-for-current-polling-frequency-5">current polling frequency</a>,
   capped by the upper and lower bounds of the underlying hardware.</p>
-        <p class="issue" id="issue-045f373a"><a class="self-link" href="#issue-045f373a"></a> Should this max polling frequency be reflected in the <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-18">Sensor</a></code> interface?
+        <p class="issue" id="issue-7570e8b7"><a class="self-link" href="#issue-7570e8b7"></a> Should this max polling frequency be reflected in the <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-18">Sensor</a></code> interface?
   E.g. Through a dedicated attribute?</p>
         <p class="issue" id="issue-b28ffcf7"><a class="self-link" href="#issue-b28ffcf7"></a> Does the max polling frequency affect the reporting frequency?
   If so, should we advise the developer of this issue?
