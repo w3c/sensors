@@ -1491,6 +1491,7 @@ for their editorial input.
             options = options || {};
 
             var OFFSET = 80,
+                needsUpdate = false,
                 previous = null,
                 current = null,
                 currentNav = null,
@@ -1507,7 +1508,15 @@ for their editorial input.
                 return sections;
             }, []);
 
-            function onscroll(event) {
+            function onscroll() {
+                if (!needsUpdate) {
+                    needsUpdate = true;
+                    requestAnimationFrame(updatePosition);
+                }
+            }
+
+            function updatePosition() {
+                needsUpdate = false;
                 var scrollTop = (options.offset || 0) + getScrollTop();
                 current = sections.filter(function(section){
                     return section.offsetTop < scrollTop;
