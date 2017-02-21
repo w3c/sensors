@@ -1183,7 +1183,7 @@ Possible extra rowspan handling
       background-attachment: fixed;
     }
   </style>
-  <meta content="Bikeshed version 108b329dea0b65829ab3050d2b667fd8aa4dc7c1" name="generator">
+  <meta content="Bikeshed version e5f1ea6cfe87cd694cb9d91f26be2d18374ebb1f" name="generator">
 <style>
     #toc .current,
     #toc .current-parent {
@@ -1443,7 +1443,7 @@ pre.idl.highlight { color: #708090; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="http://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-02-15">15 February 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-02-21">21 February 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2148,12 +2148,10 @@ that must be supported as attributes by the objects implementing the <a data-lin
    <h3 class="heading settled" data-dfn-type="dfn" data-export="" data-level="9.1" data-lt="Construct Sensor Object" id="construct-sensor-object"><span class="secno">9.1. </span><span class="content">Construct Sensor Object</span><a class="self-link" href="#construct-sensor-object"></a></h3>
    <div class="algorithm" data-algorithm="construct sensor object">
     <dl>
-     <dt data-md="">
-      <p>input</p>
+     <dt data-md="">input
      <dd data-md="">
       <p><var>options</var>, a <code class="idl"><a data-link-type="idl" href="#dictdef-sensoroptions" id="ref-for-dictdef-sensoroptions-1">SensorOptions</a></code> object.</p>
-     <dt data-md="">
-      <p>output</p>
+     <dt data-md="">output
      <dd data-md="">
       <p><var>sensor_instance</var>, a <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-12">Sensor</a></code> object.</p>
     </dl>
@@ -2194,12 +2192,10 @@ that must be supported as attributes by the objects implementing the <a data-lin
    <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-export="" data-level="9.2" data-lt="Connect to Sensor" id="connect-to-sensor"><span class="secno">9.2. </span><span class="content">Connect to Sensor</span></h3>
    <div class="algorithm" data-algorithm="connect to sensor">
     <dl>
-     <dt data-md="">
-      <p>input</p>
+     <dt data-md="">input
      <dd data-md="">
       <p><var>sensor_instance</var>, a {{Sensor} object.</p>
-     <dt data-md="">
-      <p>output</p>
+     <dt data-md="">output
      <dd data-md="">
       <p>a boolean.</p>
     </dl>
@@ -2236,12 +2232,10 @@ that must be supported as attributes by the objects implementing the <a data-lin
    <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="9.3" data-lt="Register a Sensor Object" data-noexport="" id="register-a-sensor-object"><span class="secno">9.3. </span><span class="content">Register a Sensor Object</span></h3>
    <div class="algorithm" data-algorithm="register a sensor object">
     <dl>
-     <dt data-md="">
-      <p>input</p>
+     <dt data-md="">input
      <dd data-md="">
       <p><var>sensor_instance</var>, a <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-15">Sensor</a></code> object.</p>
-     <dt data-md="">
-      <p>output</p>
+     <dt data-md="">output
      <dd data-md="">
       <p>None</p>
     </dl>
@@ -2258,12 +2252,10 @@ that must be supported as attributes by the objects implementing the <a data-lin
    <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="9.4" data-lt="Unregister a Sensor" data-noexport="" id="unregister-a-sensor"><span class="secno">9.4. </span><span class="content">Unregister a Sensor</span></h3>
    <div class="algorithm" data-algorithm="unregister a sensor">
     <dl>
-     <dt data-md="">
-      <p>input</p>
+     <dt data-md="">input
      <dd data-md="">
       <p><var>sensor_instance</var>, a <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-16">Sensor</a></code> object.</p>
-     <dt data-md="">
-      <p>output</p>
+     <dt data-md="">output
      <dd data-md="">
       <p>None</p>
     </dl>
@@ -2292,12 +2284,10 @@ that must be supported as attributes by the objects implementing the <a data-lin
    <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="9.5" data-lt="Revoke sensor permission" data-noexport="" id="revoke-sensor-permission"><span class="secno">9.5. </span><span class="content">Revoke sensor permission</span></h3>
    <div class="algorithm" data-algorithm="revoke sensor permission">
     <dl>
-     <dt data-md="">
-      <p>input</p>
+     <dt data-md="">input
      <dd data-md="">
       <p><var>sensor</var>, a <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-38">sensor</a>.</p>
-     <dt data-md="">
-      <p>output</p>
+     <dt data-md="">output
      <dd data-md="">
       <p>None</p>
     </dl>
@@ -2326,12 +2316,10 @@ that must be supported as attributes by the objects implementing the <a data-lin
    <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="9.6" data-lt="Set Sensor Settings" data-noexport="" id="set-sensor-settings"><span class="secno">9.6. </span><span class="content">Set Sensor Settings</span></h3>
    <div class="algorithm" data-algorithm="set sensor settings">
     <dl>
-     <dt data-md="">
-      <p>input</p>
+     <dt data-md="">input
      <dd data-md="">
       <p><var>sensor</var>, a <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-39">sensor</a>.</p>
-     <dt data-md="">
-      <p>output</p>
+     <dt data-md="">output
      <dd data-md="">
       <p>None</p>
     </dl>
@@ -2385,12 +2373,10 @@ that must be supported as attributes by the objects implementing the <a data-lin
     <p class="issue" id="issue-02380d4b"><a class="self-link" href="#issue-02380d4b"></a> This needs to be refactored in an abstract operation
     that has access to the <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-17">Sensor</a></code> instance <var>sensor_instance</var> that just got started.</p>
     <dl>
-     <dt data-md="">
-      <p>input</p>
+     <dt data-md="">input
      <dd data-md="">
       <p><var>sensor</var>, a <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-40">sensor</a>.</p>
-     <dt data-md="">
-      <p>output</p>
+     <dt data-md="">output
      <dd data-md="">
       <p>None</p>
     </dl>
@@ -2439,12 +2425,10 @@ that must be supported as attributes by the objects implementing the <a data-lin
    <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="9.8" data-lt="Is Current Reporting Mode Periodic" data-noexport="" id="is-current-reporting-mode-periodic"><span class="secno">9.8. </span><span class="content">Is Current Reporting Mode Periodic</span></h3>
    <div class="algorithm" data-algorithm="is current reporting mode periodic">
     <dl>
-     <dt data-md="">
-      <p>input</p>
+     <dt data-md="">input
      <dd data-md="">
       <p><var>sensor</var>, a <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-42">sensor</a>.</p>
-     <dt data-md="">
-      <p>output</p>
+     <dt data-md="">output
      <dd data-md="">
       <p><var>result</var>, a boolean.</p>
     </dl>
@@ -2468,12 +2452,10 @@ that must be supported as attributes by the objects implementing the <a data-lin
    <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="9.9" data-lt="Find the polling frequency of a Sensor" data-noexport="" id="find-the-polling-frequency-of-a-sensor"><span class="secno">9.9. </span><span class="content">Find the polling frequency of a Sensor</span></h3>
    <div class="algorithm" data-algorithm="find the polling frequency of a sensor">
     <dl>
-     <dt data-md="">
-      <p>input</p>
+     <dt data-md="">input
      <dd data-md="">
       <p><var>sensor</var>, a <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-43">sensor</a>.</p>
-     <dt data-md="">
-      <p>output</p>
+     <dt data-md="">output
      <dd data-md="">
       <p><var>frequency</var>, a <a data-link-type="dfn" href="#frequency" id="ref-for-frequency-4">frequency</a>.</p>
     </dl>
@@ -2499,8 +2481,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
    <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="9.10" data-lt="Update latest reading" data-noexport="" id="update-latest-reading"><span class="secno">9.10. </span><span class="content">Update latest reading</span></h3>
    <div class="algorithm" data-algorithm="update latest reading">
     <dl>
-     <dt data-md="">
-      <p>input</p>
+     <dt data-md="">input
      <dd data-md="">
       <p><var>sensor</var>, a <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-44">sensor</a>.</p>
      <dd data-md="">
@@ -2511,8 +2492,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
     <p class="issue" id="issue-d62b5d37"><a class="self-link" href="#issue-d62b5d37"></a> The timestamp needs to be specified more precisely,
     see <a href="https://github.com/w3c/sensors/issues/155">issue #155</a>.</p>
     <dl>
-     <dt data-md="">
-      <p>output</p>
+     <dt data-md="">output
      <dd data-md="">
       <p>None</p>
     </dl>
@@ -2552,14 +2532,12 @@ that must be supported as attributes by the objects implementing the <a data-lin
    <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="9.11" data-lt="Update Observers" data-noexport="" id="update-observers"><span class="secno">9.11. </span><span class="content">Update Observers</span></h3>
    <div class="algorithm" data-algorithm="update observers">
     <dl>
-     <dt data-md="">
-      <p>input</p>
+     <dt data-md="">input
      <dd data-md="">
       <p><var>sensor_instance</var>, a <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-19">Sensor</a></code> object.</p>
      <dd data-md="">
       <p><var>timestamp</var>, a high resolution timestamp.</p>
-     <dt data-md="">
-      <p>output</p>
+     <dt data-md="">output
      <dd data-md="">
       <p>None</p>
     </dl>
@@ -2589,14 +2567,12 @@ that must be supported as attributes by the objects implementing the <a data-lin
    <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="9.12" data-lt="Handle Errors" data-noexport="" id="handle-errors"><span class="secno">9.12. </span><span class="content">Handle Errors</span></h3>
    <div class="algorithm" data-algorithm="handle errors">
     <dl>
-     <dt data-md="">
-      <p>input</p>
+     <dt data-md="">input
      <dd data-md="">
       <p><var>sensor_instance</var>, a <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-20">Sensor</a></code> object.</p>
      <dd data-md="">
       <p><var>error</var>, an <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-exception">exception</a>.</p>
-     <dt data-md="">
-      <p>output</p>
+     <dt data-md="">output
      <dd data-md="">
       <p>None</p>
     </dl>
@@ -2610,12 +2586,10 @@ that must be supported as attributes by the objects implementing the <a data-lin
    <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="9.13" data-lt="Request Sensor Access" data-noexport="" id="request-sensor-access"><span class="secno">9.13. </span><span class="content">Request Sensor Access</span></h3>
    <div class="algorithm" data-algorithm="request sensor access">
     <dl>
-     <dt data-md="">
-      <p>input</p>
+     <dt data-md="">input
      <dd data-md="">
       <p><var>sensor_instance</var>, a <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-21">Sensor</a></code> object.</p>
-     <dt data-md="">
-      <p>output</p>
+     <dt data-md="">output
      <dd data-md="">
       <p><var>state</var>, a <a data-link-type="dfn" href="https://w3c.github.io/permissions/#permission-state">permission state</a>.</p>
     </dl>
@@ -2930,6 +2904,7 @@ for their editorial input.</p>
             options = options || {};
 
             var OFFSET = 80,
+                needsUpdate = false,
                 previous = null,
                 current = null,
                 currentNav = null,
@@ -2946,7 +2921,15 @@ for their editorial input.</p>
                 return sections;
             }, []);
 
-            function onscroll(event) {
+            function onscroll() {
+                if (!needsUpdate) {
+                    needsUpdate = true;
+                    requestAnimationFrame(updatePosition);
+                }
+            }
+
+            function updatePosition() {
+                needsUpdate = false;
                 var scrollTop = (options.offset || 0) + getScrollTop();
                 current = sections.filter(function(section){
                     return section.offsetTop < scrollTop;
