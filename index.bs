@@ -519,10 +519,22 @@ to select the right [=sensor=] to associate to each new {{Sensor}} objects.
 
 A [=sensor type=] may have a <dfn export>default sensor</dfn>.
 
-A [=sensor type=] has an [=permission revocation algorithm=]
-which, when invoked, must run the following steps:
-1.  [=set/For each=] |sensor| in [=sensor type=]'s [=ordered set|set=] of [=associated sensors=], 
-    1.  Invoke the [=revoke sensor permission=] abstract operation with |sensor| as argument. 
+A [=sensor type=] has an associated {{PermissionName}}.
+
+Note: multiple [=sensor types=] may share the same {{PermissionName}}.
+
+A [=sensor type=] has a [=permission revocation algorithm=].
+
+<div algorithm>
+
+    To invoke the <dfn lt="generic sensor permission revocation algorithm">permission revocation algorithm</dfn>
+    with {{PermissionName}} |permission_name|, run the following steps:
+
+    1.  For each |sensor_type| which has an associated {{PermissionName}} |permission_name|:
+        1.  [=set/For each=] |sensor| in |sensor_type|'s [=ordered set|set=] of [=associated sensors=],
+            1.  Invoke the [=revoke sensor permission=] abstract operation with |sensor| as argument.
+</div>
+
 
 <h3 id="model-sensor">Sensor</h3>
 
@@ -571,12 +583,6 @@ A [=sensor=] has an associated <dfn>reporting flag</dfn> which is initially unse
 A [=sensor=] has an associated <dfn>periodic reporting mode flag</dfn> which is initially unset.
 
 A [=sensor=] has an associated <dfn>current polling frequency</dfn> which is initially `null`.
-
-A [=sensor=] has an associated abstract operation to
-<dfn export lt="retrieve the sensor permission">retrieve its permission</dfn> which
-takes a {{Sensor}} object as input and
-returns a [=permission descriptor type=].
-
 
 <h2 id="api">API</h2>
 
@@ -907,7 +913,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     :: |sensor|, a [=sensor=].
     : output
     :: None
-    
+
     1.  let |activated_sensors| be |sensor|'s associated [=ordered set|set=] of [=activated Sensor objects=].
     1.  [=set/For each=] |s| of |activated_sensors|,
         1.  [=set/Remove=] |s| from |activated_sensors|.
@@ -951,7 +957,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     1.  If |settings_changed| is `true`
         1.  Invoke the [=Observe a Sensor=] abstract operation,
             passing it |sensor| as argument.
-    
+
     Issue: This abstract operation needs to return |settings_changed|
     instead of the [=Observe a Sensor=] abstract operation itself.
 </div>
@@ -997,11 +1003,11 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
             to invoke the [=update latest reading=] abstract operation
             with every new frame passing it |sensor| and
             the latest [=sensor reading=] as arguments.
-            
+
             Issue: Relying on `requestAnimationFrame` gives us a perfect point
             to buffer readings > 60Hz and to pass them to together with every new frame.
             That's a level 2 feature.
-            
+
             Issue: Figure out how to handle sensors/platforms that push the data
             rather than wait for it to be polled.
     1.  If the [=periodic reporting mode flag=] is unset,
@@ -1130,15 +1136,8 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     :: |state|, a [=permission state=].
 
     1.  Let |sensor| be the [=sensor=] associated with |sensor_instance|.
-    1.  let |permission| be the result of invoking the abstract operation [=retrieve the sensor permission=] associated with |sensor|,
-        passing it |sensor_instance| as argument.
-    1.  Let |state| be the result of obtaining the [=permission state=] for |permission|.
-    1.  If |state| is "prompt",
-        1.  prompt the user in a user-agent-specific manner for permission to provide access to |sensor|.
-        1.  If permission is granted,
-            1. set |state| to "granted",
-        1.  else,
-            1. set |state| to "denied".
+    1.  Let |permission_name| be the {{PermissionName}} associated with |sensor|.
+    1.  Let |state| be the result of [=request permission to use|requesting permission to use=] |permission_name|.
     1.  Return |state|.
 </div>
 
@@ -1253,10 +1252,7 @@ each [=sensor type=] in extension specifications:
     an optional [=dictionary=] whose [=inherited dictionaries=] contains {{SensorOptions}}.
     Its attributes which expose [=sensor readings=] are readonly and
     have getters must return the  if disturbed, and `null` otherwise.
--   A abstract operation to
-    [=retrieve the sensor permission|retrieve sensor permission=] which
-    takes an object implementing the [=sensor type=]'s associated interface as input and
-    returns a [=permission descriptor type=].
+-   A {{PermissionName}}.
 
 An extension specification may specify the following definitions
 for each [=sensor types=]:
