@@ -143,7 +143,7 @@ the default [=sensor=] is chosen.
     <pre highlight="js">
     let sensor = new GeolocationSensor({ accuracy: "high" });
 
-    sensor.onchange = function(event) {
+    sensor.onchange = function() {
         var coords = [sensor.latitude, sensor.longitude];
         updateMap(null, coords, sensor.accuracy);
     };
@@ -151,7 +151,7 @@ the default [=sensor=] is chosen.
     sensor.onerror = function(error) {
         updateMap(error);
     };
-    sensor.start();
+    sensor.activate();
     </pre>
 </div>
 
@@ -172,7 +172,7 @@ define ways to uniquely identify each one.
     <pre highlight="js">
     var sensor = new DirectTirePressureSensor({ position: "rear", side: "left" });
     sensor.onchange = _ => console.log(sensor.pressure);
-    sensor.start();
+    sensor.activate();
     </pre>
 </div>
 
@@ -240,7 +240,7 @@ and defensive programming which includes:
     <pre highlight="js">
         try { // No need to feature detect thanks to try..catch block.
             var sensor = new GeolocationSensor();
-            sensor.start();
+            sensor.activate();
             sensor.onerror = error => gracefullyDegrade(error);
             sensor.onchange = _ => updatePosition(sensor.latitude, sensor.longitude);
         } catch(error) {
@@ -594,8 +594,8 @@ A [=sensor=] has an associated <dfn>current polling frequency</dfn> which is ini
 interface Sensor : EventTarget {
   readonly attribute SensorState state;
   readonly attribute DOMHighResTimeStamp? timestamp;
-  void start();
-  void stop();
+  void activate();
+  void deactivate();
   attribute EventHandler onchange;
   attribute EventHandler onactivate;
   attribute EventHandler onerror;
@@ -606,10 +606,10 @@ dictionary SensorOptions {
 };
 
 enum SensorState {
-  "unconnected",
+  "unactivated",
   "activating",
   "activated",
-  "idle",
+  "deactivated",
   "errored"
 };
 </pre>
@@ -650,12 +650,12 @@ with the internal slots described in the following table:
         <tr>
             <td><dfn export>\[[state]]</dfn></td>
             <td>The current state of {{Sensor}} object which is one of
-                <a enum-value>"unconnected"</a>,
+                <a enum-value>"unactivated"</a>,
                 <a enum-value>"activating"</a>,
                 <a enum-value>"activated"</a>,
-                <a enum-value>"idle"</a>, and
+                <a enum-value>"deactivated"</a>, and
                 <a enum-value>"errored"</a>.
-                It is initially <a enum-value>"unconnected"</a>.
+                It is initially <a enum-value>"unactivated"</a>.
             </td>
         </tr>
         <tr>
@@ -697,16 +697,16 @@ The getter of the {{Sensor/state!!attribute}} attribute returns <emu-val>this</e
 The getter of the {{Sensor/timestamp!!attribute}} attribute returns
 [=latest reading=]["timestamp"].
 
-### Sensor.start() ### {#sensor-start}
+<h4 id="sensor-activate" oldids="sensor-start">Sensor.activate</h4>
 
-<div algorithm="to start a sensor">
-The {{Sensor/start()}} method must run these steps or their [=equivalent=]:
+<div algorithm="to activate a sensor">
+The {{Sensor/activate()}} method must run these steps or their [=equivalent=]:
     1.  Let |sensor_state| be the value of sensor_instance|.[=[[state]]=].
     1.  If |sensor_state| is either <a enum-value>"activating"</a>
         or <a enum-value>"activated"</a>, then return.
     1.  Set |sensor_instance|.[=[[state]]=] to <a enum-value>"activating"</a>.
     1.  Run these sub-steps [=in parallel=]:
-        1.  If |sensor_state| is <a enum-value>"unconnected"</a>, then:
+        1.  If |sensor_state| is <a enum-value>"unactivated"</a>, then:
             1.  let |connected| be the result of invoking
                 the [=Connect to Sensor=] abstract operation.
             1.  If |connected| is `false`, then abort these steps.
@@ -722,14 +722,14 @@ The {{Sensor/start()}} method must run these steps or their [=equivalent=]:
                 passing it |e| and |sensor_instance| as arguments.
 </div>
 
-### Sensor.stop() ### {#sensor-stop}
+<h4 id="sensor-deactivate" oldids="sensor-stop">Sensor.deactivate</h4>
 
-<div algorithm="to stop a sensor">
-The {{Sensor/stop()}} method must run these steps or their [=equivalent=]:
+<div algorithm="to deactivate a sensor">
+The {{Sensor/deactivate()}} method must run these steps or their [=equivalent=]:
 
     1.  If |sensor_instance|.[=[[state]]=] is neither <a enum-value>"activating"</a>
         nor <a enum-value>"activated"</a>, then return.
-    1.  Set |sensor_instance|.[=[[state]]=] to <a enum-value>"idle"</a>.
+    1.  Set |sensor_instance|.[=[[state]]=] to <a enum-value>"deactivated"</a>.
     1.  Run these sub-steps [=in parallel=]:
         1.  Invoke [=Unregister a Sensor=] passing it |sensor_instance| as argument.
 </div>
@@ -822,7 +822,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
         {{Sensor}} {{Sensor/timestamp!!attribute}} attributes.
     1.  If [=identifying parameters=] in |options| are set, then:
         1.  Set |sensor_instance|.[=[[identifyingParameters]]=] to [=identifying parameters=].
-    1.  Set |sensor_instance|.[=[[state]]=] to <a enum-value>"unconnected"</a>.
+    1.  Set |sensor_instance|.[=[[state]]=] to <a enum-value>"unactivated"</a>.
     1.  Return |sensor_instance|.
 </div>
 
