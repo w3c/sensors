@@ -2025,24 +2025,24 @@ with the internal slots described in the following table:</p>
       <th>Description (non-normative)
     <tbody>
      <tr>
-      <td><dfn class="dfn-paneled" data-dfn-type="dfn" data-export="" id="state">[[state]]</dfn>
+      <td><dfn class="dfn-paneled idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" id="dom-sensor-state-slot">[[state]]</dfn>
       <td>The current state of <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-8">Sensor</a></code> object which is one of <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-idle" id="ref-for-dom-sensorstate-idle-1">"idle"</a>, <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activating" id="ref-for-dom-sensorstate-activating-1">"activating"</a>, <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activated" id="ref-for-dom-sensorstate-activated-1">"activated"</a>,
                 It is initially <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-idle" id="ref-for-dom-sensorstate-idle-2">"idle"</a>. 
      <tr>
-      <td><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="desiredpollingfrequency">[[desiredPollingFrequency]]</dfn>
+      <td><dfn class="dfn-paneled idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" id="dom-sensor-desiredpollingfrequency-slot">[[desiredPollingFrequency]]</dfn>
       <td>The requested polling frequency. It is initially unset.
      <tr>
-      <td><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="lasteventfiredat">[[lastEventFiredAt]]</dfn>
+      <td><dfn class="dfn-paneled idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" id="dom-sensor-lasteventfiredat-slot">[[lastEventFiredAt]]</dfn>
       <td>the high resolution timestamp of the latest <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-17">sensor reading</a> that was sent to observers of the <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-9">Sensor</a></code> object,
                 expressed in milliseconds that passed since the <a data-link-type="dfn" href="http://w3c.github.io/hr-time/#time-origin">time origin</a>.
                 It is initially <code>null</code>. 
      <tr>
-      <td><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="waitingforupdate">[[waitingForUpdate]]</dfn>
+      <td><dfn class="dfn-paneled idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" id="dom-sensor-waitingforupdate-slot">[[waitingForUpdate]]</dfn>
       <td>A boolean which indicates wether the observers have been updated
                 or whether the object is waiting for a new reading to do so.
                 It is initially <code>true</code>.
      <tr>
-      <td><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="identifyingparameters">[[identifyingParameters]]</dfn>
+      <td><dfn class="dfn-paneled idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" id="dom-sensor-identifyingparameters-slot">[[identifyingParameters]]</dfn>
       <td> A <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-27">sensor type</a>-epecific group of <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-dictionary-member">dictionary members</a> used to select the correct <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-29">sensor</a> to associate to this <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-10">Sensor</a></code> object. 
    </table>
    <h4 class="heading settled" data-level="8.1.2" id="sensor-state"><span class="secno">8.1.2. </span><span class="content">Sensor.state</span><a class="self-link" href="#sensor-state"></a></h4>
@@ -2054,11 +2054,11 @@ with the internal slots described in the following table:</p>
      The <code class="idl"><a data-link-type="idl" href="#dom-sensor-start" id="ref-for-dom-sensor-start-1">start()</a></code> method must run these steps or their <a data-link-type="dfn" href="#equivalent" id="ref-for-equivalent-1">equivalent</a>: 
     <ol>
      <li data-md="">
-      <p>Let <var>sensor_state</var> be the value of sensor_instance|.<a data-link-type="dfn" href="#state" id="ref-for-state-1">[[state]]</a>.</p>
+      <p>Let <var>sensor_state</var> be the value of sensor_instance|.<code class="idl"><a data-link-type="idl" href="#dom-sensor-state-slot" id="ref-for-dom-sensor-state-slot-1">[[state]]</a></code>.</p>
      <li data-md="">
       <p>If <var>sensor_state</var> is either <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activating" id="ref-for-dom-sensorstate-activating-2">"activating"</a> or <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activated" id="ref-for-dom-sensorstate-activated-2">"activated"</a>, then return.</p>
      <li data-md="">
-      <p>Set <var>sensor_instance</var>.<a data-link-type="dfn" href="#state" id="ref-for-state-2">[[state]]</a> to <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activating" id="ref-for-dom-sensorstate-activating-3">"activating"</a>.</p>
+      <p>Set <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-state-slot" id="ref-for-dom-sensor-state-slot-2">[[state]]</a></code> to <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activating" id="ref-for-dom-sensorstate-activating-3">"activating"</a>.</p>
      <li data-md="">
       <p>Run these sub-steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in parallel</a>:</p>
       <ol>
@@ -2094,9 +2094,9 @@ with the internal slots described in the following table:</p>
      The <code class="idl"><a data-link-type="idl" href="#dom-sensor-stop" id="ref-for-dom-sensor-stop-1">stop()</a></code> method must run these steps or their <a data-link-type="dfn" href="#equivalent" id="ref-for-equivalent-2">equivalent</a>: 
     <ol>
      <li data-md="">
-      <p>If <var>sensor_instance</var>.<a data-link-type="dfn" href="#state" id="ref-for-state-3">[[state]]</a> is neither <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activating" id="ref-for-dom-sensorstate-activating-4">"activating"</a> nor <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activated" id="ref-for-dom-sensorstate-activated-3">"activated"</a>, then return.</p>
+      <p>If <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-state-slot" id="ref-for-dom-sensor-state-slot-3">[[state]]</a></code> is neither <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activating" id="ref-for-dom-sensorstate-activating-4">"activating"</a> nor <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activated" id="ref-for-dom-sensorstate-activated-3">"activated"</a>, then return.</p>
      <li data-md="">
-      <p>Set <var>sensor_instance</var>.<a data-link-type="dfn" href="#state" id="ref-for-state-4">[[state]]</a> to <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-idle" id="ref-for-dom-sensorstate-idle-3">"idle"</a>.</p>
+      <p>Set <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-state-slot" id="ref-for-dom-sensor-state-slot-4">[[state]]</a></code> to <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-idle" id="ref-for-dom-sensorstate-idle-3">"idle"</a>.</p>
      <li data-md="">
       <p>Run these sub-steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in parallel</a>:</p>
       <ol>
@@ -2111,7 +2111,7 @@ with the internal slots described in the following table:</p>
 Should we instead add an <code>ondata</code> <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a></code> for continuous data
 and use <code>onchange</code> when the data changed?</p>
    <h4 class="heading settled" data-level="8.1.7" id="sensor-onactivate"><span class="secno">8.1.7. </span><span class="content">Sensor.onactivate</span><a class="self-link" href="#sensor-onactivate"></a></h4>
-   <p><code class="idl"><a data-link-type="idl" href="#dom-sensor-onactivate" id="ref-for-dom-sensor-onactivate-1">onactivate</a></code> is an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a></code> which is called when <emu-val>this</emu-val>.<a data-link-type="dfn" href="#state" id="ref-for-state-5">[[state]]</a> transitions from <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activating" id="ref-for-dom-sensorstate-activating-5">"activating"</a> to <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activated" id="ref-for-dom-sensorstate-activated-4">"activated"</a>.</p>
+   <p><code class="idl"><a data-link-type="idl" href="#dom-sensor-onactivate" id="ref-for-dom-sensor-onactivate-1">onactivate</a></code> is an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a></code> which is called when <emu-val>this</emu-val>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-state-slot" id="ref-for-dom-sensor-state-slot-5">[[state]]</a></code> transitions from <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activating" id="ref-for-dom-sensorstate-activating-5">"activating"</a> to <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activated" id="ref-for-dom-sensorstate-activated-4">"activated"</a>.</p>
    <h4 class="heading settled" data-level="8.1.8" id="sensor-onerror"><span class="secno">8.1.8. </span><span class="content">Sensor.onerror</span><a class="self-link" href="#sensor-onerror"></a></h4>
    <p><code class="idl"><a data-link-type="idl" href="#dom-sensor-onerror" id="ref-for-dom-sensor-onerror-1">onerror</a></code> is an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a></code> which is called whenever an <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-exception-type">exception</a> cannot be handled synchronously.</p>
    <h4 class="heading settled" data-level="8.1.9" id="event-handlers"><span class="secno">8.1.9. </span><span class="content">Event handlers</span><a class="self-link" href="#event-handlers"></a></h4>
@@ -2175,17 +2175,17 @@ that must be supported as attributes by the objects implementing the <a data-lin
       <p>If <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-31">sensor</a> <a data-link-type="dfn" href="#supports-periodic-reporting-mode" id="ref-for-supports-periodic-reporting-mode-1">supports periodic reporting mode</a> and <var>options</var>.<code class="idl"><a class="idl-code" data-link-type="dict-member" href="#dom-sensoroptions-frequency" id="ref-for-dom-sensoroptions-frequency-1">frequency</a></code> is <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-present">present</a>, then</p>
       <ol>
        <li data-md="">
-        <p>Set <var>sensor_instance</var>.<a data-link-type="dfn" href="#desiredpollingfrequency" id="ref-for-desiredpollingfrequency-1">[[desiredPollingFrequency]]</a> to <var>options</var>.<code class="idl"><a class="idl-code" data-link-type="dict-member" href="#dom-sensoroptions-frequency" id="ref-for-dom-sensoroptions-frequency-2">frequency</a></code>.</p>
+        <p>Set <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-desiredpollingfrequency-slot" id="ref-for-dom-sensor-desiredpollingfrequency-slot-1">[[desiredPollingFrequency]]</a></code> to <var>options</var>.<code class="idl"><a class="idl-code" data-link-type="dict-member" href="#dom-sensoroptions-frequency" id="ref-for-dom-sensoroptions-frequency-2">frequency</a></code>.</p>
       </ol>
       <p class="note" role="note"><span>Note:</span> there is not guarantee that the requested <var>options</var>.<code class="idl"><a class="idl-code" data-link-type="dict-member" href="#dom-sensoroptions-frequency" id="ref-for-dom-sensoroptions-frequency-3">frequency</a></code> can be respected. The actual <a data-link-type="dfn" href="#frequency" id="ref-for-frequency-3">frequency</a> can be calculated using <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-13">Sensor</a></code> <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensor-timestamp" id="ref-for-dom-sensor-timestamp-2">timestamp</a></code> attributes.</p>
      <li data-md="">
       <p>If <a data-link-type="dfn" href="#identifying-parameters" id="ref-for-identifying-parameters-1">identifying parameters</a> in <var>options</var> are set, then:</p>
       <ol>
        <li data-md="">
-        <p>Set <var>sensor_instance</var>.<a data-link-type="dfn" href="#identifyingparameters" id="ref-for-identifyingparameters-1">[[identifyingParameters]]</a> to <a data-link-type="dfn" href="#identifying-parameters" id="ref-for-identifying-parameters-2">identifying parameters</a>.</p>
+        <p>Set <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-identifyingparameters-slot" id="ref-for-dom-sensor-identifyingparameters-slot-1">[[identifyingParameters]]</a></code> to <a data-link-type="dfn" href="#identifying-parameters" id="ref-for-identifying-parameters-2">identifying parameters</a>.</p>
       </ol>
      <li data-md="">
-      <p>Set <var>sensor_instance</var>.<a data-link-type="dfn" href="#state" id="ref-for-state-6">[[state]]</a> to <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-idle" id="ref-for-dom-sensorstate-idle-4">"idle"</a>.</p>
+      <p>Set <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-state-slot" id="ref-for-dom-sensor-state-slot-6">[[state]]</a></code> to <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-idle" id="ref-for-dom-sensorstate-idle-4">"idle"</a>.</p>
      <li data-md="">
       <p>Return <var>sensor_instance</var>.</p>
     </ol>
@@ -2202,7 +2202,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
     </dl>
     <ol>
      <li data-md="">
-      <p>If <var>sensor_instance</var>.<a data-link-type="dfn" href="#identifyingparameters" id="ref-for-identifyingparameters-2">[[identifyingParameters]]</a> is set and <var>sensor_instance</var>.<a data-link-type="dfn" href="#identifyingparameters" id="ref-for-identifyingparameters-3">[[identifyingParameters]]</a> allows
+      <p>If <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-identifyingparameters-slot" id="ref-for-dom-sensor-identifyingparameters-slot-2">[[identifyingParameters]]</a></code> is set and <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-identifyingparameters-slot" id="ref-for-dom-sensor-identifyingparameters-slot-3">[[identifyingParameters]]</a></code> allows
   a unique <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-32">sensor</a> to be identified, then:</p>
       <ol>
        <li data-md="">
@@ -2440,7 +2440,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
       <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate">For each</a> <var>sensor_instance</var> in <var>sensor</var>’s set of <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects-5">activated Sensor objects</a>:</p>
       <ol>
        <li data-md="">
-        <p>if <var>sensor_instance</var>.<a data-link-type="dfn" href="#desiredpollingfrequency" id="ref-for-desiredpollingfrequency-2">[[desiredPollingFrequency]]</a> is set,</p>
+        <p>if <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-desiredpollingfrequency-slot" id="ref-for-dom-sensor-desiredpollingfrequency-slot-2">[[desiredPollingFrequency]]</a></code> is set,</p>
         <ol>
          <li data-md="">
           <p>set <var>result</var> to <code>true</code>, then <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#iteration-break">break</a>.</p>
@@ -2467,7 +2467,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
       <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate">For each</a> <var>sensor_instance</var> in <var>sensor</var>’s set of <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects-6">activated Sensor objects</a>:</p>
       <ol>
        <li data-md="">
-        <p>let <var>f</var> be <var>sensor_instance</var>.<a data-link-type="dfn" href="#desiredpollingfrequency" id="ref-for-desiredpollingfrequency-3">[[desiredPollingFrequency]]</a>.</p>
+        <p>let <var>f</var> be <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-desiredpollingfrequency-slot" id="ref-for-dom-sensor-desiredpollingfrequency-slot-3">[[desiredPollingFrequency]]</a></code>.</p>
        <li data-md="">
         <p>if <var>f</var> is set and <var>f</var> is greater than <var>frequency</var>,</p>
         <ol>
@@ -2544,23 +2544,23 @@ that must be supported as attributes by the objects implementing the <a data-lin
     </dl>
     <ol>
      <li data-md="">
-      <p>If <var>sensor_instance</var>.<a data-link-type="dfn" href="#state" id="ref-for-state-7">[[state]]</a> is <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activating" id="ref-for-dom-sensorstate-activating-6">"activating"</a>:</p>
+      <p>If <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-state-slot" id="ref-for-dom-sensor-state-slot-7">[[state]]</a></code> is <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activating" id="ref-for-dom-sensorstate-activating-6">"activating"</a>:</p>
       <ol>
        <li data-md="">
-        <p>Set <var>sensor_instance</var>.<a data-link-type="dfn" href="#state" id="ref-for-state-8">[[state]]</a> <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activated" id="ref-for-dom-sensorstate-activated-5">"activated"</a>.</p>
+        <p>Set <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-state-slot" id="ref-for-dom-sensor-state-slot-8">[[state]]</a></code> <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activated" id="ref-for-dom-sensorstate-activated-5">"activated"</a>.</p>
        <li data-md="">
         <p><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire">Fire an event</a> named "activate" at <var>sensor_instance</var>.</p>
       </ol>
      <li data-md="">
-      <p>If <var>sensor_instance</var>.<a data-link-type="dfn" href="#waitingforupdate" id="ref-for-waitingforupdate-1">[[waitingForUpdate]]</a> is true, then</p>
+      <p>If <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-waitingforupdate-slot" id="ref-for-dom-sensor-waitingforupdate-slot-1">[[waitingForUpdate]]</a></code> is true, then</p>
       <p class="issue" id="issue-c26873bf"><a class="self-link" href="#issue-c26873bf"></a> Should we fire delayed readings? Or should we just drop readings instead?</p>
       <ol>
        <li data-md="">
-        <p>Set <var>sensor_instance</var>.<a data-link-type="dfn" href="#waitingforupdate" id="ref-for-waitingforupdate-2">[[waitingForUpdate]]</a> to <code>false</code>.</p>
+        <p>Set <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-waitingforupdate-slot" id="ref-for-dom-sensor-waitingforupdate-slot-2">[[waitingForUpdate]]</a></code> to <code>false</code>.</p>
        <li data-md="">
         <p><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire">Fire an event</a> named "reading" at <var>sensor_instance</var>.</p>
        <li data-md="">
-        <p>Set <var>sensor_instance</var>.<a data-link-type="dfn" href="#lasteventfiredat" id="ref-for-lasteventfiredat-1">[[lastEventFiredAt]]</a> to <var>timestamp</var>.</p>
+        <p>Set <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-lasteventfiredat-slot" id="ref-for-dom-sensor-lasteventfiredat-slot-1">[[lastEventFiredAt]]</a></code> to <var>timestamp</var>.</p>
       </ol>
       <p class="issue" id="issue-3c3e5a61"><a class="self-link" href="#issue-3c3e5a61"></a> Should these last steps be done from within a new task?</p>
     </ol>
@@ -2579,7 +2579,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
     </dl>
     <ol>
      <li data-md="">
-      <p>Set <var>sensor_instance</var>.<a data-link-type="dfn" href="#state" id="ref-for-state-9">[[state]]</a> to <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-idle" id="ref-for-dom-sensorstate-idle-5">"idle"</a>.</p>
+      <p>Set <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-state-slot" id="ref-for-dom-sensor-state-slot-9">[[state]]</a></code> to <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-idle" id="ref-for-dom-sensorstate-idle-5">"idle"</a>.</p>
      <li data-md="">
       <p><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire">Fire an event</a> named "error" at <var>sensor_instance</var> using <code class="idl"><a data-link-type="idl" href="#sensorerrorevent" id="ref-for-sensorerrorevent-1">SensorErrorEvent</a></code> with its <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensorerrorevent-error" id="ref-for-dom-sensorerrorevent-error-1">error</a></code> attribute initialized to <var>error</var>.</p>
     </ol>
@@ -2995,7 +2995,7 @@ for their editorial input.</p>
    <li><a href="#construct-sensor-object">Construct Sensor Object</a><span>, in §9</span>
    <li><a href="#current-polling-frequency">current polling frequency</a><span>, in §7.2</span>
    <li><a href="#default-sensor">default sensor</a><span>, in §7.1</span>
-   <li><a href="#desiredpollingfrequency">[[desiredPollingFrequency]]</a><span>, in §8.1.1</span>
+   <li><a href="#dom-sensor-desiredpollingfrequency-slot">[[desiredPollingFrequency]]</a><span>, in §8.1.1</span>
    <li><a href="#equivalent">equivalent</a><span>, in §Unnumbered section</span>
    <li>
     error
@@ -3015,12 +3015,12 @@ for their editorial input.</p>
    <li><a href="#handle-errors">Handle Errors</a><span>, in §9.11</span>
    <li><a href="#high-level">high-level</a><span>, in §6.2</span>
    <li><a href="#identifying-parameters">identifying parameters</a><span>, in §7.1</span>
-   <li><a href="#identifyingparameters">[[identifyingParameters]]</a><span>, in §8.1.1</span>
+   <li><a href="#dom-sensor-identifyingparameters-slot">[[identifyingParameters]]</a><span>, in §8.1.1</span>
    <li><a href="#dom-sensorstate-idle">"idle"</a><span>, in §8.1</span>
    <li><a href="#dom-sensorstate-idle">idle</a><span>, in §8.1</span>
    <li><a href="#implementation-specific">implementation specific</a><span>, in §6.3</span>
    <li><a href="#is-current-reporting-mode-periodic">Is Current Reporting Mode Periodic</a><span>, in §9.7</span>
-   <li><a href="#lasteventfiredat">[[lastEventFiredAt]]</a><span>, in §8.1.1</span>
+   <li><a href="#dom-sensor-lasteventfiredat-slot">[[lastEventFiredAt]]</a><span>, in §8.1.1</span>
    <li><a href="#latest-reading">latest reading</a><span>, in §7.2</span>
    <li><a href="#low-level">low-level</a><span>, in §6.2</span>
    <li><a href="#observe-a-sensor">Observe a Sensor</a><span>, in §9.6</span>
@@ -3052,14 +3052,14 @@ for their editorial input.</p>
    <li><a href="#smart-sensors">Smart sensors</a><span>, in §6.2</span>
    <li><a href="#dom-sensor-start">start()</a><span>, in §8.1</span>
    <li><a href="#dom-sensor-state">state</a><span>, in §8.1</span>
-   <li><a href="#state">[[state]]</a><span>, in §8.1.1</span>
+   <li><a href="#dom-sensor-state-slot">[[state]]</a><span>, in §8.1.1</span>
    <li><a href="#dom-sensor-stop">stop()</a><span>, in §8.1</span>
    <li><a href="#supports-periodic-reporting-mode">supports periodic reporting mode</a><span>, in §7.2</span>
    <li><a href="#dom-sensor-timestamp">timestamp</a><span>, in §8.1</span>
    <li><a href="#unregister-a-sensor">Unregister a Sensor</a><span>, in §9.3</span>
    <li><a href="#update-latest-reading">Update latest reading</a><span>, in §9.9</span>
    <li><a href="#update-observers">Update Observers</a><span>, in §9.10</span>
-   <li><a href="#waitingforupdate">[[waitingForUpdate]]</a><span>, in §8.1.1</span>
+   <li><a href="#dom-sensor-waitingforupdate-slot">[[waitingForUpdate]]</a><span>, in §8.1.1</span>
   </ul>
   <h3 class="no-num no-ref heading settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
   <ul class="index">
@@ -3553,42 +3553,42 @@ for their editorial input.</p>
     <li><a href="#ref-for-sensor-task-source-1">8.1. The Sensor Interface</a> <a href="#ref-for-sensor-task-source-2">(2)</a> <a href="#ref-for-sensor-task-source-3">(3)</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="state">
-   <b><a href="#state">#state</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="dom-sensor-state-slot">
+   <b><a href="#dom-sensor-state-slot">#dom-sensor-state-slot</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-state-1">8.1.4. Sensor.start()</a> <a href="#ref-for-state-2">(2)</a>
-    <li><a href="#ref-for-state-3">8.1.5. Sensor.stop()</a> <a href="#ref-for-state-4">(2)</a>
-    <li><a href="#ref-for-state-5">8.1.7. Sensor.onactivate</a>
-    <li><a href="#ref-for-state-6">9.1. Construct Sensor Object</a>
-    <li><a href="#ref-for-state-7">9.11. Update Observers</a> <a href="#ref-for-state-8">(2)</a>
-    <li><a href="#ref-for-state-9">9.12. Handle Errors</a>
+    <li><a href="#ref-for-dom-sensor-state-slot-1">8.1.4. Sensor.start()</a> <a href="#ref-for-dom-sensor-state-slot-2">(2)</a>
+    <li><a href="#ref-for-dom-sensor-state-slot-3">8.1.5. Sensor.stop()</a> <a href="#ref-for-dom-sensor-state-slot-4">(2)</a>
+    <li><a href="#ref-for-dom-sensor-state-slot-5">8.1.7. Sensor.onactivate</a>
+    <li><a href="#ref-for-dom-sensor-state-slot-6">9.1. Construct Sensor Object</a>
+    <li><a href="#ref-for-dom-sensor-state-slot-7">9.11. Update Observers</a> <a href="#ref-for-dom-sensor-state-slot-8">(2)</a>
+    <li><a href="#ref-for-dom-sensor-state-slot-9">9.12. Handle Errors</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="desiredpollingfrequency">
-   <b><a href="#desiredpollingfrequency">#desiredpollingfrequency</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="dom-sensor-desiredpollingfrequency-slot">
+   <b><a href="#dom-sensor-desiredpollingfrequency-slot">#dom-sensor-desiredpollingfrequency-slot</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-desiredpollingfrequency-1">9.1. Construct Sensor Object</a>
-    <li><a href="#ref-for-desiredpollingfrequency-2">9.8. Is Current Reporting Mode Periodic</a>
-    <li><a href="#ref-for-desiredpollingfrequency-3">9.9. Find the polling frequency of a Sensor</a>
+    <li><a href="#ref-for-dom-sensor-desiredpollingfrequency-slot-1">9.1. Construct Sensor Object</a>
+    <li><a href="#ref-for-dom-sensor-desiredpollingfrequency-slot-2">9.8. Is Current Reporting Mode Periodic</a>
+    <li><a href="#ref-for-dom-sensor-desiredpollingfrequency-slot-3">9.9. Find the polling frequency of a Sensor</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="lasteventfiredat">
-   <b><a href="#lasteventfiredat">#lasteventfiredat</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="dom-sensor-lasteventfiredat-slot">
+   <b><a href="#dom-sensor-lasteventfiredat-slot">#dom-sensor-lasteventfiredat-slot</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-lasteventfiredat-1">9.11. Update Observers</a>
+    <li><a href="#ref-for-dom-sensor-lasteventfiredat-slot-1">9.11. Update Observers</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="waitingforupdate">
-   <b><a href="#waitingforupdate">#waitingforupdate</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="dom-sensor-waitingforupdate-slot">
+   <b><a href="#dom-sensor-waitingforupdate-slot">#dom-sensor-waitingforupdate-slot</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-waitingforupdate-1">9.11. Update Observers</a> <a href="#ref-for-waitingforupdate-2">(2)</a>
+    <li><a href="#ref-for-dom-sensor-waitingforupdate-slot-1">9.11. Update Observers</a> <a href="#ref-for-dom-sensor-waitingforupdate-slot-2">(2)</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="identifyingparameters">
-   <b><a href="#identifyingparameters">#identifyingparameters</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="dom-sensor-identifyingparameters-slot">
+   <b><a href="#dom-sensor-identifyingparameters-slot">#dom-sensor-identifyingparameters-slot</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-identifyingparameters-1">9.1. Construct Sensor Object</a>
-    <li><a href="#ref-for-identifyingparameters-2">9.2. Connect to Sensor</a> <a href="#ref-for-identifyingparameters-3">(2)</a>
+    <li><a href="#ref-for-dom-sensor-identifyingparameters-slot-1">9.1. Construct Sensor Object</a>
+    <li><a href="#ref-for-dom-sensor-identifyingparameters-slot-2">9.2. Connect to Sensor</a> <a href="#ref-for-dom-sensor-identifyingparameters-slot-3">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="sensorerrorevent">
