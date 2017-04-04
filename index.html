@@ -1183,7 +1183,8 @@ Possible extra rowspan handling
       background-attachment: fixed;
     }
   </style>
-  <meta content="Bikeshed version 9a16729f5dbf458a556c2e0e347b203ca14e2c7d" name="generator">
+  <meta content="Bikeshed version b734e371910e25ac23b774dca3dea5cfc7b7fc0b" name="generator">
+  <link href="https://www.w3.org/TR/generic-sensor/" rel="canonical">
 <style>
     #toc .current,
     #toc .current-parent {
@@ -1443,7 +1444,7 @@ pre.idl.highlight { color: #708090; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-03-08">8 March 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-04-04">4 April 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1991,11 +1992,9 @@ its associated <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-ty
 };
 
 <span class="kt">enum</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="enum" data-export="" id="enumdef-sensorstate">SensorState</dfn> {
-  <dfn class="s dfn-paneled idl-code" data-dfn-for="SensorState" data-dfn-type="enum-value" data-export="" data-lt="&quot;unconnected&quot;|unconnected" id="dom-sensorstate-unconnected">"unconnected"</dfn>,
-  <dfn class="s dfn-paneled idl-code" data-dfn-for="SensorState" data-dfn-type="enum-value" data-export="" data-lt="&quot;activating&quot;|activating" id="dom-sensorstate-activating">"activating"</dfn>,
-  <dfn class="s dfn-paneled idl-code" data-dfn-for="SensorState" data-dfn-type="enum-value" data-export="" data-lt="&quot;activated&quot;|activated" id="dom-sensorstate-activated">"activated"</dfn>,
   <dfn class="s dfn-paneled idl-code" data-dfn-for="SensorState" data-dfn-type="enum-value" data-export="" data-lt="&quot;idle&quot;|idle" id="dom-sensorstate-idle">"idle"</dfn>,
-  <dfn class="s dfn-paneled idl-code" data-dfn-for="SensorState" data-dfn-type="enum-value" data-export="" data-lt="&quot;errored&quot;|errored" id="dom-sensorstate-errored">"errored"</dfn>
+  <dfn class="s dfn-paneled idl-code" data-dfn-for="SensorState" data-dfn-type="enum-value" data-export="" data-lt="&quot;activating&quot;|activating" id="dom-sensorstate-activating">"activating"</dfn>,
+  <dfn class="s dfn-paneled idl-code" data-dfn-for="SensorState" data-dfn-type="enum-value" data-export="" data-lt="&quot;activated&quot;|activated" id="dom-sensorstate-activated">"activated"</dfn>
 };
 </pre>
    <p>A <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-5">Sensor</a></code> object has an associated <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-28">sensor</a>.</p>
@@ -2027,8 +2026,8 @@ with the internal slots described in the following table:</p>
     <tbody>
      <tr>
       <td><dfn class="dfn-paneled" data-dfn-type="dfn" data-export="" id="state">[[state]]</dfn>
-      <td>The current state of <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-8">Sensor</a></code> object which is one of <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-unconnected" id="ref-for-dom-sensorstate-unconnected-1">"unconnected"</a>, <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activating" id="ref-for-dom-sensorstate-activating-1">"activating"</a>, <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activated" id="ref-for-dom-sensorstate-activated-1">"activated"</a>, <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-idle" id="ref-for-dom-sensorstate-idle-1">"idle"</a>, and <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-errored" id="ref-for-dom-sensorstate-errored-1">"errored"</a>.
-                It is initially <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-unconnected" id="ref-for-dom-sensorstate-unconnected-2">"unconnected"</a>. 
+      <td>The current state of <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-8">Sensor</a></code> object which is one of <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-idle" id="ref-for-dom-sensorstate-idle-1">"idle"</a>, <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activating" id="ref-for-dom-sensorstate-activating-1">"activating"</a>, <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activated" id="ref-for-dom-sensorstate-activated-1">"activated"</a>,
+                It is initially <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-idle" id="ref-for-dom-sensorstate-idle-2">"idle"</a>. 
      <tr>
       <td><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="desiredpollingfrequency">[[desiredPollingFrequency]]</dfn>
       <td>The requested polling frequency. It is initially unset.
@@ -2064,14 +2063,10 @@ with the internal slots described in the following table:</p>
       <p>Run these sub-steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in parallel</a>:</p>
       <ol>
        <li data-md="">
-        <p>If <var>sensor_state</var> is <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-unconnected" id="ref-for-dom-sensorstate-unconnected-3">"unconnected"</a>, then:</p>
-        <ol>
-         <li data-md="">
-          <p>let <var>connected</var> be the result of invoking
+        <p>let <var>connected</var> be the result of invoking
   the <a data-link-type="dfn" href="#connect-to-sensor" id="ref-for-connect-to-sensor-1">Connect to Sensor</a> abstract operation.</p>
-         <li data-md="">
-          <p>If <var>connected</var> is <code>false</code>, then abort these steps.</p>
-        </ol>
+       <li data-md="">
+        <p>If <var>connected</var> is <code>false</code>, then abort these steps.</p>
        <li data-md="">
         <p>Let <var>permission_state</var> be the result of invoking
   the <a data-link-type="dfn" href="#request-sensor-access" id="ref-for-request-sensor-access-1">Request Sensor Access</a> abstract operation,
@@ -2101,7 +2096,7 @@ with the internal slots described in the following table:</p>
      <li data-md="">
       <p>If <var>sensor_instance</var>.<a data-link-type="dfn" href="#state" id="ref-for-state-3">[[state]]</a> is neither <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activating" id="ref-for-dom-sensorstate-activating-4">"activating"</a> nor <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-activated" id="ref-for-dom-sensorstate-activated-3">"activated"</a>, then return.</p>
      <li data-md="">
-      <p>Set <var>sensor_instance</var>.<a data-link-type="dfn" href="#state" id="ref-for-state-4">[[state]]</a> to <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-idle" id="ref-for-dom-sensorstate-idle-2">"idle"</a>.</p>
+      <p>Set <var>sensor_instance</var>.<a data-link-type="dfn" href="#state" id="ref-for-state-4">[[state]]</a> to <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-idle" id="ref-for-dom-sensorstate-idle-3">"idle"</a>.</p>
      <li data-md="">
       <p>Run these sub-steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in parallel</a>:</p>
       <ol>
@@ -2190,7 +2185,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
         <p>Set <var>sensor_instance</var>.<a data-link-type="dfn" href="#identifyingparameters" id="ref-for-identifyingparameters-1">[[identifyingParameters]]</a> to <a data-link-type="dfn" href="#identifying-parameters" id="ref-for-identifying-parameters-2">identifying parameters</a>.</p>
       </ol>
      <li data-md="">
-      <p>Set <var>sensor_instance</var>.<a data-link-type="dfn" href="#state" id="ref-for-state-6">[[state]]</a> to <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-unconnected" id="ref-for-dom-sensorstate-unconnected-4">"unconnected"</a>.</p>
+      <p>Set <var>sensor_instance</var>.<a data-link-type="dfn" href="#state" id="ref-for-state-6">[[state]]</a> to <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-idle" id="ref-for-dom-sensorstate-idle-4">"idle"</a>.</p>
      <li data-md="">
       <p>Return <var>sensor_instance</var>.</p>
     </ol>
@@ -2584,7 +2579,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
     </dl>
     <ol>
      <li data-md="">
-      <p>Set <var>sensor_instance</var>.<a data-link-type="dfn" href="#state" id="ref-for-state-9">[[state]]</a> to <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-errored" id="ref-for-dom-sensorstate-errored-2">"errored"</a>.</p>
+      <p>Set <var>sensor_instance</var>.<a data-link-type="dfn" href="#state" id="ref-for-state-9">[[state]]</a> to <a class="idl-code" data-link-type="enum-value" href="#dom-sensorstate-idle" id="ref-for-dom-sensorstate-idle-5">"idle"</a>.</p>
      <li data-md="">
       <p><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire">Fire an event</a> named "error" at <var>sensor_instance</var> using <code class="idl"><a data-link-type="idl" href="#sensorerrorevent" id="ref-for-sensorerrorevent-1">SensorErrorEvent</a></code> with its <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensorerrorevent-error" id="ref-for-dom-sensorerrorevent-error-1">error</a></code> attribute initialized to <var>error</var>.</p>
     </ol>
@@ -3008,8 +3003,6 @@ for their editorial input.</p>
      <li><a href="#dom-sensorerrorevent-error">attribute for SensorErrorEvent</a><span>, in §8.2</span>
      <li><a href="#dom-sensorerroreventinit-error">dict-member for SensorErrorEventInit</a><span>, in §8.2</span>
     </ul>
-   <li><a href="#dom-sensorstate-errored">errored</a><span>, in §8.1</span>
-   <li><a href="#dom-sensorstate-errored">"errored"</a><span>, in §8.1</span>
    <li><a href="#fallback">fallback</a><span>, in §6.3</span>
    <li><a href="#find-the-polling-frequency-of-a-sensor">Find the polling frequency of a Sensor</a><span>, in §9.8</span>
    <li>
@@ -3063,8 +3056,6 @@ for their editorial input.</p>
    <li><a href="#dom-sensor-stop">stop()</a><span>, in §8.1</span>
    <li><a href="#supports-periodic-reporting-mode">supports periodic reporting mode</a><span>, in §7.2</span>
    <li><a href="#dom-sensor-timestamp">timestamp</a><span>, in §8.1</span>
-   <li><a href="#dom-sensorstate-unconnected">unconnected</a><span>, in §8.1</span>
-   <li><a href="#dom-sensorstate-unconnected">"unconnected"</a><span>, in §8.1</span>
    <li><a href="#unregister-a-sensor">Unregister a Sensor</a><span>, in §9.3</span>
    <li><a href="#update-latest-reading">Update latest reading</a><span>, in §9.9</span>
    <li><a href="#update-observers">Update Observers</a><span>, in §9.10</span>
@@ -3215,11 +3206,9 @@ for their editorial input.</p>
 };
 
 <span class="kt">enum</span> <a class="nv" href="#enumdef-sensorstate">SensorState</a> {
-  <a class="s" href="#dom-sensorstate-unconnected">"unconnected"</a>,
-  <a class="s" href="#dom-sensorstate-activating">"activating"</a>,
-  <a class="s" href="#dom-sensorstate-activated">"activated"</a>,
   <a class="s" href="#dom-sensorstate-idle">"idle"</a>,
-  <a class="s" href="#dom-sensorstate-errored">"errored"</a>
+  <a class="s" href="#dom-sensorstate-activating">"activating"</a>,
+  <a class="s" href="#dom-sensorstate-activated">"activated"</a>
 };
 
 [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext">SecureContext</a>, <a class="nv" href="#dom-sensorerrorevent-sensorerrorevent">Constructor</a>(<a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString"><span class="kt">DOMString</span></a> <a class="nv" href="#dom-sensorerrorevent-sensorerrorevent-type-erroreventinitdict-type">type</a>, <a class="n" data-link-type="idl-name" href="#dictdef-sensorerroreventinit">SensorErrorEventInit</a> <a class="nv" href="#dom-sensorerrorevent-sensorerrorevent-type-erroreventinitdict-erroreventinitdict">errorEventInitDict</a>)]
@@ -3529,12 +3518,13 @@ for their editorial input.</p>
     <li><a href="#ref-for-enumdef-sensorstate-1">8.1. The Sensor Interface</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="dom-sensorstate-unconnected">
-   <b><a href="#dom-sensorstate-unconnected">#dom-sensorstate-unconnected</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="dom-sensorstate-idle">
+   <b><a href="#dom-sensorstate-idle">#dom-sensorstate-idle</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-sensorstate-unconnected-1">8.1.1. Sensor internal slots</a> <a href="#ref-for-dom-sensorstate-unconnected-2">(2)</a>
-    <li><a href="#ref-for-dom-sensorstate-unconnected-3">8.1.4. Sensor.start()</a>
-    <li><a href="#ref-for-dom-sensorstate-unconnected-4">9.1. Construct Sensor Object</a>
+    <li><a href="#ref-for-dom-sensorstate-idle-1">8.1.1. Sensor internal slots</a> <a href="#ref-for-dom-sensorstate-idle-2">(2)</a>
+    <li><a href="#ref-for-dom-sensorstate-idle-3">8.1.5. Sensor.stop()</a>
+    <li><a href="#ref-for-dom-sensorstate-idle-4">9.1. Construct Sensor Object</a>
+    <li><a href="#ref-for-dom-sensorstate-idle-5">9.12. Handle Errors</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-sensorstate-activating">
@@ -3555,20 +3545,6 @@ for their editorial input.</p>
     <li><a href="#ref-for-dom-sensorstate-activated-3">8.1.5. Sensor.stop()</a>
     <li><a href="#ref-for-dom-sensorstate-activated-4">8.1.7. Sensor.onactivate</a>
     <li><a href="#ref-for-dom-sensorstate-activated-5">9.11. Update Observers</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-sensorstate-idle">
-   <b><a href="#dom-sensorstate-idle">#dom-sensorstate-idle</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-sensorstate-idle-1">8.1.1. Sensor internal slots</a>
-    <li><a href="#ref-for-dom-sensorstate-idle-2">8.1.5. Sensor.stop()</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-sensorstate-errored">
-   <b><a href="#dom-sensorstate-errored">#dom-sensorstate-errored</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-sensorstate-errored-1">8.1.1. Sensor internal slots</a>
-    <li><a href="#ref-for-dom-sensorstate-errored-2">9.12. Handle Errors</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="sensor-task-source">
