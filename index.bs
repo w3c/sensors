@@ -606,11 +606,9 @@ dictionary SensorOptions {
 };
 
 enum SensorState {
-  "unconnected",
-  "activating",
-  "activated",
   "idle",
-  "errored"
+  "activating",
+  "activated"
 };
 </pre>
 
@@ -650,12 +648,10 @@ with the internal slots described in the following table:
         <tr>
             <td><dfn export>\[[state]]</dfn></td>
             <td>The current state of {{Sensor}} object which is one of
-                <a enum-value>"unconnected"</a>,
+                <a enum-value>"idle"</a>,
                 <a enum-value>"activating"</a>,
                 <a enum-value>"activated"</a>,
-                <a enum-value>"idle"</a>, and
-                <a enum-value>"errored"</a>.
-                It is initially <a enum-value>"unconnected"</a>.
+                It is initially <a enum-value>"idle"</a>.
             </td>
         </tr>
         <tr>
@@ -706,10 +702,9 @@ The {{Sensor/start()}} method must run these steps or their [=equivalent=]:
         or <a enum-value>"activated"</a>, then return.
     1.  Set |sensor_instance|.[=[[state]]=] to <a enum-value>"activating"</a>.
     1.  Run these sub-steps [=in parallel=]:
-        1.  If |sensor_state| is <a enum-value>"unconnected"</a>, then:
-            1.  let |connected| be the result of invoking
-                the [=Connect to Sensor=] abstract operation.
-            1.  If |connected| is `false`, then abort these steps.
+        1.  let |connected| be the result of invoking
+            the [=Connect to Sensor=] abstract operation.
+        1.  If |connected| is `false`, then abort these steps.
         1.  Let |permission_state| be the result of invoking
             the [=Request Sensor Access=] abstract operation,
             passing it |sensor_instance| as argument.
@@ -822,7 +817,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
         {{Sensor}} {{Sensor/timestamp!!attribute}} attributes.
     1.  If [=identifying parameters=] in |options| are set, then:
         1.  Set |sensor_instance|.[=[[identifyingParameters]]=] to [=identifying parameters=].
-    1.  Set |sensor_instance|.[=[[state]]=] to <a enum-value>"unconnected"</a>.
+    1.  Set |sensor_instance|.[=[[state]]=] to <a enum-value>"idle"</a>.
     1.  Return |sensor_instance|.
 </div>
 
@@ -1120,7 +1115,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     : output
     :: None
 
-    1.  Set |sensor_instance|.[=[[state]]=] to <a enum-value>"errored"</a>.
+    1.  Set |sensor_instance|.[=[[state]]=] to <a enum-value>"idle"</a>.
     1.  [=Fire an event=] named "error" at |sensor_instance| using {{SensorErrorEvent}}
         with its {{SensorErrorEvent/error!!attribute}} attribute initialized to |error|.
 </div>
