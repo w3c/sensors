@@ -646,7 +646,7 @@ with the internal slots described in the following table:
     </thead>
     <tbody>
         <tr>
-            <td><dfn export>\[[state]]</dfn></td>
+            <td><dfn attribute for=Sensor>\[[state]]</dfn></td>
             <td>The current state of {{Sensor}} object which is one of
                 <a enum-value>"idle"</a>,
                 <a enum-value>"activating"</a>,
@@ -655,11 +655,11 @@ with the internal slots described in the following table:
             </td>
         </tr>
         <tr>
-            <td><dfn>\[[desiredPollingFrequency]]</dfn></td>
+            <td><dfn attribute for=Sensor>\[[desiredPollingFrequency]]</dfn></td>
             <td>The requested polling frequency. It is initially unset.</td>
         </tr>
         <tr>
-            <td><dfn>\[[lastEventFiredAt]]</dfn></td>
+            <td><dfn attribute for=Sensor>\[[lastEventFiredAt]]</dfn></td>
             <td>the high resolution timestamp of the latest [=sensor reading=]
                 that was sent to observers of the {{Sensor}} object,
                 expressed in milliseconds that passed since the [=time origin=].
@@ -667,13 +667,13 @@ with the internal slots described in the following table:
             </td>
         </tr>
         <tr>
-            <td><dfn>\[[waitingForUpdate]]</dfn></td>
+            <td><dfn attribute for=Sensor>\[[waitingForUpdate]]</dfn></td>
             <td>A boolean which indicates wether the observers have been updated
                 or whether the object is waiting for a new reading to do so.
                 It is initially `true`.</td>
         </tr>
         <tr>
-            <td><dfn>\[[identifyingParameters]]</dfn></td>
+            <td><dfn attribute for=Sensor>\[[identifyingParameters]]</dfn></td>
             <td>
                 A [=sensor type=]-epecific group of [=dictionary members=]
                 used to select the correct [=sensor=]
@@ -697,10 +697,10 @@ The getter of the {{Sensor/timestamp!!attribute}} attribute returns
 
 <div algorithm="to start a sensor">
 The {{Sensor/start()}} method must run these steps or their [=equivalent=]:
-    1.  Let |sensor_state| be the value of sensor_instance|.[=[[state]]=].
+    1.  Let |sensor_state| be the value of sensor_instance|.{{[[state]]}}.
     1.  If |sensor_state| is either <a enum-value>"activating"</a>
         or <a enum-value>"activated"</a>, then return.
-    1.  Set |sensor_instance|.[=[[state]]=] to <a enum-value>"activating"</a>.
+    1.  Set |sensor_instance|.{{[[state]]}} to <a enum-value>"activating"</a>.
     1.  Run these sub-steps [=in parallel=]:
         1.  let |connected| be the result of invoking
             the [=Connect to Sensor=] abstract operation.
@@ -722,9 +722,9 @@ The {{Sensor/start()}} method must run these steps or their [=equivalent=]:
 <div algorithm="to stop a sensor">
 The {{Sensor/stop()}} method must run these steps or their [=equivalent=]:
 
-    1.  If |sensor_instance|.[=[[state]]=] is neither <a enum-value>"activating"</a>
+    1.  If |sensor_instance|.{{[[state]]}} is neither <a enum-value>"activating"</a>
         nor <a enum-value>"activated"</a>, then return.
-    1.  Set |sensor_instance|.[=[[state]]=] to <a enum-value>"idle"</a>.
+    1.  Set |sensor_instance|.{{[[state]]}} to <a enum-value>"idle"</a>.
     1.  Run these sub-steps [=in parallel=]:
         1.  Invoke [=Unregister a Sensor=] passing it |sensor_instance| as argument.
 </div>
@@ -739,7 +739,7 @@ and use `onchange` when the data changed?
 
 ### Sensor.onactivate ### {#sensor-onactivate}
 
-{{Sensor/onactivate}} is an {{EventHandler}} which is called when <emu-val>this</emu-val>.[=[[state]]=] transitions from <a enum-value>"activating"</a> to <a enum-value>"activated"</a>.
+{{Sensor/onactivate}} is an {{EventHandler}} which is called when <emu-val>this</emu-val>.{{[[state]]}} transitions from <a enum-value>"activating"</a> to <a enum-value>"activated"</a>.
 
 ### Sensor.onerror ### {#sensor-onerror}
 
@@ -810,14 +810,14 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     1.  Let |sensor_instance| be a new {{Sensor}} object,
     1.  If [=sensor=] [=supports periodic reporting mode=] and
         |options|.{{frequency!!dict-member}} is [=present=], then
-        1.  Set |sensor_instance|.[=[[desiredPollingFrequency]]=] to |options|.{{frequency!!dict-member}}.
+        1.  Set |sensor_instance|.{{[[desiredPollingFrequency]]}} to |options|.{{frequency!!dict-member}}.
 
         Note: there is not guarantee that the requested |options|.{{frequency!!dict-member}}
         can be respected. The actual [=frequency=] can be calculated using
         {{Sensor}} {{Sensor/timestamp!!attribute}} attributes.
     1.  If [=identifying parameters=] in |options| are set, then:
-        1.  Set |sensor_instance|.[=[[identifyingParameters]]=] to [=identifying parameters=].
-    1.  Set |sensor_instance|.[=[[state]]=] to <a enum-value>"idle"</a>.
+        1.  Set |sensor_instance|.{{[[identifyingParameters]]}} to [=identifying parameters=].
+    1.  Set |sensor_instance|.{{[[state]]}} to <a enum-value>"idle"</a>.
     1.  Return |sensor_instance|.
 </div>
 
@@ -831,8 +831,8 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     : output
     :: a boolean.
 
-    1.  If |sensor_instance|.[=[[identifyingParameters]]=] is set and
-        |sensor_instance|.[=[[identifyingParameters]]=] allows
+    1.  If |sensor_instance|.{{[[identifyingParameters]]}} is set and
+        |sensor_instance|.{{[[identifyingParameters]]}} allows
         a unique [=sensor=] to be identified, then:
         1.  let |sensor| be that [=sensor=],
         1.  associate |sensor_instance| with |sensor|.
@@ -1024,7 +1024,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
 
     1.  Let |result| be `false`.
     1.  [=list/For each=] |sensor_instance| in |sensor|'s set of [=activated Sensor objects=]:
-        1. if |sensor_instance|.[=[[desiredPollingFrequency]]=] is set,
+        1. if |sensor_instance|.{{[[desiredPollingFrequency]]}} is set,
             1. set |result| to `true`, then [=break=].
     1. return |result|.
 </div>
@@ -1041,7 +1041,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
 
     1.  Let |frequency| be `null`.
     1.  [=set/For each=] |sensor_instance| in |sensor|'s set of [=activated Sensor objects=]:
-        1. let |f| be |sensor_instance|.[=[[desiredPollingFrequency]]=].
+        1. let |f| be |sensor_instance|.{{[[desiredPollingFrequency]]}}.
         1. if |f| is set and |f| is greater than |frequency|,
             1. set |frequency| to |f|.
     1. return |frequency|.
@@ -1090,16 +1090,16 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     : output
     :: None
 
-    1.  If |sensor_instance|.[=[[state]]=] is <a enum-value>"activating"</a>:
-        1.  Set |sensor_instance|.[=[[state]]=] <a enum-value>"activated"</a>.
+    1.  If |sensor_instance|.{{[[state]]}} is <a enum-value>"activating"</a>:
+        1.  Set |sensor_instance|.{{[[state]]}} <a enum-value>"activated"</a>.
         1.  [=Fire an event=] named "activate" at |sensor_instance|.
-    1.  If |sensor_instance|.[=[[waitingForUpdate]]=] is true, then
+    1.  If |sensor_instance|.{{[[waitingForUpdate]]}} is true, then
 
         Issue: Should we fire delayed readings? Or should we just drop readings instead?
 
-        1.  Set |sensor_instance|.[=[[waitingForUpdate]]=] to `false`.
+        1.  Set |sensor_instance|.{{[[waitingForUpdate]]}} to `false`.
         1.  [=Fire an event=] named "reading" at |sensor_instance|.
-        1.  Set |sensor_instance|.[=[[lastEventFiredAt]]=] to |timestamp|.
+        1.  Set |sensor_instance|.{{[[lastEventFiredAt]]}} to |timestamp|.
 
         Issue: Should these last steps be done from within a new task?
 </div>
@@ -1115,7 +1115,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     : output
     :: None
 
-    1.  Set |sensor_instance|.[=[[state]]=] to <a enum-value>"idle"</a>.
+    1.  Set |sensor_instance|.{{[[state]]}} to <a enum-value>"idle"</a>.
     1.  [=Fire an event=] named "error" at |sensor_instance| using {{SensorErrorEvent}}
         with its {{SensorErrorEvent/error!!attribute}} attribute initialized to |error|.
 </div>
