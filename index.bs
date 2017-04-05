@@ -685,7 +685,7 @@ The getter of the {{Sensor/timestamp!!attribute}} attribute returns
 
 <div algorithm="to start a sensor">
 The {{Sensor/start()}} method must run these steps or their [=equivalent=]:
-    1.  Let |sensor_state| be the value of sensor_instance|.{{[[state]]}}.
+    1.  Let |sensor_state| be the value of |sensor_instance|.{{[[state]]}}.
     1.  If |sensor_state| is either "activating"
         or "activated", then return.
     1.  Set |sensor_instance|.{{[[state]]}} to "activating".
