@@ -592,6 +592,7 @@ A [=sensor=] has an associated <dfn>current polling frequency</dfn> which is ini
 <pre class="idl">
 [SecureContext]
 interface Sensor : EventTarget {
+  readonly attribute boolean activated;
   readonly attribute DOMHighResTimeStamp? timestamp;
   void start();
   void stop();
@@ -675,6 +676,17 @@ with the internal slots described in the following table:
         </tr>
     </tbody>
 </table>
+
+### Sensor.activated ### {#sensor-activated}
+
+<div algorithm="is sensor activated">
+    The getter of the {{Sensor/activated!!attribute}} attribute must run these steps
+    or their [=equivalent=]:
+
+    1.  If <emu-val>this</emu-val>.{{[[state]]}} is "activating",
+        return `true`.
+    1.  Otherwise, return `false`.
+</div>
 
 ### Sensor.timestamp ### {#sensor-timestamp}
 
