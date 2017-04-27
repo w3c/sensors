@@ -310,20 +310,10 @@ band communication channel between devices.
 Sensors can potentially be used in cross-device linking and tracking of a user.
 
 
-<h3 id="browsing-context">Browsing Context</h3>
+<h3 id="mitigation-strategies">Mitigation Strategies</h3>
 
-[=Sensor readings=] must only be available in the
-[=top-level browsing context=] to avoid the privacy risk of
-sharing the information defined in this specification
-(and specifications extending it)
-with contexts unfamiliar to the user.
-For example, a mobile device will only fire the event on
-the active tab, and not on the background tabs or within iframes.
 
-Note: [Feature Policy](https://docs.google.com/document/d/1k0Ua-ZWlM_PsFCFdLMa8kaVTo32PeNZ4G7FFHqpFx4E/edit)
-should allow securely lifting those restrictions once it matures.
-
-<h3 id="secure-context">Secure Context</h3>
+<h4 id="secure-context">Secure Context</h4>
 
 [=Sensor readings=] are explicitly flagged by the
 Secure Contexts specification [[POWERFUL-FEATURES]]
@@ -333,7 +323,32 @@ or extension specifications
 must only be available within a [=secure context=].
 
 
-<h3 id="permissions" oldids="permissioning">Permissions API</h3>
+<h4 id="top-level-browsing-context" oldids="browsing-context">Top-Level Browsing Context</h4>
+
+[=Sensor readings=] must only be available in the
+[=top-level browsing context=] to avoid the privacy risk of
+sharing the information defined in this specification
+(and specifications extending it)
+with contexts unfamiliar to the user.
+
+Note: [Feature Policy](https://docs.google.com/document/d/1k0Ua-ZWlM_PsFCFdLMa8kaVTo32PeNZ4G7FFHqpFx4E/edit)
+should allow securely relaxing those restrictions once it matures.
+
+
+<h4 id="visibility-state">Visibility State</h4>
+
+For similar reasons, [=Sensor readings=] must only be available
+in [=top-level browsing context|browsing contexts=] that are visible by the user,
+that is, whose [=steps to determine the visibility state|visibility state=]
+is "visible".
+
+Issue: certain use cases require sensors to have background access.
+Using a more complex {{PermissionDescriptor}}.
+(e.g. with a boolean `allowBackgroundUsage = false`; [=dictionary member=]),
+might be the solution to relax this restriction.
+
+
+<h4 id="permissions" oldids="permissioning">Permissions API</h4>
 
 Access to [=sensor readings=] must be controlled by the Permissions API [[!PERMISSIONS]].
 User agents may use a [=new information about the user's intent|number of criteria=]
