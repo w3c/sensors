@@ -333,10 +333,12 @@ or extension specifications
 must only be available within a [=secure context=].
 
 
-<h3 id="permissioning">Obtaining Explicit User Permission</h3>
+<h3 id="permissions" oldids="permissioning">Permissions API</h3>
 
-Permission to access [=sensor readings=] must be obtained
-through the Permissions API [[!PERMISSIONS]].
+Access to [=sensor readings=] must be controlled by the Permissions API [[!PERMISSIONS]].
+User agents may use a [=new information about the user's intent|number of criteria=]
+to grant access to the [=sensor readings|readings=].
+Access may be granted without prompting the user.
 
 
 <h2 id="concepts">Concepts</h2>
