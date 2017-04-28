@@ -1186,6 +1186,15 @@ Possible extra rowspan handling
   <meta content="Bikeshed version 578172dc11c5ca130cd8ef816dc879f8e34fe1e9" name="generator">
   <link href="https://www.w3.org/TR/generic-sensor/" rel="canonical">
 <style>
+    svg g.edge text {
+        font-size: 8px;
+    }
+
+    svg g.node text {
+        font-size: 10px;
+    }
+</style>
+<style>
     #toc .current,
     #toc .current-parent {
       border-right-width: 3px;
@@ -1536,15 +1545,16 @@ that can be extended to accommodate different sensor types.</p>
       <li>
        <a href="#the-sensor-interface"><span class="secno">8.1</span> <span class="content">The Sensor Interface</span></a>
        <ol class="toc">
-        <li><a href="#sensor-internal-slots"><span class="secno">8.1.1</span> <span class="content">Sensor internal slots</span></a>
-        <li><a href="#sensor-activated"><span class="secno">8.1.2</span> <span class="content">Sensor.activated</span></a>
-        <li><a href="#sensor-timestamp"><span class="secno">8.1.3</span> <span class="content">Sensor.timestamp</span></a>
-        <li><a href="#sensor-start"><span class="secno">8.1.4</span> <span class="content">Sensor.start()</span></a>
-        <li><a href="#sensor-stop"><span class="secno">8.1.5</span> <span class="content">Sensor.stop()</span></a>
-        <li><a href="#sensor-onchange"><span class="secno">8.1.6</span> <span class="content">Sensor.onchange</span></a>
-        <li><a href="#sensor-onactivate"><span class="secno">8.1.7</span> <span class="content">Sensor.onactivate</span></a>
-        <li><a href="#sensor-onerror"><span class="secno">8.1.8</span> <span class="content">Sensor.onerror</span></a>
-        <li><a href="#event-handlers"><span class="secno">8.1.9</span> <span class="content">Event handlers</span></a>
+        <li><a href="#sensor-lifecycle"><span class="secno">8.1.1</span> <span class="content">Sensor lifecycle</span></a>
+        <li><a href="#sensor-internal-slots"><span class="secno">8.1.2</span> <span class="content">Sensor internal slots</span></a>
+        <li><a href="#sensor-activated"><span class="secno">8.1.3</span> <span class="content">Sensor.activated</span></a>
+        <li><a href="#sensor-timestamp"><span class="secno">8.1.4</span> <span class="content">Sensor.timestamp</span></a>
+        <li><a href="#sensor-start"><span class="secno">8.1.5</span> <span class="content">Sensor.start()</span></a>
+        <li><a href="#sensor-stop"><span class="secno">8.1.6</span> <span class="content">Sensor.stop()</span></a>
+        <li><a href="#sensor-onchange"><span class="secno">8.1.7</span> <span class="content">Sensor.onchange</span></a>
+        <li><a href="#sensor-onactivate"><span class="secno">8.1.8</span> <span class="content">Sensor.onactivate</span></a>
+        <li><a href="#sensor-onerror"><span class="secno">8.1.9</span> <span class="content">Sensor.onerror</span></a>
+        <li><a href="#event-handlers"><span class="secno">8.1.10</span> <span class="content">Event handlers</span></a>
        </ol>
       <li>
        <a href="#the-sensor-error-event-interface"><span class="secno">8.2</span> <span class="content">The SensorErrorEvent Interface</span></a>
@@ -2022,7 +2032,78 @@ otherwise, disable it.</p>
    <p class="note" role="note"><span>Note:</span> user agents are encouraged to stop sensor polling
 when <a data-link-type="dfn" href="#sensor-task-source" id="ref-for-sensor-task-source-3">sensor task sources</a> are disabled in order
 to save battery.</p>
-   <h4 class="heading settled" data-level="8.1.1" id="sensor-internal-slots"><span class="secno">8.1.1. </span><span class="content">Sensor internal slots</span><a class="self-link" href="#sensor-internal-slots"></a></h4>
+   <h4 class="heading settled" data-level="8.1.1" id="sensor-lifecycle"><span class="secno">8.1.1. </span><span class="content">Sensor lifecycle</span><a class="self-link" href="#sensor-lifecycle"></a></h4>
+   <svg height="79pt" viewBox="0.00 0.00 351.00 78.51" width="351pt" xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+    <g class="graph" transform="scale(1 1) rotate(0) translate(4 74.5122)">
+     <title>Sensor lifecycle</title>
+     <a href="#dom-sensor-state-slot">
+      <g class="node">
+       <title>idle</title>
+       <path d="M96.997,-64C96.997,-64 66.997,-64 66.997,-64 60.997,-64 54.997,-58 54.997,-52 54.997,-52 54.997,-36 54.997,-36 54.997,-30 60.997,-24 66.997,-24 66.997,-24 96.997,-24 96.997,-24 102.997,-24 108.997,-30 108.997,-36 108.997,-36 108.997,-52 108.997,-52 108.997,-58 102.997,-64 96.997,-64" fill="white" stroke="black"></path>
+       <text text-anchor="middle" transform="translate(0,-2)" x="81.997" y="-41.2">idle</text>
+      </g>
+     </a>
+     <a href="#dom-sensor-state-slot">
+      <g class="node">
+       <title>activating</title>
+       <path d="M214.997,-64C214.997,-64 156.997,-64 156.997,-64 150.997,-64 144.997,-58 144.997,-52 144.997,-52 144.997,-36 144.997,-36 144.997,-30 150.997,-24 156.997,-24 156.997,-24 214.997,-24 214.997,-24 220.997,-24 226.997,-30 226.997,-36 226.997,-36 226.997,-52 226.997,-52 226.997,-58 220.997,-64 214.997,-64" fill="white" stroke="black"></path>
+       <text text-anchor="middle" transform="translate(0,-2)" x="185.997" y="-41.2">activating</text>
+      </g>
+     </a>
+     <g class="edge">
+      <title>idle->activating</title>
+      <path d="M109,-38.0296C116.891,-37.4946 125.842,-37.2349 134.762,-37.2507" fill="none" stroke="black"></path>
+      <polygon fill="black" points="144.762,-37.3855 134.702,-41.7502 139.762,-37.318 134.763,-37.2506 134.763,-37.2506 134.763,-37.2506 139.762,-37.318 134.823,-32.751 144.762,-37.3855 144.762,-37.3855" stroke="black"></polygon>
+      <text text-anchor="middle" transform="translate(0,-4)" x="133.576" y="-20.9121">start()</text>
+      <a href="#sensor-start">
+       <text text-anchor="middle" transform="translate(0,-4)" x="133.576" y="-20.9121">start()</text>
+      </a>
+     </g>
+     <g class="edge">
+      <title>activating->idle</title>
+      <path d="M144.762,-50.6145C136.302,-50.8304 127.428,-50.7883 119.129,-50.4883" fill="none" stroke="black"></path>
+      <polygon fill="black" points="109,-49.9704 119.217,-45.987 113.993,-50.2258 118.987,-50.4811 118.987,-50.4811 118.987,-50.4811 113.993,-50.2258 118.757,-54.9753 109,-49.9704 109,-49.9704" stroke="black"></polygon>
+      <text text-anchor="middle" transform="translate(0,-4)" x="119.656" y="-59.3122">
+       <a href="#sensor-onerror">Error</a>
+      </text>
+     </g>
+     <a href="#dom-sensor-state-slot">
+      <g class="node">
+       <title>activated</title>
+       <path d="M330.997,-40C330.997,-40 274.997,-40 274.997,-40 268.997,-40 262.997,-34 262.997,-28 262.997,-28 262.997,-12 262.997,-12 262.997,-6 268.997,-0 274.997,-0 274.997,-0 330.997,-0 330.997,-0 336.997,-0 342.997,-6 342.997,-12 342.997,-12 342.997,-28 342.997,-28 342.997,-34 336.997,-40 330.997,-40" fill="white" stroke="black"></path>
+       <text text-anchor="middle" transform="translate(0,-2)" x="302.997" y="-17.2">activated</text>
+      </g>
+     </a>
+     <g class="edge">
+      <title>activating->activated</title>
+      <path d="M227.218,-35.606C235.505,-33.8766 244.319,-32.037 252.881,-30.2504" fill="none" stroke="black"></path>
+      <polygon fill="black" points="262.767,-28.1871 253.898,-34.6352 257.873,-29.2086 252.978,-30.2301 252.978,-30.2301 252.978,-30.2301 257.873,-29.2086 252.059,-25.825 262.767,-28.1871 262.767,-28.1871" stroke="black"></polygon>
+     </g>
+     <g class="edge">
+      <title>activated->idle</title>
+      <path d="M262.74,-17.3829C244.593,-16.1731 226.997,-15 226.997,-15 226.997,-15 144.997,-15 144.997,-15 144.997,-15 132.341,-20.9199 118.465,-27.4103" fill="none" stroke="black"></path>
+      <polygon fill="black" points="109.291,-31.7014 116.442,-23.3883 113.82,-29.5829 118.349,-27.4645 118.349,-27.4645 118.349,-27.4645 113.82,-29.5829 120.255,-31.5406 109.291,-31.7014 109.291,-31.7014" stroke="black"></polygon>
+      <text text-anchor="middle" transform="translate(0,-4)" x="200" y="5">
+       <a href="#sensor-stop">stop()</a>
+        / 
+       <a href="#sensor-onerror">Error</a>
+      </text>
+     </g>
+     <g class="node">
+      <title>start</title>
+      <ellipse cx="11.997" cy="-44" fill="black" rx="7" ry="7" stroke="black"></ellipse>
+     </g>
+     <g class="edge">
+      <title>start->idle</title>
+      <path d="M19.2724,-44C25.2754,-44 34.8461,-44 44.6767,-44" fill="none" stroke="black"></path>
+      <polygon fill="black" points="54.8766,-44 44.8767,-48.5001 49.8766,-44 44.8766,-44.0001 44.8766,-44.0001 44.8766,-44.0001 49.8766,-44 44.8766,-39.5001 54.8766,-44 54.8766,-44" stroke="black"></polygon>
+      <a href="#construct-sensor-object">
+       <text text-anchor="middle" transform="translate(0,-4)" x="29.5" y="-52.1333">construct</text>
+      </a>
+     </g>
+    </g>
+   </svg>
+   <h4 class="heading settled" data-level="8.1.2" id="sensor-internal-slots"><span class="secno">8.1.2. </span><span class="content">Sensor internal slots</span><a class="self-link" href="#sensor-internal-slots"></a></h4>
    <p>Instances of <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-7">Sensor</a></code> are created
 with the internal slots described in the following table:</p>
    <table class="vert data" id="sensor-slots">
@@ -2055,7 +2136,7 @@ with the internal slots described in the following table:</p>
       <td><dfn class="dfn-paneled idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" id="dom-sensor-identifyingparameters-slot">[[identifyingParameters]]</dfn>
       <td> A <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-27">sensor type</a>-epecific group of <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-dictionary-member">dictionary members</a> used to select the correct <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-29">sensor</a> to associate to this <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-10">Sensor</a></code> object. 
    </table>
-   <h4 class="heading settled" data-level="8.1.2" id="sensor-activated"><span class="secno">8.1.2. </span><span class="content">Sensor.activated</span><a class="self-link" href="#sensor-activated"></a></h4>
+   <h4 class="heading settled" data-level="8.1.3" id="sensor-activated"><span class="secno">8.1.3. </span><span class="content">Sensor.activated</span><a class="self-link" href="#sensor-activated"></a></h4>
    <div class="algorithm" data-algorithm="is sensor activated">
      The getter of the <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensor-activated" id="ref-for-dom-sensor-activated-1">activated</a></code> attribute must run these steps
     or their <a data-link-type="dfn" href="#equivalent" id="ref-for-equivalent-1">equivalent</a>: 
@@ -2067,9 +2148,9 @@ with the internal slots described in the following table:</p>
       <p>Otherwise, return <code>false</code>.</p>
     </ol>
    </div>
-   <h4 class="heading settled" data-level="8.1.3" id="sensor-timestamp"><span class="secno">8.1.3. </span><span class="content">Sensor.timestamp</span><a class="self-link" href="#sensor-timestamp"></a></h4>
+   <h4 class="heading settled" data-level="8.1.4" id="sensor-timestamp"><span class="secno">8.1.4. </span><span class="content">Sensor.timestamp</span><a class="self-link" href="#sensor-timestamp"></a></h4>
    <p>The getter of the <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensor-timestamp" id="ref-for-dom-sensor-timestamp-1">timestamp</a></code> attribute returns <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-9">latest reading</a>["timestamp"].</p>
-   <h4 class="heading settled" data-level="8.1.4" id="sensor-start"><span class="secno">8.1.4. </span><span class="content">Sensor.start()</span><a class="self-link" href="#sensor-start"></a></h4>
+   <h4 class="heading settled" data-level="8.1.5" id="sensor-start"><span class="secno">8.1.5. </span><span class="content">Sensor.start()</span><a class="self-link" href="#sensor-start"></a></h4>
    <div class="algorithm" data-algorithm="to start a sensor">
      The <code class="idl"><a data-link-type="idl" href="#dom-sensor-start" id="ref-for-dom-sensor-start-1">start()</a></code> method must run these steps or their <a data-link-type="dfn" href="#equivalent" id="ref-for-equivalent-2">equivalent</a>: 
     <ol>
@@ -2110,7 +2191,7 @@ with the internal slots described in the following table:</p>
       </ol>
     </ol>
    </div>
-   <h4 class="heading settled" data-level="8.1.5" id="sensor-stop"><span class="secno">8.1.5. </span><span class="content">Sensor.stop()</span><a class="self-link" href="#sensor-stop"></a></h4>
+   <h4 class="heading settled" data-level="8.1.6" id="sensor-stop"><span class="secno">8.1.6. </span><span class="content">Sensor.stop()</span><a class="self-link" href="#sensor-stop"></a></h4>
    <div class="algorithm" data-algorithm="to stop a sensor">
      The <code class="idl"><a data-link-type="idl" href="#dom-sensor-stop" id="ref-for-dom-sensor-stop-1">stop()</a></code> method must run these steps or their <a data-link-type="dfn" href="#equivalent" id="ref-for-equivalent-3">equivalent</a>: 
     <ol>
@@ -2126,18 +2207,18 @@ with the internal slots described in the following table:</p>
       </ol>
     </ol>
    </div>
-   <h4 class="heading settled" data-level="8.1.6" id="sensor-onchange"><span class="secno">8.1.6. </span><span class="content">Sensor.onchange</span><a class="self-link" href="#sensor-onchange"></a></h4>
+   <h4 class="heading settled" data-level="8.1.7" id="sensor-onchange"><span class="secno">8.1.7. </span><span class="content">Sensor.onchange</span><a class="self-link" href="#sensor-onchange"></a></h4>
    <p><code class="idl"><a data-link-type="idl" href="#dom-sensor-onchange" id="ref-for-dom-sensor-onchange-1">onchange</a></code> is an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a></code> which is called
 whenever a new <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-20">reading</a> is available.</p>
    <p class="issue" id="issue-ededc85e"><a class="self-link" href="#issue-ededc85e"></a> Should this be renamed <code>onreading</code>?
 Should we instead add an <code>ondata</code> <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a></code> for continuous data
 and use <code>onchange</code> when the data changed?</p>
-   <h4 class="heading settled" data-level="8.1.7" id="sensor-onactivate"><span class="secno">8.1.7. </span><span class="content">Sensor.onactivate</span><a class="self-link" href="#sensor-onactivate"></a></h4>
+   <h4 class="heading settled" data-level="8.1.8" id="sensor-onactivate"><span class="secno">8.1.8. </span><span class="content">Sensor.onactivate</span><a class="self-link" href="#sensor-onactivate"></a></h4>
    <p><code class="idl"><a data-link-type="idl" href="#dom-sensor-onactivate" id="ref-for-dom-sensor-onactivate-1">onactivate</a></code> is an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a></code> which is called when <emu-val>this</emu-val>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-state-slot" id="ref-for-dom-sensor-state-slot-6">[[state]]</a></code> transitions from "activating" to "activated".</p>
-   <h4 class="heading settled" data-level="8.1.8" id="sensor-onerror"><span class="secno">8.1.8. </span><span class="content">Sensor.onerror</span><a class="self-link" href="#sensor-onerror"></a></h4>
+   <h4 class="heading settled" data-level="8.1.9" id="sensor-onerror"><span class="secno">8.1.9. </span><span class="content">Sensor.onerror</span><a class="self-link" href="#sensor-onerror"></a></h4>
    <p><code class="idl"><a data-link-type="idl" href="#dom-sensor-onerror" id="ref-for-dom-sensor-onerror-1">onerror</a></code> is an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a></code> which is called whenever
 an <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-exception-type">exception</a> cannot be handled synchronously.</p>
-   <h4 class="heading settled" data-level="8.1.9" id="event-handlers"><span class="secno">8.1.9. </span><span class="content">Event handlers</span><a class="self-link" href="#event-handlers"></a></h4>
+   <h4 class="heading settled" data-level="8.1.10" id="event-handlers"><span class="secno">8.1.10. </span><span class="content">Event handlers</span><a class="self-link" href="#event-handlers"></a></h4>
    <p>The following are the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers">event handlers</a> (and their corresponding <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-type">event handler event types</a>)
 that must be supported as attributes by the objects implementing the <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-30">Sensor</a> interface:</p>
    <table class="simple">
@@ -3015,7 +3096,7 @@ for their editorial input.</p>
    <li><a href="#construct-sensor-object">Construct Sensor Object</a><span>, in §9</span>
    <li><a href="#current-polling-frequency">current polling frequency</a><span>, in §7.2</span>
    <li><a href="#default-sensor">default sensor</a><span>, in §7.1</span>
-   <li><a href="#dom-sensor-desiredpollingfrequency-slot">[[desiredPollingFrequency]]</a><span>, in §8.1.1</span>
+   <li><a href="#dom-sensor-desiredpollingfrequency-slot">[[desiredPollingFrequency]]</a><span>, in §8.1.2</span>
    <li><a href="#equivalent">equivalent</a><span>, in §Unnumbered section</span>
    <li>
     error
@@ -3035,10 +3116,10 @@ for their editorial input.</p>
    <li><a href="#handle-errors">Handle Errors</a><span>, in §9.11</span>
    <li><a href="#high-level">high-level</a><span>, in §6.2</span>
    <li><a href="#identifying-parameters">identifying parameters</a><span>, in §7.1</span>
-   <li><a href="#dom-sensor-identifyingparameters-slot">[[identifyingParameters]]</a><span>, in §8.1.1</span>
+   <li><a href="#dom-sensor-identifyingparameters-slot">[[identifyingParameters]]</a><span>, in §8.1.2</span>
    <li><a href="#implementation-specific">implementation specific</a><span>, in §6.3</span>
    <li><a href="#is-current-reporting-mode-periodic">Is Current Reporting Mode Periodic</a><span>, in §9.7</span>
-   <li><a href="#dom-sensor-lasteventfiredat-slot">[[lastEventFiredAt]]</a><span>, in §8.1.1</span>
+   <li><a href="#dom-sensor-lasteventfiredat-slot">[[lastEventFiredAt]]</a><span>, in §8.1.2</span>
    <li><a href="#latest-reading">latest reading</a><span>, in §7.2</span>
    <li><a href="#low-level">low-level</a><span>, in §6.2</span>
    <li><a href="#observe-a-sensor">Observe a Sensor</a><span>, in §9.6</span>
@@ -3068,14 +3149,14 @@ for their editorial input.</p>
    <li><a href="#set-sensor-settings">Set Sensor Settings</a><span>, in §9.5</span>
    <li><a href="#smart-sensors">Smart sensors</a><span>, in §6.2</span>
    <li><a href="#dom-sensor-start">start()</a><span>, in §8.1</span>
-   <li><a href="#dom-sensor-state-slot">[[state]]</a><span>, in §8.1.1</span>
+   <li><a href="#dom-sensor-state-slot">[[state]]</a><span>, in §8.1.2</span>
    <li><a href="#dom-sensor-stop">stop()</a><span>, in §8.1</span>
    <li><a href="#supports-periodic-reporting-mode">supports periodic reporting mode</a><span>, in §7.2</span>
    <li><a href="#dom-sensor-timestamp">timestamp</a><span>, in §8.1</span>
    <li><a href="#unregister-a-sensor">Unregister a Sensor</a><span>, in §9.3</span>
    <li><a href="#update-latest-reading">Update latest reading</a><span>, in §9.9</span>
    <li><a href="#update-observers">Update Observers</a><span>, in §9.10</span>
-   <li><a href="#dom-sensor-waitingforupdate-slot">[[waitingForUpdate]]</a><span>, in §8.1.1</span>
+   <li><a href="#dom-sensor-waitingforupdate-slot">[[waitingForUpdate]]</a><span>, in §8.1.2</span>
   </ul>
   <h3 class="no-num no-ref heading settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
   <ul class="index">
@@ -3258,8 +3339,8 @@ for their editorial input.</p>
     <li><a href="#ref-for-sensor-readings-7">6.2. Sensor Types</a> <a href="#ref-for-sensor-readings-8">(2)</a> <a href="#ref-for-sensor-readings-9">(3)</a> <a href="#ref-for-sensor-readings-10">(4)</a> <a href="#ref-for-sensor-readings-11">(5)</a>
     <li><a href="#ref-for-sensor-readings-12">6.3. Reporting Modes</a> <a href="#ref-for-sensor-readings-13">(2)</a> <a href="#ref-for-sensor-readings-14">(3)</a> <a href="#ref-for-sensor-readings-15">(4)</a> <a href="#ref-for-sensor-readings-16">(5)</a>
     <li><a href="#ref-for-sensor-readings-17">7.2. Sensor</a> <a href="#ref-for-sensor-readings-18">(2)</a>
-    <li><a href="#ref-for-sensor-readings-19">8.1.1. Sensor internal slots</a>
-    <li><a href="#ref-for-sensor-readings-20">8.1.6. Sensor.onchange</a>
+    <li><a href="#ref-for-sensor-readings-19">8.1.2. Sensor internal slots</a>
+    <li><a href="#ref-for-sensor-readings-20">8.1.7. Sensor.onchange</a>
     <li><a href="#ref-for-sensor-readings-21">9.4. Unregister a Sensor</a> <a href="#ref-for-sensor-readings-22">(2)</a>
     <li><a href="#ref-for-sensor-readings-23">9.5. Revoke sensor permission</a> <a href="#ref-for-sensor-readings-24">(2)</a>
     <li><a href="#ref-for-sensor-readings-25">9.7. Observe a Sensor</a>
@@ -3345,7 +3426,7 @@ for their editorial input.</p>
     <li><a href="#ref-for-sensor-type-16">6.3. Reporting Modes</a> <a href="#ref-for-sensor-type-17">(2)</a> <a href="#ref-for-sensor-type-18">(3)</a>
     <li><a href="#ref-for-sensor-type-19">7.1. Sensor Type</a> <a href="#ref-for-sensor-type-20">(2)</a> <a href="#ref-for-sensor-type-21">(3)</a> <a href="#ref-for-sensor-type-22">(4)</a> <a href="#ref-for-sensor-type-23">(5)</a> <a href="#ref-for-sensor-type-24">(6)</a>
     <li><a href="#ref-for-sensor-type-25">7.2. Sensor</a> <a href="#ref-for-sensor-type-26">(2)</a>
-    <li><a href="#ref-for-sensor-type-27">8.1.1. Sensor internal slots</a>
+    <li><a href="#ref-for-sensor-type-27">8.1.2. Sensor internal slots</a>
     <li><a href="#ref-for-sensor-type-28">9.2. Connect to Sensor</a>
     <li><a href="#ref-for-sensor-type-29">9.7. Observe a Sensor</a>
     <li><a href="#ref-for-sensor-type-30">10. Extensibility</a> <a href="#ref-for-sensor-type-31">(2)</a>
@@ -3384,8 +3465,8 @@ for their editorial input.</p>
     <li><a href="#ref-for-concept-sensor-20">7.1. Sensor Type</a> <a href="#ref-for-concept-sensor-21">(2)</a>
     <li><a href="#ref-for-concept-sensor-22">7.2. Sensor</a> <a href="#ref-for-concept-sensor-23">(2)</a> <a href="#ref-for-concept-sensor-24">(3)</a> <a href="#ref-for-concept-sensor-25">(4)</a> <a href="#ref-for-concept-sensor-26">(5)</a> <a href="#ref-for-concept-sensor-27">(6)</a>
     <li><a href="#ref-for-concept-sensor-28">8.1. The Sensor Interface</a>
-    <li><a href="#ref-for-concept-sensor-29">8.1.1. Sensor internal slots</a>
-    <li><a href="#ref-for-concept-sensor-30">8.1.9. Event handlers</a>
+    <li><a href="#ref-for-concept-sensor-29">8.1.2. Sensor internal slots</a>
+    <li><a href="#ref-for-concept-sensor-30">8.1.10. Event handlers</a>
     <li><a href="#ref-for-concept-sensor-31">9.1. Construct Sensor Object</a>
     <li><a href="#ref-for-concept-sensor-32">9.2. Connect to Sensor</a> <a href="#ref-for-concept-sensor-33">(2)</a> <a href="#ref-for-concept-sensor-34">(3)</a>
     <li><a href="#ref-for-concept-sensor-35">9.3. Register a Sensor Object</a>
@@ -3416,7 +3497,7 @@ for their editorial input.</p>
    <b><a href="#latest-reading">#latest-reading</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-latest-reading-1">7.2. Sensor</a> <a href="#ref-for-latest-reading-2">(2)</a> <a href="#ref-for-latest-reading-3">(3)</a> <a href="#ref-for-latest-reading-4">(4)</a> <a href="#ref-for-latest-reading-5">(5)</a> <a href="#ref-for-latest-reading-6">(6)</a> <a href="#ref-for-latest-reading-7">(7)</a> <a href="#ref-for-latest-reading-8">(8)</a>
-    <li><a href="#ref-for-latest-reading-9">8.1.3. Sensor.timestamp</a>
+    <li><a href="#ref-for-latest-reading-9">8.1.4. Sensor.timestamp</a>
     <li><a href="#ref-for-latest-reading-10">9.10. Update latest reading</a> <a href="#ref-for-latest-reading-11">(2)</a> <a href="#ref-for-latest-reading-12">(3)</a> <a href="#ref-for-latest-reading-13">(4)</a>
    </ul>
   </aside>
@@ -3457,7 +3538,7 @@ for their editorial input.</p>
     <li><a href="#ref-for-sensor-2">4. A note on Feature Detection of Hardware Features</a>
     <li><a href="#ref-for-sensor-3">7.1. Sensor Type</a> <a href="#ref-for-sensor-4">(2)</a>
     <li><a href="#ref-for-sensor-5">8.1. The Sensor Interface</a> <a href="#ref-for-sensor-6">(2)</a>
-    <li><a href="#ref-for-sensor-7">8.1.1. Sensor internal slots</a> <a href="#ref-for-sensor-8">(2)</a> <a href="#ref-for-sensor-9">(3)</a> <a href="#ref-for-sensor-10">(4)</a>
+    <li><a href="#ref-for-sensor-7">8.1.2. Sensor internal slots</a> <a href="#ref-for-sensor-8">(2)</a> <a href="#ref-for-sensor-9">(3)</a> <a href="#ref-for-sensor-10">(4)</a>
     <li><a href="#ref-for-sensor-11">9.1. Construct Sensor Object</a> <a href="#ref-for-sensor-12">(2)</a> <a href="#ref-for-sensor-13">(3)</a>
     <li><a href="#ref-for-sensor-14">9.3. Register a Sensor Object</a>
     <li><a href="#ref-for-sensor-15">9.4. Unregister a Sensor</a>
@@ -3473,44 +3554,44 @@ for their editorial input.</p>
   <aside class="dfn-panel" data-for="dom-sensor-activated">
    <b><a href="#dom-sensor-activated">#dom-sensor-activated</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-sensor-activated-1">8.1.2. Sensor.activated</a>
+    <li><a href="#ref-for-dom-sensor-activated-1">8.1.3. Sensor.activated</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-sensor-timestamp">
    <b><a href="#dom-sensor-timestamp">#dom-sensor-timestamp</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-sensor-timestamp-1">8.1.3. Sensor.timestamp</a>
+    <li><a href="#ref-for-dom-sensor-timestamp-1">8.1.4. Sensor.timestamp</a>
     <li><a href="#ref-for-dom-sensor-timestamp-2">9.1. Construct Sensor Object</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-sensor-start">
    <b><a href="#dom-sensor-start">#dom-sensor-start</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-sensor-start-1">8.1.4. Sensor.start()</a>
+    <li><a href="#ref-for-dom-sensor-start-1">8.1.5. Sensor.start()</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-sensor-stop">
    <b><a href="#dom-sensor-stop">#dom-sensor-stop</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-sensor-stop-1">8.1.5. Sensor.stop()</a>
+    <li><a href="#ref-for-dom-sensor-stop-1">8.1.6. Sensor.stop()</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-sensor-onchange">
    <b><a href="#dom-sensor-onchange">#dom-sensor-onchange</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-sensor-onchange-1">8.1.6. Sensor.onchange</a>
+    <li><a href="#ref-for-dom-sensor-onchange-1">8.1.7. Sensor.onchange</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-sensor-onactivate">
    <b><a href="#dom-sensor-onactivate">#dom-sensor-onactivate</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-sensor-onactivate-1">8.1.7. Sensor.onactivate</a>
+    <li><a href="#ref-for-dom-sensor-onactivate-1">8.1.8. Sensor.onactivate</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-sensor-onerror">
    <b><a href="#dom-sensor-onerror">#dom-sensor-onerror</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-sensor-onerror-1">8.1.8. Sensor.onerror</a>
+    <li><a href="#ref-for-dom-sensor-onerror-1">8.1.9. Sensor.onerror</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dictdef-sensoroptions">
@@ -3535,10 +3616,10 @@ for their editorial input.</p>
   <aside class="dfn-panel" data-for="dom-sensor-state-slot">
    <b><a href="#dom-sensor-state-slot">#dom-sensor-state-slot</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-sensor-state-slot-1">8.1.2. Sensor.activated</a>
-    <li><a href="#ref-for-dom-sensor-state-slot-2">8.1.4. Sensor.start()</a> <a href="#ref-for-dom-sensor-state-slot-3">(2)</a>
-    <li><a href="#ref-for-dom-sensor-state-slot-4">8.1.5. Sensor.stop()</a> <a href="#ref-for-dom-sensor-state-slot-5">(2)</a>
-    <li><a href="#ref-for-dom-sensor-state-slot-6">8.1.7. Sensor.onactivate</a>
+    <li><a href="#ref-for-dom-sensor-state-slot-1">8.1.3. Sensor.activated</a>
+    <li><a href="#ref-for-dom-sensor-state-slot-2">8.1.5. Sensor.start()</a> <a href="#ref-for-dom-sensor-state-slot-3">(2)</a>
+    <li><a href="#ref-for-dom-sensor-state-slot-4">8.1.6. Sensor.stop()</a> <a href="#ref-for-dom-sensor-state-slot-5">(2)</a>
+    <li><a href="#ref-for-dom-sensor-state-slot-6">8.1.8. Sensor.onactivate</a>
     <li><a href="#ref-for-dom-sensor-state-slot-7">9.1. Construct Sensor Object</a>
     <li><a href="#ref-for-dom-sensor-state-slot-8">9.11. Update Observers</a> <a href="#ref-for-dom-sensor-state-slot-9">(2)</a>
     <li><a href="#ref-for-dom-sensor-state-slot-10">9.12. Handle Errors</a>
@@ -3593,19 +3674,19 @@ for their editorial input.</p>
   <aside class="dfn-panel" data-for="connect-to-sensor">
    <b><a href="#connect-to-sensor">#connect-to-sensor</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-connect-to-sensor-1">8.1.4. Sensor.start()</a>
+    <li><a href="#ref-for-connect-to-sensor-1">8.1.5. Sensor.start()</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="register-a-sensor-object">
    <b><a href="#register-a-sensor-object">#register-a-sensor-object</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-register-a-sensor-object-1">8.1.4. Sensor.start()</a>
+    <li><a href="#ref-for-register-a-sensor-object-1">8.1.5. Sensor.start()</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="unregister-a-sensor">
    <b><a href="#unregister-a-sensor">#unregister-a-sensor</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-unregister-a-sensor-1">8.1.5. Sensor.stop()</a>
+    <li><a href="#ref-for-unregister-a-sensor-1">8.1.6. Sensor.stop()</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="revoke-sensor-permission">
@@ -3654,7 +3735,7 @@ for their editorial input.</p>
   <aside class="dfn-panel" data-for="handle-errors">
    <b><a href="#handle-errors">#handle-errors</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-handle-errors-1">8.1.4. Sensor.start()</a>
+    <li><a href="#ref-for-handle-errors-1">8.1.5. Sensor.start()</a>
     <li><a href="#ref-for-handle-errors-2">9.2. Connect to Sensor</a>
     <li><a href="#ref-for-handle-errors-3">9.5. Revoke sensor permission</a>
    </ul>
@@ -3662,15 +3743,15 @@ for their editorial input.</p>
   <aside class="dfn-panel" data-for="request-sensor-access">
    <b><a href="#request-sensor-access">#request-sensor-access</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-request-sensor-access-1">8.1.4. Sensor.start()</a>
+    <li><a href="#ref-for-request-sensor-access-1">8.1.5. Sensor.start()</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="equivalent">
    <b><a href="#equivalent">#equivalent</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-equivalent-1">8.1.2. Sensor.activated</a>
-    <li><a href="#ref-for-equivalent-2">8.1.4. Sensor.start()</a>
-    <li><a href="#ref-for-equivalent-3">8.1.5. Sensor.stop()</a>
+    <li><a href="#ref-for-equivalent-1">8.1.3. Sensor.activated</a>
+    <li><a href="#ref-for-equivalent-2">8.1.5. Sensor.start()</a>
+    <li><a href="#ref-for-equivalent-3">8.1.6. Sensor.stop()</a>
    </ul>
   </aside>
 <script>/* script-dfn-panel */
