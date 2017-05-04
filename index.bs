@@ -1411,7 +1411,10 @@ for proximity [=sensors=].
 
 First and foremost, I would like to thank Anssi Kostiainen
 for his continuous and dedicated support and input throughout
-the development of this specification.
+the development of this specification, as well as Mikhail Pozdnyakov,
+Alexander Shalamov, Rijubrata Bhaumik, and Kenneth Rohde Christiansen
+for their invaluable implementation feedback, suggestions, and research
+that have helped inform the specification work.
 
 Special thanks to Rick Waldron for
 driving the discussion around a generic sensor API design for the Web,
