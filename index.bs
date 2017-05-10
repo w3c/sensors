@@ -757,6 +757,12 @@ with the internal slots described in the following table:
             </td>
         </tr>
         <tr>
+            <td><dfn attribute for=Sensor>\[[lastReading]]</dfn></td>
+            <td>The snapshot of the [=latest reading=] [=ordered map|map=] taken
+                at {{[[lastEventFiredAt]]}}. It is initially `null`.
+            </td>
+        </tr>
+        <tr>
             <td><dfn attribute for=Sensor>\[[waitingForUpdate]]</dfn></td>
             <td>A boolean which indicates wether the observers have been updated
                 or whether the object is waiting for a new reading to do so.
@@ -787,7 +793,7 @@ with the internal slots described in the following table:
 ### Sensor.timestamp ### {#sensor-timestamp}
 
 The getter of the {{Sensor/timestamp!!attribute}} attribute returns
-[=latest reading=]["timestamp"].
+|sensor_instance|.{{[[lastReading]]}}["timestamp"].
 
 ### Sensor.start() ### {#sensor-start}
 
@@ -827,7 +833,8 @@ The {{Sensor/stop()}} method must run these steps or their [=equivalent=]:
 ### Sensor.onchange ### {#sensor-onchange}
 
 {{Sensor/onchange}} is an {{EventHandler}} which is called
-whenever a new [=sensor reading|reading=] is available.
+when a new [=sensor reading|reading=] is available and
+taking into account |sensor_instance|.{{[[desiredPollingFrequency]]}}.
 
 Issue: Should this be renamed `onreading`?
 Should we instead add an `ondata` {{EventHandler}} for continuous data
