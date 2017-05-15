@@ -355,6 +355,81 @@ User agents may use a [=new information about the user's intent|number of criter
 to grant access to the [=sensor readings|readings=].
 Access may be granted without prompting the user.
 
+<h3 id="mitigation-strategies-case-by-case">Mitigation strategies applied on a case by case basis</h3>
+
+Each [=sensor type=] will need to be assessed individually,
+taking into account the use cases it enables
+and its particular threat profile.
+While some of the below mitigation strategies
+are effective for certain sensors,
+they might also hinder or altogether prevent certain use cases.
+
+Note: These mitigation strategies can be apllied constantly or temporarily,
+for example when the user is carrying out specific actions,
+when other APIs which are known to amplify the level of the threat are in use,
+etc.
+
+
+<h4 id="limit-max-freqency" dfn>Limit maximum polling frequency</h4>
+
+User agents may mitigate certain threats by
+limiting the maximum polling frequency.
+What upper limit to choose depends on the [=sensor type=],
+the kind of threats the user agent is trying to protect against,
+the expected resources of the attacker, etc.
+
+Limiting the maximum polling frequency prevents use cases
+which rely on low latency or high data density.
+
+
+<h4 id="stopping-sensor" dfn>Stopping the sensor altogether</h4>
+
+This is obviously a last-resort solution,
+but it can be extremely effective if it's temporal,
+for example to prevent password skimming attempts
+when the user is entering credentials on a different origin ([[rfc6454]])
+or in a different application.
+
+
+<h4 id="limit-number-of-delivered-readings" dfn>Limit number of delivered readings</h4>
+
+An alternative to [=Limit maximum polling frequency|limiting the maximum polling frequency=] is to
+limit the number of [=sensor readings=] delivered to Web application developer,
+regardless of what frequency the sensor is polled at.
+This allows use cases which have low latency requirement
+to increase polling frequency
+without increasing the amount of data provided.
+
+Discarding intermediary readings prevents certain use cases,
+such as those relying on certain kinds of filters.
+
+
+<h4 id="reducing-accuracy" dfn>Reducing accuracy</h4>
+
+Reducing the accuracy of [=sensor readings=]
+or sensor reading timestamps
+might also help mitigate certain threats,
+thus user agents should not provide
+unnecessarily verbose readouts of sensors data.
+
+However, certain use cases require highly accurate readings,
+especially when operations carried out on the readings,
+or time deltas calculated from the timestamps,
+increase innacuracies exponentially.
+
+Note: while adding random bias to [=sensor readings=] has similar effects,
+it shouldn't be used in practice
+as it is easy to filter out the added noise.
+
+
+<h4 id="informing-user">Keeping the user informed about API use</h4>
+
+User agents may choose to keep the user informed
+about current and past use of the API.
+
+Note: this does not imply keeping a log of the actual [=sensor readings=]
+which would have issues of its own.
+
 
 <h2 id="concepts">Concepts</h2>
 
