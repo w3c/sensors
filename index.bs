@@ -1271,7 +1271,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
         Issue: Should we fire delayed readings? Or should we just drop readings instead?
 
         1.  Set |sensor_instance|.{{[[waitingForUpdate]]}} to `false`.
-        1.  [=Fire an event=] named "reading" at |sensor_instance|.
+        1.  [=Fire an event=] named "change" at |sensor_instance|.
         1.  Set |sensor_instance|.{{[[lastEventFiredAt]]}} to |timestamp|.
 
         Issue: Should these last steps be done from within a new task?
