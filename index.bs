@@ -22,6 +22,7 @@ Markup Shorthands: markdown on
 Boilerplate: omit issues-index, omit conformance, omit feedback-header
 Inline GitHub Issues: yes
 Default Biblio Status: current
+Inline Github Issues: true
 </pre>
 <pre class="anchors">
 urlPrefix: https://dom.spec.whatwg.org; spec: DOM
@@ -38,6 +39,12 @@ urlPrefix: https://html.spec.whatwg.org/multipage/; spec: HTML
       text: origin; url: origin-2
       text: navigating; url: navigate
       text: browsing context
+      text: nested browsing context
+    urlPrefix: interaction.html
+      text: gains focus; url: gain-focus
+      text: DOM anchor; url: dom-anchor
+      text: focusable area; url: focusable-area
+      text: currently focused area; url: currently-focused-area-of-a-top-level-browsing-context
 urlPrefix: http://w3c.github.io/hr-time/; spec: HR-TIME-2
   type: interface
     text: DOMHighResTimeStamp; url: dom-domhighrestimestamp
@@ -336,9 +343,23 @@ Note: [Feature Policy](https://docs.google.com/document/d/1k0Ua-ZWlM_PsFCFdLMa8k
 should allow securely relaxing those restrictions once it matures.
 
 
+<h4 id="loosing-focus">Loosing Focus to a Different Origin</h4>
+
+When a different [=top-level browsing context=] of a different [=origin=] [=gains focus=],
+or when [=nested browsing context=] of a different [=origin=] [=gains focus=],
+for example when the user carries out an in-game purchase
+using a third party payment service from within an iframe,
+they are at risk of skimming attacks from [=top-level browsing contexts=] of a different [=origin=]
+that are operating sensors.
+
+To mitigate this threat,
+[=sensor reading|readings=] of [=sensors=] operating in [=top-level browsing contexts=]
+must not be availble in such cases.
+
+
 <h4 id="visibility-state">Visibility State</h4>
 
-For similar reasons, [=Sensor readings=] must only be available
+[=Sensor readings=] must only be available
 in [=top-level browsing context|browsing contexts=] that are visible by the user,
 that is, whose [=steps to determine the visibility state|visibility state=]
 is "visible".
@@ -701,22 +722,56 @@ dictionary SensorOptions {
 
 A {{Sensor}} object has an associated [=sensor=].
 
+
+### Sensor task source ### {#task-source}
+
 Each {{Sensor}} object has a [=task source=]
 called a <dfn>sensor task source</dfn>, initially empty.
-A [=sensor task source=] can be enabled or disabled,
-and is initially enabled.
-When enabled,
+
+Issue(212): 
+
+A [=sensor task source=] can be enabled or disabled.
+
+To determine its initial state,
+run the steps to [=update the state of the sensor task source=].
+
+When the [=sensor task source=] is enabled,
 the [=event loop=] must use it as one of its [=task sources=].
 The [=task source=] for the [=tasks=] mentioned in this specification
 is the [=sensor task source=].
 
-When the [=visibility state=] of the [=Document=] in
+When the [=visibility state=] of the [=active document=] in
 the [=top-level browsing context=] changes,
-let |current_visibility_state| be the result of running
-the [=steps to determine the visibility state=] of the [=Document=].
-If |current_visibility_state| is "visible",
-enable the sensor task source,
-otherwise, disable it.
+the user agent must [=update the state of the sensor task source=].
+
+When an element that is the [=DOM anchor=] of a [=focusable area=] in any [=browsing context=] [=gains focus=]
+the user agent must [=update the state of the sensor task source=].
+ 
+<div algorithm>
+    
+    To <dfn export>update the state of the sensor task source</dfn>,
+    run the following steps:
+    
+    1.  Let |document| be the [=top-level browsing context=]'s [=active document=].
+    1.  Let |current_visibility_state| be the result of running
+        the [=steps to determine the visibility state=] of |document|.
+    1.  If |current_visibility_state| is not "visible", then:
+        1.  disable the [=sensor task source=].
+        1.  Return.
+    1.  If the [=currently focused area=] of the current [=top-level browsing context=]
+        is a [=nested browsing context=] whose [=active document=]'s [=origin=]
+        is not [=same origin-domain=] as |document|'s [=origin=], then:
+        1.  disable the [=sensor task source=].
+        1.  Return.
+    1.  If the [=currently focused area=] is in a different [=top-level browsing context=]
+        than the current [=top-level browsing context=]
+        and the [=origin=] of the [=active document=]
+        of that [=top-level browsing context=]
+        is not [=same origin-domain=] as |document|'s [=origin=], then:
+        1.  disable the [=sensor task source=].
+        1.  Return.
+    1.  Enable the [=sensor task source=].
+</div>
 
 Note: user agents are encouraged to stop sensor polling
 when [=sensor task sources=] are disabled in order
