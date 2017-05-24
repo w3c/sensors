@@ -1151,9 +1151,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
         and |latest reading|["timestamp"] as arguments.
     1.  Otherwise, poll |sensor| immediately.
 
-        Issue: How do we handle this for [=sensors=] that
-        do not provide values immediately?
-        Fire a dedicated event to signal brokenness?
+        Issue(214):
 
     1.  If |sensor|'s [=periodic reporting mode flag=] is set,
         1.  let |frequency| be the [=current polling frequency=],
