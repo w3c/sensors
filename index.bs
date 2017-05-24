@@ -20,6 +20,7 @@ Indent: 2
 Repository: w3c/sensors
 Markup Shorthands: markdown on
 Boilerplate: omit issues-index, omit conformance, omit feedback-header
+Inline GitHub Issues: yes
 Default Biblio Status: current
 </pre>
 <pre class="anchors">
@@ -904,9 +905,7 @@ The {{Sensor/stop()}} method must run these steps or their [=equivalent=]:
 {{Sensor/onchange}} is an {{EventHandler}} which is called
 whenever a new [=sensor reading|reading=] is available.
 
-Issue: Should this be renamed `onreading`?
-Should we instead add an `ondata` {{EventHandler}} for continuous data
-and use `onchange` when the data changed?
+Issue(205):
 
 ### Sensor.onactivate ### {#sensor-onactivate}
 
