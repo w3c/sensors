@@ -732,7 +732,7 @@ to save battery.
         font-size: 10px;
     }
 </style>
-<svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" height="79pt" viewBox="0.00 0.00 351.00 78.51" width="351pt">
+<svg xmlns="http://www.w3.org/2000/svg" height="79pt" viewBox="0.00 0.00 351.00 78.51" width="351pt">
     <g class="graph" transform="scale(1 1) rotate(0) translate(4 74.5122)">
         <title>Sensor lifecycle</title>
         <a xlink:href="#dom-sensor-state-slot">
