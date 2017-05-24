@@ -2554,9 +2554,12 @@ that must be supported as attributes by the objects implementing the <a data-lin
   invoke the <a data-link-type="dfn" href="#update-observers" id="ref-for-update-observers-1">update observers</a> abstract operation passing it <var>sensor_instance</var> and <var>latest reading</var>["timestamp"] as arguments.</p>
      <li data-md="">
       <p>Otherwise, poll <var>sensor</var> immediately.</p>
-      <p class="issue" id="issue-ad0f065d"><a class="self-link" href="#issue-ad0f065d"></a> How do we handle this for <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-40">sensors</a> that
-  do not provide values immediately?
-  Fire a dedicated event to signal brokenness?</p>
+      <div class="issue no-marker" id="issue-d41d8cd90">
+       <a class="self-link" href="#issue-d41d8cd90"></a><a class="marker" href="https://github.com/w3c/sensors/issues/214">Issue #214 on GitHub: “Sensors unable to provide their state when instantiated”</a>
+       <p>Some HW sensors on some platforms are unable to provide their state upon instantiation and sometimes take a very long time to provide any reading whatsoever.</p>
+       <p>This is related to an old issue (see <a class="issue-link js-issue-link" data-error-text="Failed to load issue title" data-id="132812647" data-permission-text="Issue title is private" data-url="https://github.com/w3c/sensors/issues/87" href="https://github.com/w3c/sensors/issues/87">#87</a>), was a concern in previous APIs and this behavior is currently in violation of the spec.</p>
+       <p>Perhaps the spec should special case such sensors and force them to advertise their inability to provide the current state upfront (e.g. via a dedicated event?)</p>
+      </div>
      <li data-md="">
       <p>If <var>sensor</var>’s <a data-link-type="dfn" href="#periodic-reporting-mode-flag" id="ref-for-periodic-reporting-mode-flag-7">periodic reporting mode flag</a> is set,</p>
       <ol>
@@ -2595,7 +2598,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
     <dl>
      <dt data-md="">input
      <dd data-md="">
-      <p><var>sensor</var>, a <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-41">sensor</a>.</p>
+      <p><var>sensor</var>, a <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-40">sensor</a>.</p>
      <dt data-md="">output
      <dd data-md="">
       <p><var>result</var>, a boolean.</p>
@@ -2622,7 +2625,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
     <dl>
      <dt data-md="">input
      <dd data-md="">
-      <p><var>sensor</var>, a <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-42">sensor</a>.</p>
+      <p><var>sensor</var>, a <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-41">sensor</a>.</p>
      <dt data-md="">output
      <dd data-md="">
       <p><var>frequency</var>, a <a data-link-type="dfn" href="#frequency" id="ref-for-frequency-4">frequency</a>.</p>
@@ -2651,11 +2654,11 @@ that must be supported as attributes by the objects implementing the <a data-lin
     <dl>
      <dt data-md="">input
      <dd data-md="">
-      <p><var>sensor</var>, a <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-43">sensor</a>.</p>
+      <p><var>sensor</var>, a <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-42">sensor</a>.</p>
      <dd data-md="">
       <p><var>reading</var>, a <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-30">sensor reading</a>.</p>
      <dd data-md="">
-      <p><var>reading_timestamp</var>, the timestamp at which <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-44">sensor</a> was polled.</p>
+      <p><var>reading_timestamp</var>, the timestamp at which <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-43">sensor</a> was polled.</p>
     </dl>
     <p class="issue" id="issue-d62b5d37"><a class="self-link" href="#issue-d62b5d37"></a> The timestamp needs to be specified more precisely,
     see <a href="https://github.com/w3c/sensors/issues/155">issue #155</a>.</p>
@@ -2763,7 +2766,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
     </dl>
     <ol>
      <li data-md="">
-      <p>Let <var>sensor</var> be the <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-45">sensor</a> associated with <var>sensor_instance</var>.</p>
+      <p>Let <var>sensor</var> be the <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-44">sensor</a> associated with <var>sensor_instance</var>.</p>
      <li data-md="">
       <p>Let <var>permission_name</var> be the <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/permissions/#enumdef-permissionname">PermissionName</a></code> associated with <var>sensor</var>.</p>
      <li data-md="">
@@ -2785,12 +2788,12 @@ as appropriate.</p>
 should only be available within a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#secure-context">secure context</a>.</p>
    <h3 class="heading settled" data-level="10.2" id="naming"><span class="secno">10.2. </span><span class="content">Naming</span><a class="self-link" href="#naming"></a></h3>
    <p><code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-21">Sensor</a></code> interfaces for <a data-link-type="dfn" href="#low-level" id="ref-for-low-level-10">low-level</a> sensors should be
-named after their associated <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-46">sensor</a>.
+named after their associated <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-45">sensor</a>.
 So for example, the interface associated with a gyroscope
 should be simply named <code>Gyroscope</code>. <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-22">Sensor</a></code> interfaces for <a data-link-type="dfn" href="#high-level" id="ref-for-high-level-10">high-level</a> sensors should be
-named by combining the physical quantity the <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-47">sensor</a> measures
+named by combining the physical quantity the <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-46">sensor</a> measures
 with the "Sensor" suffix.
-For example, a <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-48">sensor</a> measuring
+For example, a <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-47">sensor</a> measuring
 the distance at which an object is from it
 may see its associated interface called <code>ProximitySensor</code>.</p>
    <p>Attributes of the <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-23">Sensor</a></code> subclass that
@@ -2871,9 +2874,9 @@ for each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-35"
     <li data-md="">
      <p>A <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-dictionary">dictionary</a> whose <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-inherited-dictionaries">inherited dictionaries</a> contains <code class="idl"><a data-link-type="idl" href="#dictdef-sensoroptions" id="ref-for-dictdef-sensoroptions-3">SensorOptions</a></code>.</p>
     <li data-md="">
-     <p>A <a data-link-type="dfn" href="#default-sensor" id="ref-for-default-sensor-3">default sensor</a>. Generally, devices are equipped with a single <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-49">sensor</a> of each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-36">type</a>,
+     <p>A <a data-link-type="dfn" href="#default-sensor" id="ref-for-default-sensor-3">default sensor</a>. Generally, devices are equipped with a single <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-48">sensor</a> of each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-36">type</a>,
   so defining a <a data-link-type="dfn" href="#default-sensor" id="ref-for-default-sensor-4">default sensor</a> should be straightforward.
-  For <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-37">sensor types</a> where multiple <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-50">sensors</a> are common,
+  For <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-37">sensor types</a> where multiple <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-49">sensors</a> are common,
   extension specifications may choose not to define a <a data-link-type="dfn" href="#default-sensor" id="ref-for-default-sensor-5">default sensor</a>,
   especially when doing so would not make sense.</p>
     <li data-md="">
@@ -2883,7 +2886,7 @@ for each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-35"
    <p>Provide guidance on how to extend the Permission API <a data-link-type="biblio" href="#biblio-permissions">[PERMISSIONS]</a> for each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-38">sensor types</a>.</p>
    <h3 class="heading settled" data-level="10.8" id="example-webidl"><span class="secno">10.8. </span><span class="content">Example WebIDL</span><a class="self-link" href="#example-webidl"></a></h3>
    <p>Here’s example WebIDL for a possible extension of this specification
-for proximity <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-51">sensors</a>.</p>
+for proximity <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-50">sensors</a>.</p>
 <pre class="example" id="example-899e9b74"><a class="self-link" href="#example-899e9b74"></a>[SecureContext, Constructor(optional ProximitySensorOptions proximitySensorOptions)]
 interface ProximitySensor : Sensor {
     readonly attribute unrestricted double distance;
@@ -3556,14 +3559,14 @@ for their editorial input.</p>
     <li><a href="#ref-for-concept-sensor-36">9.4. Unregister a Sensor</a>
     <li><a href="#ref-for-concept-sensor-37">9.5. Revoke sensor permission</a>
     <li><a href="#ref-for-concept-sensor-38">9.6. Set Sensor Settings</a>
-    <li><a href="#ref-for-concept-sensor-39">9.7. Observe a Sensor</a> <a href="#ref-for-concept-sensor-40">(2)</a>
-    <li><a href="#ref-for-concept-sensor-41">9.8. Is Current Reporting Mode Periodic</a>
-    <li><a href="#ref-for-concept-sensor-42">9.9. Find the polling frequency of a Sensor</a>
-    <li><a href="#ref-for-concept-sensor-43">9.10. Update latest reading</a> <a href="#ref-for-concept-sensor-44">(2)</a>
-    <li><a href="#ref-for-concept-sensor-45">9.13. Request Sensor Access</a>
-    <li><a href="#ref-for-concept-sensor-46">10.2. Naming</a> <a href="#ref-for-concept-sensor-47">(2)</a> <a href="#ref-for-concept-sensor-48">(3)</a>
-    <li><a href="#ref-for-concept-sensor-49">10.6. Definition Requirements</a> <a href="#ref-for-concept-sensor-50">(2)</a>
-    <li><a href="#ref-for-concept-sensor-51">10.8. Example WebIDL</a>
+    <li><a href="#ref-for-concept-sensor-39">9.7. Observe a Sensor</a>
+    <li><a href="#ref-for-concept-sensor-40">9.8. Is Current Reporting Mode Periodic</a>
+    <li><a href="#ref-for-concept-sensor-41">9.9. Find the polling frequency of a Sensor</a>
+    <li><a href="#ref-for-concept-sensor-42">9.10. Update latest reading</a> <a href="#ref-for-concept-sensor-43">(2)</a>
+    <li><a href="#ref-for-concept-sensor-44">9.13. Request Sensor Access</a>
+    <li><a href="#ref-for-concept-sensor-45">10.2. Naming</a> <a href="#ref-for-concept-sensor-46">(2)</a> <a href="#ref-for-concept-sensor-47">(3)</a>
+    <li><a href="#ref-for-concept-sensor-48">10.6. Definition Requirements</a> <a href="#ref-for-concept-sensor-49">(2)</a>
+    <li><a href="#ref-for-concept-sensor-50">10.8. Example WebIDL</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="activated-sensor-objects">
