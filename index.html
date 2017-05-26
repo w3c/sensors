@@ -2362,7 +2362,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
     <dl>
      <dt data-md="">input
      <dd data-md="">
-      <p><var>sensor_instance</var>, a {{Sensor} object.</p>
+      <p><var>sensor_instance</var>, a <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-14">Sensor</a></code> object.</p>
      <dt data-md="">output
      <dd data-md="">
       <p>a boolean.</p>
@@ -2402,7 +2402,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
     <dl>
      <dt data-md="">input
      <dd data-md="">
-      <p><var>sensor_instance</var>, a <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-14">Sensor</a></code> object.</p>
+      <p><var>sensor_instance</var>, a <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-15">Sensor</a></code> object.</p>
      <dt data-md="">output
      <dd data-md="">
       <p>None</p>
@@ -2422,7 +2422,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
     <dl>
      <dt data-md="">input
      <dd data-md="">
-      <p><var>sensor_instance</var>, a <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-15">Sensor</a></code> object.</p>
+      <p><var>sensor_instance</var>, a <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-16">Sensor</a></code> object.</p>
      <dt data-md="">output
      <dd data-md="">
       <p>None</p>
@@ -2539,7 +2539,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
    <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="9.7" data-lt="Observe a Sensor" data-noexport="" id="observe-a-sensor"><span class="secno">9.7. </span><span class="content">Observe a Sensor</span></h3>
    <div class="algorithm" data-algorithm="observe a sensor">
     <p class="issue" id="issue-02380d4b"><a class="self-link" href="#issue-02380d4b"></a> This needs to be refactored in an abstract operation
-    that has access to the <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-16">Sensor</a></code> instance <var>sensor_instance</var> that just got started.</p>
+    that has access to the <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-17">Sensor</a></code> instance <var>sensor_instance</var> that just got started.</p>
     <dl>
      <dt data-md="">input
      <dd data-md="">
@@ -2566,7 +2566,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
        <li data-md="">
         <p>let <var>frequency</var> be the <a data-link-type="dfn" href="#current-polling-frequency" id="ref-for-current-polling-frequency-5">current polling frequency</a>,
   capped by the upper and lower bounds of the underlying hardware.</p>
-        <p class="issue" id="issue-7570e8b7"><a class="self-link" href="#issue-7570e8b7"></a> Should this max polling frequency be reflected in the <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-17">Sensor</a></code> interface?
+        <p class="issue" id="issue-7570e8b7"><a class="self-link" href="#issue-7570e8b7"></a> Should this max polling frequency be reflected in the <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-18">Sensor</a></code> interface?
   E.g. Through a dedicated attribute?</p>
         <p class="issue" id="issue-b28ffcf7"><a class="self-link" href="#issue-b28ffcf7"></a> Does the max polling frequency affect the reporting frequency?
   If so, should we advise the developer of this issue?
@@ -2705,7 +2705,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
     <dl>
      <dt data-md="">input
      <dd data-md="">
-      <p><var>sensor_instance</var>, a <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-18">Sensor</a></code> object.</p>
+      <p><var>sensor_instance</var>, a <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-19">Sensor</a></code> object.</p>
      <dd data-md="">
       <p><var>timestamp</var>, a high resolution timestamp.</p>
      <dt data-md="">output
@@ -2763,7 +2763,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
     <dl>
      <dt data-md="">input
      <dd data-md="">
-      <p><var>sensor_instance</var>, a <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-19">Sensor</a></code> object.</p>
+      <p><var>sensor_instance</var>, a <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-20">Sensor</a></code> object.</p>
      <dd data-md="">
       <p><var>error</var>, an <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-exception">exception</a>.</p>
      <dt data-md="">output
@@ -2782,7 +2782,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
     <dl>
      <dt data-md="">input
      <dd data-md="">
-      <p><var>sensor_instance</var>, a <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-20">Sensor</a></code> object.</p>
+      <p><var>sensor_instance</var>, a <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-21">Sensor</a></code> object.</p>
      <dt data-md="">output
      <dd data-md="">
       <p><var>state</var>, a <a data-link-type="dfn" href="https://w3c.github.io/permissions/#permission-state">permission state</a>.</p>
@@ -2810,16 +2810,16 @@ as appropriate.</p>
    <p>All interfaces defined by extension specifications
 should only be available within a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#secure-context">secure context</a>.</p>
    <h3 class="heading settled" data-level="10.2" id="naming"><span class="secno">10.2. </span><span class="content">Naming</span><a class="self-link" href="#naming"></a></h3>
-   <p><code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-21">Sensor</a></code> interfaces for <a data-link-type="dfn" href="#low-level" id="ref-for-low-level-10">low-level</a> sensors should be
+   <p><code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-22">Sensor</a></code> interfaces for <a data-link-type="dfn" href="#low-level" id="ref-for-low-level-10">low-level</a> sensors should be
 named after their associated <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-45">sensor</a>.
 So for example, the interface associated with a gyroscope
-should be simply named <code>Gyroscope</code>. <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-22">Sensor</a></code> interfaces for <a data-link-type="dfn" href="#high-level" id="ref-for-high-level-10">high-level</a> sensors should be
+should be simply named <code>Gyroscope</code>. <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-23">Sensor</a></code> interfaces for <a data-link-type="dfn" href="#high-level" id="ref-for-high-level-10">high-level</a> sensors should be
 named by combining the physical quantity the <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-46">sensor</a> measures
 with the "Sensor" suffix.
 For example, a <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-47">sensor</a> measuring
 the distance at which an object is from it
 may see its associated interface called <code>ProximitySensor</code>.</p>
-   <p>Attributes of the <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-23">Sensor</a></code> subclass that
+   <p>Attributes of the <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-24">Sensor</a></code> subclass that
 hold <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-31">sensor readings</a> values
 should be named after the full name of these values.
 For example, the <code>Thermometer</code> interface should hold
@@ -2873,7 +2873,7 @@ exposing <a data-link-type="dfn" href="#low-level" id="ref-for-low-level-13">low
     <li data-md="">
      <p>allow multiple sensors of the same type to be instantiated,</p>
     <li data-md="">
-     <p>create different interfaces that inherit from <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-24">Sensor</a></code>,</p>
+     <p>create different interfaces that inherit from <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-25">Sensor</a></code>,</p>
     <li data-md="">
      <p>add constructor parameters to tweak sensors settings (e.g. setting required accuracy).</p>
    </ul>
@@ -2882,7 +2882,7 @@ exposing <a data-link-type="dfn" href="#low-level" id="ref-for-low-level-13">low
 each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-34">sensor type</a> in extension specifications:</p>
    <ul>
     <li data-md="">
-     <p>An <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-interface">interface</a> whose <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-inherited-interfaces">inherited interfaces</a> contains <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-25">Sensor</a></code>.
+     <p>An <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-interface">interface</a> whose <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-inherited-interfaces">inherited interfaces</a> contains <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-26">Sensor</a></code>.
   This interface must be constructible.
   Its [<code class="idl"><a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Constructor">Constructor</a></code>] must take, as argument,
   an optional <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-dictionary">dictionary</a> whose <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-inherited-dictionaries">inherited dictionaries</a> contains <code class="idl"><a data-link-type="idl" href="#dictdef-sensoroptions" id="ref-for-dictdef-sensoroptions-2">SensorOptions</a></code>.
@@ -3649,15 +3649,16 @@ for their editorial input.</p>
     <li><a href="#ref-for-sensor-5">8.1. The Sensor Interface</a> <a href="#ref-for-sensor-6">(2)</a>
     <li><a href="#ref-for-sensor-7">8.1.2. Sensor internal slots</a> <a href="#ref-for-sensor-8">(2)</a> <a href="#ref-for-sensor-9">(3)</a> <a href="#ref-for-sensor-10">(4)</a>
     <li><a href="#ref-for-sensor-11">9.1. Construct Sensor Object</a> <a href="#ref-for-sensor-12">(2)</a> <a href="#ref-for-sensor-13">(3)</a>
-    <li><a href="#ref-for-sensor-14">9.3. Register a Sensor Object</a>
-    <li><a href="#ref-for-sensor-15">9.4. Unregister a Sensor</a>
-    <li><a href="#ref-for-sensor-16">9.7. Observe a Sensor</a> <a href="#ref-for-sensor-17">(2)</a>
-    <li><a href="#ref-for-sensor-18">9.11. Update Observers</a>
-    <li><a href="#ref-for-sensor-19">9.12. Handle Errors</a>
-    <li><a href="#ref-for-sensor-20">9.13. Request Sensor Access</a>
-    <li><a href="#ref-for-sensor-21">10.2. Naming</a> <a href="#ref-for-sensor-22">(2)</a> <a href="#ref-for-sensor-23">(3)</a>
-    <li><a href="#ref-for-sensor-24">10.5. When is Enabling Multiple Sensors of the Same Type Not the Right Choice?</a>
-    <li><a href="#ref-for-sensor-25">10.6. Definition Requirements</a>
+    <li><a href="#ref-for-sensor-14">9.2. Connect to Sensor</a>
+    <li><a href="#ref-for-sensor-15">9.3. Register a Sensor Object</a>
+    <li><a href="#ref-for-sensor-16">9.4. Unregister a Sensor</a>
+    <li><a href="#ref-for-sensor-17">9.7. Observe a Sensor</a> <a href="#ref-for-sensor-18">(2)</a>
+    <li><a href="#ref-for-sensor-19">9.11. Update Observers</a>
+    <li><a href="#ref-for-sensor-20">9.12. Handle Errors</a>
+    <li><a href="#ref-for-sensor-21">9.13. Request Sensor Access</a>
+    <li><a href="#ref-for-sensor-22">10.2. Naming</a> <a href="#ref-for-sensor-23">(2)</a> <a href="#ref-for-sensor-24">(3)</a>
+    <li><a href="#ref-for-sensor-25">10.5. When is Enabling Multiple Sensors of the Same Type Not the Right Choice?</a>
+    <li><a href="#ref-for-sensor-26">10.6. Definition Requirements</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-sensor-activated">
