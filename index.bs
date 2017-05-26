@@ -999,7 +999,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
 <div algorithm="connect to sensor">
 
     : input
-    :: |sensor_instance|, a {{Sensor} object.
+    :: |sensor_instance|, a {{Sensor}} object.
     : output
     :: a boolean.
 
