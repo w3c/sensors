@@ -1453,7 +1453,7 @@ pre.idl.highlight { color: #708090; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-05-24">24 May 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-05-26">26 May 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2732,7 +2732,30 @@ that must be supported as attributes by the objects implementing the <a data-lin
        <li data-md="">
         <p>Set <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-lasteventfiredat-slot" id="ref-for-dom-sensor-lasteventfiredat-slot-1">[[lastEventFiredAt]]</a></code> to <var>timestamp</var>.</p>
       </ol>
-      <p class="issue" id="issue-3c3e5a61"><a class="self-link" href="#issue-3c3e5a61"></a> Should these last steps be done from within a new task?</p>
+      <div class="issue no-marker" id="issue-d41d8cd91">
+       <a class="self-link" href="#issue-d41d8cd91"></a><a class="marker" href="https://github.com/w3c/sensors/issues/215">Issue #215 on GitHub: “Use simple event dispatch mechanism instead of task source (queued)”</a>
+       <p><strong>Short summary:</strong></p>
+       <p>Sensors are operating in simple Publish &amp; Subscribe model, therefore, queued event processing is not required and over-complicates API and it's implementation.</p>
+       <p><strong>Detailed explanation:</strong></p>
+       <p>Event queue is suitable for cases where ordered task processing is needed. For example, networking, databases or APIs that provide sync API and manage async task queue. You can call <code>write(data);</code> multiple times and each write is ordered task, if error happens, all pending tasks are removed from queue and <code>'onerror'</code> event task is put to the queue.</p>
+       <p><strong>Problems with queued task processing:</strong></p>
+       <ul>
+        <li>The <code>'onchange'</code> event would need to carry reading data, otherwise when event queue is processed, event would not be in sync with <code>Sensor.|reading|</code>
+        <li>When we attach |reading| to an event, we will have another problem, <code>event.reading != Sensor.reading</code>, might be confusing for developers.
+       </ul>
+       <p><strong>Pros for simple event:</strong></p>
+       <ul>
+        <li><code>onchange</code> is synchronized with <code>Sensor.reading</code>
+        <li>No need to carry extra data in event.
+        <li>No need to manage queue, we don't even need a queue, since we always have 1 update per event loop cycle per Sensor instance.
+        <li>Simpler for browser vendors to implement.
+       </ul>
+       <p><strong>Proposed resolution:</strong></p>
+       <ul>
+        <li>Use simple event dispatch mechanism
+        <li>Remove task source related information from the spec
+       </ul>
+      </div>
     </ol>
    </div>
    <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="9.12" data-lt="Handle Errors" data-noexport="" id="handle-errors"><span class="secno">9.12. </span><span class="content">Handle Errors</span></h3>
