@@ -38,6 +38,8 @@ urlPrefix: https://html.spec.whatwg.org/multipage/; spec: HTML
       text: origin; url: origin-2
       text: navigating; url: navigate
       text: browsing context
+    urlPrefix: interaction.html
+      text: triggered by user activation
 urlPrefix: http://w3c.github.io/hr-time/; spec: HR-TIME-2
   type: interface
     text: DOMHighResTimeStamp; url: dom-domhighrestimestamp
@@ -431,6 +433,13 @@ about current and past use of the API.
 Note: this does not imply keeping a log of the actual [=sensor readings=]
 which would have issues of its own.
 
+<h4 id="user-triggered-activation" dfn>User triggered activation</h4>
+
+The information whether the user agent is requested to access [=sensor readings=] due to
+[=triggered by user activation|user triggered activation=], may be used as a
+[=new information about the user's intent|criteria=] to grant access to [=sensor readings|readings=].
+The user agent may prompt user or apply other mitigation strategy when [=sensor readings=] are
+requested without user consent.
 
 <h2 id="concepts">Concepts</h2>
 
