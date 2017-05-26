@@ -1271,7 +1271,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
         1.  [=Fire an event=] named "change" at |sensor_instance|.
         1.  Set |sensor_instance|.{{[[lastEventFiredAt]]}} to |timestamp|.
 
-        Issue: Should these last steps be done from within a new task?
+        Issue(215):
 </div>
 
 
