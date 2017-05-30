@@ -343,18 +343,19 @@ Note: [Feature Policy](https://docs.google.com/document/d/1k0Ua-ZWlM_PsFCFdLMa8k
 should allow securely relaxing those restrictions once it matures.
 
 
-<h4 id="loosing-focus">Loosing Focus to a Different Origin</h4>
+<h4 id="losing-focus">Loosing Focus</h4>
 
-When a different [=top-level browsing context=] of a different [=origin=] [=gains focus=],
-or when [=nested browsing context=] of a different [=origin=] [=gains focus=],
-for example when the user carries out an in-game purchase
-using a third party payment service from within an iframe,
-they are at risk of skimming attacks from [=top-level browsing contexts=] of a different [=origin=]
-that are operating sensors.
+When the [=top-level browsing context=] loses focus,
+or when a [=nested browsing context=] of a different [=origin=] [=gains focus=]
+(for example when the user carries out an in-game purchase
+using a third party payment service from within an iframe)
+the [=top-level browsing contexts=] suddenly becomes in a position
+to carry out a skimming attack against the [=browsing context=] that has [=gains focus|gained focus=].
 
 To mitigate this threat,
-[=sensor reading|readings=] of [=sensors=] operating in [=top-level browsing contexts=]
-must not be availble in such cases.
+[=sensor reading|readings=] of [=sensors=] running in a [=top-level browsing contexts=]
+must not be delivered in such cases.
+A [=security check=] is run before [=sensor reading=] are delivered to ensure that.
 
 
 <h4 id="visibility-state">Visibility State</h4>
@@ -363,6 +364,7 @@ must not be availble in such cases.
 in [=top-level browsing context|browsing contexts=] that are visible by the user,
 that is, whose [=steps to determine the visibility state|visibility state=]
 is "visible".
+A [=security check=] is run before [=sensor reading=] are delivered to ensure that.
 
 Issue: certain use cases require sensors to have background access.
 Using a more complex {{PermissionDescriptor}}.
@@ -721,61 +723,6 @@ dictionary SensorOptions {
 </pre>
 
 A {{Sensor}} object has an associated [=sensor=].
-
-
-### Sensor task source ### {#task-source}
-
-Each {{Sensor}} object has a [=task source=]
-called a <dfn>sensor task source</dfn>, initially empty.
-
-Issue(212): 
-
-A [=sensor task source=] can be enabled or disabled.
-
-To determine its initial state,
-run the steps to [=update the state of the sensor task source=].
-
-When the [=sensor task source=] is enabled,
-the [=event loop=] must use it as one of its [=task sources=].
-The [=task source=] for the [=tasks=] mentioned in this specification
-is the [=sensor task source=].
-
-When the [=visibility state=] of the [=active document=] in
-the [=top-level browsing context=] changes,
-the user agent must [=update the state of the sensor task source=].
-
-When an element that is the [=DOM anchor=] of a [=focusable area=] in any [=browsing context=] [=gains focus=]
-the user agent must [=update the state of the sensor task source=].
- 
-<div algorithm>
-    
-    To <dfn export>update the state of the sensor task source</dfn>,
-    run the following steps:
-    
-    1.  Let |document| be the [=top-level browsing context=]'s [=active document=].
-    1.  Let |current_visibility_state| be the result of running
-        the [=steps to determine the visibility state=] of |document|.
-    1.  If |current_visibility_state| is not "visible", then:
-        1.  disable the [=sensor task source=].
-        1.  Return.
-    1.  If the [=currently focused area=] of the current [=top-level browsing context=]
-        is a [=nested browsing context=] whose [=active document=]'s [=origin=]
-        is not [=same origin-domain=] as |document|'s [=origin=], then:
-        1.  disable the [=sensor task source=].
-        1.  Return.
-    1.  If the [=currently focused area=] is in a different [=top-level browsing context=]
-        than the current [=top-level browsing context=]
-        and the [=origin=] of the [=active document=]
-        of that [=top-level browsing context=]
-        is not [=same origin-domain=] as |document|'s [=origin=], then:
-        1.  disable the [=sensor task source=].
-        1.  Return.
-    1.  Enable the [=sensor task source=].
-</div>
-
-Note: user agents are encouraged to stop sensor polling
-when [=sensor task sources=] are disabled in order
-to save battery.
 
 ### Sensor lifecycle ### {#sensor-lifecycle}
 
@@ -1292,6 +1239,8 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     1.  If |reading_timestamp| is equal [=latest reading=]["timestamp"],
         1. abort these steps.
     1.  Set |sensor|’s [=reporting flag=].
+    1.  If the result of invoking the [=security check=] is "unsecure",
+        then abort these steps.
     1.  [=map/Set=] [=latest reading=]["timestamp"] to |reading_timestamp|.
     1.  [=map/For each=] |key| → |value| of [=latest reading=].
         1.  If |key| is "timestamp", [=continue=].
@@ -1328,6 +1277,38 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
 
         Issue(215):
 </div>
+
+
+<h3 dfn>Security Check</h3>
+
+<div algorithm="security check">
+
+    : input
+    :: None
+    : output
+    :: A string whose value is either "secure" or "unsecure".
+
+    1.  Let |document| be the [=top-level browsing context=]'s [=active document=].
+    1.  Let |current_visibility_state| be the result of running
+        the [= steps to determine the visibility state=] of |document|.
+    1.  If |current_visibility_state| is not "visible",
+        then return "unsecure".
+    1.  If the [=currently focused area=] of the current [=top-level browsing context=]
+        is a [=nested browsing context=] whose [=active document=]'s [=origin=]
+        is not [=same origin-domain=] as |document|'s [=origin=],
+        then return "unsecure".
+    1.  If the [=currently focused area=] is in a different [=top-level browsing context=]
+        than the current [=top-level browsing context=]
+        and the [=origin=] of the [=active document=]
+        of that [=top-level browsing context=]
+        is not [=same origin-domain=] as |document|'s [=origin=],
+        then return "unsecure".
+    1.  Return "secure".
+</div>
+
+Note: user agents are encouraged stop sensor polling the sensors
+when [=security check=] would return "unsecure"
+in order to save resources.
 
 
 <h3 dfn>Handle Errors</h3>
