@@ -320,6 +320,10 @@ Sensors can potentially be used in cross-device linking and tracking of a user.
 
 <h3 id="mitigation-strategies">Mitigation Strategies</h3>
 
+<em>This section is non-normative.</em>
+
+This section gives a high-level presentation of some of the mitigation strategies
+specified in the normative sections of this specification.
 
 <h4 id="secure-context">Secure Context</h4>
 
@@ -328,22 +332,22 @@ Secure Contexts specification [[POWERFUL-FEATURES]]
 as a high-value target for network attackers.
 Thus all interfaces defined by this specification
 or extension specifications
-must only be available within a [=secure context=].
+are only available within a [=secure context=].
 
 
 <h4 id="top-level-browsing-context" oldids="browsing-context">Top-Level Browsing Context</h4>
 
-[=Sensor readings=] must only be available in the
-[=top-level browsing context=] to avoid the privacy risk of
-sharing the information defined in this specification
-(and specifications extending it)
-with contexts unfamiliar to the user.
+To avoid the privacy risk of
+sharing [=sensor readings=]
+with contexts unfamiliar to the user,
+[=sensor readings=] are only available in the
+[=top-level browsing context=].
 
 Note: [Feature Policy](https://docs.google.com/document/d/1k0Ua-ZWlM_PsFCFdLMa8kaVTo32PeNZ4G7FFHqpFx4E/edit)
-should allow securely relaxing those restrictions once it matures.
+will allow securely relaxing those restrictions once it matures.
 
 
-<h4 id="losing-focus">Loosing Focus</h4>
+<h4 id="losing-focus">Losing Focus</h4>
 
 When the [=top-level browsing context=] loses focus,
 or when a [=nested browsing context=] of a different [=origin=] [=gains focus=]
@@ -354,14 +358,14 @@ to carry out a skimming attack against the [=browsing context=] that has [=gains
 
 To mitigate this threat,
 [=sensor reading|readings=] of [=sensors=] running in a [=top-level browsing contexts=]
-must not be delivered in such cases.
+are not delivered in such cases.
 A [=security check=] is run before [=sensor readings=] are delivered to ensure that.
 
 
 <h4 id="visibility-state">Visibility State</h4>
 
-[=Sensor readings=] must only be available
-in [=top-level browsing context|browsing contexts=] that are visible by the user,
+[=Sensor readings=] are only available
+in [=top-level browsing context|browsing contexts=] that are visible to the user,
 that is, whose [=steps to determine the visibility state|visibility state=]
 is "visible".
 A [=security check=] is run before [=sensor readings=] are delivered to ensure that.
@@ -374,10 +378,10 @@ might be the solution to relax this restriction.
 
 <h4 id="permissions" oldids="permissioning">Permissions API</h4>
 
-Access to [=sensor readings=] must be controlled by the Permissions API [[!PERMISSIONS]].
-User agents may use a [=new information about the user's intent|number of criteria=]
+Access to [=sensor readings=] are controlled by the Permissions API [[!PERMISSIONS]].
+User agents use a [=new information about the user's intent|number of criteria=]
 to grant access to the [=sensor readings|readings=].
-Access may be granted without prompting the user.
+Note that access can be granted without prompting the user.
 
 <h3 id="mitigation-strategies-case-by-case">Mitigation strategies applied on a case by case basis</h3>
 
