@@ -1297,17 +1297,14 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
         is not [=same origin-domain=] as |document|'s [=origin=],
         then return "insecure".
     1.  If the [=currently focused area=] is in a different [=top-level browsing context=]
-        than the current [=top-level browsing context=]
-        and the [=origin=] of the [=active document=]
-        of that [=top-level browsing context=]
-        is not [=same origin-domain=] as |document|'s [=origin=],
+        than the current [=top-level browsing context=],
         then return "insecure".
     1.  Return "secure".
 </div>
 
 Note: user agents are encouraged stop sensor polling the sensors
 when [=security check=] would return "insecure"
-in order to save resources.
+in order to reduce resource consumption, notably battery usage.
 
 
 <h3 dfn>Handle Errors</h3>
