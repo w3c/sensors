@@ -5,7 +5,7 @@ Status: ED
 Group: dap
 ED: https://w3c.github.io/sensors/
 TR: https://www.w3.org/TR/generic-sensor/
-Previous Version: https://www.w3.org/TR/2017/WD-generic-sensor-20170524/
+Previous Version: https://www.w3.org/TR/2017/WD-generic-sensor-20170530/
 Editor: Tobie Langel 78102, Intel Corporation, http://tobie.me, tobie@sensors.codespeaks.com
 Editor: Rick Waldron 50572, JS Foundation
 Abstract:
