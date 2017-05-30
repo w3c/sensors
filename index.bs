@@ -36,6 +36,7 @@ urlPrefix: https://html.spec.whatwg.org/multipage/; spec: HTML
       text: task; url: concept-task
       text: fire a simple event
       text: trusted; url: concept-events-trusted
+      text: spin the event loop; url: spin-the-event-loop
     urlPrefix: browsers.html
       text: origin; url: origin-2
       text: navigating; url: navigate
@@ -1090,6 +1091,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
 
     1.  Let |sensor| be the [=sensor=] associated with |sensor_instance|.
     1.  [=set/Remove=] |sensor_instance| from |sensor|'s set of [=activated sensor objects=].
+    1.  Set |sensor_instance|.{{[[waitingForUpdate]]}} to `false`.
     1.  If |sensor|'s set of [=activated sensor objects=] [=set/is empty=],
         1.  Unset the [=periodic reporting mode flag=].
         1.  Set [=current sampling frequency=] to null.
@@ -1267,9 +1269,9 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
         value of |reading| to see if there's a change
         that needs to be propagated.
     1.  Unset |sensor|’s [=reporting flag=].
-    1.  [=set/For each=] |s| of |activated_sensors|,
+    1.  [=set/For each=] |s| in |activated_sensors|,
         1.  Invoke the [=Report Latest Reading updated=] abstract operation,
-            passing it |s| as argument.
+            passing it |s| as an argument.
 </div>
 
 
@@ -1364,23 +1366,25 @@ in order to reduce resource consumption, notably battery usage.
     1.  Let |lastReportedTimestamp| be the value of |sensor_instance|.{{[[lastEventFiredAt]]}}.
     1.  If |lastReportedTimestamp| is not set
         1.  Queue a task to run the [=Notify Sensor Object about new reading=] abstract operation,
-            passing it |sensor_instance| as argument.
+            passing it |sensor_instance| as an argument.
         1.  Abort these steps.
     1.  Let |reportingFrequency| be result of invoking the [=Find the reporting frequency of a Sensor=]
         abstract operation.
     1.  If |reportingFrequency| is `null`
         1.  Queue a task to run the [=Notify Sensor Object about new reading=] abstract operation,
-            passing it |sensor_instance| as argument.
+            passing it |sensor_instance| as an argument.
         1.  Abort these steps.
     1.  Let |reportingInterval| be the result of 1 / |reportingFrequency|.
     1.  Let |timestampDelta| be the result of [=latest reading=]["timestamp"] - |lastReportedTimestamp|.
     1.  If  |timestampDelta| is greater than or equal to |reportingInterval|
         1.  Queue a task to run the [=Notify Sensor Object about new reading=] abstract operation,
-            passing it |sensor_instance| as argument.
+            passing it |sensor_instance| as an argument.
         1.  Abort these steps.
     1.  Let |deferUpdateTime| be the result of |reportingInterval| - |timestampDelta|.
-    1.  User agent must defer queueing a task to run the [=Notify Sensor Object about new reading=] abstract
-        operation for a period of time equal to |deferUpdateTime|.
+    1.  [=Spin the event loop=] for a period of time equal to |deferUpdateTime|.
+    1.  If |sensor_instance|.{{[[waitingForUpdate]]}} is `true`,
+        1.  Queue a task to run the [=Notify Sensor Object about new reading=] abstract operation,
+            passing it |sensor_instance| as an argument.
 </div>
 
 <h3 dfn>Notify Sensor Object about new reading</h3>
