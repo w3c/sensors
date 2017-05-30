@@ -1240,6 +1240,8 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     1.  Set |sensor|’s [=reporting flag=].
     1.  If the result of invoking the [=security check=] is "insecure",
         then abort these steps.
+
+        Issue(223):
     1.  [=map/Set=] [=latest reading=]["timestamp"] to |reading_timestamp|.
     1.  [=map/For each=] |key| → |value| of [=latest reading=].
         1.  If |key| is "timestamp", [=continue=].
@@ -1299,6 +1301,9 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     1.  If the [=currently focused area=] is in a different [=top-level browsing context=]
         than the current [=top-level browsing context=],
         then return "insecure".
+    1.  If the user agent loses focus, then return "insecure".
+
+        Issue(whatwg/html#2716)
     1.  Return "secure".
 </div>
 
