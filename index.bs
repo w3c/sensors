@@ -44,6 +44,7 @@ urlPrefix: https://html.spec.whatwg.org/multipage/; spec: HTML
       text: DOM anchor; url: dom-anchor
       text: focusable area; url: focusable-area
       text: currently focused area; url: currently-focused-area-of-a-top-level-browsing-context
+      text: focus chain; url: focus-chain
 urlPrefix: http://w3c.github.io/hr-time/; spec: HR-TIME-2
   type: interface
     text: DOMHighResTimeStamp; url: dom-domhighrestimestamp
@@ -1298,9 +1299,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
         is a [=nested browsing context=] whose [=active document=]'s [=origin=]
         is not [=same origin-domain=] as |document|'s [=origin=],
         then return "insecure".
-    1.  If the [=currently focused area=] is in a different [=top-level browsing context=]
-        than the current [=top-level browsing context=],
-        then return "insecure".
+    1.  If the [=focus chain=] does not [=list/contain=] |document|, then return "insecure".
     1.  If the user agent loses focus, then return "insecure".
 
         Issue(whatwg/html#2716):
