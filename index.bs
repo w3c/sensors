@@ -22,7 +22,6 @@ Markup Shorthands: markdown on
 Boilerplate: omit issues-index, omit conformance, omit feedback-header
 Inline GitHub Issues: yes
 Default Biblio Status: current
-Inline Github Issues: true
 </pre>
 <pre class="anchors">
 urlPrefix: https://dom.spec.whatwg.org; spec: DOM
