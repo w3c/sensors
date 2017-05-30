@@ -882,7 +882,7 @@ The getter of the {{Sensor/timestamp!!attribute}} attribute returns
     1.  Run these sub-steps [=in parallel=]:
         1.  let |connected| be the result of invoking
             the [=Connect to Sensor=] abstract operation.
-        1.  If |connected| is `false`, then abort these steps.
+        1.  If |connected| is `false`, then return.
         1.  Let |permission_state| be the result of invoking
             the [=Request Sensor Access=] abstract operation,
             passing it |sensor_instance| as argument.
@@ -1080,7 +1080,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
         1.  Set [=current polling frequency=] to `null`.
         1.  Update the user-agent-specific way in which [=sensor readings=] are obtained from |sensor|
             to no longer provide [=sensor readings|readings=].
-        1.  Abort these steps.
+        1.  Return.
     1.  Invoke the [=Set Sensor Settings=] abstract operation,
         passing it |sensor| as argument.
 </div>
@@ -1245,13 +1245,11 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     : output
     :: None
 
-    1.  If |sensor|’s [=reporting flag=] is set,
-        1. abort these steps.
-    1.  If |reading_timestamp| is equal [=latest reading=]["timestamp"],
-        1. abort these steps.
+    1.  If |sensor|’s [=reporting flag=] is set, then return.
+    1.  If |reading_timestamp| is equal [=latest reading=]["timestamp"], then return.
     1.  Set |sensor|’s [=reporting flag=].
     1.  If the result of invoking the [=security check=] is "insecure",
-        then abort these steps.
+        then return.
 
         Issue(223):
     1.  [=map/Set=] [=latest reading=]["timestamp"] to |reading_timestamp|.
@@ -1639,8 +1637,8 @@ for their editorial input.
 <h3 id="conformant-algorithms" class="no-ref no-num">Conformant Algorithms</h3>
 
     <p>Requirements phrased in the imperative as part of algorithms (such as
-    "strip any leading space characters" or "return false and abort these
-    steps") are to be interpreted with the meaning of the key word ("must",
+    "strip any leading space characters" or "return false")
+    are to be interpreted with the meaning of the key word ("must",
     "should", "may", etc) used in introducing the algorithm.</p>
 
     <p>Conformance requirements phrased as algorithms or specific steps can be
