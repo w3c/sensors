@@ -1321,7 +1321,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     1.  Return "secure".
 </div>
 
-Note: user agents are encouraged stop sensor polling the sensors
+Note: user agents are encouraged to stop sensor polling
 when [=security check=] would return "insecure"
 in order to reduce resource consumption, notably battery usage.
 
