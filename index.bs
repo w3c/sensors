@@ -851,11 +851,12 @@ with the internal slots described in the following table:
     </tbody>
 </table>
 
+
 ### Sensor.activated ### {#sensor-activated}
 
 <div algorithm="is sensor activated">
-    The getter of the {{Sensor/activated!!attribute}} attribute must run these steps
-    or their [=equivalent=]:
+
+    The getter of the {{Sensor/activated!!attribute}} attribute must run these steps:
 
     1.  If <emu-val>this</emu-val>.{{[[state]]}} is "activated",
         return `true`.
@@ -867,10 +868,13 @@ with the internal slots described in the following table:
 The getter of the {{Sensor/timestamp!!attribute}} attribute returns
 [=latest reading=]["timestamp"].
 
+
 ### Sensor.start() ### {#sensor-start}
 
 <div algorithm="to start a sensor">
-The {{Sensor/start()}} method must run these steps or their [=equivalent=]:
+
+    The {{Sensor/start()}} method must run these steps:
+
     1.  Let |sensor_state| be the value of |sensor_instance|.{{[[state]]}}.
     1.  If |sensor_state| is either "activating"
         or "activated", then return.
@@ -891,16 +895,19 @@ The {{Sensor/start()}} method must run these steps or their [=equivalent=]:
                 passing it |e| and |sensor_instance| as arguments.
 </div>
 
+
 ### Sensor.stop() ### {#sensor-stop}
 
 <div algorithm="to stop a sensor">
-The {{Sensor/stop()}} method must run these steps or their [=equivalent=]:
+
+    The {{Sensor/stop()}} method must run these steps:
 
     1.  If |sensor_instance|.{{[[state]]}} is "idle", then return.
     1.  Set |sensor_instance|.{{[[state]]}} to "idle".
     1.  Run these sub-steps [=in parallel=]:
         1.  Invoke [=Unregister a Sensor=] passing it |sensor_instance| as argument.
 </div>
+
 
 ### Sensor.onchange ### {#sensor-onchange}
 
@@ -909,15 +916,18 @@ whenever a new [=sensor reading|reading=] is available.
 
 Issue(205):
 
+
 ### Sensor.onactivate ### {#sensor-onactivate}
 
 {{Sensor/onactivate}} is an {{EventHandler}} which is called when
 <emu-val>this</emu-val>.{{[[state]]}} transitions from "activating" to "activated".
 
+
 ### Sensor.onerror ### {#sensor-onerror}
 
 {{Sensor/onerror}} is an {{EventHandler}} which is called whenever
 an [=exception type|exception=] cannot be handled synchronously.
+
 
 ### Event handlers ### {#event-handlers}
 
@@ -961,6 +971,7 @@ dictionary SensorErrorEventInit : EventInit {
   required Error error;
 };
 </pre>
+
 
 ### SensorErrorEvent.error ### {#sensor-error-event-error}
 
