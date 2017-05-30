@@ -2790,8 +2790,9 @@ that must be supported as attributes by the objects implementing the <a data-lin
       <p>If the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#currently-focused-area-of-a-top-level-browsing-context">currently focused area</a> of the current <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context">top-level browsing context</a> is a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#nested-browsing-context">nested browsing context</a> whose <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#active-document">active document</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#origin-2">origin</a> is not <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#same-origin-domain">same origin-domain</a> as <var>document</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#origin-2">origin</a>,
   then return "insecure".</p>
      <li data-md="">
-      <p>If the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#currently-focused-area-of-a-top-level-browsing-context">currently focused area</a> is in a different <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context">top-level browsing context</a> than the current <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context">top-level browsing context</a>,
-  then return "insecure".</p>
+      <p>Let <var>has_focus</var> be the result of running the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#has-focus-steps">has focus steps</a> passing it <var>document</var> as argument.</p>
+     <li data-md="">
+      <p>If <var>has_focus</var> is false, then return "insecure".</p>
      <li data-md="">
       <p>If the user agent loses focus, then return "insecure".</p>
       <div class="issue no-marker" id="issue-d41d8cd93">
@@ -3328,6 +3329,7 @@ for their editorial input.</p>
      <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers">event handler</a>
      <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-type">event handler event type</a>
      <li><a href="https://html.spec.whatwg.org/multipage/interaction.html#gain-focus">gains focus</a>
+     <li><a href="https://html.spec.whatwg.org/multipage/interaction.html#has-focus-steps">has focus steps</a>
      <li><a href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in parallel</a>
      <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#incumbent-settings-object">incumbent settings object</a>
      <li><a href="https://html.spec.whatwg.org/multipage/browsers.html#nested-browsing-context">nested browsing context</a>
