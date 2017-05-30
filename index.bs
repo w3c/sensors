@@ -1238,7 +1238,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     1.  If |reading_timestamp| is equal [=latest reading=]["timestamp"],
         1. abort these steps.
     1.  Set |sensor|’s [=reporting flag=].
-    1.  If the result of invoking the [=security check=] is "unsecure",
+    1.  If the result of invoking the [=security check=] is "insecure",
         then abort these steps.
     1.  [=map/Set=] [=latest reading=]["timestamp"] to |reading_timestamp|.
     1.  [=map/For each=] |key| → |value| of [=latest reading=].
@@ -1285,28 +1285,28 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     : input
     :: None
     : output
-    :: A string whose value is either "secure" or "unsecure".
+    :: A string whose value is either "secure" or "insecure".
 
     1.  Let |document| be the [=top-level browsing context=]'s [=active document=].
     1.  Let |current_visibility_state| be the result of running
         the [= steps to determine the visibility state=] of |document|.
     1.  If |current_visibility_state| is not "visible",
-        then return "unsecure".
+        then return "insecure".
     1.  If the [=currently focused area=] of the current [=top-level browsing context=]
         is a [=nested browsing context=] whose [=active document=]'s [=origin=]
         is not [=same origin-domain=] as |document|'s [=origin=],
-        then return "unsecure".
+        then return "insecure".
     1.  If the [=currently focused area=] is in a different [=top-level browsing context=]
         than the current [=top-level browsing context=]
         and the [=origin=] of the [=active document=]
         of that [=top-level browsing context=]
         is not [=same origin-domain=] as |document|'s [=origin=],
-        then return "unsecure".
+        then return "insecure".
     1.  Return "secure".
 </div>
 
 Note: user agents are encouraged stop sensor polling the sensors
-when [=security check=] would return "unsecure"
+when [=security check=] would return "insecure"
 in order to save resources.
 
 
