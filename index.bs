@@ -354,7 +354,7 @@ to carry out a skimming attack against the [=browsing context=] that has [=gains
 To mitigate this threat,
 [=sensor reading|readings=] of [=sensors=] running in a [=top-level browsing contexts=]
 must not be delivered in such cases.
-A [=security check=] is run before [=sensor reading=] are delivered to ensure that.
+A [=security check=] is run before [=sensor readings=] are delivered to ensure that.
 
 
 <h4 id="visibility-state">Visibility State</h4>
@@ -363,7 +363,7 @@ A [=security check=] is run before [=sensor reading=] are delivered to ensure th
 in [=top-level browsing context|browsing contexts=] that are visible by the user,
 that is, whose [=steps to determine the visibility state|visibility state=]
 is "visible".
-A [=security check=] is run before [=sensor reading=] are delivered to ensure that.
+A [=security check=] is run before [=sensor readings=] are delivered to ensure that.
 
 Issue: certain use cases require sensors to have background access.
 Using a more complex {{PermissionDescriptor}}.
