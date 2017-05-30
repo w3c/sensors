@@ -1303,7 +1303,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
         then return "insecure".
     1.  If the user agent loses focus, then return "insecure".
 
-        Issue(whatwg/html#2716)
+        Issue(whatwg/html#2716):
     1.  Return "secure".
 </div>
 
