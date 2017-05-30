@@ -1059,8 +1059,9 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
 
     1.  Let |sensor| be the [=sensor=] associated with |sensor_instance|.
     1.  Add |sensor_instance| to |sensor|'s set of [=activated Sensor objects=].
-    1.  Invoke the [=Set Sensor Settings=] abstract operation
+    1.  Let |settings_changed| be the result of invoking [=Set Sensor Settings=]
         with |sensor| as argument.
+    1.  If |settings_changed| is true, then invoke [=Observe a Sensor=] with |sensor| as argument.
     <!-- 1.  Let |latest_reading| be |sensor|'s associated [=latest reading=] [ordered map|map].
     1.  If |current_reading|["timestamp"] is not `null` and |sensor_instance|'s state is still "activating", then
         1.  invoke the [=Update Observers=] operation, with
@@ -1085,8 +1086,10 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
         1.  Update the user-agent-specific way in which [=sensor readings=] are obtained from |sensor|
             to no longer provide [=sensor readings|readings=].
         1.  Return.
-    1.  Invoke the [=Set Sensor Settings=] abstract operation
+    1.  Let |settings_changed| be the result of invoking [=Set Sensor Settings=]
         with |sensor| as argument.
+    1.  If |settings_changed| is true,
+        then invoke [=Observe a Sensor=] with |sensor| as argument.
 </div>
 
 <h3 dfn>Revoke sensor permission</h3>
@@ -1120,7 +1123,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     : input
     :: |sensor|, a [=sensor=].
     : output
-    :: None
+    :: |settings_changed|, a boolean.
 
     1.  Let |settings_changed| be `false`.
     1.  Let |is_periodic| be the result of invoking
@@ -1138,12 +1141,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     1.  If |frequency| is different from |sensor|'s [=current polling frequency=],
         1.  set |settings_changed| to `true`.
         1.  Set [=current polling frequency=] to |frequency|.
-    1.  If |settings_changed| is `true`
-        1.  Invoke the [=Observe a Sensor=] abstract operation
-            with |sensor| as argument.
-
-    Issue: This abstract operation needs to return |settings_changed|
-    instead of the [=Observe a Sensor=] abstract operation itself.
+    1.  Return |settings_changed|.
 </div>
 
 
