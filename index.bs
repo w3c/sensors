@@ -987,7 +987,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     : input
     :: |options|, a {{SensorOptions}} object.
     : output
-    :: |sensor_instance|, a {{Sensor}} object.
+    :: A {{Sensor}} object.
 
     1.  If the [=incumbent settings object=] is not a [=secure context=], then:
         1.  [=throw=] a {{SecurityError}}.
@@ -1015,7 +1015,8 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     : input
     :: |sensor_instance|, a {{Sensor}} object.
     : output
-    :: a boolean.
+    :: True if sensor instance was associated with a [=sensor=],
+       false otherwise.
 
     1.  If |sensor_instance|.{{[[identifyingParameters]]}} is set and
         |sensor_instance|.{{[[identifyingParameters]]}} allows
@@ -1118,7 +1119,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     : input
     :: |sensor|, a [=sensor=].
     : output
-    :: |settings_changed|, a boolean.
+    :: True if the settings were modified, false otherwise.
 
     1.  Let |settings_changed| be false.
     1.  Let |is_periodic| be the result of invoking
@@ -1197,7 +1198,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     : input
     :: |sensor|, a [=sensor=].
     : output
-    :: |result|, a boolean.
+    :: A boolean.
 
     1.  Let |result| be false.
     1.  [=list/For each=] |sensor_instance| in |sensor|'s set of [=activated sensor objects=]:
@@ -1214,7 +1215,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     : input
     :: |sensor|, a [=sensor=].
     : output
-    :: |frequency|, a [=frequency=].
+    :: A [=frequency=].
 
     1.  Let |frequency| be null.
     1.  [=set/For each=] |sensor_instance| in |sensor|'s set of [=activated sensor objects=]:
@@ -1246,7 +1247,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
         then return.
 
         Issue(223):
-    1.  [=map/Set=] [=latest reading=]["timestamp"] to |reading_timestamp|.
+    1.  [=map/Set=] |sensor|'s [=latest reading=]["timestamp"] to |reading_timestamp|.
     1.  [=map/For each=] |key| → |value| of [=latest reading=].
         1.  If |key| is "timestamp", [=continue=].
         1.  [=map/Set=] [=latest reading=][|key|] to the corresponding
@@ -1339,7 +1340,7 @@ in order to reduce resource consumption, notably battery usage.
     : input
     :: |sensor_instance|, a {{Sensor}} object.
     : output
-    :: |state|, a [=permission state=].
+    :: A [=permission state=].
 
     1.  Let |sensor| be the [=sensor=] associated with |sensor_instance|.
     1.  Let |permission_name| be the {{PermissionName}} associated with |sensor|.
