@@ -2054,7 +2054,7 @@ tied to an origin?</p>
    <p>The <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-2">latest reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map">map</a> contains an <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry">entry</a> whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-key">key</a> is "timestamp" and
 whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-value">value</a> is a high resolution timestamp of the time
 at which the <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-3">latest reading</a> was obtained
-expressed in milliseconds that passed since the <a data-link-type="dfn" href="http://w3c.github.io/hr-time/#time-origin">time origin</a>. <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-4">latest reading</a>["timestamp"] is initially set to <code>null</code>,
+expressed in milliseconds that passed since the <a data-link-type="dfn" href="http://w3c.github.io/hr-time/#time-origin">time origin</a>. <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-4">latest reading</a>["timestamp"] is initially set to null,
 unless the <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-5">latest reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map">map</a> caches a previous <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-26">reading</a>.</p>
    <p>The other <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry">entries</a> of the <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-6">latest reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map">map</a> hold the values of the different quantities measured by the <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-24">sensor</a>.
 The <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-key">keys</a> of these <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry">entries</a> must match
@@ -2062,12 +2062,12 @@ the <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-attribute
 the <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-27">sensor type</a>'s associated interface,
 so that the getter of the <code>foo</code> attribute
 can simply return <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-7">latest reading</a>["foo"].</p>
-   <p>The <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-value">value</a> of all <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-8">latest reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry">entries</a> is initially set to <code>null</code>.</p>
+   <p>The <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-value">value</a> of all <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-8">latest reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry">entries</a> is initially set to null.</p>
    <p>A <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-25">sensor</a> <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="supports-periodic-reporting-mode">supports periodic reporting mode</dfn> if
 its associated <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-28">sensor type</a> does.</p>
    <p>A <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-26">sensor</a> has an associated <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="reporting-flag">reporting flag</dfn> which is initially unset.</p>
    <p>A <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-27">sensor</a> has an associated <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="periodic-reporting-mode-flag">periodic reporting mode flag</dfn> which is initially unset.</p>
-   <p>A <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-28">sensor</a> has an associated <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="current-polling-frequency">current polling frequency</dfn> which is initially <code>null</code>.</p>
+   <p>A <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-28">sensor</a> has an associated <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="current-polling-frequency">current polling frequency</dfn> which is initially null.</p>
    <h2 class="heading settled" data-level="8" id="api"><span class="secno">8. </span><span class="content">API</span><a class="self-link" href="#api"></a></h2>
    <h3 class="heading settled" data-level="8.1" id="the-sensor-interface"><span class="secno">8.1. </span><span class="content">The Sensor Interface</span><a class="self-link" href="#the-sensor-interface"></a></h3>
 <pre class="idl highlight def">[<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext">SecureContext</a>]
@@ -2180,7 +2180,7 @@ with the internal slots described in the following table:</p>
       <td><dfn class="dfn-paneled idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" id="dom-sensor-lasteventfiredat-slot"><code>[[lastEventFiredAt]]</code></dfn>
       <td>the high resolution timestamp of the latest <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-27">sensor reading</a> that was sent to observers of the <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-8">Sensor</a></code> object,
                 expressed in milliseconds that passed since the <a data-link-type="dfn" href="http://w3c.github.io/hr-time/#time-origin">time origin</a>.
-                It is initially <code>null</code>. 
+                It is initially null. 
      <tr>
       <td><dfn class="dfn-paneled idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" id="dom-sensor-waitingforupdate-slot"><code>[[waitingForUpdate]]</code></dfn>
       <td>A boolean which indicates wether the observers have been updated
@@ -2378,7 +2378,7 @@ that must be supported as attributes by the objects implementing the <code class
         <p>Return true.</p>
       </ol>
      <li data-md="">
-      <p>let <var>e</var> be the result of <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-create-exception">creating</a> a
+      <p>Let <var>e</var> be the result of <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-create-exception">creating</a> a
   "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://heycam.github.io/webidl/#notreadableerror">NotReadableError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException">DOMException</a></code>.</p>
      <li data-md="">
       <p>Invoke <a data-link-type="dfn" href="#handle-errors" id="ref-for-handle-errors-2">handle Errors</a> with <var>e</var> and <var>sensor_instance</var> as arguments.</p>
@@ -2428,7 +2428,7 @@ that must be supported as attributes by the objects implementing the <code class
        <li data-md="">
         <p>Unset the <a data-link-type="dfn" href="#periodic-reporting-mode-flag" id="ref-for-periodic-reporting-mode-flag-1">periodic reporting mode flag</a>.</p>
        <li data-md="">
-        <p>Set <a data-link-type="dfn" href="#current-polling-frequency" id="ref-for-current-polling-frequency-1">current polling frequency</a> to <code>null</code>.</p>
+        <p>Set <a data-link-type="dfn" href="#current-polling-frequency" id="ref-for-current-polling-frequency-1">current polling frequency</a> to null.</p>
        <li data-md="">
         <p>Update the user-agent-specific way in which <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-29">sensor readings</a> are obtained from <var>sensor</var> to no longer provide <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-30">readings</a>.</p>
        <li data-md="">
@@ -2467,7 +2467,7 @@ that must be supported as attributes by the objects implementing the <code class
      <li data-md="">
       <p>Unset <var>sensor</var>’s <a data-link-type="dfn" href="#periodic-reporting-mode-flag" id="ref-for-periodic-reporting-mode-flag-2">periodic reporting mode flag</a>.</p>
      <li data-md="">
-      <p>Set <var>sensor</var>’s <a data-link-type="dfn" href="#current-polling-frequency" id="ref-for-current-polling-frequency-2">current polling frequency</a> to <code>null</code>.</p>
+      <p>Set <var>sensor</var>’s <a data-link-type="dfn" href="#current-polling-frequency" id="ref-for-current-polling-frequency-2">current polling frequency</a> to null.</p>
      <li data-md="">
       <p>Update the user-agent-specific way in which <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-31">sensor readings</a> are obtained from <var>sensor</var> to no longer provide <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-32">readings</a>.</p>
     </ol>
@@ -2531,7 +2531,7 @@ that must be supported as attributes by the objects implementing the <code class
     </dl>
     <ol>
      <li data-md="">
-      <p>If <var>sensor</var>’s <var>latest reading</var>["timestamp"] is not <code>null</code>,
+      <p>If <var>sensor</var>’s <var>latest reading</var>["timestamp"] is not null,
   invoke <a data-link-type="dfn" href="#update-observers" id="ref-for-update-observers-1">update observers</a> with <var>sensor_instance</var> and <var>latest reading</var>["timestamp"] as arguments.</p>
      <li data-md="">
       <p>Otherwise, poll <var>sensor</var> immediately.</p>
@@ -2612,7 +2612,7 @@ that must be supported as attributes by the objects implementing the <code class
     </dl>
     <ol>
      <li data-md="">
-      <p>Let <var>frequency</var> be <code>null</code>.</p>
+      <p>Let <var>frequency</var> be null.</p>
      <li data-md="">
       <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate">For each</a> <var>sensor_instance</var> in <var>sensor</var>’s set of <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects-6">activated sensor objects</a>:</p>
       <ol>
