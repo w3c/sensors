@@ -685,7 +685,7 @@ the [=sensor type=]'s associated interface,
 so that the getter of the `foo` attribute
 can simply return [=latest reading=]["foo"].
 
-The [map/value] of all [=latest reading=] [=map/entries=]
+The [=map/value=] of all [=latest reading=] [=map/entries=]
 is initially set to `null`.
 <!-- ,
 unless the [=latest reading=] [=ordered map|map=]
@@ -842,7 +842,7 @@ with the internal slots described in the following table:
             <td><dfn attribute for=Sensor>\[[waitingForUpdate]]</dfn></td>
             <td>A boolean which indicates wether the observers have been updated
                 or whether the object is waiting for a new reading to do so.
-                It is initially `true`.</td>
+                It is initially true.</td>
         </tr>
         <tr>
             <td><dfn attribute for=Sensor>\[[identifyingParameters]]</dfn></td>
@@ -863,8 +863,8 @@ with the internal slots described in the following table:
     The getter of the {{Sensor/activated!!attribute}} attribute must run these steps:
 
     1.  If <emu-val>this</emu-val>.{{[[state]]}} is "activated",
-        return `true`.
-    1.  Otherwise, return `false`.
+        return true.
+    1.  Otherwise, return false.
 </div>
 
 ### Sensor.timestamp ### {#sensor-timestamp}
@@ -885,7 +885,7 @@ The getter of the {{Sensor/timestamp!!attribute}} attribute returns
     1.  Set |sensor_instance|.{{[[state]]}} to "activating".
     1.  Run these sub-steps [=in parallel=]:
         1.  let |connected| be the result of invoking [=Connect to Sensor=].
-        1.  If |connected| is `false`, then return.
+        1.  If |connected| is false, then return.
         1.  Let |permission_state| be the result of invoking
             [=Request Sensor Access=] with |sensor_instance| as argument.
         1.  If |permission_state| is "granted",
@@ -1022,11 +1022,11 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
         a unique [=sensor=] to be identified, then:
         1.  let |sensor| be that [=sensor=],
         1.  associate |sensor_instance| with |sensor|.
-        1.  Return `true`.
+        1.  Return true.
     1.  If the [=sensor type=] of |sensor_instance| has an associated [=default sensor=]
         and there is a corresponding [=sensor=] on the device, then
         1.  associate |sensor_instance| with [=default sensor=].
-        1.  Return `true`.
+        1.  Return true.
     1.  let |e| be the result of [=created|creating=] a
         "{{NotReadableError!!exception}}" {{DOMException}}.
         <!-- Note: user agents may decide to use a
@@ -1040,7 +1040,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
         and might lead to confusing instructions to the user,
         but it is a tradeoff some User Agent might choose to make. -->
     1.  Invoke [=Handle Errors=] with |e| and |sensor_instance| as arguments.
-    1.  Return `false`.
+    1.  Return false.
 </div>
 
 
@@ -1120,19 +1120,19 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     : output
     :: |settings_changed|, a boolean.
 
-    1.  Let |settings_changed| be `false`.
+    1.  Let |settings_changed| be false.
     1.  Let |is_periodic| be the result of invoking
         [=Is Current Reporting Mode Periodic=] with |sensor| as argument.
-    1.  If |is_periodic| is `false` and the [=periodic reporting mode flag=] is set, then
-        1.  set |settings_changed| to `true`.
+    1.  If |is_periodic| is false and the [=periodic reporting mode flag=] is set, then
+        1.  set |settings_changed| to true.
         1.  Unset the [=periodic reporting mode flag=].
-    1.  Otherwise if |is_periodic| is `true` and the [=periodic reporting mode flag=] is unset, then
-        1.  set |settings_changed| to `true`.
+    1.  Otherwise if |is_periodic| is true and the [=periodic reporting mode flag=] is unset, then
+        1.  set |settings_changed| to true.
         1.  Set the [=periodic reporting mode flag=].
     1.  Let |frequency| be the result of invoking [=Find the polling frequency of a Sensor=]
         with |sensor| as argument.
     1.  If |frequency| is different from |sensor|'s [=current polling frequency=],
-        1.  set |settings_changed| to `true`.
+        1.  set |settings_changed| to true.
         1.  Set [=current polling frequency=] to |frequency|.
     1.  Return |settings_changed|.
 </div>
@@ -1199,10 +1199,10 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     : output
     :: |result|, a boolean.
 
-    1.  Let |result| be `false`.
+    1.  Let |result| be false.
     1.  [=list/For each=] |sensor_instance| in |sensor|'s set of [=activated Sensor objects=]:
         1. if |sensor_instance|.{{[[desiredPollingFrequency]]}} is set,
-            1. set |result| to `true`, then [=break=].
+            1. set |result| to true, then [=break=].
     1. return |result|.
 </div>
 
@@ -1276,7 +1276,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
 
         Issue: Should we fire delayed readings? Or should we just drop readings instead?
 
-        1.  Set |sensor_instance|.{{[[waitingForUpdate]]}} to `false`.
+        1.  Set |sensor_instance|.{{[[waitingForUpdate]]}} to false.
         1.  [=Fire an event=] named "change" at |sensor_instance|.
         1.  Set |sensor_instance|.{{[[lastEventFiredAt]]}} to |timestamp|.
 
