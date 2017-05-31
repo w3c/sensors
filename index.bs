@@ -674,7 +674,7 @@ whose [=map/key=] is "timestamp" and
 whose [=map/value=] is a high resolution timestamp of the time
 at which the [=latest reading=] was obtained
 expressed in milliseconds that passed since the [=time origin=].
-[=latest reading=]["timestamp"] is initially set to `null`,
+[=latest reading=]["timestamp"] is initially set to null,
 unless the [=latest reading=] [=ordered map|map=] caches a previous [=sensor readings|reading=].
 
 The other [=map/entries=] of the [=latest reading=] [=ordered map|map=]
@@ -686,7 +686,7 @@ so that the getter of the `foo` attribute
 can simply return [=latest reading=]["foo"].
 
 The [=map/value=] of all [=latest reading=] [=map/entries=]
-is initially set to `null`.
+is initially set to null.
 <!-- ,
 unless the [=latest reading=] [=ordered map|map=]
 caches a previous [=sensor readings|reading=].
@@ -702,7 +702,7 @@ A [=sensor=] has an associated <dfn>reporting flag</dfn> which is initially unse
 
 A [=sensor=] has an associated <dfn>periodic reporting mode flag</dfn> which is initially unset.
 
-A [=sensor=] has an associated <dfn>current polling frequency</dfn> which is initially `null`.
+A [=sensor=] has an associated <dfn>current polling frequency</dfn> which is initially null.
 
 <h2 id="api">API</h2>
 
@@ -835,7 +835,7 @@ with the internal slots described in the following table:
             <td>the high resolution timestamp of the latest [=sensor reading=]
                 that was sent to observers of the {{Sensor}} object,
                 expressed in milliseconds that passed since the [=time origin=].
-                It is initially `null`.
+                It is initially null.
             </td>
         </tr>
         <tr>
@@ -1027,7 +1027,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
         and there is a corresponding [=sensor=] on the device, then
         1.  associate |sensor_instance| with [=default sensor=].
         1.  Return true.
-    1.  let |e| be the result of [=created|creating=] a
+    1.  Let |e| be the result of [=created|creating=] a
         "{{NotReadableError!!exception}}" {{DOMException}}.
         <!-- Note: user agents may decide to use a
         "{{NotAllowedError!!exception}}" {{DOMException}},
@@ -1059,7 +1059,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
         with |sensor| as argument.
     1.  If |settings_changed| is true, then invoke [=observe a sensor=] with |sensor| as argument.
     <!-- 1.  Let |latest_reading| be |sensor|'s associated [=latest reading=] [ordered map|map].
-    1.  If |current_reading|["timestamp"] is not `null` and |sensor_instance|'s state is still "activating", then
+    1.  If |current_reading|["timestamp"] is not null and |sensor_instance|'s state is still "activating", then
         1.  invoke the [=update observers=] operation, with
             |sensor_instance| and |current_reading| as arguments. -->
 </div>
@@ -1078,7 +1078,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     1.  [=set/Remove=] |sensor_instance| from |sensor|'s set of [=activated sensor objects=].
     1.  If |sensor|'s set of [=activated sensor objects=] [=set/is empty=],
         1.  Unset the [=periodic reporting mode flag=].
-        1.  Set [=current polling frequency=] to `null`.
+        1.  Set [=current polling frequency=] to null.
         1.  Update the user-agent-specific way in which [=sensor readings=] are obtained from |sensor|
             to no longer provide [=sensor readings|readings=].
         1.  Return.
@@ -1104,7 +1104,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
             a "{{NotAllowedError!!exception}}" {{DOMException}}.
         1.  Invoke [=handle errors=] with |e| and |s| as arguments.
     1.  Unset |sensor|'s [=periodic reporting mode flag=].
-    1.  Set |sensor|'s [=current polling frequency=] to `null`.
+    1.  Set |sensor|'s [=current polling frequency=] to null.
     1.  Update the user-agent-specific way in which [=sensor readings=] are obtained from |sensor|
         to no longer provide [=sensor readings|readings=].
 
@@ -1154,7 +1154,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     <!-- 1.  Immediately invoke [=update latest reading=]
         to report fresh [=sensor readings|readings=]
         with |sensor| and [=latest reading=]["timestamp"] as arguments. -->
-    1.  If |sensor|'s |latest reading|["timestamp"] is not `null`,
+    1.  If |sensor|'s |latest reading|["timestamp"] is not null,
         invoke [=update observers=] with |sensor_instance|
         and |latest reading|["timestamp"] as arguments.
     1.  Otherwise, poll |sensor| immediately.
@@ -1216,7 +1216,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     : output
     :: |frequency|, a [=frequency=].
 
-    1.  Let |frequency| be `null`.
+    1.  Let |frequency| be null.
     1.  [=set/For each=] |sensor_instance| in |sensor|'s set of [=activated sensor objects=]:
         1. let |f| be |sensor_instance|.{{[[desiredPollingFrequency]]}}.
         1. if |f| is set and |f| is greater than |frequency|,
