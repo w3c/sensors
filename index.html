@@ -2223,13 +2223,13 @@ with the internal slots described in the following table:</p>
         <p>If <var>connected</var> is <code>false</code>, then return.</p>
        <li data-md="">
         <p>Let <var>permission_state</var> be the result of invoking
-  the <a data-link-type="dfn" href="#request-sensor-access" id="ref-for-request-sensor-access-1">Request Sensor Access</a> abstract operation,
-  passing it <var>sensor_instance</var> as argument.</p>
+  the <a data-link-type="dfn" href="#request-sensor-access" id="ref-for-request-sensor-access-1">Request Sensor Access</a> abstract operation
+  with <var>sensor_instance</var> as argument.</p>
        <li data-md="">
         <p>If <var>permission_state</var> is "granted",</p>
         <ol>
          <li data-md="">
-          <p>Invoke <a data-link-type="dfn" href="#register-a-sensor-object" id="ref-for-register-a-sensor-object-1">Register a Sensor Object</a> passing it <var>sensor_instance</var> as argument.</p>
+          <p>Invoke <a data-link-type="dfn" href="#register-a-sensor-object" id="ref-for-register-a-sensor-object-1">Register a Sensor Object</a> with <var>sensor_instance</var> as argument.</p>
         </ol>
        <li data-md="">
         <p>Otherwise, if <var>permission_state</var> is "denied",</p>
@@ -2237,8 +2237,8 @@ with the internal slots described in the following table:</p>
          <li data-md="">
           <p>let <var>e</var> be the result of <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-create-exception">creating</a> a "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://heycam.github.io/webidl/#notallowederror">NotAllowedError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException">DOMException</a></code>.</p>
          <li data-md="">
-          <p>Invoke the <a data-link-type="dfn" href="#handle-errors" id="ref-for-handle-errors-1">Handle Errors</a> abstract operation,
-  passing it <var>e</var> and <var>sensor_instance</var> as arguments.</p>
+          <p>Invoke the <a data-link-type="dfn" href="#handle-errors" id="ref-for-handle-errors-1">Handle Errors</a> abstract operation
+  with <var>e</var> and <var>sensor_instance</var> as arguments.</p>
         </ol>
       </ol>
     </ol>
@@ -2255,7 +2255,7 @@ with the internal slots described in the following table:</p>
       <p>Run these sub-steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in parallel</a>:</p>
       <ol>
        <li data-md="">
-        <p>Invoke <a data-link-type="dfn" href="#unregister-a-sensor" id="ref-for-unregister-a-sensor-1">Unregister a Sensor</a> passing it <var>sensor_instance</var> as argument.</p>
+        <p>Invoke <a data-link-type="dfn" href="#unregister-a-sensor" id="ref-for-unregister-a-sensor-1">Unregister a Sensor</a> with <var>sensor_instance</var> as argument.</p>
       </ol>
     </ol>
    </div>
@@ -2384,8 +2384,8 @@ that must be supported as attributes by the objects implementing the <a data-lin
       <p>let <var>e</var> be the result of <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-create-exception">creating</a> a
   "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://heycam.github.io/webidl/#notreadableerror">NotReadableError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException">DOMException</a></code>.</p>
      <li data-md="">
-      <p>Invoke the <a data-link-type="dfn" href="#handle-errors" id="ref-for-handle-errors-2">Handle Errors</a> abstract operation,
-  passing it <var>e</var> and <var>sensor_instance</var> as arguments.</p>
+      <p>Invoke the <a data-link-type="dfn" href="#handle-errors" id="ref-for-handle-errors-2">Handle Errors</a> abstract operation
+  with <var>e</var> and <var>sensor_instance</var> as arguments.</p>
      <li data-md="">
       <p>Return <code>false</code>.</p>
     </ol>
@@ -2406,8 +2406,8 @@ that must be supported as attributes by the objects implementing the <a data-lin
      <li data-md="">
       <p>Add <var>sensor_instance</var> to <var>sensor</var>’s set of <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects-1">activated Sensor objects</a>.</p>
      <li data-md="">
-      <p>Invoke the <a data-link-type="dfn" href="#set-sensor-settings" id="ref-for-set-sensor-settings-1">Set Sensor Settings</a> abstract operation,
-  passing it <var>sensor</var> as argument.</p>
+      <p>Invoke the <a data-link-type="dfn" href="#set-sensor-settings" id="ref-for-set-sensor-settings-1">Set Sensor Settings</a> abstract operation
+  with <var>sensor</var> as argument.</p>
     </ol>
    </div>
    <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="9.4" data-lt="Unregister a Sensor" data-noexport="" id="unregister-a-sensor"><span class="secno">9.4. </span><span class="content">Unregister a Sensor</span></h3>
@@ -2438,8 +2438,8 @@ that must be supported as attributes by the objects implementing the <a data-lin
         <p>Return.</p>
       </ol>
      <li data-md="">
-      <p>Invoke the <a data-link-type="dfn" href="#set-sensor-settings" id="ref-for-set-sensor-settings-2">Set Sensor Settings</a> abstract operation,
-  passing it <var>sensor</var> as argument.</p>
+      <p>Invoke the <a data-link-type="dfn" href="#set-sensor-settings" id="ref-for-set-sensor-settings-2">Set Sensor Settings</a> abstract operation
+  with <var>sensor</var> as argument.</p>
     </ol>
    </div>
    <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="9.5" data-lt="Revoke sensor permission" data-noexport="" id="revoke-sensor-permission"><span class="secno">9.5. </span><span class="content">Revoke sensor permission</span></h3>
@@ -2463,8 +2463,8 @@ that must be supported as attributes by the objects implementing the <a data-lin
        <li data-md="">
         <p>let <var>e</var> be the result of <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-create-exception">creating</a> a "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://heycam.github.io/webidl/#notallowederror">NotAllowedError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException">DOMException</a></code>.</p>
        <li data-md="">
-        <p>Invoke the <a data-link-type="dfn" href="#handle-errors" id="ref-for-handle-errors-3">Handle Errors</a> abstract operation,
-  passing it <var>e</var> and <var>s</var> as arguments.</p>
+        <p>Invoke the <a data-link-type="dfn" href="#handle-errors" id="ref-for-handle-errors-3">Handle Errors</a> abstract operation
+  with <var>e</var> and <var>s</var> as arguments.</p>
       </ol>
      <li data-md="">
       <p>Unset <var>sensor</var>’s <a data-link-type="dfn" href="#periodic-reporting-mode-flag" id="ref-for-periodic-reporting-mode-flag-2">periodic reporting mode flag</a>.</p>
@@ -2489,7 +2489,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
       <p>Let <var>settings_changed</var> be <code>false</code>.</p>
      <li data-md="">
       <p>Let <var>is_periodic</var> be the result of invoking
-  the <a data-link-type="dfn" href="#is-current-reporting-mode-periodic" id="ref-for-is-current-reporting-mode-periodic-1">Is Current Reporting Mode Periodic</a> abstract operation,
+  the <a data-link-type="dfn" href="#is-current-reporting-mode-periodic" id="ref-for-is-current-reporting-mode-periodic-1">Is Current Reporting Mode Periodic</a> abstract operation
   with <var>sensor</var> as argument.</p>
      <li data-md="">
       <p>If <var>is_periodic</var> is <code>false</code> and the <a data-link-type="dfn" href="#periodic-reporting-mode-flag" id="ref-for-periodic-reporting-mode-flag-3">periodic reporting mode flag</a> is set, then</p>
@@ -2509,7 +2509,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
       </ol>
      <li data-md="">
       <p>Let <var>frequency</var> be the result of invoking
-  the <a data-link-type="dfn" href="#find-the-polling-frequency-of-a-sensor" id="ref-for-find-the-polling-frequency-of-a-sensor-1">Find the polling frequency of a Sensor</a> abstract operation,
+  the <a data-link-type="dfn" href="#find-the-polling-frequency-of-a-sensor" id="ref-for-find-the-polling-frequency-of-a-sensor-1">Find the polling frequency of a Sensor</a> abstract operation
   with <var>sensor</var> as argument.</p>
      <li data-md="">
       <p>If <var>frequency</var> is different from <var>sensor</var>’s <a data-link-type="dfn" href="#current-polling-frequency" id="ref-for-current-polling-frequency-3">current polling frequency</a>,</p>
@@ -2523,8 +2523,8 @@ that must be supported as attributes by the objects implementing the <a data-lin
       <p>If <var>settings_changed</var> is <code>true</code></p>
       <ol>
        <li data-md="">
-        <p>Invoke the <a data-link-type="dfn" href="#observe-a-sensor" id="ref-for-observe-a-sensor-1">Observe a Sensor</a> abstract operation,
-  passing it <var>sensor</var> as argument.</p>
+        <p>Invoke the <a data-link-type="dfn" href="#observe-a-sensor" id="ref-for-observe-a-sensor-1">Observe a Sensor</a> abstract operation
+  with <var>sensor</var> as argument.</p>
       </ol>
     </ol>
     <p class="issue" id="issue-9a4dcce1"><a class="self-link" href="#issue-9a4dcce1"></a> This abstract operation needs to return <var>settings_changed</var> instead of the <a data-link-type="dfn" href="#observe-a-sensor" id="ref-for-observe-a-sensor-2">Observe a Sensor</a> abstract operation itself.</p>
@@ -2544,7 +2544,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
     <ol>
      <li data-md="">
       <p>If <var>sensor</var>’s <var>latest reading</var>["timestamp"] is not <code>null</code>,
-  invoke the <a data-link-type="dfn" href="#update-observers" id="ref-for-update-observers-1">update observers</a> abstract operation passing it <var>sensor_instance</var> and <var>latest reading</var>["timestamp"] as arguments.</p>
+  invoke the <a data-link-type="dfn" href="#update-observers" id="ref-for-update-observers-1">update observers</a> abstract operation with <var>sensor_instance</var> and <var>latest reading</var>["timestamp"] as arguments.</p>
      <li data-md="">
       <p>Otherwise, poll <var>sensor</var> immediately.</p>
       <div class="issue no-marker" id="issue-d41d8cd90">
@@ -2567,8 +2567,8 @@ that must be supported as attributes by the objects implementing the <a data-lin
        <li data-md="">
         <p>Poll <var>sensor</var> at <var>frequency</var>.</p>
        <li data-md="">
-        <p class="issue" id="issue-63b367e3"><a class="self-link" href="#issue-63b367e3"></a> Hook into the <code>requestAnimationFrame</code> framework <a data-link-type="biblio" href="#biblio-html">[HTML]</a> to invoke the <a data-link-type="dfn" href="#update-latest-reading" id="ref-for-update-latest-reading-1">update latest reading</a> abstract operation
-  with every new frame passing it <var>sensor</var> and
+        <p class="issue" id="issue-7da78b12"><a class="self-link" href="#issue-7da78b12"></a> Hook into the <code>requestAnimationFrame</code> framework <a data-link-type="biblio" href="#biblio-html">[HTML]</a> to invoke the <a data-link-type="dfn" href="#update-latest-reading" id="ref-for-update-latest-reading-1">update latest reading</a> abstract operation
+  for every new frame with <var>sensor</var> and
   the latest <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-32">sensor reading</a> as arguments.</p>
         <p class="issue" id="issue-c1d5eff3"><a class="self-link" href="#issue-c1d5eff3"></a> Relying on <code>requestAnimationFrame</code> gives us a perfect point
   to buffer readings > 60Hz and to pass them to together with every new frame.
@@ -2781,7 +2781,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
       <p>If the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#currently-focused-area-of-a-top-level-browsing-context">currently focused area</a> of the current <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context">top-level browsing context</a> is a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#nested-browsing-context">nested browsing context</a> whose <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#active-document">active document</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#origin-2">origin</a> is not <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#same-origin-domain">same origin-domain</a> as <var>document</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#origin-2">origin</a>,
   then return "insecure".</p>
      <li data-md="">
-      <p>Let <var>has_focus</var> be the result of running the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#has-focus-steps">has focus steps</a> passing it <var>document</var> as argument.</p>
+      <p>Let <var>has_focus</var> be the result of running the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#has-focus-steps">has focus steps</a> with <var>document</var> as argument.</p>
      <li data-md="">
       <p>If <var>has_focus</var> is false, then return "insecure".</p>
      <li data-md="">
