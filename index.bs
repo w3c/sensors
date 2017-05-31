@@ -652,7 +652,7 @@ A [=sensor type=] has a [=permission revocation algorithm=].
 
     1.  For each |sensor_type| which has an associated {{PermissionName}} |permission_name|:
         1.  [=set/For each=] |sensor| in |sensor_type|'s [=ordered set|set=] of [=associated sensors=],
-            1.  Invoke the [=revoke sensor permission=] abstract operation with |sensor| as argument.
+            1.  Invoke [=revoke sensor permission=] with |sensor| as argument.
 </div>
 
 
@@ -884,19 +884,16 @@ The getter of the {{Sensor/timestamp!!attribute}} attribute returns
         or "activated", then return.
     1.  Set |sensor_instance|.{{[[state]]}} to "activating".
     1.  Run these sub-steps [=in parallel=]:
-        1.  let |connected| be the result of invoking
-            the [=Connect to Sensor=] abstract operation.
+        1.  let |connected| be the result of invoking [=Connect to Sensor=].
         1.  If |connected| is `false`, then return.
         1.  Let |permission_state| be the result of invoking
-            the [=Request Sensor Access=] abstract operation
-            with |sensor_instance| as argument.
+            [=Request Sensor Access=] with |sensor_instance| as argument.
         1.  If |permission_state| is "granted",
             1.  Invoke [=Register a Sensor Object=] with |sensor_instance| as argument.
         1.  Otherwise, if |permission_state| is "denied",
             1.  let |e| be the result of [=created|creating=]
                 a "{{NotAllowedError!!exception}}" {{DOMException}}.
-            1.  Invoke the [=Handle Errors=] abstract operation
-                with |e| and |sensor_instance| as arguments.
+            1.  Invoke [=Handle Errors=] with |e| and |sensor_instance| as arguments.
 </div>
 
 
@@ -1042,8 +1039,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
         correctly diagnosing the reason for the rejection
         and might lead to confusing instructions to the user,
         but it is a tradeoff some User Agent might choose to make. -->
-    1.  Invoke the [=Handle Errors=] abstract operation
-        with |e| and |sensor_instance| as arguments.
+    1.  Invoke [=Handle Errors=] with |e| and |sensor_instance| as arguments.
     1.  Return `false`.
 </div>
 
@@ -1106,8 +1102,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
         1.  [=set/Remove=] |s| from |activated_sensors|.
         1.  let |e| be the result of [=created|creating=]
             a "{{NotAllowedError!!exception}}" {{DOMException}}.
-        1.  Invoke the [=Handle Errors=] abstract operation
-            with |e| and |s| as arguments.
+        1.  Invoke [=Handle Errors=] with |e| and |s| as arguments.
     1.  Unset |sensor|'s [=periodic reporting mode flag=].
     1.  Set |sensor|'s [=current polling frequency=] to `null`.
     1.  Update the user-agent-specific way in which [=sensor readings=] are obtained from |sensor|
@@ -1127,16 +1122,14 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
 
     1.  Let |settings_changed| be `false`.
     1.  Let |is_periodic| be the result of invoking
-        the [=Is Current Reporting Mode Periodic=] abstract operation
-        with |sensor| as argument.
+        [=Is Current Reporting Mode Periodic=] with |sensor| as argument.
     1.  If |is_periodic| is `false` and the [=periodic reporting mode flag=] is set, then
         1.  set |settings_changed| to `true`.
         1.  Unset the [=periodic reporting mode flag=].
     1.  Otherwise if |is_periodic| is `true` and the [=periodic reporting mode flag=] is unset, then
         1.  set |settings_changed| to `true`.
         1.  Set the [=periodic reporting mode flag=].
-    1.  Let |frequency| be the result of invoking
-        the [=Find the polling frequency of a Sensor=] abstract operation
+    1.  Let |frequency| be the result of invoking [=Find the polling frequency of a Sensor=]
         with |sensor| as argument.
     1.  If |frequency| is different from |sensor|'s [=current polling frequency=],
         1.  set |settings_changed| to `true`.
@@ -1158,11 +1151,11 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     : output
     :: None
 
-    <!-- 1.  Immediately invoke the [=Update latest reading=] abstract operation
+    <!-- 1.  Immediately invoke [=Update latest reading=]
         to report fresh [=sensor readings|readings=]
         with |sensor| and [=latest reading=]["timestamp"] as arguments. -->
     1.  If |sensor|'s |latest reading|["timestamp"] is not `null`,
-        invoke the [=update observers=] abstract operation with |sensor_instance|
+        invoke [=update observers=] with |sensor_instance|
         and |latest reading|["timestamp"] as arguments.
     1.  Otherwise, poll |sensor| immediately.
 
@@ -1180,9 +1173,8 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
             E.g. via a dedicated event?
         1.  Poll |sensor| at |frequency|.
         1.  Issue: Hook into the `requestAnimationFrame` framework [[HTML]]
-            to invoke the [=update latest reading=] abstract operation
-            for every new frame with |sensor| and
-            the latest [=sensor reading=] as arguments.
+            to invoke [=update latest reading=] for every new frame
+            with |sensor| and the latest [=sensor reading=] as arguments.
 
             Issue: Relying on `requestAnimationFrame` gives us a perfect point
             to buffer readings > 60Hz and to pass them to together with every new frame.
