@@ -1534,7 +1534,7 @@ that can be extended to accommodate different sensor types.</p>
       <li>
        <a href="#mitigation-strategies-case-by-case"><span class="secno">5.2</span> <span class="content">Mitigation strategies applied on a case by case basis</span></a>
        <ol class="toc">
-        <li><a href="#limit-max-freqency"><span class="secno">5.2.1</span> <span class="content">Limit maximum polling frequency</span></a>
+        <li><a href="#limit-max-freqency"><span class="secno">5.2.1</span> <span class="content">Limit maximum sampling frequency</span></a>
         <li><a href="#stopping-sensor"><span class="secno">5.2.2</span> <span class="content">Stopping the sensor altogether</span></a>
         <li><a href="#limit-number-of-delivered-readings"><span class="secno">5.2.3</span> <span class="content">Limit number of delivered readings</span></a>
         <li><a href="#reducing-accuracy"><span class="secno">5.2.4</span> <span class="content">Reducing accuracy</span></a>
@@ -1588,7 +1588,7 @@ that can be extended to accommodate different sensor types.</p>
       <li><a href="#set-sensor-settings"><span class="secno">9.6</span> <span class="content">Set sensor settings</span></a>
       <li><a href="#observe-a-sensor"><span class="secno">9.7</span> <span class="content">Observe a sensor</span></a>
       <li><a href="#is-current-reporting-mode-periodic"><span class="secno">9.8</span> <span class="content">Is current reporting mode periodic</span></a>
-      <li><a href="#find-the-polling-frequency-of-a-sensor"><span class="secno">9.9</span> <span class="content">Find the polling frequency of a sensor</span></a>
+      <li><a href="#find-the-sampling-frequency-of-a-sensor"><span class="secno">9.9</span> <span class="content">Find the sampling frequency of a sensor</span></a>
       <li><a href="#update-latest-reading"><span class="secno">9.10</span> <span class="content">Update latest reading</span></a>
       <li><a href="#update-observers"><span class="secno">9.11</span> <span class="content">Update observers</span></a>
       <li><a href="#security-check"><span class="secno">9.12</span> <span class="content">Security check</span></a>
@@ -1879,13 +1879,13 @@ they might also hinder or altogether prevent certain use cases.</p>
 for example when the user is carrying out specific actions,
 when other APIs which are known to amplify the level of the threat are in use,
 etc.</p>
-   <h4 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="5.2.1" data-lt="Limit maximum polling frequency" data-noexport="" id="limit-max-freqency"><span class="secno">5.2.1. </span><span class="content">Limit maximum polling frequency</span></h4>
+   <h4 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="5.2.1" data-lt="Limit maximum sampling frequency" data-noexport="" id="limit-max-freqency"><span class="secno">5.2.1. </span><span class="content">Limit maximum sampling frequency</span></h4>
    <p>User agents may mitigate certain threats by
-limiting the maximum polling frequency.
+limiting the maximum sampling frequency.
 What upper limit to choose depends on the <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-9">sensor type</a>,
 the kind of threats the user agent is trying to protect against,
 the expected resources of the attacker, etc.</p>
-   <p>Limiting the maximum polling frequency prevents use cases
+   <p>Limiting the maximum sampling frequency prevents use cases
 which rely on low latency or high data density.</p>
    <h4 class="heading settled" data-dfn-type="dfn" data-level="5.2.2" data-lt="Stopping the sensor altogether" data-noexport="" id="stopping-sensor"><span class="secno">5.2.2. </span><span class="content">Stopping the sensor altogether</span><a class="self-link" href="#stopping-sensor"></a></h4>
    <p>This is obviously a last-resort solution,
@@ -1894,11 +1894,11 @@ for example to prevent password skimming attempts
 when the user is entering credentials on a different origin (<a data-link-type="biblio" href="#biblio-rfc6454">[rfc6454]</a>)
 or in a different application.</p>
    <h4 class="heading settled" data-dfn-type="dfn" data-level="5.2.3" data-lt="Limit number of delivered readings" data-noexport="" id="limit-number-of-delivered-readings"><span class="secno">5.2.3. </span><span class="content">Limit number of delivered readings</span><a class="self-link" href="#limit-number-of-delivered-readings"></a></h4>
-   <p>An alternative to <a data-link-type="dfn" href="#limit-max-freqency" id="ref-for-limit-max-freqency-1">limiting the maximum polling frequency</a> is to
+   <p>An alternative to <a data-link-type="dfn" href="#limit-max-freqency" id="ref-for-limit-max-freqency-1">limiting the maximum sampling frequency</a> is to
 limit the number of <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-11">sensor readings</a> delivered to Web application developer,
 regardless of what frequency the sensor is polled at.
 This allows use cases which have low latency requirement
-to increase polling frequency
+to increase sampling frequency
 without increasing the amount of data provided.</p>
    <p>Discarding intermediary readings prevents certain use cases,
 such as those relying on certain kinds of filters.</p>
@@ -2019,9 +2019,9 @@ as that would require data inference.</p>
 the different data acquisition modes,
 notably polling vs. on change,
 both at the platform and HW layer.</p>
-   <p class="issue" id="issue-ee9f08bc"><a class="self-link" href="#issue-ee9f08bc"></a> It would be useful to describe
-the process of sensor polling and
-how increased sensor polling frequency decreases latency.</p>
+   <p class="issue" id="issue-735bbf10"><a class="self-link" href="#issue-735bbf10"></a> It would be useful to describe
+the process of sensor sampling and
+how increased sensor sampling frequency decreases latency.</p>
    <p class="issue" id="issue-38946dd2"><a class="self-link" href="#issue-38946dd2"></a> A definition of sensor accuracy and
 how it affects threshold,
 and thus "on change" sensors would be useful.</p>
@@ -2074,7 +2074,7 @@ and the <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-attri
 its associated <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-29">sensor type</a> does.</p>
    <p>A <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-26">sensor</a> has an associated <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="reporting-flag">reporting flag</dfn> which is initially unset.</p>
    <p>A <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-27">sensor</a> has an associated <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="periodic-reporting-mode-flag">periodic reporting mode flag</dfn> which is initially unset.</p>
-   <p>A <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-28">sensor</a> has an associated <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="current-polling-frequency">current polling frequency</dfn> which is initially null.</p>
+   <p>A <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-28">sensor</a> has an associated <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="current-sampling-frequency">current sampling frequency</dfn> which is initially null.</p>
    <h2 class="heading settled" data-level="8" id="api"><span class="secno">8. </span><span class="content">API</span><a class="self-link" href="#api"></a></h2>
    <h3 class="heading settled" data-level="8.1" id="the-sensor-interface"><span class="secno">8.1. </span><span class="content">The Sensor Interface</span><a class="self-link" href="#the-sensor-interface"></a></h3>
 <pre class="idl highlight def">[<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext">SecureContext</a>]
@@ -2181,8 +2181,8 @@ with the internal slots described in the following table:</p>
                 "activated".
                 It is initially "idle". 
      <tr>
-      <td><dfn class="dfn-paneled idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" id="dom-sensor-desiredpollingfrequency-slot"><code>[[desiredPollingFrequency]]</code></dfn>
-      <td>The requested polling frequency. It is initially unset.
+      <td><dfn class="dfn-paneled idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" id="dom-sensor-desiredsamplingfrequency-slot"><code>[[desiredSamplingFrequency]]</code></dfn>
+      <td>The requested sampling frequency. It is initially unset.
      <tr>
       <td><dfn class="dfn-paneled idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" id="dom-sensor-lasteventfiredat-slot"><code>[[lastEventFiredAt]]</code></dfn>
       <td>the high resolution timestamp of the latest <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-27">sensor reading</a> that was sent to observers of the <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-8">Sensor</a></code> object,
@@ -2339,7 +2339,7 @@ that must be supported as attributes by the objects implementing the <code class
       <p>If <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-31">sensor</a> <a data-link-type="dfn" href="#supports-periodic-reporting-mode" id="ref-for-supports-periodic-reporting-mode-1">supports periodic reporting mode</a> and <var>options</var>.<code class="idl"><a class="idl-code" data-link-type="dict-member" href="#dom-sensoroptions-frequency" id="ref-for-dom-sensoroptions-frequency-1">frequency</a></code> is <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-present">present</a>, then</p>
       <ol>
        <li data-md="">
-        <p>Set <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-desiredpollingfrequency-slot" id="ref-for-dom-sensor-desiredpollingfrequency-slot-1">[[desiredPollingFrequency]]</a></code> to <var>options</var>.<code class="idl"><a class="idl-code" data-link-type="dict-member" href="#dom-sensoroptions-frequency" id="ref-for-dom-sensoroptions-frequency-2">frequency</a></code>.</p>
+        <p>Set <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-desiredsamplingfrequency-slot" id="ref-for-dom-sensor-desiredsamplingfrequency-slot-1">[[desiredSamplingFrequency]]</a></code> to <var>options</var>.<code class="idl"><a class="idl-code" data-link-type="dict-member" href="#dom-sensoroptions-frequency" id="ref-for-dom-sensoroptions-frequency-2">frequency</a></code>.</p>
       </ol>
       <p class="note" role="note"><span>Note:</span> there is not guarantee that the requested <var>options</var>.<code class="idl"><a class="idl-code" data-link-type="dict-member" href="#dom-sensoroptions-frequency" id="ref-for-dom-sensoroptions-frequency-3">frequency</a></code> can be respected. The actual <a data-link-type="dfn" href="#frequency" id="ref-for-frequency-3">frequency</a> can be calculated using <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-13">Sensor</a></code> <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensor-timestamp" id="ref-for-dom-sensor-timestamp-2">timestamp</a></code> attributes.</p>
      <li data-md="">
@@ -2436,7 +2436,7 @@ that must be supported as attributes by the objects implementing the <code class
        <li data-md="">
         <p>Unset the <a data-link-type="dfn" href="#periodic-reporting-mode-flag" id="ref-for-periodic-reporting-mode-flag-1">periodic reporting mode flag</a>.</p>
        <li data-md="">
-        <p>Set <a data-link-type="dfn" href="#current-polling-frequency" id="ref-for-current-polling-frequency-1">current polling frequency</a> to null.</p>
+        <p>Set <a data-link-type="dfn" href="#current-sampling-frequency" id="ref-for-current-sampling-frequency-1">current sampling frequency</a> to null.</p>
        <li data-md="">
         <p>Update the user-agent-specific way in which <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-29">sensor readings</a> are obtained from <var>sensor</var> to no longer provide <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-30">readings</a>.</p>
        <li data-md="">
@@ -2475,7 +2475,7 @@ that must be supported as attributes by the objects implementing the <code class
      <li data-md="">
       <p>Unset <var>sensor</var>’s <a data-link-type="dfn" href="#periodic-reporting-mode-flag" id="ref-for-periodic-reporting-mode-flag-2">periodic reporting mode flag</a>.</p>
      <li data-md="">
-      <p>Set <var>sensor</var>’s <a data-link-type="dfn" href="#current-polling-frequency" id="ref-for-current-polling-frequency-2">current polling frequency</a> to null.</p>
+      <p>Set <var>sensor</var>’s <a data-link-type="dfn" href="#current-sampling-frequency" id="ref-for-current-sampling-frequency-2">current sampling frequency</a> to null.</p>
      <li data-md="">
       <p>Update the user-agent-specific way in which <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-31">sensor readings</a> are obtained from <var>sensor</var> to no longer provide <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-32">readings</a>.</p>
     </ol>
@@ -2512,14 +2512,14 @@ that must be supported as attributes by the objects implementing the <code class
         <p>Set the <a data-link-type="dfn" href="#periodic-reporting-mode-flag" id="ref-for-periodic-reporting-mode-flag-6">periodic reporting mode flag</a>.</p>
       </ol>
      <li data-md="">
-      <p>Let <var>frequency</var> be the result of invoking <a data-link-type="dfn" href="#find-the-polling-frequency-of-a-sensor" id="ref-for-find-the-polling-frequency-of-a-sensor-1">find the polling frequency of a sensor</a> with <var>sensor</var> as argument.</p>
+      <p>Let <var>frequency</var> be the result of invoking <a data-link-type="dfn" href="#find-the-sampling-frequency-of-a-sensor" id="ref-for-find-the-sampling-frequency-of-a-sensor-1">find the sampling frequency of a sensor</a> with <var>sensor</var> as argument.</p>
      <li data-md="">
-      <p>If <var>frequency</var> is different from <var>sensor</var>’s <a data-link-type="dfn" href="#current-polling-frequency" id="ref-for-current-polling-frequency-3">current polling frequency</a>,</p>
+      <p>If <var>frequency</var> is different from <var>sensor</var>’s <a data-link-type="dfn" href="#current-sampling-frequency" id="ref-for-current-sampling-frequency-3">current sampling frequency</a>,</p>
       <ol>
        <li data-md="">
         <p>set <var>settings_changed</var> to true.</p>
        <li data-md="">
-        <p>Set <a data-link-type="dfn" href="#current-polling-frequency" id="ref-for-current-polling-frequency-4">current polling frequency</a> to <var>frequency</var>.</p>
+        <p>Set <a data-link-type="dfn" href="#current-sampling-frequency" id="ref-for-current-sampling-frequency-4">current sampling frequency</a> to <var>frequency</var>.</p>
       </ol>
      <li data-md="">
       <p>Return <var>settings_changed</var>.</p>
@@ -2553,11 +2553,11 @@ that must be supported as attributes by the objects implementing the <code class
       <p>If <var>sensor</var>’s <a data-link-type="dfn" href="#periodic-reporting-mode-flag" id="ref-for-periodic-reporting-mode-flag-7">periodic reporting mode flag</a> is set,</p>
       <ol>
        <li data-md="">
-        <p>let <var>frequency</var> be the <a data-link-type="dfn" href="#current-polling-frequency" id="ref-for-current-polling-frequency-5">current polling frequency</a>,
+        <p>let <var>frequency</var> be the <a data-link-type="dfn" href="#current-sampling-frequency" id="ref-for-current-sampling-frequency-5">current sampling frequency</a>,
   capped by the upper and lower bounds of the underlying hardware.</p>
-        <p class="issue" id="issue-7570e8b7"><a class="self-link" href="#issue-7570e8b7"></a> Should this max polling frequency be reflected in the <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-18">Sensor</a></code> interface?
+        <p class="issue" id="issue-848364a4"><a class="self-link" href="#issue-848364a4"></a> Should this max sampling frequency be reflected in the <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-18">Sensor</a></code> interface?
   E.g. Through a dedicated attribute?</p>
-        <p class="issue" id="issue-b28ffcf7"><a class="self-link" href="#issue-b28ffcf7"></a> Does the max polling frequency affect the reporting frequency?
+        <p class="issue" id="issue-5221142a"><a class="self-link" href="#issue-5221142a"></a> Does the max sampling frequency affect the reporting frequency?
   If so, should we advise the developer of this issue?
   E.g. via a dedicated event?</p>
        <li data-md="">
@@ -2598,7 +2598,7 @@ that must be supported as attributes by the objects implementing the <code class
       <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate">For each</a> <var>sensor_instance</var> in <var>sensor</var>’s set of <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects-5">activated sensor objects</a>:</p>
       <ol>
        <li data-md="">
-        <p>if <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-desiredpollingfrequency-slot" id="ref-for-dom-sensor-desiredpollingfrequency-slot-2">[[desiredPollingFrequency]]</a></code> is set,</p>
+        <p>if <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-desiredsamplingfrequency-slot" id="ref-for-dom-sensor-desiredsamplingfrequency-slot-2">[[desiredSamplingFrequency]]</a></code> is set,</p>
         <ol>
          <li data-md="">
           <p>set <var>result</var> to true, then <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#iteration-break">break</a>.</p>
@@ -2608,8 +2608,8 @@ that must be supported as attributes by the objects implementing the <code class
       <p>return <var>result</var>.</p>
     </ol>
    </div>
-   <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="9.9" data-lt="Find the polling frequency of a sensor" data-noexport="" id="find-the-polling-frequency-of-a-sensor"><span class="secno">9.9. </span><span class="content">Find the polling frequency of a sensor</span></h3>
-   <div class="algorithm" data-algorithm="find the polling frequency of a sensor">
+   <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="9.9" data-lt="Find the sampling frequency of a sensor" data-noexport="" id="find-the-sampling-frequency-of-a-sensor"><span class="secno">9.9. </span><span class="content">Find the sampling frequency of a sensor</span></h3>
+   <div class="algorithm" data-algorithm="find the sampling frequency of a sensor">
     <dl>
      <dt data-md="">input
      <dd data-md="">
@@ -2625,7 +2625,7 @@ that must be supported as attributes by the objects implementing the <code class
       <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate">For each</a> <var>sensor_instance</var> in <var>sensor</var>’s set of <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects-6">activated sensor objects</a>:</p>
       <ol>
        <li data-md="">
-        <p>let <var>f</var> be <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-desiredpollingfrequency-slot" id="ref-for-dom-sensor-desiredpollingfrequency-slot-3">[[desiredPollingFrequency]]</a></code>.</p>
+        <p>let <var>f</var> be <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-desiredsamplingfrequency-slot" id="ref-for-dom-sensor-desiredsamplingfrequency-slot-3">[[desiredSamplingFrequency]]</a></code>.</p>
        <li data-md="">
         <p>if <var>f</var> is set and <var>f</var> is greater than <var>frequency</var>,</p>
         <ol>
@@ -2790,7 +2790,7 @@ that must be supported as attributes by the objects implementing the <code class
       <p>Return "secure".</p>
     </ol>
    </div>
-   <p class="note" role="note"><span>Note:</span> user agents are encouraged to stop sensor polling
+   <p class="note" role="note"><span>Note:</span> user agents are encouraged to stop sensor sampling
 when <a data-link-type="dfn" href="#security-check" id="ref-for-security-check-4">security check</a> would return "insecure"
 in order to reduce resource consumption, notably battery usage.</p>
    <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="9.13" data-lt="Handle errors" data-noexport="" id="handle-errors"><span class="secno">9.13. </span><span class="content">Handle errors</span></h3>
@@ -3246,9 +3246,9 @@ for their editorial input.</p>
    <li><a href="#conformant-user-agent">conformant user agent</a><span>, in §Unnumbered section</span>
    <li><a href="#connect-to-sensor">Connect to sensor</a><span>, in §9.1</span>
    <li><a href="#construct-sensor-object">Construct sensor object</a><span>, in §9</span>
-   <li><a href="#current-polling-frequency">current polling frequency</a><span>, in §7.2</span>
+   <li><a href="#current-sampling-frequency">current sampling frequency</a><span>, in §7.2</span>
    <li><a href="#default-sensor">default sensor</a><span>, in §7.1</span>
-   <li><a href="#dom-sensor-desiredpollingfrequency-slot">[[desiredPollingFrequency]]</a><span>, in §8.1.2</span>
+   <li><a href="#dom-sensor-desiredsamplingfrequency-slot">[[desiredSamplingFrequency]]</a><span>, in §8.1.2</span>
    <li><a href="#equivalent">equivalent</a><span>, in §Unnumbered section</span>
    <li>
     error
@@ -3257,7 +3257,7 @@ for their editorial input.</p>
      <li><a href="#dom-sensorerroreventinit-error">dict-member for SensorErrorEventInit</a><span>, in §8.2</span>
     </ul>
    <li><a href="#fallback">fallback</a><span>, in §6.3</span>
-   <li><a href="#find-the-polling-frequency-of-a-sensor">Find the polling frequency of a sensor</a><span>, in §9.8</span>
+   <li><a href="#find-the-sampling-frequency-of-a-sensor">Find the sampling frequency of a sensor</a><span>, in §9.8</span>
    <li>
     frequency
     <ul>
@@ -3274,7 +3274,7 @@ for their editorial input.</p>
    <li><a href="#is-current-reporting-mode-periodic">Is current reporting mode periodic</a><span>, in §9.7</span>
    <li><a href="#dom-sensor-lasteventfiredat-slot">[[lastEventFiredAt]]</a><span>, in §8.1.2</span>
    <li><a href="#latest-reading">latest reading</a><span>, in §7.2</span>
-   <li><a href="#limit-max-freqency">Limit maximum polling frequency</a><span>, in §5.2</span>
+   <li><a href="#limit-max-freqency">Limit maximum sampling frequency</a><span>, in §5.2</span>
    <li><a href="#limit-number-of-delivered-readings">Limit number of delivered readings</a><span>, in §5.2.2</span>
    <li><a href="#low-level">low-level</a><span>, in §6.2</span>
    <li><a href="#observe-a-sensor">Observe a sensor</a><span>, in §9.6</span>
@@ -3576,7 +3576,7 @@ for their editorial input.</p>
    <ul>
     <li><a href="#ref-for-frequency-1">6.3. Reporting Modes</a> <a href="#ref-for-frequency-2">(2)</a>
     <li><a href="#ref-for-frequency-3">9.1. Construct sensor object</a>
-    <li><a href="#ref-for-frequency-4">9.9. Find the polling frequency of a sensor</a>
+    <li><a href="#ref-for-frequency-4">9.9. Find the sampling frequency of a sensor</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="periodic">
@@ -3598,7 +3598,7 @@ for their editorial input.</p>
     <li><a href="#ref-for-sensor-type-1">3. Background</a> <a href="#ref-for-sensor-type-2">(2)</a> <a href="#ref-for-sensor-type-3">(3)</a> <a href="#ref-for-sensor-type-4">(4)</a> <a href="#ref-for-sensor-type-5">(5)</a> <a href="#ref-for-sensor-type-6">(6)</a>
     <li><a href="#ref-for-sensor-type-7">5. Security and privacy considerations</a>
     <li><a href="#ref-for-sensor-type-8">5.2. Mitigation strategies applied on a case by case basis</a>
-    <li><a href="#ref-for-sensor-type-9">5.2.1. Limit maximum polling frequency</a>
+    <li><a href="#ref-for-sensor-type-9">5.2.1. Limit maximum sampling frequency</a>
     <li><a href="#ref-for-sensor-type-10">6.2. Sensor Types</a> <a href="#ref-for-sensor-type-11">(2)</a> <a href="#ref-for-sensor-type-12">(3)</a> <a href="#ref-for-sensor-type-13">(4)</a> <a href="#ref-for-sensor-type-14">(5)</a> <a href="#ref-for-sensor-type-15">(6)</a> <a href="#ref-for-sensor-type-16">(7)</a> <a href="#ref-for-sensor-type-17">(8)</a>
     <li><a href="#ref-for-sensor-type-18">6.3. Reporting Modes</a> <a href="#ref-for-sensor-type-19">(2)</a> <a href="#ref-for-sensor-type-20">(3)</a>
     <li><a href="#ref-for-sensor-type-21">7.1. Sensor Type</a> <a href="#ref-for-sensor-type-22">(2)</a> <a href="#ref-for-sensor-type-23">(3)</a> <a href="#ref-for-sensor-type-24">(4)</a> <a href="#ref-for-sensor-type-25">(5)</a> <a href="#ref-for-sensor-type-26">(6)</a>
@@ -3652,7 +3652,7 @@ for their editorial input.</p>
     <li><a href="#ref-for-concept-sensor-39">9.6. Set sensor settings</a>
     <li><a href="#ref-for-concept-sensor-40">9.7. Observe a sensor</a>
     <li><a href="#ref-for-concept-sensor-41">9.8. Is current reporting mode periodic</a>
-    <li><a href="#ref-for-concept-sensor-42">9.9. Find the polling frequency of a sensor</a>
+    <li><a href="#ref-for-concept-sensor-42">9.9. Find the sampling frequency of a sensor</a>
     <li><a href="#ref-for-concept-sensor-43">9.10. Update latest reading</a> <a href="#ref-for-concept-sensor-44">(2)</a>
     <li><a href="#ref-for-concept-sensor-45">9.14. Get value from latest reading</a>
     <li><a href="#ref-for-concept-sensor-46">9.15. Request sensor access</a>
@@ -3668,7 +3668,7 @@ for their editorial input.</p>
     <li><a href="#ref-for-activated-sensor-objects-2">9.4. Unregister a sensor object</a> <a href="#ref-for-activated-sensor-objects-3">(2)</a>
     <li><a href="#ref-for-activated-sensor-objects-4">9.5. Revoke sensor permission</a>
     <li><a href="#ref-for-activated-sensor-objects-5">9.8. Is current reporting mode periodic</a>
-    <li><a href="#ref-for-activated-sensor-objects-6">9.9. Find the polling frequency of a sensor</a>
+    <li><a href="#ref-for-activated-sensor-objects-6">9.9. Find the sampling frequency of a sensor</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="latest-reading">
@@ -3701,13 +3701,13 @@ for their editorial input.</p>
     <li><a href="#ref-for-periodic-reporting-mode-flag-7">9.7. Observe a sensor</a> <a href="#ref-for-periodic-reporting-mode-flag-8">(2)</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="current-polling-frequency">
-   <b><a href="#current-polling-frequency">#current-polling-frequency</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="current-sampling-frequency">
+   <b><a href="#current-sampling-frequency">#current-sampling-frequency</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-current-polling-frequency-1">9.4. Unregister a sensor object</a>
-    <li><a href="#ref-for-current-polling-frequency-2">9.5. Revoke sensor permission</a>
-    <li><a href="#ref-for-current-polling-frequency-3">9.6. Set sensor settings</a> <a href="#ref-for-current-polling-frequency-4">(2)</a>
-    <li><a href="#ref-for-current-polling-frequency-5">9.7. Observe a sensor</a>
+    <li><a href="#ref-for-current-sampling-frequency-1">9.4. Unregister a sensor object</a>
+    <li><a href="#ref-for-current-sampling-frequency-2">9.5. Revoke sensor permission</a>
+    <li><a href="#ref-for-current-sampling-frequency-3">9.6. Set sensor settings</a> <a href="#ref-for-current-sampling-frequency-4">(2)</a>
+    <li><a href="#ref-for-current-sampling-frequency-5">9.7. Observe a sensor</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="sensor">
@@ -3802,12 +3802,12 @@ for their editorial input.</p>
     <li><a href="#ref-for-dom-sensor-state-slot-11">9.14. Get value from latest reading</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="dom-sensor-desiredpollingfrequency-slot">
-   <b><a href="#dom-sensor-desiredpollingfrequency-slot">#dom-sensor-desiredpollingfrequency-slot</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="dom-sensor-desiredsamplingfrequency-slot">
+   <b><a href="#dom-sensor-desiredsamplingfrequency-slot">#dom-sensor-desiredsamplingfrequency-slot</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-sensor-desiredpollingfrequency-slot-1">9.1. Construct sensor object</a>
-    <li><a href="#ref-for-dom-sensor-desiredpollingfrequency-slot-2">9.8. Is current reporting mode periodic</a>
-    <li><a href="#ref-for-dom-sensor-desiredpollingfrequency-slot-3">9.9. Find the polling frequency of a sensor</a>
+    <li><a href="#ref-for-dom-sensor-desiredsamplingfrequency-slot-1">9.1. Construct sensor object</a>
+    <li><a href="#ref-for-dom-sensor-desiredsamplingfrequency-slot-2">9.8. Is current reporting mode periodic</a>
+    <li><a href="#ref-for-dom-sensor-desiredsamplingfrequency-slot-3">9.9. Find the sampling frequency of a sensor</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-sensor-lasteventfiredat-slot">
@@ -3892,10 +3892,10 @@ for their editorial input.</p>
     <li><a href="#ref-for-is-current-reporting-mode-periodic-1">9.6. Set sensor settings</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="find-the-polling-frequency-of-a-sensor">
-   <b><a href="#find-the-polling-frequency-of-a-sensor">#find-the-polling-frequency-of-a-sensor</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="find-the-sampling-frequency-of-a-sensor">
+   <b><a href="#find-the-sampling-frequency-of-a-sensor">#find-the-sampling-frequency-of-a-sensor</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-find-the-polling-frequency-of-a-sensor-1">9.6. Set sensor settings</a>
+    <li><a href="#ref-for-find-the-sampling-frequency-of-a-sensor-1">9.6. Set sensor settings</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="update-latest-reading">
