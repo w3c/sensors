@@ -421,7 +421,7 @@ or in a different application.
 
 <h4 id="limit-number-of-delivered-readings" dfn>Limit number of delivered readings</h4>
 
-An alternative to [=Limit maximum polling frequency|limiting the maximum polling frequency=] is to
+An alternative to [=limit maximum polling frequency|limiting the maximum polling frequency=] is to
 limit the number of [=sensor readings=] delivered to Web application developer,
 regardless of what frequency the sensor is polled at.
 This allows use cases which have low latency requirement
@@ -659,7 +659,7 @@ A [=sensor type=] has a [=permission revocation algorithm=].
 <h3 id="model-sensor">Sensor</h3>
 
 A <dfn id=concept-sensor>sensor</dfn> has an associated [=ordered set|set=]
-of <dfn>activated Sensor objects</dfn>.
+of <dfn>activated sensor objects</dfn>.
 This set is initially [=set/is empty|empty=].
 
 A [=sensor=] has an associated <dfn>latest reading</dfn> [=ordered map|map=]
@@ -884,16 +884,16 @@ The getter of the {{Sensor/timestamp!!attribute}} attribute returns
         or "activated", then return.
     1.  Set |sensor_instance|.{{[[state]]}} to "activating".
     1.  Run these sub-steps [=in parallel=]:
-        1.  let |connected| be the result of invoking [=Connect to Sensor=].
+        1.  let |connected| be the result of invoking [=connect to sensor=].
         1.  If |connected| is false, then return.
         1.  Let |permission_state| be the result of invoking
-            [=Request Sensor Access=] with |sensor_instance| as argument.
+            [=request sensor access=] with |sensor_instance| as argument.
         1.  If |permission_state| is "granted",
-            1.  Invoke [=Register a Sensor Object=] with |sensor_instance| as argument.
+            1.  Invoke [=register a sensor object=] with |sensor_instance| as argument.
         1.  Otherwise, if |permission_state| is "denied",
             1.  let |e| be the result of [=created|creating=]
                 a "{{NotAllowedError!!exception}}" {{DOMException}}.
-            1.  Invoke [=Handle Errors=] with |e| and |sensor_instance| as arguments.
+            1.  Invoke [=handle errors=] with |e| and |sensor_instance| as arguments.
 </div>
 
 
@@ -906,7 +906,7 @@ The getter of the {{Sensor/timestamp!!attribute}} attribute returns
     1.  If |sensor_instance|.{{[[state]]}} is "idle", then return.
     1.  Set |sensor_instance|.{{[[state]]}} to "idle".
     1.  Run these sub-steps [=in parallel=]:
-        1.  Invoke [=Unregister a Sensor=] with |sensor_instance| as argument.
+        1.  Invoke [=unregister a sensor object=] with |sensor_instance| as argument.
 </div>
 
 
@@ -934,7 +934,7 @@ an [=exception type|exception=] cannot be handled synchronously.
 
 The following are the [=event handlers=]
 (and their corresponding [=event handler event types=])
-that must be supported as attributes by the objects implementing the [=Sensor=] interface:
+that must be supported as attributes by the objects implementing the {{Sensor}} interface:
 
 <table class="simple">
   <thead>
@@ -980,7 +980,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
 
 <h2 id="abstract-operations">Abstract Operations</h2>
 
-<h3 dfn export>Construct Sensor Object</h3>
+<h3 dfn export>Construct sensor object</h3>
 
 <div algorithm="construct sensor object">
 
@@ -1008,7 +1008,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
 </div>
 
 
-<h3 dfn export>Connect to Sensor</h3>
+<h3 dfn export>Connect to sensor</h3>
 
 <div algorithm="connect to sensor">
 
@@ -1039,12 +1039,12 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
         correctly diagnosing the reason for the rejection
         and might lead to confusing instructions to the user,
         but it is a tradeoff some User Agent might choose to make. -->
-    1.  Invoke [=Handle Errors=] with |e| and |sensor_instance| as arguments.
+    1.  Invoke [=handle Errors=] with |e| and |sensor_instance| as arguments.
     1.  Return false.
 </div>
 
 
-<h3 dfn>Register a Sensor Object</h3>
+<h3 dfn>Register a sensor object</h3>
 
 <div algorithm="register a sensor object">
 
@@ -1054,20 +1054,20 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     :: None
 
     1.  Let |sensor| be the [=sensor=] associated with |sensor_instance|.
-    1.  Add |sensor_instance| to |sensor|'s set of [=activated Sensor objects=].
-    1.  Let |settings_changed| be the result of invoking [=Set Sensor Settings=]
+    1.  [=set/Append=] |sensor_instance| to |sensor|'s set of [=activated sensor objects=].
+    1.  Let |settings_changed| be the result of invoking [=set sensor settings=]
         with |sensor| as argument.
-    1.  If |settings_changed| is true, then invoke [=Observe a Sensor=] with |sensor| as argument.
+    1.  If |settings_changed| is true, then invoke [=observe a sensor=] with |sensor| as argument.
     <!-- 1.  Let |latest_reading| be |sensor|'s associated [=latest reading=] [ordered map|map].
     1.  If |current_reading|["timestamp"] is not `null` and |sensor_instance|'s state is still "activating", then
-        1.  invoke the [=Update Observers=] operation, with
+        1.  invoke the [=update observers=] operation, with
             |sensor_instance| and |current_reading| as arguments. -->
 </div>
 
 
-<h3 dfn>Unregister a Sensor</h3>
+<h3 dfn>Unregister a sensor object</h3>
 
-<div algorithm="unregister a sensor">
+<div algorithm="unregister a sensor object">
 
     : input
     :: |sensor_instance|, a {{Sensor}} object.
@@ -1075,17 +1075,17 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     :: None
 
     1.  Let |sensor| be the [=sensor=] associated with |sensor_instance|.
-    1.  Remove |sensor_instance| from |sensor|'s set of [=activated Sensor objects=].
-    1.  If |sensor|'s set of [=activated Sensor objects=] is empty,
+    1.  [=set/Remove=] |sensor_instance| from |sensor|'s set of [=activated sensor objects=].
+    1.  If |sensor|'s set of [=activated sensor objects=] [=set/is empty=],
         1.  Unset the [=periodic reporting mode flag=].
         1.  Set [=current polling frequency=] to `null`.
         1.  Update the user-agent-specific way in which [=sensor readings=] are obtained from |sensor|
             to no longer provide [=sensor readings|readings=].
         1.  Return.
-    1.  Let |settings_changed| be the result of invoking [=Set Sensor Settings=]
+    1.  Let |settings_changed| be the result of invoking [=set sensor settings=]
         with |sensor| as argument.
     1.  If |settings_changed| is true,
-        then invoke [=Observe a Sensor=] with |sensor| as argument.
+        then invoke [=observe a sensor=] with |sensor| as argument.
 </div>
 
 <h3 dfn>Revoke sensor permission</h3>
@@ -1097,12 +1097,12 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     : output
     :: None
 
-    1.  let |activated_sensors| be |sensor|'s associated [=ordered set|set=] of [=activated Sensor objects=].
+    1.  let |activated_sensors| be |sensor|'s associated [=ordered set|set=] of [=activated sensor objects=].
     1.  [=set/For each=] |s| of |activated_sensors|,
         1.  [=set/Remove=] |s| from |activated_sensors|.
         1.  let |e| be the result of [=created|creating=]
             a "{{NotAllowedError!!exception}}" {{DOMException}}.
-        1.  Invoke [=Handle Errors=] with |e| and |s| as arguments.
+        1.  Invoke [=handle errors=] with |e| and |s| as arguments.
     1.  Unset |sensor|'s [=periodic reporting mode flag=].
     1.  Set |sensor|'s [=current polling frequency=] to `null`.
     1.  Update the user-agent-specific way in which [=sensor readings=] are obtained from |sensor|
@@ -1111,7 +1111,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
 </div>
 
 
-<h3 dfn>Set Sensor Settings</h3>
+<h3 dfn>Set sensor settings</h3>
 
 <div algorithm="set sensor settings">
 
@@ -1122,14 +1122,14 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
 
     1.  Let |settings_changed| be false.
     1.  Let |is_periodic| be the result of invoking
-        [=Is Current Reporting Mode Periodic=] with |sensor| as argument.
+        [=is current reporting mode periodic=] with |sensor| as argument.
     1.  If |is_periodic| is false and the [=periodic reporting mode flag=] is set, then
         1.  set |settings_changed| to true.
         1.  Unset the [=periodic reporting mode flag=].
     1.  Otherwise if |is_periodic| is true and the [=periodic reporting mode flag=] is unset, then
         1.  set |settings_changed| to true.
         1.  Set the [=periodic reporting mode flag=].
-    1.  Let |frequency| be the result of invoking [=Find the polling frequency of a Sensor=]
+    1.  Let |frequency| be the result of invoking [=find the polling frequency of a sensor=]
         with |sensor| as argument.
     1.  If |frequency| is different from |sensor|'s [=current polling frequency=],
         1.  set |settings_changed| to true.
@@ -1138,7 +1138,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
 </div>
 
 
-<h3 dfn>Observe a Sensor</h3>
+<h3 dfn>Observe a sensor</h3>
 
 <div algorithm="observe a sensor">
 
@@ -1151,7 +1151,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     : output
     :: None
 
-    <!-- 1.  Immediately invoke [=Update latest reading=]
+    <!-- 1.  Immediately invoke [=update latest reading=]
         to report fresh [=sensor readings|readings=]
         with |sensor| and [=latest reading=]["timestamp"] as arguments. -->
     1.  If |sensor|'s |latest reading|["timestamp"] is not `null`,
@@ -1190,7 +1190,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
 </div>
 
 
-<h3 dfn>Is Current Reporting Mode Periodic</h3>
+<h3 dfn>Is current reporting mode periodic</h3>
 
 <div algorithm="is current reporting mode periodic">
 
@@ -1200,14 +1200,14 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     :: |result|, a boolean.
 
     1.  Let |result| be false.
-    1.  [=list/For each=] |sensor_instance| in |sensor|'s set of [=activated Sensor objects=]:
+    1.  [=list/For each=] |sensor_instance| in |sensor|'s set of [=activated sensor objects=]:
         1. if |sensor_instance|.{{[[desiredPollingFrequency]]}} is set,
             1. set |result| to true, then [=break=].
     1. return |result|.
 </div>
 
 
-<h3 dfn>Find the polling frequency of a Sensor</h3>
+<h3 dfn>Find the polling frequency of a sensor</h3>
 
 <div algorithm="find the polling frequency of a sensor">
 
@@ -1217,7 +1217,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     :: |frequency|, a [=frequency=].
 
     1.  Let |frequency| be `null`.
-    1.  [=set/For each=] |sensor_instance| in |sensor|'s set of [=activated Sensor objects=]:
+    1.  [=set/For each=] |sensor_instance| in |sensor|'s set of [=activated sensor objects=]:
         1. let |f| be |sensor_instance|.{{[[desiredPollingFrequency]]}}.
         1. if |f| is set and |f| is greater than |frequency|,
             1. set |frequency| to |f|.
@@ -1259,7 +1259,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
 </div>
 
 
-<h3 dfn>Update Observers</h3>
+<h3 dfn>Update observers</h3>
 
 <div algorithm="update observers">
 
@@ -1284,7 +1284,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
 </div>
 
 
-<h3 dfn>Security Check</h3>
+<h3 dfn>Security check</h3>
 
 <div algorithm="security check">
 
@@ -1316,7 +1316,7 @@ when [=security check=] would return "insecure"
 in order to reduce resource consumption, notably battery usage.
 
 
-<h3 dfn>Handle Errors</h3>
+<h3 dfn>Handle errors</h3>
 
 <div algorithm="handle errors">
 
@@ -1332,7 +1332,7 @@ in order to reduce resource consumption, notably battery usage.
 </div>
 
 
-<h3 dfn>Request Sensor Access</h3>
+<h3 dfn>Request sensor access</h3>
 
 <div algorithm="request sensor access">
 
