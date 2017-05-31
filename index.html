@@ -1453,7 +1453,7 @@ pre.idl.highlight { color: #708090; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-05-30">30 May 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-05-31">31 May 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1469,7 +1469,7 @@ pre.idl.highlight { color: #708090; }
      <dd class="editor p-author h-card vcard" data-editor-id="78102"><a class="p-name fn u-url url" href="http://tobie.me">Tobie Langel</a> (<span class="p-org org">Intel Corporation</span>) <a class="u-email email" href="mailto:tobie@sensors.codespeaks.com">tobie@sensors.codespeaks.com</a>
      <dd class="editor p-author h-card vcard" data-editor-id="50572"><span class="p-name fn">Rick Waldron</span> (<span class="p-org org">JS Foundation</span>)
      <dt>Other:
-     <dd><span><a href="https://github.com/w3c/web-platform-tests/tree/master/generic-sensor">Test suite</a>, <a href="https://github.com/w3c/sensors/commits/gh-pages/index.bs">version history</a></span>
+     <dd><span><a href="https://github.com/w3c/web-platform-tests/tree/master/generic-sensor">Test suite</a>, <a href="https://github.com/w3c/sensors/commits/master/index.bs">latest version history</a>, <a href="https://github.com/w3c/sensors/commits/gh-pages/index.bs">previous version history</a></span>
     </dl>
    </div>
    <div data-fill-with="warning"></div>
@@ -2191,8 +2191,7 @@ with the internal slots described in the following table:</p>
    </table>
    <h4 class="heading settled" data-level="8.1.3" id="sensor-activated"><span class="secno">8.1.3. </span><span class="content">Sensor.activated</span><a class="self-link" href="#sensor-activated"></a></h4>
    <div class="algorithm" data-algorithm="is sensor activated">
-     The getter of the <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensor-activated" id="ref-for-dom-sensor-activated-1">activated</a></code> attribute must run these steps
-    or their <a data-link-type="dfn" href="#equivalent" id="ref-for-equivalent-1">equivalent</a>: 
+    <p>The getter of the <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensor-activated" id="ref-for-dom-sensor-activated-1">activated</a></code> attribute must run these steps:</p>
     <ol>
      <li data-md="">
       <p>If <emu-val>this</emu-val>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-state-slot" id="ref-for-dom-sensor-state-slot-1">[[state]]</a></code> is "activated",
@@ -2205,7 +2204,7 @@ with the internal slots described in the following table:</p>
    <p>The getter of the <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensor-timestamp" id="ref-for-dom-sensor-timestamp-1">timestamp</a></code> attribute returns <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-9">latest reading</a>["timestamp"].</p>
    <h4 class="heading settled" data-level="8.1.5" id="sensor-start"><span class="secno">8.1.5. </span><span class="content">Sensor.start()</span><a class="self-link" href="#sensor-start"></a></h4>
    <div class="algorithm" data-algorithm="to start a sensor">
-     The <code class="idl"><a data-link-type="idl" href="#dom-sensor-start" id="ref-for-dom-sensor-start-1">start()</a></code> method must run these steps or their <a data-link-type="dfn" href="#equivalent" id="ref-for-equivalent-2">equivalent</a>: 
+    <p>The <code class="idl"><a data-link-type="idl" href="#dom-sensor-start" id="ref-for-dom-sensor-start-1">start()</a></code> method must run these steps:</p>
     <ol>
      <li data-md="">
       <p>Let <var>sensor_state</var> be the value of <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-state-slot" id="ref-for-dom-sensor-state-slot-2">[[state]]</a></code>.</p>
@@ -2246,7 +2245,7 @@ with the internal slots described in the following table:</p>
    </div>
    <h4 class="heading settled" data-level="8.1.6" id="sensor-stop"><span class="secno">8.1.6. </span><span class="content">Sensor.stop()</span><a class="self-link" href="#sensor-stop"></a></h4>
    <div class="algorithm" data-algorithm="to stop a sensor">
-     The <code class="idl"><a data-link-type="idl" href="#dom-sensor-stop" id="ref-for-dom-sensor-stop-1">stop()</a></code> method must run these steps or their <a data-link-type="dfn" href="#equivalent" id="ref-for-equivalent-3">equivalent</a>: 
+    <p>The <code class="idl"><a data-link-type="idl" href="#dom-sensor-stop" id="ref-for-dom-sensor-stop-1">stop()</a></code> method must run these steps:</p>
     <ol>
      <li data-md="">
       <p>If <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-state-slot" id="ref-for-dom-sensor-state-slot-4">[[state]]</a></code> is "idle", then return.</p>
@@ -3085,7 +3084,7 @@ for their editorial input.</p>
     steps") are to be interpreted with the meaning of the key word ("must",
     "should", "may", etc) used in introducing the algorithm.</p>
    <p>Conformance requirements phrased as algorithms or specific steps can be
-    implemented in any manner, so long as the end result is <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="equivalent">equivalent</dfn>. In
+    implemented in any manner, so long as the end result is <dfn data-dfn-type="dfn" data-noexport="" id="equivalent">equivalent<a class="self-link" href="#equivalent"></a></dfn>. In
     particular, the algorithms defined in this specification are intended to
     be easy to understand and are not intended to be performant. Implementers
     are encouraged to optimize.</p>
@@ -3910,14 +3909,6 @@ for their editorial input.</p>
    <b><a href="#request-sensor-access">#request-sensor-access</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-request-sensor-access-1">8.1.5. Sensor.start()</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="equivalent">
-   <b><a href="#equivalent">#equivalent</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-equivalent-1">8.1.3. Sensor.activated</a>
-    <li><a href="#ref-for-equivalent-2">8.1.5. Sensor.start()</a>
-    <li><a href="#ref-for-equivalent-3">8.1.6. Sensor.stop()</a>
    </ul>
   </aside>
 <script>/* script-dfn-panel */
