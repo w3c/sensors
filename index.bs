@@ -404,15 +404,15 @@ when other APIs which are known to amplify the level of the threat are in use,
 etc.
 
 
-<h4 id="limit-max-freqency" dfn>Limit maximum polling frequency</h4>
+<h4 id="limit-max-freqency" dfn>Limit maximum sampling frequency</h4>
 
 User agents may mitigate certain threats by
-limiting the maximum polling frequency.
+limiting the maximum sampling frequency.
 What upper limit to choose depends on the [=sensor type=],
 the kind of threats the user agent is trying to protect against,
 the expected resources of the attacker, etc.
 
-Limiting the maximum polling frequency prevents use cases
+Limiting the maximum sampling frequency prevents use cases
 which rely on low latency or high data density.
 
 
@@ -427,11 +427,11 @@ or in a different application.
 
 <h4 id="limit-number-of-delivered-readings" dfn>Limit number of delivered readings</h4>
 
-An alternative to [=limit maximum polling frequency|limiting the maximum polling frequency=] is to
+An alternative to [=limit maximum sampling frequency|limiting the maximum sampling frequency=] is to
 limit the number of [=sensor readings=] delivered to Web application developer,
 regardless of what frequency the sensor is polled at.
 This allows use cases which have low latency requirement
-to increase polling frequency
+to increase sampling frequency
 without increasing the amount of data provided.
 
 Discarding intermediary readings prevents certain use cases,
@@ -620,8 +620,8 @@ notably polling vs. on change,
 both at the platform and HW layer.
 
 Issue: It would be useful to describe
-the process of sensor polling and
-how increased sensor polling frequency decreases latency.
+the process of sensor sampling and
+how increased sensor sampling frequency decreases latency.
 
 Issue: A definition of sensor accuracy and
 how it affects threshold,
@@ -710,7 +710,7 @@ A [=sensor=] has an associated <dfn>reporting flag</dfn> which is initially unse
 
 A [=sensor=] has an associated <dfn>periodic reporting mode flag</dfn> which is initially unset.
 
-A [=sensor=] has an associated <dfn>current polling frequency</dfn> which is initially null.
+A [=sensor=] has an associated <dfn>current sampling frequency</dfn> which is initially null.
 
 <h2 id="api">API</h2>
 
@@ -835,8 +835,8 @@ with the internal slots described in the following table:
             </td>
         </tr>
         <tr>
-            <td><dfn attribute for=Sensor>\[[desiredPollingFrequency]]</dfn></td>
-            <td>The requested polling frequency. It is initially unset.</td>
+            <td><dfn attribute for=Sensor>\[[desiredSamplingFrequency]]</dfn></td>
+            <td>The requested sampling frequency. It is initially unset.</td>
         </tr>
         <tr>
             <td><dfn attribute for=Sensor>\[[lastEventFiredAt]]</dfn></td>
@@ -1004,7 +1004,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     1.  Let |sensor_instance| be a new {{Sensor}} object,
     1.  If [=sensor=] [=supports periodic reporting mode=] and
         |options|.{{frequency!!dict-member}} is [=present=], then
-        1.  Set |sensor_instance|.{{[[desiredPollingFrequency]]}} to |options|.{{frequency!!dict-member}}.
+        1.  Set |sensor_instance|.{{[[desiredSamplingFrequency]]}} to |options|.{{frequency!!dict-member}}.
 
         Note: there is not guarantee that the requested |options|.{{frequency!!dict-member}}
         can be respected. The actual [=frequency=] can be calculated using
@@ -1087,7 +1087,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     1.  [=set/Remove=] |sensor_instance| from |sensor|'s set of [=activated sensor objects=].
     1.  If |sensor|'s set of [=activated sensor objects=] [=set/is empty=],
         1.  Unset the [=periodic reporting mode flag=].
-        1.  Set [=current polling frequency=] to null.
+        1.  Set [=current sampling frequency=] to null.
         1.  Update the user-agent-specific way in which [=sensor readings=] are obtained from |sensor|
             to no longer provide [=sensor readings|readings=].
         1.  Return.
@@ -1113,7 +1113,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
             a "{{NotAllowedError!!exception}}" {{DOMException}}.
         1.  Invoke [=handle errors=] with |e| and |s| as arguments.
     1.  Unset |sensor|'s [=periodic reporting mode flag=].
-    1.  Set |sensor|'s [=current polling frequency=] to null.
+    1.  Set |sensor|'s [=current sampling frequency=] to null.
     1.  Update the user-agent-specific way in which [=sensor readings=] are obtained from |sensor|
         to no longer provide [=sensor readings|readings=].
 
@@ -1138,11 +1138,11 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     1.  Otherwise if |is_periodic| is true and the [=periodic reporting mode flag=] is unset, then
         1.  set |settings_changed| to true.
         1.  Set the [=periodic reporting mode flag=].
-    1.  Let |frequency| be the result of invoking [=find the polling frequency of a sensor=]
+    1.  Let |frequency| be the result of invoking [=find the sampling frequency of a sensor=]
         with |sensor| as argument.
-    1.  If |frequency| is different from |sensor|'s [=current polling frequency=],
+    1.  If |frequency| is different from |sensor|'s [=current sampling frequency=],
         1.  set |settings_changed| to true.
-        1.  Set [=current polling frequency=] to |frequency|.
+        1.  Set [=current sampling frequency=] to |frequency|.
     1.  Return |settings_changed|.
 </div>
 
@@ -1168,13 +1168,13 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
         Issue(214):
 
     1.  If |sensor|'s [=periodic reporting mode flag=] is set,
-        1.  let |frequency| be the [=current polling frequency=],
+        1.  let |frequency| be the [=current sampling frequency=],
             capped by the upper and lower bounds of the underlying hardware.
 
-            Issue: Should this max polling frequency be reflected in the {{Sensor}} interface?
+            Issue: Should this max sampling frequency be reflected in the {{Sensor}} interface?
             E.g. Through a dedicated attribute?
 
-            Issue: Does the max polling frequency affect the reporting frequency?
+            Issue: Does the max sampling frequency affect the reporting frequency?
             If so, should we advise the developer of this issue?
             E.g. via a dedicated event?
         1.  Poll |sensor| at |frequency|.
@@ -1207,15 +1207,15 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
 
     1.  Let |result| be false.
     1.  [=list/For each=] |sensor_instance| in |sensor|'s set of [=activated sensor objects=]:
-        1. if |sensor_instance|.{{[[desiredPollingFrequency]]}} is set,
+        1. if |sensor_instance|.{{[[desiredSamplingFrequency]]}} is set,
             1. set |result| to true, then [=break=].
     1. return |result|.
 </div>
 
 
-<h3 dfn>Find the polling frequency of a sensor</h3>
+<h3 dfn>Find the sampling frequency of a sensor</h3>
 
-<div algorithm="find the polling frequency of a sensor">
+<div algorithm="find the sampling frequency of a sensor">
 
     : input
     :: |sensor|, a [=sensor=].
@@ -1224,7 +1224,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
 
     1.  Let |frequency| be null.
     1.  [=set/For each=] |sensor_instance| in |sensor|'s set of [=activated sensor objects=]:
-        1. let |f| be |sensor_instance|.{{[[desiredPollingFrequency]]}}.
+        1. let |f| be |sensor_instance|.{{[[desiredSamplingFrequency]]}}.
         1. if |f| is set and |f| is greater than |frequency|,
             1. set |frequency| to |f|.
     1. return |frequency|.
@@ -1317,7 +1317,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     1.  Return "secure".
 </div>
 
-Note: user agents are encouraged to stop sensor polling
+Note: user agents are encouraged to stop sensor sampling
 when [=security check=] would return "insecure"
 in order to reduce resource consumption, notably battery usage.
 
