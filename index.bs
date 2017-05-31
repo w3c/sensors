@@ -58,8 +58,14 @@ urlPrefix: https://w3c.github.io/page-visibility; spec: PAGE-VISIBILITY
 
 <pre class=link-defaults>
 spec: webidl; type:dfn; text:attribute
+spec: webidl; type:dfn; text:identifier
 </pre>
 
+<style>
+    emu-val {
+      font-weight: bold;
+    }
+</style>
 
 <h2 id="intro">Introduction</h2>
 
@@ -680,10 +686,12 @@ unless the [=latest reading=] [=ordered map|map=] caches a previous [=sensor rea
 The other [=map/entries=] of the [=latest reading=] [=ordered map|map=]
 hold the values of the different quantities measured by the [=sensor=].
 The [=map/keys=] of these [=map/entries=] must match
-the [=attribute=] names defined by
-the [=sensor type=]'s associated interface,
-so that the getter of the `foo` attribute
-can simply return [=latest reading=]["foo"].
+the [=attribute=] [=identifier=] defined by
+the [=sensor type=]'s associated interface.
+The return value of the [=attribute=] getter is
+easily obtained by invoking [=get value from latest reading=]
+with the object implementing the [=sensor type=]'s associated interface
+and the [=attribute=] [=identifier=] as arguments.
 
 The [=map/value=] of all [=latest reading=] [=map/entries=]
 is initially set to null.
@@ -1333,6 +1341,23 @@ in order to reduce resource consumption, notably battery usage.
 </div>
 
 
+<h3 dfn>Get value from latest reading</h3>
+
+<div algorithm="get value from latest reading">
+
+    : input
+    :: |sensor_instance|, a {{Sensor}} object.
+    :: |key|, a string representing the name of the value.
+    : output
+    :: A [=sensor reading=] value or null.
+
+    1.  If |sensor_instance|.{{[[state]]}} is "activated",
+        1.  Let |readings| be the [=latest reading=] of |sensor_instance|'s related [=sensor=].
+        1.  Return |readings|[|key|].
+    1.  Otherwise, return null.
+</div>
+
+
 <h3 dfn>Request sensor access</h3>
 
 <div algorithm="request sensor access">
@@ -1457,8 +1482,9 @@ each [=sensor type=] in extension specifications:
     This interface must be constructible.
     Its [{{Constructor!!extended-attribute}}] must take, as argument,
     an optional [=dictionary=] whose [=inherited dictionaries=] contains {{SensorOptions}}.
-    Its attributes which expose [=sensor readings=] are readonly and
-    have getters must return the  if disturbed, and `null` otherwise.
+    Its [=attributes=] which expose [=sensor readings=] are [=read only=] and
+    their getters must return the result of invoking [=get value from latest reading=]
+    with <emu-val>this</emu-val> and [=attribute=] [=identifier=] as arguments.
 -   A {{PermissionName}}.
 
 An extension specification may specify the following definitions
