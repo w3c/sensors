@@ -1066,7 +1066,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     1.  [=set/Append=] |sensor_instance| to |sensor|'s set of [=activated sensor objects=].
     1.  Let |settings_changed| be the result of invoking [=set sensor settings=]
         with |sensor| as argument.
-    1.  If |settings_changed| is true, then invoke [=observe a sensor=] with |sensor| as argument.
+    1.  If |settings_changed| is true, then invoke [=observe a sensor=] with |sensor_instance| as argument.
     <!-- 1.  Let |latest_reading| be |sensor|'s associated [=latest reading=] [ordered map|map].
     1.  If |current_reading|["timestamp"] is not null and |sensor_instance|'s state is still "activating", then
         1.  invoke the [=update observers=] operation, with
@@ -1094,7 +1094,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     1.  Let |settings_changed| be the result of invoking [=set sensor settings=]
         with |sensor| as argument.
     1.  If |settings_changed| is true,
-        then invoke [=observe a sensor=] with |sensor| as argument.
+        then invoke [=observe a sensor=] with |sensor_instance| as argument.
 </div>
 
 <h3 dfn>Revoke sensor permission</h3>
@@ -1151,15 +1151,12 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
 
 <div algorithm="observe a sensor">
 
-    Issue: This needs to be refactored in an abstract operation
-    that has access to the {{Sensor}} instance |sensor_instance|
-    that just got started.
-
     : input
-    :: |sensor|, a [=sensor=].
+    :: |sensor_instance|, a {{Sensor}} object.
     : output
     :: None
 
+    1.  Let |sensor| be the [=sensor=] associated with |sensor_instance|.
     <!-- 1.  Immediately invoke [=update latest reading=]
         to report fresh [=sensor readings|readings=]
         with |sensor| and [=latest reading=]["timestamp"] as arguments. -->
