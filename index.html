@@ -2062,7 +2062,7 @@ the <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-attribute
 the <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-27">sensor type</a>'s associated interface,
 so that the getter of the <code>foo</code> attribute
 can simply return <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-7">latest reading</a>["foo"].</p>
-   <p>The [map/value] of all <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-8">latest reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry">entries</a> is initially set to <code>null</code>.</p>
+   <p>The <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-value">value</a> of all <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-8">latest reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry">entries</a> is initially set to <code>null</code>.</p>
    <p>A <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-25">sensor</a> <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="supports-periodic-reporting-mode">supports periodic reporting mode</dfn> if
 its associated <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-28">sensor type</a> does.</p>
    <p>A <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-26">sensor</a> has an associated <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="reporting-flag">reporting flag</dfn> which is initially unset.</p>
@@ -2185,7 +2185,7 @@ with the internal slots described in the following table:</p>
       <td><dfn class="dfn-paneled idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" id="dom-sensor-waitingforupdate-slot"><code>[[waitingForUpdate]]</code></dfn>
       <td>A boolean which indicates wether the observers have been updated
                 or whether the object is waiting for a new reading to do so.
-                It is initially <code>true</code>.
+                It is initially true.
      <tr>
       <td><dfn class="dfn-paneled idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" id="dom-sensor-identifyingparameters-slot"><code>[[identifyingParameters]]</code></dfn>
       <td> A <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-29">sensor type</a>-epecific group of <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-dictionary-member">dictionary members</a> used to select the correct <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-30">sensor</a> to associate to this <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-9">Sensor</a></code> object. 
@@ -2196,9 +2196,9 @@ with the internal slots described in the following table:</p>
     <ol>
      <li data-md="">
       <p>If <emu-val>this</emu-val>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-state-slot" id="ref-for-dom-sensor-state-slot-1">[[state]]</a></code> is "activated",
-  return <code>true</code>.</p>
+  return true.</p>
      <li data-md="">
-      <p>Otherwise, return <code>false</code>.</p>
+      <p>Otherwise, return false.</p>
     </ol>
    </div>
    <h4 class="heading settled" data-level="8.1.4" id="sensor-timestamp"><span class="secno">8.1.4. </span><span class="content">Sensor.timestamp</span><a class="self-link" href="#sensor-timestamp"></a></h4>
@@ -2220,7 +2220,7 @@ with the internal slots described in the following table:</p>
        <li data-md="">
         <p>let <var>connected</var> be the result of invoking <a data-link-type="dfn" href="#connect-to-sensor" id="ref-for-connect-to-sensor-1">Connect to Sensor</a>.</p>
        <li data-md="">
-        <p>If <var>connected</var> is <code>false</code>, then return.</p>
+        <p>If <var>connected</var> is false, then return.</p>
        <li data-md="">
         <p>Let <var>permission_state</var> be the result of invoking <a data-link-type="dfn" href="#request-sensor-access" id="ref-for-request-sensor-access-1">Request Sensor Access</a> with <var>sensor_instance</var> as argument.</p>
        <li data-md="">
@@ -2367,7 +2367,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
        <li data-md="">
         <p>associate <var>sensor_instance</var> with <var>sensor</var>.</p>
        <li data-md="">
-        <p>Return <code>true</code>.</p>
+        <p>Return true.</p>
       </ol>
      <li data-md="">
       <p>If the <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-30">sensor type</a> of <var>sensor_instance</var> has an associated <a data-link-type="dfn" href="#default-sensor" id="ref-for-default-sensor-1">default sensor</a> and there is a corresponding <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-35">sensor</a> on the device, then</p>
@@ -2375,7 +2375,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
        <li data-md="">
         <p>associate <var>sensor_instance</var> with <a data-link-type="dfn" href="#default-sensor" id="ref-for-default-sensor-2">default sensor</a>.</p>
        <li data-md="">
-        <p>Return <code>true</code>.</p>
+        <p>Return true.</p>
       </ol>
      <li data-md="">
       <p>let <var>e</var> be the result of <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-create-exception">creating</a> a
@@ -2383,7 +2383,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
      <li data-md="">
       <p>Invoke <a data-link-type="dfn" href="#handle-errors" id="ref-for-handle-errors-2">Handle Errors</a> with <var>e</var> and <var>sensor_instance</var> as arguments.</p>
      <li data-md="">
-      <p>Return <code>false</code>.</p>
+      <p>Return false.</p>
     </ol>
    </div>
    <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="9.3" data-lt="Register a Sensor Object" data-noexport="" id="register-a-sensor-object"><span class="secno">9.3. </span><span class="content">Register a Sensor Object</span></h3>
@@ -2484,22 +2484,22 @@ that must be supported as attributes by the objects implementing the <a data-lin
     </dl>
     <ol>
      <li data-md="">
-      <p>Let <var>settings_changed</var> be <code>false</code>.</p>
+      <p>Let <var>settings_changed</var> be false.</p>
      <li data-md="">
       <p>Let <var>is_periodic</var> be the result of invoking <a data-link-type="dfn" href="#is-current-reporting-mode-periodic" id="ref-for-is-current-reporting-mode-periodic-1">Is Current Reporting Mode Periodic</a> with <var>sensor</var> as argument.</p>
      <li data-md="">
-      <p>If <var>is_periodic</var> is <code>false</code> and the <a data-link-type="dfn" href="#periodic-reporting-mode-flag" id="ref-for-periodic-reporting-mode-flag-3">periodic reporting mode flag</a> is set, then</p>
+      <p>If <var>is_periodic</var> is false and the <a data-link-type="dfn" href="#periodic-reporting-mode-flag" id="ref-for-periodic-reporting-mode-flag-3">periodic reporting mode flag</a> is set, then</p>
       <ol>
        <li data-md="">
-        <p>set <var>settings_changed</var> to <code>true</code>.</p>
+        <p>set <var>settings_changed</var> to true.</p>
        <li data-md="">
         <p>Unset the <a data-link-type="dfn" href="#periodic-reporting-mode-flag" id="ref-for-periodic-reporting-mode-flag-4">periodic reporting mode flag</a>.</p>
       </ol>
      <li data-md="">
-      <p>Otherwise if <var>is_periodic</var> is <code>true</code> and the <a data-link-type="dfn" href="#periodic-reporting-mode-flag" id="ref-for-periodic-reporting-mode-flag-5">periodic reporting mode flag</a> is unset, then</p>
+      <p>Otherwise if <var>is_periodic</var> is true and the <a data-link-type="dfn" href="#periodic-reporting-mode-flag" id="ref-for-periodic-reporting-mode-flag-5">periodic reporting mode flag</a> is unset, then</p>
       <ol>
        <li data-md="">
-        <p>set <var>settings_changed</var> to <code>true</code>.</p>
+        <p>set <var>settings_changed</var> to true.</p>
        <li data-md="">
         <p>Set the <a data-link-type="dfn" href="#periodic-reporting-mode-flag" id="ref-for-periodic-reporting-mode-flag-6">periodic reporting mode flag</a>.</p>
       </ol>
@@ -2509,7 +2509,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
       <p>If <var>frequency</var> is different from <var>sensor</var>’s <a data-link-type="dfn" href="#current-polling-frequency" id="ref-for-current-polling-frequency-3">current polling frequency</a>,</p>
       <ol>
        <li data-md="">
-        <p>set <var>settings_changed</var> to <code>true</code>.</p>
+        <p>set <var>settings_changed</var> to true.</p>
        <li data-md="">
         <p>Set <a data-link-type="dfn" href="#current-polling-frequency" id="ref-for-current-polling-frequency-4">current polling frequency</a> to <var>frequency</var>.</p>
       </ol>
@@ -2585,7 +2585,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
     </dl>
     <ol>
      <li data-md="">
-      <p>Let <var>result</var> be <code>false</code>.</p>
+      <p>Let <var>result</var> be false.</p>
      <li data-md="">
       <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate">For each</a> <var>sensor_instance</var> in <var>sensor</var>’s set of <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects-5">activated Sensor objects</a>:</p>
       <ol>
@@ -2593,7 +2593,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
         <p>if <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-desiredpollingfrequency-slot" id="ref-for-dom-sensor-desiredpollingfrequency-slot-2">[[desiredPollingFrequency]]</a></code> is set,</p>
         <ol>
          <li data-md="">
-          <p>set <var>result</var> to <code>true</code>, then <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#iteration-break">break</a>.</p>
+          <p>set <var>result</var> to true, then <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#iteration-break">break</a>.</p>
         </ol>
       </ol>
      <li data-md="">
@@ -2713,7 +2713,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
       <p class="issue" id="issue-c26873bf"><a class="self-link" href="#issue-c26873bf"></a> Should we fire delayed readings? Or should we just drop readings instead?</p>
       <ol>
        <li data-md="">
-        <p>Set <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-waitingforupdate-slot" id="ref-for-dom-sensor-waitingforupdate-slot-2">[[waitingForUpdate]]</a></code> to <code>false</code>.</p>
+        <p>Set <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-waitingforupdate-slot" id="ref-for-dom-sensor-waitingforupdate-slot-2">[[waitingForUpdate]]</a></code> to false.</p>
        <li data-md="">
         <p><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire">Fire an event</a> named "change" at <var>sensor_instance</var>.</p>
        <li data-md="">
