@@ -2220,7 +2220,7 @@ with the internal slots described in the following table:</p>
         <p>let <var>connected</var> be the result of invoking
   the <a data-link-type="dfn" href="#connect-to-sensor" id="ref-for-connect-to-sensor-1">Connect to Sensor</a> abstract operation.</p>
        <li data-md="">
-        <p>If <var>connected</var> is <code>false</code>, then abort these steps.</p>
+        <p>If <var>connected</var> is <code>false</code>, then return.</p>
        <li data-md="">
         <p>Let <var>permission_state</var> be the result of invoking
   the <a data-link-type="dfn" href="#request-sensor-access" id="ref-for-request-sensor-access-1">Request Sensor Access</a> abstract operation,
@@ -2435,7 +2435,7 @@ that must be supported as attributes by the objects implementing the <a data-lin
        <li data-md="">
         <p>Update the user-agent-specific way in which <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-28">sensor readings</a> are obtained from <var>sensor</var> to no longer provide <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-29">readings</a>.</p>
        <li data-md="">
-        <p>Abort these steps.</p>
+        <p>Return.</p>
       </ol>
      <li data-md="">
       <p>Invoke the <a data-link-type="dfn" href="#set-sensor-settings" id="ref-for-set-sensor-settings-2">Set Sensor Settings</a> abstract operation,
@@ -2662,22 +2662,14 @@ that must be supported as attributes by the objects implementing the <a data-lin
     </dl>
     <ol>
      <li data-md="">
-      <p>If <var>sensor</var>’s <a data-link-type="dfn" href="#reporting-flag" id="ref-for-reporting-flag-1">reporting flag</a> is set,</p>
-      <ol>
-       <li data-md="">
-        <p>abort these steps.</p>
-      </ol>
+      <p>If <var>sensor</var>’s <a data-link-type="dfn" href="#reporting-flag" id="ref-for-reporting-flag-1">reporting flag</a> is set, then return.</p>
      <li data-md="">
-      <p>If <var>reading_timestamp</var> is equal <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-10">latest reading</a>["timestamp"],</p>
-      <ol>
-       <li data-md="">
-        <p>abort these steps.</p>
-      </ol>
+      <p>If <var>reading_timestamp</var> is equal <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-10">latest reading</a>["timestamp"], then return.</p>
      <li data-md="">
       <p>Set <var>sensor</var>’s <a data-link-type="dfn" href="#reporting-flag" id="ref-for-reporting-flag-2">reporting flag</a>.</p>
      <li data-md="">
       <p>If the result of invoking the <a data-link-type="dfn" href="#security-check" id="ref-for-security-check-3">security check</a> is "insecure",
-  then abort these steps.</p>
+  then return.</p>
       <div class="issue no-marker" id="issue-d41d8cd91">
        <a class="self-link" href="#issue-d41d8cd91"></a><a class="marker" href="https://github.com/w3c/sensors/issues/223">Issue #223 on GitHub: “Should a "suspended" state be added”</a>
        <p>Sensors would be in this state when the security check would return "insecure".</p>
@@ -3080,8 +3072,8 @@ for their editorial input.</p>
    <p class="note" role="note">Note, this is an informative note.</p>
    <h3 class="no-ref no-num heading settled" id="conformant-algorithms"><span class="content">Conformant Algorithms</span><a class="self-link" href="#conformant-algorithms"></a></h3>
    <p>Requirements phrased in the imperative as part of algorithms (such as
-    "strip any leading space characters" or "return false and abort these
-    steps") are to be interpreted with the meaning of the key word ("must",
+    "strip any leading space characters" or "return false")
+    are to be interpreted with the meaning of the key word ("must",
     "should", "may", etc) used in introducing the algorithm.</p>
    <p>Conformance requirements phrased as algorithms or specific steps can be
     implemented in any manner, so long as the end result is <dfn data-dfn-type="dfn" data-noexport="" id="equivalent">equivalent<a class="self-link" href="#equivalent"></a></dfn>. In
