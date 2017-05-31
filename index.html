@@ -2412,7 +2412,7 @@ that must be supported as attributes by the objects implementing the <code class
      <li data-md="">
       <p>Let <var>settings_changed</var> be the result of invoking <a data-link-type="dfn" href="#set-sensor-settings" id="ref-for-set-sensor-settings-1">set sensor settings</a> with <var>sensor</var> as argument.</p>
      <li data-md="">
-      <p>If <var>settings_changed</var> is true, then invoke <a data-link-type="dfn" href="#observe-a-sensor" id="ref-for-observe-a-sensor-1">observe a sensor</a> with <var>sensor</var> as argument.</p>
+      <p>If <var>settings_changed</var> is true, then invoke <a data-link-type="dfn" href="#observe-a-sensor" id="ref-for-observe-a-sensor-1">observe a sensor</a> with <var>sensor_instance</var> as argument.</p>
     </ol>
    </div>
    <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="9.4" data-lt="Unregister a sensor object" data-noexport="" id="unregister-a-sensor-object"><span class="secno">9.4. </span><span class="content">Unregister a sensor object</span></h3>
@@ -2446,7 +2446,7 @@ that must be supported as attributes by the objects implementing the <code class
       <p>Let <var>settings_changed</var> be the result of invoking <a data-link-type="dfn" href="#set-sensor-settings" id="ref-for-set-sensor-settings-2">set sensor settings</a> with <var>sensor</var> as argument.</p>
      <li data-md="">
       <p>If <var>settings_changed</var> is true,
-  then invoke <a data-link-type="dfn" href="#observe-a-sensor" id="ref-for-observe-a-sensor-2">observe a sensor</a> with <var>sensor</var> as argument.</p>
+  then invoke <a data-link-type="dfn" href="#observe-a-sensor" id="ref-for-observe-a-sensor-2">observe a sensor</a> with <var>sensor_instance</var> as argument.</p>
     </ol>
    </div>
    <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="9.5" data-lt="Revoke sensor permission" data-noexport="" id="revoke-sensor-permission"><span class="secno">9.5. </span><span class="content">Revoke sensor permission</span></h3>
@@ -2527,17 +2527,17 @@ that must be supported as attributes by the objects implementing the <code class
    </div>
    <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="9.7" data-lt="Observe a sensor" data-noexport="" id="observe-a-sensor"><span class="secno">9.7. </span><span class="content">Observe a sensor</span></h3>
    <div class="algorithm" data-algorithm="observe a sensor">
-    <p class="issue" id="issue-02380d4b"><a class="self-link" href="#issue-02380d4b"></a> This needs to be refactored in an abstract operation
-    that has access to the <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-17">Sensor</a></code> instance <var>sensor_instance</var> that just got started.</p>
     <dl>
      <dt data-md="">input
      <dd data-md="">
-      <p><var>sensor</var>, a <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-40">sensor</a>.</p>
+      <p><var>sensor_instance</var>, a <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-17">Sensor</a></code> object.</p>
      <dt data-md="">output
      <dd data-md="">
       <p>None</p>
     </dl>
     <ol>
+     <li data-md="">
+      <p>Let <var>sensor</var> be the <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-40">sensor</a> associated with <var>sensor_instance</var>.</p>
      <li data-md="">
       <p>If <var>sensor</var>’s <var>latest reading</var>["timestamp"] is not null,
   invoke <a data-link-type="dfn" href="#update-observers" id="ref-for-update-observers-1">update observers</a> with <var>sensor_instance</var> and <var>latest reading</var>["timestamp"] as arguments.</p>
