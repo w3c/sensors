@@ -878,7 +878,8 @@ with the internal slots described in the following table:
 ### Sensor.timestamp ### {#sensor-timestamp}
 
 The getter of the {{Sensor/timestamp!!attribute}} attribute returns
-[=latest reading=]["timestamp"].
+the result of invoking [=get value from latest reading=] with <emu-val>this</emu-val>
+and "timestamp" as arguments.
 
 
 ### Sensor.start() ### {#sensor-start}
