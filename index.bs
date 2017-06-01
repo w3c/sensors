@@ -34,6 +34,7 @@ urlPrefix: https://html.spec.whatwg.org/multipage/; spec: HTML
       text: task; url: concept-task
       text: fire a simple event
       text: trusted; url: concept-events-trusted
+      text: queue a task; url: queue-a-task
     urlPrefix: browsers.html
       text: origin; url: origin-2
       text: navigating; url: navigate
@@ -889,9 +890,9 @@ and "timestamp" as arguments.
     The {{Sensor/start()}} method must run these steps:
 
     1.  Let |sensor_state| be the value of |sensor_instance|.{{[[state]]}}.
-    1.  If |sensor_state| is either "activating"
-        or "activated", then return.
-    1.  Set |sensor_instance|.{{[[state]]}} to "activating".
+    1.  If |sensor_state| is either "activating" or "activated",
+        then return.
+    1.  [=Queue a task=] to set |sensor_instance|.{{[[state]]}} to "activating".
     1.  Run these sub-steps [=in parallel=]:
         1.  let |connected| be the result of invoking [=connect to sensor=].
         1.  If |connected| is false, then return.
@@ -913,7 +914,7 @@ and "timestamp" as arguments.
     The {{Sensor/stop()}} method must run these steps:
 
     1.  If |sensor_instance|.{{[[state]]}} is "idle", then return.
-    1.  Set |sensor_instance|.{{[[state]]}} to "idle".
+    1.  [=Queue a task=] to set |sensor_instance|.{{[[state]]}} to "idle".
     1.  Run these sub-steps [=in parallel=]:
         1.  Invoke [=unregister a sensor object=] with |sensor_instance| as argument.
 </div>
@@ -1002,7 +1003,8 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
         1.  [=throw=] a {{SecurityError}}.
     1.  If the [=browsing context=] is not a [=top-level browsing context=], then:
         1.  [=throw=] a {{SecurityError}}.
-    1.  Let |sensor_instance| be a new {{Sensor}} object,
+    1.  Let |sensor_instance| be a new {{Sensor}} object.
+    1.  Set |sensor_instance|.{{[[state]]}} to "idle".
     1.  If [=sensor=] [=supports periodic reporting mode=] and
         |options|.{{frequency!!dict-member}} is [=present=], then
         1.  Set |sensor_instance|.{{[[desiredSamplingFrequency]]}} to |options|.{{frequency!!dict-member}}.
@@ -1012,7 +1014,6 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
         {{Sensor}} {{Sensor/timestamp!!attribute}} attributes.
     1.  If [=identifying parameters=] in |options| are set, then:
         1.  Set |sensor_instance|.{{[[identifyingParameters]]}} to [=identifying parameters=].
-    1.  Set |sensor_instance|.{{[[state]]}} to "idle".
     1.  Return |sensor_instance|.
 </div>
 
@@ -1333,9 +1334,10 @@ in order to reduce resource consumption, notably battery usage.
     : output
     :: None
 
-    1.  Set |sensor_instance|.{{[[state]]}} to "idle".
-    1.  [=Fire an event=] named "error" at |sensor_instance| using {{SensorErrorEvent}}
-        with its {{SensorErrorEvent/error!!attribute}} attribute initialized to |error|.
+    1.  [=Queue a task=] to run these steps:
+        1.  Set |sensor_instance|.{{[[state]]}} to "idle".
+        1.  [=Fire an event=] named "error" at |sensor_instance| using {{SensorErrorEvent}}
+            with its {{SensorErrorEvent/error!!attribute}} attribute initialized to |error|.
 </div>
 
 
