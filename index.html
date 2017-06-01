@@ -1458,7 +1458,7 @@ pre.idl.highlight { color: #708090; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-05-31">31 May 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-06-01">1 June 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2209,7 +2209,8 @@ with the internal slots described in the following table:</p>
     </ol>
    </div>
    <h4 class="heading settled" data-level="8.1.4" id="sensor-timestamp"><span class="secno">8.1.4. </span><span class="content">Sensor.timestamp</span><a class="self-link" href="#sensor-timestamp"></a></h4>
-   <p>The getter of the <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensor-timestamp" id="ref-for-dom-sensor-timestamp-1">timestamp</a></code> attribute returns <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-8">latest reading</a>["timestamp"].</p>
+   <p>The getter of the <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensor-timestamp" id="ref-for-dom-sensor-timestamp-1">timestamp</a></code> attribute returns
+the result of invoking <a data-link-type="dfn" href="#get-value-from-latest-reading" id="ref-for-get-value-from-latest-reading-2">get value from latest reading</a> with <emu-val>this</emu-val> and "timestamp" as arguments.</p>
    <h4 class="heading settled" data-level="8.1.5" id="sensor-start"><span class="secno">8.1.5. </span><span class="content">Sensor.start()</span><a class="self-link" href="#sensor-start"></a></h4>
    <div class="algorithm" data-algorithm="to start a sensor">
     <p>The <code class="idl"><a data-link-type="idl" href="#dom-sensor-start" id="ref-for-dom-sensor-start-1">start()</a></code> method must run these steps:</p>
@@ -2659,7 +2660,7 @@ that must be supported as attributes by the objects implementing the <code class
      <li data-md="">
       <p>If <var>sensor</var>’s <a data-link-type="dfn" href="#reporting-flag" id="ref-for-reporting-flag-1">reporting flag</a> is set, then return.</p>
      <li data-md="">
-      <p>If <var>reading_timestamp</var> is equal <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-9">latest reading</a>["timestamp"], then return.</p>
+      <p>If <var>reading_timestamp</var> is equal <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-8">latest reading</a>["timestamp"], then return.</p>
      <li data-md="">
       <p>Set <var>sensor</var>’s <a data-link-type="dfn" href="#reporting-flag" id="ref-for-reporting-flag-2">reporting flag</a>.</p>
      <li data-md="">
@@ -2678,14 +2679,14 @@ that must be supported as attributes by the objects implementing the <code class
        </ul>
       </div>
      <li data-md="">
-      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set">Set</a> <var>sensor</var>’s <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-10">latest reading</a>["timestamp"] to <var>reading_timestamp</var>.</p>
+      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set">Set</a> <var>sensor</var>’s <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-9">latest reading</a>["timestamp"] to <var>reading_timestamp</var>.</p>
      <li data-md="">
-      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-iterate">For each</a> <var>key</var> → <var>value</var> of <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-11">latest reading</a>.</p>
+      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-iterate">For each</a> <var>key</var> → <var>value</var> of <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-10">latest reading</a>.</p>
       <ol>
        <li data-md="">
         <p>If <var>key</var> is "timestamp", <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#iteration-continue">continue</a>.</p>
        <li data-md="">
-        <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set">Set</a> <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-12">latest reading</a>[<var>key</var>] to the corresponding
+        <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set">Set</a> <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-11">latest reading</a>[<var>key</var>] to the corresponding
   value of <var>reading</var>.</p>
       </ol>
       <p class="issue" id="issue-0a097748"><a class="self-link" href="#issue-0a097748"></a> Maybe compare <var>value</var> with corresponding
@@ -2829,7 +2830,7 @@ in order to reduce resource consumption, notably battery usage.</p>
       <p>If <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-state-slot" id="ref-for-dom-sensor-state-slot-11">[[state]]</a></code> is "activated",</p>
       <ol>
        <li data-md="">
-        <p>Let <var>readings</var> be the <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-13">latest reading</a> of <var>sensor_instance</var>’s related <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-45">sensor</a>.</p>
+        <p>Let <var>readings</var> be the <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-12">latest reading</a> of <var>sensor_instance</var>’s related <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-45">sensor</a>.</p>
        <li data-md="">
         <p>Return <var>readings</var>[<var>key</var>].</p>
       </ol>
@@ -2947,7 +2948,7 @@ each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-35">sen
   Its [<code class="idl"><a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Constructor">Constructor</a></code>] must take, as argument,
   an optional <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-dictionary">dictionary</a> whose <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-inherited-dictionaries">inherited dictionaries</a> contains <code class="idl"><a data-link-type="idl" href="#dictdef-sensoroptions" id="ref-for-dictdef-sensoroptions-2">SensorOptions</a></code>.
   Its <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-attribute">attributes</a> which expose <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-39">sensor readings</a> are <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-read-only">read only</a> and
-  their getters must return the result of invoking <a data-link-type="dfn" href="#get-value-from-latest-reading" id="ref-for-get-value-from-latest-reading-2">get value from latest reading</a> with <emu-val>this</emu-val> and <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-attribute">attribute</a> <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-identifier">identifier</a> as arguments.</p>
+  their getters must return the result of invoking <a data-link-type="dfn" href="#get-value-from-latest-reading" id="ref-for-get-value-from-latest-reading-3">get value from latest reading</a> with <emu-val>this</emu-val> and <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-attribute">attribute</a> <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-identifier">identifier</a> as arguments.</p>
     <li data-md="">
      <p>A <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/permissions/#enumdef-permissionname">PermissionName</a></code>.</p>
    </ul>
@@ -3675,9 +3676,8 @@ for their editorial input.</p>
    <b><a href="#latest-reading">#latest-reading</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-latest-reading-1">7.2. Sensor</a> <a href="#ref-for-latest-reading-2">(2)</a> <a href="#ref-for-latest-reading-3">(3)</a> <a href="#ref-for-latest-reading-4">(4)</a> <a href="#ref-for-latest-reading-5">(5)</a> <a href="#ref-for-latest-reading-6">(6)</a> <a href="#ref-for-latest-reading-7">(7)</a>
-    <li><a href="#ref-for-latest-reading-8">8.1.4. Sensor.timestamp</a>
-    <li><a href="#ref-for-latest-reading-9">9.10. Update latest reading</a> <a href="#ref-for-latest-reading-10">(2)</a> <a href="#ref-for-latest-reading-11">(3)</a> <a href="#ref-for-latest-reading-12">(4)</a>
-    <li><a href="#ref-for-latest-reading-13">9.14. Get value from latest reading</a>
+    <li><a href="#ref-for-latest-reading-8">9.10. Update latest reading</a> <a href="#ref-for-latest-reading-9">(2)</a> <a href="#ref-for-latest-reading-10">(3)</a> <a href="#ref-for-latest-reading-11">(4)</a>
+    <li><a href="#ref-for-latest-reading-12">9.14. Get value from latest reading</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="supports-periodic-reporting-mode">
@@ -3931,7 +3931,8 @@ for their editorial input.</p>
    <b><a href="#get-value-from-latest-reading">#get-value-from-latest-reading</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-get-value-from-latest-reading-1">7.2. Sensor</a>
-    <li><a href="#ref-for-get-value-from-latest-reading-2">10.6. Definition Requirements</a>
+    <li><a href="#ref-for-get-value-from-latest-reading-2">8.1.4. Sensor.timestamp</a>
+    <li><a href="#ref-for-get-value-from-latest-reading-3">10.6. Definition Requirements</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="request-sensor-access">
