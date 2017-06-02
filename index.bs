@@ -630,7 +630,384 @@ and thus "on change" sensors would be useful.
 
 <h2 id="model">Model</h2>
 
-Issue: A diagram would really help here.
+    <div id="anime">
+        <div id="anime-os">
+            <p><strong>OS/UA layer</strong></p>
+            <p><label for="anime-sampling-frequency">Sampling frequency</label> <input type="number" value="60" id="anime-sampling-frequency" max=1000 min=0> Hz</p>
+            
+            <p><label for="anime-slowmotion-factor">Slow motion factor</label> <input type="number" value="50" id="anime-slowmotion-factor"  max=100 min=10> x</p>
+            <p><label for="anime-pipeline-latency">Pipeline latency</label> <input type="number" value="8" id="anime-pipeline-latency"  max=30 min=1> ms</p>
+            <div id="anime-source">
+            
+            </div>
+        </div>
+        <div id="anime-latest-reading">
+            <p>Latest Reading</p>
+        </div>
+        <div id="anime-js">
+            <p><strong>Application Layer</strong></p>
+            <p><label for="anime-reporting-frequency">Reporting frequency</label> <input type="number" value="60" id="anime-reporting-frequency" max=1000 min=0> Hz</p>
+            <p><label for="anime-framerate-noise">Framerate noise</label> ± <input type="number" value="10" id="anime-framerate-noise"  max=100 min=0> %</p>
+            
+            
+
+            <p id="anime-latency">Latency: <span id="anime-latency-value"></span></p>
+            <p id="anime-frame-length">Frame length: <span id="anime-frame-length-value"></span> / Framerate: <span id="anime-framerate-value"></span></p>
+            <div id="anime-framerate-animation">
+           
+            </div>
+            <div id="anime-screen-1">
+           
+            </div>
+
+        </div>
+    </div>
+    
+     <style>
+        #anime {
+            color: #ccc;
+            height: 400px;
+            width: 760px;
+            border: 1px solid #ccc;
+            position: relative;
+            box-sizing: border-box;
+        }
+        
+        #anime h3 {
+            text-align: center;
+        }
+        
+        #anime p {
+            padding: 0 10px;
+        }
+        
+        #anime-latency {
+            position: absolute;
+            box-sizing: border-box;
+            border: 1px dashed #ccc;
+            padding: 5px;
+            left: -150px;
+            bottom: 135px;
+            background-color: #fff;
+            text-align:center;
+            width: 300px;
+            
+        }
+        
+        #anime input[type="number"] {
+            
+            text-align: right;
+            width: 60px;
+        }
+        
+        
+        #anime-os {
+            box-sizing: border-box;
+            width: 360px;
+            height: 400px;
+            border-right: 1px dashed #ccc;
+            position: absolute;
+        }
+        
+        #anime-js {
+            box-sizing: border-box;
+            width: 400px;
+            height: 400px;
+                position: absolute;
+            right: 0;
+        }
+        
+        #anime-latest-reading {
+            text-align: center;
+            box-sizing: border-box;
+            width: 160px;
+            height: 100px;
+            border: 1px dashed #ccc;
+            position: absolute;
+            left: 280px;
+            bottom: 10px;
+            background-color: #fff;
+            
+            
+        }
+        
+        #anime-source,
+        #anime-screen-1,
+        #anime-screen-2,
+        #anime-screen-3
+         {
+            width: 80px;
+            height: 80px;
+            position: absolute;
+            bottom: 20px;
+        }
+        
+        #anime-source {
+            left: 20px;
+          background-color: #FF0000;
+          animation: bgColor 10s infinite linear;
+        }
+        
+        #anime-screen-1 {
+            right: 20px;
+            background-color: #FF0000;
+        }
+        
+        #anime-screen-2 {
+            bottom: 110px;
+            right: 20px;
+            background-color: #FF0000;
+        }
+        
+        #anime-screen-3 {
+            bottom: 200px;
+            right: 20px;
+            background-color: #FF0000;
+        }
+        
+        @keyframes bgColor {
+          12.5% {
+            background-color: #FF0000;
+          }
+          25% {
+            background-color: #FFA500;
+          }
+          37.5% {
+            background-color: #FFFF00;
+          }
+          50% {
+            background-color: #7FFF00;
+          }
+          62.5% {
+            background-color: #00FFFF;
+          }
+          75% {
+            background-color: #0000FF;
+          }
+          87.5% {
+            background-color: #9932CC;
+          }
+          100% {
+            background-color: #FF1493;
+          }
+        }
+       
+        #anime .reading {
+            position: absolute;
+            bottom: 50px;
+            left: 60px;
+            background-color: #ccc;
+            height: 20px;
+            width: 20px;
+        }
+        
+        #anime-framerate-animation {
+            border-radius: 10px;
+            
+            height: 20px;
+            width: 20px;
+            position: absolute;
+            bottom: 120px;
+            left: 10px;
+            background-color: #666;
+        }
+        
+        #anime #anime-latest-reading .reading {
+            position: absolute;
+            left: 67px;
+            top: 40px;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+
+    <script>
+        var SLOWDOWN_FACTOR = 50
+        var PIPELINE_LATENCY = getPipelineLatency();
+        
+        
+        setSlowMotionFactor();
+        
+        function noiseFactor(percent) {
+            if (!percent) return 1;
+            return 1 + ((Math.random() - 0.5) * percent / 100);
+        }
+        
+        function interval(f) {
+            return (1/f) * 1000 * SLOWDOWN_FACTOR;
+        }
+        
+        function loop(fn, frequency, noise) {
+            var running = true;
+            var lock = false;
+            var self = {
+                stop: function() {
+                    running = false;
+                },
+                slowdownFactor: function() {
+                    return SLOWDOWN_FACTOR;
+                },
+                frequency: function(f) {
+                    if (typeof f !== "undefined") {
+                        frequency = +f;
+                        clearTimeout(timeoutId);
+                        run();
+                    }
+                    return frequency;
+                },
+                noise: function(n) {
+                    if (typeof n !== "undefined") {
+                        noise = +n;
+                        console.log(noise)
+                    }
+                    return noise;
+                },
+                interval: function() {
+                    return interval(frequency);
+                },
+                intervalWithNoise: function() {
+                    return intervalWithNoise / SLOWDOWN_FACTOR;
+                }
+            }
+            var intervalWithNoise;
+            var timeoutId;
+            function run() {
+                intervalWithNoise = interval(frequency) * noiseFactor(noise);
+                timeoutId = setTimeout(function() {
+                    lock = true;
+                    try {
+                        fn(self);
+                    } catch(e) {
+                        throw e;
+                    } finally {
+                        lock = false;
+                        if (running) run();
+                    }
+                }, intervalWithNoise); 
+            }
+            run();
+            return self;
+        }
+    
+
+        function sample() {
+            return getComputedStyle(document.querySelector("#anime-source")).backgroundColor;
+        }
+        
+        function getSamplingFrequency() {
+            return +document.querySelector("#anime-sampling-frequency").value
+        }
+        
+        function getPipelineLatency() {
+            return +document.querySelector("#anime-pipeline-latency").value
+        }
+        
+        function getNoiseFactor() {
+            return +document.querySelector("#anime-framerate-noise").value
+        }
+        
+        function setSlowMotionFactor() {
+            var v = +document.querySelector("#anime-slowmotion-factor").value;
+            SLOWDOWN_FACTOR = v;
+            document.querySelector("#anime-source").style.animationDuration = Math.round(v/10);
+        }
+        
+        
+        // sampling rate
+        var samplingRate = loop(function() {
+            
+            var r = document.createElement("div");
+            r.className = "reading";
+            r.style.backgroundColor = sample();
+            var timestamp = performance.now();
+            document.querySelector("#anime-os").appendChild(r);
+            anime({
+              targets: [r],
+              translateX: 250,
+                easing: 'linear',
+              duration: PIPELINE_LATENCY * SLOWDOWN_FACTOR,
+              complete: function(anim) {
+                 var $latestReading = document.querySelector("#anime-latest-reading");
+                 r.style.transform = "";
+                 $latestReading.removeChild($latestReading.lastChild)
+                 $latestReading.appendChild(r);
+                 latestReading.color = r.style.backgroundColor;
+                 latestReading.timestamp = timestamp;
+              }
+            });
+            
+        }, getSamplingFrequency());
+        
+        
+        latestReading = {};
+        
+        // reporting rate
+        //loop(function() { console.log("event") }, 60);
+  
+  
+        function SensorSharedReading() {
+            options = options || {};
+            options.frequency = options || 60;
+            var int = interval(options.frequency);
+            Object.defineProperties(self, {
+                color: { get: function() { return latestReading.color; } },
+                timestamp: { get: function() { return latestReading.timestamp } }
+            });
+            return self;
+        }
+        
+        function pad(n) {
+            if (isNaN(n)) {
+                return "";
+            }
+            var s = Math.round(n * 100) + "";
+            var l = s.length - 2;
+            return s.substring(0, l) + "." + s.substring(l)
+        }
+        
+        function displayTime(n) {
+            return pad(n) + "ms";
+        }
+  
+        // rAF
+        var rAFAnime;
+        var rAF = loop(function(l) {
+
+            document.querySelector("#anime-screen-1").style.backgroundColor = latestReading.color;
+            //document.querySelector("#anime-screen-2").style.backgroundColor = latestReading.color;
+            //document.querySelector("#anime-screen-3").style.backgroundColor = latestReading.color;
+            document.querySelector("#anime-latency-value").textContent = displayTime((performance.now() - latestReading.timestamp) / SLOWDOWN_FACTOR);
+            document.querySelector("#anime-frame-length-value").textContent = displayTime(l.intervalWithNoise());
+            document.querySelector("#anime-framerate-value").textContent = pad(1 / l.intervalWithNoise() * 1000) + "fps";
+            if (rAFAnime) {
+                rAFAnime.restart()
+            }
+            rAFAnime = rAFAnime || anime({
+              targets: [document.querySelector("#anime-framerate-animation")],
+              translateX: [350, 0],
+                easing: 'linear',
+                direction: 'alternate',
+                //duration: l.interval() / 2 // 0.5 * 1000 * 1/60 * SLOWDOWN_FACTOR
+                duration: 0.5 * 1000 * 1/60 * SLOWDOWN_FACTOR
+            });
+        }, 60, getNoiseFactor() /* percent noise */);
+        
+        document.querySelector("#anime-sampling-frequency").onchange = function() {
+            samplingRate.frequency(getSamplingFrequency());
+        }
+        
+        document.querySelector("#anime-framerate-noise").onchange = function() {
+            rAF.noise(getNoiseFactor());
+        }
+        
+        document.querySelector("#anime-slowmotion-factor").onchange = function() {
+            setSlowMotionFactor();
+        }
+        
+        document.querySelector("#anime-pipeline-latency").onchange = function() {
+            PIPELINE_LATENCY = getPipelineLatency();
+        }
+        
+    </script>
 
 <h3 id="model-sensor-type">Sensor Type</h3>
 
