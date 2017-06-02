@@ -638,7 +638,7 @@ and thus "on change" sensors would be useful.
             <p><label for="anime-slowmotion-factor">Slow motion factor</label> <input type="number" value="50" id="anime-slowmotion-factor"  max=100 min=10> x</p>
             <p><label for="anime-pipeline-latency">Pipeline latency</label> <input type="number" value="8" id="anime-pipeline-latency"  max=30 min=1> ms</p>
             <div id="anime-source">
-            
+                source
             </div>
         </div>
         <div id="anime-latest-reading">
@@ -657,7 +657,7 @@ and thus "on change" sensors would be useful.
            
             </div>
             <div id="anime-screen-1">
-           
+                screen
             </div>
 
         </div>
@@ -665,7 +665,7 @@ and thus "on change" sensors would be useful.
     
      <style>
         #anime {
-            color: #ccc;
+            color: 666;
             height: 400px;
             width: 760px;
             border: 1px solid #ccc;
@@ -736,6 +736,9 @@ and thus "on change" sensors would be useful.
         #anime-screen-2,
         #anime-screen-3
          {
+             box-sizing: border-box;
+            text-align: center;
+            padding: 5px;
             width: 80px;
             height: 80px;
             position: absolute;
