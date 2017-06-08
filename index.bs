@@ -635,7 +635,6 @@ and thus "on change" sensors would be useful.
             <p><strong>OS/UA layer</strong></p>
             <p><label for="anime-sampling-frequency">Sampling frequency</label> <input type="number" value="60" id="anime-sampling-frequency" max=1000 min=0> Hz</p>
             
-            <p><label for="anime-slowmotion-factor">Slow motion factor</label> <input type="number" value="50" id="anime-slowmotion-factor"  max=100 min=10> x</p>
             <p><label for="anime-pipeline-latency">Pipeline latency</label> <input type="number" value="8" id="anime-pipeline-latency"  max=30 min=1> ms</p>
             <div id="anime-source">
                 source
@@ -662,6 +661,8 @@ and thus "on change" sensors would be useful.
 
         </div>
     </div>
+    <p><label for="anime-slowmotion-factor">Slow motion factor</label> <input type="number" value="50" id="anime-slowmotion-factor"  max=100 min=10> ×</p>
+    
     
      <style>
         #anime {
