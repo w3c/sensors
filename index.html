@@ -1183,7 +1183,7 @@ Possible extra rowspan handling
       background-attachment: fixed;
     }
   </style>
-  <meta content="Bikeshed version 34209db86579ed3f0e75afb470f2788a2646155f" name="generator">
+  <meta content="Bikeshed version 39e591568007a470c8705dd14db3d9d86db98356" name="generator">
   <link href="https://www.w3.org/TR/generic-sensor/" rel="canonical">
 <style>
     emu-val {
@@ -1458,7 +1458,7 @@ pre.idl.highlight { color: #708090; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-06-01">1 June 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-06-19">19 June 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1471,8 +1471,11 @@ pre.idl.highlight { color: #708090; }
      <dd><span><a href="mailto:public-device-apis@w3.org?subject=%5Bgeneric-sensor%5D%20YOUR%20TOPIC%20HERE">public-device-apis@w3.org</a> with subject line “<kbd>[generic-sensor] <i data-lt="">… message topic …</i></kbd>” (<a href="https://lists.w3.org/Archives/Public/public-device-apis/" rel="discussion">archives</a>)</span>
      <dd><span><a href="https://github.com/w3c/sensors">GitHub</a> (<a href="https://github.com/w3c/sensors/issues/new">new issue</a>, <a href="https://github.com/w3c/sensors/milestone/2">level 1 issues</a>, <a href="https://github.com/w3c/sensors/issues">all issues</a>)</span>
      <dt class="editor">Editors:
-     <dd class="editor p-author h-card vcard" data-editor-id="78102"><a class="p-name fn u-url url" href="http://tobie.me">Tobie Langel</a> (<span class="p-org org">Intel Corporation</span>) <a class="u-email email" href="mailto:tobie@sensors.codespeaks.com">tobie@sensors.codespeaks.com</a>
      <dd class="editor p-author h-card vcard" data-editor-id="50572"><span class="p-name fn">Rick Waldron</span> (<span class="p-org org">JS Foundation</span>)
+     <dd class="editor p-author h-card vcard" data-editor-id="78325"><a class="p-name fn u-url url" href="https://intel.com/">Mikhail Pozdnyakov</a> (<span class="p-org org">Intel Corporation</span>)
+     <dd class="editor p-author h-card vcard" data-editor-id="78335"><a class="p-name fn u-url url" href="https://intel.com/">Alexander Shalamov</a> (<span class="p-org org">Intel Corporation</span>)
+     <dt class="editor">Former Editor:
+     <dd class="editor p-author h-card vcard" data-editor-id="60809"><a class="p-name fn u-url url" href="http://tobie.me">Tobie Langel</a> (<span class="p-org org">Codespeaks, formerly on behalf of Intel Corporation</span>) <a class="u-email email" href="mailto:tobie@codespeaks.com">tobie@codespeaks.com</a>
      <dt>Other:
      <dd><span><a href="https://github.com/w3c/web-platform-tests/tree/master/generic-sensor">Test suite</a>, <a href="https://github.com/w3c/sensors/commits/master/index.bs">latest version history</a>, <a href="https://github.com/w3c/sensors/commits/gh-pages/index.bs">previous version history</a></span>
     </dl>
@@ -2774,7 +2777,7 @@ that must be supported as attributes by the objects implementing the <code class
       <p>If <var>current_visibility_state</var> is not "visible",
   then return "insecure".</p>
      <li data-md="">
-      <p>If the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#currently-focused-area-of-a-top-level-browsing-context">currently focused area</a> of the current <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context">top-level browsing context</a> is a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#nested-browsing-context">nested browsing context</a> whose <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#active-document">active document</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#origin-2">origin</a> is not <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#same-origin-domain">same origin-domain</a> as <var>document</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#origin-2">origin</a>,
+      <p>If the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#currently-focused-area-of-a-top-level-browsing-context">currently focused area</a> of the current <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context">top-level browsing context</a> is a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#nested-browsing-context">nested browsing context</a> whose <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#active-document">active document</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#origin-2">origin</a> is not <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#same-origin-domain">same origin-domain</a> as <var>document</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#origin-2">origin</a>,
   then return "insecure".</p>
      <li data-md="">
       <p>Let <var>has_focus</var> be the result of running the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#has-focus-steps">has focus steps</a> with <var>document</var> as argument.</p>
@@ -3347,7 +3350,7 @@ for their editorial input.</p>
      <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#incumbent-settings-object">incumbent settings object</a>
      <li><a href="https://html.spec.whatwg.org/multipage/browsers.html#nested-browsing-context">nested browsing context</a>
      <li><a href="https://html.spec.whatwg.org/multipage/browsers.html#origin-2">origin</a>
-     <li><a href="https://html.spec.whatwg.org/multipage/browsers.html#same-origin-domain">same origin-domain</a>
+     <li><a href="https://html.spec.whatwg.org/multipage/origin.html#same-origin-domain">same origin-domain</a>
      <li><a href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context">top-level browsing context</a>
     </ul>
    <li>
@@ -3455,28 +3458,28 @@ for their editorial input.</p>
    <dd><a href="http://www.bipm.org/en/publications/si-brochure/">SI Brochure: The International System of Units (SI), 8th edition</a>. 2014. URL: <a href="http://www.bipm.org/en/publications/si-brochure/">http://www.bipm.org/en/publications/si-brochure/</a>
   </dl>
   <h2 class="no-num no-ref heading settled" id="idl-index"><span class="content">IDL Index</span><a class="self-link" href="#idl-index"></a></h2>
-<pre class="idl highlight def">[<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext"><span class="nv">SecureContext</span></a>]
-<span class="kt"><span class="kt">interface</span></span> <a class="nv" href="#sensor"><code><span class="nv">Sensor</span></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget"><span class="n">EventTarget</span></a> {
-  <span class="kt"><span class="kt">readonly</span></span> <span class="kt"><span class="kt">attribute</span></span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean"><span class="kt"><span class="kt">boolean</span></span></a> <a class="nv" data-readonly="" data-type="boolean" href="#dom-sensor-activated"><code><span class="nv">activated</span></code></a>;
-  <span class="kt"><span class="kt">readonly</span></span> <span class="kt"><span class="kt">attribute</span></span> <a class="n" data-link-type="idl-name" href="http://w3c.github.io/hr-time/#dom-domhighrestimestamp"><span class="n">DOMHighResTimeStamp</span></a>? <a class="nv" data-readonly="" data-type="DOMHighResTimeStamp?" href="#dom-sensor-timestamp"><code><span class="nv">timestamp</span></code></a>;
-  <span class="kt"><span class="kt">void</span></span> <a class="nv" href="#dom-sensor-start"><code><span class="nv">start</span></code></a>();
-  <span class="kt"><span class="kt">void</span></span> <a class="nv" href="#dom-sensor-stop"><code><span class="nv">stop</span></code></a>();
-  <span class="kt"><span class="kt">attribute</span></span> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler"><span class="n">EventHandler</span></a> <a class="nv" data-type="EventHandler" href="#dom-sensor-onchange"><code><span class="nv">onchange</span></code></a>;
-  <span class="kt"><span class="kt">attribute</span></span> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler"><span class="n">EventHandler</span></a> <a class="nv" data-type="EventHandler" href="#dom-sensor-onactivate"><code><span class="nv">onactivate</span></code></a>;
-  <span class="kt"><span class="kt">attribute</span></span> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler"><span class="n">EventHandler</span></a> <a class="nv" data-type="EventHandler" href="#dom-sensor-onerror"><code><span class="nv">onerror</span></code></a>;
+<pre class="idl highlight def">[<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext">SecureContext</a>]
+<span class="kt">interface</span> <a class="nv" href="#sensor"><code>Sensor</code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget">EventTarget</a> {
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean"><span class="kt">boolean</span></a> <a class="nv" data-readonly="" data-type="boolean" href="#dom-sensor-activated"><code>activated</code></a>;
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="http://w3c.github.io/hr-time/#dom-domhighrestimestamp">DOMHighResTimeStamp</a>? <a class="nv" data-readonly="" data-type="DOMHighResTimeStamp?" href="#dom-sensor-timestamp"><code>timestamp</code></a>;
+  <span class="kt">void</span> <a class="nv" href="#dom-sensor-start"><code>start</code></a>();
+  <span class="kt">void</span> <a class="nv" href="#dom-sensor-stop"><code>stop</code></a>();
+  <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a> <a class="nv" data-type="EventHandler" href="#dom-sensor-onchange"><code>onchange</code></a>;
+  <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a> <a class="nv" data-type="EventHandler" href="#dom-sensor-onactivate"><code>onactivate</code></a>;
+  <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a> <a class="nv" data-type="EventHandler" href="#dom-sensor-onerror"><code>onerror</code></a>;
 };
 
-<span class="kt"><span class="kt">dictionary</span></span> <a class="nv" href="#dictdef-sensoroptions"><code><span class="nv">SensorOptions</span></code></a> {
-  <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double"><span class="kt"><span class="kt">double</span></span></a>? <a class="nv" data-type="double? " href="#dom-sensoroptions-frequency"><code><span class="nv">frequency</span></code></a>;
+<span class="kt">dictionary</span> <a class="nv" href="#dictdef-sensoroptions"><code>SensorOptions</code></a> {
+  <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-sensoroptions-frequency"><code>frequency</code></a>;
 };
 
-[<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext"><span class="nv">SecureContext</span></a>, <a class="nv" href="#dom-sensorerrorevent-sensorerrorevent"><code><span class="nv">Constructor</span></code></a>(<a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString"><span class="kt"><span class="kt">DOMString</span></span></a> <a class="nv" href="#dom-sensorerrorevent-sensorerrorevent-type-erroreventinitdict-type"><code><span class="nv">type</span></code></a>, <a class="n" data-link-type="idl-name" href="#dictdef-sensorerroreventinit"><span class="n">SensorErrorEventInit</span></a> <a class="nv" href="#dom-sensorerrorevent-sensorerrorevent-type-erroreventinitdict-erroreventinitdict"><code><span class="nv">errorEventInitDict</span></code></a>)]
-<span class="kt"><span class="kt">interface</span></span> <a class="nv" href="#sensorerrorevent"><code><span class="nv">SensorErrorEvent</span></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#event"><span class="n">Event</span></a> {
-  <span class="kt"><span class="kt">readonly</span></span> <span class="kt"><span class="kt">attribute</span></span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-Error"><span class="kt"><span class="kt">Error</span></span></a> <a class="nv" data-readonly="" data-type="Error" href="#dom-sensorerrorevent-error"><code><span class="nv">error</span></code></a>;
+[<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext">SecureContext</a>, <a class="nv" href="#dom-sensorerrorevent-sensorerrorevent"><code>Constructor</code></a>(<a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString"><span class="kt">DOMString</span></a> <a class="nv" href="#dom-sensorerrorevent-sensorerrorevent-type-erroreventinitdict-type"><code>type</code></a>, <a class="n" data-link-type="idl-name" href="#dictdef-sensorerroreventinit">SensorErrorEventInit</a> <a class="nv" href="#dom-sensorerrorevent-sensorerrorevent-type-erroreventinitdict-erroreventinitdict"><code>errorEventInitDict</code></a>)]
+<span class="kt">interface</span> <a class="nv" href="#sensorerrorevent"><code>SensorErrorEvent</code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#event">Event</a> {
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-Error"><span class="kt">Error</span></a> <a class="nv" data-readonly="" data-type="Error" href="#dom-sensorerrorevent-error"><code>error</code></a>;
 };
 
-<span class="kt"><span class="kt">dictionary</span></span> <a class="nv" href="#dictdef-sensorerroreventinit"><code><span class="nv">SensorErrorEventInit</span></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#dictdef-eventinit"><span class="n">EventInit</span></a> {
-  <span class="kt"><span class="kt">required</span></span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-Error"><span class="kt"><span class="kt">Error</span></span></a> <a class="nv" data-type="Error " href="#dom-sensorerroreventinit-error"><code><span class="nv">error</span></code></a>;
+<span class="kt">dictionary</span> <a class="nv" href="#dictdef-sensorerroreventinit"><code>SensorErrorEventInit</code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#dictdef-eventinit">EventInit</a> {
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-Error"><span class="kt">Error</span></a> <a class="nv" data-type="Error " href="#dom-sensorerroreventinit-error"><code>error</code></a>;
 };
 
 </pre>
