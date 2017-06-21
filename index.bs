@@ -738,6 +738,8 @@ dictionary SensorOptions {
 
 A {{Sensor}} object has an associated [=sensor=].
 
+The [=task source=] for the [=tasks=] mentioned in this specification is the <dfn>sensor task source</dfn>.
+
 ### Sensor lifecycle ### {#sensor-lifecycle}
 
 <style>
