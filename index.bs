@@ -855,7 +855,7 @@ with the internal slots described in the following table:
             <td><dfn attribute for=Sensor>\[[waitingForUpdate]]</dfn></td>
             <td>A boolean which indicates whether the observers have been updated
                 or whether the object is waiting for a new reading to do so.
-                It is initially `false`.</td>
+                It is initially false.</td>
         </tr>
         <tr>
             <td><dfn attribute for=Sensor>\[[identifyingParameters]]</dfn></td>
@@ -926,7 +926,8 @@ and "timestamp" as arguments.
 
 ### Sensor.onchange ### {#sensor-onchange}
 
-{{Sensor/onchange}} is an {{EventHandler}} which is called to notify that new [=sensor reading|reading=] is available.
+{{Sensor/onchange}} is an {{EventHandler}} which is called
+to notify that new [=sensor reading|reading=] is available.
 
 
 Issue(205):
@@ -1091,7 +1092,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
 
     1.  Let |sensor| be the [=sensor=] associated with |sensor_instance|.
     1.  [=set/Remove=] |sensor_instance| from |sensor|'s set of [=activated sensor objects=].
-    1.  Set |sensor_instance|.{{[[waitingForUpdate]]}} to `false`.
+    1.  Set |sensor_instance|.{{[[waitingForUpdate]]}} to false.
     1.  If |sensor|'s set of [=activated sensor objects=] [=set/is empty=],
         1.  Unset the [=periodic reporting mode flag=].
         1.  Set [=current sampling frequency=] to null.
@@ -1270,8 +1271,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
         that needs to be propagated.
     1.  Unset |sensor|’s [=reporting flag=].
     1.  [=set/For each=] |s| in |activated_sensors|,
-        1.  Invoke the [=Report Latest Reading updated=] abstract operation,
-            passing it |s| as an argument.
+        1.  Invoke [=report latest reading updated=] with |s| as an argument.
 </div>
 
 
@@ -1332,18 +1332,18 @@ when [=security check=] would return "insecure"
 in order to reduce resource consumption, notably battery usage.
 
 
-<h3 dfn>Find the reporting frequency of a Sensor</h3>
+<h3 dfn>Find the reporting frequency of a sensor object</h3>
 
-<div algorithm="find the reporting frequency of a sensor">
+<div algorithm="find the reporting frequency of a sensor object">
 
     : input
     :: |sensor_instance|, a {{Sensor}} object.
     : output
-    :: |frequency|, a [=frequency=].
-    1.  Let |frequency| be `null`.
-    1.  Let |f| be |sensor_instance|.{{[[desiredPollingFrequency]]}}.
+    :: A [=frequency=].
+    1.  Let |frequency| be null.
+    1.  Let |f| be |sensor_instance|.{{[[desiredSamplingFrequency]]}}.
         1. if |f| is set,
-            1. set |frequency| to |f| capped by the upper and lower [=current polling frequency=]
+            1. set |frequency| to |f| capped by the upper and lower [=current sampling frequency=]
                bounds for the associated [=sensor=].
         1.  Otherwise,
             1. user agent can assign |frequency| to an appropriate value.
@@ -1351,7 +1351,7 @@ in order to reduce resource consumption, notably battery usage.
 </div>
 
 
-<h3 dfn>Report Latest Reading updated</h3>
+<h3 dfn>Report latest reading updated</h3>
 
 <div algorithm="report latest reading updated">
 
@@ -1360,34 +1360,33 @@ in order to reduce resource consumption, notably battery usage.
     : output
     :: None
 
-    1.  If |sensor_instance|.{{[[waitingForUpdate]]}} is `true`,
-        1. Abort these steps. 
-    1.  Set |sensor_instance|.{{[[waitingForUpdate]]}} to `true`.
+    1.  If |sensor_instance|.{{[[waitingForUpdate]]}} is true,
+        1. Return.
+    1.  Set |sensor_instance|.{{[[waitingForUpdate]]}} to true.
     1.  Let |lastReportedTimestamp| be the value of |sensor_instance|.{{[[lastEventFiredAt]]}}.
     1.  If |lastReportedTimestamp| is not set
-        1.  Queue a task to run the [=Notify Sensor Object about new reading=] abstract operation,
-            passing it |sensor_instance| as an argument.
-        1.  Abort these steps.
-    1.  Let |reportingFrequency| be result of invoking the [=Find the reporting frequency of a Sensor=]
-        abstract operation.
-    1.  If |reportingFrequency| is `null`
-        1.  Queue a task to run the [=Notify Sensor Object about new reading=] abstract operation,
-            passing it |sensor_instance| as an argument.
-        1.  Abort these steps.
+        1.  Queue a task to run [=Notify sensor object about new reading=] with |sensor_instance|
+            as an argument.
+        1.  Return.
+    1.  Let |reportingFrequency| be result of invoking [=Find the reporting frequency of a sensor object=].
+    1.  If |reportingFrequency| is null
+        1.  Queue a task to run [=Notify sensor object about new reading=] with |sensor_instance|
+            as an argument.
+        1.  Return.
     1.  Let |reportingInterval| be the result of 1 / |reportingFrequency|.
     1.  Let |timestampDelta| be the result of [=latest reading=]["timestamp"] - |lastReportedTimestamp|.
     1.  If  |timestampDelta| is greater than or equal to |reportingInterval|
-        1.  Queue a task to run the [=Notify Sensor Object about new reading=] abstract operation,
-            passing it |sensor_instance| as an argument.
-        1.  Abort these steps.
+        1.  Queue a task to run [=Notify sensor object about new reading=] with |sensor_instance|
+            as an argument.
+        1.  Return.
     1.  Let |deferUpdateTime| be the result of |reportingInterval| - |timestampDelta|.
     1.  [=Spin the event loop=] for a period of time equal to |deferUpdateTime|.
-    1.  If |sensor_instance|.{{[[waitingForUpdate]]}} is `true`,
-        1.  Queue a task to run the [=Notify Sensor Object about new reading=] abstract operation,
-            passing it |sensor_instance| as an argument.
+    1.  If |sensor_instance|.{{[[waitingForUpdate]]}} is true,
+        1.  Queue a task to run [=Notify sensor object about new reading=] with |sensor_instance|
+            as an argument.
 </div>
 
-<h3 dfn>Notify Sensor Object about new reading</h3>
+<h3 dfn>Notify sensor object about new reading</h3>
 
 <div algorithm="notify sensor object about new reading">
 
@@ -1396,7 +1395,7 @@ in order to reduce resource consumption, notably battery usage.
     : output
     :: None
 
-    1.  Set |sensor_instance|.{{[[waitingForUpdate]]}} to `false`.
+    1.  Set |sensor_instance|.{{[[waitingForUpdate]]}} to false.
     1.  Set |sensor_instance|.{{[[lastEventFiredAt]]}} to [=latest reading=]["timestamp"].
     1.  [=Fire an event=] named "change" at |sensor_instance|.
 </div>
