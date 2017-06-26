@@ -161,7 +161,7 @@ the default [=sensor=] is chosen.
     <pre highlight="js">
     let sensor = new GeolocationSensor({ accuracy: "high" });
 
-    sensor.onchange = function(event) {
+    sensor.onreading = function(event) {
         var coords = [sensor.latitude, sensor.longitude];
         updateMap(null, coords, sensor.accuracy);
     };
@@ -189,7 +189,7 @@ define ways to uniquely identify each one.
 
     <pre highlight="js">
     var sensor = new DirectTirePressureSensor({ position: "rear", side: "left" });
-    sensor.onchange = _ => console.log(sensor.pressure);
+    sensor.onreading = _ => console.log(sensor.pressure);
     sensor.start();
     </pre>
 </div>
@@ -260,7 +260,7 @@ and defensive programming which includes:
             var sensor = new GeolocationSensor();
             sensor.start();
             sensor.onerror = error => gracefullyDegrade(error);
-            sensor.onchange = _ => updatePosition(sensor.latitude, sensor.longitude);
+            sensor.onreading = _ => updatePosition(sensor.latitude, sensor.longitude);
         } catch(error) {
             gracefullyDegrade(error);
         }
@@ -741,7 +741,7 @@ interface Sensor : EventTarget {
   readonly attribute DOMHighResTimeStamp? timestamp;
   void start();
   void stop();
-  attribute EventHandler onchange;
+  attribute EventHandler onreading;
   attribute EventHandler onactivate;
   attribute EventHandler onerror;
 };
@@ -938,13 +938,10 @@ and "timestamp" as arguments.
 </div>
 
 
-### Sensor.onchange ### {#sensor-onchange}
+### Sensor.onreading ### {#sensor-onreading}
 
-{{Sensor/onchange}} is an {{EventHandler}} which is called
+{{Sensor/onreading}} is an {{EventHandler}} which is called
 to notify that new [=sensor reading|reading=] is available.
-
-
-Issue(205):
 
 
 ### Sensor.onactivate ### {#sensor-onactivate}
@@ -974,8 +971,8 @@ that must be supported as attributes by the objects implementing the {{Sensor}} 
   </thead>
   <tbody>
     <tr>
-      <td><strong><code>onchange</code></strong></td>
-      <td><code>change</code></td>
+      <td><strong><code>onreading</code></strong></td>
+      <td><code>reading</code></td>
     </tr>
     <tr>
       <td><strong><code>onactivate</code></strong></td>
@@ -1284,7 +1281,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
         Issue: Should we fire delayed readings? Or should we just drop readings instead?
 
         1.  Set |sensor_instance|.{{[[waitingForUpdate]]}} to false.
-        1.  [=Fire an event=] named "change" at |sensor_instance|.
+        1.  [=Fire an event=] named "reading" at |sensor_instance|.
         1.  Set |sensor_instance|.{{[[lastEventFiredAt]]}} to |timestamp|.
 
         Issue(215):
@@ -1389,7 +1386,7 @@ in order to reduce resource consumption, notably battery usage.
 
     1.  Set |sensor_instance|.{{[[waitingForUpdate]]}} to false.
     1.  Set |sensor_instance|.{{[[lastEventFiredAt]]}} to [=latest reading=]["timestamp"].
-    1.  [=Fire an event=] named "change" at |sensor_instance|.
+    1.  [=Fire an event=] named "reading" at |sensor_instance|.
 </div>
 
 

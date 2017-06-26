@@ -1570,7 +1570,7 @@ that can be extended to accommodate different sensor types.</p>
         <li><a href="#sensor-timestamp"><span class="secno">8.1.4</span> <span class="content">Sensor.timestamp</span></a>
         <li><a href="#sensor-start"><span class="secno">8.1.5</span> <span class="content">Sensor.start()</span></a>
         <li><a href="#sensor-stop"><span class="secno">8.1.6</span> <span class="content">Sensor.stop()</span></a>
-        <li><a href="#sensor-onchange"><span class="secno">8.1.7</span> <span class="content">Sensor.onchange</span></a>
+        <li><a href="#sensor-onreading"><span class="secno">8.1.7</span> <span class="content">Sensor.onreading</span></a>
         <li><a href="#sensor-onactivate"><span class="secno">8.1.8</span> <span class="content">Sensor.onactivate</span></a>
         <li><a href="#sensor-onerror"><span class="secno">8.1.9</span> <span class="content">Sensor.onerror</span></a>
         <li><a href="#event-handlers"><span class="secno">8.1.10</span> <span class="content">Event handlers</span></a>
@@ -1698,11 +1698,11 @@ such as proximity sensors.</p>
 the device’s default (and often unique) <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-3">sensor</a> for each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-4">type</a> simply by instantiating the corresponding <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-1">Sensor</a></code> subclass.</p>
    <p>Indeed, without specific information identifying a particular <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-4">sensor</a> of a given <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-5">type</a>,
 the default <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-5">sensor</a> is chosen.</p>
-   <div class="example" id="example-663bd772">
-    <a class="self-link" href="#example-663bd772"></a> Listening to geolocation changes: 
+   <div class="example" id="example-2b740ace">
+    <a class="self-link" href="#example-2b740ace"></a> Listening to geolocation changes: 
 <pre class="highlight"><span class="kd">let</span> sensor <span class="o">=</span> <span class="k">new</span> GeolocationSensor<span class="p">({</span> accuracy<span class="o">:</span> <span class="s2">"high"</span> <span class="p">});</span>
 
-sensor<span class="p">.</span>onchange <span class="o">=</span> <span class="kd">function</span><span class="p">(</span>event<span class="p">)</span> <span class="p">{</span>
+sensor<span class="p">.</span>onreading <span class="o">=</span> <span class="kd">function</span><span class="p">(</span>event<span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> coords <span class="o">=</span> <span class="p">[</span>sensor<span class="p">.</span>latitude<span class="p">,</span> sensor<span class="p">.</span>longitude<span class="p">];</span>
     updateMap<span class="p">(</span><span class="kc">null</span><span class="p">,</span> coords<span class="p">,</span> sensor<span class="p">.</span>accuracy<span class="p">);</span>
 <span class="p">};</span>
@@ -1721,10 +1721,10 @@ proximity <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sen
 multiple <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-8">sensors</a> of the same <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-6">type</a> may coexist on the same device,
 specification extension will have to
 define ways to uniquely identify each one.</p>
-   <div class="example" id="example-7c72945b">
-    <a class="self-link" href="#example-7c72945b"></a> For example checking the pressure of the left rear tire: 
+   <div class="example" id="example-fdd94e11">
+    <a class="self-link" href="#example-fdd94e11"></a> For example checking the pressure of the left rear tire: 
 <pre class="highlight"><span class="kd">var</span> sensor <span class="o">=</span> <span class="k">new</span> DirectTirePressureSensor<span class="p">({</span> position<span class="o">:</span> <span class="s2">"rear"</span><span class="p">,</span> side<span class="o">:</span> <span class="s2">"left"</span> <span class="p">});</span>
-sensor<span class="p">.</span>onchange <span class="o">=</span> _ <span class="p">=></span> console<span class="p">.</span>log<span class="p">(</span>sensor<span class="p">.</span>pressure<span class="p">);</span>
+sensor<span class="p">.</span>onreading <span class="o">=</span> _ <span class="p">=></span> console<span class="p">.</span>log<span class="p">(</span>sensor<span class="p">.</span>pressure<span class="p">);</span>
 sensor<span class="p">.</span>start<span class="p">();</span>
 </pre>
    </div>
@@ -1783,13 +1783,13 @@ and defensive programming which includes:</p>
   enhanced by the possible usage of a sensor, not degraded by its
   absence.</p>
    </ol>
-   <div class="example" id="example-051703e2">
-    <a class="self-link" href="#example-051703e2"></a> 
+   <div class="example" id="example-8dd2494f">
+    <a class="self-link" href="#example-8dd2494f"></a> 
 <pre class="highlight"><span class="k">try</span> <span class="p">{</span> <span class="c1">// No need to feature detect thanks to try..catch block.
 </span>    <span class="kd">var</span> sensor <span class="o">=</span> <span class="k">new</span> GeolocationSensor<span class="p">();</span>
     sensor<span class="p">.</span>start<span class="p">();</span>
     sensor<span class="p">.</span>onerror <span class="o">=</span> error <span class="p">=></span> gracefullyDegrade<span class="p">(</span>error<span class="p">);</span>
-    sensor<span class="p">.</span>onchange <span class="o">=</span> _ <span class="p">=></span> updatePosition<span class="p">(</span>sensor<span class="p">.</span>latitude<span class="p">,</span> sensor<span class="p">.</span>longitude<span class="p">);</span>
+    sensor<span class="p">.</span>onreading <span class="o">=</span> _ <span class="p">=></span> updatePosition<span class="p">(</span>sensor<span class="p">.</span>latitude<span class="p">,</span> sensor<span class="p">.</span>longitude<span class="p">);</span>
 <span class="p">}</span> <span class="k">catch</span><span class="p">(</span>error<span class="p">)</span> <span class="p">{</span>
     gracefullyDegrade<span class="p">(</span>error<span class="p">);</span>
 <span class="p">}</span>
@@ -2096,7 +2096,7 @@ by the underlying platform.</p>
   <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="http://w3c.github.io/hr-time/#dom-domhighrestimestamp">DOMHighResTimeStamp</a>? <dfn class="nv dfn-paneled idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-readonly="" data-type="DOMHighResTimeStamp?" id="dom-sensor-timestamp"><code>timestamp</code></dfn>;
   <span class="kt">void</span> <dfn class="nv dfn-paneled idl-code" data-dfn-for="Sensor" data-dfn-type="method" data-export="" data-lt="start()" id="dom-sensor-start"><code>start</code></dfn>();
   <span class="kt">void</span> <dfn class="nv dfn-paneled idl-code" data-dfn-for="Sensor" data-dfn-type="method" data-export="" data-lt="stop()" id="dom-sensor-stop"><code>stop</code></dfn>();
-  <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a> <dfn class="nv dfn-paneled idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="EventHandler" id="dom-sensor-onchange"><code>onchange</code></dfn>;
+  <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a> <dfn class="nv dfn-paneled idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="EventHandler" id="dom-sensor-onreading"><code>onreading</code></dfn>;
   <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a> <dfn class="nv dfn-paneled idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="EventHandler" id="dom-sensor-onactivate"><code>onactivate</code></dfn>;
   <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a> <dfn class="nv dfn-paneled idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="EventHandler" id="dom-sensor-onerror"><code>onerror</code></dfn>;
 };
@@ -2278,16 +2278,9 @@ the result of invoking <a data-link-type="dfn" href="#get-value-from-latest-read
       </ol>
     </ol>
    </div>
-   <h4 class="heading settled" data-level="8.1.7" id="sensor-onchange"><span class="secno">8.1.7. </span><span class="content">Sensor.onchange</span><a class="self-link" href="#sensor-onchange"></a></h4>
-   <p><code class="idl"><a data-link-type="idl" href="#dom-sensor-onchange" id="ref-for-dom-sensor-onchange-1">onchange</a></code> is an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a></code> which is called
+   <h4 class="heading settled" data-level="8.1.7" id="sensor-onreading"><span class="secno">8.1.7. </span><span class="content">Sensor.onreading</span><a class="self-link" href="#sensor-onreading"></a></h4>
+   <p><code class="idl"><a data-link-type="idl" href="#dom-sensor-onreading" id="ref-for-dom-sensor-onreading-1">onreading</a></code> is an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a></code> which is called
 to notify that new <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-29">reading</a> is available.</p>
-   <div class="issue no-marker" id="issue-d41d8cd9">
-    <a class="self-link" href="#issue-d41d8cd9"></a><a class="marker" href="https://github.com/w3c/sensors/issues/205">Issue #205 on GitHub: “Agree on event names”</a>
-    <p>Right now, no one's happy with <code>onchange</code>.</p>
-    <p>There was a vague consensus around "onread"/"onreading" at some point, and also a will to move towards the "ondata"/'onchange" node.js inspired model (which seems a poor fit for the Web). See notably <a class="issue-link js-issue-link" data-error-text="Failed to load issue title" data-id="188745999" data-permission-text="Issue title is private" data-url="https://github.com/w3c/sensors/issues/152" href="https://github.com/w3c/sensors/issues/152#issuecomment-259957946">#152 (comment)</a> and following thread.</p>
-    <p>Maybe "onupdate" is more appropriate, or even "onsample" (if we're consistent with the <a class="issue-link js-issue-link" data-error-text="Failed to load issue title" data-id="230638844" data-permission-text="Issue title is private" data-url="https://github.com/w3c/sensors/issues/209" href="https://github.com/w3c/sensors/issues/209">#209</a> renaming).</p>
-    <p>Either way, this also depends on whether we have different reporting modes (i.e. data is updated when there's a change vs. periodically), so this is probably where we might need to start.</p>
-   </div>
    <h4 class="heading settled" data-level="8.1.8" id="sensor-onactivate"><span class="secno">8.1.8. </span><span class="content">Sensor.onactivate</span><a class="self-link" href="#sensor-onactivate"></a></h4>
    <p><code class="idl"><a data-link-type="idl" href="#dom-sensor-onactivate" id="ref-for-dom-sensor-onactivate-1">onactivate</a></code> is an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a></code> which is called when <emu-val>this</emu-val>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-state-slot" id="ref-for-dom-sensor-state-slot-6">[[state]]</a></code> transitions from "activating" to "activated".</p>
    <h4 class="heading settled" data-level="8.1.9" id="sensor-onerror"><span class="secno">8.1.9. </span><span class="content">Sensor.onerror</span><a class="self-link" href="#sensor-onerror"></a></h4>
@@ -2303,8 +2296,8 @@ that must be supported as attributes by the objects implementing the <code class
       <th>event handler event type
     <tbody>
      <tr>
-      <td><strong><code>onchange</code></strong>
-      <td><code>change</code>
+      <td><strong><code>onreading</code></strong>
+      <td><code>reading</code>
      <tr>
       <td><strong><code>onactivate</code></strong>
       <td><code>activate</code>
@@ -2552,8 +2545,8 @@ that must be supported as attributes by the objects implementing the <code class
   invoke <a data-link-type="dfn" href="#update-observers" id="ref-for-update-observers-1">update observers</a> with <var>sensor_instance</var> and <var>latest reading</var>["timestamp"] as arguments.</p>
      <li data-md="">
       <p>Otherwise, poll <var>sensor</var> immediately.</p>
-      <div class="issue no-marker" id="issue-d41d8cd90">
-       <a class="self-link" href="#issue-d41d8cd90"></a><a class="marker" href="https://github.com/w3c/sensors/issues/214">Issue #214 on GitHub: “Sensors unable to provide their state when instantiated”</a>
+      <div class="issue no-marker" id="issue-d41d8cd9">
+       <a class="self-link" href="#issue-d41d8cd9"></a><a class="marker" href="https://github.com/w3c/sensors/issues/214">Issue #214 on GitHub: “Sensors unable to provide their state when instantiated”</a>
        <p>Some HW sensors on some platforms are unable to provide their state upon instantiation and sometimes take a very long time to provide any reading whatsoever.</p>
        <p>This is related to an old issue (see <a class="issue-link js-issue-link" data-error-text="Failed to load issue title" data-id="132812647" data-permission-text="Issue title is private" data-url="https://github.com/w3c/sensors/issues/87" href="https://github.com/w3c/sensors/issues/87">#87</a>), was a concern in previous APIs and this behavior is currently in violation of the spec.</p>
        <p>Perhaps the spec should special case such sensors and force them to advertise their inability to provide the current state upfront (e.g. via a dedicated event?)</p>
@@ -2645,8 +2638,8 @@ that must be supported as attributes by the objects implementing the <code class
      <li data-md="">
       <p>If the result of invoking the <a data-link-type="dfn" href="#security-check" id="ref-for-security-check-3">security check</a> is "insecure",
   then return.</p>
-      <div class="issue no-marker" id="issue-d41d8cd91">
-       <a class="self-link" href="#issue-d41d8cd91"></a><a class="marker" href="https://github.com/w3c/sensors/issues/223">Issue #223 on GitHub: “Should a "suspended" state be added”</a>
+      <div class="issue no-marker" id="issue-d41d8cd90">
+       <a class="self-link" href="#issue-d41d8cd90"></a><a class="marker" href="https://github.com/w3c/sensors/issues/223">Issue #223 on GitHub: “Should a "suspended" state be added”</a>
        <p>Sensors would be in this state when the security check would return "insecure".</p>
        <p>Additionally, or alternatively, an "suspend" event could be fired in such cases.</p>
        <p>Follow-up questions:</p>
@@ -2709,12 +2702,12 @@ that must be supported as attributes by the objects implementing the <code class
        <li data-md="">
         <p>Set <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-waitingforupdate-slot" id="ref-for-dom-sensor-waitingforupdate-slot-3">[[waitingForUpdate]]</a></code> to false.</p>
        <li data-md="">
-        <p><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire">Fire an event</a> named "change" at <var>sensor_instance</var>.</p>
+        <p><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire">Fire an event</a> named "reading" at <var>sensor_instance</var>.</p>
        <li data-md="">
         <p>Set <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-lasteventfiredat-slot" id="ref-for-dom-sensor-lasteventfiredat-slot-1">[[lastEventFiredAt]]</a></code> to <var>timestamp</var>.</p>
       </ol>
-      <div class="issue no-marker" id="issue-d41d8cd92">
-       <a class="self-link" href="#issue-d41d8cd92"></a><a class="marker" href="https://github.com/w3c/sensors/issues/215">Issue #215 on GitHub: “Use simple event dispatch mechanism instead of task source (queued)”</a>
+      <div class="issue no-marker" id="issue-d41d8cd91">
+       <a class="self-link" href="#issue-d41d8cd91"></a><a class="marker" href="https://github.com/w3c/sensors/issues/215">Issue #215 on GitHub: “Use simple event dispatch mechanism instead of task source (queued)”</a>
        <p><strong>Short summary:</strong></p>
        <p>Sensors are operating in simple Publish &amp; Subscribe model, therefore, queued event processing is not required and over-complicates API and it's implementation.</p>
        <p><strong>Detailed explanation:</strong></p>
@@ -2767,8 +2760,8 @@ that must be supported as attributes by the objects implementing the <code class
       <p>If <var>has_focus</var> is false, then return "insecure".</p>
      <li data-md="">
       <p>If the user agent loses focus, then return "insecure".</p>
-      <div class="issue no-marker" id="issue-d41d8cd93">
-       <a class="self-link" href="#issue-d41d8cd93"></a><a class="marker" href="https://github.com/whatwg/html/issues/2716">Issue #2716 on GitHub: “Focus state is unspecified when user agent itself loses focus.”</a>
+      <div class="issue no-marker" id="issue-d41d8cd92">
+       <a class="self-link" href="#issue-d41d8cd92"></a><a class="marker" href="https://github.com/whatwg/html/issues/2716">Issue #2716 on GitHub: “Focus state is unspecified when user agent itself loses focus.”</a>
        <p>This makes it difficult to normatively stop certain behaviors (such as collecting sensor readings) when the app is unfocused but stays visible.</p>
        <p>This can notably allow PIN skimming attacks using sensors.</p>
       </div>
@@ -2891,7 +2884,7 @@ in order to reduce resource consumption, notably battery usage.</p>
      <li data-md="">
       <p>Set <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-lasteventfiredat-slot" id="ref-for-dom-sensor-lasteventfiredat-slot-3">[[lastEventFiredAt]]</a></code> to <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-13">latest reading</a>["timestamp"].</p>
      <li data-md="">
-      <p><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire">Fire an event</a> named "change" at <var>sensor_instance</var>.</p>
+      <p><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire">Fire an event</a> named "reading" at <var>sensor_instance</var>.</p>
     </ol>
    </div>
    <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="9.15" data-lt="Handle errors" data-noexport="" id="handle-errors"><span class="secno">9.15. </span><span class="content">Handle errors</span></h3>
@@ -3381,8 +3374,8 @@ for their editorial input.</p>
    <li><a href="#notify-sensor-object-about-new-reading">Notify sensor object about new reading</a><span>, in §9.13</span>
    <li><a href="#observe-a-sensor">Observe a sensor</a><span>, in §9.6</span>
    <li><a href="#dom-sensor-onactivate">onactivate</a><span>, in §8.1</span>
-   <li><a href="#dom-sensor-onchange">onchange</a><span>, in §8.1</span>
    <li><a href="#dom-sensor-onerror">onerror</a><span>, in §8.1</span>
+   <li><a href="#dom-sensor-onreading">onreading</a><span>, in §8.1</span>
    <li><a href="#optimal-sampling-frequency">optimal sampling frequency</a><span>, in §7.2</span>
    <li><a href="#periodic">periodic</a><span>, in §6.3</span>
    <li><a href="#periodic-reporting-mode-flag">periodic reporting mode flag</a><span>, in §7.2</span>
@@ -3569,7 +3562,7 @@ for their editorial input.</p>
   <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="http://w3c.github.io/hr-time/#dom-domhighrestimestamp">DOMHighResTimeStamp</a>? <a class="nv" data-readonly="" data-type="DOMHighResTimeStamp?" href="#dom-sensor-timestamp"><code>timestamp</code></a>;
   <span class="kt">void</span> <a class="nv" href="#dom-sensor-start"><code>start</code></a>();
   <span class="kt">void</span> <a class="nv" href="#dom-sensor-stop"><code>stop</code></a>();
-  <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a> <a class="nv" data-type="EventHandler" href="#dom-sensor-onchange"><code>onchange</code></a>;
+  <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a> <a class="nv" data-type="EventHandler" href="#dom-sensor-onreading"><code>onreading</code></a>;
   <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a> <a class="nv" data-type="EventHandler" href="#dom-sensor-onactivate"><code>onactivate</code></a>;
   <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a> <a class="nv" data-type="EventHandler" href="#dom-sensor-onerror"><code>onerror</code></a>;
 };
@@ -3624,7 +3617,7 @@ for their editorial input.</p>
     <li><a href="#ref-for-sensor-readings-25">6.4. Sampling Frequency</a>
     <li><a href="#ref-for-sensor-readings-26">7.2. Sensor</a> <a href="#ref-for-sensor-readings-27">(2)</a>
     <li><a href="#ref-for-sensor-readings-28">8.1.2. Sensor internal slots</a>
-    <li><a href="#ref-for-sensor-readings-29">8.1.7. Sensor.onchange</a>
+    <li><a href="#ref-for-sensor-readings-29">8.1.7. Sensor.onreading</a>
     <li><a href="#ref-for-sensor-readings-30">9.4. Unregister a sensor object</a> <a href="#ref-for-sensor-readings-31">(2)</a>
     <li><a href="#ref-for-sensor-readings-32">9.5. Revoke sensor permission</a> <a href="#ref-for-sensor-readings-33">(2)</a>
     <li><a href="#ref-for-sensor-readings-34">9.7. Observe a sensor</a>
@@ -3893,10 +3886,10 @@ for their editorial input.</p>
     <li><a href="#ref-for-dom-sensor-stop-1">8.1.6. Sensor.stop()</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="dom-sensor-onchange">
-   <b><a href="#dom-sensor-onchange">#dom-sensor-onchange</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="dom-sensor-onreading">
+   <b><a href="#dom-sensor-onreading">#dom-sensor-onreading</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-sensor-onchange-1">8.1.7. Sensor.onchange</a>
+    <li><a href="#ref-for-dom-sensor-onreading-1">8.1.7. Sensor.onreading</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-sensor-onactivate">
