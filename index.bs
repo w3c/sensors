@@ -1340,6 +1340,7 @@ in order to reduce resource consumption, notably battery usage.
     :: |sensor_instance|, a {{Sensor}} object.
     : output
     :: A [=frequency=].
+
     1.  Let |frequency| be null.
     1.  Let |f| be |sensor_instance|.{{[[desiredSamplingFrequency]]}}.
         1. if |f| is set,

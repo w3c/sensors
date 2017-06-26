@@ -2818,29 +2818,29 @@ in order to reduce resource consumption, notably battery usage.</p>
      <dt data-md="">output
      <dd data-md="">
       <p>A <a data-link-type="dfn" href="#frequency" id="ref-for-frequency-5">frequency</a>.</p>
+    </dl>
+    <ol>
+     <li data-md="">
+      <p>Let <var>frequency</var> be null.</p>
+     <li data-md="">
+      <p>Let <var>f</var> be <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-desiredsamplingfrequency-slot" id="ref-for-dom-sensor-desiredsamplingfrequency-slot-4">[[desiredSamplingFrequency]]</a></code>.</p>
       <ol>
        <li data-md="">
-        <p>Let <var>frequency</var> be null.</p>
-       <li data-md="">
-        <p>Let <var>f</var> be <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-desiredsamplingfrequency-slot" id="ref-for-dom-sensor-desiredsamplingfrequency-slot-4">[[desiredSamplingFrequency]]</a></code>.</p>
+        <p>if <var>f</var> is set,</p>
         <ol>
          <li data-md="">
-          <p>if <var>f</var> is set,</p>
-          <ol>
-           <li data-md="">
-            <p>set <var>frequency</var> to <var>f</var> capped by the upper and lower <a data-link-type="dfn" href="#current-sampling-frequency" id="ref-for-current-sampling-frequency-6">current sampling frequency</a> bounds for the associated <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-45">sensor</a>.</p>
-          </ol>
-         <li data-md="">
-          <p>Otherwise,</p>
-          <ol>
-           <li data-md="">
-            <p>user agent can assign <var>frequency</var> to an appropriate value.</p>
-          </ol>
+          <p>set <var>frequency</var> to <var>f</var> capped by the upper and lower <a data-link-type="dfn" href="#current-sampling-frequency" id="ref-for-current-sampling-frequency-6">current sampling frequency</a> bounds for the associated <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-45">sensor</a>.</p>
         </ol>
        <li data-md="">
-        <p>return <var>frequency</var>.</p>
+        <p>Otherwise,</p>
+        <ol>
+         <li data-md="">
+          <p>user agent can assign <var>frequency</var> to an appropriate value.</p>
+        </ol>
       </ol>
-    </dl>
+     <li data-md="">
+      <p>return <var>frequency</var>.</p>
+    </ol>
    </div>
    <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="9.14" data-lt="Report latest reading updated" data-noexport="" id="report-latest-reading-updated"><span class="secno">9.14. </span><span class="content">Report latest reading updated</span></h3>
    <div class="algorithm" data-algorithm="report latest reading updated">
