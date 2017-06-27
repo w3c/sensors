@@ -22,6 +22,7 @@ Indent: 2
 Repository: w3c/sensors
 Markup Shorthands: markdown on
 Boilerplate: omit issues-index, omit conformance, omit feedback-header
+Ignored Vars: activated_sensors
 Inline GitHub Issues: yes
 Default Biblio Status: current
 </pre>
@@ -410,12 +411,12 @@ etc.
 <h4 id="limit-max-freqency" dfn>Limit maximum sampling frequency</h4>
 
 User agents may mitigate certain threats by
-limiting the maximum sampling frequency.
+limiting the maximum [=sampling frequency=].
 What upper limit to choose depends on the [=sensor type=],
 the kind of threats the user agent is trying to protect against,
 the expected resources of the attacker, etc.
 
-Limiting the maximum sampling frequency prevents use cases
+Limiting the maximum [=sampling frequency=] prevents use cases
 which rely on low latency or high data density.
 
 
@@ -434,7 +435,7 @@ An alternative to [=limit maximum sampling frequency|limiting the maximum sampli
 limit the number of [=sensor readings=] delivered to Web application developer,
 regardless of what frequency the sensor is polled at.
 This allows use cases which have low latency requirement
-to increase sampling frequency
+to increase [=sampling frequency=]
 without increasing the amount of data provided.
 
 Discarding intermediary readings prevents certain use cases,
@@ -490,7 +491,6 @@ through a process called [=sensor fusion=].
 
 [=calibration|Calibrated=] [=raw sensor readings=] are referred to as <dfn>sensor readings</dfn>,
 whether or not they have undergone [=sensor fusion=].
-
 
 <h3 id="concepts-sensor-types">Sensor Types</h3>
 
@@ -630,6 +630,10 @@ Issue: A definition of sensor accuracy and
 how it affects threshold,
 and thus "on change" sensors would be useful.
 
+## Sampling Frequency ## {#concepts-sampling-frequency}
+
+For the purpose of this specification, <dfn>sampling frequency</dfn> for a [=sensor=] is defined
+as a frequency at which the UA obtains [=sensor readings=] from the underlying platform.
 
 <h2 id="model">Model</h2>
 
@@ -714,6 +718,16 @@ A [=sensor=] has an associated <dfn>reporting flag</dfn> which is initially unse
 A [=sensor=] has an associated <dfn>periodic reporting mode flag</dfn> which is initially unset.
 
 A [=sensor=] has an associated <dfn>current sampling frequency</dfn> which is initially null.
+
+For a non[=set/is empty|empty=] [=ordered set|set=] of [=activated sensor objects=] the
+[=current sampling frequency=] is equal to <dfn>optimal sampling frequency</dfn>, which is estimated
+by the UA taking into account {{[[desiredSamplingFrequency]]|desired sampling frequencies}} of
+[=activated sensor objects|activated=] {{Sensor|Sensors}} and [=sampling frequency=] bounds defined
+by the underlying platform.
+
+Note: For example, the UA may estimate [=optimal sampling frequency=] as a Least Common Denominator
+(LCD) for a set of {{[[desiredSamplingFrequency]]|desired sampling frequencies}} capped by
+[=sampling frequency=] bounds defined by the underlying platform.
 
 <h2 id="api">API</h2>
 
@@ -841,7 +855,7 @@ with the internal slots described in the following table:
         </tr>
         <tr>
             <td><dfn attribute for=Sensor>\[[desiredSamplingFrequency]]</dfn></td>
-            <td>The requested sampling frequency. It is initially unset.</td>
+            <td>The requested [=sampling frequency=]. It is initially unset.</td>
         </tr>
         <tr>
             <td><dfn attribute for=Sensor>\[[lastEventFiredAt]]</dfn></td>
@@ -1146,11 +1160,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     1.  Otherwise if |is_periodic| is true and the [=periodic reporting mode flag=] is unset, then
         1.  set |settings_changed| to true.
         1.  Set the [=periodic reporting mode flag=].
-    1.  Let |frequency| be the result of invoking [=find the sampling frequency of a sensor=]
-        with |sensor| as argument.
-    1.  If |frequency| is different from |sensor|'s [=current sampling frequency=],
-        1.  set |settings_changed| to true.
-        1.  Set [=current sampling frequency=] to |frequency|.
+    1.  Set [=current sampling frequency=] to [=optimal sampling frequency=].
     1.  Return |settings_changed|.
 </div>
 
@@ -1177,7 +1187,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
 
     1.  If |sensor|'s [=periodic reporting mode flag=] is set,
         1.  let |frequency| be the [=current sampling frequency=],
-            capped by the upper and lower bounds of the underlying hardware.
+            capped by the [=sampling frequency=] bounds of the underlying platform.
 
             Issue: Should this max sampling frequency be reflected in the {{Sensor}} interface?
             E.g. Through a dedicated attribute?
@@ -1219,25 +1229,6 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
             1. set |result| to true, then [=break=].
     1. return |result|.
 </div>
-
-
-<h3 dfn>Find the sampling frequency of a sensor</h3>
-
-<div algorithm="find the sampling frequency of a sensor">
-
-    : input
-    :: |sensor|, a [=sensor=].
-    : output
-    :: A [=frequency=].
-
-    1.  Let |frequency| be null.
-    1.  [=set/For each=] |sensor_instance| in |sensor|'s set of [=activated sensor objects=]:
-        1. let |f| be |sensor_instance|.{{[[desiredSamplingFrequency]]}}.
-        1. if |f| is set and |f| is greater than |frequency|,
-            1. set |frequency| to |f|.
-    1. return |frequency|.
-</div>
-
 
 <h3 dfn>Update latest reading</h3>
 
