@@ -678,6 +678,9 @@ This set is initially [=set/is empty|empty=].
 A [=sensor=] has an associated <dfn>latest reading</dfn> [=ordered map|map=]
 which holds the latest available [=sensor readings=].
 
+Any time the UA obtains a new [=sensor reading=] for a [=sensor=] from the underlying platform,
+it invokes [=update latest reading=] with the [=sensor=] and the [=sensor reading=] as arguments.
+
 Issue: does the [=latest reading=] map need to be
 tied to an origin?
 
@@ -709,13 +712,6 @@ caches a previous [=sensor readings|reading=].
 Note: there are additional privacy concerns when using cached [=sensor readings|readings=]
 which predate either [=navigating=] to resources in the current [=origin=],
 or being granted permission to access the [=sensor=]. -->
-
-A [=sensor=] <dfn>supports periodic reporting mode</dfn> if
-its associated [=sensor type=] does.
-
-A [=sensor=] has an associated <dfn>reporting flag</dfn> which is initially unset.
-
-A [=sensor=] has an associated <dfn>periodic reporting mode flag</dfn> which is initially unset.
 
 A [=sensor=] has an associated <dfn>current sampling frequency</dfn> which is initially null.
 
@@ -866,9 +862,9 @@ with the internal slots described in the following table:
             </td>
         </tr>
         <tr>
-            <td><dfn attribute for=Sensor>\[[waitingForUpdate]]</dfn></td>
-            <td>A boolean which indicates whether the observers have been updated
-                or whether the object is waiting for a new reading to do so.
+            <td><dfn attribute for=Sensor>\[[pendingReadingNotification]]</dfn></td>
+            <td>A boolean which indicates whether the observers need to be
+                notified after a new [=sensor reading=] was reported.
                 It is initially false.</td>
         </tr>
         <tr>
@@ -913,15 +909,29 @@ and "timestamp" as arguments.
     1.  Set |sensor_instance|.{{[[state]]}} to "activating".
     1.  Run these sub-steps [=in parallel=]:
         1.  let |connected| be the result of invoking [=connect to sensor=].
-        1.  If |connected| is false, then return.
+        1.  If |connected| is false, then
+            1.  Let |e| be the result of [=created|creating=] a
+                "{{NotReadableError!!exception}}" {{DOMException}}.
+                <!-- Note: user agents may decide to use a
+                "{{NotAllowedError!!exception}}" {{DOMException}},
+                here instead, possibly after a random but bounded delay,
+                to simulate the user denying the permission request,
+                rather than giving away physical characteristics of the device
+                which might be used for fingerprinting or profiling.
+                This would of course prevent the developer from
+                correctly diagnosing the reason for the rejection
+                and might lead to confusing instructions to the user,
+                but it is a tradeoff some User Agent might choose to make. -->
+            1.  Queue a task to run [=notify error=] with |e| and |sensor_instance| as arguments.
+            1.  Return.
         1.  Let |permission_state| be the result of invoking
             [=request sensor access=] with |sensor_instance| as argument.
         1.  If |permission_state| is "granted",
-            1.  Invoke [=register a sensor object=] with |sensor_instance| as argument.
+            1.  Invoke [=activate a sensor object=] with |sensor_instance| as argument.
         1.  Otherwise, if |permission_state| is "denied",
             1.  let |e| be the result of [=created|creating=]
                 a "{{NotAllowedError!!exception}}" {{DOMException}}.
-            1.  Invoke [=handle errors=] with |e| and |sensor_instance| as arguments.
+            1.  Queue a task to run [=notify error=] with |e| and |sensor_instance| as arguments.
 </div>
 
 
@@ -934,7 +944,7 @@ and "timestamp" as arguments.
     1.  If |sensor_instance|.{{[[state]]}} is "idle", then return.
     1.  Set |sensor_instance|.{{[[state]]}} to "idle".
     1.  Run these sub-steps [=in parallel=]:
-        1.  Invoke [=unregister a sensor object=] with |sensor_instance| as argument.
+        1.  Invoke [=deactivate a sensor object=] with |sensor_instance| as argument.
 </div>
 
 
@@ -1020,8 +1030,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     1.  If the [=browsing context=] is not a [=top-level browsing context=], then:
         1.  [=throw=] a {{SecurityError}}.
     1.  Let |sensor_instance| be a new {{Sensor}} object,
-    1.  If [=sensor=] [=supports periodic reporting mode=] and
-        |options|.{{frequency!!dict-member}} is [=present=], then
+    1.  If |options|.{{frequency!!dict-member}} is [=present=], then
         1.  Set |sensor_instance|.{{[[desiredSamplingFrequency]]}} to |options|.{{frequency!!dict-member}}.
 
         Note: there is not guarantee that the requested |options|.{{frequency!!dict-member}}
@@ -1053,27 +1062,14 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     1.  If the [=sensor type=] of |sensor_instance| has an associated [=default sensor=]
         and there is a corresponding [=sensor=] on the device, then
         1.  associate |sensor_instance| with [=default sensor=].
-        1.  Return true.
-    1.  Let |e| be the result of [=created|creating=] a
-        "{{NotReadableError!!exception}}" {{DOMException}}.
-        <!-- Note: user agents may decide to use a
-        "{{NotAllowedError!!exception}}" {{DOMException}},
-        here instead, possibly after a random but bounded delay,
-        to simulate the user denying the permission request,
-        rather than giving away physical characteristics of the device
-        which might be used for fingerprinting or profiling.
-        This would of course prevent the developer from
-        correctly diagnosing the reason for the rejection
-        and might lead to confusing instructions to the user,
-        but it is a tradeoff some User Agent might choose to make. -->
-    1.  Invoke [=handle Errors=] with |e| and |sensor_instance| as arguments.
+        1.  Return true.    
     1.  Return false.
 </div>
 
 
-<h3 dfn>Register a sensor object</h3>
+<h3 dfn>Activate a sensor object</h3>
 
-<div algorithm="register a sensor object">
+<div algorithm="activate a sensor object">
 
     : input
     :: |sensor_instance|, a {{Sensor}} object.
@@ -1082,38 +1078,32 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
 
     1.  Let |sensor| be the [=sensor=] associated with |sensor_instance|.
     1.  [=set/Append=] |sensor_instance| to |sensor|'s set of [=activated sensor objects=].
-    1.  Let |settings_changed| be the result of invoking [=set sensor settings=]
-        with |sensor| as argument.
-    1.  If |settings_changed| is true, then invoke [=observe a sensor=] with |sensor_instance| as argument.
-    <!-- 1.  Let |latest_reading| be |sensor|'s associated [=latest reading=] [ordered map|map].
-    1.  If |current_reading|["timestamp"] is not null and |sensor_instance|'s state is still "activating", then
-        1.  invoke the [=update observers=] operation, with
-            |sensor_instance| and |current_reading| as arguments. -->
+    1.  Invoke [=set sensor settings=] with |sensor| as argument.
+    1.  Queue a task to run [=notify activated state=] with |sensor_instance|
+        as an argument.
+    1.  If |sensor|’s [=latest reading=]["timestamp"] is not null,
+        1.  Queue a task to run [=notify new reading=] with |sensor_instance|
+            as an argument.
 </div>
 
 
-<h3 dfn>Unregister a sensor object</h3>
+<h3 dfn>Deactivate a sensor object</h3>
 
-<div algorithm="unregister a sensor object">
+<div algorithm="deactivate a sensor object">
 
     : input
     :: |sensor_instance|, a {{Sensor}} object.
     : output
     :: None
 
+    1.  Remove all [=tasks=] associated with |sensor_instance| from the [=task queue=] associated
+        with [=sensor task source=].
     1.  Let |sensor| be the [=sensor=] associated with |sensor_instance|.
-    1.  [=set/Remove=] |sensor_instance| from |sensor|'s set of [=activated sensor objects=].
-    1.  Set |sensor_instance|.{{[[waitingForUpdate]]}} to false.
-    1.  If |sensor|'s set of [=activated sensor objects=] [=set/is empty=],
-        1.  Unset the [=periodic reporting mode flag=].
-        1.  Set [=current sampling frequency=] to null.
-        1.  Update the user-agent-specific way in which [=sensor readings=] are obtained from |sensor|
-            to no longer provide [=sensor readings|readings=].
-        1.  Return.
-    1.  Let |settings_changed| be the result of invoking [=set sensor settings=]
-        with |sensor| as argument.
-    1.  If |settings_changed| is true,
-        then invoke [=observe a sensor=] with |sensor_instance| as argument.
+    1.  If |sensor|'s set of [=activated sensor objects=] [=set/contains=] |sensor_instance|,
+        1.  [=set/Remove=] |sensor_instance| from |sensor|'s set of [=activated sensor objects=].
+        1.  Invoke [=set sensor settings=] with |sensor| as argument.
+        1.  Set |sensor_instance|.{{[[pendingReadingNotification]]}} to false.
+        1.  Set |sensor_instance|.{{[[lastEventFiredAt]]}} to null.
 </div>
 
 <h3 dfn>Revoke sensor permission</h3>
@@ -1127,15 +1117,10 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
 
     1.  let |activated_sensors| be |sensor|'s associated [=ordered set|set=] of [=activated sensor objects=].
     1.  [=set/For each=] |s| of |activated_sensors|,
-        1.  [=set/Remove=] |s| from |activated_sensors|.
+        1.  Invoke [=deactivate a sensor object=] with |sensor_instance| as argument.
         1.  let |e| be the result of [=created|creating=]
             a "{{NotAllowedError!!exception}}" {{DOMException}}.
-        1.  Invoke [=handle errors=] with |e| and |s| as arguments.
-    1.  Unset |sensor|'s [=periodic reporting mode flag=].
-    1.  Set |sensor|'s [=current sampling frequency=] to null.
-    1.  Update the user-agent-specific way in which [=sensor readings=] are obtained from |sensor|
-        to no longer provide [=sensor readings|readings=].
-
+        1.  Queue a task to run [=notify error=] with |e| and |s| as arguments.
 </div>
 
 
@@ -1146,85 +1131,16 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     : input
     :: |sensor|, a [=sensor=].
     : output
-    :: True if the settings were modified, false otherwise.
-
-    1.  Let |settings_changed| be false.
-    1.  Let |is_periodic| be the result of invoking
-        [=is current reporting mode periodic=] with |sensor| as argument.
-    1.  If |is_periodic| is false and the [=periodic reporting mode flag=] is set, then
-        1.  set |settings_changed| to true.
-        1.  Unset the [=periodic reporting mode flag=].
-    1.  Otherwise if |is_periodic| is true and the [=periodic reporting mode flag=] is unset, then
-        1.  set |settings_changed| to true.
-        1.  Set the [=periodic reporting mode flag=].
-    1.  Set [=current sampling frequency=] to [=optimal sampling frequency=].
-    1.  Return |settings_changed|.
-</div>
-
-
-<h3 dfn>Observe a sensor</h3>
-
-<div algorithm="observe a sensor">
-
-    : input
-    :: |sensor_instance|, a {{Sensor}} object.
-    : output
     :: None
 
-    1.  Let |sensor| be the [=sensor=] associated with |sensor_instance|.
-    <!-- 1.  Immediately invoke [=update latest reading=]
-        to report fresh [=sensor readings|readings=]
-        with |sensor| and [=latest reading=]["timestamp"] as arguments. -->
-    1.  If |sensor|'s |latest reading|["timestamp"] is not null,
-        invoke [=update observers=] with |sensor_instance|
-        and |latest reading|["timestamp"] as arguments.
-    1.  Otherwise, poll |sensor| immediately.
-
-        Issue(214):
-
-    1.  If |sensor|'s [=periodic reporting mode flag=] is set,
-        1.  let |frequency| be the [=current sampling frequency=],
-            capped by the [=sampling frequency=] bounds of the underlying platform.
-
-            Issue: Should this max sampling frequency be reflected in the {{Sensor}} interface?
-            E.g. Through a dedicated attribute?
-
-            Issue: Does the max sampling frequency affect the reporting frequency?
-            If so, should we advise the developer of this issue?
-            E.g. via a dedicated event?
-        1.  Poll |sensor| at |frequency|.
-        1.  Issue: Hook into the `requestAnimationFrame` framework [[HTML]]
-            to invoke [=update latest reading=] for every new frame
-            with |sensor| and the latest [=sensor reading=] as arguments.
-
-            Issue: Relying on `requestAnimationFrame` gives us a perfect point
-            to buffer readings > 60Hz and to pass them to together with every new frame.
-            That's a level 2 feature.
-
-            Issue: Figure out how to handle sensors/platforms that push the data
-            rather than wait for it to be polled.
-    1.  If the [=periodic reporting mode flag=] is unset,
-        1.  the user-agent can decide on the best reporting strategy
-            for this particular |sensor| and [=sensor type=].
-
-            Issue: This needs to be defined better.
-</div>
-
-
-<h3 dfn>Is current reporting mode periodic</h3>
-
-<div algorithm="is current reporting mode periodic">
-
-    : input
-    :: |sensor|, a [=sensor=].
-    : output
-    :: A boolean.
-
-    1.  Let |result| be false.
-    1.  [=list/For each=] |sensor_instance| in |sensor|'s set of [=activated sensor objects=]:
-        1. if |sensor_instance|.{{[[desiredSamplingFrequency]]}} is set,
-            1. set |result| to true, then [=break=].
-    1. return |result|.
+    1.  If |sensor|'s set of [=activated sensor objects=] [=set/is empty=],
+        1.  Set [=current sampling frequency=] to null.
+        1.  [=map/For each=] |key| → |value| of [=latest reading=].
+            1.  [=map/Set=] [=latest reading=][|key|] to null.
+        1.  Update the user-agent-specific way in which [=sensor readings=] are obtained from |sensor|
+            to no longer provide [=sensor readings|readings=].
+        1.  Return.
+    1.  Set [=current sampling frequency=] to [=optimal sampling frequency=].
 </div>
 
 <h3 dfn>Update latest reading</h3>
@@ -1234,57 +1150,26 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     : input
     :: |sensor|, a [=sensor=].
     :: |reading|, a [=sensor reading=].
-    :: |reading_timestamp|, the timestamp at which [=sensor=] was polled.
 
     Issue: The timestamp needs to be specified more precisely,
     see [issue #155](https://github.com/w3c/sensors/issues/155).
     : output
     :: None
 
-    1.  If |sensor|’s [=reporting flag=] is set, then return.
-    1.  If |reading_timestamp| is equal [=latest reading=]["timestamp"], then return.
-    1.  Set |sensor|’s [=reporting flag=].
     1.  If the result of invoking the [=security check=] is "insecure",
         then return.
 
         Issue(223):
-    1.  [=map/Set=] |sensor|'s [=latest reading=]["timestamp"] to |reading_timestamp|.
     1.  [=map/For each=] |key| → |value| of [=latest reading=].
-        1.  If |key| is "timestamp", [=continue=].
         1.  [=map/Set=] [=latest reading=][|key|] to the corresponding
             value of |reading|.
 
         Issue: Maybe compare |value| with corresponding
         value of |reading| to see if there's a change
         that needs to be propagated.
-    1.  Unset |sensor|’s [=reporting flag=].
-    1.  [=set/For each=] |s| in |activated_sensors|,
-        1.  Invoke [=report latest reading updated=] with |s| as an argument.
-</div>
-
-
-<h3 dfn>Update observers</h3>
-
-<div algorithm="update observers">
-
-    : input
-    :: |sensor_instance|, a {{Sensor}} object.
-    :: |timestamp|, a high resolution timestamp.
-    : output
-    :: None
-
-    1.  If |sensor_instance|.{{[[state]]}} is "activating":
-        1.  Set |sensor_instance|.{{[[state]]}} to "activated".
-        1.  [=Fire an event=] named "activate" at |sensor_instance|.
-    1.  If |sensor_instance|.{{[[waitingForUpdate]]}} is true, then
-
-        Issue: Should we fire delayed readings? Or should we just drop readings instead?
-
-        1.  Set |sensor_instance|.{{[[waitingForUpdate]]}} to false.
-        1.  [=Fire an event=] named "reading" at |sensor_instance|.
-        1.  Set |sensor_instance|.{{[[lastEventFiredAt]]}} to |timestamp|.
-
-        Issue(215):
+    1.  Run these sub-steps [=in parallel=]:
+        1.  [=set/For each=] |s| in |activated_sensors|,
+            1.  Invoke [=report latest reading updated=] with |s| as an argument.
 </div>
 
 
@@ -1349,50 +1234,59 @@ in order to reduce resource consumption, notably battery usage.
     : output
     :: None
 
-    1.  If |sensor_instance|.{{[[waitingForUpdate]]}} is true,
+    1.  If |sensor_instance|.{{[[pendingReadingNotification]]}} is true,
         1. Return.
-    1.  Set |sensor_instance|.{{[[waitingForUpdate]]}} to true.
+    1.  Set |sensor_instance|.{{[[pendingReadingNotification]]}} to true.
     1.  Let |lastReportedTimestamp| be the value of |sensor_instance|.{{[[lastEventFiredAt]]}}.
     1.  If |lastReportedTimestamp| is not set
-        1.  Queue a task to run [=Notify sensor object about new reading=] with |sensor_instance|
-            as an argument.
+        1.  Queue a task to run [=notify new reading=] with |sensor_instance| as an argument.
         1.  Return.
     1.  Let |reportingFrequency| be result of invoking [=Find the reporting frequency of a sensor object=].
     1.  If |reportingFrequency| is null
-        1.  Queue a task to run [=Notify sensor object about new reading=] with |sensor_instance|
-            as an argument.
+        1.  Queue a task to run [=notify new reading=] with |sensor_instance| as an argument.
         1.  Return.
     1.  Let |reportingInterval| be the result of 1 / |reportingFrequency|.
     1.  Let |timestampDelta| be the result of [=latest reading=]["timestamp"] - |lastReportedTimestamp|.
     1.  If  |timestampDelta| is greater than or equal to |reportingInterval|
-        1.  Queue a task to run [=Notify sensor object about new reading=] with |sensor_instance|
-            as an argument.
+        1.  Queue a task to run [=notify new reading=] with |sensor_instance| as an argument.
         1.  Return.
     1.  Let |deferUpdateTime| be the result of |reportingInterval| - |timestampDelta|.
     1.  [=Spin the event loop=] for a period of time equal to |deferUpdateTime|.
-    1.  If |sensor_instance|.{{[[waitingForUpdate]]}} is true,
-        1.  Queue a task to run [=Notify sensor object about new reading=] with |sensor_instance|
-            as an argument.
+    1.  If |sensor_instance|.{{[[pendingReadingNotification]]}} is true,
+        1.  Queue a task to run [=notify new reading=] with |sensor_instance| as an argument.
 </div>
 
-<h3 dfn>Notify sensor object about new reading</h3>
+<h3 dfn>Notify new reading</h3>
 
-<div algorithm="notify sensor object about new reading">
+<div algorithm="notify new reading">
 
     : input
     :: |sensor_instance|, a {{Sensor}} object.
     : output
     :: None
 
-    1.  Set |sensor_instance|.{{[[waitingForUpdate]]}} to false.
+    1.  Set |sensor_instance|.{{[[pendingReadingNotification]]}} to false.
     1.  Set |sensor_instance|.{{[[lastEventFiredAt]]}} to [=latest reading=]["timestamp"].
     1.  [=Fire an event=] named "reading" at |sensor_instance|.
 </div>
 
+<h3 dfn>Notify activated state</h3>
 
-<h3 dfn>Handle errors</h3>
+<div algorithm="notify activated state">
 
-<div algorithm="handle errors">
+    : input
+    :: |sensor_instance|, a {{Sensor}} object.
+    : output
+    :: None
+
+    1.  Set |sensor_instance|.{{[[state]]}} to "activated".
+    1.  [=Fire an event=] named "activate" at |sensor_instance|.
+</div>
+
+
+<h3 dfn>Notify error</h3>
+
+<div algorithm="notify error">
 
     : input
     :: |sensor_instance|, a {{Sensor}} object.
