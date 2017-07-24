@@ -1183,7 +1183,7 @@ Possible extra rowspan handling
       background-attachment: fixed;
     }
   </style>
-  <meta content="Bikeshed version 6de62f723758889927d2dc5378f7d1e02a3563f7" name="generator">
+  <meta content="Bikeshed version 872fb1bbb75c7b4e192209b354c34f634da3ac0d" name="generator">
   <link href="https://www.w3.org/TR/generic-sensor/" rel="canonical">
 <style>
     emu-val {
@@ -1458,7 +1458,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-06-30">30 June 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-07-24">24 July 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2421,12 +2421,6 @@ that must be supported as attributes by the objects implementing the <code class
       <p>Invoke <a data-link-type="dfn" href="#set-sensor-settings" id="ref-for-set-sensor-settings-1">set sensor settings</a> with <var>sensor</var> as argument.</p>
      <li data-md="">
       <p>Queue a task to run <a data-link-type="dfn" href="#notify-activated-state" id="ref-for-notify-activated-state-1">notify activated state</a> with <var>sensor_instance</var> as an argument.</p>
-     <li data-md="">
-      <p>If <var>sensor</var>’s <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-8">latest reading</a>["timestamp"] is not null,</p>
-      <ol>
-       <li data-md="">
-        <p>Queue a task to run <a data-link-type="dfn" href="#notify-new-reading" id="ref-for-notify-new-reading-1">notify new reading</a> with <var>sensor_instance</var> as an argument.</p>
-      </ol>
     </ol>
    </div>
    <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="9.4" data-lt="Deactivate a sensor object" data-noexport="" id="deactivate-a-sensor-object"><span class="secno">9.4. </span><span class="content">Deactivate a sensor object</span></h3>
@@ -2501,10 +2495,10 @@ that must be supported as attributes by the objects implementing the <code class
        <li data-md="">
         <p>Set <a data-link-type="dfn" href="#current-sampling-frequency" id="ref-for-current-sampling-frequency-2">current sampling frequency</a> to null.</p>
        <li data-md="">
-        <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-iterate">For each</a> <var>key</var> → <var>value</var> of <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-9">latest reading</a>.</p>
+        <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-iterate">For each</a> <var>key</var> → <var>value</var> of <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-8">latest reading</a>.</p>
         <ol>
          <li data-md="">
-          <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set">Set</a> <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-10">latest reading</a>[<var>key</var>] to null.</p>
+          <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set">Set</a> <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-9">latest reading</a>[<var>key</var>] to null.</p>
         </ol>
        <li data-md="">
         <p>Update the user-agent-specific way in which <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-33">sensor readings</a> are obtained from <var>sensor</var> to no longer provide <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-34">readings</a>.</p>
@@ -2548,10 +2542,10 @@ that must be supported as attributes by the objects implementing the <code class
        </ul>
       </div>
      <li data-md="">
-      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-iterate">For each</a> <var>key</var> → <var>value</var> of <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-11">latest reading</a>.</p>
+      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-iterate">For each</a> <var>key</var> → <var>value</var> of <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-10">latest reading</a>.</p>
       <ol>
        <li data-md="">
-        <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set">Set</a> <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-12">latest reading</a>[<var>key</var>] to the corresponding
+        <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set">Set</a> <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-11">latest reading</a>[<var>key</var>] to the corresponding
   value of <var>reading</var>.</p>
       </ol>
       <p class="issue" id="issue-0a097748"><a class="self-link" href="#issue-0a097748"></a> Maybe compare <var>value</var> with corresponding
@@ -2667,7 +2661,7 @@ in order to reduce resource consumption, notably battery usage.</p>
       <p>If <var>lastReportedTimestamp</var> is not set</p>
       <ol>
        <li data-md="">
-        <p>Queue a task to run <a data-link-type="dfn" href="#notify-new-reading" id="ref-for-notify-new-reading-2">notify new reading</a> with <var>sensor_instance</var> as an argument.</p>
+        <p>Queue a task to run <a data-link-type="dfn" href="#notify-new-reading" id="ref-for-notify-new-reading-1">notify new reading</a> with <var>sensor_instance</var> as an argument.</p>
        <li data-md="">
         <p>Return.</p>
       </ol>
@@ -2677,19 +2671,19 @@ in order to reduce resource consumption, notably battery usage.</p>
       <p>If <var>reportingFrequency</var> is null</p>
       <ol>
        <li data-md="">
-        <p>Queue a task to run <a data-link-type="dfn" href="#notify-new-reading" id="ref-for-notify-new-reading-3">notify new reading</a> with <var>sensor_instance</var> as an argument.</p>
+        <p>Queue a task to run <a data-link-type="dfn" href="#notify-new-reading" id="ref-for-notify-new-reading-2">notify new reading</a> with <var>sensor_instance</var> as an argument.</p>
        <li data-md="">
         <p>Return.</p>
       </ol>
      <li data-md="">
       <p>Let <var>reportingInterval</var> be the result of 1 / <var>reportingFrequency</var>.</p>
      <li data-md="">
-      <p>Let <var>timestampDelta</var> be the result of <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-13">latest reading</a>["timestamp"] - <var>lastReportedTimestamp</var>.</p>
+      <p>Let <var>timestampDelta</var> be the result of <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-12">latest reading</a>["timestamp"] - <var>lastReportedTimestamp</var>.</p>
      <li data-md="">
       <p>If <var>timestampDelta</var> is greater than or equal to <var>reportingInterval</var></p>
       <ol>
        <li data-md="">
-        <p>Queue a task to run <a data-link-type="dfn" href="#notify-new-reading" id="ref-for-notify-new-reading-4">notify new reading</a> with <var>sensor_instance</var> as an argument.</p>
+        <p>Queue a task to run <a data-link-type="dfn" href="#notify-new-reading" id="ref-for-notify-new-reading-3">notify new reading</a> with <var>sensor_instance</var> as an argument.</p>
        <li data-md="">
         <p>Return.</p>
       </ol>
@@ -2701,7 +2695,7 @@ in order to reduce resource consumption, notably battery usage.</p>
       <p>If <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-pendingreadingnotification-slot" id="ref-for-dom-sensor-pendingreadingnotification-slot-4">[[pendingReadingNotification]]</a></code> is true,</p>
       <ol>
        <li data-md="">
-        <p>Queue a task to run <a data-link-type="dfn" href="#notify-new-reading" id="ref-for-notify-new-reading-5">notify new reading</a> with <var>sensor_instance</var> as an argument.</p>
+        <p>Queue a task to run <a data-link-type="dfn" href="#notify-new-reading" id="ref-for-notify-new-reading-4">notify new reading</a> with <var>sensor_instance</var> as an argument.</p>
       </ol>
     </ol>
    </div>
@@ -2719,7 +2713,7 @@ in order to reduce resource consumption, notably battery usage.</p>
      <li data-md="">
       <p>Set <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-pendingreadingnotification-slot" id="ref-for-dom-sensor-pendingreadingnotification-slot-5">[[pendingReadingNotification]]</a></code> to false.</p>
      <li data-md="">
-      <p>Set <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-lasteventfiredat-slot" id="ref-for-dom-sensor-lasteventfiredat-slot-3">[[lastEventFiredAt]]</a></code> to <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-14">latest reading</a>["timestamp"].</p>
+      <p>Set <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-lasteventfiredat-slot" id="ref-for-dom-sensor-lasteventfiredat-slot-3">[[lastEventFiredAt]]</a></code> to <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-13">latest reading</a>["timestamp"].</p>
      <li data-md="">
       <p><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire">Fire an event</a> named "reading" at <var>sensor_instance</var>.</p>
     </ol>
@@ -2739,6 +2733,14 @@ in order to reduce resource consumption, notably battery usage.</p>
       <p>Set <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-state-slot" id="ref-for-dom-sensor-state-slot-8">[[state]]</a></code> to "activated".</p>
      <li data-md="">
       <p><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire">Fire an event</a> named "activate" at <var>sensor_instance</var>.</p>
+     <li data-md="">
+      <p>Let <var>sensor</var> be the <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-41">sensor</a> associated with <var>sensor_instance</var>.</p>
+     <li data-md="">
+      <p>If <var>sensor</var>’s <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-14">latest reading</a>["timestamp"] is not null,</p>
+      <ol>
+       <li data-md="">
+        <p>Queue a task to run <a data-link-type="dfn" href="#notify-new-reading" id="ref-for-notify-new-reading-5">notify new reading</a> with <var>sensor_instance</var> as an argument.</p>
+      </ol>
     </ol>
    </div>
    <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="9.13" data-lt="Notify error" data-noexport="" id="notify-error"><span class="secno">9.13. </span><span class="content">Notify error</span></h3>
@@ -2777,7 +2779,7 @@ in order to reduce resource consumption, notably battery usage.</p>
       <p>If <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-state-slot" id="ref-for-dom-sensor-state-slot-10">[[state]]</a></code> is "activated",</p>
       <ol>
        <li data-md="">
-        <p>Let <var>readings</var> be the <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-15">latest reading</a> of <var>sensor_instance</var>’s related <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-41">sensor</a>.</p>
+        <p>Let <var>readings</var> be the <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading-15">latest reading</a> of <var>sensor_instance</var>’s related <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-42">sensor</a>.</p>
        <li data-md="">
         <p>Return <var>readings</var>[<var>key</var>].</p>
       </ol>
@@ -2797,7 +2799,7 @@ in order to reduce resource consumption, notably battery usage.</p>
     </dl>
     <ol>
      <li data-md="">
-      <p>Let <var>sensor</var> be the <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-42">sensor</a> associated with <var>sensor_instance</var>.</p>
+      <p>Let <var>sensor</var> be the <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-43">sensor</a> associated with <var>sensor_instance</var>.</p>
      <li data-md="">
       <p>Let <var>permission_name</var> be the <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/permissions/#enumdef-permissionname">PermissionName</a></code> associated with <var>sensor</var>.</p>
      <li data-md="">
@@ -2819,12 +2821,12 @@ as appropriate.</p>
 should only be available within a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#secure-context">secure context</a>.</p>
    <h3 class="heading settled" data-level="10.2" id="naming"><span class="secno">10.2. </span><span class="content">Naming</span><a class="self-link" href="#naming"></a></h3>
    <p><code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-25">Sensor</a></code> interfaces for <a data-link-type="dfn" href="#low-level" id="ref-for-low-level-10">low-level</a> sensors should be
-named after their associated <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-43">sensor</a>.
+named after their associated <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-44">sensor</a>.
 So for example, the interface associated with a gyroscope
 should be simply named <code>Gyroscope</code>. <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-26">Sensor</a></code> interfaces for <a data-link-type="dfn" href="#high-level" id="ref-for-high-level-10">high-level</a> sensors should be
-named by combining the physical quantity the <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-44">sensor</a> measures
+named by combining the physical quantity the <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-45">sensor</a> measures
 with the "Sensor" suffix.
-For example, a <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-45">sensor</a> measuring
+For example, a <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-46">sensor</a> measuring
 the distance at which an object is from it
 may see its associated interface called <code>ProximitySensor</code>.</p>
    <p>Attributes of the <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor-27">Sensor</a></code> subclass that
@@ -2905,9 +2907,9 @@ for each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-34"
     <li data-md="">
      <p>A <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-dictionary">dictionary</a> whose <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-inherited-dictionaries">inherited dictionaries</a> contains <code class="idl"><a data-link-type="idl" href="#dictdef-sensoroptions" id="ref-for-dictdef-sensoroptions-3">SensorOptions</a></code>.</p>
     <li data-md="">
-     <p>A <a data-link-type="dfn" href="#default-sensor" id="ref-for-default-sensor-3">default sensor</a>. Generally, devices are equipped with a single <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-46">sensor</a> of each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-35">type</a>,
+     <p>A <a data-link-type="dfn" href="#default-sensor" id="ref-for-default-sensor-3">default sensor</a>. Generally, devices are equipped with a single <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-47">sensor</a> of each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-35">type</a>,
   so defining a <a data-link-type="dfn" href="#default-sensor" id="ref-for-default-sensor-4">default sensor</a> should be straightforward.
-  For <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-36">sensor types</a> where multiple <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-47">sensors</a> are common,
+  For <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-36">sensor types</a> where multiple <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-48">sensors</a> are common,
   extension specifications may choose not to define a <a data-link-type="dfn" href="#default-sensor" id="ref-for-default-sensor-5">default sensor</a>,
   especially when doing so would not make sense.</p>
     <li data-md="">
@@ -2917,7 +2919,7 @@ for each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-34"
    <p>Provide guidance on how to extend the Permission API <a data-link-type="biblio" href="#biblio-permissions">[PERMISSIONS]</a> for each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type-37">sensor types</a>.</p>
    <h3 class="heading settled" data-level="10.8" id="example-webidl"><span class="secno">10.8. </span><span class="content">Example WebIDL</span><a class="self-link" href="#example-webidl"></a></h3>
    <p>Here’s example WebIDL for a possible extension of this specification
-for proximity <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-48">sensors</a>.</p>
+for proximity <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-49">sensors</a>.</p>
 <pre class="example" id="example-899e9b74"><a class="self-link" href="#example-899e9b74"></a>[SecureContext, Constructor(optional ProximitySensorOptions proximitySensorOptions)]
 interface ProximitySensor : Sensor {
     readonly attribute unrestricted double distance;
@@ -3616,11 +3618,12 @@ for their editorial input.</p>
     <li><a href="#ref-for-concept-sensor-38">9.6. Set sensor settings</a>
     <li><a href="#ref-for-concept-sensor-39">9.7. Update latest reading</a>
     <li><a href="#ref-for-concept-sensor-40">9.9. Find the reporting frequency of a sensor object</a>
-    <li><a href="#ref-for-concept-sensor-41">9.14. Get value from latest reading</a>
-    <li><a href="#ref-for-concept-sensor-42">9.15. Request sensor access</a>
-    <li><a href="#ref-for-concept-sensor-43">10.2. Naming</a> <a href="#ref-for-concept-sensor-44">(2)</a> <a href="#ref-for-concept-sensor-45">(3)</a>
-    <li><a href="#ref-for-concept-sensor-46">10.6. Definition Requirements</a> <a href="#ref-for-concept-sensor-47">(2)</a>
-    <li><a href="#ref-for-concept-sensor-48">10.8. Example WebIDL</a>
+    <li><a href="#ref-for-concept-sensor-41">9.12. Notify activated state</a>
+    <li><a href="#ref-for-concept-sensor-42">9.14. Get value from latest reading</a>
+    <li><a href="#ref-for-concept-sensor-43">9.15. Request sensor access</a>
+    <li><a href="#ref-for-concept-sensor-44">10.2. Naming</a> <a href="#ref-for-concept-sensor-45">(2)</a> <a href="#ref-for-concept-sensor-46">(3)</a>
+    <li><a href="#ref-for-concept-sensor-47">10.6. Definition Requirements</a> <a href="#ref-for-concept-sensor-48">(2)</a>
+    <li><a href="#ref-for-concept-sensor-49">10.8. Example WebIDL</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="activated-sensor-objects">
@@ -3637,11 +3640,11 @@ for their editorial input.</p>
    <b><a href="#latest-reading">#latest-reading</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-latest-reading-1">7.2. Sensor</a> <a href="#ref-for-latest-reading-2">(2)</a> <a href="#ref-for-latest-reading-3">(3)</a> <a href="#ref-for-latest-reading-4">(4)</a> <a href="#ref-for-latest-reading-5">(5)</a> <a href="#ref-for-latest-reading-6">(6)</a> <a href="#ref-for-latest-reading-7">(7)</a>
-    <li><a href="#ref-for-latest-reading-8">9.3. Activate a sensor object</a>
-    <li><a href="#ref-for-latest-reading-9">9.6. Set sensor settings</a> <a href="#ref-for-latest-reading-10">(2)</a>
-    <li><a href="#ref-for-latest-reading-11">9.7. Update latest reading</a> <a href="#ref-for-latest-reading-12">(2)</a>
-    <li><a href="#ref-for-latest-reading-13">9.10. Report latest reading updated</a>
-    <li><a href="#ref-for-latest-reading-14">9.11. Notify new reading</a>
+    <li><a href="#ref-for-latest-reading-8">9.6. Set sensor settings</a> <a href="#ref-for-latest-reading-9">(2)</a>
+    <li><a href="#ref-for-latest-reading-10">9.7. Update latest reading</a> <a href="#ref-for-latest-reading-11">(2)</a>
+    <li><a href="#ref-for-latest-reading-12">9.10. Report latest reading updated</a>
+    <li><a href="#ref-for-latest-reading-13">9.11. Notify new reading</a>
+    <li><a href="#ref-for-latest-reading-14">9.12. Notify activated state</a>
     <li><a href="#ref-for-latest-reading-15">9.14. Get value from latest reading</a>
    </ul>
   </aside>
@@ -3873,8 +3876,8 @@ for their editorial input.</p>
   <aside class="dfn-panel" data-for="notify-new-reading">
    <b><a href="#notify-new-reading">#notify-new-reading</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-notify-new-reading-1">9.3. Activate a sensor object</a>
-    <li><a href="#ref-for-notify-new-reading-2">9.10. Report latest reading updated</a> <a href="#ref-for-notify-new-reading-3">(2)</a> <a href="#ref-for-notify-new-reading-4">(3)</a> <a href="#ref-for-notify-new-reading-5">(4)</a>
+    <li><a href="#ref-for-notify-new-reading-1">9.10. Report latest reading updated</a> <a href="#ref-for-notify-new-reading-2">(2)</a> <a href="#ref-for-notify-new-reading-3">(3)</a> <a href="#ref-for-notify-new-reading-4">(4)</a>
+    <li><a href="#ref-for-notify-new-reading-5">9.12. Notify activated state</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="notify-activated-state">

@@ -1081,9 +1081,6 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     1.  Invoke [=set sensor settings=] with |sensor| as argument.
     1.  Queue a task to run [=notify activated state=] with |sensor_instance|
         as an argument.
-    1.  If |sensor|’s [=latest reading=]["timestamp"] is not null,
-        1.  Queue a task to run [=notify new reading=] with |sensor_instance|
-            as an argument.
 </div>
 
 
@@ -1281,6 +1278,10 @@ in order to reduce resource consumption, notably battery usage.
 
     1.  Set |sensor_instance|.{{[[state]]}} to "activated".
     1.  [=Fire an event=] named "activate" at |sensor_instance|.
+    1.  Let |sensor| be the [=sensor=] associated with |sensor_instance|.
+    1.  If |sensor|’s [=latest reading=]["timestamp"] is not null,
+        1.  Queue a task to run [=notify new reading=] with |sensor_instance|
+            as an argument.
 </div>
 
 
