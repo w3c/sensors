@@ -1,6 +1,7 @@
 <pre class="metadata">
 Title: Generic Sensor API
 Shortname: generic-sensor
+Level: none
 Status: ED
 Group: dap
 ED: https://w3c.github.io/sensors/
