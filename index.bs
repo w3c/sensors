@@ -46,7 +46,7 @@ urlPrefix: https://html.spec.whatwg.org/multipage/; spec: HTML
       text: browsing context
       text: nested browsing context
     urlPrefix: interaction.html
-      text: gains focus; url: gain-focus
+      text: gains focus; url: gains-focus
       text: DOM anchor; url: dom-anchor
       text: focusable area; url: focusable-area
       text: currently focused area; url: currently-focused-area-of-a-top-level-browsing-context
