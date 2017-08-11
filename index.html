@@ -1458,7 +1458,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-08-09">9 August 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-08-11">11 August 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1853,10 +1853,10 @@ sharing <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readi
    <p class="note" role="note"><span>Note:</span> <a href="https://docs.google.com/document/d/1k0Ua-ZWlM_PsFCFdLMa8kaVTo32PeNZ4G7FFHqpFx4E/edit">Feature Policy</a> will allow securely relaxing those restrictions once it matures.</p>
    <h4 class="heading settled" data-level="5.1.3" id="losing-focus"><span class="secno">5.1.3. </span><span class="content">Losing Focus</span><a class="self-link" href="#losing-focus"></a></h4>
    <p>When the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context" id="ref-for-top-level-browsing-context-0">top-level browsing context</a> loses focus,
-or when a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#nested-browsing-context" id="ref-for-nested-browsing-context">nested browsing context</a> of a different <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#origin-2" id="ref-for-origin-2">origin</a> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#gain-focus" id="ref-for-gain-focus">gains focus</a> (for example when the user carries out an in-game purchase
+or when a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#nested-browsing-context" id="ref-for-nested-browsing-context">nested browsing context</a> of a different <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#origin-2" id="ref-for-origin-2">origin</a> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#gains-focus" id="ref-for-gains-focus">gains focus</a> (for example when the user carries out an in-game purchase
 using a third party payment service from within an iframe)
 the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context" id="ref-for-top-level-browsing-context-1">top-level browsing contexts</a> suddenly becomes in a position
-to carry out a skimming attack against the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context">browsing context</a> that has <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#gain-focus" id="ref-for-gain-focus-0">gained focus</a>.</p>
+to carry out a skimming attack against the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context">browsing context</a> that has <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#gains-focus" id="ref-for-gains-focus-0">gained focus</a>.</p>
    <p>To mitigate this threat, <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-3">readings</a> of <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor-10">sensors</a> running in a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context" id="ref-for-top-level-browsing-context-2">top-level browsing contexts</a> are not delivered in such cases.
 A <a data-link-type="dfn" href="#security-check" id="ref-for-security-check">security check</a> is run before <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings-4">sensor readings</a> are delivered to ensure that.</p>
    <h4 class="heading settled" data-level="5.1.4" id="visibility-state"><span class="secno">5.1.4. </span><span class="content">Visibility State</span><a class="self-link" href="#visibility-state"></a></h4>
@@ -3313,7 +3313,7 @@ for their editorial input.</p>
      <li><a href="https://html.spec.whatwg.org/multipage/interaction.html#currently-focused-area-of-a-top-level-browsing-context">currently focused area</a>
      <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers">event handler</a>
      <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-type">event handler event type</a>
-     <li><a href="https://html.spec.whatwg.org/multipage/interaction.html#gain-focus">gains focus</a>
+     <li><a href="https://html.spec.whatwg.org/multipage/interaction.html#gains-focus">gains focus</a>
      <li><a href="https://html.spec.whatwg.org/multipage/interaction.html#has-focus-steps">has focus steps</a>
      <li><a href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in parallel</a>
      <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#incumbent-settings-object">incumbent settings object</a>
