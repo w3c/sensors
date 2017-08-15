@@ -355,8 +355,7 @@ with contexts unfamiliar to the user,
 [=sensor readings=] are only available in the
 [=top-level browsing context=].
 
-Note: [Feature Policy](https://docs.google.com/document/d/1k0Ua-ZWlM_PsFCFdLMa8kaVTo32PeNZ4G7FFHqpFx4E/edit)
-will allow securely relaxing those restrictions once it matures.
+Note: [[FEATURE-POLICY]] will allow securely relaxing those restrictions once it matures.
 
 
 <h4 id="losing-focus">Losing Focus</h4>
