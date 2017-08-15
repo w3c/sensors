@@ -1210,7 +1210,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
 
     1.  Let |document| be the [=top-level browsing context=]'s [=active document=].
     1.  Let |current_visibility_state| be the result of running
-        the [= steps to determine the visibility state=] of |document|.
+        the [=steps to determine the visibility state=] of |document|.
     1.  If |current_visibility_state| is not "visible",
         then return "insecure".
     1.  If the [=currently focused area=] of the current [=top-level browsing context=]
