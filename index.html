@@ -1458,7 +1458,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-08-15">15 August 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-08-16">16 August 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1537,11 +1537,11 @@ that can be extended to accommodate different sensor types.</p>
       <li>
        <a href="#mitigation-strategies-case-by-case"><span class="secno">5.2</span> <span class="content">Mitigation strategies applied on a case by case basis</span></a>
        <ol class="toc">
-        <li><a href="#limit-max-freqency"><span class="secno">5.2.1</span> <span class="content">Limit maximum sampling frequency</span></a>
-        <li><a href="#stopping-sensor"><span class="secno">5.2.2</span> <span class="content">Stopping the sensor altogether</span></a>
+        <li><a href="#limit-max-frequency"><span class="secno">5.2.1</span> <span class="content">Limit maximum sampling frequency</span></a>
+        <li><a href="#stop-sensor"><span class="secno">5.2.2</span> <span class="content">Stop the sensor altogether</span></a>
         <li><a href="#limit-number-of-delivered-readings"><span class="secno">5.2.3</span> <span class="content">Limit number of delivered readings</span></a>
-        <li><a href="#reducing-accuracy"><span class="secno">5.2.4</span> <span class="content">Reducing accuracy</span></a>
-        <li><a href="#informing-user"><span class="secno">5.2.5</span> <span class="content">Keeping the user informed about API use</span></a>
+        <li><a href="#reduce-accuracy"><span class="secno">5.2.4</span> <span class="content">Reduce accuracy</span></a>
+        <li><a href="#inform-user"><span class="secno">5.2.5</span> <span class="content">Keep the user informed about API use</span></a>
        </ol>
      </ol>
     <li>
@@ -1883,7 +1883,7 @@ they might also hinder or altogether prevent certain use cases.</p>
 for example when the user is carrying out specific actions,
 when other APIs which are known to amplify the level of the threat are in use,
 etc.</p>
-   <h4 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="5.2.1" data-lt="Limit maximum sampling frequency" data-noexport="" id="limit-max-freqency"><span class="secno">5.2.1. </span><span class="content">Limit maximum sampling frequency</span></h4>
+   <h4 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="5.2.1" data-lt="Limit maximum sampling frequency" data-noexport="" id="limit-max-frequency"><span class="secno">5.2.1. </span><span class="content">Limit maximum sampling frequency</span></h4>
    <p>User agents may mitigate certain threats by
 limiting the maximum <a data-link-type="dfn" href="#sampling-frequency" id="ref-for-sampling-frequency">sampling frequency</a>.
 What upper limit to choose depends on the <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type⑧">sensor type</a>,
@@ -1891,21 +1891,21 @@ the kind of threats the user agent is trying to protect against,
 the expected resources of the attacker, etc.</p>
    <p>Limiting the maximum <a data-link-type="dfn" href="#sampling-frequency" id="ref-for-sampling-frequency①">sampling frequency</a> prevents use cases
 which rely on low latency or high data density.</p>
-   <h4 class="heading settled" data-dfn-type="dfn" data-level="5.2.2" data-lt="Stopping the sensor altogether" data-noexport="" id="stopping-sensor"><span class="secno">5.2.2. </span><span class="content">Stopping the sensor altogether</span><a class="self-link" href="#stopping-sensor"></a></h4>
+   <h4 class="heading settled" data-dfn-type="dfn" data-level="5.2.2" data-lt="Stop the sensor altogether" data-noexport="" id="stop-sensor"><span class="secno">5.2.2. </span><span class="content">Stop the sensor altogether</span><a class="self-link" href="#stop-sensor"></a></h4>
    <p>This is obviously a last-resort solution,
 but it can be extremely effective if it’s temporal,
 for example to prevent password skimming attempts
 when the user is entering credentials on a different origin (<a data-link-type="biblio" href="#biblio-rfc6454">[rfc6454]</a>)
 or in a different application.</p>
    <h4 class="heading settled" data-dfn-type="dfn" data-level="5.2.3" data-lt="Limit number of delivered readings" data-noexport="" id="limit-number-of-delivered-readings"><span class="secno">5.2.3. </span><span class="content">Limit number of delivered readings</span><a class="self-link" href="#limit-number-of-delivered-readings"></a></h4>
-   <p>An alternative to <a data-link-type="dfn" href="#limit-max-freqency" id="ref-for-limit-max-freqency">limiting the maximum sampling frequency</a> is to
+   <p>An alternative to <a data-link-type="dfn" href="#limit-max-frequency" id="ref-for-limit-max-frequency">limiting the maximum sampling frequency</a> is to
 limit the number of <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings①⓪">sensor readings</a> delivered to Web application developer,
 regardless of what frequency the sensor is polled at.
 This allows use cases which have low latency requirement
 to increase <a data-link-type="dfn" href="#sampling-frequency" id="ref-for-sampling-frequency②">sampling frequency</a> without increasing the amount of data provided.</p>
    <p>Discarding intermediary readings prevents certain use cases,
 such as those relying on certain kinds of filters.</p>
-   <h4 class="heading settled" data-dfn-type="dfn" data-level="5.2.4" data-lt="Reducing accuracy" data-noexport="" id="reducing-accuracy"><span class="secno">5.2.4. </span><span class="content">Reducing accuracy</span><a class="self-link" href="#reducing-accuracy"></a></h4>
+   <h4 class="heading settled" data-dfn-type="dfn" data-level="5.2.4" data-lt="Reduce accuracy" data-noexport="" id="reduce-accuracy"><span class="secno">5.2.4. </span><span class="content">Reduce accuracy</span><a class="self-link" href="#reduce-accuracy"></a></h4>
    <p>Reducing the accuracy of <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings①①">sensor readings</a> or sensor reading timestamps
 might also help mitigate certain threats,
 thus user agents should not provide
@@ -1917,7 +1917,7 @@ increase inaccuracies exponentially.</p>
    <p class="note" role="note"><span>Note:</span> while adding random bias to <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings①②">sensor readings</a> has similar effects,
 it shouldn’t be used in practice
 as it is easy to filter out the added noise.</p>
-   <h4 class="heading settled" data-level="5.2.5" id="informing-user"><span class="secno">5.2.5. </span><span class="content">Keeping the user informed about API use</span><a class="self-link" href="#informing-user"></a></h4>
+   <h4 class="heading settled" data-level="5.2.5" id="inform-user"><span class="secno">5.2.5. </span><span class="content">Keep the user informed about API use</span><a class="self-link" href="#inform-user"></a></h4>
    <p>User agents may choose to keep the user informed
 about current and past use of the API.</p>
    <p class="note" role="note"><span>Note:</span> this does not imply keeping a log of the actual <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings①③">sensor readings</a> which would have issues of its own.</p>
@@ -3245,7 +3245,7 @@ for their editorial input.</p>
    <li><a href="#implementation-specific">implementation specific</a><span>, in §6.3</span>
    <li><a href="#dom-sensor-lasteventfiredat-slot">[[lastEventFiredAt]]</a><span>, in §8.1.2</span>
    <li><a href="#latest-reading">latest reading</a><span>, in §7.2</span>
-   <li><a href="#limit-max-freqency">Limit maximum sampling frequency</a><span>, in §5.2</span>
+   <li><a href="#limit-max-frequency">Limit maximum sampling frequency</a><span>, in §5.2</span>
    <li><a href="#limit-number-of-delivered-readings">Limit number of delivered readings</a><span>, in §5.2.2</span>
    <li><a href="#low-level">low-level</a><span>, in §6.2</span>
    <li><a href="#notify-activated-state">Notify activated state</a><span>, in §9.11</span>
@@ -3259,7 +3259,7 @@ for their editorial input.</p>
    <li><a href="#periodic">periodic</a><span>, in §6.3</span>
    <li><a href="#raw-sensor-readings">raw sensor readings</a><span>, in §6.1</span>
    <li><a href="#reading-value">reading value</a><span>, in §6.1</span>
-   <li><a href="#reducing-accuracy">Reducing accuracy</a><span>, in §5.2.3</span>
+   <li><a href="#reduce-accuracy">Reduce accuracy</a><span>, in §5.2.3</span>
    <li><a href="#reporting-modes">reporting modes</a><span>, in §6.3</span>
    <li><a href="#report-latest-reading-updated">Report latest reading updated</a><span>, in §9.9</span>
    <li><a href="#request-sensor-access">Request sensor access</a><span>, in §9.14</span>
@@ -3282,7 +3282,7 @@ for their editorial input.</p>
    <li><a href="#dom-sensor-start">start()</a><span>, in §8.1</span>
    <li><a href="#dom-sensor-state-slot">[[state]]</a><span>, in §8.1.2</span>
    <li><a href="#dom-sensor-stop">stop()</a><span>, in §8.1</span>
-   <li><a href="#stopping-sensor">Stopping the sensor altogether</a><span>, in §5.2.1</span>
+   <li><a href="#stop-sensor">Stop the sensor altogether</a><span>, in §5.2.1</span>
    <li><a href="#dom-sensor-timestamp">timestamp</a><span>, in §8.1</span>
    <li><a href="#update-latest-reading">Update latest reading</a><span>, in §9.6</span>
   </ul>
@@ -3463,10 +3463,10 @@ for their editorial input.</p>
 };
 
 </pre>
-  <aside class="dfn-panel" data-for="limit-max-freqency">
-   <b><a href="#limit-max-freqency">#limit-max-freqency</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="limit-max-frequency">
+   <b><a href="#limit-max-frequency">#limit-max-frequency</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-limit-max-freqency">5.2.3. Limit number of delivered readings</a>
+    <li><a href="#ref-for-limit-max-frequency">5.2.3. Limit number of delivered readings</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="raw-sensor-readings">
@@ -3492,8 +3492,8 @@ for their editorial input.</p>
     <li><a href="#ref-for-sensor-readings⑥">5.1.4. Visibility State</a> <a href="#ref-for-sensor-readings⑦">(2)</a>
     <li><a href="#ref-for-sensor-readings⑧">5.1.5. Permissions API</a> <a href="#ref-for-sensor-readings⑨">(2)</a>
     <li><a href="#ref-for-sensor-readings①⓪">5.2.3. Limit number of delivered readings</a>
-    <li><a href="#ref-for-sensor-readings①①">5.2.4. Reducing accuracy</a> <a href="#ref-for-sensor-readings①②">(2)</a>
-    <li><a href="#ref-for-sensor-readings①③">5.2.5. Keeping the user informed about API use</a>
+    <li><a href="#ref-for-sensor-readings①①">5.2.4. Reduce accuracy</a> <a href="#ref-for-sensor-readings①②">(2)</a>
+    <li><a href="#ref-for-sensor-readings①③">5.2.5. Keep the user informed about API use</a>
     <li><a href="#ref-for-sensor-readings①④">6.2. Sensor Types</a> <a href="#ref-for-sensor-readings①⑤">(2)</a> <a href="#ref-for-sensor-readings①⑥">(3)</a> <a href="#ref-for-sensor-readings①⑦">(4)</a> <a href="#ref-for-sensor-readings①⑧">(5)</a>
     <li><a href="#ref-for-sensor-readings①⑨">6.3. Reporting Modes</a> <a href="#ref-for-sensor-readings②⓪">(2)</a> <a href="#ref-for-sensor-readings②①">(3)</a> <a href="#ref-for-sensor-readings②②">(4)</a> <a href="#ref-for-sensor-readings②③">(5)</a>
     <li><a href="#ref-for-sensor-readings②④">6.4. Sampling Frequency</a>
