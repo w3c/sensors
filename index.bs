@@ -409,7 +409,7 @@ when other APIs which are known to amplify the level of the threat are in use,
 etc.
 
 
-<h4 id="limit-max-freqency" dfn>Limit maximum sampling frequency</h4>
+<h4 id="limit-max-frequency" dfn>Limit maximum sampling frequency</h4>
 
 User agents may mitigate certain threats by
 limiting the maximum [=sampling frequency=].
@@ -421,7 +421,7 @@ Limiting the maximum [=sampling frequency=] prevents use cases
 which rely on low latency or high data density.
 
 
-<h4 id="stopping-sensor" dfn>Stopping the sensor altogether</h4>
+<h4 id="stop-sensor" dfn>Stop the sensor altogether</h4>
 
 This is obviously a last-resort solution,
 but it can be extremely effective if it's temporal,
@@ -443,7 +443,7 @@ Discarding intermediary readings prevents certain use cases,
 such as those relying on certain kinds of filters.
 
 
-<h4 id="reducing-accuracy" dfn>Reducing accuracy</h4>
+<h4 id="reduce-accuracy" dfn>Reduce accuracy</h4>
 
 Reducing the accuracy of [=sensor readings=]
 or sensor reading timestamps
@@ -461,7 +461,7 @@ it shouldn't be used in practice
 as it is easy to filter out the added noise.
 
 
-<h4 id="informing-user">Keeping the user informed about API use</h4>
+<h4 id="inform-user">Keep the user informed about API use</h4>
 
 User agents may choose to keep the user informed
 about current and past use of the API.
