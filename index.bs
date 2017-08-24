@@ -1053,7 +1053,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     : output
     :: A {{Sensor}} object.
 
-    1.  If the [=incumbent settings object=] is not a [=secure context=], then:
+    1.  If the [=current settings object=] is not a [=secure context=], then:
         1.  [=throw=] a {{SecurityError}}.
     1.  If the [=browsing context=] is not a [=top-level browsing context=], then:
         1.  [=throw=] a {{SecurityError}}.
