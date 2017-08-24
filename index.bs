@@ -67,6 +67,43 @@ spec: webidl; type:dfn; text:attribute
 spec: webidl; type:dfn; text:identifier
 </pre>
 
+<pre class=biblio>
+{
+    "MOBILESENSORS": {
+        "authors": [
+            "Manish J. Gajjar"
+        ],
+        "id": "MOBILESENSORS",
+        "title": "Mobile Sensors and Context-Aware Computing",
+        "date": "2017",
+        "status": "Informational",
+        "publisher": "Morgan Kaufmann"
+     },
+     "GYROSPEECHRECOGNITION": {
+         "authors": [
+             "Michalevsky, Y., Boneh, D. and Nakibly, G."
+         ],
+         "id": "GYROSPEECHRECOGNITION",
+         "href": "https://www.usenix.org/system/files/conference/usenixsecurity14/sec14-paper-michalevsky.pdf",
+         "title": "Gyrophone: Recognizing Speech from Gyroscope Signals",
+         "date": "2014",
+         "status": "Informational",
+         "publisher": "USENIX"
+     },
+     "STEALINGPINSVIASENSORS": {
+         "authors": [
+             "Maryam Mehrnezhad, Ehsan Toreini, Siamak F. Shahandashti, Feng Hao"
+         ],
+         "id": "STEALINGPINSVIASENSORS",
+         "href": "https://rd.springer.com/article/10.1007/s10207-017-0369-x?wt_mc=Internal.Event.1.SEM.ArticleAuthorOnlineFirst",
+         "title": "Stealing PINs via mobile sensors: actual risk versus user perception",
+         "date": "2017",
+         "status": "Informational",
+         "publisher": "International Journal of Information Security"
+     }
+}
+</pre>
+
 <style>
     emu-val {
       font-weight: bold;
@@ -272,15 +309,16 @@ and defensive programming which includes:
 
 <h2 id="security-and-privacy">Security and privacy considerations</h2>
 
-Issue: This section needs to be reorganized.
-It probably needs a section that lists threats
-and one that lists mitigation strategies,
-with links between both.
+[=sensor readings|Sensor readings=] are sensitive data and could become a subject of
+various attacks from malicious Web pages. Before discussing the mitigation strategies we
+briefly enumerate the main types of the [=sensor=]'s privacy and security threats.
+The [[MOBILESENSORS]] categorizes main threats into [[#location-tracking|location tracking]],
+[[#eavesdropping|eavesdropping]], [[#keystroke-monitoring|keystroke monitoring]],
+[[#device-fingerprinting|device fingerprinting]], and [[#user-identifying|user identification]].
+This categorization is a good fit for this specification.
 
-Privacy risks can arise when [=sensors=] are used
-with each other,
-in combination with other functionality,
-or when used over time,
+The risk of successful attack can increase when [=sensors=] are used with each other,
+in combination with other functionality, or when used over time,
 specifically with the risk of correlation of data
 and user identification through fingerprinting.
 Web application developers using these JavaScript APIs should
@@ -328,6 +366,42 @@ A combination of selected sensors can potentially be used to form an out of
 band communication channel between devices.
 
 Sensors can potentially be used in cross-device linking and tracking of a user.
+
+<h3 id="main-privacy-security-threats">Types of privacy and security threats</h3>
+
+<em>This section is non-normative.</em>
+
+<h4 id="location-tracking">Location Tracking</h4>
+
+Under this type of threat, the attacks use [=sensor readings=] to locate the device without
+using GPS or any other location sensors. For example, accelerometer data can be used to infer
+the location of smartphones by using statistical models to obtain estimated trajectory,
+then map matching algorithms can be used to obtain predicted location points (within a
+200-m radius)[[MOBILESENSORS]].
+
+<h4 id="eavesdropping">Eavesdropping</h4>
+
+Recovering speech from gyroscope [=sensor readings|readings=] is an example of eavesdropping attack.
+See [[GYROSPEECHRECOGNITION]].
+
+<h4 id="keystroke-monitoring">Keystroke Monitoring</h4>
+
+Many user inputs can be inferred from [=sensor readings=], this includes a wide range of attacks
+on user PINs, passwords, and lock patterns (and even touch actions such as click, scroll, and
+zoom) using motion sensors. These attacks normally train a machine learning algorithm to
+discover such information about the users. See [[STEALINGPINSVIASENSORS]].
+
+<h4 id="device-fingerprinting">Device Fingerprinting</h4>
+
+Sensors can provide information that can uniquely identify the device using those sensors.
+Every concrete sensor model has minor manufacturing imperfections and differences that will be
+unique for this model. These manufacturing variations and imperfections can be used to fingerprint
+the device [[MOBILESENSORS]].
+
+<h4 id="user-identifying">User Identifying</h4>
+
+[=Sensor readings=] can be used to identify the user, for example via inferring
+individual walking patterns from smartphone or wearable device motion sensors' data.
 
 
 <h3 id="mitigation-strategies">Mitigation Strategies</h3>
