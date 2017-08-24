@@ -1,6 +1,6 @@
 <pre class="metadata">
 Title: Sensor Use Cases
-Status: ED
+Status: NOTE
 Level: none
 ED: https://w3c.github.io/sensors/
 Shortname: generic-sensor-use
