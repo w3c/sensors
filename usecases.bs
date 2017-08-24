@@ -28,7 +28,7 @@ urlPrefix: https://w3c.github.io/sensors; spec: GENERIC-SENSOR
     text: fusion; url: sensor-fusion
 urlPrefix: https://w3c.github.io/ambient-light; spec: AMBIENT-LIGHT
   type: dfn
-    text: ambient light sensor; url: ambient-light-sensor-interface
+    text: ambient light sensor; url: usecases-requirements
 urlPrefix: https://w3c.github.io/proximity; spec: PROXIMITY
   type: dfn
     text: proximity sensor; url: proximity-sensor-interface
@@ -48,6 +48,7 @@ urlPrefix: https://w3c.github.io/gyroscope; spec: GYROSCOPE
 urlPrefix: https://w3c.github.io/magnetometer; spec: MAGNETOMETER
   type: dfn
     text: magnetometer; url: magnetometer-interface
+    text: magnetometer use cases; url: usecases-and-requirements
 urlPrefix: https://w3c.github.io/orientation-sensor; spec: ORIENTATION-SENSOR
   type: dfn
     text: absolute orientation sensor; url: absoluteorientationsensor-interface
@@ -62,11 +63,11 @@ document is to collect use cases, requirements, references to applicable documen
 sensor specifications in order to provide input for Generic Sensor API improvements.
 
 
-Use Cases and requeiements {#usecases-and-requirements}
+Use Cases and requirements {#usecases-and-requirements}
 =====================
 
-The use cases and requirements for the sensors may differ from one application to another. In
-this section, sensors are grouped into categories that represent particular set of common use cases.
+The use cases and requirements for the sensors differ from one application to another. In this
+section, sensors are grouped into categories that represent particular set of common use cases.
 
 ## Environmental sensors ## {#environmental-sensors}
 
@@ -74,20 +75,20 @@ This group of sensors measure physical properties of the environment they are in
 sensors that measure barometric air pressure, humidity, ambient light, ambient air temperature,
 etc., belong to this group.
 
-Environmental sensors might be used in applications like: home automation, accesibility, personal
+Environmental sensors might be used in applications like: home automation, accessibility, personal
 weather forecast, sport and fitness monitoring. Additional use cases and requirements can be found
 from corresponding environmental sensors that are based on Generic Sensor API:
 
 - [=Ambient light sensor=]
 - [=Proximity sensor=]
-- [=Magnetometer=]
+- [=Magnetometer use cases| Magnetometer=]
 
 ## Inertial sensors ## {#inertial-sensors}
 
 This group of sensors is based on inertia and relevant measuring concepts. Usually, inertial
 sensors are part of IMU (Inertial Measurements Unit) that measure [=acceleration=] using
-accelerometer and [=rotational rate=] using gyroscope. [=Magnetometer=] might be part of IMU and
-provide data to calculate heading reference and/or gyroscope drift correction.
+[=accelerometer=] and [=rotational rate=] using [=gyroscope=]. [=Magnetometer=] might be part of IMU and
+provide data to calculate heading reference and/or [=gyroscope=] drift correction.
 
 Inertial sensors enable various use cases, such as: virtual and augmented reality, immersive gaming,
 activity recognition, sport and fitness monitoring, 3D scanning, indoor navigation and mapping.
@@ -103,9 +104,9 @@ The following inertial sensors are based on Generic Sensor API:
 
 This group of sensors provide measurements that are 'fused together' by fusion algorithm. The
 fusion algorithms might require data from one or multiple sources. For example, the data
-provided by the relative orientaion sensor can be fused from accelerometer or combination of
-accelerometer and gyroscope. The most common use cases for fusion sensors can be found in
-[=motion sensors explainer=] document.
+provided by the relative orientation sensor can be fused from [=accelerometer=] or be a combination
+of [=accelerometer=] and [=gyroscope=] data. The most common use cases for fusion sensors can be found in
+the [=motion sensors explainer=] document.
 
 The following fusion sensors are based on Generic Sensor API:
 
@@ -115,8 +116,8 @@ The following fusion sensors are based on Generic Sensor API:
 - [=Gravity sensor=]
 
 Note: The [=Magnetometer=] is often used to improve integrity of the data provided by
-accelerometer and/or gyroscope, as well as for establishing frame of reference based on Earth's
-coordinate system.
+[=accelerometer=] and/or [=gyroscope=], as well as for establishing frame of reference based on
+Earth's coordinate system.
 
 ## Creating custom fusion sensors ## {#custom-fusion-sensors}
 
@@ -125,25 +126,28 @@ implementation of custom fusion sensors that may fulfill special use cases.
 
 Issue: We might need to think about opening this as an improvement for Generic Sensor API.
 Interface that will take fusion algorithm and as a result, provide new sensor property and/or
-modify onreading behavior. This will enable implementation of various sensors, like:
+modify <code>onreading</code> behavior. This will enable implementation of various sensors, like:
 SimpleOrientation, FreeFall, Pedometer, Compass  or simple [[#trigger-sensors| trigger sensors]].
 
 In cases when web application requires additional functionality from the concrete sensor, extension
 of the base sensor interface might be the simplest solution.
 
 <div class="example">
-    In this example, we create simple linear free fall detection sensor.
+    In this example, we create a simple linear free fall detection sensor.
 
     <pre highlight="js">
     class FreeFallSensor extends Accelerometer {
         set onreading(func) {
             super.onreading = () => {
-                this.inFreeFall_ = Math.hypot(super.x, super.y, super.z) < 0.5;
-                func();
+                let isFalling = Math.hypot(super.x, super.y, super.z) < 0.5;
+                if (this.inFreeFall_ != isFalling) {
+                    this.inFreeFall_ =  isFalling;
+                    func();
+                }
             }
         }
 
-        get inFreeFall {
+        get inFreeFall() {
             return this.inFreeFall_;
         }
     }
@@ -154,8 +158,8 @@ When the web application requires measurements that are fused from multiple sens
 simple aggregation pattern may be used.
 
 <div class="example">
-    In this simplified example, we define FusionSensor class that aggregates multiple sources and
-    provides fused data.
+    In this simplified example, we define <code>FusionSensor</code> class that aggregates multiple
+    sources and provides fused data.
 
     <pre highlight="js">
     class FusionSensor {
@@ -187,7 +191,7 @@ simple aggregation pattern may be used.
     }
 
     // Stateful algorithm that finds brightest spot during calibration phase and uses
-    // it as a fixed frame of reference to calculate relative orientation from brigtest
+    // it as a fixed frame of reference to calculate relative orientation from brightest
     // light source.
     let custom_algo = (changed_source, all_sources) => { return new DOMMatrix(); }
     let source_sensors = [new Accelerometer(), new Gyroscope(), new AmbientLightSensor()];
@@ -200,7 +204,7 @@ simple aggregation pattern may be used.
 ## Trigger sensors ## {#trigger-sensors}
 
 Issue: This group of sensors may not need frequency. The HW will just fire interrupt to
-signal about the change. If trigger sensor functionality is provided by e.g., accelerometer,
+signal about the change. If trigger sensor functionality is provided by e.g., [=accelerometer=],
 sensor would be operating in special low-power mode.
 
 For the purpose of this document, trigger sensors group is characterised by the simplicity
@@ -213,9 +217,3 @@ The following list of sensors might be a good example of trigger sensors:
 - Reed switch and hall effect sensors
 - Significant motion, no motion, tap, flat, free fall, low-g and high-g sensors
 - Laser or infrared switch sensors
-
-Security and Privacy Considerations {#security-and-privacy}
-===================================
-
-There are no specific security and privacy considerations beyond those described in the Generic
-Sensor API [[!GENERIC-SENSOR]].
