@@ -36,6 +36,7 @@ urlPrefix: https://dom.spec.whatwg.org; spec: DOM
 urlPrefix: https://html.spec.whatwg.org/multipage/; spec: HTML
   type: dfn
     urlPrefix: webappapis.html
+      text: task queue
       text: task; url: concept-task
       text: fire a simple event
       text: trusted; url: concept-events-trusted
