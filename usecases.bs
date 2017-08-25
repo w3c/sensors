@@ -1,11 +1,14 @@
 <pre class="metadata">
 Title: Sensor Use Cases
-Status: ED
-Level: 1
+Status: NOTE
+Level: none
 ED: https://w3c.github.io/sensors/
 Shortname: generic-sensor-use
 TR: http://www.w3.org/TR/generic-sensor/
-Editor: Tobie Langel 78102, Intel Corporation, tobie@sensors.codespeaks.com
+Editor: Rick Waldron 50572, JS Foundation
+Editor: Mikhail Pozdnyakov 78325, Intel Corporation, https://intel.com/
+Editor: Alexander Shalamov 78335, Intel Corporation, https://intel.com/
+Former Editor: Tobie Langel 60809, Codespeaks&#44; formerly on behalf of Intel Corporation, http://tobie.me, tobie@codespeaks.com
 Group: dap
 Abstract:
   This document lists use cases for sensor data exposed to the Open Web Platform along with code examples of how Web developers ("authors" in spec speech) would listen to sensor data and use it within their application-level code.
@@ -19,112 +22,198 @@ Inline Github Issues: true
 Boilerplate: omit issues-index, omit conformance
 </pre>
 
+<pre class="anchors">
+urlPrefix: https://w3c.github.io/sensors; spec: GENERIC-SENSOR
+  type: dfn
+    text: fusion; url: sensor-fusion
+urlPrefix: https://w3c.github.io/ambient-light; spec: AMBIENT-LIGHT
+  type: dfn
+    text: ambient light sensor; url: usecases-requirements
+urlPrefix: https://w3c.github.io/proximity; spec: PROXIMITY
+  type: dfn
+    text: proximity sensor; url: proximity-sensor-interface
+urlPrefix: https://w3c.github.io/motion-sensors; spec: MOTION-SENSORS
+  type: dfn
+    text: motion sensors explainer; url: usecases-and-requirements
+urlPrefix: https://w3c.github.io/accelerometer; spec: ACCELEROMETER
+  type: dfn
+    text: acceleration
+    text: accelerometer; url: accelerometer-interface
+    text: linear acceleration sensor; url: linearaccelerationsensor-interface
+    text: gravity sensor; url: gravitysensor-interface
+urlPrefix: https://w3c.github.io/gyroscope; spec: GYROSCOPE
+  type: dfn
+    text: rotational rate; url: angular-velocity
+    text: gyroscope; url: gyroscope-interface
+urlPrefix: https://w3c.github.io/magnetometer; spec: MAGNETOMETER
+  type: dfn
+    text: magnetometer; url: magnetometer-interface
+    text: magnetometer use cases; url: usecases-and-requirements
+urlPrefix: https://w3c.github.io/orientation-sensor; spec: ORIENTATION-SENSOR
+  type: dfn
+    text: absolute orientation sensor; url: absoluteorientationsensor-interface
+    text: relative orientation sensor; url: relativeorientationsensor-interface
+</pre>
+
 Introduction {#intro}
 =====================
 
-Sensor data is increasingly used in Web application development, especially on mobile devices where new sensors are added regularly. Exposing those to the Web has so far been both slow-paced and ad-hoc. The goal of the Generic Sensor API is to promote consistency across sensor APIs and increase the pace at which they can be Web applications by simplifying both the specification and implementation processes.
-
-There are plenty of different kinds of sensors cattering to plenty more use cases with various performance requirements. The purpose of this document is to describe the minimum number of use cases in order to build an exhaustive list of all requirements with which to inform the design of a Generic Sensor API.
-
-
-Note: Some of the examples and use cases in this document rely on sensors that have already been specified by this or other Working Groups. While the editor feels these would be great candidates for building atop the Generic Sensor API, their inclusion in this document does not imply that the relevant Working Groups have given their agreement to do so or a planning to.
+The Generic Sensor API provides generic interfaces for accessing sensors. The purpose of this
+document is to collect use cases, requirements, references to applicable documents and concrete
+sensor specifications in order to provide input for Generic Sensor API improvements.
 
 
-Use Cases {#usecases}
+Use Cases and requirements {#usecases-and-requirements}
 =====================
 
-Displaying the position of the user on a map in real time {#display-realtime}
----------------------
+The use cases and requirements for the sensors differ from one application to another. In this
+section, sensors are grouped into categories that represent particular set of common use cases.
 
-In this use case, the user's location is positioned on a map in real time using the device's default geolocation sensor. The users' position is represented on the map by a circle the size of which depends on the accuracy of the data provided by the geolocation sensor. When no signal is available, the circle is greyed-out.
+## Environmental sensors ## {#environmental-sensors}
 
-An <a href="https://w3c.github.io/sensors/examples/realtime-positioning/index.html"> example</a>(best-viewed with a device equipped with a geolocation sensor). Its <a href="https://github.com/w3c/sensors/tree/gh-pages/examples/cached-data">source code</a> can be found in the same repository as this document.
+This group of sensors measure physical properties of the environment they are in. For example,
+sensors that measure barometric air pressure, humidity, ambient light, ambient air temperature,
+etc., belong to this group.
 
-<!--
-    TODO Add screenshots
--->
+Environmental sensors might be used in applications like: home automation, accessibility, personal
+weather forecast, sport and fitness monitoring. Additional use cases and requirements can be found
+from corresponding environmental sensors that are based on Generic Sensor API:
 
-Using the current Geolocation API [[!geolocation-API]], the application code to tap into the sensor looks like this:
+- [=Ambient light sensor=]
+- [=Proximity sensor=]
+- [=Magnetometer use cases| Magnetometer=]
+
+## Inertial sensors ## {#inertial-sensors}
+
+This group of sensors is based on inertia and relevant measuring concepts. Usually, inertial
+sensors are part of IMU (Inertial Measurements Unit) that measure [=acceleration=] using
+[=accelerometer=] and [=rotational rate=] using [=gyroscope=]. [=Magnetometer=] might be part of IMU and
+provide data to calculate heading reference and/or [=gyroscope=] drift correction.
+
+Inertial sensors enable various use cases, such as: virtual and augmented reality, immersive gaming,
+activity recognition, sport and fitness monitoring, 3D scanning, indoor navigation and mapping.
+The [=motion sensors explainer=] has extensive list of use cases and references to applicable
+scientific papers.
+
+The following inertial sensors are based on Generic Sensor API:
+
+- [=Accelerometer=]
+- [=Gyroscope=]
+
+## Fusion sensors ## {#fusion-sensors}
+
+This group of sensors provide measurements that are 'fused together' by fusion algorithm. The
+fusion algorithms might require data from one or multiple sources. For example, the data
+provided by the relative orientation sensor can be fused from [=accelerometer=] or be a combination
+of [=accelerometer=] and [=gyroscope=] data. The most common use cases for fusion sensors can be found in
+the [=motion sensors explainer=] document.
+
+The following fusion sensors are based on Generic Sensor API:
+
+- [=Absolute orientation sensor=]
+- [=Relative orientation sensor=]
+- [=Linear acceleration sensor=]
+- [=Gravity sensor=]
+
+Note: The [=Magnetometer=] is often used to improve integrity of the data provided by
+[=accelerometer=] and/or [=gyroscope=], as well as for establishing frame of reference based on
+Earth's coordinate system.
+
+## Creating custom fusion sensors ## {#custom-fusion-sensors}
+
+The web applications might require data that is not provided by the UA. Generic Sensor API allows
+implementation of custom fusion sensors that may fulfill special use cases.
+
+Issue: We might need to think about opening this as an improvement for Generic Sensor API.
+Interface that will take fusion algorithm and as a result, provide new sensor property and/or
+modify <code>onreading</code> behavior. This will enable implementation of various sensors, like:
+SimpleOrientation, FreeFall, Pedometer, Compass  or simple [[#trigger-sensors| trigger sensors]].
+
+In cases when web application requires additional functionality from the concrete sensor, extension
+of the base sensor interface might be the simplest solution.
 
 <div class="example">
-<pre highlight="js">
-  function onsuccess(position) {
-      var coords = [position.coords.latitude, position.coords.longitude];
-      updateMap(null, coords, position.coords.accuracy);
-  }
+    In this example, we create a simple linear free fall detection sensor.
 
-  function onerror(e) {
-      updateMap(e);
-  }
+    <pre highlight="js">
+    class FreeFallSensor extends Accelerometer {
+        set onreading(func) {
+            super.onreading = () => {
+                let isFalling = Math.hypot(super.x, super.y, super.z) < 0.5;
+                if (this.inFreeFall_ != isFalling) {
+                    this.inFreeFall_ =  isFalling;
+                    func();
+                }
+            }
+        }
 
-  navigator.geolocation.watchPosition(onsuccess, onerror, {
-      enableHighAccuracy: true,
-      maximumAge: 0,
-      timeout: Infinity
-  });
-</pre>
+        get inFreeFall() {
+            return this.inFreeFall_;
+        }
+    }
+    </pre>
 </div>
 
-
-Using the proposed Generic Sensor API, application level code looks like this:
+When the web application requires measurements that are fused from multiple sensor sources, 
+simple aggregation pattern may be used.
 
 <div class="example">
-<pre highlight="js">
-  var sensor = new GeolocationSensor({ accuracy: "low" });
-  sensor.start();
-  sensor.onchange = function(event) {
-      var coords = [event.reading.latitude, event.reading.longitude];
-      updateMap(null, coords, event.reading.accuracy);
-  };
-  sensor.onerror = function(event) {
-      updateMap(event.error);
-  };
-  sensor.onstatechange = function(e) {
-      console.log("STATE:", this.state)
-  };
-</pre>
+    In this simplified example, we define <code>FusionSensor</code> class that aggregates multiple
+    sources and provides fused data.
+
+    <pre highlight="js">
+    class FusionSensor {
+        constructor(sensors, algorithm) {
+            this.sensors_ = sensors;
+            this.algorithm_ = algorithm.bind(this);
+        }
+
+        start() {
+            this.sensors_.map(sensor => sensor.start());
+        }
+
+        stop()  {
+            this.sensors_.map(sensor => sensor.stop());
+        }
+
+        set onreading(func) {
+            this.sensors_.map(sensor => {
+                sensor.onreading = () => {
+                    this.fusedReading_ = this.algorithm_(sensor, this.sensors_);
+                    func();
+                }
+            });
+        }
+
+        get fusedReading() {
+            return this.fusedReading_;
+        }
+    }
+
+    // Stateful algorithm that finds brightest spot during calibration phase and uses
+    // it as a fixed frame of reference to calculate relative orientation from brightest
+    // light source.
+    let custom_algo = (changed_source, all_sources) => { return new DOMMatrix(); }
+    let source_sensors = [new Accelerometer(), new Gyroscope(), new AmbientLightSensor()];
+    let sensor = new FusionSensor(source_sensors, custom_algo);
+    sensor.onreading = () => { console.log(JSON.stringify(sensor.fusedReading)); }
+    sensor.start();
+    </pre>
 </div>
 
+## Trigger sensors ## {#trigger-sensors}
 
-###  Further improvements ### {#improvements}
+Issue: This group of sensors may not need frequency. The HW will just fire interrupt to
+signal about the change. If trigger sensor functionality is provided by e.g., [=accelerometer=],
+sensor would be operating in special low-power mode.
 
-It is worth noting that the current syntax of the Geolocation API doesn't allow for a number of performance optimizations that require awareness of domain constraints and/or application-level code.
+For the purpose of this document, trigger sensors group is characterised by the simplicity
+of the hardware, limited sensor configuration capabilities, special mode of operation or
+notification mechanism for the new sensor readings. For example, reed switch or hall effect sensors
+that will trigger hardware interrupt and provide one bit reading data (on / off).
 
-In our particular example application, the frequency at which the Gelocation API must be queried and its precision requirements vary greatly depending on the zoom factor of the map and the speed at which the user is driving.
+The following list of sensors might be a good example of trigger sensors:
 
-The more zoomed out we are, the lower our accuracy and frequency requirments become.
-
-The faster the user is moving (for example if they are driving a car), the higher the frequency requirements (as per the <a href="https://en.wikipedia.org/wiki/Nyquist%E2%80%93Shannon_sampling_theorem"> Nyquist–Shannon sampling theorem </a>).
-
-
-### Requirements ### {#requirements}
-
-
-
-Relying on cached data in a battery- or CPU-contrained environment {#caching}
------------------
-
-
-Head-tracking {#head-tracking}
----------------
-
-
-Turn by turn navigation {#turn-navigation}
-------------------
-
-
-Pedometer {#pedometer}
---------------
-
-Issue(12):
-
-
-Promimity sensors {#proximity}
--------------
-
-
-Security and Privacy Considerations {#security-and-privacy}
-===================================
-
-There are no specific security and privacy considerations
-beyond those described in the Generic Sensor API [[!GENERIC-SENSOR]].
+- Reed switch and hall effect sensors
+- Significant motion, no motion, tap, flat, free fall, low-g and high-g sensors
+- Laser or infrared switch sensors
