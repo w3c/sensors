@@ -1217,7 +1217,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
 
     1.  let |activated_sensors| be |sensor|'s associated [=ordered set|set=] of [=activated sensor objects=].
     1.  [=set/For each=] |s| of |activated_sensors|,
-        1.  Invoke [=deactivate a sensor object=] with |sensor_instance| as argument.
+        1.  Invoke [=deactivate a sensor object=] with |s| as argument.
         1.  let |e| be the result of [=created|creating=]
             a "{{NotAllowedError!!exception}}" {{DOMException}}.
         1.  Queue a task to run [=notify error=] with |e| and |s| as arguments.
@@ -1235,7 +1235,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
 
     1.  If |sensor|'s set of [=activated sensor objects=] [=set/is empty=],
         1.  Set [=current sampling frequency=] to null.
-        1.  [=map/For each=] |key| → |value| of [=latest reading=].
+        1.  [=map/For each=] |key| → <var ignore>value</var> of [=latest reading=].
             1.  [=map/Set=] [=latest reading=][|key|] to null.
         1.  Update the user-agent-specific way in which [=sensor readings=] are obtained from |sensor|
             to no longer provide [=sensor readings|readings=].
@@ -1267,6 +1267,9 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
         Issue: Maybe compare |value| with corresponding
         value of |reading| to see if there's a change
         that needs to be propagated.
+
+    1.  let |activated_sensors| be |sensor|'s associated [=ordered set|set=] of [=activated sensor objects=].
+
     1.  Run these sub-steps [=in parallel=]:
         1.  [=set/For each=] |s| in |activated_sensors|,
             1.  Invoke [=report latest reading updated=] with |s| as an argument.

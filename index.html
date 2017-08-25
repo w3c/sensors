@@ -2523,7 +2523,7 @@ that must be supported as attributes by the objects implementing the <code class
       <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate①">For each</a> <var>s</var> of <var>activated_sensors</var>,</p>
       <ol>
        <li data-md="">
-        <p>Invoke <a data-link-type="dfn" href="#deactivate-a-sensor-object" id="ref-for-deactivate-a-sensor-object②">deactivate a sensor object</a> with <var>sensor_instance</var> as argument.</p>
+        <p>Invoke <a data-link-type="dfn" href="#deactivate-a-sensor-object" id="ref-for-deactivate-a-sensor-object②">deactivate a sensor object</a> with <var>s</var> as argument.</p>
        <li data-md="">
         <p>let <var>e</var> be the result of <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-create-exception" id="ref-for-dfn-create-exception②">creating</a> a "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://heycam.github.io/webidl/#notallowederror" id="ref-for-notallowederror①">NotAllowedError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException②">DOMException</a></code>.</p>
        <li data-md="">
@@ -2604,6 +2604,8 @@ that must be supported as attributes by the objects implementing the <code class
       <p class="issue" id="issue-0a097748"><a class="self-link" href="#issue-0a097748"></a> Maybe compare <var>value</var> with corresponding
   value of <var>reading</var> to see if there’s a change
   that needs to be propagated.</p>
+     <li data-md="">
+      <p>let <var>activated_sensors</var> be <var>sensor</var>’s associated <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set" id="ref-for-ordered-set⑤">set</a> of <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects⑦">activated sensor objects</a>.</p>
      <li data-md="">
       <p>Run these sub-steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel②">in parallel</a>:</p>
       <ol>
@@ -3696,6 +3698,7 @@ for their editorial input.</p>
     <li><a href="#ref-for-activated-sensor-objects③">9.4. Deactivate a sensor object</a> <a href="#ref-for-activated-sensor-objects④">(2)</a>
     <li><a href="#ref-for-activated-sensor-objects⑤">9.5. Revoke sensor permission</a>
     <li><a href="#ref-for-activated-sensor-objects⑥">9.6. Set sensor settings</a>
+    <li><a href="#ref-for-activated-sensor-objects⑦">9.7. Update latest reading</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="latest-reading">
