@@ -1183,7 +1183,7 @@ Possible extra rowspan handling
       background-attachment: fixed;
     }
   </style>
-  <meta content="Bikeshed version c2e28785d7e239a08c784e65d126cc69068b86eb" name="generator">
+  <meta content="Bikeshed version af5664a949233c76c864f1b3f206481c5451c863" name="generator">
   <link href="https://www.w3.org/TR/generic-sensor/" rel="canonical">
 <style>
     emu-val {
@@ -1458,7 +1458,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-08-24">24 August 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-08-25">25 August 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1731,7 +1731,7 @@ define ways to uniquely identify each one.</p>
    <div class="example" id="example-fdd94e11">
     <a class="self-link" href="#example-fdd94e11"></a> For example checking the pressure of the left rear tire: 
 <pre class="highlight"><span class="kd">var</span> sensor <span class="o">=</span> <span class="k">new</span> DirectTirePressureSensor<span class="p">({</span> position<span class="o">:</span> <span class="s2">"rear"</span><span class="p">,</span> side<span class="o">:</span> <span class="s2">"left"</span> <span class="p">});</span>
-sensor<span class="p">.</span>onreading <span class="o">=</span> _ <span class="p">=></span> console<span class="p">.</span>log<span class="p">(</span>sensor<span class="p">.</span>pressure<span class="p">);</span>
+sensor<span class="p">.</span>onreading <span class="o">=</span> _ <span class="o">=></span> console<span class="p">.</span>log<span class="p">(</span>sensor<span class="p">.</span>pressure<span class="p">);</span>
 sensor<span class="p">.</span>start<span class="p">();</span>
 </pre>
    </div>
@@ -1795,8 +1795,8 @@ and defensive programming which includes:</p>
 <pre class="highlight"><span class="k">try</span> <span class="p">{</span> <span class="c1">// No need to feature detect thanks to try..catch block.</span>
 <span class="c1"></span>    <span class="kd">var</span> sensor <span class="o">=</span> <span class="k">new</span> GeolocationSensor<span class="p">();</span>
     sensor<span class="p">.</span>start<span class="p">();</span>
-    sensor<span class="p">.</span>onerror <span class="o">=</span> error <span class="p">=></span> gracefullyDegrade<span class="p">(</span>error<span class="p">);</span>
-    sensor<span class="p">.</span>onreading <span class="o">=</span> _ <span class="p">=></span> updatePosition<span class="p">(</span>sensor<span class="p">.</span>latitude<span class="p">,</span> sensor<span class="p">.</span>longitude<span class="p">);</span>
+    sensor<span class="p">.</span>onerror <span class="o">=</span> error <span class="o">=></span> gracefullyDegrade<span class="p">(</span>error<span class="p">);</span>
+    sensor<span class="p">.</span>onreading <span class="o">=</span> _ <span class="o">=></span> updatePosition<span class="p">(</span>sensor<span class="p">.</span>latitude<span class="p">,</span> sensor<span class="p">.</span>longitude<span class="p">);</span>
 <span class="p">}</span> <span class="k">catch</span><span class="p">(</span>error<span class="p">)</span> <span class="p">{</span>
     gracefullyDegrade<span class="p">(</span>error<span class="p">);</span>
 <span class="p">}</span>
@@ -2142,9 +2142,9 @@ by the underlying platform.</p>
     <p>The <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-type" id="ref-for-event-handler-event-type">event handler event types</a> for the corresponding <a href="#the-sensor-interface"> Sensor Interface</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers" id="ref-for-event-handlers">event handler</a> attributes are defined in <a href="#event-handlers">Event handlers</a> section.</p>
 <pre class="highlight"><span class="kd">let</span> acl <span class="o">=</span> <span class="k">new</span> Accelerometer<span class="p">({</span>frequency<span class="o">:</span> <span class="mi">30</span><span class="p">});</span>
 <span class="kd">let</span> max_magnitude <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-acl<span class="p">.</span>addEventListener<span class="p">(</span><span class="s1">'activate'</span><span class="p">,</span> <span class="p">()</span> <span class="p">=></span> console<span class="p">.</span>log<span class="p">(</span><span class="s1">'Ready to measure.'</span><span class="p">));</span>
-acl<span class="p">.</span>addEventListener<span class="p">(</span><span class="s1">'error'</span><span class="p">,</span> error <span class="p">=></span> console<span class="p">.</span>log<span class="p">(</span><span class="s1">'Error: '</span> <span class="o">+</span> error<span class="p">.</span>name<span class="p">));</span>
-acl<span class="p">.</span>addEventListener<span class="p">(</span><span class="s1">'reading'</span><span class="p">,</span> <span class="p">()</span> <span class="p">=></span> <span class="p">{</span>
+acl<span class="p">.</span>addEventListener<span class="p">(</span><span class="s1">'activate'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=></span> console<span class="p">.</span>log<span class="p">(</span><span class="s1">'Ready to measure.'</span><span class="p">));</span>
+acl<span class="p">.</span>addEventListener<span class="p">(</span><span class="s1">'error'</span><span class="p">,</span> error <span class="o">=></span> console<span class="p">.</span>log<span class="p">(</span><span class="s1">'Error: '</span> <span class="o">+</span> error<span class="p">.</span>name<span class="p">));</span>
+acl<span class="p">.</span>addEventListener<span class="p">(</span><span class="s1">'reading'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=></span> <span class="p">{</span>
     <span class="kd">let</span> magnitude <span class="o">=</span> Math<span class="p">.</span>hypot<span class="p">(</span>acl<span class="p">.</span>x<span class="p">,</span> acl<span class="p">.</span>y<span class="p">,</span> acl<span class="p">.</span>z<span class="p">);</span>
     <span class="k">if</span> <span class="p">(</span>magnitude <span class="o">></span> max_magnitude<span class="p">)</span> <span class="p">{</span>
         max_magnitude <span class="o">=</span> magnitude<span class="p">;</span>
@@ -2488,7 +2488,7 @@ that must be supported as attributes by the objects implementing the <code class
     </dl>
     <ol>
      <li data-md="">
-      <p>Remove all <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-task" id="ref-for-concept-task①">tasks</a> associated with <var>sensor_instance</var> from the <a data-link-type="dfn" href="https://w3c.github.io/ServiceWorker/#dfn-service-worker-registration-task-queue" id="ref-for-dfn-service-worker-registration-task-queue">task queue</a> associated
+      <p>Remove all <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-task" id="ref-for-concept-task①">tasks</a> associated with <var>sensor_instance</var> from the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#task-queue" id="ref-for-task-queue">task queue</a> associated
   with <a data-link-type="dfn" href="#sensor-task-source" id="ref-for-sensor-task-source">sensor task source</a>.</p>
      <li data-md="">
       <p>Let <var>sensor</var> be the <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor③⑧">sensor</a> associated with <var>sensor_instance</var>.</p>
@@ -3354,6 +3354,7 @@ for their editorial input.</p>
      <li><a href="https://html.spec.whatwg.org/multipage/origin.html#same-origin-domain">same origin-domain</a>
      <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#spin-the-event-loop">spin the event loop</a>
      <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-task">task</a>
+     <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#task-queue">task queue</a>
      <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#task-source">task source</a>
      <li><a href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context">top-level browsing context</a>
     </ul>
@@ -3379,7 +3380,7 @@ for their editorial input.</p>
      <li><a href="https://w3c.github.io/page-visibility#dfn-steps-to-determine-the-visibility-state">steps to determine the visibility state</a>
     </ul>
    <li>
-    <a data-link-type="biblio">[permissions-1]</a> defines the following terms:
+    <a data-link-type="biblio">[PERMISSIONS]</a> defines the following terms:
     <ul>
      <li><a href="https://w3c.github.io/permissions/#dictdef-permissiondescriptor">PermissionDescriptor</a>
      <li><a href="https://w3c.github.io/permissions/#enumdef-permissionname">PermissionName</a>
@@ -3389,14 +3390,9 @@ for their editorial input.</p>
      <li><a href="https://w3c.github.io/permissions/#request-permission-to-use">request permission to use</a>
     </ul>
    <li>
-    <a data-link-type="biblio">[secure-contexts-1]</a> defines the following terms:
+    <a data-link-type="biblio">[POWERFUL-FEATURES]</a> defines the following terms:
     <ul>
      <li><a href="https://w3c.github.io/webappsec-secure-contexts/#secure-context">secure context</a>
-    </ul>
-   <li>
-    <a data-link-type="biblio">[service-workers-2]</a> defines the following terms:
-    <ul>
-     <li><a href="https://w3c.github.io/ServiceWorker/#dfn-service-worker-registration-task-queue">task queues</a>
     </ul>
    <li>
     <a data-link-type="biblio">[WebIDL]</a> defines the following terms:
@@ -3441,6 +3437,8 @@ for their editorial input.</p>
    <dd>Jatinder Mann; Arvind Jain. <a href="https://www.w3.org/TR/page-visibility/">Page Visibility (Second Edition)</a>. 29 October 2013. REC. URL: <a href="https://www.w3.org/TR/page-visibility/">https://www.w3.org/TR/page-visibility/</a>
    <dt id="biblio-permissions">[PERMISSIONS]
    <dd>Mounir Lamouri; Marcos Caceres. <a href="https://w3c.github.io/permissions/">The Permissions API</a>. URL: <a href="https://w3c.github.io/permissions/">https://w3c.github.io/permissions/</a>
+   <dt id="biblio-powerful-features">[POWERFUL-FEATURES]
+   <dd>Mike West. <a href="https://w3c.github.io/webappsec-secure-contexts/">Secure Contexts</a>. URL: <a href="https://w3c.github.io/webappsec-secure-contexts/">https://w3c.github.io/webappsec-secure-contexts/</a>
    <dt id="biblio-rfc2119">[RFC2119]
    <dd>S. Bradner. <a href="https://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>. March 1997. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc2119">https://tools.ietf.org/html/rfc2119</a>
    <dt id="biblio-webidl">[WebIDL]
@@ -3462,8 +3460,6 @@ for their editorial input.</p>
    <dd>Manish J. Gajjar. Mobile Sensors and Context-Aware Computing. 2017. Informational. 
    <dt id="biblio-orientation-event">[ORIENTATION-EVENT]
    <dd>Rich Tibbett; et al. <a href="https://w3c.github.io/deviceorientation/spec-source-orientation.html">DeviceOrientation Event Specification</a>. URL: <a href="https://w3c.github.io/deviceorientation/spec-source-orientation.html">https://w3c.github.io/deviceorientation/spec-source-orientation.html</a>
-   <dt id="biblio-powerful-features">[POWERFUL-FEATURES]
-   <dd>Mike West. <a href="https://w3c.github.io/webappsec-secure-contexts/">Secure Contexts</a>. URL: <a href="https://w3c.github.io/webappsec-secure-contexts/">https://w3c.github.io/webappsec-secure-contexts/</a>
    <dt id="biblio-qudt">[QUDT]
    <dd>Ralph Hodgson; et al. <a href="http://www.qudt.org/">QUDT - Quantities, Units, Dimensions and Data Types Ontologies</a>. 18 March 2014. URL: <a href="http://www.qudt.org/">http://www.qudt.org/</a>
    <dt id="biblio-rfc6454">[RFC6454]
