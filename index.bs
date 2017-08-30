@@ -896,7 +896,7 @@ The [=task source=] for the [=tasks=] mentioned in this specification is the <df
             <path d="M144.762,-50.6145C136.302,-50.8304 127.428,-50.7883 119.129,-50.4883" fill="none" stroke="black"/>
             <polygon fill="black" points="109,-49.9704 119.217,-45.987 113.993,-50.2258 118.987,-50.4811 118.987,-50.4811 118.987,-50.4811 113.993,-50.2258 118.757,-54.9753 109,-49.9704 109,-49.9704" stroke="black"/>
             <text text-anchor="middle" transform="translate(0,-4)" x="119.656" y="-59.3122">
-                <a xlink:href="#sensor-onerror">Error</a>
+                <a xlink:href="#sensor-onerror">onerror</a>
             </text>
         </g>
         <a xlink:href="#dom-sensor-state-slot">
@@ -915,7 +915,7 @@ The [=task source=] for the [=tasks=] mentioned in this specification is the <df
             <title>activated-&gt;idle</title>
             <path d="M262.74,-17.3829C244.593,-16.1731 226.997,-15 226.997,-15 226.997,-15 144.997,-15 144.997,-15 144.997,-15 132.341,-20.9199 118.465,-27.4103" fill="none" stroke="black"/>
             <polygon fill="black" points="109.291,-31.7014 116.442,-23.3883 113.82,-29.5829 118.349,-27.4645 118.349,-27.4645 118.349,-27.4645 113.82,-29.5829 120.255,-31.5406 109.291,-31.7014 109.291,-31.7014" stroke="black"/>
-            <text text-anchor="middle" transform="translate(0,-4)" x="200" y="5"><a xlink:href="#sensor-stop">stop()</a> / <a xlink:href="#sensor-onerror">Error</a></text>
+            <text text-anchor="middle" transform="translate(0,-4)" x="200" y="5"><a xlink:href="#sensor-stop">stop()</a> / <a xlink:href="#sensor-onerror">onerror</a></text>
         </g>
         <g class="node">
             <title>start</title>
