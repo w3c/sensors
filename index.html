@@ -2976,7 +2976,8 @@ for each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type③�
    <h3 class="heading settled" data-level="10.8" id="example-webidl"><span class="secno">10.8. </span><span class="content">Example WebIDL</span><a class="self-link" href="#example-webidl"></a></h3>
    <p>Here’s example WebIDL for a possible extension of this specification
 for proximity <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor⑤①">sensors</a>.</p>
-<pre class="example" id="example-899e9b74"><a class="self-link" href="#example-899e9b74"></a>[SecureContext, Constructor(optional ProximitySensorOptions proximitySensorOptions)]
+<pre class="example" id="example-be4b13c4"><a class="self-link" href="#example-be4b13c4"></a>[Constructor(optional ProximitySensorOptions proximitySensorOptions),
+ SecureContext, Exposed=Window]
 interface ProximitySensor : Sensor {
     readonly attribute unrestricted double distance;
 };

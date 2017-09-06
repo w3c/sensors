@@ -1579,7 +1579,8 @@ Here's example WebIDL for a possible extension of this specification
 for proximity [=sensors=].
 
 <pre class=example>
-    [SecureContext, Constructor(optional ProximitySensorOptions proximitySensorOptions)]
+    [Constructor(optional ProximitySensorOptions proximitySensorOptions),
+     SecureContext, Exposed=Window]
     interface ProximitySensor : Sensor {
         readonly attribute unrestricted double distance;
     };
