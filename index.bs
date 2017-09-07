@@ -1568,12 +1568,35 @@ for each [=sensor types=]:
     especially when doing so would not make sense.
 -   A set of [=identifying parameters=]. TODO: replace that by an abstract operation.
 
-
 <h3 id="permission-api">Extending the Permission API</h3>
 
-Provide guidance on how to extend the Permission API [[PERMISSIONS]]
-for each [=sensor types=].
+{{Sensor}} interface for concrete [=sensor=] must protect it's [=sensor reading|reading=]
+by associated {{PermissionName}} or more complex {{PermissionDescriptor}}.
+[=Low-level=] {{Sensor|sensor}} may use it's interface name as a {{PermissionName}}, for instance
+"gyroscope" or "accelerometer". [=sensor fusion|Fusion sensors=] must
+[=request permission to use|request permission to use=] sensors used as a source of fusion.
 
+Even though, it might be difficult to reconstruct [=low-level=] [=sensor readings=] from
+fused data, some of the original information might be inferred. For example, it is easy to
+deduce user's orientation in space if absolute or geomagnetic orientation sensors are used,
+therefore, those sensors must [=request permission to use|request permission to use=]
+"magnetometer" as it provides information about orientation of device in relation to Earth's
+magnetic field. In contrast, relative orientation sensor does not expose such information, thus,
+does not need to [=request permission to use|request permission to use=] "magnetometer".
+
+In order to provide fine grained control over the sensor's data,
+{{PermissionDescriptor|permission descriptors}} may be used. For example, descriptor can contain
+settings for accuracy or [=sampling frequency=].
+
+Here is an example of {{PermissionDescriptor}} for a possible extension of the Permission API for
+accelerometer sensor.
+
+<pre class=example>
+    dictionary AccelerometerPermissionDescriptor : PermissionDescriptor {
+        boolean highAccuracy = false;
+        boolean highFrequency = false;
+    };
+</pre>
 
 <h3 id="example-webidl">Example WebIDL</h3>
 
