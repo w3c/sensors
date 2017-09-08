@@ -1570,26 +1570,24 @@ for each [=sensor types=]:
 
 <h3 id="permission-api">Extending the Permission API</h3>
 
-{{Sensor}} interface for concrete [=sensor=] must protect it's [=sensor reading|reading=]
-by associated {{PermissionName}} or more complex {{PermissionDescriptor}}.
-[=Low-level=] {{Sensor|sensor}} may use it's interface name as a {{PermissionName}}, for instance
-"gyroscope" or "accelerometer". [=sensor fusion|Fusion sensors=] must
-[=request permission to use|request permission to use=] sensors used as a source of fusion.
+An implementation of the {{Sensor}} interface for each [=sensor type=] must protect its
+[=sensor reading|reading=] by associated {{PermissionName}} or {{PermissionDescriptor}}.
+A [=Low-level=] {{Sensor|sensor}} may use its interface name as a {{PermissionName}},
+for instance, "gyroscope" or "accelerometer". [=sensor fusion|Fusion sensors=] must
+[=request permission to use|request permission to access=] each of the sensors that are
+used as a source of fusion.
 
 Even though, it might be difficult to reconstruct [=low-level=] [=sensor readings=] from
 fused data, some of the original information might be inferred. For example, it is easy to
 deduce user's orientation in space if absolute or geomagnetic orientation sensors are used,
-therefore, those sensors must [=request permission to use|request permission to use=]
-"magnetometer" as it provides information about orientation of device in relation to Earth's
+therefore, these sensors must [=request permission to use|request permission to use=]
+magnetometer as it provides information about orientation of device in relation to Earth's
 magnetic field. In contrast, relative orientation sensor does not expose such information, thus,
-does not need to [=request permission to use|request permission to use=] "magnetometer".
+it does not need to [=request permission to use|request permission to use=] magnetometer.
 
-In order to provide fine grained control over the sensor's data,
-{{PermissionDescriptor|permission descriptors}} may be used. For example, descriptor can contain
-settings for accuracy or [=sampling frequency=].
-
-Here is an example of {{PermissionDescriptor}} for a possible extension of the Permission API for
-accelerometer sensor.
+{{PermissionDescriptor|Permission descriptors}} can also be used to set maximum allowed limits
+for accuracy or [=sampling frequency=]. An example for a possible extension of the Permission API
+for accelerometer sensor is given below.
 
 <pre class=example>
     dictionary AccelerometerPermissionDescriptor : PermissionDescriptor {
