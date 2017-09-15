@@ -44,7 +44,7 @@
         var SUPPORTED_REPORTING_MODES = ["auto"];
         var currentReportingMode = "auto";
         var associatedSensors = new Set();
-        var state = "idle"; // one of idle, activating, active, primed,
+        var _state = "idle"; // one of idle, activating, active, primed,
         var currentReading = null;
         var cachedReading = null;
         var _watchId = null;
@@ -119,9 +119,9 @@
                     var opt = getOptions();
                     var optChanged = haveOptionsChanged(opt);
                     _options = opt;
-                    var currentState = state;
+                    var currentState = _state;
                     if (currentState == "idle") {
-                        state = "activating";
+                        _state = "activating";
                         activate(opt);
                     } else if (currentState == "activating") {
                         activate(opt);
@@ -146,7 +146,7 @@
             associatedSensors.delete(sensor);
             console.log("registrar", Array.from(associatedSensors))
             if (associatedSensors.size == 0) {
-                state = "idle";
+                _state = "idle";
                 _timeout = setTimeout(function() {
                     currentReading = null;
                 }, 20 * 1000)
@@ -172,8 +172,8 @@
         
         function ondata(position) {
             var reading = currentReading = toReading(position);
-            if (state == "activating") {
-                state = "active";
+            if (_state == "activating") {
+                _state = "active";
             }
             Array.from(associatedSensors).forEach(function(sensor) {
                 updateReading(sensor, reading)
@@ -297,7 +297,7 @@
     
     function updateReading(sensor, reading) {
         setSlot(sensor, "reading", reading);
-        if (sensor.state == "activating") {
+        if (sensor._state == "activating") {
             updateState(sensor, "active");
         }
         queueATask(function() {
@@ -339,11 +339,6 @@
             Sensor.call(this);
         }
         GeolocationSensor.prototype = Object.create(Sensor.prototype, {
-            state: {
-                get: function() {
-                    return getSlot(this, "state");
-                }
-            },
             reading: {
                 get: function() {
                     return getSlot(this, "reading");
@@ -353,7 +348,7 @@
         GeolocationSensor.prototype.constructor = GeolocationSensor;
     
         GeolocationSensor.prototype.start = function() {
-            if (this.state == "activating" || this.state == "active") {
+            if (this._state == "activating" || this._state == "active") {
                 throw new DOMException("Sensor already started.", "InvalidStateError");
             }
             updateState(this, "activating");
@@ -362,7 +357,7 @@
     
         GeolocationSensor.prototype.stop = function() {
             console.log("stop")
-            var state = this.state;
+            var state = this._state;
             if (state == "idle" || state == "error") {
                 throw new DOMException("Sensor already stopped.", "InvalidStateError");
             }
