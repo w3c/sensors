@@ -44,7 +44,7 @@
         var SUPPORTED_REPORTING_MODES = ["auto"];
         var currentReportingMode = "auto";
         var associatedSensors = new Set();
-        var _state = "idle"; // one of idle, activating, active, primed,
+        var _state = "idle"; // one of idle, activating, activated
         var currentReading = null;
         var cachedReading = null;
         var _watchId = null;
@@ -128,7 +128,7 @@
                         if (canEmitCachedReading(sensor)) {
                             updateReading(sensor, currentReading);
                         }
-                    } else if (currentState == "active") {
+                    } else if (currentState == "activated") {
                         if (optChanged) {
                             activate(opt);
                         }
@@ -173,7 +173,7 @@
         function onreading(position) {
             var reading = currentReading = toReading(position);
             if (_state == "activating") {
-                _state = "active";
+                _state = "activated";
             }
             Array.from(associatedSensors).forEach(function(sensor) {
                 updateReading(sensor, reading)
@@ -305,7 +305,7 @@
         setSlot(sensor, "heading", reading.heading);
         setSlot(sensor, "speed", reading.speed);
         if (sensor._state == "activating") {
-            updateState(sensor, "active");
+            updateState(sensor, "activated");
         }
         queueATask(function() {
             var event = new SensorReadingEvent("change", {
@@ -397,7 +397,7 @@
         GeolocationSensor.prototype.constructor = GeolocationSensor;
     
         GeolocationSensor.prototype.start = function() {
-            if (this._state == "activating" || this._state == "active") {
+            if (this._state == "activating" || this._state == "activated") {
                 throw new DOMException("Sensor already started.", "InvalidStateError");
             }
             updateState(this, "activating");
