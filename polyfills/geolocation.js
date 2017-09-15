@@ -297,6 +297,13 @@
     
     function updateReading(sensor, reading) {
         setSlot(sensor, "reading", reading);
+        setSlot(sensor, "latitude", reading.latitude);
+        setSlot(sensor, "longitude", reading.longitude);
+        setSlot(sensor, "altitude", reading.altitude);
+        setSlot(sensor, "accuracy", reading.accuracy);
+        setSlot(sensor, "altitudeAccuracy", reading.altitudeAccuracy);
+        setSlot(sensor, "heading", reading.heading);
+        setSlot(sensor, "speed", reading.speed);
         if (sensor._state == "activating") {
             updateState(sensor, "active");
         }
@@ -334,6 +341,13 @@
         
         function GeolocationSensor(options) {
             setSlot(this, "options", options || {});
+            setSlot(this, "latitude", "null");
+            setSlot(this, "longitude", "null");
+            setSlot(this, "altitude", "null");
+            setSlot(this, "accuracy", "null");
+            setSlot(this, "altitudeAccuracy", "null");
+            setSlot(this, "heading", "null");
+            setSlot(this, "speed", "null");
             setSlot(this, "state", "idle");
             setSlot(this, "reading", "null");
             Sensor.call(this);
@@ -342,6 +356,41 @@
             reading: {
                 get: function() {
                     return getSlot(this, "reading");
+                }
+            },
+            latitude: {
+                get: function() {
+                    return getSlot(this, "reading").latitude;
+                }
+            },
+            longitude: {
+                get: function() {
+                    return getSlot(this, "reading").longitude;
+                }
+            },
+            altitude: {
+                get: function() {
+                    return getSlot(this, "reading").altitude;
+                }
+            },
+            accuracy: {
+                get: function() {
+                    return getSlot(this, "reading").accuracy;
+                }
+            },
+            altitudeAccuracy: {
+                get: function() {
+                    return getSlot(this, "reading").altitudeAccuracy;
+                }
+            },
+            heading: {
+                get: function() {
+                    return getSlot(this, "reading").heading;
+                }
+            },
+            speed: {
+                get: function() {
+                    return getSlot(this, "reading").speed;
                 }
             }
         });
