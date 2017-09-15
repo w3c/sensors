@@ -170,7 +170,7 @@
             });
         }
         
-        function ondata(position) {
+        function onreading(position) {
             var reading = currentReading = toReading(position);
             if (_state == "activating") {
                 _state = "active";
@@ -209,7 +209,7 @@
             if (_watchId) {
                 navigator.geolocation.clearWatch(_watchId);
             }
-            _watchId = navigator.geolocation.watchPosition(ondata, onerror, {
+            _watchId = navigator.geolocation.watchPosition(onreading, onerror, {
                 enableHighAccuracy: options.accuracy == "high",
                 maximumAge: 0, 
                 timeout: Infinity
