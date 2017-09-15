@@ -331,10 +331,6 @@
     
     function updateState(sensor, state) {
         setSlot(sensor, "state", state);
-        queueATask(function() {
-            var event = new Event("statechange");
-            sensor.dispatchEvent(event);
-        });
     }
 
     var GeolocationSensor = (function () {
