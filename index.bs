@@ -751,14 +751,16 @@ A <dfn id=concept-sensor>sensor</dfn> has an associated [=ordered set|set=]
 of <dfn>activated sensor objects</dfn>.
 This set is initially [=set/is empty|empty=].
 
-A [=sensor=] has an associated <dfn>latest reading</dfn> [=ordered map|map=]
-which holds the latest available [=sensor readings=].
+The current [=browsing context=]'s [=sensor=] has an associated <dfn>latest reading</dfn>
+[=ordered map|map=] which holds the latest available [=sensor readings=].
 
-Any time the UA obtains a new [=sensor reading=] for a [=sensor=] from the underlying platform,
-it invokes [=update latest reading=] with the [=sensor=] and the [=sensor reading=] as arguments.
+Note: User agents can share [=sensor readings=] [=ordered map|map=] between different
+[=browsing context|contexts=] only if the [=origins=] of these contexts' [=active documents=]
+are [=same origin-domain=].
 
-Issue: does the [=latest reading=] map need to be
-tied to an origin?
+Any time the user agent obtains a new [=sensor reading=] for a [=sensor=] from the underlying
+platform, it invokes [=update latest reading=] with the [=sensor=] and the [=sensor reading=]
+as arguments.
 
 The [=latest reading=] [=ordered map|map=]
 contains an [=map/entry=]
