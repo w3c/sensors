@@ -9,3 +9,13 @@ body { margin:0; padding:0;}
     background-color:
     #fff; opacity: 0.5;
 }
+#note_box {
+    font-family: monospace, sans-serif;
+    margin-top: 150px;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 80%;
+    background-color: #E9FBE9;
+    color: gray;
+}

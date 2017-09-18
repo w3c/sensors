@@ -10,6 +10,17 @@
         <script src="./map.js"></script>
     </head>
     <body>
+        <div id="note_box">
+            <p>
+                We're using the navigator.permissions.query() API to find out
+                whether you allow this site to access your location. Use your
+                browser UI to grant location access to this site if you wish
+                to experience this example.
+            </p>
+            <p>
+                Chrome: Secure badge &gt; Location &gt; Always allow on this site
+            </p>
+        </div>
         <div id="map"></div>
         <p id="info_box"><a href="">refresh</a></p>
         <script src="../../polyfills/geolocation.js"></script>

@@ -195,7 +195,7 @@
                 default:
                     type = "UnknownError";
             }
-            error = new DOMException(err.message, type);
+            error = new DOMException(error.message, type);
             Array.from(associatedSensors).forEach(function(sensor) {
                 emitError(sensor, error)
             });
