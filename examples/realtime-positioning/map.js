@@ -57,7 +57,7 @@ function infoBox(element_id) {
         var lines = [];
         lines.push("Lat: " + (coords ? coords[0] : "…"));
         lines.push("Lng: " + (coords ? coords[1] : "…"));
-        lines.push("Accuracy: " + ((accuracy + "m") || "…"));
+        lines.push("Accuracy: " + (accuracy ? accuracy + "m" : "…"));
         lines.push(err ? "Error: " + err.message : "");
         lines.push("Last update: <span id=last_update>" + displayTimeInterval() + "</span> ago");
         lines.push("Update count: " + update_count);
