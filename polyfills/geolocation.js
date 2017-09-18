@@ -44,7 +44,7 @@
         var SUPPORTED_REPORTING_MODES = ["auto"];
         var currentReportingMode = "auto";
         var associatedSensors = new Set();
-        var state = "idle"; // one of idle, activating, active, primed,
+        var _state = "idle"; // one of idle, activating, activated
         var currentReading = null;
         var cachedReading = null;
         var _watchId = null;
@@ -119,16 +119,16 @@
                     var opt = getOptions();
                     var optChanged = haveOptionsChanged(opt);
                     _options = opt;
-                    var currentState = state;
+                    var currentState = _state;
                     if (currentState == "idle") {
-                        state = "activating";
+                        _state = "activating";
                         activate(opt);
                     } else if (currentState == "activating") {
                         activate(opt);
                         if (canEmitCachedReading(sensor)) {
                             updateReading(sensor, currentReading);
                         }
-                    } else if (currentState == "active") {
+                    } else if (currentState == "activated") {
                         if (optChanged) {
                             activate(opt);
                         }
@@ -146,7 +146,7 @@
             associatedSensors.delete(sensor);
             console.log("registrar", Array.from(associatedSensors))
             if (associatedSensors.size == 0) {
-                state = "idle";
+                _state = "idle";
                 _timeout = setTimeout(function() {
                     currentReading = null;
                 }, 20 * 1000)
@@ -170,10 +170,10 @@
             });
         }
         
-        function ondata(position) {
+        function onreading(position) {
             var reading = currentReading = toReading(position);
-            if (state == "activating") {
-                state = "active";
+            if (_state == "activating") {
+                _state = "activated";
             }
             Array.from(associatedSensors).forEach(function(sensor) {
                 updateReading(sensor, reading)
@@ -209,7 +209,7 @@
             if (_watchId) {
                 navigator.geolocation.clearWatch(_watchId);
             }
-            _watchId = navigator.geolocation.watchPosition(ondata, onerror, {
+            _watchId = navigator.geolocation.watchPosition(onreading, onerror, {
                 enableHighAccuracy: options.accuracy == "high",
                 maximumAge: 0, 
                 timeout: Infinity
@@ -297,11 +297,18 @@
     
     function updateReading(sensor, reading) {
         setSlot(sensor, "reading", reading);
-        if (sensor.state == "activating") {
-            updateState(sensor, "active");
+        setSlot(sensor, "latitude", reading.latitude);
+        setSlot(sensor, "longitude", reading.longitude);
+        setSlot(sensor, "altitude", reading.altitude);
+        setSlot(sensor, "accuracy", reading.accuracy);
+        setSlot(sensor, "altitudeAccuracy", reading.altitudeAccuracy);
+        setSlot(sensor, "heading", reading.heading);
+        setSlot(sensor, "speed", reading.speed);
+        if (sensor._state == "activating") {
+            updateState(sensor, "activated");
         }
         queueATask(function() {
-            var event = new SensorReadingEvent("change", {
+            var event = new SensorReadingEvent("reading", {
                 reading: reading
             });
             sensor.dispatchEvent(event);
@@ -324,36 +331,69 @@
     
     function updateState(sensor, state) {
         setSlot(sensor, "state", state);
-        queueATask(function() {
-            var event = new Event("statechange");
-            sensor.dispatchEvent(event);
-        });
     }
 
     var GeolocationSensor = (function () {
         
         function GeolocationSensor(options) {
             setSlot(this, "options", options || {});
+            setSlot(this, "latitude", "null");
+            setSlot(this, "longitude", "null");
+            setSlot(this, "altitude", "null");
+            setSlot(this, "accuracy", "null");
+            setSlot(this, "altitudeAccuracy", "null");
+            setSlot(this, "heading", "null");
+            setSlot(this, "speed", "null");
             setSlot(this, "state", "idle");
             setSlot(this, "reading", "null");
             Sensor.call(this);
         }
         GeolocationSensor.prototype = Object.create(Sensor.prototype, {
-            state: {
-                get: function() {
-                    return getSlot(this, "state");
-                }
-            },
             reading: {
                 get: function() {
                     return getSlot(this, "reading");
+                }
+            },
+            latitude: {
+                get: function() {
+                    return getSlot(this, "reading").latitude;
+                }
+            },
+            longitude: {
+                get: function() {
+                    return getSlot(this, "reading").longitude;
+                }
+            },
+            altitude: {
+                get: function() {
+                    return getSlot(this, "reading").altitude;
+                }
+            },
+            accuracy: {
+                get: function() {
+                    return getSlot(this, "reading").accuracy;
+                }
+            },
+            altitudeAccuracy: {
+                get: function() {
+                    return getSlot(this, "reading").altitudeAccuracy;
+                }
+            },
+            heading: {
+                get: function() {
+                    return getSlot(this, "reading").heading;
+                }
+            },
+            speed: {
+                get: function() {
+                    return getSlot(this, "reading").speed;
                 }
             }
         });
         GeolocationSensor.prototype.constructor = GeolocationSensor;
     
         GeolocationSensor.prototype.start = function() {
-            if (this.state == "activating" || this.state == "active") {
+            if (this._state == "activating" || this._state == "activated") {
                 throw new DOMException("Sensor already started.", "InvalidStateError");
             }
             updateState(this, "activating");
@@ -362,7 +402,7 @@
     
         GeolocationSensor.prototype.stop = function() {
             console.log("stop")
-            var state = this.state;
+            var state = this._state;
             if (state == "idle" || state == "error") {
                 throw new DOMException("Sensor already stopped.", "InvalidStateError");
             }
