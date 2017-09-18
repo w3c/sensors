@@ -308,7 +308,7 @@
             updateState(sensor, "activated");
         }
         queueATask(function() {
-            var event = new SensorReadingEvent("change", {
+            var event = new SensorReadingEvent("reading", {
                 reading: reading
             });
             sensor.dispatchEvent(event);
