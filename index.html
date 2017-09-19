@@ -1183,8 +1183,9 @@ Possible extra rowspan handling
       background-attachment: fixed;
     }
   </style>
-  <meta content="Bikeshed version a8e0e59b98ece73484bb5e13aed3b57d4049a131" name="generator">
+  <meta content="Bikeshed version 6e949445d0006e32e94031287e7088aa812092a0" name="generator">
   <link href="https://www.w3.org/TR/generic-sensor/" rel="canonical">
+  <meta content="a271b771f69cb3be985187585eb39f4467226e1c" name="document-revision">
 <style>
     emu-val {
       font-weight: bold;
@@ -1458,7 +1459,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-09-15">15 September 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-09-18">18 September 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1469,7 +1470,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
      <dd><a href="https://www.w3.org/TR/2017/WD-generic-sensor-20170530/" rel="prev">https://www.w3.org/TR/2017/WD-generic-sensor-20170530/</a>
      <dt>Feedback:
      <dd><span><a href="mailto:public-device-apis@w3.org?subject=%5Bgeneric-sensor%5D%20YOUR%20TOPIC%20HERE">public-device-apis@w3.org</a> with subject line “<kbd>[generic-sensor] <i data-lt="">… message topic …</i></kbd>” (<a href="https://lists.w3.org/Archives/Public/public-device-apis/" rel="discussion">archives</a>)</span>
-     <dd>&lt;a href="https://github.com/w3c/sensors">GitHub&lt;/a> (&lt;a href="https://github.com/w3c/sensors/issues/new">new issue&lt;/a>, &lt;a href="https://github.com/w3c/sensors/milestone/2">level 1 issues&lt;/a>, &lt;a href="https://github.com/w3c/sensors/issues">all issues&lt;/a>)
+     <dd><span><a href="https://github.com/w3c/sensors">GitHub</a> (<a href="https://github.com/w3c/sensors/issues/new">new issue</a>, <a href="https://github.com/w3c/sensors/milestone/2">level 1 issues</a>, <a href="https://github.com/w3c/sensors/issues">all issues</a>)</span>
      <dt class="editor">Editors:
      <dd class="editor p-author h-card vcard" data-editor-id="50572"><span class="p-name fn">Rick Waldron</span> (<span class="p-org org">JS Foundation</span>)
      <dd class="editor p-author h-card vcard" data-editor-id="78325"><a class="p-name fn u-url url" href="https://intel.com/">Mikhail Pozdnyakov</a> (<span class="p-org org">Intel Corporation</span>)
@@ -1477,7 +1478,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
      <dt class="editor">Former Editor:
      <dd class="editor p-author h-card vcard" data-editor-id="60809"><a class="p-name fn u-url url" href="http://tobie.me">Tobie Langel</a> (<span class="p-org org">Codespeaks, formerly on behalf of Intel Corporation</span>) <a class="u-email email" href="mailto:tobie@codespeaks.com">tobie@codespeaks.com</a>
      <dt>Other:
-     <dd><a href="https://github.com/w3c/web-platform-tests/tree/master/generic-sensor">Test suite</a>, <a href="https://github.com/w3c/sensors/commits/master/index.bs">latest version history</a>, <a href="https://github.com/w3c/sensors/commits/gh-pages/index.bs">previous version history</a>
+     <dd><span><a href="https://github.com/w3c/web-platform-tests/tree/master/generic-sensor">Test suite</a>, <a href="https://github.com/w3c/sensors/commits/master/index.bs">latest version history</a>, <a href="https://github.com/w3c/sensors/commits/gh-pages/index.bs">previous version history</a></span>
     </dl>
    </div>
    <div data-fill-with="warning"></div>
@@ -1731,7 +1732,7 @@ define ways to uniquely identify each one.</p>
    <div class="example" id="example-fdd94e11">
     <a class="self-link" href="#example-fdd94e11"></a> For example checking the pressure of the left rear tire: 
 <pre class="highlight"><span class="kd">var</span> sensor <span class="o">=</span> <span class="k">new</span> DirectTirePressureSensor<span class="p">({</span> position<span class="o">:</span> <span class="s2">"rear"</span><span class="p">,</span> side<span class="o">:</span> <span class="s2">"left"</span> <span class="p">});</span>
-sensor<span class="p">.</span>onreading <span class="o">=</span> _ <span class="p">=></span> console<span class="p">.</span>log<span class="p">(</span>sensor<span class="p">.</span>pressure<span class="p">);</span>
+sensor<span class="p">.</span>onreading <span class="o">=</span> _ <span class="o">=></span> console<span class="p">.</span>log<span class="p">(</span>sensor<span class="p">.</span>pressure<span class="p">);</span>
 sensor<span class="p">.</span>start<span class="p">();</span>
 </pre>
    </div>
@@ -1795,8 +1796,8 @@ and defensive programming which includes:</p>
 <pre class="highlight"><span class="k">try</span> <span class="p">{</span> <span class="c1">// No need to feature detect thanks to try..catch block.</span>
 <span class="c1"></span>    <span class="kd">var</span> sensor <span class="o">=</span> <span class="k">new</span> GeolocationSensor<span class="p">();</span>
     sensor<span class="p">.</span>start<span class="p">();</span>
-    sensor<span class="p">.</span>onerror <span class="o">=</span> error <span class="p">=></span> gracefullyDegrade<span class="p">(</span>error<span class="p">);</span>
-    sensor<span class="p">.</span>onreading <span class="o">=</span> _ <span class="p">=></span> updatePosition<span class="p">(</span>sensor<span class="p">.</span>latitude<span class="p">,</span> sensor<span class="p">.</span>longitude<span class="p">);</span>
+    sensor<span class="p">.</span>onerror <span class="o">=</span> error <span class="o">=></span> gracefullyDegrade<span class="p">(</span>error<span class="p">);</span>
+    sensor<span class="p">.</span>onreading <span class="o">=</span> _ <span class="o">=></span> updatePosition<span class="p">(</span>sensor<span class="p">.</span>latitude<span class="p">,</span> sensor<span class="p">.</span>longitude<span class="p">);</span>
 <span class="p">}</span> <span class="k">catch</span><span class="p">(</span>error<span class="p">)</span> <span class="p">{</span>
     gracefullyDegrade<span class="p">(</span>error<span class="p">);</span>
 <span class="p">}</span>
@@ -2141,9 +2142,9 @@ by the underlying platform.</p>
     <p>The <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-type" id="ref-for-event-handler-event-type">event handler event types</a> for the corresponding <a href="#the-sensor-interface"> Sensor Interface</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers" id="ref-for-event-handlers">event handler</a> attributes are defined in <a href="#event-handlers">Event handlers</a> section.</p>
 <pre class="highlight"><span class="kd">let</span> acl <span class="o">=</span> <span class="k">new</span> Accelerometer<span class="p">({</span>frequency<span class="o">:</span> <span class="mi">30</span><span class="p">});</span>
 <span class="kd">let</span> max_magnitude <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-acl<span class="p">.</span>addEventListener<span class="p">(</span><span class="s1">'activate'</span><span class="p">,</span> <span class="p">()</span> <span class="p">=></span> console<span class="p">.</span>log<span class="p">(</span><span class="s1">'Ready to measure.'</span><span class="p">));</span>
-acl<span class="p">.</span>addEventListener<span class="p">(</span><span class="s1">'error'</span><span class="p">,</span> error <span class="p">=></span> console<span class="p">.</span>log<span class="p">(</span><span class="s1">'Error: '</span> <span class="o">+</span> error<span class="p">.</span>name<span class="p">));</span>
-acl<span class="p">.</span>addEventListener<span class="p">(</span><span class="s1">'reading'</span><span class="p">,</span> <span class="p">()</span> <span class="p">=></span> <span class="p">{</span>
+acl<span class="p">.</span>addEventListener<span class="p">(</span><span class="s1">'activate'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=></span> console<span class="p">.</span>log<span class="p">(</span><span class="s1">'Ready to measure.'</span><span class="p">));</span>
+acl<span class="p">.</span>addEventListener<span class="p">(</span><span class="s1">'error'</span><span class="p">,</span> error <span class="o">=></span> console<span class="p">.</span>log<span class="p">(</span><span class="s1">'Error: '</span> <span class="o">+</span> error<span class="p">.</span>name<span class="p">));</span>
+acl<span class="p">.</span>addEventListener<span class="p">(</span><span class="s1">'reading'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=></span> <span class="p">{</span>
     <span class="kd">let</span> magnitude <span class="o">=</span> Math<span class="p">.</span>hypot<span class="p">(</span>acl<span class="p">.</span>x<span class="p">,</span> acl<span class="p">.</span>y<span class="p">,</span> acl<span class="p">.</span>z<span class="p">);</span>
     <span class="k">if</span> <span class="p">(</span>magnitude <span class="o">></span> max_magnitude<span class="p">)</span> <span class="p">{</span>
         max_magnitude <span class="o">=</span> magnitude<span class="p">;</span>
