@@ -182,20 +182,20 @@ The Generic Sensor API is designed to make the most common use cases straightfor
 while still enabling more complex use cases.
 
 Most devices deployed today do not carry more than one
-[=sensor=] of each [=sensor type|sensor types=].
+[=device sensor|sensor=] of each [=sensor type|sensor types=].
 This shouldn't come as a surprise since use cases for more than
-a [=sensor=] of a given [=sensor types|type=] are rare
+a [=device sensor|sensor=] of a given [=sensor types|type=] are rare
 and generally limited to specific [=sensor types=],
 such as proximity sensors.
 
 The API therefore makes it easy to interact with
-the device's default (and often unique) [=sensor=]
+the device's default (and often unique) [=device sensor|sensor=]
 for each [=sensor types|type=]
 simply by instantiating the corresponding {{Sensor}} subclass.
 
-Indeed, without specific information identifying a particular [=sensor=]
+Indeed, without specific information identifying a particular [=device sensor|sensor=]
 of a given [=sensor type|type=],
-the default [=sensor=] is chosen.
+the default [=device sensor|sensor=] is chosen.
 
 <div class="example">
     Listening to geolocation changes:
@@ -217,11 +217,11 @@ the default [=sensor=] is chosen.
 
 Note: extension to this specification may choose not to define a default sensor
 when doing so wouldn't make sense.
-For example, it might be difficult to agree on an obvious default [=sensor=] for
-proximity [=sensors=].
+For example, it might be difficult to agree on an obvious default [=device sensor|sensor=] for
+proximity [=device sensor|sensors=].
 
 In cases where
-multiple [=sensors=] of the same [=sensor type|type=]
+multiple [=device sensor|sensors=] of the same [=sensor type|type=]
 may coexist on the same device,
 specification extension will have to
 define ways to uniquely identify each one.
@@ -314,13 +314,13 @@ and defensive programming which includes:
 
 [=sensor readings|Sensor readings=] are sensitive data and could become a subject of
 various attacks from malicious Web pages. Before discussing the mitigation strategies we
-briefly enumerate the main types of the [=sensor=]'s privacy and security threats.
+briefly enumerate the main types of the [=device sensor|sensor=]'s privacy and security threats.
 The [[MOBILESENSORS]] categorizes main threats into [[#location-tracking|location tracking]],
 [[#eavesdropping|eavesdropping]], [[#keystroke-monitoring|keystroke monitoring]],
 [[#device-fingerprinting|device fingerprinting]], and [[#user-identifying|user identification]].
 This categorization is a good fit for this specification.
 
-The risk of successful attack can increase when [=sensors=] are used with each other,
+The risk of successful attack can increase when [=device sensor|sensors=] are used with each other,
 in combination with other functionality, or when used over time,
 specifically with the risk of correlation of data
 and user identification through fingerprinting.
@@ -353,12 +353,12 @@ it may be possible for that code to correlate the user across those two contexts
 creating unanticipated tracking mechanisms.
 
 User agents should consider providing the user
-an indication of when the [=sensor=] is used
+an indication of when the [=device sensor|sensor=] is used
 and allowing the user to disable it.
 Additionally, user agents may consider
 allowing the user to verify past and current sensor use patterns.
 
-Web application developers that use [=sensors=] should
+Web application developers that use [=device sensor|sensors=] should
 perform a privacy impact assessment of their application
 taking all aspects of their application into consideration.
 
@@ -445,7 +445,7 @@ the [=top-level browsing contexts=] suddenly becomes in a position
 to carry out a skimming attack against the [=browsing context=] that has [=gains focus|gained focus=].
 
 To mitigate this threat,
-[=sensor reading|readings=] of [=sensors=] running in a [=top-level browsing contexts=]
+[=sensor reading|readings=] of [=device sensor|sensors=] running in a [=top-level browsing contexts=]
 are not delivered in such cases.
 A [=security check=] is run before [=sensor readings=] are delivered to ensure that.
 
@@ -552,12 +552,15 @@ which would have issues of its own.
 
 <h3 id="concepts-sensors">Sensors</h3>
 
-A [=sensor=] measures different physical quantities
+The term <dfn id="concept-device-sensor">device sensor</dfn> refers to a device's underlying
+physical sensor instance.
+
+The [=device sensors=] measure different physical quantities
 and provide corresponding <dfn>raw sensor readings</dfn>
 which are a source of information about the user and their environment.
 
 Each [=raw sensor reading|reading=] is composed of the <dfn lt="reading value">values</dfn>
-of the different physical quantities measured by the [=sensor=]
+of the different physical quantities measured by the [=device sensor|sensor=]
 at time <var ignore>t<sub>n</sub></var>.
 
 Known, <em>predictable</em> discrepancies between [=raw sensor readings=]
@@ -569,6 +572,22 @@ through a process called [=sensor fusion=].
 
 [=calibration|Calibrated=] [=raw sensor readings=] are referred to as <dfn>sensor readings</dfn>,
 whether or not they have undergone [=sensor fusion=].
+
+The term <dfn id="concept-platform-sensor">platform sensor</dfn> refers to platform interfaces,
+with which the user agent ineracts to obtain [=sensor readings=] for a single [=sensor type=]
+originated from one or several [=device sensors=].
+
+[=Platform sensor=] can be defined by the underlying platform (e.g. in a native sensors framework)
+or by the user agent, if it has a direct access to [=device sensor=].
+
+In simple case a [=platform sensor=] corresponds to a single [=device sensor=],
+but if the provided [=sensor readings=] are product of [=sensor fusion=] performed
+in software, the [=platform sensor=] corresponds to a set of [=device sensors=]
+involved in the [=sensor fusion=] process.
+
+Note: [=platform sensors=] created through [=sensor fusion=] are sometimes
+called virtual or synthetic sensors. However, the specification doesn't
+make any practical distinction between them.
 
 <h3 id="concepts-sensor-types">Sensor Types</h3>
 
@@ -642,14 +661,6 @@ by using the raw output of a gyroscope
 and waiting for quick rotational movements of the head
 to compensate for drift.
 
-Note: [=sensors=] created through [=sensor fusion=] are sometimes
-called virtual or synthetic sensors.
-However, the specification doesn't make any practical differences between them,
-preferring instead to differentiate [=sensors=] as to whether they describe
-the kind of [=sensor readings|readings=] produced--these are [=high-level=] sensors--
-or how the sensor is implemented ([=low-level=] sensors).
-
-
 <h3 id="concepts-reporting-modes">Reporting Modes</h3>
 
 Issue: **This feature is at risk.**
@@ -686,7 +697,7 @@ when no requirements are made as to what [=frequency=] they should operate at.
 Note: [=reporting mode=] is distinct from,
 but related to,
 [=sensor readings=] acquisition.
-If [=sensors=] are polled at regular interval,
+If [=device sensors=] are polled at regular interval,
 as is generally the case,
 [=reporting mode=] can be either [=periodic=] or [=implementation specific=].
 However, when the underlying implementation itself only provides [=sensor readings=]
@@ -710,7 +721,7 @@ and thus "on change" sensors would be useful.
 
 ## Sampling Frequency ## {#concepts-sampling-frequency}
 
-For the purpose of this specification, <dfn>sampling frequency</dfn> for a [=sensor=] is defined
+For the purpose of this specification, <dfn>sampling frequency</dfn> for a [=platform sensor=] is defined
 as a frequency at which the UA obtains [=sensor readings=] from the underlying platform.
 
 <h2 id="model">Model</h2>
@@ -724,9 +735,9 @@ whose [=inherited interfaces=] contains {{Sensor}}.
 
 A [=sensor type=] has a [=ordered set|set=] of <dfn export>associated sensors</dfn>.
 
-If a [=sensor type=] has more than one [=sensor=],
+If a [=sensor type=] has more than one [=platform sensor=],
 it must have a set of associated <dfn export>identifying parameters</dfn>
-to select the right [=sensor=] to associate to each new {{Sensor}} objects.
+to select the right [=platform sensor=] to associate to each new {{Sensor}} objects.
 
 A [=sensor type=] may have a <dfn export>default sensor</dfn>.
 
@@ -749,19 +760,19 @@ A [=sensor type=] has a [=permission revocation algorithm=].
 
 <h3 id="model-sensor">Sensor</h3>
 
-A <dfn id=concept-sensor>sensor</dfn> has an associated [=ordered set|set=]
+A [=platform sensor=] has an associated [=ordered set|set=]
 of <dfn>activated sensor objects</dfn>.
 This set is initially [=set/is empty|empty=].
 
-The current [=browsing context=]'s [=sensor=] has an associated <dfn>latest reading</dfn>
+The current [=browsing context=]'s [=platfrom sensor=] has an associated <dfn>latest reading</dfn>
 [=ordered map|map=] which holds the latest available [=sensor readings=].
 
 Note: User agents can share [=sensor readings=] [=ordered map|map=] between different
 [=browsing context|contexts=] only if the [=origins=] of these contexts' [=active documents=]
 are [=same origin-domain=].
 
-Any time the user agent obtains a new [=sensor reading=] for a [=sensor=] from the underlying
-platform, it invokes [=update latest reading=] with the [=sensor=] and the [=sensor reading=]
+Any time the user agent obtains a new [=sensor reading=] for a [=platfrom sensor=] from the underlying
+platform, it invokes [=update latest reading=] with the [=platfrom sensor=] and the [=sensor reading=]
 as arguments.
 
 The [=latest reading=] [=ordered map|map=]
@@ -774,7 +785,7 @@ expressed in milliseconds that passed since the [=time origin=].
 unless the [=latest reading=] [=ordered map|map=] caches a previous [=sensor readings|reading=].
 
 The other [=map/entries=] of the [=latest reading=] [=ordered map|map=]
-hold the values of the different quantities measured by the [=sensor=].
+hold the values of the different quantities measured by the [=platform sensor=].
 The [=map/keys=] of these [=map/entries=] must match
 the [=attribute=] [=identifier=] defined by
 the [=sensor type=]'s associated interface.
@@ -791,9 +802,9 @@ caches a previous [=sensor readings|reading=].
 
 Note: there are additional privacy concerns when using cached [=sensor readings|readings=]
 which predate either [=navigating=] to resources in the current [=origin=],
-or being granted permission to access the [=sensor=]. -->
+or being granted permission to access the [=platform sensor=]. -->
 
-A [=sensor=] has an associated <dfn>current sampling frequency</dfn> which is initially null.
+A [=platform sensor=] has an associated <dfn>current sampling frequency</dfn> which is initially null.
 
 For a non[=set/is empty|empty=] [=ordered set|set=] of [=activated sensor objects=] the
 [=current sampling frequency=] is equal to <dfn>optimal sampling frequency</dfn>, which is estimated
@@ -827,15 +838,15 @@ dictionary SensorOptions {
 };
 </pre>
 
-A {{Sensor}} object has an associated [=sensor=].
+A {{Sensor}} object has an associated [=platform sensor=].
 
 The [=task source=] for the [=tasks=] mentioned in this specification is the <dfn>sensor task source</dfn>.
 
 <div class="example">
     In the following example, we construct accelerometer sensor and add
-    [=event listener|event listeners=] to get [=event|events=] for [=sensor=] activation, error
+    [=event listener|event listeners=] to get [=event|events=] for [=platform sensor=] activation, error
     conditions and notifications about newly available [=sensor readings=]. The example measures
-    and logs maximum total acceleration of a device hosting the [=sensor=].
+    and logs maximum total acceleration of a device hosting the [=platform sensor=].
 
     The [=event handler event types=] for the corresponding
     [[#the-sensor-interface| Sensor Interface]]'s [=event handler=] attributes are defined in
@@ -980,7 +991,7 @@ with the internal slots described in the following table:
             <td><dfn attribute for=Sensor>\[[identifyingParameters]]</dfn></td>
             <td>
                 A [=sensor type=]-specific group of [=dictionary members=]
-                used to select the correct [=sensor=]
+                used to select the correct [=platform sensor=]
                 to associate to this {{Sensor}} object.
             </td>
         </tr>
@@ -1158,17 +1169,17 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     : input
     :: |sensor_instance|, a {{Sensor}} object.
     : output
-    :: True if sensor instance was associated with a [=sensor=],
+    :: True if sensor instance was associated with a [=platform sensor=],
        false otherwise.
 
     1.  If |sensor_instance|.{{[[identifyingParameters]]}} is set and
         |sensor_instance|.{{[[identifyingParameters]]}} allows
-        a unique [=sensor=] to be identified, then:
-        1.  let |sensor| be that [=sensor=],
+        a unique [=platform sensor=] to be identified, then:
+        1.  let |sensor| be that [=platform sensor=],
         1.  associate |sensor_instance| with |sensor|.
         1.  Return true.
     1.  If the [=sensor type=] of |sensor_instance| has an associated [=default sensor=]
-        and there is a corresponding [=sensor=] on the device, then
+        and there is a corresponding [=platform sensor=] on the device, then
         1.  associate |sensor_instance| with [=default sensor=].
         1.  Return true.    
     1.  Return false.
@@ -1184,7 +1195,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     : output
     :: None
 
-    1.  Let |sensor| be the [=sensor=] associated with |sensor_instance|.
+    1.  Let |sensor| be the [=platform sensor=] associated with |sensor_instance|.
     1.  [=set/Append=] |sensor_instance| to |sensor|'s set of [=activated sensor objects=].
     1.  Invoke [=set sensor settings=] with |sensor| as argument.
     1.  Queue a task to run [=notify activated state=] with |sensor_instance|
@@ -1203,7 +1214,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
 
     1.  Remove all [=tasks=] associated with |sensor_instance| from the [=task queue=] associated
         with [=sensor task source=].
-    1.  Let |sensor| be the [=sensor=] associated with |sensor_instance|.
+    1.  Let |sensor| be the [=platform sensor=] associated with |sensor_instance|.
     1.  If |sensor|'s set of [=activated sensor objects=] [=set/contains=] |sensor_instance|,
         1.  [=set/Remove=] |sensor_instance| from |sensor|'s set of [=activated sensor objects=].
         1.  Invoke [=set sensor settings=] with |sensor| as argument.
@@ -1216,7 +1227,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
 <div algorithm="revoke sensor permission">
 
     : input
-    :: |sensor|, a [=sensor=].
+    :: |sensor|, a [=platform sensor=].
     : output
     :: None
 
@@ -1234,7 +1245,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
 <div algorithm="set sensor settings">
 
     : input
-    :: |sensor|, a [=sensor=].
+    :: |sensor|, a [=platform sensor=].
     : output
     :: None
 
@@ -1253,7 +1264,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
 <div algorithm="update latest reading">
 
     : input
-    :: |sensor|, a [=sensor=].
+    :: |sensor|, a [=platform sensor=].
     :: |reading|, a [=sensor reading=].
 
     Issue: The timestamp needs to be specified more precisely,
@@ -1326,7 +1337,7 @@ in order to reduce resource consumption, notably battery usage.
     1.  Let |f| be |sensor_instance|.{{[[desiredSamplingFrequency]]}}.
         1. if |f| is set,
             1. set |frequency| to |f| capped by the upper and lower [=current sampling frequency=]
-               bounds for the associated [=sensor=].
+               bounds for the associated [=platform sensor=].
         1.  Otherwise,
             1. user agent can assign |frequency| to an appropriate value.
     1. return |frequency|.
@@ -1389,7 +1400,7 @@ in order to reduce resource consumption, notably battery usage.
 
     1.  Set |sensor_instance|.{{[[state]]}} to "activated".
     1.  [=Fire an event=] named "activate" at |sensor_instance|.
-    1.  Let |sensor| be the [=sensor=] associated with |sensor_instance|.
+    1.  Let |sensor| be the [=platform sensor=] associated with |sensor_instance|.
     1.  If |sensor|’s [=latest reading=]["timestamp"] is not null,
         1.  Queue a task to run [=notify new reading=] with |sensor_instance|
             as an argument.
@@ -1423,7 +1434,7 @@ in order to reduce resource consumption, notably battery usage.
     :: A [=sensor reading=] value or null.
 
     1.  If |sensor_instance|.{{[[state]]}} is "activated",
-        1.  Let |readings| be the [=latest reading=] of |sensor_instance|'s related [=sensor=].
+        1.  Let |readings| be the [=latest reading=] of |sensor_instance|'s related [=platform sensor=].
         1.  Return |readings|[|key|].
     1.  Otherwise, return null.
 </div>
@@ -1438,7 +1449,7 @@ in order to reduce resource consumption, notably battery usage.
     : output
     :: A [=permission state=].
 
-    1.  Let |sensor| be the [=sensor=] associated with |sensor_instance|.
+    1.  Let |sensor| be the [=platform sensor=] associated with |sensor_instance|.
     1.  Let |permission_name| be the {{PermissionName}} associated with |sensor|.
     1.  Let |state| be the result of [=request permission to use|requesting permission to use=] |permission_name|.
     1.  Return |state|.
@@ -1476,13 +1487,13 @@ Extension specifications are expected to:
 <h3 id="naming">Naming</h3>
 
 {{Sensor}} interfaces for [=low-level=] sensors should be
-named after their associated [=sensor=].
+named after their associated [=platform sensor=].
 So for example, the interface associated with a gyroscope
 should be simply named `Gyroscope`.
 {{Sensor}} interfaces for [=high-level=] sensors should be
-named by combining the physical quantity the [=sensor=] measures
+named by combining the physical quantity the [=platform sensor=] measures
 with the "Sensor" suffix.
-For example, a [=sensor=] measuring
+For example, a [=platform sensor=] measuring
 the distance at which an object is from it
 may see its associated interface called `ProximitySensor`.
 
@@ -1569,10 +1580,10 @@ An extension specification may specify the following definitions
 for each [=sensor types=]:
 
 -   A [=dictionary=] whose [=inherited dictionaries=] contains {{SensorOptions}}.
--   A [=default sensor=]. Generally, devices are equipped with a single [=sensor=]
+-   A [=default sensor=]. Generally, devices are equipped with a single [=platform sensor=]
     of each [=sensor types|type=],
     so defining a [=default sensor=] should be straightforward.
-    For [=sensor types=] where multiple [=sensors=] are common,
+    For [=sensor types=] where multiple [=device senosrs|sensors=] are common,
     extension specifications may choose not to define a [=default sensor=],
     especially when doing so would not make sense.
 -   A set of [=identifying parameters=]. TODO: replace that by an abstract operation.
@@ -1608,7 +1619,7 @@ for accelerometer sensor is given below.
 <h3 id="example-webidl">Example WebIDL</h3>
 
 Here's example WebIDL for a possible extension of this specification
-for proximity [=sensors=].
+for proximity [=device sesnors|sensors=].
 
 <pre class=example>
     [Constructor(optional ProximitySensorOptions proximitySensorOptions),
@@ -1745,7 +1756,7 @@ for their editorial input.
     <p>Because this document doesn't itself define APIs for specific [=sensor types=]--
     that is the role of extensions to this specification--
     all examples are inevitably (wishful) fabrications.
-    Although all of the [=sensors=] used a examples
+    Although all of the [=device sensor|sensors=] used a examples
     would be great candidates for building atop the Generic Sensor API,
     their inclusion in this document does not imply that the relevant Working Groups
     are planning to do so.
