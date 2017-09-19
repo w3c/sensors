@@ -780,6 +780,7 @@ Note: For example, the UA may estimate [=optimal sampling frequency=] as a Least
 [SecureContext, Exposed=Window]
 interface Sensor : EventTarget {
   readonly attribute boolean activated;
+  readonly attribute boolean hasReading;
   readonly attribute DOMHighResTimeStamp? timestamp;
   void start();
   void stop();
@@ -965,6 +966,17 @@ with the internal slots described in the following table:
     1.  Otherwise, return false.
 </div>
 
+### Sensor.hasReading ### {#sensor-has-reading}
+
+<div algorithm="sensor has reading">
+
+    The getter of the {{Sensor/hasReading!!attribute}} attribute must run these steps:
+
+    1. Let |timestamp| be the result of invoking [=get value from latest reading=] with <emu-val>this</emu-val> and "timestamp" as arguments.
+    1.  If |timestamp| is not null, return true.
+    1.  Otherwise, return false.
+</div>
+
 ### Sensor.timestamp ### {#sensor-timestamp}
 
 The getter of the {{Sensor/timestamp!!attribute}} attribute returns
@@ -1136,7 +1148,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     1.  If the [=sensor type=] of |sensor_instance| has an associated [=default sensor=]
         and there is a corresponding [=platform sensor=] on the device, then
         1.  associate |sensor_instance| with [=default sensor=].
-        1.  Return true.    
+        1.  Return true.
     1.  Return false.
 </div>
 
