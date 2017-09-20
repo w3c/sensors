@@ -1983,7 +1983,7 @@ such as temperature, air pressure, heart-rate, or luminosity.</p>
    <p><a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type①②">Sensor types</a> which are characterized by their implementation
 are referred to as <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="low-level">low-level</dfn> sensors.
 For example a Gyroscope is a <a data-link-type="dfn" href="#low-level" id="ref-for-low-level②">low-level</a> <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type①③">sensor type</a>.</p>
-   <p><a data-link-type="dfn">Sensors</a> named after their <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings②①">readings</a>,
+   <p>Sensors named after their <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings②①">readings</a>,
 regardless of the implementation,
 are said to be <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="high-level">high-level</dfn> sensors.
 For instance, geolocation sensors provide information about the user’s location,
@@ -2033,7 +2033,7 @@ to compensate for drift.</p>
 in splitting up <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type①⑧">sensor types</a> between
 those that fire events at regular intervals
 and those which don’t.</p>
-   <p><a data-link-type="dfn">Sensors</a> have different <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="reporting-modes">reporting modes</dfn>.
+   <p><a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor④">Sensors</a> have different <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="reporting-modes">reporting modes</dfn>.
 When <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings②⑤">sensor readings</a> are reported at regular intervals,
 at an adjustable <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="frequency">frequency</dfn> measured in hertz (Hz),
 the <a data-link-type="dfn" href="#reporting-modes" id="ref-for-reporting-modes①">reporting mode</a> is said to be <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="periodic">periodic</dfn>.
@@ -2048,7 +2048,7 @@ and support multiple hardware configurations. <a data-link-type="dfn" href="#per
 allows a much more fine-grained approach
 and is essential for use cases with, for example,
 low latency requirements.</p>
-   <p><a data-link-type="dfn">Sensors</a> which support <a data-link-type="dfn" href="#periodic" id="ref-for-periodic⑤">periodic reporting mode</a> <dfn data-dfn-type="dfn" data-noexport="" id="fallback">fallback<a class="self-link" href="#fallback"></a></dfn> to <a data-link-type="dfn" href="#implementation-specific" id="ref-for-implementation-specific①">implementation specific reporting mode</a> when no requirements are made as to what <a data-link-type="dfn" href="#frequency" id="ref-for-frequency①">frequency</a> they should operate at.</p>
+   <p><a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor⑤">Sensors</a> which support <a data-link-type="dfn" href="#periodic" id="ref-for-periodic⑤">periodic reporting mode</a> <dfn data-dfn-type="dfn" data-noexport="" id="fallback">fallback<a class="self-link" href="#fallback"></a></dfn> to <a data-link-type="dfn" href="#implementation-specific" id="ref-for-implementation-specific①">implementation specific reporting mode</a> when no requirements are made as to what <a data-link-type="dfn" href="#frequency" id="ref-for-frequency①">frequency</a> they should operate at.</p>
    <p class="note" role="note"><span>Note:</span> <a data-link-type="dfn" href="#reporting-modes" id="ref-for-reporting-modes③">reporting mode</a> is distinct from,
 but related to, <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings②⑧">sensor readings</a> acquisition.
 If <a data-link-type="dfn" href="#concept-device-sensor" id="ref-for-concept-device-sensor①⑨">device sensors</a> are polled at regular interval,
@@ -2068,15 +2068,15 @@ how increased sensor sampling frequency decreases latency.</p>
 how it affects threshold,
 and thus "on change" sensors would be useful.</p>
    <h3 class="heading settled" data-level="6.4" id="concepts-sampling-frequency"><span class="secno">6.4. </span><span class="content">Sampling Frequency</span><a class="self-link" href="#concepts-sampling-frequency"></a></h3>
-   <p>For the purpose of this specification, <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="sampling-frequency">sampling frequency</dfn> for a <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor④">platform sensor</a> is defined
+   <p>For the purpose of this specification, <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="sampling-frequency">sampling frequency</dfn> for a <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor⑥">platform sensor</a> is defined
 as a frequency at which the UA obtains <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings③⓪">sensor readings</a> from the underlying platform.</p>
    <h2 class="heading settled" data-level="7" id="model"><span class="secno">7. </span><span class="content">Model</span><a class="self-link" href="#model"></a></h2>
    <p class="issue" id="issue-d36d1a2e"><a class="self-link" href="#issue-d36d1a2e"></a> A diagram would really help here.</p>
    <h3 class="heading settled" data-level="7.1" id="model-sensor-type"><span class="secno">7.1. </span><span class="content">Sensor Type</span><a class="self-link" href="#model-sensor-type"></a></h3>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="sensor-type">sensor type</dfn> has an associated <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-interface" id="ref-for-dfn-interface">interface</a> whose <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-inherited-interfaces" id="ref-for-dfn-inherited-interfaces">inherited interfaces</a> contains <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor②">Sensor</a></code>.</p>
    <p>A <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type②①">sensor type</a> has a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set" id="ref-for-ordered-set">set</a> of <dfn class="dfn-paneled" data-dfn-type="dfn" data-export="" id="associated-sensors">associated sensors</dfn>.</p>
-   <p>If a <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type②②">sensor type</a> has more than one <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor⑤">platform sensor</a>,
-it must have a set of associated <dfn class="dfn-paneled" data-dfn-type="dfn" data-export="" id="identifying-parameters">identifying parameters</dfn> to select the right <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor⑥">platform sensor</a> to associate to each new <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor③">Sensor</a></code> objects.</p>
+   <p>If a <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type②②">sensor type</a> has more than one <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor⑦">platform sensor</a>,
+it must have a set of associated <dfn class="dfn-paneled" data-dfn-type="dfn" data-export="" id="identifying-parameters">identifying parameters</dfn> to select the right <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor⑧">platform sensor</a> to associate to each new <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor③">Sensor</a></code> objects.</p>
    <p>A <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type②③">sensor type</a> may have a <dfn class="dfn-paneled" data-dfn-type="dfn" data-export="" id="default-sensor">default sensor</dfn>.</p>
    <p>A <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type②④">sensor type</a> has an associated <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/permissions/#enumdef-permissionname" id="ref-for-enumdef-permissionname">PermissionName</a></code>.</p>
    <p class="note" role="note"><span>Note:</span> multiple <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type②⑤">sensor types</a> may share the same <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/permissions/#enumdef-permissionname" id="ref-for-enumdef-permissionname①">PermissionName</a></code>.</p>
@@ -2097,18 +2097,18 @@ it must have a set of associated <dfn class="dfn-paneled" data-dfn-type="dfn" da
     </ol>
    </div>
    <h3 class="heading settled" data-level="7.2" id="model-sensor"><span class="secno">7.2. </span><span class="content">Sensor</span><a class="self-link" href="#model-sensor"></a></h3>
-   <p>A <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor⑦">platform sensor</a> has an associated <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set" id="ref-for-ordered-set②">set</a> of <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="activated-sensor-objects">activated sensor objects</dfn>.
+   <p>A <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor⑨">platform sensor</a> has an associated <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set" id="ref-for-ordered-set②">set</a> of <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="activated-sensor-objects">activated sensor objects</dfn>.
 This set is initially <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-is-empty" id="ref-for-list-is-empty">empty</a>.</p>
-   <p>The current <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context①">browsing context</a>'s <a data-link-type="dfn">platfrom sensor</a> has an associated <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="latest-reading">latest reading</dfn> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map">map</a> which holds the latest available <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings③①">sensor readings</a>.</p>
+   <p>The current <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context①">browsing context</a>'s <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①⓪">platform sensor</a> has an associated <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="latest-reading">latest reading</dfn> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map">map</a> which holds the latest available <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings③①">sensor readings</a>.</p>
    <p class="note" role="note"><span>Note:</span> User agents can share <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings③②">sensor readings</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map①">map</a> between different <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context②">contexts</a> only if the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#origin-2" id="ref-for-origin-2①">origins</a> of these contexts' <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#active-document" id="ref-for-active-document">active documents</a> are <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#same-origin-domain" id="ref-for-same-origin-domain">same origin-domain</a>.</p>
-   <p>Any time the user agent obtains a new <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings③③">sensor reading</a> for a <a data-link-type="dfn">platfrom sensor</a> from the underlying
-platform, it invokes <a data-link-type="dfn" href="#update-latest-reading" id="ref-for-update-latest-reading">update latest reading</a> with the <a data-link-type="dfn">platfrom sensor</a> and the <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings③④">sensor reading</a> as arguments.</p>
+   <p>Any time the user agent obtains a new <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings③③">sensor reading</a> for a <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①①">platform sensor</a> from the underlying
+platform, it invokes <a data-link-type="dfn" href="#update-latest-reading" id="ref-for-update-latest-reading">update latest reading</a> with the <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①②">platform sensor</a> and the <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings③④">sensor reading</a> as arguments.</p>
    <p>The <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading">latest reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map②">map</a> contains an <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry" id="ref-for-map-entry">entry</a> whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-key" id="ref-for-map-key">key</a> is "timestamp" and
 whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-value" id="ref-for-map-value">value</a> is a high resolution timestamp of the time
 at which the <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading①">latest reading</a> was obtained
 expressed in milliseconds that passed since the <a data-link-type="dfn" href="http://w3c.github.io/hr-time/#time-origin" id="ref-for-time-origin">time origin</a>. <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading②">latest reading</a>["timestamp"] is initially set to null,
 unless the <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading③">latest reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map③">map</a> caches a previous <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings③⑤">reading</a>.</p>
-   <p>The other <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry" id="ref-for-map-entry①">entries</a> of the <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading④">latest reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map④">map</a> hold the values of the different quantities measured by the <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor⑧">platform sensor</a>.
+   <p>The other <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry" id="ref-for-map-entry①">entries</a> of the <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading④">latest reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map④">map</a> hold the values of the different quantities measured by the <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①③">platform sensor</a>.
 The <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-key" id="ref-for-map-key①">keys</a> of these <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry" id="ref-for-map-entry②">entries</a> must match
 the <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-attribute" id="ref-for-dfn-attribute">attribute</a> <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-identifier" id="ref-for-dfn-identifier">identifier</a> defined by
 the <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type②⑦">sensor type</a>'s associated interface.
@@ -2116,7 +2116,7 @@ The return value of the <a data-link-type="dfn" href="https://heycam.github.io/w
 easily obtained by invoking <a data-link-type="dfn" href="#get-value-from-latest-reading" id="ref-for-get-value-from-latest-reading">get value from latest reading</a> with the object implementing the <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type②⑧">sensor type</a>'s associated interface
 and the <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-attribute" id="ref-for-dfn-attribute②">attribute</a> <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-identifier" id="ref-for-dfn-identifier①">identifier</a> as arguments.</p>
    <p>The <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-value" id="ref-for-map-value①">value</a> of all <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading⑤">latest reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry" id="ref-for-map-entry③">entries</a> is initially set to null.</p>
-   <p>A <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor⑨">platform sensor</a> has an associated <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="current-sampling-frequency">current sampling frequency</dfn> which is initially null.</p>
+   <p>A <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①④">platform sensor</a> has an associated <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="current-sampling-frequency">current sampling frequency</dfn> which is initially null.</p>
    <p>For a non<a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-is-empty" id="ref-for-list-is-empty①">empty</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set" id="ref-for-ordered-set③">set</a> of <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects">activated sensor objects</a> the <a data-link-type="dfn" href="#current-sampling-frequency" id="ref-for-current-sampling-frequency">current sampling frequency</a> is equal to <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="optimal-sampling-frequency">optimal sampling frequency</dfn>, which is estimated
 by the UA taking into account <code class="idl"><a data-link-type="idl" href="#dom-sensor-desiredsamplingfrequency-slot" id="ref-for-dom-sensor-desiredsamplingfrequency-slot">desired sampling frequencies</a></code> of <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects①">activated</a> <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor④">Sensors</a></code> and <a data-link-type="dfn" href="#sampling-frequency" id="ref-for-sampling-frequency③">sampling frequency</a> bounds defined
 by the underlying platform.</p>
@@ -2139,12 +2139,12 @@ by the underlying platform.</p>
   <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double"><span class="kt">double</span></a>? <dfn class="nv dfn-paneled idl-code" data-dfn-for="SensorOptions" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-sensoroptions-frequency"><code>frequency</code></dfn>;
 };
 </pre>
-   <p>A <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor⑤">Sensor</a></code> object has an associated <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①⓪">platform sensor</a>.</p>
+   <p>A <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor⑤">Sensor</a></code> object has an associated <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①⑤">platform sensor</a>.</p>
    <p>The <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#task-source" id="ref-for-task-source">task source</a> for the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-task" id="ref-for-concept-task">tasks</a> mentioned in this specification is the <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="sensor-task-source">sensor task source</dfn>.</p>
    <div class="example" id="example-6910c0fd">
-    <a class="self-link" href="#example-6910c0fd"></a> In the following example, we construct accelerometer sensor and add <a data-link-type="dfn" href="https://dom.spec.whatwg.org#concept-event-listener" id="ref-for-concept-event-listener">event listeners</a> to get <a data-link-type="dfn" href="https://dom.spec.whatwg.org#concept-event" id="ref-for-concept-event">events</a> for <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①①">platform sensor</a> activation, error
+    <a class="self-link" href="#example-6910c0fd"></a> In the following example, we construct accelerometer sensor and add <a data-link-type="dfn" href="https://dom.spec.whatwg.org#concept-event-listener" id="ref-for-concept-event-listener">event listeners</a> to get <a data-link-type="dfn" href="https://dom.spec.whatwg.org#concept-event" id="ref-for-concept-event">events</a> for <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①⑥">platform sensor</a> activation, error
     conditions and notifications about newly available <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings③⑥">sensor readings</a>. The example measures
-    and logs maximum total acceleration of a device hosting the <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①②">platform sensor</a>. 
+    and logs maximum total acceleration of a device hosting the <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①⑦">platform sensor</a>. 
     <p>The <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-type" id="ref-for-event-handler-event-type">event handler event types</a> for the corresponding <a href="#the-sensor-interface"> Sensor Interface</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers" id="ref-for-event-handlers">event handler</a> attributes are defined in <a href="#event-handlers">Event handlers</a> section.</p>
 <pre class="highlight"><span class="kd">let</span> acl <span class="o">=</span> <span class="k">new</span> Accelerometer<span class="p">({</span>frequency<span class="o">:</span> <span class="mi">30</span><span class="p">});</span>
 <span class="kd">let</span> max_magnitude <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -2264,7 +2264,7 @@ with the internal slots described in the following table:</p>
                 It is initially false.
      <tr>
       <td><dfn class="dfn-paneled idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" id="dom-sensor-identifyingparameters-slot"><code>[[identifyingParameters]]</code></dfn>
-      <td> A <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type②⑨">sensor type</a>-specific group of <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-dictionary-member" id="ref-for-dfn-dictionary-member①">dictionary members</a> used to select the correct <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①③">platform sensor</a> to associate to this <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor①⓪">Sensor</a></code> object. 
+      <td> A <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type②⑨">sensor type</a>-specific group of <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-dictionary-member" id="ref-for-dfn-dictionary-member①">dictionary members</a> used to select the correct <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①⑧">platform sensor</a> to associate to this <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor①⓪">Sensor</a></code> object. 
    </table>
    <h4 class="heading settled" data-level="8.1.3" id="sensor-activated"><span class="secno">8.1.3. </span><span class="content">Sensor.activated</span><a class="self-link" href="#sensor-activated"></a></h4>
    <div class="algorithm" data-algorithm="is sensor activated">
@@ -2435,23 +2435,23 @@ that must be supported as attributes by the objects implementing the <code class
       <p><var>sensor_instance</var>, a <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor①⑤">Sensor</a></code> object.</p>
      <dt data-md="">output
      <dd data-md="">
-      <p>True if sensor instance was associated with a <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①④">platform sensor</a>,
+      <p>True if sensor instance was associated with a <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①⑨">platform sensor</a>,
  false otherwise.</p>
     </dl>
     <ol>
      <li data-md="">
       <p>If <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-identifyingparameters-slot" id="ref-for-dom-sensor-identifyingparameters-slot①">[[identifyingParameters]]</a></code> is set and <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-identifyingparameters-slot" id="ref-for-dom-sensor-identifyingparameters-slot②">[[identifyingParameters]]</a></code> allows
-  a unique <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①⑤">platform sensor</a> to be identified, then:</p>
+  a unique <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor②⓪">platform sensor</a> to be identified, then:</p>
       <ol>
        <li data-md="">
-        <p>let <var>sensor</var> be that <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①⑥">platform sensor</a>,</p>
+        <p>let <var>sensor</var> be that <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor②①">platform sensor</a>,</p>
        <li data-md="">
         <p>associate <var>sensor_instance</var> with <var>sensor</var>.</p>
        <li data-md="">
         <p>Return true.</p>
       </ol>
      <li data-md="">
-      <p>If the <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type③⓪">sensor type</a> of <var>sensor_instance</var> has an associated <a data-link-type="dfn" href="#default-sensor" id="ref-for-default-sensor">default sensor</a> and there is a corresponding <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①⑦">platform sensor</a> on the device, then</p>
+      <p>If the <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type③⓪">sensor type</a> of <var>sensor_instance</var> has an associated <a data-link-type="dfn" href="#default-sensor" id="ref-for-default-sensor">default sensor</a> and there is a corresponding <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor②②">platform sensor</a> on the device, then</p>
       <ol>
        <li data-md="">
         <p>associate <var>sensor_instance</var> with <a data-link-type="dfn" href="#default-sensor" id="ref-for-default-sensor①">default sensor</a>.</p>
@@ -2474,7 +2474,7 @@ that must be supported as attributes by the objects implementing the <code class
     </dl>
     <ol>
      <li data-md="">
-      <p>Let <var>sensor</var> be the <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①⑧">platform sensor</a> associated with <var>sensor_instance</var>.</p>
+      <p>Let <var>sensor</var> be the <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor②③">platform sensor</a> associated with <var>sensor_instance</var>.</p>
      <li data-md="">
       <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#set-append" id="ref-for-set-append">Append</a> <var>sensor_instance</var> to <var>sensor</var>’s set of <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects②">activated sensor objects</a>.</p>
      <li data-md="">
@@ -2498,7 +2498,7 @@ that must be supported as attributes by the objects implementing the <code class
       <p>Remove all <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-task" id="ref-for-concept-task①">tasks</a> associated with <var>sensor_instance</var> from the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#task-queue" id="ref-for-task-queue">task queue</a> associated
   with <a data-link-type="dfn" href="#sensor-task-source" id="ref-for-sensor-task-source">sensor task source</a>.</p>
      <li data-md="">
-      <p>Let <var>sensor</var> be the <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①⑨">platform sensor</a> associated with <var>sensor_instance</var>.</p>
+      <p>Let <var>sensor</var> be the <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor②④">platform sensor</a> associated with <var>sensor_instance</var>.</p>
      <li data-md="">
       <p>If <var>sensor</var>’s set of <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects③">activated sensor objects</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain">contains</a> <var>sensor_instance</var>,</p>
       <ol>
@@ -2518,7 +2518,7 @@ that must be supported as attributes by the objects implementing the <code class
     <dl>
      <dt data-md="">input
      <dd data-md="">
-      <p><var>sensor</var>, a <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor②⓪">platform sensor</a>.</p>
+      <p><var>sensor</var>, a <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor②⑤">platform sensor</a>.</p>
      <dt data-md="">output
      <dd data-md="">
       <p>None</p>
@@ -2543,7 +2543,7 @@ that must be supported as attributes by the objects implementing the <code class
     <dl>
      <dt data-md="">input
      <dd data-md="">
-      <p><var>sensor</var>, a <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor②①">platform sensor</a>.</p>
+      <p><var>sensor</var>, a <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor②⑥">platform sensor</a>.</p>
      <dt data-md="">output
      <dd data-md="">
       <p>None</p>
@@ -2574,7 +2574,7 @@ that must be supported as attributes by the objects implementing the <code class
     <dl>
      <dt data-md="">input
      <dd data-md="">
-      <p><var>sensor</var>, a <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor②②">platform sensor</a>.</p>
+      <p><var>sensor</var>, a <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor②⑦">platform sensor</a>.</p>
      <dd data-md="">
       <p><var>reading</var>, a <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings④②">sensor reading</a>.</p>
     </dl>
@@ -2685,7 +2685,7 @@ in order to reduce resource consumption, notably battery usage.</p>
         <p>if <var>f</var> is set,</p>
         <ol>
          <li data-md="">
-          <p>set <var>frequency</var> to <var>f</var> capped by the upper and lower <a data-link-type="dfn" href="#current-sampling-frequency" id="ref-for-current-sampling-frequency③">current sampling frequency</a> bounds for the associated <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor②③">platform sensor</a>.</p>
+          <p>set <var>frequency</var> to <var>f</var> capped by the upper and lower <a data-link-type="dfn" href="#current-sampling-frequency" id="ref-for-current-sampling-frequency③">current sampling frequency</a> bounds for the associated <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor②⑧">platform sensor</a>.</p>
         </ol>
        <li data-md="">
         <p>Otherwise,</p>
@@ -2796,7 +2796,7 @@ in order to reduce resource consumption, notably battery usage.</p>
      <li data-md="">
       <p><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire" id="ref-for-concept-event-fire①">Fire an event</a> named "activate" at <var>sensor_instance</var>.</p>
      <li data-md="">
-      <p>Let <var>sensor</var> be the <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor②④">platform sensor</a> associated with <var>sensor_instance</var>.</p>
+      <p>Let <var>sensor</var> be the <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor②⑨">platform sensor</a> associated with <var>sensor_instance</var>.</p>
      <li data-md="">
       <p>If <var>sensor</var>’s <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading①②">latest reading</a>["timestamp"] is not null,</p>
       <ol>
@@ -2841,7 +2841,7 @@ in order to reduce resource consumption, notably battery usage.</p>
       <p>If <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-state-slot" id="ref-for-dom-sensor-state-slot⑨">[[state]]</a></code> is "activated",</p>
       <ol>
        <li data-md="">
-        <p>Let <var>readings</var> be the <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading①③">latest reading</a> of <var>sensor_instance</var>’s related <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor②⑤">platform sensor</a>.</p>
+        <p>Let <var>readings</var> be the <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading①③">latest reading</a> of <var>sensor_instance</var>’s related <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor③⓪">platform sensor</a>.</p>
        <li data-md="">
         <p>Return <var>readings</var>[<var>key</var>].</p>
       </ol>
@@ -2861,7 +2861,7 @@ in order to reduce resource consumption, notably battery usage.</p>
     </dl>
     <ol>
      <li data-md="">
-      <p>Let <var>sensor</var> be the <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor②⑥">platform sensor</a> associated with <var>sensor_instance</var>.</p>
+      <p>Let <var>sensor</var> be the <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor③①">platform sensor</a> associated with <var>sensor_instance</var>.</p>
      <li data-md="">
       <p>Let <var>permission_name</var> be the <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/permissions/#enumdef-permissionname" id="ref-for-enumdef-permissionname④">PermissionName</a></code> associated with <var>sensor</var>.</p>
      <li data-md="">
@@ -2894,12 +2894,12 @@ by the same-origin policy.</p>
    </ul>
    <h3 class="heading settled" data-level="10.2" id="naming"><span class="secno">10.2. </span><span class="content">Naming</span><a class="self-link" href="#naming"></a></h3>
    <p><code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor②⑤">Sensor</a></code> interfaces for <a data-link-type="dfn" href="#low-level" id="ref-for-low-level⑧">low-level</a> sensors should be
-named after their associated <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor②⑦">platform sensor</a>.
+named after their associated <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor③②">platform sensor</a>.
 So for example, the interface associated with a gyroscope
 should be simply named <code>Gyroscope</code>. <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor②⑥">Sensor</a></code> interfaces for <a data-link-type="dfn" href="#high-level" id="ref-for-high-level⑧">high-level</a> sensors should be
-named by combining the physical quantity the <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor②⑧">platform sensor</a> measures
+named by combining the physical quantity the <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor③③">platform sensor</a> measures
 with the "Sensor" suffix.
-For example, a <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor②⑨">platform sensor</a> measuring
+For example, a <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor③④">platform sensor</a> measuring
 the distance at which an object is from it
 may see its associated interface called <code>ProximitySensor</code>.</p>
    <p>Attributes of the <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor②⑦">Sensor</a></code> subclass that
@@ -2980,9 +2980,9 @@ for each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type③�
     <li data-md="">
      <p>A <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-dictionary" id="ref-for-dfn-dictionary①">dictionary</a> whose <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-inherited-dictionaries" id="ref-for-dfn-inherited-dictionaries①">inherited dictionaries</a> contains <code class="idl"><a data-link-type="idl" href="#dictdef-sensoroptions" id="ref-for-dictdef-sensoroptions②">SensorOptions</a></code>.</p>
     <li data-md="">
-     <p>A <a data-link-type="dfn" href="#default-sensor" id="ref-for-default-sensor②">default sensor</a>. Generally, devices are equipped with a single <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor③⓪">platform sensor</a> of each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type③⑤">type</a>,
+     <p>A <a data-link-type="dfn" href="#default-sensor" id="ref-for-default-sensor②">default sensor</a>. Generally, devices are equipped with a single <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor③⑤">platform sensor</a> of each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type③⑤">type</a>,
   so defining a <a data-link-type="dfn" href="#default-sensor" id="ref-for-default-sensor③">default sensor</a> should be straightforward.
-  For <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type③⑥">sensor types</a> where multiple <a data-link-type="dfn">sensors</a> are common,
+  For <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type③⑥">sensor types</a> where multiple <a data-link-type="dfn" href="#concept-device-sensor" id="ref-for-concept-device-sensor②⓪">sensors</a> are common,
   extension specifications may choose not to define a <a data-link-type="dfn" href="#default-sensor" id="ref-for-default-sensor④">default sensor</a>,
   especially when doing so would not make sense.</p>
     <li data-md="">
@@ -3009,7 +3009,7 @@ for accelerometer sensor is given below.</p>
 </pre>
    <h3 class="heading settled" data-level="10.8" id="example-webidl"><span class="secno">10.8. </span><span class="content">Example WebIDL</span><a class="self-link" href="#example-webidl"></a></h3>
    <p>Here’s example WebIDL for a possible extension of this specification
-for proximity <a data-link-type="dfn">sensors</a>.</p>
+for proximity <a data-link-type="dfn" href="#concept-device-sensor" id="ref-for-concept-device-sensor②①">sensors</a>.</p>
 <pre class="example" id="example-be4b13c4"><a class="self-link" href="#example-be4b13c4"></a>[Constructor(optional ProximitySensorOptions proximitySensorOptions),
  SecureContext, Exposed=Window]
 interface ProximitySensor : Sensor {
@@ -3124,7 +3124,7 @@ for their editorial input.</p>
     <p>This is an example of an informative example.</p>
    </div>
    <p>Because this document doesn’t itself define APIs for specific <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type③⑧">sensor types</a>—<wbr>that is the role of extensions to this specification—<wbr>all examples are inevitably (wishful) fabrications.
-    Although all of the <a data-link-type="dfn" href="#concept-device-sensor" id="ref-for-concept-device-sensor②⓪">sensors</a> used a examples
+    Although all of the <a data-link-type="dfn" href="#concept-device-sensor" id="ref-for-concept-device-sensor②②">sensors</a> used a examples
     would be great candidates for building atop the Generic Sensor API,
     their inclusion in this document does not imply that the relevant Working Groups
     are planning to do so. </p>
@@ -3557,6 +3557,8 @@ for their editorial input.</p>
     <li><a href="#ref-for-concept-device-sensor①②">5.2.3. Losing Focus</a>
     <li><a href="#ref-for-concept-device-sensor①③">6.1. Sensors</a> <a href="#ref-for-concept-device-sensor①④">(2)</a> <a href="#ref-for-concept-device-sensor①⑤">(3)</a> <a href="#ref-for-concept-device-sensor①⑥">(4)</a> <a href="#ref-for-concept-device-sensor①⑦">(5)</a> <a href="#ref-for-concept-device-sensor①⑧">(6)</a>
     <li><a href="#ref-for-concept-device-sensor①⑨">6.3. Reporting Modes</a>
+    <li><a href="#ref-for-concept-device-sensor②⓪">10.6. Definition Requirements</a>
+    <li><a href="#ref-for-concept-device-sensor②①">10.8. Example WebIDL</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="raw-sensor-readings">
@@ -3609,23 +3611,24 @@ for their editorial input.</p>
    <b><a href="#concept-platform-sensor">#concept-platform-sensor</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-concept-platform-sensor">6.1. Sensors</a> <a href="#ref-for-concept-platform-sensor①">(2)</a> <a href="#ref-for-concept-platform-sensor②">(3)</a> <a href="#ref-for-concept-platform-sensor③">(4)</a>
-    <li><a href="#ref-for-concept-platform-sensor④">6.4. Sampling Frequency</a>
-    <li><a href="#ref-for-concept-platform-sensor⑤">7.1. Sensor Type</a> <a href="#ref-for-concept-platform-sensor⑥">(2)</a>
-    <li><a href="#ref-for-concept-platform-sensor⑦">7.2. Sensor</a> <a href="#ref-for-concept-platform-sensor⑧">(2)</a> <a href="#ref-for-concept-platform-sensor⑨">(3)</a>
-    <li><a href="#ref-for-concept-platform-sensor①⓪">8.1. The Sensor Interface</a> <a href="#ref-for-concept-platform-sensor①①">(2)</a> <a href="#ref-for-concept-platform-sensor①②">(3)</a>
-    <li><a href="#ref-for-concept-platform-sensor①③">8.1.2. Sensor internal slots</a>
-    <li><a href="#ref-for-concept-platform-sensor①④">9.2. Connect to sensor</a> <a href="#ref-for-concept-platform-sensor①⑤">(2)</a> <a href="#ref-for-concept-platform-sensor①⑥">(3)</a> <a href="#ref-for-concept-platform-sensor①⑦">(4)</a>
-    <li><a href="#ref-for-concept-platform-sensor①⑧">9.3. Activate a sensor object</a>
-    <li><a href="#ref-for-concept-platform-sensor①⑨">9.4. Deactivate a sensor object</a>
-    <li><a href="#ref-for-concept-platform-sensor②⓪">9.5. Revoke sensor permission</a>
-    <li><a href="#ref-for-concept-platform-sensor②①">9.6. Set sensor settings</a>
-    <li><a href="#ref-for-concept-platform-sensor②②">9.7. Update latest reading</a>
-    <li><a href="#ref-for-concept-platform-sensor②③">9.9. Find the reporting frequency of a sensor object</a>
-    <li><a href="#ref-for-concept-platform-sensor②④">9.12. Notify activated state</a>
-    <li><a href="#ref-for-concept-platform-sensor②⑤">9.14. Get value from latest reading</a>
-    <li><a href="#ref-for-concept-platform-sensor②⑥">9.15. Request sensor access</a>
-    <li><a href="#ref-for-concept-platform-sensor②⑦">10.2. Naming</a> <a href="#ref-for-concept-platform-sensor②⑧">(2)</a> <a href="#ref-for-concept-platform-sensor②⑨">(3)</a>
-    <li><a href="#ref-for-concept-platform-sensor③⓪">10.6. Definition Requirements</a>
+    <li><a href="#ref-for-concept-platform-sensor④">6.3. Reporting Modes</a> <a href="#ref-for-concept-platform-sensor⑤">(2)</a>
+    <li><a href="#ref-for-concept-platform-sensor⑥">6.4. Sampling Frequency</a>
+    <li><a href="#ref-for-concept-platform-sensor⑦">7.1. Sensor Type</a> <a href="#ref-for-concept-platform-sensor⑧">(2)</a>
+    <li><a href="#ref-for-concept-platform-sensor⑨">7.2. Sensor</a> <a href="#ref-for-concept-platform-sensor①⓪">(2)</a> <a href="#ref-for-concept-platform-sensor①①">(3)</a> <a href="#ref-for-concept-platform-sensor①②">(4)</a> <a href="#ref-for-concept-platform-sensor①③">(5)</a> <a href="#ref-for-concept-platform-sensor①④">(6)</a>
+    <li><a href="#ref-for-concept-platform-sensor①⑤">8.1. The Sensor Interface</a> <a href="#ref-for-concept-platform-sensor①⑥">(2)</a> <a href="#ref-for-concept-platform-sensor①⑦">(3)</a>
+    <li><a href="#ref-for-concept-platform-sensor①⑧">8.1.2. Sensor internal slots</a>
+    <li><a href="#ref-for-concept-platform-sensor①⑨">9.2. Connect to sensor</a> <a href="#ref-for-concept-platform-sensor②⓪">(2)</a> <a href="#ref-for-concept-platform-sensor②①">(3)</a> <a href="#ref-for-concept-platform-sensor②②">(4)</a>
+    <li><a href="#ref-for-concept-platform-sensor②③">9.3. Activate a sensor object</a>
+    <li><a href="#ref-for-concept-platform-sensor②④">9.4. Deactivate a sensor object</a>
+    <li><a href="#ref-for-concept-platform-sensor②⑤">9.5. Revoke sensor permission</a>
+    <li><a href="#ref-for-concept-platform-sensor②⑥">9.6. Set sensor settings</a>
+    <li><a href="#ref-for-concept-platform-sensor②⑦">9.7. Update latest reading</a>
+    <li><a href="#ref-for-concept-platform-sensor②⑧">9.9. Find the reporting frequency of a sensor object</a>
+    <li><a href="#ref-for-concept-platform-sensor②⑨">9.12. Notify activated state</a>
+    <li><a href="#ref-for-concept-platform-sensor③⓪">9.14. Get value from latest reading</a>
+    <li><a href="#ref-for-concept-platform-sensor③①">9.15. Request sensor access</a>
+    <li><a href="#ref-for-concept-platform-sensor③②">10.2. Naming</a> <a href="#ref-for-concept-platform-sensor③③">(2)</a> <a href="#ref-for-concept-platform-sensor③④">(3)</a>
+    <li><a href="#ref-for-concept-platform-sensor③⑤">10.6. Definition Requirements</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="low-level">

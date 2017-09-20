@@ -601,7 +601,7 @@ For the purpose of this specification we distinguish between
 are referred to as <dfn>low-level</dfn> sensors.
 For example a Gyroscope is a [=low-level=] [=sensor type=].
 
-[=Sensors=] named after their [=sensor readings|readings=],
+Sensors named after their [=sensor readings|readings=],
 regardless of the implementation,
 are said to be <dfn>high-level</dfn> sensors.
 For instance, geolocation sensors provide information about the user's location,
@@ -669,7 +669,7 @@ in splitting up [=sensor types=] between
 those that fire events at regular intervals
 and those which don't.
 
-[=Sensors=] have different <dfn>reporting modes</dfn>.
+[=platform sensor|Sensors=] have different <dfn>reporting modes</dfn>.
 When [=sensor readings=] are reported at regular intervals,
 at an adjustable <dfn>frequency</dfn> measured in hertz (Hz),
 the [=reporting mode=] is said to be <dfn>periodic</dfn>.
@@ -690,7 +690,7 @@ allows a much more fine-grained approach
 and is essential for use cases with, for example,
 low latency requirements.
 
-[=Sensors=] which support [=periodic|periodic reporting mode=]
+[=platform sensor|Sensors=] which support [=periodic|periodic reporting mode=]
 <dfn>fallback</dfn> to [=implementation specific|implementation specific reporting mode=]
 when no requirements are made as to what [=frequency=] they should operate at.
 
@@ -764,15 +764,15 @@ A [=platform sensor=] has an associated [=ordered set|set=]
 of <dfn>activated sensor objects</dfn>.
 This set is initially [=set/is empty|empty=].
 
-The current [=browsing context=]'s [=platfrom sensor=] has an associated <dfn>latest reading</dfn>
+The current [=browsing context=]'s [=platform sensor=] has an associated <dfn>latest reading</dfn>
 [=ordered map|map=] which holds the latest available [=sensor readings=].
 
 Note: User agents can share [=sensor readings=] [=ordered map|map=] between different
 [=browsing context|contexts=] only if the [=origins=] of these contexts' [=active documents=]
 are [=same origin-domain=].
 
-Any time the user agent obtains a new [=sensor reading=] for a [=platfrom sensor=] from the underlying
-platform, it invokes [=update latest reading=] with the [=platfrom sensor=] and the [=sensor reading=]
+Any time the user agent obtains a new [=sensor reading=] for a [=platform sensor=] from the underlying
+platform, it invokes [=update latest reading=] with the [=platform sensor=] and the [=sensor reading=]
 as arguments.
 
 The [=latest reading=] [=ordered map|map=]
@@ -1583,7 +1583,7 @@ for each [=sensor types=]:
 -   A [=default sensor=]. Generally, devices are equipped with a single [=platform sensor=]
     of each [=sensor types|type=],
     so defining a [=default sensor=] should be straightforward.
-    For [=sensor types=] where multiple [=device senosrs|sensors=] are common,
+    For [=sensor types=] where multiple [=device sensor|sensors=] are common,
     extension specifications may choose not to define a [=default sensor=],
     especially when doing so would not make sense.
 -   A set of [=identifying parameters=]. TODO: replace that by an abstract operation.
@@ -1619,7 +1619,7 @@ for accelerometer sensor is given below.
 <h3 id="example-webidl">Example WebIDL</h3>
 
 Here's example WebIDL for a possible extension of this specification
-for proximity [=device sesnors|sensors=].
+for proximity [=device sensor|sensors=].
 
 <pre class=example>
     [Constructor(optional ProximitySensorOptions proximitySensorOptions),
