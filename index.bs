@@ -61,8 +61,10 @@ urlPrefix: https://w3c.github.io/page-visibility; spec: PAGE-VISIBILITY
   type: dfn
     text: visibility states; url: dfn-visibility-states
     text: steps to determine the visibility state; url: dfn-steps-to-determine-the-visibility-state
+urlPrefix: https://w3ctag.github.io/security-questionnaire/; spec: SECURITY-PRIVACY-QUESTIONNAIRE
+  type: dfn
+    text: same-origin policy violations; url: sop-violations
 </pre>
-
 <pre class=link-defaults>
 spec: webidl; type:dfn; text:attribute
 spec: webidl; type:dfn; text:identifier
@@ -1458,11 +1460,18 @@ as appropriate.
 
 
 
-<h3 id="security">Security</h3>
+<h3 id="extension-security-and-privacy">Security and Privacy</h3>
 
-All interfaces defined by extension specifications
-should only be available within a [=secure context=].
+Extension specifications are expected to:
 
+- conform with the generic [[#mitigation-strategies|mitigation strategies]],
+- consider [[#mitigation-strategies-case-by-case|mitigation strategies applied
+  on a case by case basis]],
+- be evaluated against the Self-Review Questionnaire on Security and Privacy
+  [[SECURITY-PRIVACY-QUESTIONNAIRE]],
+- and in particular, evaluated againts the <a>same-origin policy violations</a>
+  that can arise if sensors expose a new communication channel not governed
+  by the same-origin policy.
 
 <h3 id="naming">Naming</h3>
 
