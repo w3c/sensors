@@ -1185,7 +1185,7 @@ Possible extra rowspan handling
   </style>
   <meta content="Bikeshed version df778ba2d9793f77f64705dbba65d0c50f68e0d9" name="generator">
   <link href="https://www.w3.org/TR/generic-sensor/" rel="canonical">
-  <meta content="c5e7c2590f49d41cf628556a671a52333bdadd38" name="document-revision">
+  <meta content="871549ca4337bc8a0c2b420b3e858119fbc98f18" name="document-revision">
 <style>
     emu-val {
       font-weight: bold;
@@ -2881,7 +2881,10 @@ as appropriate.</p>
      <p>consider <a href="#mitigation-strategies-case-by-case">mitigation strategies applied
 on a case by case basis</a>,</p>
     <li data-md="">
-     <p>be evaluated against the Self-Review Questionnaire on Security and Privacy <a data-link-type="biblio" href="#biblio-security-privacy-questionnaire">[SECURITY-PRIVACY-QUESTIONNAIRE]</a>.</p>
+     <p>be evaluated against the Self-Review Questionnaire on Security and Privacy <a data-link-type="biblio" href="#biblio-security-privacy-questionnaire">[SECURITY-PRIVACY-QUESTIONNAIRE]</a>,</p>
+    <li data-md="">
+     <p>and in particular, evaluated againts the <a data-link-type="dfn" href="https://w3ctag.github.io/security-questionnaire/#sop-violations" id="ref-for-sop-violations">same-origin policy violations</a> that can arise if sensors expose a new communication channel not governed
+by the same-origin policy.</p>
    </ul>
    <h3 class="heading settled" data-level="10.2" id="naming"><span class="secno">10.2. </span><span class="content">Naming</span><a class="self-link" href="#naming"></a></h3>
    <p><code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor②⑤">Sensor</a></code> interfaces for <a data-link-type="dfn" href="#low-level" id="ref-for-low-level⑨">low-level</a> sensors should be
@@ -3424,6 +3427,11 @@ for their editorial input.</p>
      <li><a href="https://w3c.github.io/webappsec-secure-contexts/#secure-context">secure context</a>
     </ul>
    <li>
+    <a data-link-type="biblio">[SECURITY-PRIVACY-QUESTIONNAIRE]</a> defines the following terms:
+    <ul>
+     <li><a href="https://w3ctag.github.io/security-questionnaire/#sop-violations">same-origin policy violations</a>
+    </ul>
+   <li>
     <a data-link-type="biblio">[WebIDL]</a> defines the following terms:
     <ul>
      <li><a href="https://heycam.github.io/webidl/#Constructor">Constructor</a>
@@ -3469,6 +3477,8 @@ for their editorial input.</p>
    <dd>Mounir Lamouri; Marcos Caceres. <a href="https://w3c.github.io/permissions/">The Permissions API</a>. URL: <a href="https://w3c.github.io/permissions/">https://w3c.github.io/permissions/</a>
    <dt id="biblio-rfc2119">[RFC2119]
    <dd>S. Bradner. <a href="https://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>. March 1997. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc2119">https://tools.ietf.org/html/rfc2119</a>
+   <dt id="biblio-security-privacy-questionnaire">[SECURITY-PRIVACY-QUESTIONNAIRE]
+   <dd>Mike West. <a href="https://w3ctag.github.io/security-questionnaire/">Self-Review Questionnaire: Security and Privacy</a>. URL: <a href="https://w3ctag.github.io/security-questionnaire/">https://w3ctag.github.io/security-questionnaire/</a>
    <dt id="biblio-webidl">[WebIDL]
    <dd>Cameron McCormack; Boris Zbarsky; Tobie Langel. <a href="https://heycam.github.io/webidl/">Web IDL</a>. URL: <a href="https://heycam.github.io/webidl/">https://heycam.github.io/webidl/</a>
   </dl>
@@ -3494,8 +3504,6 @@ for their editorial input.</p>
    <dd>Ralph Hodgson; et al. <a href="http://www.qudt.org/">QUDT - Quantities, Units, Dimensions and Data Types Ontologies</a>. 18 March 2014. URL: <a href="http://www.qudt.org/">http://www.qudt.org/</a>
    <dt id="biblio-rfc6454">[RFC6454]
    <dd>A. Barth. <a href="https://tools.ietf.org/html/rfc6454">The Web Origin Concept</a>. December 2011. Proposed Standard. URL: <a href="https://tools.ietf.org/html/rfc6454">https://tools.ietf.org/html/rfc6454</a>
-   <dt id="biblio-security-privacy-questionnaire">[SECURITY-PRIVACY-QUESTIONNAIRE]
-   <dd>Mike West. <a href="https://w3ctag.github.io/security-questionnaire/">Self-Review Questionnaire: Security and Privacy</a>. URL: <a href="https://w3ctag.github.io/security-questionnaire/">https://w3ctag.github.io/security-questionnaire/</a>
    <dt id="biblio-si">[SI]
    <dd><a href="http://www.bipm.org/en/publications/si-brochure/">SI Brochure: The International System of Units (SI), 8th edition</a>. 2014. URL: <a href="http://www.bipm.org/en/publications/si-brochure/">http://www.bipm.org/en/publications/si-brochure/</a>
    <dt id="biblio-stealingpinsviasensors">[STEALINGPINSVIASENSORS]
