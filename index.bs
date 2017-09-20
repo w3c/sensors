@@ -1458,11 +1458,15 @@ as appropriate.
 
 
 
-<h3 id="security">Security</h3>
+<h3 id="extension-security-and-privacy">Security and Privacy</h3>
 
-All interfaces defined by extension specifications
-should only be available within a [=secure context=].
+Extension specifications are expected to:
 
+- conform with the generic [[#mitigation-strategies|mitigation strategies]],
+- consider [[#mitigation-strategies-case-by-case|mitigation strategies applied
+  on a case by case basis]],
+- be evaluated against the Self-Review Questionnaire on Security and Privacy
+  [[SECURITY-PRIVACY-QUESTIONNAIRE]].
 
 <h3 id="naming">Naming</h3>
 

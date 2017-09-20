@@ -1185,6 +1185,7 @@ Possible extra rowspan handling
   </style>
   <meta content="Bikeshed version df778ba2d9793f77f64705dbba65d0c50f68e0d9" name="generator">
   <link href="https://www.w3.org/TR/generic-sensor/" rel="canonical">
+  <meta content="c5e7c2590f49d41cf628556a671a52333bdadd38" name="document-revision">
 <style>
     emu-val {
       font-weight: bold;
@@ -1612,7 +1613,7 @@ that can be extended to accommodate different sensor types.</p>
     <li>
      <a href="#extensibility"><span class="secno">10</span> <span class="content">Extensibility</span></a>
      <ol class="toc">
-      <li><a href="#security"><span class="secno">10.1</span> <span class="content">Security</span></a>
+      <li><a href="#extension-security-and-privacy"><span class="secno">10.1</span> <span class="content">Security and Privacy</span></a>
       <li><a href="#naming"><span class="secno">10.2</span> <span class="content">Naming</span></a>
       <li><a href="#unit"><span class="secno">10.3</span> <span class="content">Unit</span></a>
       <li><a href="#high-vs-low-level"><span class="secno">10.4</span> <span class="content">Exposing High-Level vs. Low-Level Sensors</span></a>
@@ -1731,7 +1732,7 @@ define ways to uniquely identify each one.</p>
    <div class="example" id="example-fdd94e11">
     <a class="self-link" href="#example-fdd94e11"></a> For example checking the pressure of the left rear tire: 
 <pre class="highlight"><span class="kd">var</span> sensor <span class="o">=</span> <span class="k">new</span> DirectTirePressureSensor<span class="p">({</span> position<span class="o">:</span> <span class="s2">"rear"</span><span class="p">,</span> side<span class="o">:</span> <span class="s2">"left"</span> <span class="p">});</span>
-sensor<span class="p">.</span>onreading <span class="o">=</span> _ <span class="p">=></span> console<span class="p">.</span>log<span class="p">(</span>sensor<span class="p">.</span>pressure<span class="p">);</span>
+sensor<span class="p">.</span>onreading <span class="o">=</span> _ <span class="o">=></span> console<span class="p">.</span>log<span class="p">(</span>sensor<span class="p">.</span>pressure<span class="p">);</span>
 sensor<span class="p">.</span>start<span class="p">();</span>
 </pre>
    </div>
@@ -1795,8 +1796,8 @@ and defensive programming which includes:</p>
 <pre class="highlight"><span class="k">try</span> <span class="p">{</span> <span class="c1">// No need to feature detect thanks to try..catch block.</span>
 <span class="c1"></span>    <span class="kd">var</span> sensor <span class="o">=</span> <span class="k">new</span> GeolocationSensor<span class="p">();</span>
     sensor<span class="p">.</span>start<span class="p">();</span>
-    sensor<span class="p">.</span>onerror <span class="o">=</span> error <span class="p">=></span> gracefullyDegrade<span class="p">(</span>error<span class="p">);</span>
-    sensor<span class="p">.</span>onreading <span class="o">=</span> _ <span class="p">=></span> updatePosition<span class="p">(</span>sensor<span class="p">.</span>latitude<span class="p">,</span> sensor<span class="p">.</span>longitude<span class="p">);</span>
+    sensor<span class="p">.</span>onerror <span class="o">=</span> error <span class="o">=></span> gracefullyDegrade<span class="p">(</span>error<span class="p">);</span>
+    sensor<span class="p">.</span>onreading <span class="o">=</span> _ <span class="o">=></span> updatePosition<span class="p">(</span>sensor<span class="p">.</span>latitude<span class="p">,</span> sensor<span class="p">.</span>longitude<span class="p">);</span>
 <span class="p">}</span> <span class="k">catch</span><span class="p">(</span>error<span class="p">)</span> <span class="p">{</span>
     gracefullyDegrade<span class="p">(</span>error<span class="p">);</span>
 <span class="p">}</span>
@@ -2141,9 +2142,9 @@ by the underlying platform.</p>
     <p>The <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-type" id="ref-for-event-handler-event-type">event handler event types</a> for the corresponding <a href="#the-sensor-interface"> Sensor Interface</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers" id="ref-for-event-handlers">event handler</a> attributes are defined in <a href="#event-handlers">Event handlers</a> section.</p>
 <pre class="highlight"><span class="kd">let</span> acl <span class="o">=</span> <span class="k">new</span> Accelerometer<span class="p">({</span>frequency<span class="o">:</span> <span class="mi">30</span><span class="p">});</span>
 <span class="kd">let</span> max_magnitude <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-acl<span class="p">.</span>addEventListener<span class="p">(</span><span class="s1">'activate'</span><span class="p">,</span> <span class="p">()</span> <span class="p">=></span> console<span class="p">.</span>log<span class="p">(</span><span class="s1">'Ready to measure.'</span><span class="p">));</span>
-acl<span class="p">.</span>addEventListener<span class="p">(</span><span class="s1">'error'</span><span class="p">,</span> error <span class="p">=></span> console<span class="p">.</span>log<span class="p">(</span><span class="s1">'Error: '</span> <span class="o">+</span> error<span class="p">.</span>name<span class="p">));</span>
-acl<span class="p">.</span>addEventListener<span class="p">(</span><span class="s1">'reading'</span><span class="p">,</span> <span class="p">()</span> <span class="p">=></span> <span class="p">{</span>
+acl<span class="p">.</span>addEventListener<span class="p">(</span><span class="s1">'activate'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=></span> console<span class="p">.</span>log<span class="p">(</span><span class="s1">'Ready to measure.'</span><span class="p">));</span>
+acl<span class="p">.</span>addEventListener<span class="p">(</span><span class="s1">'error'</span><span class="p">,</span> error <span class="o">=></span> console<span class="p">.</span>log<span class="p">(</span><span class="s1">'Error: '</span> <span class="o">+</span> error<span class="p">.</span>name<span class="p">));</span>
+acl<span class="p">.</span>addEventListener<span class="p">(</span><span class="s1">'reading'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=></span> <span class="p">{</span>
     <span class="kd">let</span> magnitude <span class="o">=</span> Math<span class="p">.</span>hypot<span class="p">(</span>acl<span class="p">.</span>x<span class="p">,</span> acl<span class="p">.</span>y<span class="p">,</span> acl<span class="p">.</span>z<span class="p">);</span>
     <span class="k">if</span> <span class="p">(</span>magnitude <span class="o">></span> max_magnitude<span class="p">)</span> <span class="p">{</span>
         max_magnitude <span class="o">=</span> magnitude<span class="p">;</span>
@@ -2871,9 +2872,17 @@ different <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type③
    <p>Extension specifications are encouraged to focus on a single <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type③①">sensor type</a>,
 exposing both <a data-link-type="dfn" href="#high-level" id="ref-for-high-level⑧">high</a> and <a data-link-type="dfn" href="#low-level" id="ref-for-low-level⑧">low</a> level
 as appropriate.</p>
-   <h3 class="heading settled" data-level="10.1" id="security"><span class="secno">10.1. </span><span class="content">Security</span><a class="self-link" href="#security"></a></h3>
-   <p>All interfaces defined by extension specifications
-should only be available within a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#secure-context" id="ref-for-secure-context②">secure context</a>.</p>
+   <h3 class="heading settled" data-level="10.1" id="extension-security-and-privacy"><span class="secno">10.1. </span><span class="content">Security and Privacy</span><a class="self-link" href="#extension-security-and-privacy"></a></h3>
+   <p>Extension specifications are expected to:</p>
+   <ul>
+    <li data-md="">
+     <p>conform with the generic <a href="#mitigation-strategies">mitigation strategies</a>,</p>
+    <li data-md="">
+     <p>consider <a href="#mitigation-strategies-case-by-case">mitigation strategies applied
+on a case by case basis</a>,</p>
+    <li data-md="">
+     <p>be evaluated against the Self-Review Questionnaire on Security and Privacy <a data-link-type="biblio" href="#biblio-security-privacy-questionnaire">[SECURITY-PRIVACY-QUESTIONNAIRE]</a>.</p>
+   </ul>
    <h3 class="heading settled" data-level="10.2" id="naming"><span class="secno">10.2. </span><span class="content">Naming</span><a class="self-link" href="#naming"></a></h3>
    <p><code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor②⑤">Sensor</a></code> interfaces for <a data-link-type="dfn" href="#low-level" id="ref-for-low-level⑨">low-level</a> sensors should be
 named after their associated <a data-link-type="dfn" href="#concept-sensor" id="ref-for-concept-sensor④⑥">sensor</a>.
@@ -3485,6 +3494,8 @@ for their editorial input.</p>
    <dd>Ralph Hodgson; et al. <a href="http://www.qudt.org/">QUDT - Quantities, Units, Dimensions and Data Types Ontologies</a>. 18 March 2014. URL: <a href="http://www.qudt.org/">http://www.qudt.org/</a>
    <dt id="biblio-rfc6454">[RFC6454]
    <dd>A. Barth. <a href="https://tools.ietf.org/html/rfc6454">The Web Origin Concept</a>. December 2011. Proposed Standard. URL: <a href="https://tools.ietf.org/html/rfc6454">https://tools.ietf.org/html/rfc6454</a>
+   <dt id="biblio-security-privacy-questionnaire">[SECURITY-PRIVACY-QUESTIONNAIRE]
+   <dd>Mike West. <a href="https://w3ctag.github.io/security-questionnaire/">Self-Review Questionnaire: Security and Privacy</a>. URL: <a href="https://w3ctag.github.io/security-questionnaire/">https://w3ctag.github.io/security-questionnaire/</a>
    <dt id="biblio-si">[SI]
    <dd><a href="http://www.bipm.org/en/publications/si-brochure/">SI Brochure: The International System of Units (SI), 8th edition</a>. 2014. URL: <a href="http://www.bipm.org/en/publications/si-brochure/">http://www.bipm.org/en/publications/si-brochure/</a>
    <dt id="biblio-stealingpinsviasensors">[STEALINGPINSVIASENSORS]
