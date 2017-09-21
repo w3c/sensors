@@ -661,68 +661,23 @@ by using the raw output of a gyroscope
 and waiting for quick rotational movements of the head
 to compensate for drift.
 
-<h3 id="concepts-reporting-modes">Reporting Modes</h3>
-
-Issue: **This feature is at risk.**
-It is not clear whether there is value
-in splitting up [=sensor types=] between
-those that fire events at regular intervals
-and those which don't.
-
-[=platform sensor|Sensors=] have different <dfn>reporting modes</dfn>.
-When [=sensor readings=] are reported at regular intervals,
-at an adjustable <dfn>frequency</dfn> measured in hertz (Hz),
-the [=reporting mode=] is said to be <dfn>periodic</dfn>.
-On [=sensor types=] with support for [=periodic|periodic reporting mode=],
-[=periodic|periodic reporting mode=] is triggered
-by requesting a specific [=frequency=].
-
-[=Sensor types=] which do not support [=periodic|periodic reporting mode=]
-are said to operate in an <dfn>implementation specific</dfn> way.
-When the [=reporting mode=] is [=implementation specific=],
-[=sensor readings=] may be provided at regular intervals, irregularly,
-or only when a [=sensor readings|reading=] change is observed.
-This allows user agents more latitude to
-carry out power- or CPU-saving strategies,
-and support multiple hardware configurations.
-[=periodic|Periodic reporting mode=], on the other hand,
-allows a much more fine-grained approach
-and is essential for use cases with, for example,
-low latency requirements.
-
-[=platform sensor|Sensors=] which support [=periodic|periodic reporting mode=]
-<dfn>fallback</dfn> to [=implementation specific|implementation specific reporting mode=]
-when no requirements are made as to what [=frequency=] they should operate at.
-
-Note: [=reporting mode=] is distinct from,
-but related to,
-[=sensor readings=] acquisition.
-If [=device sensors=] are polled at regular interval,
-as is generally the case,
-[=reporting mode=] can be either [=periodic=] or [=implementation specific=].
-However, when the underlying implementation itself only provides [=sensor readings=]
-when it measures change,
-perhaps because is is relying on [=smart sensors=] or a [=sensor hubs=],
-the [=reporting mode=] cannot be [=periodic=],
-as that would require data inference.
-
-Issue: This lacks a description of
-the different data acquisition modes,
-notably polling vs. on change,
-both at the platform and HW layer.
-
-Issue: It would be useful to describe
-the process of sensor sampling and
-how increased sensor sampling frequency decreases latency.
-
-Issue: A definition of sensor accuracy and
-how it affects threshold,
-and thus "on change" sensors would be useful.
-
 ## Sampling Frequency ## {#concepts-sampling-frequency}
 
 For the purpose of this specification, <dfn>sampling frequency</dfn> for a [=platform sensor=] is defined
-as a frequency at which the UA obtains [=sensor readings=] from the underlying platform.
+as a frequency at which the user agent obtains [=sensor readings=] from the underlying platform.
+
+## Reading change treshold ## {#concepts-reading-change-treshold}
+
+A [=platform sensor=] reports [=sensor readings|readings=] to the user agent considering
+the [=reading change treshold=].
+
+The <dfn>reading change treshold</dfn> refers to a value which indicates whether or
+not the changes in the [=device sensor=]'s measurements were significant enough to
+update the [=sensor readings=] [=ordered map|map=].
+
+The [=reading change treshold|treshold=] value depends on the surrounding software and hardware
+environment constraints, e.g., software power consumption optimizations or the underlying
+[=device sensor=]'s accuracy.
 
 <h2 id="model">Model</h2>
 
