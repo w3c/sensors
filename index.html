@@ -1183,7 +1183,7 @@ Possible extra rowspan handling
       background-attachment: fixed;
     }
   </style>
-  <meta content="Bikeshed version df778ba2d9793f77f64705dbba65d0c50f68e0d9" name="generator">
+  <meta content="Bikeshed version eeaa009c31ac13852bf86c1553d994e53f48f852" name="generator">
   <link href="https://www.w3.org/TR/generic-sensor/" rel="canonical">
 <style>
     emu-val {
@@ -1458,7 +1458,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-09-20">20 September 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-09-25">25 September 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1559,7 +1559,7 @@ that can be extended to accommodate different sensor types.</p>
       <li><a href="#concepts-sensors"><span class="secno">6.1</span> <span class="content">Sensors</span></a>
       <li><a href="#concepts-sensor-types"><span class="secno">6.2</span> <span class="content">Sensor Types</span></a>
       <li><a href="#concepts-sampling-frequency"><span class="secno">6.3</span> <span class="content">Sampling Frequency</span></a>
-      <li><a href="#concepts-reading-change-treshold"><span class="secno">6.4</span> <span class="content">Reading change treshold</span></a>
+      <li><a href="#concepts-reading-change-threshold"><span class="secno">6.4</span> <span class="content">Reading change threshold</span></a>
      </ol>
     <li>
      <a href="#model"><span class="secno">7</span> <span class="content">Model</span></a>
@@ -2031,13 +2031,13 @@ to compensate for drift.</p>
    <h3 class="heading settled" data-level="6.3" id="concepts-sampling-frequency"><span class="secno">6.3. </span><span class="content">Sampling Frequency</span><a class="self-link" href="#concepts-sampling-frequency"></a></h3>
    <p>For the purpose of this specification, <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="sampling-frequency">sampling frequency</dfn> for a <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor④">platform sensor</a> is defined
 as a frequency at which the user agent obtains <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings②⑤">sensor readings</a> from the underlying platform.</p>
-   <h3 class="heading settled" data-level="6.4" id="concepts-reading-change-treshold"><span class="secno">6.4. </span><span class="content">Reading change treshold</span><a class="self-link" href="#concepts-reading-change-treshold"></a></h3>
+   <h3 class="heading settled" data-level="6.4" id="concepts-reading-change-threshold"><span class="secno">6.4. </span><span class="content">Reading change threshold</span><a class="self-link" href="#concepts-reading-change-threshold"></a></h3>
    <p>A <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor⑤">platform sensor</a> reports <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings②⑥">readings</a> to the user agent considering
-the <a data-link-type="dfn" href="#reading-change-treshold" id="ref-for-reading-change-treshold">reading change treshold</a>.</p>
-   <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="reading-change-treshold">reading change treshold</dfn> refers to a value which indicates whether or
+the <a data-link-type="dfn" href="#reading-change-threshold" id="ref-for-reading-change-threshold">reading change threshold</a>.</p>
+   <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="reading-change-threshold">reading change threshold</dfn> refers to a value which indicates whether or
 not the changes in the <a data-link-type="dfn" href="#concept-device-sensor" id="ref-for-concept-device-sensor①⑨">device sensor</a>'s measurements were significant enough to
 update the <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings②⑦">sensor readings</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map">map</a>.</p>
-   <p>The <a data-link-type="dfn" href="#reading-change-treshold" id="ref-for-reading-change-treshold①">treshold</a> value depends on the surrounding software and hardware
+   <p>The <a data-link-type="dfn" href="#reading-change-threshold" id="ref-for-reading-change-threshold①">threshold</a> value depends on the surrounding software and hardware
 environment constraints, e.g., software power consumption optimizations or the underlying <a data-link-type="dfn" href="#concept-device-sensor" id="ref-for-concept-device-sensor②⓪">device sensor</a>'s accuracy.</p>
    <h2 class="heading settled" data-level="7" id="model"><span class="secno">7. </span><span class="content">Model</span><a class="self-link" href="#model"></a></h2>
    <p class="issue" id="issue-d36d1a2e"><a class="self-link" href="#issue-d36d1a2e"></a> A diagram would really help here.</p>
@@ -3291,7 +3291,7 @@ for their editorial input.</p>
    <li><a href="#dom-sensor-pendingreadingnotification-slot">[[pendingReadingNotification]]</a><span>, in §8.1.2</span>
    <li><a href="#concept-platform-sensor">platform sensor</a><span>, in §6.1</span>
    <li><a href="#raw-sensor-readings">raw sensor readings</a><span>, in §6.1</span>
-   <li><a href="#reading-change-treshold">reading change treshold</a><span>, in §6.4</span>
+   <li><a href="#reading-change-threshold">reading change threshold</a><span>, in §6.4</span>
    <li><a href="#reading-value">reading value</a><span>, in §6.1</span>
    <li><a href="#reduce-accuracy">Reduce accuracy</a><span>, in §5.3.3</span>
    <li><a href="#report-latest-reading-updated">Report latest reading updated</a><span>, in §9.9</span>
@@ -3517,7 +3517,7 @@ for their editorial input.</p>
     <li><a href="#ref-for-concept-device-sensor⑧">5. Security and privacy considerations</a> <a href="#ref-for-concept-device-sensor⑨">(2)</a> <a href="#ref-for-concept-device-sensor①⓪">(3)</a> <a href="#ref-for-concept-device-sensor①①">(4)</a>
     <li><a href="#ref-for-concept-device-sensor①②">5.2.3. Losing Focus</a>
     <li><a href="#ref-for-concept-device-sensor①③">6.1. Sensors</a> <a href="#ref-for-concept-device-sensor①④">(2)</a> <a href="#ref-for-concept-device-sensor①⑤">(3)</a> <a href="#ref-for-concept-device-sensor①⑥">(4)</a> <a href="#ref-for-concept-device-sensor①⑦">(5)</a> <a href="#ref-for-concept-device-sensor①⑧">(6)</a>
-    <li><a href="#ref-for-concept-device-sensor①⑨">6.4. Reading change treshold</a> <a href="#ref-for-concept-device-sensor②⓪">(2)</a>
+    <li><a href="#ref-for-concept-device-sensor①⑨">6.4. Reading change threshold</a> <a href="#ref-for-concept-device-sensor②⓪">(2)</a>
     <li><a href="#ref-for-concept-device-sensor②①">10.6. Definition Requirements</a>
     <li><a href="#ref-for-concept-device-sensor②②">10.8. Example WebIDL</a>
    </ul>
@@ -3554,7 +3554,7 @@ for their editorial input.</p>
     <li><a href="#ref-for-sensor-readings①⑨">6.1. Sensors</a> <a href="#ref-for-sensor-readings②⓪">(2)</a>
     <li><a href="#ref-for-sensor-readings②①">6.2. Sensor Types</a> <a href="#ref-for-sensor-readings②②">(2)</a> <a href="#ref-for-sensor-readings②③">(3)</a> <a href="#ref-for-sensor-readings②④">(4)</a>
     <li><a href="#ref-for-sensor-readings②⑤">6.3. Sampling Frequency</a>
-    <li><a href="#ref-for-sensor-readings②⑥">6.4. Reading change treshold</a> <a href="#ref-for-sensor-readings②⑦">(2)</a>
+    <li><a href="#ref-for-sensor-readings②⑥">6.4. Reading change threshold</a> <a href="#ref-for-sensor-readings②⑦">(2)</a>
     <li><a href="#ref-for-sensor-readings②⑧">7.2. Sensor</a> <a href="#ref-for-sensor-readings②⑨">(2)</a> <a href="#ref-for-sensor-readings③⓪">(3)</a> <a href="#ref-for-sensor-readings③①">(4)</a> <a href="#ref-for-sensor-readings③②">(5)</a>
     <li><a href="#ref-for-sensor-readings③③">8.1. The Sensor Interface</a>
     <li><a href="#ref-for-sensor-readings③④">8.1.2. Sensor internal slots</a> <a href="#ref-for-sensor-readings③⑤">(2)</a>
@@ -3573,7 +3573,7 @@ for their editorial input.</p>
    <ul>
     <li><a href="#ref-for-concept-platform-sensor">6.1. Sensors</a> <a href="#ref-for-concept-platform-sensor①">(2)</a> <a href="#ref-for-concept-platform-sensor②">(3)</a> <a href="#ref-for-concept-platform-sensor③">(4)</a>
     <li><a href="#ref-for-concept-platform-sensor④">6.3. Sampling Frequency</a>
-    <li><a href="#ref-for-concept-platform-sensor⑤">6.4. Reading change treshold</a>
+    <li><a href="#ref-for-concept-platform-sensor⑤">6.4. Reading change threshold</a>
     <li><a href="#ref-for-concept-platform-sensor⑥">7.1. Sensor Type</a> <a href="#ref-for-concept-platform-sensor⑦">(2)</a>
     <li><a href="#ref-for-concept-platform-sensor⑧">7.2. Sensor</a> <a href="#ref-for-concept-platform-sensor⑨">(2)</a> <a href="#ref-for-concept-platform-sensor①⓪">(3)</a> <a href="#ref-for-concept-platform-sensor①①">(4)</a> <a href="#ref-for-concept-platform-sensor①②">(5)</a> <a href="#ref-for-concept-platform-sensor①③">(6)</a>
     <li><a href="#ref-for-concept-platform-sensor①④">8.1. The Sensor Interface</a> <a href="#ref-for-concept-platform-sensor①⑤">(2)</a> <a href="#ref-for-concept-platform-sensor①⑥">(3)</a>
@@ -3631,10 +3631,10 @@ for their editorial input.</p>
     <li><a href="#ref-for-sampling-frequency⑥">10.7. Extending the Permission API</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="reading-change-treshold">
-   <b><a href="#reading-change-treshold">#reading-change-treshold</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="reading-change-threshold">
+   <b><a href="#reading-change-threshold">#reading-change-threshold</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-reading-change-treshold">6.4. Reading change treshold</a> <a href="#ref-for-reading-change-treshold①">(2)</a>
+    <li><a href="#ref-for-reading-change-threshold">6.4. Reading change threshold</a> <a href="#ref-for-reading-change-threshold①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="sensor-type">

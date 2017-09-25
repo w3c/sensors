@@ -666,16 +666,16 @@ to compensate for drift.
 For the purpose of this specification, <dfn>sampling frequency</dfn> for a [=platform sensor=] is defined
 as a frequency at which the user agent obtains [=sensor readings=] from the underlying platform.
 
-## Reading change treshold ## {#concepts-reading-change-treshold}
+## Reading change threshold ## {#concepts-reading-change-threshold}
 
 A [=platform sensor=] reports [=sensor readings|readings=] to the user agent considering
-the [=reading change treshold=].
+the [=reading change threshold=].
 
-The <dfn>reading change treshold</dfn> refers to a value which indicates whether or
+The <dfn>reading change threshold</dfn> refers to a value which indicates whether or
 not the changes in the [=device sensor=]'s measurements were significant enough to
 update the [=sensor readings=] [=ordered map|map=].
 
-The [=reading change treshold|treshold=] value depends on the surrounding software and hardware
+The [=reading change threshold|threshold=] value depends on the surrounding software and hardware
 environment constraints, e.g., software power consumption optimizations or the underlying
 [=device sensor=]'s accuracy.
 
