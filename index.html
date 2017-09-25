@@ -1183,8 +1183,9 @@ Possible extra rowspan handling
       background-attachment: fixed;
     }
   </style>
-  <meta content="Bikeshed version eeaa009c31ac13852bf86c1553d994e53f48f852" name="generator">
+  <meta content="Bikeshed version df778ba2d9793f77f64705dbba65d0c50f68e0d9" name="generator">
   <link href="https://www.w3.org/TR/generic-sensor/" rel="canonical">
+  <meta content="5bf848ec0f97f537e8f7418095e3a6991b9842fd" name="document-revision">
 <style>
     emu-val {
       font-weight: bold;
@@ -1576,13 +1577,14 @@ that can be extended to accommodate different sensor types.</p>
         <li><a href="#sensor-lifecycle"><span class="secno">8.1.1</span> <span class="content">Sensor lifecycle</span></a>
         <li><a href="#sensor-internal-slots"><span class="secno">8.1.2</span> <span class="content">Sensor internal slots</span></a>
         <li><a href="#sensor-activated"><span class="secno">8.1.3</span> <span class="content">Sensor.activated</span></a>
-        <li><a href="#sensor-timestamp"><span class="secno">8.1.4</span> <span class="content">Sensor.timestamp</span></a>
-        <li><a href="#sensor-start"><span class="secno">8.1.5</span> <span class="content">Sensor.start()</span></a>
-        <li><a href="#sensor-stop"><span class="secno">8.1.6</span> <span class="content">Sensor.stop()</span></a>
-        <li><a href="#sensor-onreading"><span class="secno">8.1.7</span> <span class="content">Sensor.onreading</span></a>
-        <li><a href="#sensor-onactivate"><span class="secno">8.1.8</span> <span class="content">Sensor.onactivate</span></a>
-        <li><a href="#sensor-onerror"><span class="secno">8.1.9</span> <span class="content">Sensor.onerror</span></a>
-        <li><a href="#event-handlers"><span class="secno">8.1.10</span> <span class="content">Event handlers</span></a>
+        <li><a href="#sensor-has-reading"><span class="secno">8.1.4</span> <span class="content">Sensor.hasReading</span></a>
+        <li><a href="#sensor-timestamp"><span class="secno">8.1.5</span> <span class="content">Sensor.timestamp</span></a>
+        <li><a href="#sensor-start"><span class="secno">8.1.6</span> <span class="content">Sensor.start()</span></a>
+        <li><a href="#sensor-stop"><span class="secno">8.1.7</span> <span class="content">Sensor.stop()</span></a>
+        <li><a href="#sensor-onreading"><span class="secno">8.1.8</span> <span class="content">Sensor.onreading</span></a>
+        <li><a href="#sensor-onactivate"><span class="secno">8.1.9</span> <span class="content">Sensor.onactivate</span></a>
+        <li><a href="#sensor-onerror"><span class="secno">8.1.10</span> <span class="content">Sensor.onerror</span></a>
+        <li><a href="#event-handlers"><span class="secno">8.1.11</span> <span class="content">Event handlers</span></a>
        </ol>
       <li>
        <a href="#the-sensor-error-event-interface"><span class="secno">8.2</span> <span class="content">The SensorErrorEvent Interface</span></a>
@@ -1731,7 +1733,7 @@ define ways to uniquely identify each one.</p>
    <div class="example" id="example-fdd94e11">
     <a class="self-link" href="#example-fdd94e11"></a> For example checking the pressure of the left rear tire: 
 <pre class="highlight"><span class="kd">var</span> sensor <span class="o">=</span> <span class="k">new</span> DirectTirePressureSensor<span class="p">({</span> position<span class="o">:</span> <span class="s2">"rear"</span><span class="p">,</span> side<span class="o">:</span> <span class="s2">"left"</span> <span class="p">});</span>
-sensor<span class="p">.</span>onreading <span class="o">=</span> _ <span class="p">=></span> console<span class="p">.</span>log<span class="p">(</span>sensor<span class="p">.</span>pressure<span class="p">);</span>
+sensor<span class="p">.</span>onreading <span class="o">=</span> _ <span class="o">=></span> console<span class="p">.</span>log<span class="p">(</span>sensor<span class="p">.</span>pressure<span class="p">);</span>
 sensor<span class="p">.</span>start<span class="p">();</span>
 </pre>
    </div>
@@ -1795,8 +1797,8 @@ and defensive programming which includes:</p>
 <pre class="highlight"><span class="k">try</span> <span class="p">{</span> <span class="c1">// No need to feature detect thanks to try..catch block.</span>
 <span class="c1"></span>    <span class="kd">var</span> sensor <span class="o">=</span> <span class="k">new</span> GeolocationSensor<span class="p">();</span>
     sensor<span class="p">.</span>start<span class="p">();</span>
-    sensor<span class="p">.</span>onerror <span class="o">=</span> error <span class="p">=></span> gracefullyDegrade<span class="p">(</span>error<span class="p">);</span>
-    sensor<span class="p">.</span>onreading <span class="o">=</span> _ <span class="p">=></span> updatePosition<span class="p">(</span>sensor<span class="p">.</span>latitude<span class="p">,</span> sensor<span class="p">.</span>longitude<span class="p">);</span>
+    sensor<span class="p">.</span>onerror <span class="o">=</span> error <span class="o">=></span> gracefullyDegrade<span class="p">(</span>error<span class="p">);</span>
+    sensor<span class="p">.</span>onreading <span class="o">=</span> _ <span class="o">=></span> updatePosition<span class="p">(</span>sensor<span class="p">.</span>latitude<span class="p">,</span> sensor<span class="p">.</span>longitude<span class="p">);</span>
 <span class="p">}</span> <span class="k">catch</span><span class="p">(</span>error<span class="p">)</span> <span class="p">{</span>
     gracefullyDegrade<span class="p">(</span>error<span class="p">);</span>
 <span class="p">}</span>
@@ -2096,6 +2098,7 @@ by the underlying platform.</p>
 <pre class="idl highlight def">[<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext">SecureContext</a>, <a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed">Exposed</a>=<span class="n">Window</span>]
 <span class="kt">interface</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="interface" data-export="" id="sensor"><code>Sensor</code></dfn> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget" id="ref-for-eventtarget">EventTarget</a> {
   <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean"><span class="kt">boolean</span></a> <dfn class="nv dfn-paneled idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-readonly="" data-type="boolean" id="dom-sensor-activated"><code>activated</code></dfn>;
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean①"><span class="kt">boolean</span></a> <dfn class="nv dfn-paneled idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-readonly="" data-type="boolean" id="dom-sensor-hasreading"><code>hasReading</code></dfn>;
   <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="http://w3c.github.io/hr-time/#dom-domhighrestimestamp" id="ref-for-dom-domhighrestimestamp">DOMHighResTimeStamp</a>? <dfn class="nv dfn-paneled idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-readonly="" data-type="DOMHighResTimeStamp?" id="dom-sensor-timestamp"><code>timestamp</code></dfn>;
   <span class="kt">void</span> <dfn class="nv dfn-paneled idl-code" data-dfn-for="Sensor" data-dfn-type="method" data-export="" data-lt="start()" id="dom-sensor-start"><code>start</code></dfn>();
   <span class="kt">void</span> <dfn class="nv dfn-paneled idl-code" data-dfn-for="Sensor" data-dfn-type="method" data-export="" data-lt="stop()" id="dom-sensor-stop"><code>stop</code></dfn>();
@@ -2117,9 +2120,9 @@ by the underlying platform.</p>
     <p>The <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-type" id="ref-for-event-handler-event-type">event handler event types</a> for the corresponding <a href="#the-sensor-interface"> Sensor Interface</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers" id="ref-for-event-handlers">event handler</a> attributes are defined in <a href="#event-handlers">Event handlers</a> section.</p>
 <pre class="highlight"><span class="kd">let</span> acl <span class="o">=</span> <span class="k">new</span> Accelerometer<span class="p">({</span>frequency<span class="o">:</span> <span class="mi">30</span><span class="p">});</span>
 <span class="kd">let</span> max_magnitude <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-acl<span class="p">.</span>addEventListener<span class="p">(</span><span class="s1">'activate'</span><span class="p">,</span> <span class="p">()</span> <span class="p">=></span> console<span class="p">.</span>log<span class="p">(</span><span class="s1">'Ready to measure.'</span><span class="p">));</span>
-acl<span class="p">.</span>addEventListener<span class="p">(</span><span class="s1">'error'</span><span class="p">,</span> error <span class="p">=></span> console<span class="p">.</span>log<span class="p">(</span><span class="s1">'Error: '</span> <span class="o">+</span> error<span class="p">.</span>name<span class="p">));</span>
-acl<span class="p">.</span>addEventListener<span class="p">(</span><span class="s1">'reading'</span><span class="p">,</span> <span class="p">()</span> <span class="p">=></span> <span class="p">{</span>
+acl<span class="p">.</span>addEventListener<span class="p">(</span><span class="s1">'activate'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=></span> console<span class="p">.</span>log<span class="p">(</span><span class="s1">'Ready to measure.'</span><span class="p">));</span>
+acl<span class="p">.</span>addEventListener<span class="p">(</span><span class="s1">'error'</span><span class="p">,</span> error <span class="o">=></span> console<span class="p">.</span>log<span class="p">(</span><span class="s1">'Error: '</span> <span class="o">+</span> error<span class="p">.</span>name<span class="p">));</span>
+acl<span class="p">.</span>addEventListener<span class="p">(</span><span class="s1">'reading'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=></span> <span class="p">{</span>
     <span class="kd">let</span> magnitude <span class="o">=</span> Math<span class="p">.</span>hypot<span class="p">(</span>acl<span class="p">.</span>x<span class="p">,</span> acl<span class="p">.</span>y<span class="p">,</span> acl<span class="p">.</span>z<span class="p">);</span>
     <span class="k">if</span> <span class="p">(</span>magnitude <span class="o">></span> max_magnitude<span class="p">)</span> <span class="p">{</span>
         max_magnitude <span class="o">=</span> magnitude<span class="p">;</span>
@@ -2246,10 +2249,22 @@ with the internal slots described in the following table:</p>
       <p>Otherwise, return false.</p>
     </ol>
    </div>
-   <h4 class="heading settled" data-level="8.1.4" id="sensor-timestamp"><span class="secno">8.1.4. </span><span class="content">Sensor.timestamp</span><a class="self-link" href="#sensor-timestamp"></a></h4>
+   <h4 class="heading settled" data-level="8.1.4" id="sensor-has-reading"><span class="secno">8.1.4. </span><span class="content">Sensor.hasReading</span><a class="self-link" href="#sensor-has-reading"></a></h4>
+   <div class="algorithm" data-algorithm="sensor has reading">
+    <p>The getter of the <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensor-hasreading" id="ref-for-dom-sensor-hasreading">hasReading</a></code> attribute must run these steps:</p>
+    <ol>
+     <li data-md="">
+      <p>Let <var>timestamp</var> be the result of invoking <a data-link-type="dfn" href="#get-value-from-latest-reading" id="ref-for-get-value-from-latest-reading①">get value from latest reading</a> with <emu-val>this</emu-val> and "timestamp" as arguments.</p>
+     <li data-md="">
+      <p>If <var>timestamp</var> is not null, return true.</p>
+     <li data-md="">
+      <p>Otherwise, return false.</p>
+    </ol>
+   </div>
+   <h4 class="heading settled" data-level="8.1.5" id="sensor-timestamp"><span class="secno">8.1.5. </span><span class="content">Sensor.timestamp</span><a class="self-link" href="#sensor-timestamp"></a></h4>
    <p>The getter of the <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensor-timestamp" id="ref-for-dom-sensor-timestamp">timestamp</a></code> attribute returns
-the result of invoking <a data-link-type="dfn" href="#get-value-from-latest-reading" id="ref-for-get-value-from-latest-reading①">get value from latest reading</a> with <emu-val>this</emu-val> and "timestamp" as arguments.</p>
-   <h4 class="heading settled" data-level="8.1.5" id="sensor-start"><span class="secno">8.1.5. </span><span class="content">Sensor.start()</span><a class="self-link" href="#sensor-start"></a></h4>
+the result of invoking <a data-link-type="dfn" href="#get-value-from-latest-reading" id="ref-for-get-value-from-latest-reading②">get value from latest reading</a> with <emu-val>this</emu-val> and "timestamp" as arguments.</p>
+   <h4 class="heading settled" data-level="8.1.6" id="sensor-start"><span class="secno">8.1.6. </span><span class="content">Sensor.start()</span><a class="self-link" href="#sensor-start"></a></h4>
    <div class="algorithm" data-algorithm="to start a sensor">
     <p>The <code class="idl"><a data-link-type="idl" href="#dom-sensor-start" id="ref-for-dom-sensor-start">start()</a></code> method must run these steps:</p>
     <ol>
@@ -2295,7 +2310,7 @@ the result of invoking <a data-link-type="dfn" href="#get-value-from-latest-read
       </ol>
     </ol>
    </div>
-   <h4 class="heading settled" data-level="8.1.6" id="sensor-stop"><span class="secno">8.1.6. </span><span class="content">Sensor.stop()</span><a class="self-link" href="#sensor-stop"></a></h4>
+   <h4 class="heading settled" data-level="8.1.7" id="sensor-stop"><span class="secno">8.1.7. </span><span class="content">Sensor.stop()</span><a class="self-link" href="#sensor-stop"></a></h4>
    <div class="algorithm" data-algorithm="to stop a sensor">
     <p>The <code class="idl"><a data-link-type="idl" href="#dom-sensor-stop" id="ref-for-dom-sensor-stop">stop()</a></code> method must run these steps:</p>
     <ol>
@@ -2311,15 +2326,15 @@ the result of invoking <a data-link-type="dfn" href="#get-value-from-latest-read
       </ol>
     </ol>
    </div>
-   <h4 class="heading settled" data-level="8.1.7" id="sensor-onreading"><span class="secno">8.1.7. </span><span class="content">Sensor.onreading</span><a class="self-link" href="#sensor-onreading"></a></h4>
+   <h4 class="heading settled" data-level="8.1.8" id="sensor-onreading"><span class="secno">8.1.8. </span><span class="content">Sensor.onreading</span><a class="self-link" href="#sensor-onreading"></a></h4>
    <p><code class="idl"><a data-link-type="idl" href="#dom-sensor-onreading" id="ref-for-dom-sensor-onreading">onreading</a></code> is an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler③">EventHandler</a></code> which is called
 to notify that new <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings③⑥">reading</a> is available.</p>
-   <h4 class="heading settled" data-level="8.1.8" id="sensor-onactivate"><span class="secno">8.1.8. </span><span class="content">Sensor.onactivate</span><a class="self-link" href="#sensor-onactivate"></a></h4>
+   <h4 class="heading settled" data-level="8.1.9" id="sensor-onactivate"><span class="secno">8.1.9. </span><span class="content">Sensor.onactivate</span><a class="self-link" href="#sensor-onactivate"></a></h4>
    <p><code class="idl"><a data-link-type="idl" href="#dom-sensor-onactivate" id="ref-for-dom-sensor-onactivate">onactivate</a></code> is an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler④">EventHandler</a></code> which is called when <emu-val>this</emu-val>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-state-slot" id="ref-for-dom-sensor-state-slot⑤">[[state]]</a></code> transitions from "activating" to "activated".</p>
-   <h4 class="heading settled" data-level="8.1.9" id="sensor-onerror"><span class="secno">8.1.9. </span><span class="content">Sensor.onerror</span><a class="self-link" href="#sensor-onerror"></a></h4>
+   <h4 class="heading settled" data-level="8.1.10" id="sensor-onerror"><span class="secno">8.1.10. </span><span class="content">Sensor.onerror</span><a class="self-link" href="#sensor-onerror"></a></h4>
    <p><code class="idl"><a data-link-type="idl" href="#dom-sensor-onerror" id="ref-for-dom-sensor-onerror">onerror</a></code> is an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler⑤">EventHandler</a></code> which is called whenever
 an <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-exception-type" id="ref-for-dfn-exception-type">exception</a> cannot be handled synchronously.</p>
-   <h4 class="heading settled" data-level="8.1.10" id="event-handlers"><span class="secno">8.1.10. </span><span class="content">Event handlers</span><a class="self-link" href="#event-handlers"></a></h4>
+   <h4 class="heading settled" data-level="8.1.11" id="event-handlers"><span class="secno">8.1.11. </span><span class="content">Event handlers</span><a class="self-link" href="#event-handlers"></a></h4>
    <p>The following are the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers" id="ref-for-event-handlers①">event handlers</a> (and their corresponding <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-type" id="ref-for-event-handler-event-type①">event handler event types</a>)
 that must be supported as attributes by the objects implementing the <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor①①">Sensor</a></code> interface:</p>
    <table class="def">
@@ -2939,7 +2954,7 @@ each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type③⓪">
   Its [<code class="idl"><a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Constructor" id="ref-for-Constructor">Constructor</a></code>] must take, as argument,
   an optional <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-dictionary" id="ref-for-dfn-dictionary">dictionary</a> whose <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-inherited-dictionaries" id="ref-for-dfn-inherited-dictionaries">inherited dictionaries</a> contains <code class="idl"><a data-link-type="idl" href="#dictdef-sensoroptions" id="ref-for-dictdef-sensoroptions①">SensorOptions</a></code>.
   Its <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-attribute" id="ref-for-dfn-attribute③">attributes</a> which expose <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings④④">sensor readings</a> are <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-read-only" id="ref-for-dfn-read-only">read only</a> and
-  their getters must return the result of invoking <a data-link-type="dfn" href="#get-value-from-latest-reading" id="ref-for-get-value-from-latest-reading②">get value from latest reading</a> with <emu-val>this</emu-val> and <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-attribute" id="ref-for-dfn-attribute④">attribute</a> <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-identifier" id="ref-for-dfn-identifier②">identifier</a> as arguments.</p>
+  their getters must return the result of invoking <a data-link-type="dfn" href="#get-value-from-latest-reading" id="ref-for-get-value-from-latest-reading③">get value from latest reading</a> with <emu-val>this</emu-val> and <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-attribute" id="ref-for-dfn-attribute④">attribute</a> <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-identifier" id="ref-for-dfn-identifier②">identifier</a> as arguments.</p>
     <li data-md="">
      <p>A <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/permissions/#enumdef-permissionname" id="ref-for-enumdef-permissionname⑤">PermissionName</a></code>.</p>
    </ul>
@@ -3273,6 +3288,7 @@ for their editorial input.</p>
    <li><a href="#dom-sensoroptions-frequency">frequency</a><span>, in §8.1</span>
    <li><a href="#generic-sensor-permission-revocation-algorithm">generic sensor permission revocation algorithm</a><span>, in §7.1</span>
    <li><a href="#get-value-from-latest-reading">Get value from latest reading</a><span>, in §9.13</span>
+   <li><a href="#dom-sensor-hasreading">hasReading</a><span>, in §8.1</span>
    <li><a href="#high-level">high-level</a><span>, in §6.2</span>
    <li><a href="#identifying-parameters">identifying parameters</a><span>, in §7.1</span>
    <li><a href="#dom-sensor-identifyingparameters-slot">[[identifyingParameters]]</a><span>, in §8.1.2</span>
@@ -3480,7 +3496,8 @@ for their editorial input.</p>
   <h2 class="no-num no-ref heading settled" id="idl-index"><span class="content">IDL Index</span><a class="self-link" href="#idl-index"></a></h2>
 <pre class="idl highlight def">[<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext②">SecureContext</a>, <a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed②">Exposed</a>=<span class="n">Window</span>]
 <span class="kt">interface</span> <a class="nv" href="#sensor"><code>Sensor</code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget" id="ref-for-eventtarget①">EventTarget</a> {
-  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean①"><span class="kt">boolean</span></a> <a class="nv" data-readonly="" data-type="boolean" href="#dom-sensor-activated"><code>activated</code></a>;
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean②"><span class="kt">boolean</span></a> <a class="nv" data-readonly="" data-type="boolean" href="#dom-sensor-activated"><code>activated</code></a>;
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean①①"><span class="kt">boolean</span></a> <a class="nv" data-readonly="" data-type="boolean" href="#dom-sensor-hasreading"><code>hasReading</code></a>;
   <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="http://w3c.github.io/hr-time/#dom-domhighrestimestamp" id="ref-for-dom-domhighrestimestamp①">DOMHighResTimeStamp</a>? <a class="nv" data-readonly="" data-type="DOMHighResTimeStamp?" href="#dom-sensor-timestamp"><code>timestamp</code></a>;
   <span class="kt">void</span> <a class="nv" href="#dom-sensor-start"><code>start</code></a>();
   <span class="kt">void</span> <a class="nv" href="#dom-sensor-stop"><code>stop</code></a>();
@@ -3558,7 +3575,7 @@ for their editorial input.</p>
     <li><a href="#ref-for-sensor-readings②⑧">7.2. Sensor</a> <a href="#ref-for-sensor-readings②⑨">(2)</a> <a href="#ref-for-sensor-readings③⓪">(3)</a> <a href="#ref-for-sensor-readings③①">(4)</a> <a href="#ref-for-sensor-readings③②">(5)</a>
     <li><a href="#ref-for-sensor-readings③③">8.1. The Sensor Interface</a>
     <li><a href="#ref-for-sensor-readings③④">8.1.2. Sensor internal slots</a> <a href="#ref-for-sensor-readings③⑤">(2)</a>
-    <li><a href="#ref-for-sensor-readings③⑥">8.1.7. Sensor.onreading</a>
+    <li><a href="#ref-for-sensor-readings③⑥">8.1.8. Sensor.onreading</a>
     <li><a href="#ref-for-sensor-readings③⑦">9.6. Set sensor settings</a> <a href="#ref-for-sensor-readings③⑧">(2)</a>
     <li><a href="#ref-for-sensor-readings③⑨">9.7. Update latest reading</a>
     <li><a href="#ref-for-sensor-readings④⓪">9.14. Get value from latest reading</a>
@@ -3723,7 +3740,7 @@ for their editorial input.</p>
     <li><a href="#ref-for-sensor⑤">8.1. The Sensor Interface</a>
     <li><a href="#ref-for-sensor⑥">8.1.1. Sensor lifecycle</a>
     <li><a href="#ref-for-sensor⑦">8.1.2. Sensor internal slots</a> <a href="#ref-for-sensor⑧">(2)</a> <a href="#ref-for-sensor⑨">(3)</a> <a href="#ref-for-sensor①⓪">(4)</a>
-    <li><a href="#ref-for-sensor①①">8.1.10. Event handlers</a>
+    <li><a href="#ref-for-sensor①①">8.1.11. Event handlers</a>
     <li><a href="#ref-for-sensor①②">9.1. Construct sensor object</a> <a href="#ref-for-sensor①③">(2)</a> <a href="#ref-for-sensor①④">(3)</a>
     <li><a href="#ref-for-sensor①⑤">9.2. Connect to sensor</a>
     <li><a href="#ref-for-sensor①⑥">9.3. Activate a sensor object</a>
@@ -3747,41 +3764,47 @@ for their editorial input.</p>
     <li><a href="#ref-for-dom-sensor-activated">8.1.3. Sensor.activated</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="dom-sensor-hasreading">
+   <b><a href="#dom-sensor-hasreading">#dom-sensor-hasreading</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-sensor-hasreading">8.1.4. Sensor.hasReading</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="dom-sensor-timestamp">
    <b><a href="#dom-sensor-timestamp">#dom-sensor-timestamp</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-sensor-timestamp">8.1.4. Sensor.timestamp</a>
+    <li><a href="#ref-for-dom-sensor-timestamp">8.1.5. Sensor.timestamp</a>
     <li><a href="#ref-for-dom-sensor-timestamp①">9.1. Construct sensor object</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-sensor-start">
    <b><a href="#dom-sensor-start">#dom-sensor-start</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-sensor-start">8.1.5. Sensor.start()</a>
+    <li><a href="#ref-for-dom-sensor-start">8.1.6. Sensor.start()</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-sensor-stop">
    <b><a href="#dom-sensor-stop">#dom-sensor-stop</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-sensor-stop">8.1.6. Sensor.stop()</a>
+    <li><a href="#ref-for-dom-sensor-stop">8.1.7. Sensor.stop()</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-sensor-onreading">
    <b><a href="#dom-sensor-onreading">#dom-sensor-onreading</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-sensor-onreading">8.1.7. Sensor.onreading</a>
+    <li><a href="#ref-for-dom-sensor-onreading">8.1.8. Sensor.onreading</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-sensor-onactivate">
    <b><a href="#dom-sensor-onactivate">#dom-sensor-onactivate</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-sensor-onactivate">8.1.8. Sensor.onactivate</a>
+    <li><a href="#ref-for-dom-sensor-onactivate">8.1.9. Sensor.onactivate</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-sensor-onerror">
    <b><a href="#dom-sensor-onerror">#dom-sensor-onerror</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-sensor-onerror">8.1.9. Sensor.onerror</a>
+    <li><a href="#ref-for-dom-sensor-onerror">8.1.10. Sensor.onerror</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dictdef-sensoroptions">
@@ -3807,9 +3830,9 @@ for their editorial input.</p>
    <b><a href="#dom-sensor-state-slot">#dom-sensor-state-slot</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-sensor-state-slot">8.1.3. Sensor.activated</a>
-    <li><a href="#ref-for-dom-sensor-state-slot①">8.1.5. Sensor.start()</a> <a href="#ref-for-dom-sensor-state-slot②">(2)</a>
-    <li><a href="#ref-for-dom-sensor-state-slot③">8.1.6. Sensor.stop()</a> <a href="#ref-for-dom-sensor-state-slot④">(2)</a>
-    <li><a href="#ref-for-dom-sensor-state-slot⑤">8.1.8. Sensor.onactivate</a>
+    <li><a href="#ref-for-dom-sensor-state-slot①">8.1.6. Sensor.start()</a> <a href="#ref-for-dom-sensor-state-slot②">(2)</a>
+    <li><a href="#ref-for-dom-sensor-state-slot③">8.1.7. Sensor.stop()</a> <a href="#ref-for-dom-sensor-state-slot④">(2)</a>
+    <li><a href="#ref-for-dom-sensor-state-slot⑤">8.1.9. Sensor.onactivate</a>
     <li><a href="#ref-for-dom-sensor-state-slot⑥">9.1. Construct sensor object</a>
     <li><a href="#ref-for-dom-sensor-state-slot⑦">9.12. Notify activated state</a>
     <li><a href="#ref-for-dom-sensor-state-slot⑧">9.13. Notify error</a>
@@ -3869,20 +3892,20 @@ for their editorial input.</p>
   <aside class="dfn-panel" data-for="connect-to-sensor">
    <b><a href="#connect-to-sensor">#connect-to-sensor</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-connect-to-sensor">8.1.5. Sensor.start()</a>
+    <li><a href="#ref-for-connect-to-sensor">8.1.6. Sensor.start()</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="activate-a-sensor-object">
    <b><a href="#activate-a-sensor-object">#activate-a-sensor-object</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-activate-a-sensor-object">8.1.5. Sensor.start()</a>
+    <li><a href="#ref-for-activate-a-sensor-object">8.1.6. Sensor.start()</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="deactivate-a-sensor-object">
    <b><a href="#deactivate-a-sensor-object">#deactivate-a-sensor-object</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-deactivate-a-sensor-object">8.1.1. Sensor lifecycle</a>
-    <li><a href="#ref-for-deactivate-a-sensor-object①">8.1.6. Sensor.stop()</a>
+    <li><a href="#ref-for-deactivate-a-sensor-object①">8.1.7. Sensor.stop()</a>
     <li><a href="#ref-for-deactivate-a-sensor-object②">9.5. Revoke sensor permission</a>
    </ul>
   </aside>
@@ -3942,7 +3965,7 @@ for their editorial input.</p>
   <aside class="dfn-panel" data-for="notify-error">
    <b><a href="#notify-error">#notify-error</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-notify-error">8.1.5. Sensor.start()</a> <a href="#ref-for-notify-error①">(2)</a>
+    <li><a href="#ref-for-notify-error">8.1.6. Sensor.start()</a> <a href="#ref-for-notify-error①">(2)</a>
     <li><a href="#ref-for-notify-error②">9.5. Revoke sensor permission</a>
    </ul>
   </aside>
@@ -3950,14 +3973,15 @@ for their editorial input.</p>
    <b><a href="#get-value-from-latest-reading">#get-value-from-latest-reading</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-get-value-from-latest-reading">7.2. Sensor</a>
-    <li><a href="#ref-for-get-value-from-latest-reading①">8.1.4. Sensor.timestamp</a>
-    <li><a href="#ref-for-get-value-from-latest-reading②">10.6. Definition Requirements</a>
+    <li><a href="#ref-for-get-value-from-latest-reading①">8.1.4. Sensor.hasReading</a>
+    <li><a href="#ref-for-get-value-from-latest-reading②">8.1.5. Sensor.timestamp</a>
+    <li><a href="#ref-for-get-value-from-latest-reading③">10.6. Definition Requirements</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="request-sensor-access">
    <b><a href="#request-sensor-access">#request-sensor-access</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-request-sensor-access">8.1.5. Sensor.start()</a>
+    <li><a href="#ref-for-request-sensor-access">8.1.6. Sensor.start()</a>
    </ul>
   </aside>
 <script>/* script-dfn-panel */
