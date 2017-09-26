@@ -652,7 +652,7 @@ the [=reading change threshold=].
 
 The <dfn>reading change threshold</dfn> refers to a value which indicates whether or
 not the changes in the [=device sensor=]'s measurements were significant enough to
-update the [=sensor readings=] [=ordered map|map=].
+update the corresponding [=sensor readings=].
 
 The [=reading change threshold|threshold=] value depends on the surrounding software and hardware
 environment constraints, e.g., software power consumption optimizations or the underlying
