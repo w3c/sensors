@@ -167,76 +167,6 @@ A subsequent version of this specification might specify such an API,
 and the current API has been designed with this in mind.
 
 
-<h2 id="background">Background</h2>
-
-<em>This section is non-normative</em>.
-
-Issue: This section is ill-named.
-It principally covers default sensors
-and explains the reasoning behind them.
-It should be renamed accordingly and moved,
-either to another section of the spec
-or to an external explainer document.
-
-The Generic Sensor API is designed to make the most common use cases straightforward
-while still enabling more complex use cases.
-
-Most devices deployed today do not carry more than one
-[=device sensor|sensor=] of each [=sensor type|sensor types=].
-This shouldn't come as a surprise since use cases for more than
-a [=device sensor|sensor=] of a given [=sensor types|type=] are rare
-and generally limited to specific [=sensor types=],
-such as proximity sensors.
-
-The API therefore makes it easy to interact with
-the device's default (and often unique) [=device sensor|sensor=]
-for each [=sensor types|type=]
-simply by instantiating the corresponding {{Sensor}} subclass.
-
-Indeed, without specific information identifying a particular [=device sensor|sensor=]
-of a given [=sensor type|type=],
-the default [=device sensor|sensor=] is chosen.
-
-<div class="example">
-    Listening to geolocation changes:
-
-    <pre highlight="js">
-    let sensor = new GeolocationSensor({ accuracy: "high" });
-
-    sensor.onreading = function(event) {
-        var coords = [sensor.latitude, sensor.longitude];
-        updateMap(null, coords, sensor.accuracy);
-    };
-
-    sensor.onerror = function(error) {
-        updateMap(error);
-    };
-    sensor.start();
-    </pre>
-</div>
-
-Note: extension to this specification may choose not to define a default sensor
-when doing so wouldn't make sense.
-For example, it might be difficult to agree on an obvious default [=device sensor|sensor=] for
-proximity [=device sensor|sensors=].
-
-In cases where
-multiple [=device sensor|sensors=] of the same [=sensor type|type=]
-may coexist on the same device,
-specification extension will have to
-define ways to uniquely identify each one.
-
-<div class="example">
-    For example checking the pressure of the left rear tire:
-
-    <pre highlight="js">
-    var sensor = new DirectTirePressureSensor({ position: "rear", side: "left" });
-    sensor.onreading = _ => console.log(sensor.pressure);
-    sensor.start();
-    </pre>
-</div>
-
-
 <h2 id="feature-detection">A note on Feature Detection of Hardware Features</h2>
 
 <em>This section is non-normative.</em>
@@ -337,10 +267,6 @@ User agents may reduce the risk by
 limiting event rates available to web application developers.
 
 Note: do we really want this mitigation strategy?
-
-Frequency polling in [=periodic=] [=reporting mode=]
-might allow the fingerprinting of hardware or implementation types,
-by probing which actual frequencies are supported by the platform.
 
 Minimizing the accuracy of a sensor's readout
 generally decreases the risk of fingerprinting.
@@ -661,6 +587,59 @@ by using the raw output of a gyroscope
 and waiting for quick rotational movements of the head
 to compensate for drift.
 
+## Default sensor ## {#concepts-default-sensor}
+
+The Generic Sensor API is designed to make the most common use cases straightforward
+while still enabling more complex use cases.
+
+Most of devices deployed today do not carry more than one
+[=device sensor=] providing [=sensor readings=] of the same [=sensor type|type=].
+The use cases which require a set of similar [=device sensors=] are rare
+and generally limited to specific [=sensor types=],
+such as multiple accelerometers in 2-in-1 laptops.
+
+The API therefore makes it easy to interact with
+the device's default (and often unique) [=device sensor|sensor=]
+for each [=sensor types|type=]
+simply by instantiating the corresponding {{Sensor}} subclass.
+
+Indeed, without specific information identifying a particular [=device sensor|sensor=]
+of a given [=sensor type|type=],
+the <dfn export>default sensor</dfn> is chosen.
+
+<div class="example">
+    Listening to the default accelerometer changes:
+
+    <pre highlight="js">
+    let sensor = new Accelerometer({ frequency: 30 });
+
+    sensor.onreading = () => { ... }
+    sensor.start();
+    </pre>
+</div>
+
+Note: extension to this specification may choose not to define a [=default sensor=]
+when doing so wouldn't make sense.
+For example, it does not make sense to explicitly define a default
+[=device sensor|sensor=] for geolocation [=sensor type=] as the
+implementation of its interface can use multiple backends.
+
+In cases where
+multiple [=device sensors=] corresponding to the same [=sensor type|type=]
+may coexist on the same device,
+specification extension will have to
+define ways to uniquely identify each one.
+
+<div class="example">
+    For example checking the pressure of the left rear tire:
+
+    <pre highlight="js">
+    var sensor = new DirectTirePressureSensor({ position: "rear", side: "left" });
+    sensor.onreading = _ => console.log(sensor.pressure);
+    sensor.start();
+    </pre>
+</div>
+
 ## Sampling Frequency ## {#concepts-sampling-frequency}
 
 For the purpose of this specification, <dfn>sampling frequency</dfn> for a [=platform sensor=] is defined
@@ -694,7 +673,7 @@ If a [=sensor type=] has more than one [=platform sensor=],
 it must have a set of associated <dfn export>identifying parameters</dfn>
 to select the right [=platform sensor=] to associate to each new {{Sensor}} objects.
 
-A [=sensor type=] may have a <dfn export>default sensor</dfn>.
+A [=sensor type=] may have a [=default sensor=].
 
 A [=sensor type=] has an associated {{PermissionName}}.
 
@@ -1120,7 +1099,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
         1.  Set |sensor_instance|.{{[[desiredSamplingFrequency]]}} to |options|.{{frequency!!dict-member}}.
 
         Note: there is not guarantee that the requested |options|.{{frequency!!dict-member}}
-        can be respected. The actual [=frequency=] can be calculated using
+        can be respected. The actual [=sampling frequency=] can be calculated using
         {{Sensor}} {{Sensor/timestamp!!attribute}} attributes.
     1.  If [=identifying parameters=] in |options| are set, then:
         1.  Set |sensor_instance|.{{[[identifyingParameters]]}} to [=identifying parameters=].
@@ -1298,7 +1277,7 @@ in order to reduce resource consumption, notably battery usage.
     : input
     :: |sensor_instance|, a {{Sensor}} object.
     : output
-    :: A [=frequency=].
+    :: Reporting frequency in Hz.
 
     1.  Let |frequency| be null.
     1.  Let |f| be |sensor_instance|.{{[[desiredSamplingFrequency]]}}.
