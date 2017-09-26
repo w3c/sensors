@@ -370,19 +370,13 @@ using a third party payment service from within an iframe)
 the [=top-level browsing contexts=] suddenly becomes in a position
 to carry out a skimming attack against the [=browsing context=] that has [=gains focus|gained focus=].
 
-To mitigate this threat,
-[=sensor reading|readings=] of [=device sensor|sensors=] running in a [=top-level browsing contexts=]
-are not delivered in such cases.
-A [=security check=] is run before [=sensor readings=] are delivered to ensure that.
-
+To mitigate this threat, the user agent should check if it [=can expose sensor readings=].
 
 <h4 id="visibility-state">Visibility State</h4>
 
-[=Sensor readings=] are only available
-in [=top-level browsing context|browsing contexts=] that are visible to the user,
-that is, whose [=steps to determine the visibility state|visibility state=]
+[=Sensor readings=] are only available in [=top-level browsing context|browsing contexts=],
+whose [=active document=]'s [=steps to determine the visibility state|visibility state=]
 is "visible".
-A [=security check=] is run before [=sensor readings=] are delivered to ensure that.
 
 Issue: certain use cases require sensors to have background access.
 Using a more complex {{PermissionDescriptor}}.
@@ -658,6 +652,24 @@ The [=reading change threshold|threshold=] value depends on the surrounding soft
 environment constraints, e.g., software power consumption optimizations or the underlying
 [=device sensor=]'s accuracy.
 
+## Conditions to expose sensor readings ## {#concepts-can-expose-sensor-readings}
+
+The user agent can define the list of [=conditions=] to check if it
+<dfn>can expose sensor readings</dfn>.
+
+The example list of <dfn>conditions</dfn> is presented below:
+ - [=steps to determine the visibility state|Visibility state=] for an
+   [=active document=] of [=platform sensor=]'s associated [=browsing context=]
+   is "visible".
+ - [=Currently focused area=] belongs to an [=active document=] of [=platform sensor=]'s associated
+   [=browsing context=] or to an [=active document=] of a [=nested browsing context=] whose
+   [=active document=]'s [=origin=] is the [=same origin-domain=] as the
+   [=top-level browsing context=]'s [=active document=]
+
+Note: In order to release hardware resources, the user agent can request underlying
+[=platform sensor=] to suspend notifications about newly available readings until it
+[=can expose sensor readings=].
+
 <h2 id="model">Model</h2>
 
 Issue: A diagram would really help here.
@@ -708,6 +720,10 @@ are [=same origin-domain=].
 Any time the user agent obtains a new [=sensor reading=] for a [=platform sensor=] from the underlying
 platform, it invokes [=update latest reading=] with the [=platform sensor=] and the [=sensor reading=]
 as arguments.
+
+Any time a new [=sensor reading=] for a [=platform sensor=] is obtained and if the user agent
+[=can expose sensor readings=], [=update latest reading=] is invoked with the [=platform sensor=]
+and the [=sensor reading=] as arguments.
 
 The [=latest reading=] [=ordered map|map=]
 contains an [=map/entry=]
@@ -1218,57 +1234,15 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     : output
     :: None
 
-    1.  If the result of invoking the [=security check=] is "insecure",
-        then return.
-
-        Issue(223):
     1.  [=map/For each=] |key| → |value| of [=latest reading=].
         1.  [=map/Set=] [=latest reading=][|key|] to the corresponding
             value of |reading|.
-
-        Issue: Maybe compare |value| with corresponding
-        value of |reading| to see if there's a change
-        that needs to be propagated.
-
     1.  let |activated_sensors| be |sensor|'s associated [=ordered set|set=] of [=activated sensor objects=].
 
     1.  Run these sub-steps [=in parallel=]:
         1.  [=set/For each=] |s| in |activated_sensors|,
             1.  Invoke [=report latest reading updated=] with |s| as an argument.
 </div>
-
-
-<h3 dfn>Security check</h3>
-
-<div algorithm="security check">
-
-    : input
-    :: None
-    : output
-    :: A string whose value is either "secure" or "insecure".
-
-    1.  Let |document| be the [=top-level browsing context=]'s [=active document=].
-    1.  Let |current_visibility_state| be the result of running
-        the [=steps to determine the visibility state=] of |document|.
-    1.  If |current_visibility_state| is not "visible",
-        then return "insecure".
-    1.  If the [=currently focused area=] of the current [=top-level browsing context=]
-        is a [=nested browsing context=] whose [=active document=]'s [=origin=]
-        is not [=same origin-domain=] as |document|'s [=origin=],
-        then return "insecure".
-    1.  Let |has_focus| be the result of running the [=has focus steps=]
-        with |document| as argument.
-    1.  If |has_focus| is false, then return "insecure".
-    1.  If the user agent loses focus, then return "insecure".
-
-        Issue(whatwg/html#2716):
-    1.  Return "secure".
-</div>
-
-Note: user agents are encouraged to stop sensor sampling
-when [=security check=] would return "insecure"
-in order to reduce resource consumption, notably battery usage.
-
 
 <h3 dfn>Find the reporting frequency of a sensor object</h3>
 
