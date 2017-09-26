@@ -378,12 +378,6 @@ To mitigate this threat, the user agent should check if it [=can expose sensor r
 whose [=active document=]'s [=steps to determine the visibility state|visibility state=]
 is "visible".
 
-Issue: certain use cases require sensors to have background access.
-Using a more complex {{PermissionDescriptor}}.
-(e.g. with a boolean `allowBackgroundUsage = false`; [=dictionary member=]),
-might be the solution to relax this restriction.
-
-
 <h4 id="permissions" oldids="permissioning">Permissions API</h4>
 
 Access to [=sensor readings=] are controlled by the Permissions API [[!PERMISSIONS]].
