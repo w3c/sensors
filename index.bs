@@ -346,7 +346,7 @@ specified in the normative sections of this specification.
 Secure Contexts specification [[POWERFUL-FEATURES]]
 as a high-value target for network attackers.
 Thus all interfaces defined by this specification
-or extension specifications
+or [=extension specifications=]
 are only available within a [=secure context=].
 
 
@@ -369,8 +369,6 @@ or when a [=nested browsing context=] of a different [=origin=] [=gains focus=]
 using a third party payment service from within an iframe)
 the [=top-level browsing contexts=] suddenly becomes in a position
 to carry out a skimming attack against the [=browsing context=] that has [=gains focus|gained focus=].
-
-To mitigate this threat, the user agent should check if it [=can expose sensor readings=].
 
 <h4 id="visibility-state">Visibility State</h4>
 
@@ -648,10 +646,10 @@ environment constraints, e.g., software power consumption optimizations or the u
 
 ## Conditions to expose sensor readings ## {#concepts-can-expose-sensor-readings}
 
-The user agent can define the list of [=conditions=] to check if it
+The user agent must verify that all [=mandatory conditions=] are satisfied to ensure it
 <dfn>can expose sensor readings</dfn>.
 
-The example list of <dfn>conditions</dfn> is presented below:
+The <dfn>mandatory conditions</dfn> are the following:
  - [=steps to determine the visibility state|Visibility state=] for an
    [=active document=] of [=platform sensor=]'s associated [=browsing context=]
    is "visible".
@@ -659,6 +657,8 @@ The example list of <dfn>conditions</dfn> is presented below:
    [=browsing context=] or to an [=active document=] of a [=nested browsing context=] whose
    [=active document=]'s [=origin=] is the [=same origin-domain=] as the
    [=top-level browsing context=]'s [=active document=]
+ - <dfn>Specific conditions</dfn>: The [=extension specifications=] that add new
+   [=mandatory conditions|conditions=] hook into this specification at this point.
 
 Note: In order to release hardware resources, the user agent can request underlying
 [=platform sensor=] to suspend notifications about newly available readings until it
@@ -1378,16 +1378,14 @@ Its purpose is to describe
 how this specification can be extended to specify APIs for
 different [=sensor types=].
 
-Extension specifications are encouraged to focus on a single [=sensor type=],
-exposing both [=high-level|high=] and [=low-level|low=] level
+<dfn lt="extension specification">Extension specifications</dfn> are encouraged to focus on a
+single [=sensor type=], exposing both [=high-level|high=] and [=low-level|low=] level
 as appropriate.
-
-
 
 
 <h3 id="extension-security-and-privacy">Security and Privacy</h3>
 
-Extension specifications are expected to:
+[=Extension specifications=] are expected to:
 
 - conform with the generic [[#mitigation-strategies|mitigation strategies]],
 - consider [[#mitigation-strategies-case-by-case|mitigation strategies applied
@@ -1423,7 +1421,7 @@ Quantities, Units, Dimensions and Data Types Ontologies [[QUDT]].
 
 <h3 id="unit">Unit</h3>
 
-Extension specification must specify the unit of [=sensor readings=].
+[=Extension specifications=] must specify the unit of [=sensor readings=].
 
 As per the Technical Architecture Group's (TAG) API Design Principles [[API-DESIGN-PRINCIPLES]],
 all time measurement should be in milliseconds.
@@ -1462,7 +1460,7 @@ enables Web application developers to leverage domain-specific constraints
 and design more performant systems.
 
 Following the precepts of the Extensible Web Manifesto [[EXTENNNNSIBLE]],
-extension specifications should focus primarily on
+[=extension specifications=] should focus primarily on
 exposing [=low-level=] sensor APIs, but should also expose
 [=high-level=] APIs when they are clear benefits in doing so.
 
@@ -1479,7 +1477,7 @@ TODO: provide guidance on when to:
 <h3 id="definition-reqs">Definition Requirements</h3>
 
 The following definitions must be specified for
-each [=sensor type=] in extension specifications:
+each [=sensor type=] in [=extension specifications=]:
 
 -   An [=interface=] whose [=inherited interfaces=] contains {{Sensor}}.
     This interface must be constructible.
@@ -1490,7 +1488,7 @@ each [=sensor type=] in extension specifications:
     with <emu-val>this</emu-val> and [=attribute=] [=identifier=] as arguments.
 -   A {{PermissionName}}.
 
-An extension specification may specify the following definitions
+An [=extension specification=] may specify the following definitions
 for each [=sensor types=]:
 
 -   A [=dictionary=] whose [=inherited dictionaries=] contains {{SensorOptions}}.
@@ -1498,7 +1496,7 @@ for each [=sensor types=]:
     of each [=sensor types|type=],
     so defining a [=default sensor=] should be straightforward.
     For [=sensor types=] where multiple [=device sensor|sensors=] are common,
-    extension specifications may choose not to define a [=default sensor=],
+    [=extension specifications=] may choose not to define a [=default sensor=],
     especially when doing so would not make sense.
 -   A set of [=identifying parameters=]. TODO: replace that by an abstract operation.
 

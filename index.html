@@ -1827,8 +1827,7 @@ specified in the normative sections of this specification.</p>
    <p><a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings⑥">Sensor readings</a> are explicitly flagged by the
 Secure Contexts specification <a data-link-type="biblio" href="#biblio-powerful-features">[POWERFUL-FEATURES]</a> as a high-value target for network attackers.
 Thus all interfaces defined by this specification
-or extension specifications
-are only available within a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#secure-context" id="ref-for-secure-context">secure context</a>.</p>
+or <a data-link-type="dfn" href="#extension-specification" id="ref-for-extension-specification">extension specifications</a> are only available within a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#secure-context" id="ref-for-secure-context">secure context</a>.</p>
    <h4 class="heading settled" data-level="4.2.2" id="top-level-browsing-context"><span class="secno">4.2.2. </span><span class="content">Top-Level Browsing Context</span><span id="browsing-context"></span><a class="self-link" href="#top-level-browsing-context"></a></h4>
    <p>To avoid the privacy risk of
 sharing <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings⑦">sensor readings</a> with contexts unfamiliar to the user, <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings⑧">sensor readings</a> are only available in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context" id="ref-for-top-level-browsing-context">top-level browsing context</a>.</p>
@@ -1839,7 +1838,6 @@ or when a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/b
 using a third party payment service from within an iframe)
 the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context" id="ref-for-top-level-browsing-context②">top-level browsing contexts</a> suddenly becomes in a position
 to carry out a skimming attack against the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context">browsing context</a> that has <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#gains-focus" id="ref-for-gains-focus①">gained focus</a>.</p>
-   <p>To mitigate this threat, the user agent should check if it <a data-link-type="dfn" href="#can-expose-sensor-readings" id="ref-for-can-expose-sensor-readings">can expose sensor readings</a>.</p>
    <h4 class="heading settled" data-level="4.2.4" id="visibility-state"><span class="secno">4.2.4. </span><span class="content">Visibility State</span><a class="self-link" href="#visibility-state"></a></h4>
    <p><a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings⑨">Sensor readings</a> are only available in <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context" id="ref-for-top-level-browsing-context③">browsing contexts</a>,
 whose <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#active-document" id="ref-for-active-document">active document</a>'s <a data-link-type="dfn" href="https://w3c.github.io/page-visibility#dfn-steps-to-determine-the-visibility-state" id="ref-for-dfn-steps-to-determine-the-visibility-state">visibility state</a> is "visible".</p>
@@ -2016,15 +2014,17 @@ update the corresponding <a data-link-type="dfn" href="#sensor-readings" id="ref
    <p>The <a data-link-type="dfn" href="#reading-change-threshold" id="ref-for-reading-change-threshold①">threshold</a> value depends on the surrounding software and hardware
 environment constraints, e.g., software power consumption optimizations or the underlying <a data-link-type="dfn" href="#concept-device-sensor" id="ref-for-concept-device-sensor①⑦">device sensor</a>'s accuracy.</p>
    <h3 class="heading settled" data-level="5.6" id="concepts-can-expose-sensor-readings"><span class="secno">5.6. </span><span class="content">Conditions to expose sensor readings</span><a class="self-link" href="#concepts-can-expose-sensor-readings"></a></h3>
-   <p>The user agent can define the list of <a data-link-type="dfn" href="#conditions" id="ref-for-conditions">conditions</a> to check if it <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="can-expose-sensor-readings">can expose sensor readings</dfn>.</p>
-   <p>The example list of <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="conditions">conditions</dfn> is presented below:</p>
+   <p>The user agent must verify that all <a data-link-type="dfn" href="#mandatory-conditions" id="ref-for-mandatory-conditions">mandatory conditions</a> are satisfied to ensure it <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="can-expose-sensor-readings">can expose sensor readings</dfn>.</p>
+   <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="mandatory-conditions">mandatory conditions</dfn> are the following:</p>
    <ul>
     <li data-md="">
      <p><a data-link-type="dfn" href="https://w3c.github.io/page-visibility#dfn-steps-to-determine-the-visibility-state" id="ref-for-dfn-steps-to-determine-the-visibility-state①">Visibility state</a> for an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#active-document" id="ref-for-active-document①">active document</a> of <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor⑥">platform sensor</a>'s associated <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context①">browsing context</a> is "visible".</p>
     <li data-md="">
      <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#currently-focused-area-of-a-top-level-browsing-context" id="ref-for-currently-focused-area-of-a-top-level-browsing-context">Currently focused area</a> belongs to an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#active-document" id="ref-for-active-document②">active document</a> of <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor⑦">platform sensor</a>'s associated <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context②">browsing context</a> or to an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#active-document" id="ref-for-active-document③">active document</a> of a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#nested-browsing-context" id="ref-for-nested-browsing-context①">nested browsing context</a> whose <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#active-document" id="ref-for-active-document④">active document</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#origin-2" id="ref-for-origin-2①">origin</a> is the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#same-origin-domain" id="ref-for-same-origin-domain">same origin-domain</a> as the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context" id="ref-for-top-level-browsing-context④">top-level browsing context</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#active-document" id="ref-for-active-document⑤">active document</a></p>
+    <li data-md="">
+     <p><dfn data-dfn-type="dfn" data-noexport="" id="specific-conditions">Specific conditions<a class="self-link" href="#specific-conditions"></a></dfn>: The <a data-link-type="dfn" href="#extension-specification" id="ref-for-extension-specification①">extension specifications</a> that add new <a data-link-type="dfn" href="#mandatory-conditions" id="ref-for-mandatory-conditions①">conditions</a> hook into this specification at this point.</p>
    </ul>
-   <p class="note" role="note"><span>Note:</span> In order to release hardware resources, the user agent can request underlying <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor⑧">platform sensor</a> to suspend notifications about newly available readings until it <a data-link-type="dfn" href="#can-expose-sensor-readings" id="ref-for-can-expose-sensor-readings①">can expose sensor readings</a>.</p>
+   <p class="note" role="note"><span>Note:</span> In order to release hardware resources, the user agent can request underlying <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor⑧">platform sensor</a> to suspend notifications about newly available readings until it <a data-link-type="dfn" href="#can-expose-sensor-readings" id="ref-for-can-expose-sensor-readings">can expose sensor readings</a>.</p>
    <h2 class="heading settled" data-level="6" id="model"><span class="secno">6. </span><span class="content">Model</span><a class="self-link" href="#model"></a></h2>
    <p class="issue" id="issue-d36d1a2e"><a class="self-link" href="#issue-d36d1a2e"></a> A diagram would really help here.</p>
    <h3 class="heading settled" data-level="6.1" id="model-sensor-type"><span class="secno">6.1. </span><span class="content">Sensor Type</span><a class="self-link" href="#model-sensor-type"></a></h3>
@@ -2058,7 +2058,7 @@ This set is initially <a data-link-type="dfn" href="https://infra.spec.whatwg.or
    <p class="note" role="note"><span>Note:</span> User agents can share <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings②⑦">sensor readings</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map①">map</a> between different <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context④">contexts</a> only if the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#origin-2" id="ref-for-origin-2②">origins</a> of these contexts' <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#active-document" id="ref-for-active-document⑥">active documents</a> are <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#same-origin-domain" id="ref-for-same-origin-domain①">same origin-domain</a>.</p>
    <p>Any time the user agent obtains a new <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings②⑧">sensor reading</a> for a <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①③">platform sensor</a> from the underlying
 platform, it invokes <a data-link-type="dfn" href="#update-latest-reading" id="ref-for-update-latest-reading">update latest reading</a> with the <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①④">platform sensor</a> and the <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings②⑨">sensor reading</a> as arguments.</p>
-   <p>Any time a new <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings③⓪">sensor reading</a> for a <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①⑤">platform sensor</a> is obtained and if the user agent <a data-link-type="dfn" href="#can-expose-sensor-readings" id="ref-for-can-expose-sensor-readings②">can expose sensor readings</a>, <a data-link-type="dfn" href="#update-latest-reading" id="ref-for-update-latest-reading①">update latest reading</a> is invoked with the <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①⑥">platform sensor</a> and the <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings③①">sensor reading</a> as arguments.</p>
+   <p>Any time a new <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings③⓪">sensor reading</a> for a <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①⑤">platform sensor</a> is obtained and if the user agent <a data-link-type="dfn" href="#can-expose-sensor-readings" id="ref-for-can-expose-sensor-readings①">can expose sensor readings</a>, <a data-link-type="dfn" href="#update-latest-reading" id="ref-for-update-latest-reading①">update latest reading</a> is invoked with the <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①⑥">platform sensor</a> and the <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings③①">sensor reading</a> as arguments.</p>
    <p>The <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading">latest reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map②">map</a> contains an <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry" id="ref-for-map-entry">entry</a> whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-key" id="ref-for-map-key">key</a> is "timestamp" and
 whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-value" id="ref-for-map-value">value</a> is a high resolution timestamp of the time
 at which the <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading①">latest reading</a> was obtained
@@ -2786,11 +2786,11 @@ that must be supported as attributes by the objects implementing the <code class
    <p>Its purpose is to describe
 how this specification can be extended to specify APIs for
 different <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type②⑧">sensor types</a>.</p>
-   <p>Extension specifications are encouraged to focus on a single <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type②⑨">sensor type</a>,
-exposing both <a data-link-type="dfn" href="#high-level" id="ref-for-high-level⑦">high</a> and <a data-link-type="dfn" href="#low-level" id="ref-for-low-level⑦">low</a> level
+   <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="extension specification" data-noexport="" id="extension-specification">Extension specifications</dfn> are encouraged to focus on a
+single <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type②⑨">sensor type</a>, exposing both <a data-link-type="dfn" href="#high-level" id="ref-for-high-level⑦">high</a> and <a data-link-type="dfn" href="#low-level" id="ref-for-low-level⑦">low</a> level
 as appropriate.</p>
    <h3 class="heading settled" data-level="9.1" id="extension-security-and-privacy"><span class="secno">9.1. </span><span class="content">Security and Privacy</span><a class="self-link" href="#extension-security-and-privacy"></a></h3>
-   <p>Extension specifications are expected to:</p>
+   <p><a data-link-type="dfn" href="#extension-specification" id="ref-for-extension-specification②">Extension specifications</a> are expected to:</p>
    <ul>
     <li data-md="">
      <p>conform with the generic <a href="#mitigation-strategies">mitigation strategies</a>,</p>
@@ -2822,7 +2822,7 @@ a <code>temperature</code> attribute (and not a <code>value</code> or <code>temp
 A good starting point for naming are the
 Quantities, Units, Dimensions and Data Types Ontologies <a data-link-type="biblio" href="#biblio-qudt">[QUDT]</a>.</p>
    <h3 class="heading settled" data-level="9.3" id="unit"><span class="secno">9.3. </span><span class="content">Unit</span><a class="self-link" href="#unit"></a></h3>
-   <p>Extension specification must specify the unit of <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings④③">sensor readings</a>.</p>
+   <p><a data-link-type="dfn" href="#extension-specification" id="ref-for-extension-specification③">Extension specifications</a> must specify the unit of <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings④③">sensor readings</a>.</p>
    <p>As per the Technical Architecture Group’s (TAG) API Design Principles <a data-link-type="biblio" href="#biblio-api-design-principles">[API-DESIGN-PRINCIPLES]</a>,
 all time measurement should be in milliseconds.
 All other units should be specified using,
@@ -2858,8 +2858,7 @@ most notably for performance reasons.</p>
    <p>Providing <a data-link-type="dfn" href="#low-level" id="ref-for-low-level①⓪">low-level</a> access
 enables Web application developers to leverage domain-specific constraints
 and design more performant systems.</p>
-   <p>Following the precepts of the Extensible Web Manifesto <a data-link-type="biblio" href="#biblio-extennnnsible">[EXTENNNNSIBLE]</a>,
-extension specifications should focus primarily on
+   <p>Following the precepts of the Extensible Web Manifesto <a data-link-type="biblio" href="#biblio-extennnnsible">[EXTENNNNSIBLE]</a>, <a data-link-type="dfn" href="#extension-specification" id="ref-for-extension-specification④">extension specifications</a> should focus primarily on
 exposing <a data-link-type="dfn" href="#low-level" id="ref-for-low-level①①">low-level</a> sensor APIs, but should also expose <a data-link-type="dfn" href="#high-level" id="ref-for-high-level①①">high-level</a> APIs when they are clear benefits in doing so.</p>
    <h3 class="heading settled" data-level="9.5" id="multiple-sensors"><span class="secno">9.5. </span><span class="content">When is Enabling Multiple Sensors of the Same Type Not the Right Choice?</span><a class="self-link" href="#multiple-sensors"></a></h3>
    <p>TODO: provide guidance on when to:</p>
@@ -2873,7 +2872,7 @@ exposing <a data-link-type="dfn" href="#low-level" id="ref-for-low-level①①">
    </ul>
    <h3 class="heading settled" data-level="9.6" id="definition-reqs"><span class="secno">9.6. </span><span class="content">Definition Requirements</span><a class="self-link" href="#definition-reqs"></a></h3>
    <p>The following definitions must be specified for
-each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type③⓪">sensor type</a> in extension specifications:</p>
+each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type③⓪">sensor type</a> in <a data-link-type="dfn" href="#extension-specification" id="ref-for-extension-specification⑤">extension specifications</a>:</p>
    <ul>
     <li data-md="">
      <p>An <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-interface" id="ref-for-dfn-interface①">interface</a> whose <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-inherited-interfaces" id="ref-for-dfn-inherited-interfaces①">inherited interfaces</a> contains <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor②⑨">Sensor</a></code>.
@@ -2885,7 +2884,7 @@ each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type③⓪">
     <li data-md="">
      <p>A <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/permissions/#enumdef-permissionname" id="ref-for-enumdef-permissionname⑤">PermissionName</a></code>.</p>
    </ul>
-   <p>An extension specification may specify the following definitions
+   <p>An <a data-link-type="dfn" href="#extension-specification" id="ref-for-extension-specification⑥">extension specification</a> may specify the following definitions
 for each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type③①">sensor types</a>:</p>
    <ul>
     <li data-md="">
@@ -2893,8 +2892,7 @@ for each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type③�
     <li data-md="">
      <p>A <a data-link-type="dfn" href="#default-sensor" id="ref-for-default-sensor④">default sensor</a>. Generally, devices are equipped with a single <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor③⑨">platform sensor</a> of each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type③②">type</a>,
   so defining a <a data-link-type="dfn" href="#default-sensor" id="ref-for-default-sensor⑤">default sensor</a> should be straightforward.
-  For <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type③③">sensor types</a> where multiple <a data-link-type="dfn" href="#concept-device-sensor" id="ref-for-concept-device-sensor①⑧">sensors</a> are common,
-  extension specifications may choose not to define a <a data-link-type="dfn" href="#default-sensor" id="ref-for-default-sensor⑥">default sensor</a>,
+  For <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type③③">sensor types</a> where multiple <a data-link-type="dfn" href="#concept-device-sensor" id="ref-for-concept-device-sensor①⑧">sensors</a> are common, <a data-link-type="dfn" href="#extension-specification" id="ref-for-extension-specification⑦">extension specifications</a> may choose not to define a <a data-link-type="dfn" href="#default-sensor" id="ref-for-default-sensor⑥">default sensor</a>,
   especially when doing so would not make sense.</p>
     <li data-md="">
      <p>A set of <a data-link-type="dfn" href="#identifying-parameters" id="ref-for-identifying-parameters②">identifying parameters</a>. TODO: replace that by an abstract operation.</p>
@@ -3197,7 +3195,6 @@ for their editorial input.</p>
    <li><a href="#associated-sensors">associated sensors</a><span>, in §6.1</span>
    <li><a href="#calibration">calibration</a><span>, in §5.1</span>
    <li><a href="#can-expose-sensor-readings">can expose sensor readings</a><span>, in §5.6</span>
-   <li><a href="#conditions">conditions</a><span>, in §5.6</span>
    <li><a href="#conformant-user-agent">conformant user agent</a><span>, in §Unnumbered section</span>
    <li><a href="#connect-to-sensor">Connect to sensor</a><span>, in §8.1</span>
    <li><a href="#construct-sensor-object">Construct sensor object</a><span>, in §8</span>
@@ -3213,6 +3210,7 @@ for their editorial input.</p>
      <li><a href="#dom-sensorerrorevent-error">attribute for SensorErrorEvent</a><span>, in §7.2</span>
      <li><a href="#dom-sensorerroreventinit-error">dict-member for SensorErrorEventInit</a><span>, in §7.2</span>
     </ul>
+   <li><a href="#extension-specification">extension specification</a><span>, in §9</span>
    <li><a href="#find-the-reporting-frequency-of-a-sensor-object">Find the reporting frequency of a sensor object</a><span>, in §8.7</span>
    <li><a href="#dom-sensoroptions-frequency">frequency</a><span>, in §7.1</span>
    <li><a href="#generic-sensor-permission-revocation-algorithm">generic sensor permission revocation algorithm</a><span>, in §6.1</span>
@@ -3226,6 +3224,7 @@ for their editorial input.</p>
    <li><a href="#limit-max-frequency">Limit maximum sampling frequency</a><span>, in §4.3</span>
    <li><a href="#limit-number-of-delivered-readings">Limit number of delivered readings</a><span>, in §4.3.2</span>
    <li><a href="#low-level">low-level</a><span>, in §5.2</span>
+   <li><a href="#mandatory-conditions">mandatory conditions</a><span>, in §5.6</span>
    <li><a href="#notify-activated-state">Notify activated state</a><span>, in §8.10</span>
    <li><a href="#notify-error">Notify error</a><span>, in §8.11</span>
    <li><a href="#notify-new-reading">Notify new reading</a><span>, in §8.9</span>
@@ -3255,6 +3254,7 @@ for their editorial input.</p>
    <li><a href="#sensor-type">sensor type</a><span>, in §6.1</span>
    <li><a href="#set-sensor-settings">Set sensor settings</a><span>, in §8.5</span>
    <li><a href="#smart-sensors">Smart sensors</a><span>, in §5.2</span>
+   <li><a href="#specific-conditions">Specific conditions</a><span>, in §5.6</span>
    <li><a href="#dom-sensor-start">start()</a><span>, in §7.1</span>
    <li><a href="#dom-sensor-state-slot">[[state]]</a><span>, in §7.1.2</span>
    <li><a href="#dom-sensor-stop">stop()</a><span>, in §7.1</span>
@@ -3594,15 +3594,14 @@ for their editorial input.</p>
   <aside class="dfn-panel" data-for="can-expose-sensor-readings">
    <b><a href="#can-expose-sensor-readings">#can-expose-sensor-readings</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-can-expose-sensor-readings">4.2.3. Losing Focus</a>
-    <li><a href="#ref-for-can-expose-sensor-readings①">5.6. Conditions to expose sensor readings</a>
-    <li><a href="#ref-for-can-expose-sensor-readings②">6.2. Sensor</a>
+    <li><a href="#ref-for-can-expose-sensor-readings">5.6. Conditions to expose sensor readings</a>
+    <li><a href="#ref-for-can-expose-sensor-readings①">6.2. Sensor</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="conditions">
-   <b><a href="#conditions">#conditions</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="mandatory-conditions">
+   <b><a href="#mandatory-conditions">#mandatory-conditions</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-conditions">5.6. Conditions to expose sensor readings</a>
+    <li><a href="#ref-for-mandatory-conditions">5.6. Conditions to expose sensor readings</a> <a href="#ref-for-mandatory-conditions①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="sensor-type">
@@ -3917,6 +3916,17 @@ for their editorial input.</p>
    <b><a href="#request-sensor-access">#request-sensor-access</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-request-sensor-access">7.1.6. Sensor.start()</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="extension-specification">
+   <b><a href="#extension-specification">#extension-specification</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-extension-specification">4.2.1. Secure Context</a>
+    <li><a href="#ref-for-extension-specification①">5.6. Conditions to expose sensor readings</a>
+    <li><a href="#ref-for-extension-specification②">9.1. Security and Privacy</a>
+    <li><a href="#ref-for-extension-specification③">9.3. Unit</a>
+    <li><a href="#ref-for-extension-specification④">9.4. Exposing High-Level vs. Low-Level Sensors</a>
+    <li><a href="#ref-for-extension-specification⑤">9.6. Definition Requirements</a> <a href="#ref-for-extension-specification⑥">(2)</a> <a href="#ref-for-extension-specification⑦">(3)</a>
    </ul>
   </aside>
 <script>/* script-dfn-panel */
