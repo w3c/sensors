@@ -370,7 +370,7 @@ using a third party payment service from within an iframe)
 the [=top-level browsing contexts=] suddenly becomes in a position
 to carry out a skimming attack against the [=browsing context=] that has [=gains focus|gained focus=].
 
-To mitigate this threat, user agent should check if it [=can expose sensor readings=].
+To mitigate this threat, the user agent should check if it [=can expose sensor readings=].
 
 <h4 id="visibility-state">Visibility State</h4>
 
@@ -654,8 +654,8 @@ environment constraints, e.g., software power consumption optimizations or the u
 
 ## Conditions to expose sensor readings ## {#concepts-can-expose-sensor-readings}
 
-The user agent can define the list of [=conditions=] to be used to check if
-<dfn lt="can expose sensor readings">sensor readings can be exposed</dfn>.
+The user agent can define the list of [=conditions=] to check if it
+<dfn>can expose sensor readings</dfn>.
 
 The example list of <dfn>conditions</dfn> is presented below:
  - [=steps to determine the visibility state|Visibility state=] for an
@@ -663,11 +663,12 @@ The example list of <dfn>conditions</dfn> is presented below:
    is "visible".
  - [=Currently focused area=] belongs to an [=active document=] of [=platform sensor=]'s associated
    [=browsing context=] or to an [=active document=] of a [=nested browsing context=] whose
-   [=active document=]'s [=origin=] is the  [=same origin-domain=] as the [=top-level browsing context=]'s
-   [=active document=]
+   [=active document=]'s [=origin=] is the [=same origin-domain=] as the
+   [=top-level browsing context=]'s [=active document=]
 
-Note: In order to release hardware resources, user agent can request underlying [=platform sensor=]
-to suspend notifications about newly available readings until it [=can expose sensor readings=].
+Note: In order to release hardware resources, the user agent can request underlying
+[=platform sensor=] to suspend notifications about newly available readings until it
+[=can expose sensor readings=].
 
 <h2 id="model">Model</h2>
 
