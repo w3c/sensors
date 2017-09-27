@@ -711,10 +711,6 @@ Note: User agents can share [=sensor readings=] [=ordered map|map=] between diff
 [=browsing context|contexts=] only if the [=origins=] of these contexts' [=active documents=]
 are [=same origin-domain=].
 
-Any time the user agent obtains a new [=sensor reading=] for a [=platform sensor=] from the underlying
-platform, it invokes [=update latest reading=] with the [=platform sensor=] and the [=sensor reading=]
-as arguments.
-
 Any time a new [=sensor reading=] for a [=platform sensor=] is obtained and if the user agent
 [=can expose sensor readings=], [=update latest reading=] is invoked with the [=platform sensor=]
 and the [=sensor reading=] as arguments.
