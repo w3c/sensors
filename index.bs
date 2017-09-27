@@ -1370,11 +1370,10 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
 
 <em>This section is non-normative.</em>
 
-Its purpose is to describe
-how this specification can be extended to specify APIs for
-different [=sensor types=].
+This section describes how this specification can be extended to specify APIs for different
+[=sensor types=].
 
-<dfn lt="extension specification">Extension specifications</dfn> are encouraged to focus on a
+Such <dfn lt="extension specification">extension specifications</dfn> are encouraged to focus on a
 single [=sensor type=], exposing both [=high-level|high=] and [=low-level|low=] level
 as appropriate.
 
