@@ -1458,7 +1458,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-10-01">1 October 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-10-02">2 October 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1664,9 +1664,8 @@ promote consistency across sensor APIs,
 enable advanced use cases thanks to performant <a data-link-type="dfn" href="#low-level" id="ref-for-low-level">low-level</a> APIs,
 and increase the pace at which new sensors can be exposed to the Web
 by simplifying the specification and implementation processes.</p>
-   <p class="issue" id="issue-77d9d95c"><a class="self-link" href="#issue-77d9d95c"></a> This lacks an informative section with examples for developers.
-Should contain different use of the API,
-including using it in conjunction with <code>requestAnimationFrame</code>.</p>
+   <p>A comprehensive list of concrete sensors that are based on Generic Sensor API, applicable use
+cases, and code examples can be found in <a data-link-type="biblio" href="#biblio-generic-sensor-usecases">[GENERIC-SENSOR-USECASES]</a> and <a data-link-type="biblio" href="#biblio-motion-sensors">[MOTION-SENSORS]</a> explainer documents.</p>
    <h2 class="heading settled" data-level="2" id="scope"><span class="secno">2. </span><span class="content">Scope</span><a class="self-link" href="#scope"></a></h2>
    <p><em>This section is non-normative</em>.</p>
    <p>The scope of this specification is currently limited
@@ -2808,8 +2807,9 @@ that must be supported as attributes by the objects implementing the <code class
    <p>Such <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="extension specification" data-noexport="" id="extension-specification">extension specifications</dfn> are encouraged to focus on a
 single <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type③⓪">sensor type</a>, exposing both <a data-link-type="dfn" href="#high-level" id="ref-for-high-level⑦">high</a> and <a data-link-type="dfn" href="#low-level" id="ref-for-low-level⑦">low</a> level
 as appropriate.</p>
+   <p>For an up-to-date list of <a data-link-type="dfn" href="#extension-specification" id="ref-for-extension-specification②">extension specifications</a>, please refer to <a data-link-type="biblio" href="#biblio-generic-sensor-usecases">[GENERIC-SENSOR-USECASES]</a> and <a data-link-type="biblio" href="#biblio-motion-sensors">[MOTION-SENSORS]</a> documents.</p>
    <h3 class="heading settled" data-level="9.1" id="extension-security-and-privacy"><span class="secno">9.1. </span><span class="content">Security and Privacy</span><a class="self-link" href="#extension-security-and-privacy"></a></h3>
-   <p><a data-link-type="dfn" href="#extension-specification" id="ref-for-extension-specification②">Extension specifications</a> are expected to:</p>
+   <p><a data-link-type="dfn" href="#extension-specification" id="ref-for-extension-specification③">Extension specifications</a> are expected to:</p>
    <ul>
     <li data-md="">
      <p>conform with the generic <a href="#mitigation-strategies">mitigation strategies</a>,</p>
@@ -2841,7 +2841,7 @@ a <code>temperature</code> attribute (and not a <code>value</code> or <code>temp
 A good starting point for naming are the
 Quantities, Units, Dimensions and Data Types Ontologies <a data-link-type="biblio" href="#biblio-qudt">[QUDT]</a>.</p>
    <h3 class="heading settled" data-level="9.3" id="unit"><span class="secno">9.3. </span><span class="content">Unit</span><a class="self-link" href="#unit"></a></h3>
-   <p><a data-link-type="dfn" href="#extension-specification" id="ref-for-extension-specification③">Extension specifications</a> must specify the unit of <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings④④">sensor readings</a>.</p>
+   <p><a data-link-type="dfn" href="#extension-specification" id="ref-for-extension-specification④">Extension specifications</a> must specify the unit of <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings④④">sensor readings</a>.</p>
    <p>As per the Technical Architecture Group’s (TAG) API Design Principles <a data-link-type="biblio" href="#biblio-api-design-principles">[API-DESIGN-PRINCIPLES]</a>,
 all time measurement should be in milliseconds.
 All other units should be specified using,
@@ -2877,7 +2877,7 @@ most notably for performance reasons.</p>
    <p>Providing <a data-link-type="dfn" href="#low-level" id="ref-for-low-level①⓪">low-level</a> access
 enables Web application developers to leverage domain-specific constraints
 and design more performant systems.</p>
-   <p>Following the precepts of the Extensible Web Manifesto <a data-link-type="biblio" href="#biblio-extennnnsible">[EXTENNNNSIBLE]</a>, <a data-link-type="dfn" href="#extension-specification" id="ref-for-extension-specification④">extension specifications</a> should focus primarily on
+   <p>Following the precepts of the Extensible Web Manifesto <a data-link-type="biblio" href="#biblio-extennnnsible">[EXTENNNNSIBLE]</a>, <a data-link-type="dfn" href="#extension-specification" id="ref-for-extension-specification⑤">extension specifications</a> should focus primarily on
 exposing <a data-link-type="dfn" href="#low-level" id="ref-for-low-level①①">low-level</a> sensor APIs, but should also expose <a data-link-type="dfn" href="#high-level" id="ref-for-high-level①①">high-level</a> APIs when they are clear benefits in doing so.</p>
    <h3 class="heading settled" data-level="9.5" id="multiple-sensors"><span class="secno">9.5. </span><span class="content">When is Enabling Multiple Sensors of the Same Type Not the Right Choice?</span><a class="self-link" href="#multiple-sensors"></a></h3>
    <p>TODO: provide guidance on when to:</p>
@@ -2891,19 +2891,19 @@ exposing <a data-link-type="dfn" href="#low-level" id="ref-for-low-level①①">
    </ul>
    <h3 class="heading settled" data-level="9.6" id="definition-reqs"><span class="secno">9.6. </span><span class="content">Definition Requirements</span><a class="self-link" href="#definition-reqs"></a></h3>
    <p>The following definitions must be specified for
-each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type③①">sensor type</a> in <a data-link-type="dfn" href="#extension-specification" id="ref-for-extension-specification⑤">extension specifications</a>:</p>
+each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type③①">sensor type</a> in <a data-link-type="dfn" href="#extension-specification" id="ref-for-extension-specification⑥">extension specifications</a>:</p>
    <ul>
     <li data-md="">
      <p>An <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-interface" id="ref-for-dfn-interface①">interface</a> whose <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-inherited-interfaces" id="ref-for-dfn-inherited-interfaces①">inherited interfaces</a> contains <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor③②">Sensor</a></code>.
   This interface must be constructible.
-  Its [<code class="idl"><a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Constructor" id="ref-for-Constructor">Constructor</a></code>] must take, as argument,
+  Its [<code class="idl"><a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Constructor" id="ref-for-Constructor">Constructor</a></code>] must take, as an argument,
   an optional <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-dictionary" id="ref-for-dfn-dictionary">dictionary</a> whose <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-inherited-dictionaries" id="ref-for-dfn-inherited-dictionaries">inherited dictionaries</a> contains <code class="idl"><a data-link-type="idl" href="#dictdef-sensoroptions" id="ref-for-dictdef-sensoroptions②">SensorOptions</a></code>.
   Its <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-attribute" id="ref-for-dfn-attribute③">attributes</a> which expose <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings④⑤">sensor readings</a> are <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-read-only" id="ref-for-dfn-read-only">read only</a> and
   their getters must return the result of invoking <a data-link-type="dfn" href="#get-value-from-latest-reading" id="ref-for-get-value-from-latest-reading③">get value from latest reading</a> with <emu-val>this</emu-val> and <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-attribute" id="ref-for-dfn-attribute④">attribute</a> <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-identifier" id="ref-for-dfn-identifier②">identifier</a> as arguments.</p>
     <li data-md="">
      <p>A <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/permissions/#enumdef-permissionname" id="ref-for-enumdef-permissionname⑤">PermissionName</a></code>.</p>
    </ul>
-   <p>An <a data-link-type="dfn" href="#extension-specification" id="ref-for-extension-specification⑥">extension specification</a> may specify the following definitions
+   <p>An <a data-link-type="dfn" href="#extension-specification" id="ref-for-extension-specification⑦">extension specification</a> may specify the following definitions
 for each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type③②">sensor types</a>:</p>
    <ul>
     <li data-md="">
@@ -2911,7 +2911,7 @@ for each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type③�
     <li data-md="">
      <p>A <a data-link-type="dfn" href="#default-sensor" id="ref-for-default-sensor④">default sensor</a>. Generally, devices are equipped with a single <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor③⑧">platform sensor</a> of each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type③③">type</a>,
   so defining a <a data-link-type="dfn" href="#default-sensor" id="ref-for-default-sensor⑤">default sensor</a> should be straightforward.
-  For <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type③④">sensor types</a> where multiple <a data-link-type="dfn" href="#concept-device-sensor" id="ref-for-concept-device-sensor①⑨">sensors</a> are common, <a data-link-type="dfn" href="#extension-specification" id="ref-for-extension-specification⑦">extension specifications</a> may choose not to define a <a data-link-type="dfn" href="#default-sensor" id="ref-for-default-sensor⑥">default sensor</a>,
+  For <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type③④">sensor types</a> where multiple <a data-link-type="dfn" href="#concept-device-sensor" id="ref-for-concept-device-sensor①⑨">sensors</a> are common, <a data-link-type="dfn" href="#extension-specification" id="ref-for-extension-specification⑧">extension specifications</a> may choose not to define a <a data-link-type="dfn" href="#default-sensor" id="ref-for-default-sensor⑥">default sensor</a>,
   especially when doing so would not make sense.</p>
     <li data-md="">
      <p>A set of <a data-link-type="dfn" href="#identifying-parameters" id="ref-for-identifying-parameters②">identifying parameters</a>. TODO: replace that by an abstract operation.</p>
@@ -2938,17 +2938,17 @@ for accelerometer sensor is given below.</p>
    <h3 class="heading settled" data-level="9.8" id="example-webidl"><span class="secno">9.8. </span><span class="content">Example WebIDL</span><a class="self-link" href="#example-webidl"></a></h3>
    <p>Here’s example WebIDL for a possible extension of this specification
 for proximity <a data-link-type="dfn" href="#concept-device-sensor" id="ref-for-concept-device-sensor②⓪">sensors</a>.</p>
-<pre class="example" id="example-be4b13c4"><a class="self-link" href="#example-be4b13c4"></a>[Constructor(optional ProximitySensorOptions proximitySensorOptions),
+<pre class="example" id="example-29041274"><a class="self-link" href="#example-29041274"></a>[Constructor(optional ProximitySensorOptions proximitySensorOptions),
  SecureContext, Exposed=Window]
 interface ProximitySensor : Sensor {
-    readonly attribute unrestricted double distance;
+    readonly attribute double? distance;
 };
 
 dictionary ProximitySensorOptions : SensorOptions {
-    double? min = -Infinity;
-    double? max = Infinity;
-    ProximitySensorPosition? position;
-    ProximitySensorDirection? direction;
+    double min;
+    double max;
+    ProximitySensorPosition position;
+    ProximitySensorDirection direction;
 };
 
 enum ProximitySensorPosition {
@@ -3424,12 +3424,16 @@ for their editorial input.</p>
    <dd><a href="https://extensiblewebmanifesto.org/">The Extensible Web Manifesto</a>. 10 June 2013. URL: <a href="https://extensiblewebmanifesto.org/">https://extensiblewebmanifesto.org/</a>
    <dt id="biblio-feature-policy">[FEATURE-POLICY]
    <dd><a href="https://wicg.github.io/feature-policy/">Feature Policy</a>. Living Standard. URL: <a href="https://wicg.github.io/feature-policy/">https://wicg.github.io/feature-policy/</a>
+   <dt id="biblio-generic-sensor-usecases">[GENERIC-SENSOR-USECASES]
+   <dd>Rick Waldron, Mikhail Pozdnyakov, Alexander Shalamov. <a href="https://w3c.github.io/sensors/usecases">Sensor Use Cases</a>. 2017. Note. URL: <a href="https://w3c.github.io/sensors/usecases">https://w3c.github.io/sensors/usecases</a>
    <dt id="biblio-geolocation-api">[GEOLOCATION-API]
    <dd>Andrei Popescu. <a href="http://dev.w3.org/geo/api/spec-source.html">Geolocation API Specification 2nd Edition</a>. URL: <a href="http://dev.w3.org/geo/api/spec-source.html">http://dev.w3.org/geo/api/spec-source.html</a>
    <dt id="biblio-gyrospeechrecognition">[GYROSPEECHRECOGNITION]
    <dd>Michalevsky, Y., Boneh, D. and Nakibly, G.. <a href="https://www.usenix.org/system/files/conference/usenixsecurity14/sec14-paper-michalevsky.pdf">Gyrophone: Recognizing Speech from Gyroscope Signals</a>. 2014. Informational. URL: <a href="https://www.usenix.org/system/files/conference/usenixsecurity14/sec14-paper-michalevsky.pdf">https://www.usenix.org/system/files/conference/usenixsecurity14/sec14-paper-michalevsky.pdf</a>
    <dt id="biblio-mobilesensors">[MOBILESENSORS]
    <dd>Manish J. Gajjar. Mobile Sensors and Context-Aware Computing. 2017. Informational. 
+   <dt id="biblio-motion-sensors">[MOTION-SENSORS]
+   <dd>Kenneth Christiansen; Alexander Shalamov. <a href="https://w3c.github.io/motion-sensors/">Motion Sensors Explainer</a>. URL: <a href="https://w3c.github.io/motion-sensors/">https://w3c.github.io/motion-sensors/</a>
    <dt id="biblio-orientation-event">[ORIENTATION-EVENT]
    <dd>Rich Tibbett; et al. <a href="https://w3c.github.io/deviceorientation/spec-source-orientation.html">DeviceOrientation Event Specification</a>. URL: <a href="https://w3c.github.io/deviceorientation/spec-source-orientation.html">https://w3c.github.io/deviceorientation/spec-source-orientation.html</a>
    <dt id="biblio-qudt">[QUDT]
@@ -3968,10 +3972,11 @@ for their editorial input.</p>
    <ul>
     <li><a href="#ref-for-extension-specification">4.2.1. Secure Context</a>
     <li><a href="#ref-for-extension-specification①">5.6. Conditions to expose sensor readings</a>
-    <li><a href="#ref-for-extension-specification②">9.1. Security and Privacy</a>
-    <li><a href="#ref-for-extension-specification③">9.3. Unit</a>
-    <li><a href="#ref-for-extension-specification④">9.4. Exposing High-Level vs. Low-Level Sensors</a>
-    <li><a href="#ref-for-extension-specification⑤">9.6. Definition Requirements</a> <a href="#ref-for-extension-specification⑥">(2)</a> <a href="#ref-for-extension-specification⑦">(3)</a>
+    <li><a href="#ref-for-extension-specification②">9. Extensibility</a>
+    <li><a href="#ref-for-extension-specification③">9.1. Security and Privacy</a>
+    <li><a href="#ref-for-extension-specification④">9.3. Unit</a>
+    <li><a href="#ref-for-extension-specification⑤">9.4. Exposing High-Level vs. Low-Level Sensors</a>
+    <li><a href="#ref-for-extension-specification⑥">9.6. Definition Requirements</a> <a href="#ref-for-extension-specification⑦">(2)</a> <a href="#ref-for-extension-specification⑧">(3)</a>
    </ul>
   </aside>
 <script>/* script-dfn-panel */

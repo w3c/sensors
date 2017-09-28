@@ -103,6 +103,16 @@ spec: webidl; type:dfn; text:identifier
          "date": "2017",
          "status": "Informational",
          "publisher": "International Journal of Information Security"
+     },
+     "GENERIC-SENSOR-USECASES": {
+         "authors": [
+             "Rick Waldron, Mikhail Pozdnyakov, Alexander Shalamov"
+         ],
+         "id": "GENERIC-SENSOR-USECASES",
+         "href": "https://w3c.github.io/sensors/usecases",
+         "title": "Sensor Use Cases",
+         "date": "2017",
+         "status": "Note"
      }
 }
 </pre>
@@ -136,10 +146,9 @@ enable advanced use cases thanks to performant [=low-level=] APIs,
 and increase the pace at which new sensors can be exposed to the Web
 by simplifying the specification and implementation processes.
 
-Issue: This lacks an informative section with examples for developers.
-Should contain different use of the API,
-including using it in conjunction with `requestAnimationFrame`.
-
+A comprehensive list of concrete sensors that are based on Generic Sensor API, applicable use
+cases, and code examples can be found in [[GENERIC-SENSOR-USECASES]] and [[MOTION-SENSORS]]
+explainer documents.
 
 <h2 id="scope">Scope</h2>
 
@@ -1404,6 +1413,8 @@ Such <dfn lt="extension specification">extension specifications</dfn> are encour
 single [=sensor type=], exposing both [=high-level|high=] and [=low-level|low=] level
 as appropriate.
 
+For an up-to-date list of [=extension specifications=], please refer to [[GENERIC-SENSOR-USECASES]]
+and [[MOTION-SENSORS]] documents.
 
 <h3 id="extension-security-and-privacy">Security and Privacy</h3>
 
@@ -1503,7 +1514,7 @@ each [=sensor type=] in [=extension specifications=]:
 
 -   An [=interface=] whose [=inherited interfaces=] contains {{Sensor}}.
     This interface must be constructible.
-    Its [{{Constructor!!extended-attribute}}] must take, as argument,
+    Its [{{Constructor!!extended-attribute}}] must take, as an argument,
     an optional [=dictionary=] whose [=inherited dictionaries=] contains {{SensorOptions}}.
     Its [=attributes=] which expose [=sensor readings=] are [=read only=] and
     their getters must return the result of invoking [=get value from latest reading=]
@@ -1559,14 +1570,14 @@ for proximity [=device sensor|sensors=].
     [Constructor(optional ProximitySensorOptions proximitySensorOptions),
      SecureContext, Exposed=Window]
     interface ProximitySensor : Sensor {
-        readonly attribute unrestricted double distance;
+        readonly attribute double? distance;
     };
 
     dictionary ProximitySensorOptions : SensorOptions {
-        double? min = -Infinity;
-        double? max = Infinity;
-        ProximitySensorPosition? position;
-        ProximitySensorDirection? direction;
+        double min;
+        double max;
+        ProximitySensorPosition position;
+        ProximitySensorDirection direction;
     };
 
     enum ProximitySensorPosition {
