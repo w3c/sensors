@@ -800,7 +800,7 @@ interface Sensor : EventTarget {
 };
 
 dictionary SensorOptions {
-  double? frequency;
+  double frequency;
 };
 </pre>
 
@@ -1245,7 +1245,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     : output
     :: None
 
-    1.  [=map/For each=] |key| → |value| of [=latest reading=].
+    1.  [=map/For each=] |key| → <var ignore>value</var> of [=latest reading=].
         1.  [=map/Set=] [=latest reading=][|key|] to the corresponding
             value of |reading|.
     1.  let |activated_sensors| be |sensor|'s associated [=ordered set|set=] of [=activated sensor objects=].
