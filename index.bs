@@ -626,11 +626,6 @@ define ways to uniquely identify each one.
     </pre>
 </div>
 
-## Sampling Frequency ## {#concepts-sampling-frequency}
-
-For the purpose of this specification, <dfn>sampling frequency</dfn> for a [=platform sensor=] is defined
-as a frequency at which the user agent obtains [=sensor readings=] from the underlying platform.
-
 ## Reading change threshold ## {#concepts-reading-change-threshold}
 
 A [=platform sensor=] reports [=sensor readings|readings=] to the user agent considering
@@ -643,6 +638,31 @@ update the corresponding [=sensor readings=].
 The [=reading change threshold|threshold=] value depends on the surrounding software and hardware
 environment constraints, e.g., software power consumption optimizations or the underlying
 [=device sensor=]'s accuracy.
+
+## Sampling Frequency and Reporting Frequency ## {#concepts-sampling-and-reporting-frequencies}
+
+For the purpose of this specification, <dfn>sampling frequency</dfn> for a [=platform sensor=] is
+defined as a frequency at which the user agent obtains [=sensor readings=] from the underlying
+platform.
+
+The user agent can request the underlying platform to deliver [=sensor readings|readings=] at a certain
+rate which is called <dfn>requested sampling frequency</dfn>.
+
+The [=sampling frequency=] is equal to the [=requested sampling frequency=] if the underlying platform
+can support it.
+
+The [=sampling frequency=] differs from the [=requested sampling frequency=] in the following cases:
+ - the [=requested sampling frequency=] exceeds upper or lower [=sampling frequency=] bounds
+   supported by the underlying platform.
+ - the [=reading change threshold|threshold=] value is significant so that some of the
+   [=device sensor=]'s measurements are skipped and the [=sensor readings=] are not updated.
+
+The <dfn>reporting frequency</dfn> for a concrete {{Sensor}} object is defined as a frequency at which
+{{Sensor/onreading}} notification is called.
+
+A {{Sensor}} object cannot access new [=sensor readings|readings=] at a higher rate than the
+user agent obtains them from the underlying platform, therefore the [=reporting frequency=] can
+never exceed the [=sampling frequency=] for the given [=sensor type=].
 
 ## Conditions to expose sensor readings ## {#concepts-can-expose-sensor-readings}
 
@@ -744,17 +764,17 @@ Note: there are additional privacy concerns when using cached [=sensor readings|
 which predate either [=navigating=] to resources in the current [=origin=],
 or being granted permission to access the [=platform sensor=]. -->
 
-A [=platform sensor=] has an associated <dfn>current sampling frequency</dfn> which is initially null.
+A [=platform sensor=] has an associated [=requested sampling frequency=] which is initially null.
 
 For a non[=set/is empty|empty=] [=ordered set|set=] of [=activated sensor objects=] the
-[=current sampling frequency=] is equal to <dfn>optimal sampling frequency</dfn>, which is estimated
-by the UA taking into account {{[[desiredSamplingFrequency]]|desired sampling frequencies}} of
-[=activated sensor objects|activated=] {{Sensor|Sensors}} and [=sampling frequency=] bounds defined
-by the underlying platform.
+[=requested sampling frequency=] is equal to <dfn>optimal sampling frequency</dfn>, which is estimated
+by the user agent taking into account {{[[requestedReportingFrequency]]|requested reporting frequencies}}
+of [=activated sensor objects|activated=] {{Sensor|Sensors}} and [=sampling frequency=] bounds
+defined by the underlying platform.
 
-Note: For example, the UA may estimate [=optimal sampling frequency=] as a Least Common Denominator
-(LCD) for a set of {{[[desiredSamplingFrequency]]|desired sampling frequencies}} capped by
-[=sampling frequency=] bounds defined by the underlying platform.
+Note: For example, the user agent may estimate [=optimal sampling frequency=] as a Least Common
+Denominator (LCD) for a set of {{[[requestedReportingFrequency]]|requested reporting frequencies}} capped
+by [=sampling frequency=] bounds defined by the underlying platform.
 
 <h2 id="api">API</h2>
 
@@ -911,8 +931,8 @@ with the internal slots described in the following table:
             </td>
         </tr>
         <tr>
-            <td><dfn attribute for=Sensor>\[[desiredSamplingFrequency]]</dfn></td>
-            <td>The requested [=sampling frequency=]. It is initially unset.</td>
+            <td><dfn attribute for=Sensor>\[[requestedReportingFrequency]]</dfn></td>
+            <td>The requested [=reporting frequency=]. It is initially unset.</td>
         </tr>
         <tr>
             <td><dfn attribute for=Sensor>\[[lastEventFiredAt]]</dfn></td>
@@ -1102,7 +1122,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
         1.  [=throw=] a {{SecurityError}}.
     1.  Let |sensor_instance| be a new {{Sensor}} object,
     1.  If |options|.{{frequency!!dict-member}} is [=present=], then
-        1.  Set |sensor_instance|.{{[[desiredSamplingFrequency]]}} to |options|.{{frequency!!dict-member}}.
+        1.  Set |sensor_instance|.{{[[requestedReportingFrequency]]}} to |options|.{{frequency!!dict-member}}.
 
         Note: there is not guarantee that the requested |options|.{{frequency!!dict-member}}
         can be respected. The actual [=sampling frequency=] can be calculated using
@@ -1202,13 +1222,13 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     :: None
 
     1.  If |sensor|'s set of [=activated sensor objects=] [=set/is empty=],
-        1.  Set [=current sampling frequency=] to null.
+        1.  Set [=requested sampling frequency=] to null.
         1.  [=map/For each=] |key| → <var ignore>value</var> of [=latest reading=].
             1.  [=map/Set=] [=latest reading=][|key|] to null.
         1.  Update the user-agent-specific way in which [=sensor readings=] are obtained from |sensor|
             to no longer provide [=sensor readings|readings=].
         1.  Return.
-    1.  Set [=current sampling frequency=] to [=optimal sampling frequency=].
+    1.  Set [=requested sampling frequency=] to [=optimal sampling frequency=].
 </div>
 
 <h3 dfn>Update latest reading</h3>
@@ -1241,12 +1261,12 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     : input
     :: |sensor_instance|, a {{Sensor}} object.
     : output
-    :: Reporting frequency in Hz.
+    :: [=reporting frequency=] in Hz.
 
     1.  Let |frequency| be null.
-    1.  Let |f| be |sensor_instance|.{{[[desiredSamplingFrequency]]}}.
+    1.  Let |f| be |sensor_instance|.{{[[requestedReportingFrequency]]}}.
         1. if |f| is set,
-            1. set |frequency| to |f| capped by the upper and lower [=current sampling frequency=]
+            1. set |frequency| to |f| capped by the upper and lower [=sampling frequency=]
                bounds for the associated [=platform sensor=].
         1.  Otherwise,
             1. user agent can assign |frequency| to an appropriate value.
