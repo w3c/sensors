@@ -1183,7 +1183,7 @@ Possible extra rowspan handling
       background-attachment: fixed;
     }
   </style>
-  <meta content="Bikeshed version 882591573ecc5f03f5f46a2281b235e4b6a3e5df" name="generator">
+  <meta content="Bikeshed version 5834a15f311a639c0b59ff2edbf3a060391d15ff" name="generator">
   <link href="https://www.w3.org/TR/generic-sensor/" rel="canonical">
 <style>
     emu-val {
@@ -1458,7 +1458,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-09-29">29 September 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-10-01">1 October 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1879,13 +1879,12 @@ to increase <a data-link-type="dfn" href="#sampling-frequency" id="ref-for-sampl
    <p>Discarding intermediary readings prevents certain use cases,
 such as those relying on certain kinds of filters.</p>
    <h4 class="heading settled" data-dfn-type="dfn" data-level="4.3.4" data-lt="Reduce accuracy" data-noexport="" id="reduce-accuracy"><span class="secno">4.3.4. </span><span class="content">Reduce accuracy</span><a class="self-link" href="#reduce-accuracy"></a></h4>
-   <p>Reducing the accuracy of <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings①③">sensor readings</a> or sensor reading timestamps
-might also help mitigate certain threats,
+   <p>Reducing the accuracy of <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings①③">sensor readings</a> or sensor <a data-link-type="dfn" href="#reading-timestamp" id="ref-for-reading-timestamp">reading timestamps</a> might also help mitigate certain threats,
 thus user agents should not provide
 unnecessarily verbose readouts of sensors data.</p>
    <p>However, certain use cases require highly accurate readings,
 especially when operations carried out on the readings,
-or time deltas calculated from the timestamps,
+or time deltas calculated from the <a data-link-type="dfn" href="#reading-timestamp" id="ref-for-reading-timestamp①">timestamps</a>,
 increase inaccuracies exponentially.</p>
    <p class="note" role="note"><span>Note:</span> while adding random bias to <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings①④">sensor readings</a> has similar effects,
 it shouldn’t be used in practice
@@ -1900,7 +1899,7 @@ about current and past use of the API.</p>
 physical sensor instance.</p>
    <p>The <a data-link-type="dfn" href="#concept-device-sensor" id="ref-for-concept-device-sensor④">device sensors</a> measure different physical quantities
 and provide corresponding <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="raw-sensor-readings">raw sensor readings</dfn> which are a source of information about the user and their environment.</p>
-   <p>Each <a data-link-type="dfn" href="#raw-sensor-readings" id="ref-for-raw-sensor-readings">reading</a> is composed of the <dfn data-dfn-type="dfn" data-lt="reading value" data-noexport="" id="reading-value">values<a class="self-link" href="#reading-value"></a></dfn> of the different physical quantities measured by the <a data-link-type="dfn" href="#concept-device-sensor" id="ref-for-concept-device-sensor⑤">sensor</a> at time <var>t<sub>n</sub></var>.</p>
+   <p>Each <a data-link-type="dfn" href="#raw-sensor-readings" id="ref-for-raw-sensor-readings">reading</a> is composed of the <dfn data-dfn-type="dfn" data-lt="reading value" data-noexport="" id="reading-value">values<a class="self-link" href="#reading-value"></a></dfn> of the different physical quantities measured by the <a data-link-type="dfn" href="#concept-device-sensor" id="ref-for-concept-device-sensor⑤">sensor</a> at time <var>t<sub>n</sub></var> which is called the <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="reading-timestamp">reading timestamp</dfn>.</p>
    <p>Known, <em>predictable</em> discrepancies between <a data-link-type="dfn" href="#raw-sensor-readings" id="ref-for-raw-sensor-readings①">raw sensor readings</a> and the corresponding physical quantities being measured
 are corrected through <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="calibration">calibration</dfn>.</p>
    <p>Known but <em>unpredictable</em> discrepancies need to be addressed dynamically
@@ -2074,19 +2073,20 @@ This set is initially <a data-link-type="dfn" href="https://infra.spec.whatwg.or
    <p>The current <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context③">browsing context</a>'s <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①②">platform sensor</a> has an associated <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="latest-reading">latest reading</dfn> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map">map</a> which holds the latest available <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings②⑨">sensor readings</a>.</p>
    <p class="note" role="note"><span>Note:</span> User agents can share <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings③⓪">sensor readings</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map①">map</a> between different <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context④">contexts</a> only if the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#origin-2" id="ref-for-origin-2②">origins</a> of these contexts' <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#active-document" id="ref-for-active-document⑥">active documents</a> are <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#same-origin-domain" id="ref-for-same-origin-domain①">same origin-domain</a>.</p>
    <p>Any time a new <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings③①">sensor reading</a> for a <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①③">platform sensor</a> is obtained and if the user agent <a data-link-type="dfn" href="#can-expose-sensor-readings" id="ref-for-can-expose-sensor-readings①">can expose sensor readings</a>, <a data-link-type="dfn" href="#update-latest-reading" id="ref-for-update-latest-reading">update latest reading</a> is invoked with the <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①④">platform sensor</a> and the <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings③②">sensor reading</a> as arguments.</p>
-   <p>The <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading">latest reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map②">map</a> contains an <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry" id="ref-for-map-entry">entry</a> whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-key" id="ref-for-map-key">key</a> is "timestamp" and
-whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-value" id="ref-for-map-value">value</a> is a high resolution timestamp of the time
-at which the <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading①">latest reading</a> was obtained
-expressed in milliseconds that passed since the <a data-link-type="dfn" href="http://w3c.github.io/hr-time/#time-origin" id="ref-for-time-origin">time origin</a>. <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading②">latest reading</a>["timestamp"] is initially set to null,
-unless the <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading③">latest reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map③">map</a> caches a previous <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings③③">reading</a>.</p>
-   <p>The other <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry" id="ref-for-map-entry①">entries</a> of the <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading④">latest reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map④">map</a> hold the values of the different quantities measured by the <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①⑤">platform sensor</a>.
+   <p>The <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading">latest reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map②">map</a> contains an <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry" id="ref-for-map-entry">entry</a> whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-key" id="ref-for-map-key">key</a> is
+"timestamp" and whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-value" id="ref-for-map-value">value</a> is a high resolution timestamp that estimates the <a data-link-type="dfn" href="#reading-timestamp" id="ref-for-reading-timestamp②">reading timestamp</a> expressed in milliseconds since the <a data-link-type="dfn" href="http://w3c.github.io/hr-time/#time-origin" id="ref-for-time-origin">time origin</a>.</p>
+   <p class="note" role="note"><span>Note:</span> The accuracy of the <a data-link-type="dfn" href="#reading-timestamp" id="ref-for-reading-timestamp③">reading timestamp</a> estimate depends on the underlying
+platform interfaces that expose it.</p>
+   <p><a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading①">latest reading</a>["timestamp"] is initially set to null,
+unless the <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading②">latest reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map③">map</a> caches a previous <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings③③">reading</a>.</p>
+   <p>The other <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry" id="ref-for-map-entry①">entries</a> of the <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading③">latest reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map④">map</a> hold the values of the different quantities measured by the <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①⑤">platform sensor</a>.
 The <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-key" id="ref-for-map-key①">keys</a> of these <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry" id="ref-for-map-entry②">entries</a> must match
 the <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-attribute" id="ref-for-dfn-attribute">attribute</a> <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-identifier" id="ref-for-dfn-identifier">identifier</a> defined by
 the <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type②⑤">sensor type</a>'s associated interface.
 The return value of the <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-attribute" id="ref-for-dfn-attribute①">attribute</a> getter is
 easily obtained by invoking <a data-link-type="dfn" href="#get-value-from-latest-reading" id="ref-for-get-value-from-latest-reading">get value from latest reading</a> with the object implementing the <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type②⑥">sensor type</a>'s associated interface
 and the <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-attribute" id="ref-for-dfn-attribute②">attribute</a> <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-identifier" id="ref-for-dfn-identifier①">identifier</a> as arguments.</p>
-   <p>The <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-value" id="ref-for-map-value①">value</a> of all <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading⑤">latest reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry" id="ref-for-map-entry③">entries</a> is initially set to null.</p>
+   <p>The <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-value" id="ref-for-map-value①">value</a> of all <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading④">latest reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry" id="ref-for-map-entry③">entries</a> is initially set to null.</p>
    <p>A <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①⑥">platform sensor</a> has an associated <a data-link-type="dfn" href="#requested-sampling-frequency" id="ref-for-requested-sampling-frequency③">requested sampling frequency</a> which is initially null.</p>
    <p>For a non<a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-is-empty" id="ref-for-list-is-empty①">empty</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set" id="ref-for-ordered-set③">set</a> of <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects">activated sensor objects</a> the <a data-link-type="dfn" href="#requested-sampling-frequency" id="ref-for-requested-sampling-frequency④">requested sampling frequency</a> is equal to <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="optimal-sampling-frequency">optimal sampling frequency</dfn>, which is estimated
 by the user agent taking into account <code class="idl"><a data-link-type="idl" href="#dom-sensor-frequency-slot" id="ref-for-dom-sensor-frequency-slot">provided frequencies</a></code> of <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects①">activated</a> <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor⑥">Sensors</a></code> and <a data-link-type="dfn" href="#sampling-frequency" id="ref-for-sampling-frequency⑦">sampling frequency</a> bounds
@@ -2545,10 +2545,10 @@ that must be supported as attributes by the objects implementing the <code class
        <li data-md="">
         <p>Set <a data-link-type="dfn" href="#requested-sampling-frequency" id="ref-for-requested-sampling-frequency⑥">requested sampling frequency</a> to null.</p>
        <li data-md="">
-        <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-iterate" id="ref-for-map-iterate">For each</a> <var>key</var> → <var>value</var> of <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading⑥">latest reading</a>.</p>
+        <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-iterate" id="ref-for-map-iterate">For each</a> <var>key</var> → <var>value</var> of <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading⑤">latest reading</a>.</p>
         <ol>
          <li data-md="">
-          <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set" id="ref-for-map-set">Set</a> <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading⑦">latest reading</a>[<var>key</var>] to null.</p>
+          <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set" id="ref-for-map-set">Set</a> <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading⑥">latest reading</a>[<var>key</var>] to null.</p>
         </ol>
        <li data-md="">
         <p>Update the user-agent-specific way in which <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings③⑧">sensor readings</a> are obtained from <var>sensor</var> to no longer provide <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings③⑨">readings</a>.</p>
@@ -2577,10 +2577,10 @@ that must be supported as attributes by the objects implementing the <code class
     </dl>
     <ol>
      <li data-md="">
-      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-iterate" id="ref-for-map-iterate①">For each</a> <var>key</var> → <var>value</var> of <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading⑧">latest reading</a>.</p>
+      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-iterate" id="ref-for-map-iterate①">For each</a> <var>key</var> → <var>value</var> of <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading⑦">latest reading</a>.</p>
       <ol>
        <li data-md="">
-        <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set" id="ref-for-map-set①">Set</a> <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading⑨">latest reading</a>[<var>key</var>] to the corresponding
+        <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set" id="ref-for-map-set①">Set</a> <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading⑧">latest reading</a>[<var>key</var>] to the corresponding
   value of <var>reading</var>.</p>
       </ol>
      <li data-md="">
@@ -2672,7 +2672,7 @@ that must be supported as attributes by the objects implementing the <code class
      <li data-md="">
       <p>Let <var>reportingInterval</var> be the result of 1 / <var>reportingFrequency</var>.</p>
      <li data-md="">
-      <p>Let <var>timestampDelta</var> be the result of <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading①⓪">latest reading</a>["timestamp"] - <var>lastReportedTimestamp</var>.</p>
+      <p>Let <var>timestampDelta</var> be the result of <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading⑨">latest reading</a>["timestamp"] - <var>lastReportedTimestamp</var>.</p>
      <li data-md="">
       <p>If <var>timestampDelta</var> is greater than or equal to <var>reportingInterval</var></p>
       <ol>
@@ -2707,7 +2707,7 @@ that must be supported as attributes by the objects implementing the <code class
      <li data-md="">
       <p>Set <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-pendingreadingnotification-slot" id="ref-for-dom-sensor-pendingreadingnotification-slot④">[[pendingReadingNotification]]</a></code> to false.</p>
      <li data-md="">
-      <p>Set <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-lasteventfiredat-slot" id="ref-for-dom-sensor-lasteventfiredat-slot②">[[lastEventFiredAt]]</a></code> to <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading①①">latest reading</a>["timestamp"].</p>
+      <p>Set <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-lasteventfiredat-slot" id="ref-for-dom-sensor-lasteventfiredat-slot②">[[lastEventFiredAt]]</a></code> to <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading①⓪">latest reading</a>["timestamp"].</p>
      <li data-md="">
       <p><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire" id="ref-for-concept-event-fire">Fire an event</a> named "reading" at <var>sensor_instance</var>.</p>
     </ol>
@@ -2730,7 +2730,7 @@ that must be supported as attributes by the objects implementing the <code class
      <li data-md="">
       <p>Let <var>sensor</var> be the <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor③②">platform sensor</a> associated with <var>sensor_instance</var>.</p>
      <li data-md="">
-      <p>If <var>sensor</var>’s <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading①②">latest reading</a>["timestamp"] is not null,</p>
+      <p>If <var>sensor</var>’s <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading①①">latest reading</a>["timestamp"] is not null,</p>
       <ol>
        <li data-md="">
         <p>Queue a task to run <a data-link-type="dfn" href="#notify-new-reading" id="ref-for-notify-new-reading④">notify new reading</a> with <var>sensor_instance</var> as an argument.</p>
@@ -2773,7 +2773,7 @@ that must be supported as attributes by the objects implementing the <code class
       <p>If <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-state-slot" id="ref-for-dom-sensor-state-slot⑨">[[state]]</a></code> is "activated",</p>
       <ol>
        <li data-md="">
-        <p>Let <var>readings</var> be the <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading①③">latest reading</a> of <var>sensor_instance</var>’s related <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor③③">platform sensor</a>.</p>
+        <p>Let <var>readings</var> be the <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading①②">latest reading</a> of <var>sensor_instance</var>’s related <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor③③">platform sensor</a>.</p>
        <li data-md="">
         <p>Return <var>readings</var>[<var>key</var>].</p>
       </ol>
@@ -3254,6 +3254,7 @@ for their editorial input.</p>
    <li><a href="#concept-platform-sensor">platform sensor</a><span>, in §5.1</span>
    <li><a href="#raw-sensor-readings">raw sensor readings</a><span>, in §5.1</span>
    <li><a href="#reading-change-threshold">reading change threshold</a><span>, in §5.4</span>
+   <li><a href="#reading-timestamp">reading timestamp</a><span>, in §5.1</span>
    <li><a href="#reading-value">reading value</a><span>, in §5.1</span>
    <li><a href="#reduce-accuracy">Reduce accuracy</a><span>, in §4.3.3</span>
    <li><a href="#reporting-frequency">reporting frequency</a><span>, in §5.5</span>
@@ -3343,7 +3344,7 @@ for their editorial input.</p>
      <li><a href="https://w3c.github.io/page-visibility#dfn-steps-to-determine-the-visibility-state">steps to determine the visibility state</a>
     </ul>
    <li>
-    <a data-link-type="biblio">[permissions-1]</a> defines the following terms:
+    <a data-link-type="biblio">[PERMISSIONS]</a> defines the following terms:
     <ul>
      <li><a href="https://w3c.github.io/permissions/#dictdef-permissiondescriptor">PermissionDescriptor</a>
      <li><a href="https://w3c.github.io/permissions/#enumdef-permissionname">PermissionName</a>
@@ -3353,7 +3354,7 @@ for their editorial input.</p>
      <li><a href="https://w3c.github.io/permissions/#request-permission-to-use">request permission to use</a>
     </ul>
    <li>
-    <a data-link-type="biblio">[secure-contexts-1]</a> defines the following terms:
+    <a data-link-type="biblio">[POWERFUL-FEATURES]</a> defines the following terms:
     <ul>
      <li><a href="https://w3c.github.io/webappsec-secure-contexts/#secure-context">secure context</a>
     </ul>
@@ -3406,6 +3407,8 @@ for their editorial input.</p>
    <dd>Jatinder Mann; Arvind Jain. <a href="https://www.w3.org/TR/page-visibility/">Page Visibility (Second Edition)</a>. 29 October 2013. REC. URL: <a href="https://www.w3.org/TR/page-visibility/">https://www.w3.org/TR/page-visibility/</a>
    <dt id="biblio-permissions">[PERMISSIONS]
    <dd>Mounir Lamouri; Marcos Caceres; Jeffrey Yasskin. <a href="https://w3c.github.io/permissions/">Permissions</a>. URL: <a href="https://w3c.github.io/permissions/">https://w3c.github.io/permissions/</a>
+   <dt id="biblio-powerful-features">[POWERFUL-FEATURES]
+   <dd>Mike West. <a href="https://w3c.github.io/webappsec-secure-contexts/">Secure Contexts</a>. URL: <a href="https://w3c.github.io/webappsec-secure-contexts/">https://w3c.github.io/webappsec-secure-contexts/</a>
    <dt id="biblio-rfc2119">[RFC2119]
    <dd>S. Bradner. <a href="https://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>. March 1997. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc2119">https://tools.ietf.org/html/rfc2119</a>
    <dt id="biblio-security-privacy-questionnaire">[SECURITY-PRIVACY-QUESTIONNAIRE]
@@ -3429,8 +3432,6 @@ for their editorial input.</p>
    <dd>Manish J. Gajjar. Mobile Sensors and Context-Aware Computing. 2017. Informational. 
    <dt id="biblio-orientation-event">[ORIENTATION-EVENT]
    <dd>Rich Tibbett; et al. <a href="https://w3c.github.io/deviceorientation/spec-source-orientation.html">DeviceOrientation Event Specification</a>. URL: <a href="https://w3c.github.io/deviceorientation/spec-source-orientation.html">https://w3c.github.io/deviceorientation/spec-source-orientation.html</a>
-   <dt id="biblio-powerful-features">[POWERFUL-FEATURES]
-   <dd>Mike West. <a href="https://w3c.github.io/webappsec-secure-contexts/">Secure Contexts</a>. URL: <a href="https://w3c.github.io/webappsec-secure-contexts/">https://w3c.github.io/webappsec-secure-contexts/</a>
    <dt id="biblio-qudt">[QUDT]
    <dd>Ralph Hodgson; et al. <a href="http://www.qudt.org/">QUDT - Quantities, Units, Dimensions and Data Types Ontologies</a>. 18 March 2014. URL: <a href="http://www.qudt.org/">http://www.qudt.org/</a>
    <dt id="biblio-rfc6454">[RFC6454]
@@ -3490,6 +3491,13 @@ for their editorial input.</p>
    <b><a href="#raw-sensor-readings">#raw-sensor-readings</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-raw-sensor-readings">5.1. Sensors</a> <a href="#ref-for-raw-sensor-readings①">(2)</a> <a href="#ref-for-raw-sensor-readings②">(3)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="reading-timestamp">
+   <b><a href="#reading-timestamp">#reading-timestamp</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-reading-timestamp">4.3.4. Reduce accuracy</a> <a href="#ref-for-reading-timestamp①">(2)</a>
+    <li><a href="#ref-for-reading-timestamp②">6.2. Sensor</a> <a href="#ref-for-reading-timestamp③">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="calibration">
@@ -3690,13 +3698,13 @@ for their editorial input.</p>
   <aside class="dfn-panel" data-for="latest-reading">
    <b><a href="#latest-reading">#latest-reading</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-latest-reading">6.2. Sensor</a> <a href="#ref-for-latest-reading①">(2)</a> <a href="#ref-for-latest-reading②">(3)</a> <a href="#ref-for-latest-reading③">(4)</a> <a href="#ref-for-latest-reading④">(5)</a> <a href="#ref-for-latest-reading⑤">(6)</a>
-    <li><a href="#ref-for-latest-reading⑥">8.6. Set sensor settings</a> <a href="#ref-for-latest-reading⑦">(2)</a>
-    <li><a href="#ref-for-latest-reading⑧">8.7. Update latest reading</a> <a href="#ref-for-latest-reading⑨">(2)</a>
-    <li><a href="#ref-for-latest-reading①⓪">8.9. Report latest reading updated</a>
-    <li><a href="#ref-for-latest-reading①①">8.10. Notify new reading</a>
-    <li><a href="#ref-for-latest-reading①②">8.11. Notify activated state</a>
-    <li><a href="#ref-for-latest-reading①③">8.13. Get value from latest reading</a>
+    <li><a href="#ref-for-latest-reading">6.2. Sensor</a> <a href="#ref-for-latest-reading①">(2)</a> <a href="#ref-for-latest-reading②">(3)</a> <a href="#ref-for-latest-reading③">(4)</a> <a href="#ref-for-latest-reading④">(5)</a>
+    <li><a href="#ref-for-latest-reading⑤">8.6. Set sensor settings</a> <a href="#ref-for-latest-reading⑥">(2)</a>
+    <li><a href="#ref-for-latest-reading⑦">8.7. Update latest reading</a> <a href="#ref-for-latest-reading⑧">(2)</a>
+    <li><a href="#ref-for-latest-reading⑨">8.9. Report latest reading updated</a>
+    <li><a href="#ref-for-latest-reading①⓪">8.10. Notify new reading</a>
+    <li><a href="#ref-for-latest-reading①①">8.11. Notify activated state</a>
+    <li><a href="#ref-for-latest-reading①②">8.13. Get value from latest reading</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="optimal-sampling-frequency">

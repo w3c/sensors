@@ -435,14 +435,14 @@ such as those relying on certain kinds of filters.
 <h4 id="reduce-accuracy" dfn>Reduce accuracy</h4>
 
 Reducing the accuracy of [=sensor readings=]
-or sensor reading timestamps
+or sensor [=reading timestamps=]
 might also help mitigate certain threats,
 thus user agents should not provide
 unnecessarily verbose readouts of sensors data.
 
 However, certain use cases require highly accurate readings,
 especially when operations carried out on the readings,
-or time deltas calculated from the timestamps,
+or time deltas calculated from the [=reading timestamp|timestamps=],
 increase inaccuracies exponentially.
 
 Note: while adding random bias to [=sensor readings=] has similar effects,
@@ -473,7 +473,7 @@ which are a source of information about the user and their environment.
 
 Each [=raw sensor reading|reading=] is composed of the <dfn lt="reading value">values</dfn>
 of the different physical quantities measured by the [=device sensor|sensor=]
-at time <var ignore>t<sub>n</sub></var>.
+at time <var ignore>t<sub>n</sub></var> which is called the <dfn>reading timestamp</dfn>.
 
 Known, <em>predictable</em> discrepancies between [=raw sensor readings=]
 and the corresponding physical quantities being measured
@@ -735,12 +735,13 @@ Any time a new [=sensor reading=] for a [=platform sensor=] is obtained and if t
 [=can expose sensor readings=], [=update latest reading=] is invoked with the [=platform sensor=]
 and the [=sensor reading=] as arguments.
 
-The [=latest reading=] [=ordered map|map=]
-contains an [=map/entry=]
-whose [=map/key=] is "timestamp" and
-whose [=map/value=] is a high resolution timestamp of the time
-at which the [=latest reading=] was obtained
-expressed in milliseconds that passed since the [=time origin=].
+The [=latest reading=] [=ordered map|map=] contains an [=map/entry=] whose [=map/key=] is
+"timestamp" and whose [=map/value=] is a high resolution timestamp that estimates the
+[=reading timestamp=] expressed in milliseconds since the [=time origin=].
+
+Note: The accuracy of the [=reading timestamp=] estimate depends on the underlying
+platform interfaces that expose it.
+
 [=latest reading=]["timestamp"] is initially set to null,
 unless the [=latest reading=] [=ordered map|map=] caches a previous [=sensor readings|reading=].
 
