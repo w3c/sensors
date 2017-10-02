@@ -768,12 +768,12 @@ A [=platform sensor=] has an associated [=requested sampling frequency=] which i
 
 For a non[=set/is empty|empty=] [=ordered set|set=] of [=activated sensor objects=] the
 [=requested sampling frequency=] is equal to <dfn>optimal sampling frequency</dfn>, which is estimated
-by the user agent taking into account {{[[requestedReportingFrequency]]|requested reporting frequencies}}
+by the user agent taking into account {{[[frequency]]|provided frequencies}}
 of [=activated sensor objects|activated=] {{Sensor|Sensors}} and [=sampling frequency=] bounds
 defined by the underlying platform.
 
 Note: For example, the user agent may estimate [=optimal sampling frequency=] as a Least Common
-Denominator (LCD) for a set of {{[[requestedReportingFrequency]]|requested reporting frequencies}} capped
+Denominator (LCD) for a set of {{[[frequency]]|provided frequencies}} capped
 by [=sampling frequency=] bounds defined by the underlying platform.
 
 <h2 id="api">API</h2>
@@ -923,7 +923,7 @@ with the internal slots described in the following table:
     <tbody>
         <tr>
             <td><dfn attribute for=Sensor>\[[state]]</dfn></td>
-            <td>The current state of {{Sensor}} object which is one of
+            <td>The current state of the {{Sensor}} object which is one of
                 "idle",
                 "activating", or
                 "activated".
@@ -931,12 +931,18 @@ with the internal slots described in the following table:
             </td>
         </tr>
         <tr>
-            <td><dfn attribute for=Sensor>\[[requestedReportingFrequency]]</dfn></td>
-            <td>The requested [=reporting frequency=]. It is initially unset.</td>
+            <td><dfn attribute for=Sensor>\[[frequency]]</dfn></td>
+            <td>A double representing frequency in Hz that is used to calculate
+                the [=requested sampling frequency=] for the associated [=platform sensor=]
+                and to define the upper bound of the [=reporting frequency=] for this
+                {{Sensor}} object.
+
+                This slot holds the provided {{SensorOptions}}.{{frequency!!dict-member}} value.
+                It is initially unset.</td>
         </tr>
         <tr>
             <td><dfn attribute for=Sensor>\[[lastEventFiredAt]]</dfn></td>
-            <td>the high resolution timestamp of the latest [=sensor reading=]
+            <td>The high resolution timestamp of the latest [=sensor reading=]
                 that was sent to observers of the {{Sensor}} object,
                 expressed in milliseconds that passed since the [=time origin=].
                 It is initially null.
@@ -1122,7 +1128,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
         1.  [=throw=] a {{SecurityError}}.
     1.  Let |sensor_instance| be a new {{Sensor}} object,
     1.  If |options|.{{frequency!!dict-member}} is [=present=], then
-        1.  Set |sensor_instance|.{{[[requestedReportingFrequency]]}} to |options|.{{frequency!!dict-member}}.
+        1.  Set |sensor_instance|.{{[[frequency]]}} to |options|.{{frequency!!dict-member}}.
 
         Note: there is not guarantee that the requested |options|.{{frequency!!dict-member}}
         can be respected. The actual [=sampling frequency=] can be calculated using
@@ -1264,7 +1270,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     :: [=reporting frequency=] in Hz.
 
     1.  Let |frequency| be null.
-    1.  Let |f| be |sensor_instance|.{{[[requestedReportingFrequency]]}}.
+    1.  Let |f| be |sensor_instance|.{{[[frequency]]}}.
         1. if |f| is set,
             1. set |frequency| to |f| capped by the upper and lower [=sampling frequency=]
                bounds for the associated [=platform sensor=].
