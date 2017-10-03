@@ -599,8 +599,13 @@ for each [=sensor types|type=]
 simply by instantiating the corresponding {{Sensor}} subclass.
 
 Indeed, without specific information identifying a particular [=device sensor|sensor=]
-of a given [=sensor type|type=],
-the <dfn export>default sensor</dfn> is chosen.
+of a given [=sensor type|type=], the <dfn export>default sensor</dfn> is chosen by the
+user agent.
+
+If the underlying platform provides an interface to find the [=default sensor=],
+the user agent must choose the sensor offered by the platform, otherwise the user agent
+itself defines which of the [=device sensor|sensors=] present on the device is
+the [=default sensor=]. 
 
 <div class="example">
     Listening to the default accelerometer changes:
@@ -703,10 +708,6 @@ A <dfn>sensor type</dfn> has an associated [=interface=]
 whose [=inherited interfaces=] contains {{Sensor}}.
 
 A [=sensor type=] has a [=ordered set|set=] of <dfn export>associated sensors</dfn>.
-
-If a [=sensor type=] has more than one [=platform sensor=],
-it must have a set of associated <dfn export>identifying parameters</dfn>
-to select the right [=platform sensor=] to associate to each new {{Sensor}} objects.
 
 A [=sensor type=] may have a [=default sensor=].
 
@@ -964,14 +965,6 @@ with the internal slots described in the following table:
                 notified after a new [=sensor reading=] was reported.
                 It is initially false.</td>
         </tr>
-        <tr>
-            <td><dfn attribute for=Sensor>\[[identifyingParameters]]</dfn></td>
-            <td>
-                A [=sensor type=]-specific group of [=dictionary members=]
-                used to select the correct [=platform sensor=]
-                to associate to this {{Sensor}} object.
-            </td>
-        </tr>
     </tbody>
 </table>
 
@@ -1016,7 +1009,8 @@ and "timestamp" as arguments.
         or "activated", then return.
     1.  Set |sensor_instance|.{{[[state]]}} to "activating".
     1.  Run these sub-steps [=in parallel=]:
-        1.  let |connected| be the result of invoking [=connect to sensor=].
+        1.  let |connected| be the result of invoking [=connect to sensor=] with |sensor_instance|
+            as argument.
         1.  If |connected| is false, then
             1.  Let |e| be the result of [=created|creating=] a
                 "{{NotReadableError!!exception}}" {{DOMException}}.
@@ -1143,8 +1137,6 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
         Note: there is not guarantee that the requested |options|.{{frequency!!dict-member}}
         can be respected. The actual [=sampling frequency=] can be calculated using
         {{Sensor}} {{Sensor/timestamp!!attribute}} attributes.
-    1.  If [=identifying parameters=] in |options| are set, then:
-        1.  Set |sensor_instance|.{{[[identifyingParameters]]}} to [=identifying parameters=].
     1.  Set |sensor_instance|.{{[[state]]}} to "idle".
     1.  Return |sensor_instance|.
 </div>
@@ -1160,16 +1152,18 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     :: True if sensor instance was associated with a [=platform sensor=],
        false otherwise.
 
-    1.  If |sensor_instance|.{{[[identifyingParameters]]}} is set and
-        |sensor_instance|.{{[[identifyingParameters]]}} allows
-        a unique [=platform sensor=] to be identified, then:
-        1.  let |sensor| be that [=platform sensor=],
-        1.  associate |sensor_instance| with |sensor|.
+    1.  Let |type| be the [=sensor type=] of |sensor_instance|.
+    1.  If the device has a single [=device sensor=] which can provide [=sensor readings|readings=]
+        for |type|, then
+        1.  Associate |sensor_instance| with a [=platform sensor=] corresponding
+            to this [=device sensor=].
         1.  Return true.
-    1.  If the [=sensor type=] of |sensor_instance| has an associated [=default sensor=]
-        and there is a corresponding [=platform sensor=] on the device, then
-        1.  associate |sensor_instance| with [=default sensor=].
-        1.  Return true.
+    1.  If the device has multiple [=device sensors=] which can provide [=sensor readings|readings=]
+        for |type|, then
+        1.  If |type| has an associated [=default sensor=], then
+            1.  Associate |sensor_instance| with a [=platform sensor=] corresponding
+                to [=default sensor=].
+            1.  Return true.
     1.  Return false.
 </div>
 
@@ -1528,7 +1522,6 @@ for each [=sensor types=]:
     For [=sensor types=] where multiple [=device sensor|sensors=] are common,
     [=extension specifications=] may choose not to define a [=default sensor=],
     especially when doing so would not make sense.
--   A set of [=identifying parameters=]. TODO: replace that by an abstract operation.
 
 <h3 id="permission-api">Extending the Permission API</h3>
 
