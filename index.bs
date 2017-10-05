@@ -449,10 +449,9 @@ might also help mitigate certain threats,
 thus user agents should not provide
 unnecessarily verbose readouts of sensors data.
 
-However, certain use cases require highly accurate readings,
-especially when operations carried out on the readings,
-or time deltas calculated from the [=reading timestamp|timestamps=],
-increase inaccuracies exponentially.
+Note: Inaccuracies will further increase for operations carried out on the
+[=sensor readings=], or time deltas calculated from the [=reading timestamp|timestamps=].
+So, this mitigation strategy can affect certain use cases.
 
 Note: while adding random bias to [=sensor readings=] has similar effects,
 it shouldn't be used in practice
@@ -500,6 +499,10 @@ originated from one or several [=device sensors=].
 
 [=Platform sensor=] can be defined by the underlying platform (e.g. in a native sensors framework)
 or by the user agent, if it has a direct access to [=device sensor=].
+
+From the implementation perspective [=platform sensor=] can be treated as a software proxy for the
+corresponding [=device sensor=]. It is possible to have multiple [=platform sensors=] simultaneously
+interacting with the same [=device sensor=] if the underlying platform suppports it.
 
 In simple case a [=platform sensor=] corresponds to a single [=device sensor=],
 but if the provided [=sensor readings=] are product of [=sensor fusion=] performed
@@ -567,20 +570,11 @@ to provide a correct bearing.
 <dfn>Smart sensors</dfn> and <dfn>sensor hubs</dfn>
 have built-in compute resources which allow them
 to carry out [=calibration=] and [=sensor fusion=] at the hardware level,
-freeing up CPU resources
-and lowering battery consumption
-in the process.
+freeing up CPU resources and lowering battery consumption in the process.
 
-But [=sensor fusion=] can also be carried out in software.
-This is particularly useful when performance requirements can only be met
-by relying on application-specific data.
-For example, head tracking for virtual or augmented reality applications
-requires extremely low latency
-to avoid causing motion sickness.
-That low-latency is best provided
-by using the raw output of a gyroscope
-and waiting for quick rotational movements of the head
-to compensate for drift.
+[=Sensor fusion=] can also be carried out in software if it cannot be
+performed at the hardware level or if an application-specific
+[=sensor fusion|fusion=] algorithm is required.
 
 ## Default sensor ## {#concepts-default-sensor}
 
