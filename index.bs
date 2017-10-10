@@ -694,8 +694,6 @@ Note: In order to release hardware resources, the user agent can request underly
 
 <h2 id="model">Model</h2>
 
-Issue: A diagram would really help here.
-
 <h3 id="model-sensor-type">Sensor Type</h3>
 
 A <dfn>sensor type</dfn> has an associated [=interface=]
@@ -731,7 +729,7 @@ This set is initially [=set/is empty|empty=].
 The current [=browsing context=]'s [=platform sensor=] has an associated <dfn>latest reading</dfn>
 [=ordered map|map=] which holds the latest available [=sensor readings=].
 
-Note: User agents can share [=sensor readings=] [=ordered map|map=] between different
+Note: User agents can share [=latest reading=] [=ordered map|map=] between different
 [=browsing context|contexts=] only if the [=origins=] of these contexts' [=active documents=]
 are [=same origin-domain=].
 
@@ -780,6 +778,26 @@ defined by the underlying platform.
 Note: For example, the user agent may estimate [=optimal sampling frequency=] as a Least Common
 Denominator (LCD) for a set of {{[[frequency]]|provided frequencies}} capped
 by [=sampling frequency=] bounds defined by the underlying platform.
+
+<div class=example>
+
+This example illustrates a possible implementation of the described [[#model|Model]].
+
+In the diagram below several [=activated sensor objects|activated=] {{Sensor}} objects from two
+different [=browsing contexts=] interact with a single [=device sensor=].
+
+<img srcset="images/generic_sensor_model.svg" src="images/generic_sensor_model.png">
+
+The {{Sensor}} object in "idle" [[#sensor-lifecycle|state]] is not among the [=platform sensor=]'s
+[=activated sensor objects=] and thus it does not interact with the [=device sensor=].
+
+In this example there is a [=platform sensor=] instance per [=browsing context=].
+
+The [=latest reading=] [=ordered map|map=] is shared between {{Sensor}} objects from the
+same [=browsing context|context=] and is updated at rate equal to [=requested sampling frequency=]
+of the corresponding [=platform sensor=].
+
+</div>
 
 <h2 id="api">API</h2>
 
