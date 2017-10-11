@@ -1511,12 +1511,17 @@ exposing [=low-level=] sensor APIs, but should also expose
 
 <h3 id="multiple-sensors">When is Enabling Multiple Sensors of the Same Type Not the Right Choice?</h3>
 
-TODO: provide guidance on when to:
+It is not advisable to construct multiple {{Sensor}} instances of the same [=sensor type=] with
+equal construction parameters, as it can lead to unnecessary hardware resources consumption.
 
-- allow multiple sensors of the same type to be instantiated,
-- create different interfaces that inherit from {{Sensor}},
-- add constructor parameters to tweak sensors settings (e.g. setting required accuracy).
+In cases when multiple observers are interested in notifications of a newly available
+[=sensor reading=], an [=event listener=] can be added on a single {{Sensor}} instance instead of
+creating multiple instances of the same [=sensor type=] and using simple {{Sensor/onreading}} event
+handler.
 
+Conversely, multiple {{Sensor|Sensors}} of the same [=sensor type=] can be created when they
+are intended to be used with different settings, such as: [=requested sampling frequency=],
+accuracy or other settings defined in [=extension specifications=].
 
 <h3 id="definition-reqs">Definition Requirements</h3>
 
