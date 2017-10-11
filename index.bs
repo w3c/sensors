@@ -1114,18 +1114,18 @@ that must be supported as attributes by the objects implementing the {{Sensor}} 
 [Constructor(DOMString type, SensorErrorEventInit errorEventInitDict),
  SecureContext, Exposed=Window]
 interface SensorErrorEvent : Event {
-  readonly attribute Error error;
+  readonly attribute DOMException error;
 };
 
 dictionary SensorErrorEventInit : EventInit {
-  required Error error;
+  required DOMException error;
 };
 </pre>
 
 
 ### SensorErrorEvent.error ### {#sensor-error-event-error}
 
-Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
+Gets the {{DOMException}} object passed to {{SensorErrorEventInit}}.
 
 <h2 id="abstract-operations">Abstract Operations</h2>
 
@@ -1362,7 +1362,7 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
 
     : input
     :: |sensor_instance|, a {{Sensor}} object.
-    :: |error|, an [=exception=].
+    :: |error|, a {{DOMException}}.
     : output
     :: None
 
