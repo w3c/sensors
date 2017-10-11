@@ -827,28 +827,36 @@ A {{Sensor}} object has an associated [=platform sensor=].
 The [=task source=] for the [=tasks=] mentioned in this specification is the <dfn>sensor task source</dfn>.
 
 <div class="example">
-    In the following example, we construct accelerometer sensor and add
-    [=event listener|event listeners=] to get [=event|events=] for [=platform sensor=] activation, error
-    conditions and notifications about newly available [=sensor readings=]. The example measures
-    and logs maximum total acceleration of a device hosting the [=platform sensor=].
+    In the following example, firstly, we check whether the user agent has permission to access
+    [=sensor readings=], then we construct accelerometer sensor and add
+    [=event listener|event listeners=] to get [=event|events=] for [=platform sensor=] activation,
+    error conditions and notifications about newly available [=sensor readings=]. The example
+    measures and logs maximum total acceleration of a device hosting the [=platform sensor=].
 
     The [=event handler event types=] for the corresponding
     [[#the-sensor-interface| Sensor Interface]]'s [=event handler=] attributes are defined in
     [[#event-handlers|Event handlers]] section.
 
     <pre highlight="js">
-    let acl = new Accelerometer({frequency: 30});
-    let max_magnitude = 0;
-    acl.addEventListener('activate', () => console.log('Ready to measure.'));
-    acl.addEventListener('error', error => console.log('Error: ' + error.name));
-    acl.addEventListener('reading', () => {
-        let magnitude = Math.hypot(acl.x, acl.y, acl.z);
-        if (magnitude > max_magnitude) {
-            max_magnitude = magnitude;
-            console.log(\`Max magnitude: ${max_magnitude} m/s2\`);
+    navigator.permissions.query({ name: 'accelerometer' }).then(result => {
+        if (result.state === 'denied') {
+            console.log('Permission to use accelerometer sensor is denied.');
+            return;
         }
+
+        let acl = new Accelerometer({frequency: 30});
+        let max_magnitude = 0;
+        acl.addEventListener('activate', () => console.log('Ready to measure.'));
+        acl.addEventListener('error', error => console.log(\`Error: ${error.name}\`));
+        acl.addEventListener('reading', () => {
+            let magnitude = Math.hypot(acl.x, acl.y, acl.z);
+            if (magnitude > max_magnitude) {
+                max_magnitude = magnitude;
+                console.log(\`Max magnitude: ${max_magnitude} m/s2\`);
+            }
+        });
+        acl.start();
     });
-    acl.start();
     </pre>
 </div>
 
