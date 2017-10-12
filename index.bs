@@ -1139,9 +1139,9 @@ Gets the {{Error}} object passed to {{SensorErrorEventInit}}.
     :: A {{Sensor}} object.
 
     1.  If the [=current settings object=] is not a [=secure context=], then:
-        1.  [=throw=] a {{SecurityError}}.
+        1.  [=Throw=] a {{SecurityError}} {{DOMException}}.
     1.  If the [=browsing context=] is not a [=top-level browsing context=], then:
-        1.  [=throw=] a {{SecurityError}}.
+        1.  [=Throw=] a {{SecurityError}} {{DOMException}}.
     1.  Let |sensor_instance| be a new {{Sensor}} object,
     1.  If |options|.{{frequency!!dict-member}} is [=present=], then
         1.  Set |sensor_instance|.{{[[frequency]]}} to |options|.{{frequency!!dict-member}}.
