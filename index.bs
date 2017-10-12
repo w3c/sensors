@@ -155,8 +155,7 @@ explainer documents.
 <em>This section is non-normative</em>.
 
 The scope of this specification is currently limited
-to specifying primitives
-which enable expose data from local sensors.
+to specifying primitives which enable exposing data from [=device sensors=].
 
 Exposing remote sensors
 or sensors found on personal area networks (e.g. Bluetooth)
