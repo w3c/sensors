@@ -939,6 +939,9 @@ The [=task source=] for the [=tasks=] mentioned in this specification is the <df
     </g>
 </svg>
 
+Note: the nodes in the diagram above represent the states of a {{Sensor}} object and they should not be
+confused with the possible states of the underlying [=platform sensor=] or [=device sensor=].
+
 When a {{Sensor}} object is eligible for garbage collection, the user agent must
 invoke [=deactivate a sensor object=] with this object as argument.
 
