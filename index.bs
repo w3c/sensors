@@ -274,8 +274,6 @@ offer the possibility of fingerprinting to identify users.
 User agents may reduce the risk by
 limiting event rates available to web application developers.
 
-Note: do we really want this mitigation strategy?
-
 Minimizing the accuracy of a sensor's readout
 generally decreases the risk of fingerprinting.
 User agents should not provide unnecessarily verbose readouts of sensors data.
