@@ -10,7 +10,7 @@ Previous Version: https://www.w3.org/TR/2017/WD-generic-sensor-20171002/
 Editor: Rick Waldron 50572, JS Foundation
 Editor: Mikhail Pozdnyakov 78325, Intel Corporation, https://intel.com/
 Editor: Alexander Shalamov 78335, Intel Corporation, https://intel.com/
-Former Editor: Tobie Langel 60809, Codespeaks&#44; formerly on behalf of Intel Corporation, http://tobie.me, tobie@codespeaks.com
+Former Editor: Tobie Langel 60809, Codespeaks&#44; formerly on behalf of Intel Corporation, http://www.tobie.me, tobie@codespeaks.com
 Abstract:
   This specification defines a framework for exposing sensor data
   to the Open Web Platform in a consistent way.
