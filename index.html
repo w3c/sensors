@@ -1183,13 +1183,9 @@ Possible extra rowspan handling
       background-attachment: fixed;
     }
   </style>
-  <meta content="Bikeshed version ba473502a120361710488ab9b7f538b47858631e" name="generator">
+  <meta content="Bikeshed version 2d63ad75df4c3282ed7d8d3fb42b0c483a131ce1" name="generator">
   <link href="https://www.w3.org/TR/generic-sensor/" rel="canonical">
-<style>
-    emu-val {
-      font-weight: bold;
-    }
-</style>
+  <meta content="74e879fb672965a527505be048b0a1abc8218ae9" name="document-revision">
 <style>
     svg g.edge text {
         font-size: 8px;
@@ -1458,7 +1454,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-10-16">16 October 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-10-18">18 October 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2083,12 +2079,12 @@ defined by the underlying platform.</p>
    <p class="note" role="note"><span>Note:</span> For example, the user agent may estimate <a data-link-type="dfn" href="#optimal-sampling-frequency" id="ref-for-optimal-sampling-frequency">optimal sampling frequency</a> as a Least Common
 Denominator (LCD) for a set of <code class="idl"><a data-link-type="idl" href="#dom-sensor-frequency-slot" id="ref-for-dom-sensor-frequency-slot①">provided frequencies</a></code> capped
 by <a data-link-type="dfn" href="#sampling-frequency" id="ref-for-sampling-frequency⑧">sampling frequency</a> bounds defined by the underlying platform.</p>
-   <div class="example" id="example-eaf21330">
-    <a class="self-link" href="#example-eaf21330"></a> 
+   <div class="example" id="example-6c0ab4ae">
+    <a class="self-link" href="#example-6c0ab4ae"></a> 
     <p>This example illustrates a possible implementation of the described <a href="#model">Model</a>.</p>
     <p>In the diagram below several <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects②">activated</a> <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor⑥">Sensor</a></code> objects from two
 different <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context⑤">browsing contexts</a> interact with a single <a data-link-type="dfn" href="#concept-device-sensor" id="ref-for-concept-device-sensor②③">device sensor</a>.</p>
-    <p><img src="images/generic_sensor_model.png" srcset="images/generic_sensor_model.svg"></p>
+    <p><img alt="Generic Sensor Model" src="images/generic_sensor_model.png" srcset="images/generic_sensor_model.svg"></p>
     <p>The <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor⑦">Sensor</a></code> object in "idle" <a href="#sensor-lifecycle">state</a> is not among the <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①⑦">platform sensor</a>'s <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects③">activated sensor objects</a> and thus it does not interact with the <a data-link-type="dfn" href="#concept-device-sensor" id="ref-for-concept-device-sensor②④">device sensor</a>.</p>
     <p>In this example there is a <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①⑧">platform sensor</a> instance per <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context⑥">browsing context</a>.</p>
     <p>The <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading⑥">latest reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map⑤">map</a> is shared between <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor⑧">Sensor</a></code> objects from the
@@ -2255,7 +2251,7 @@ with the internal slots described in the following table:</p>
     <p>The getter of the <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensor-activated" id="ref-for-dom-sensor-activated">activated</a></code> attribute must run these steps:</p>
     <ol>
      <li data-md="">
-      <p>If <emu-val>this</emu-val>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-state-slot" id="ref-for-dom-sensor-state-slot">[[state]]</a></code> is "activated",
+      <p>If <strong>this</strong>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-state-slot" id="ref-for-dom-sensor-state-slot">[[state]]</a></code> is "activated",
   return true.</p>
      <li data-md="">
       <p>Otherwise, return false.</p>
@@ -2266,7 +2262,7 @@ with the internal slots described in the following table:</p>
     <p>The getter of the <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensor-hasreading" id="ref-for-dom-sensor-hasreading">hasReading</a></code> attribute must run these steps:</p>
     <ol>
      <li data-md="">
-      <p>Let <var>timestamp</var> be the result of invoking <a data-link-type="dfn" href="#get-value-from-latest-reading" id="ref-for-get-value-from-latest-reading①">get value from latest reading</a> with <emu-val>this</emu-val> and "timestamp" as arguments.</p>
+      <p>Let <var>timestamp</var> be the result of invoking <a data-link-type="dfn" href="#get-value-from-latest-reading" id="ref-for-get-value-from-latest-reading①">get value from latest reading</a> with <strong>this</strong> and "timestamp" as arguments.</p>
      <li data-md="">
       <p>If <var>timestamp</var> is not null, return true.</p>
      <li data-md="">
@@ -2275,7 +2271,7 @@ with the internal slots described in the following table:</p>
    </div>
    <h4 class="heading settled" data-level="7.1.5" id="sensor-timestamp"><span class="secno">7.1.5. </span><span class="content">Sensor.timestamp</span><a class="self-link" href="#sensor-timestamp"></a></h4>
    <p>The getter of the <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensor-timestamp" id="ref-for-dom-sensor-timestamp">timestamp</a></code> attribute returns
-the result of invoking <a data-link-type="dfn" href="#get-value-from-latest-reading" id="ref-for-get-value-from-latest-reading②">get value from latest reading</a> with <emu-val>this</emu-val> and "timestamp" as arguments.</p>
+the result of invoking <a data-link-type="dfn" href="#get-value-from-latest-reading" id="ref-for-get-value-from-latest-reading②">get value from latest reading</a> with <strong>this</strong> and "timestamp" as arguments.</p>
    <h4 class="heading settled" data-level="7.1.6" id="sensor-start"><span class="secno">7.1.6. </span><span class="content">Sensor.start()</span><a class="self-link" href="#sensor-start"></a></h4>
    <div class="algorithm" data-algorithm="to start a sensor">
     <p>The <code class="idl"><a data-link-type="idl" href="#dom-sensor-start" id="ref-for-dom-sensor-start">start()</a></code> method must run these steps:</p>
@@ -2342,7 +2338,7 @@ the result of invoking <a data-link-type="dfn" href="#get-value-from-latest-read
    <p><code class="idl"><a data-link-type="idl" href="#dom-sensor-onreading" id="ref-for-dom-sensor-onreading①">onreading</a></code> is an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler③">EventHandler</a></code> which is called
 to notify that new <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings③⑧">reading</a> is available.</p>
    <h4 class="heading settled" data-level="7.1.9" id="sensor-onactivate"><span class="secno">7.1.9. </span><span class="content">Sensor.onactivate</span><a class="self-link" href="#sensor-onactivate"></a></h4>
-   <p><code class="idl"><a data-link-type="idl" href="#dom-sensor-onactivate" id="ref-for-dom-sensor-onactivate">onactivate</a></code> is an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler④">EventHandler</a></code> which is called when <emu-val>this</emu-val>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-state-slot" id="ref-for-dom-sensor-state-slot⑤">[[state]]</a></code> transitions from "activating" to "activated".</p>
+   <p><code class="idl"><a data-link-type="idl" href="#dom-sensor-onactivate" id="ref-for-dom-sensor-onactivate">onactivate</a></code> is an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler④">EventHandler</a></code> which is called when <strong>this</strong>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-state-slot" id="ref-for-dom-sensor-state-slot⑤">[[state]]</a></code> transitions from "activating" to "activated".</p>
    <h4 class="heading settled" data-level="7.1.10" id="sensor-onerror"><span class="secno">7.1.10. </span><span class="content">Sensor.onerror</span><a class="self-link" href="#sensor-onerror"></a></h4>
    <p><code class="idl"><a data-link-type="idl" href="#dom-sensor-onerror" id="ref-for-dom-sensor-onerror">onerror</a></code> is an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler⑤">EventHandler</a></code> which is called whenever
 an <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-exception-type" id="ref-for-dfn-exception-type">exception</a> cannot be handled synchronously.</p>
@@ -2894,7 +2890,7 @@ each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type③②">
   Its [<code class="idl"><a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Constructor" id="ref-for-Constructor">Constructor</a></code>] must take, as an argument,
   an optional <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-dictionary" id="ref-for-dfn-dictionary">dictionary</a> whose <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-inherited-dictionaries" id="ref-for-dfn-inherited-dictionaries">inherited dictionaries</a> contains <code class="idl"><a data-link-type="idl" href="#dictdef-sensoroptions" id="ref-for-dictdef-sensoroptions②">SensorOptions</a></code>.
   Its <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-attribute" id="ref-for-dfn-attribute③">attributes</a> which expose <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings④⑨">sensor readings</a> are <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-read-only" id="ref-for-dfn-read-only">read only</a> and
-  their getters must return the result of invoking <a data-link-type="dfn" href="#get-value-from-latest-reading" id="ref-for-get-value-from-latest-reading③">get value from latest reading</a> with <emu-val>this</emu-val> and <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-attribute" id="ref-for-dfn-attribute④">attribute</a> <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-identifier" id="ref-for-dfn-identifier②">identifier</a> as arguments.</p>
+  their getters must return the result of invoking <a data-link-type="dfn" href="#get-value-from-latest-reading" id="ref-for-get-value-from-latest-reading③">get value from latest reading</a> with <strong>this</strong> and <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-attribute" id="ref-for-dfn-attribute④">attribute</a> <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-identifier" id="ref-for-dfn-identifier②">identifier</a> as arguments.</p>
     <li data-md="">
      <p>A <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/permissions/#enumdef-permissionname" id="ref-for-enumdef-permissionname⑤">PermissionName</a></code>.</p>
    </ul>

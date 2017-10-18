@@ -117,12 +117,6 @@ spec: webidl; type:dfn; text:identifier
 }
 </pre>
 
-<style>
-    emu-val {
-      font-weight: bold;
-    }
-</style>
-
 <h2 id="intro">Introduction</h2>
 
 Increasingly, sensor data is used in application development to
@@ -783,7 +777,7 @@ This example illustrates a possible implementation of the described [[#model|Mod
 In the diagram below several [=activated sensor objects|activated=] {{Sensor}} objects from two
 different [=browsing contexts=] interact with a single [=device sensor=].
 
-<img srcset="images/generic_sensor_model.svg" src="images/generic_sensor_model.png">
+<img srcset="images/generic_sensor_model.svg" src="images/generic_sensor_model.png" alt="Generic Sensor Model">
 
 The {{Sensor}} object in "idle" [[#sensor-lifecycle|state]] is not among the [=platform sensor=]'s
 [=activated sensor objects=] and thus it does not interact with the [=device sensor=].
@@ -995,7 +989,7 @@ with the internal slots described in the following table:
 
     The getter of the {{Sensor/activated!!attribute}} attribute must run these steps:
 
-    1.  If <emu-val>this</emu-val>.{{[[state]]}} is "activated",
+    1.  If <strong>this</strong>.{{[[state]]}} is "activated",
         return true.
     1.  Otherwise, return false.
 </div>
@@ -1006,7 +1000,7 @@ with the internal slots described in the following table:
 
     The getter of the {{Sensor/hasReading!!attribute}} attribute must run these steps:
 
-    1. Let |timestamp| be the result of invoking [=get value from latest reading=] with <emu-val>this</emu-val> and "timestamp" as arguments.
+    1. Let |timestamp| be the result of invoking [=get value from latest reading=] with <strong>this</strong> and "timestamp" as arguments.
     1.  If |timestamp| is not null, return true.
     1.  Otherwise, return false.
 </div>
@@ -1014,7 +1008,7 @@ with the internal slots described in the following table:
 ### Sensor.timestamp ### {#sensor-timestamp}
 
 The getter of the {{Sensor/timestamp!!attribute}} attribute returns
-the result of invoking [=get value from latest reading=] with <emu-val>this</emu-val>
+the result of invoking [=get value from latest reading=] with <strong>this</strong>
 and "timestamp" as arguments.
 
 
@@ -1079,7 +1073,7 @@ to notify that new [=sensor reading|reading=] is available.
 ### Sensor.onactivate ### {#sensor-onactivate}
 
 {{Sensor/onactivate}} is an {{EventHandler}} which is called when
-<emu-val>this</emu-val>.{{[[state]]}} transitions from "activating" to "activated".
+<strong>this</strong>.{{[[state]]}} transitions from "activating" to "activated".
 
 
 ### Sensor.onerror ### {#sensor-onerror}
@@ -1532,7 +1526,7 @@ each [=sensor type=] in [=extension specifications=]:
     an optional [=dictionary=] whose [=inherited dictionaries=] contains {{SensorOptions}}.
     Its [=attributes=] which expose [=sensor readings=] are [=read only=] and
     their getters must return the result of invoking [=get value from latest reading=]
-    with <emu-val>this</emu-val> and [=attribute=] [=identifier=] as arguments.
+    with <strong>this</strong> and [=attribute=] [=identifier=] as arguments.
 -   A {{PermissionName}}.
 
 An [=extension specification=] may specify the following definitions
