@@ -590,7 +590,7 @@ user agent.
 If the underlying platform provides an interface to find the [=default sensor=],
 the user agent must choose the sensor offered by the platform, otherwise the user agent
 itself defines which of the [=device sensor|sensors=] present on the device is
-the [=default sensor=]. 
+the [=default sensor=].
 
 <div class="example">
     Listening to the default accelerometer changes:
@@ -735,7 +735,7 @@ The [=latest reading=] [=ordered map|map=] contains an [=map/entry=] whose [=map
 Note: The accuracy of the [=reading timestamp=] estimate depends on the underlying
 platform interfaces that expose it.
 
-[=latest reading=]["timestamp"] is initially set to null,
+The [=latest reading=]["timestamp"] is initially set to null,
 unless the [=latest reading=] [=ordered map|map=] caches a previous [=sensor readings|reading=].
 
 The other [=map/entries=] of the [=latest reading=] [=ordered map|map=]
