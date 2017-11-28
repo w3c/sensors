@@ -1183,9 +1183,8 @@ Possible extra rowspan handling
       background-attachment: fixed;
     }
   </style>
-  <meta content="Bikeshed version 2d63ad75df4c3282ed7d8d3fb42b0c483a131ce1" name="generator">
+  <meta content="Bikeshed version 61f7f45585e13d349f2bd5c7609dec79c275c01a" name="generator">
   <link href="https://www.w3.org/TR/generic-sensor/" rel="canonical">
-  <meta content="499a2fba0bd628612856fde475a32be2a9086dc6" name="document-revision">
 <style>
     svg g.edge text {
         font-size: 8px;
@@ -1454,7 +1453,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-10-18">18 October 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-11-27">27 November 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1820,7 +1819,7 @@ specified in the normative sections of this specification.</p>
    <p><a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings⑥">Sensor readings</a> are explicitly flagged by the
 Secure Contexts specification <a data-link-type="biblio" href="#biblio-powerful-features">[POWERFUL-FEATURES]</a> as a high-value target for network attackers.
 Thus all interfaces defined by this specification
-or <a data-link-type="dfn" href="#extension-specification" id="ref-for-extension-specification">extension specifications</a> are only available within a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#secure-context" id="ref-for-secure-context">secure context</a>.</p>
+or <a data-link-type="dfn" href="#extension-specification" id="ref-for-extension-specification">extension specifications</a> are only available within a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#secure-contexts" id="ref-for-secure-contexts">secure context</a>.</p>
    <h4 class="heading settled" data-level="4.2.2" id="top-level-browsing-context"><span class="secno">4.2.2. </span><span class="content">Top-Level Browsing Context</span><span id="browsing-context"></span><a class="self-link" href="#top-level-browsing-context"></a></h4>
    <p>To avoid the privacy risk of
 sharing <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings⑦">sensor readings</a> with contexts unfamiliar to the user, <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings⑧">sensor readings</a> are only available in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context" id="ref-for-top-level-browsing-context">top-level browsing context</a>.</p>
@@ -2062,7 +2061,7 @@ This set is initially <a data-link-type="dfn" href="https://infra.spec.whatwg.or
 "timestamp" and whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-value" id="ref-for-map-value">value</a> is a high resolution timestamp that estimates the <a data-link-type="dfn" href="#reading-timestamp" id="ref-for-reading-timestamp②">reading timestamp</a> expressed in milliseconds since the <a data-link-type="dfn" href="http://w3c.github.io/hr-time/#time-origin" id="ref-for-time-origin">time origin</a>.</p>
    <p class="note" role="note"><span>Note:</span> The accuracy of the <a data-link-type="dfn" href="#reading-timestamp" id="ref-for-reading-timestamp③">reading timestamp</a> estimate depends on the underlying
 platform interfaces that expose it.</p>
-   <p><a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading②">latest reading</a>["timestamp"] is initially set to null,
+   <p>The <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading②">latest reading</a>["timestamp"] is initially set to null,
 unless the <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading③">latest reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map③">map</a> caches a previous <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings③③">reading</a>.</p>
    <p>The other <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry" id="ref-for-map-entry①">entries</a> of the <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading④">latest reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map④">map</a> hold the values of the different quantities measured by the <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①⑤">platform sensor</a>.
 The <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-key" id="ref-for-map-key①">keys</a> of these <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry" id="ref-for-map-entry②">entries</a> must match
@@ -3342,7 +3341,7 @@ for their editorial input.</p>
    <li>
     <a data-link-type="biblio">[POWERFUL-FEATURES]</a> defines the following terms:
     <ul>
-     <li><a href="https://w3c.github.io/webappsec-secure-contexts/#secure-context">secure context</a>
+     <li><a href="https://w3c.github.io/webappsec-secure-contexts/#secure-contexts">secure contexts</a>
     </ul>
    <li>
     <a data-link-type="biblio">[SECURITY-PRIVACY-QUESTIONNAIRE]</a> defines the following terms:
