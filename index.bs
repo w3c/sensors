@@ -46,7 +46,10 @@ urlPrefix: https://html.spec.whatwg.org/multipage/; spec: HTML
       text: navigating; url: navigate
       text: browsing context
       text: nested browsing context
+    urlPrefix: iframe-embed-object.html
+      text: allowed-to-use
     urlPrefix: interaction.html
+      text: focused
       text: gains focus; url: gains-focus
       text: DOM anchor; url: dom-anchor
       text: focusable area; url: focusable-area
@@ -59,11 +62,18 @@ urlPrefix: http://w3c.github.io/hr-time/; spec: HR-TIME-2
     text: time origin
 urlPrefix: https://w3c.github.io/page-visibility; spec: PAGE-VISIBILITY
   type: dfn
+    text: document visibility state; url: dom-document-visibilitystate
     text: visibility states; url: dfn-visibility-states
     text: steps to determine the visibility state; url: dfn-steps-to-determine-the-visibility-state
 urlPrefix: https://w3ctag.github.io/security-questionnaire/; spec: SECURITY-PRIVACY-QUESTIONNAIRE
   type: dfn
     text: same-origin policy violations; url: sop-violations
+urlPrefix: https://wicg.github.io/feature-policy/; spec: FEATURE-POLICY
+  type: dfn
+    text: allow attribute
+    text: default allowlist
+    text: feature name
+    text: policy-controlled feature
 </pre>
 <pre class=link-defaults>
 spec: webidl; type:dfn; text:attribute
@@ -350,30 +360,31 @@ or [=extension specifications=]
 are only available within a [=secure context=].
 
 
-<h4 id="top-level-browsing-context" oldids="browsing-context">Top-Level Browsing Context</h4>
+<h4 id="feature-policy" oldids="browsing-context">Feature Policy</h4>
 
-To avoid the privacy risk of
-sharing [=sensor readings=]
-with contexts unfamiliar to the user,
-[=sensor readings=] are only available in the
-[=top-level browsing context=].
-
-Note: [[FEATURE-POLICY]] will allow securely relaxing those restrictions once it matures.
-
+To avoid the privacy risk of sharing [=sensor readings=] with contexts unfamiliar
+to the user, [=sensor readings=] are only available for the
+[=documents=] which are [=allowed to use=] the [=policy-controlled features=] for
+the given [=sensor type=]. See [[FEATURE-POLICY]] for more details.
 
 <h4 id="losing-focus">Losing Focus</h4>
 
 When the [=top-level browsing context=] loses focus,
-or when a [=nested browsing context=] of a different [=origin=] [=gains focus=]
-(for example when the user carries out an in-game purchase
+or when an element from the [=nested browsing context=] of a different [=origin=]
+[=gains focus=] (for example when the user carries out an in-game purchase
 using a third party payment service from within an iframe)
 the [=top-level browsing contexts=] suddenly becomes in a position
-to carry out a skimming attack against the [=browsing context=] that has [=gains focus|gained focus=].
+to carry out a skimming attack against the [=browsing context=] whose element
+has [=gains focus|gained focus=].
+
+To mitigate this risk [=sensor readings=] are only available to the [=browsing contexts=]
+of the same [=origin=] with the [=browsing context|context=] containing
+the [=focused=] element.
 
 <h4 id="visibility-state">Visibility State</h4>
 
-[=Sensor readings=] are only available in [=top-level browsing context|browsing contexts=],
-whose [=active document=]'s [=steps to determine the visibility state|visibility state=]
+[=Sensor readings=] are only available for the [=active documents=] whose
+[=steps to determine the visibility state|visibility state=]
 is "visible".
 
 <h4 id="permissions" oldids="permissioning">Permissions API</h4>
@@ -666,16 +677,14 @@ never exceed the [=sampling frequency=] for the given [=sensor type=].
 ## Conditions to expose sensor readings ## {#concepts-can-expose-sensor-readings}
 
 The user agent must verify that all [=mandatory conditions=] are satisfied to ensure it
-<dfn>can expose sensor readings</dfn>.
+<dfn>can expose sensor readings</dfn> to a given [=active document=].
 
 The <dfn>mandatory conditions</dfn> are the following:
- - [=steps to determine the visibility state|Visibility state=] for an
-   [=active document=] of [=platform sensor=]'s associated [=browsing context=]
-   is "visible".
- - [=Currently focused area=] belongs to an [=active document=] of [=platform sensor=]'s associated
-   [=browsing context=] or to an [=active document=] of a [=nested browsing context=] whose
-   [=active document=]'s [=origin=] is the [=same origin-domain=] as the
-   [=top-level browsing context=]'s [=active document=]
+ - [=document visibility state|Visibility state=] of the document is "visible".
+ - The document is [=allowed to use=] all the [=policy-controlled features=] associated
+   with the given [=sensor type=].
+ - [=Currently focused area=] belongs to a document whose origin is [=same origin-domain=]
+   with the origin of the given [=active document=].
  - <dfn>Specific conditions</dfn>: The [=extension specifications=] that add new
    [=mandatory conditions|conditions=] hook into this specification at this point.
 
@@ -711,6 +720,8 @@ A [=sensor type=] has a [=permission revocation algorithm=].
             1.  Invoke [=revoke sensor permission=] with |sensor| as argument.
 </div>
 
+A [=sensor type=] has a [=set/is empty|nonempty=] [=ordered set|set=] of associated
+[=feature names=] referred as <dfn export>sensor feature names</dfn>.
 
 <h3 id="model-sensor">Sensor</h3>
 
@@ -726,7 +737,8 @@ Note: User agents can share [=latest reading=] [=ordered map|map=] between diffe
 are [=same origin-domain=].
 
 Any time a new [=sensor reading=] for a [=platform sensor=] is obtained and if the user agent
-[=can expose sensor readings=], [=update latest reading=] is invoked with the [=platform sensor=]
+[=can expose sensor readings=] to the current [=browsing context=]'s [=active document=],
+[=update latest reading=] is invoked with the [=platform sensor=]
 and the [=sensor reading=] as arguments.
 
 The [=latest reading=] [=ordered map|map=] contains an [=map/entry=] whose [=map/key=] is
@@ -1141,8 +1153,10 @@ Gets the {{DOMException}} object passed to {{SensorErrorEventInit}}.
     : output
     :: A {{Sensor}} object.
 
-    1.  If the [=browsing context=] is not a [=top-level browsing context=], then:
-        1.  [=Throw=] a {{SecurityError}} {{DOMException}}.
+    1.  [=set/For each=] |feature_name| of the associated [=sensor feature names=],
+        1. If [=active document=] is not [=allowed to use=] the
+           [=policy-controlled feature=] named |feature_name|, then:
+           1.  [=Throw=] a {{SecurityError}} {{DOMException}}.
     1.  Let |sensor_instance| be a new {{Sensor}} object,
     1.  If |options|.{{frequency!!dict-member}} is [=present=], then
         1.  Set |sensor_instance|.{{[[frequency]]}} to |options|.{{frequency!!dict-member}}.
@@ -1574,6 +1588,55 @@ for accelerometer sensor is given below.
         boolean highFrequency = false;
     };
 </pre>
+
+<h3 id="feature-policy-api">Extending the Feature Policy API</h3>
+
+An implementation of the {{Sensor}} interface for each [=sensor type=] has one
+(if [=sensor fusion=] is not performed) or several [=policy-controlled features=]
+that control whether or not this implementation can be used in a document.
+
+The [=policy-controlled feature|features=]' [=default allowlist=] is
+<code>["self"]</code>.
+
+Note: The [=default allowlist=] of <code>["self"]</code> allows {{Sensor}} interface
+implementation usage in same-origin nested frames but prevents third-party content
+from [=sensor readings=] access.
+
+The [=sensor feature names=] [=ordered set|set=] must contain [=feature names=] of
+every associated [=policy-controlled feature|feature=].
+
+A [=Low-level=] {{Sensor|sensor}} may use its interface name as a [=feature name=],
+for instance, "gyroscope" or "accelerometer". Unless the [=extension specification=] tells
+otherwise, the [=sensor feature names=] matches the same [=sensor type|type=]-associated
+[=sensor permission names=].
+
+<div class="example html">
+The accelerometer feature is selectively enabled for third-party origin by adding
+[=allow attribute=] to the frame container element:
+<pre highlight="html">
+  &lt;iframe src="https://third-party.com" allow="accelerometer"/&gt;&lt;/iframe&gt;
+</pre>
+</div>
+
+<div class="example html">
+A sensor usage is disabled completely by specifying the feature policy in a HTTP
+response header:
+<pre highlight="js">
+ Feature-Policy: {"accelerometer": []}
+</pre>
+</div>
+
+[=sensor fusion|Fusion sensors=] must use [=sensor feature names=] of the sensors
+that are used as a source of fusion.
+
+<div class="example html">
+Allow third-party origin to use accelerometer, magnetometer and gyroscope features
+that are required by the absolute orientation sensor.
+<pre highlight="html">
+  &lt;iframe src="https://third-party.com" allow="accelerometer; magnetometer; gyroscope"/&gt;
+</pre>
+</div>
+
 
 <h3 id="example-webidl">Example WebIDL</h3>
 
