@@ -668,7 +668,7 @@ The [=sampling frequency=] differs from the [=requested sampling frequency=] in 
    [=device sensor=]'s measurements are skipped and the [=sensor readings=] are not updated.
 
 The <dfn>reporting frequency</dfn> for a concrete {{Sensor}} object is defined as a frequency at which
-{{Sensor/onreading}} notification is called.
+the "reading" event is [=fire an event|fired=] at this object.
 
 A {{Sensor}} object cannot access new [=sensor readings|readings=] at a higher rate than the
 user agent obtains them from the underlying platform, therefore the [=reporting frequency=] can
