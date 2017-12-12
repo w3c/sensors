@@ -19,3 +19,4 @@ Significant changes between the latest [Editor's Draft](https://w3c.github.io/se
     1. The [`SensorErrorEvent`](https://w3c.github.io/sensors/#sensorerrorevent) interface now exposes error of `DOMException` type instead of `Error` type.
 1. The [Abstract Operations](https://w3c.github.io/sensors/#abstract-operations) section was completely rewritten to consider implementation feedback and how sensors are exposed on the underlying layers (i.e. platform APIs).
 1. [Extensibility](https://w3c.github.io/sensors/#extensibility) section was completed.
+1. Feature Policy integration added: see the [Feature Policy mitigation strategy](https://w3c.github.io/sensors/#feature-policy) and [Extending the Feature Policy API](https://w3c.github.io/sensors/#feature-policy-api) sections.
