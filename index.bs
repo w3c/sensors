@@ -946,8 +946,18 @@ The [=task source=] for the [=tasks=] mentioned in this specification is the <df
 Note: the nodes in the diagram above represent the states of a {{Sensor}} object and they should not be
 confused with the possible states of the underlying [=platform sensor=] or [=device sensor=].
 
-When a {{Sensor}} object is eligible for garbage collection, the user agent must
-invoke [=deactivate a sensor object=] with this object as argument.
+### Sensor garbage collection ### {#sensor-garbage-collection}
+
+A {{Sensor}} object whose {{[[state]]}} is "activating" must not be garbage collected
+if there are any event listeners registered for "activated" events, "reading" events,
+or "error" events.
+
+A {{Sensor}} object whose {{[[state]]}} is "activated" must not be garbage collected
+if there are any event listeners registered for "reading" events, or "error" events.
+
+When a {{Sensor}} object whose {{[[state]]}} is "activated" or "activating" is
+eligible for garbage collection, the user agent must invoke [=deactivate a sensor
+object=] with this object as argument.
 
 ### Sensor internal slots ### {#sensor-internal-slots}
 
