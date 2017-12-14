@@ -1453,7 +1453,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-12-11">11 December 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-12-12">12 December 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2015,7 +2015,8 @@ can support it.</p>
     <li data-md="">
      <p>the <a data-link-type="dfn" href="#reading-change-threshold" id="ref-for-reading-change-threshold②">threshold</a> value is significant so that some of the <a data-link-type="dfn" href="#concept-device-sensor" id="ref-for-concept-device-sensor②②">device sensor</a>'s measurements are skipped and the <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings②⑨">sensor readings</a> are not updated.</p>
    </ul>
-   <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="reporting-frequency">reporting frequency</dfn> for a concrete <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor②">Sensor</a></code> object is defined as a frequency at which <code class="idl"><a data-link-type="idl" href="#dom-sensor-onreading" id="ref-for-dom-sensor-onreading">onreading</a></code> notification is called.</p>
+   <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="reporting-frequency">reporting frequency</dfn> for a concrete <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor②">Sensor</a></code> object is defined as a frequency at which
+the "reading" event is <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire" id="ref-for-concept-event-fire">fired</a> at this object.</p>
    <p>A <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor③">Sensor</a></code> object cannot access new <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings③⓪">readings</a> at a higher rate than the
 user agent obtains them from the underlying platform, therefore the <a data-link-type="dfn" href="#reporting-frequency" id="ref-for-reporting-frequency">reporting frequency</a> can
 never exceed the <a data-link-type="dfn" href="#sampling-frequency" id="ref-for-sampling-frequency⑥">sampling frequency</a> for the given <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type①⑨">sensor type</a>.</p>
@@ -2341,7 +2342,7 @@ the result of invoking <a data-link-type="dfn" href="#get-value-from-latest-read
     </ol>
    </div>
    <h4 class="heading settled" data-level="7.1.8" id="sensor-onreading"><span class="secno">7.1.8. </span><span class="content">Sensor.onreading</span><a class="self-link" href="#sensor-onreading"></a></h4>
-   <p><code class="idl"><a data-link-type="idl" href="#dom-sensor-onreading" id="ref-for-dom-sensor-onreading①">onreading</a></code> is an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler③">EventHandler</a></code> which is called
+   <p><code class="idl"><a data-link-type="idl" href="#dom-sensor-onreading" id="ref-for-dom-sensor-onreading">onreading</a></code> is an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler③">EventHandler</a></code> which is called
 to notify that new <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings③⑨">reading</a> is available.</p>
    <h4 class="heading settled" data-level="7.1.9" id="sensor-onactivate"><span class="secno">7.1.9. </span><span class="content">Sensor.onactivate</span><a class="self-link" href="#sensor-onactivate"></a></h4>
    <p><code class="idl"><a data-link-type="idl" href="#dom-sensor-onactivate" id="ref-for-dom-sensor-onactivate">onactivate</a></code> is an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler④">EventHandler</a></code> which is called when <strong>this</strong>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-state-slot" id="ref-for-dom-sensor-state-slot⑤">[[state]]</a></code> transitions from "activating" to "activated".</p>
@@ -2710,7 +2711,7 @@ that must be supported as attributes by the objects implementing the <code class
      <li data-md="">
       <p>Set <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-lasteventfiredat-slot" id="ref-for-dom-sensor-lasteventfiredat-slot②">[[lastEventFiredAt]]</a></code> to <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading①②">latest reading</a>["timestamp"].</p>
      <li data-md="">
-      <p><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire" id="ref-for-concept-event-fire">Fire an event</a> named "reading" at <var>sensor_instance</var>.</p>
+      <p><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire" id="ref-for-concept-event-fire①">Fire an event</a> named "reading" at <var>sensor_instance</var>.</p>
     </ol>
    </div>
    <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="8.11" data-lt="Notify activated state" data-noexport="" id="notify-activated-state"><span class="secno">8.11. </span><span class="content">Notify activated state</span></h3>
@@ -2727,7 +2728,7 @@ that must be supported as attributes by the objects implementing the <code class
      <li data-md="">
       <p>Set <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-state-slot" id="ref-for-dom-sensor-state-slot⑦">[[state]]</a></code> to "activated".</p>
      <li data-md="">
-      <p><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire" id="ref-for-concept-event-fire①">Fire an event</a> named "activate" at <var>sensor_instance</var>.</p>
+      <p><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire" id="ref-for-concept-event-fire②">Fire an event</a> named "activate" at <var>sensor_instance</var>.</p>
      <li data-md="">
       <p>Let <var>sensor</var> be the <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor③②">platform sensor</a> associated with <var>sensor_instance</var>.</p>
      <li data-md="">
@@ -2754,7 +2755,7 @@ that must be supported as attributes by the objects implementing the <code class
      <li data-md="">
       <p>Set <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-state-slot" id="ref-for-dom-sensor-state-slot⑧">[[state]]</a></code> to "idle".</p>
      <li data-md="">
-      <p><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire" id="ref-for-concept-event-fire②">Fire an event</a> named "error" at <var>sensor_instance</var> using <code class="idl"><a data-link-type="idl" href="#sensorerrorevent" id="ref-for-sensorerrorevent">SensorErrorEvent</a></code> with its <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensorerrorevent-error" id="ref-for-dom-sensorerrorevent-error">error</a></code> attribute initialized to <var>error</var>.</p>
+      <p><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire" id="ref-for-concept-event-fire③">Fire an event</a> named "error" at <var>sensor_instance</var> using <code class="idl"><a data-link-type="idl" href="#sensorerrorevent" id="ref-for-sensorerrorevent">SensorErrorEvent</a></code> with its <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensorerrorevent-error" id="ref-for-dom-sensorerrorevent-error">error</a></code> attribute initialized to <var>error</var>.</p>
     </ol>
    </div>
    <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="8.13" data-lt="Get value from latest reading" data-noexport="" id="get-value-from-latest-reading"><span class="secno">8.13. </span><span class="content">Get value from latest reading</span></h3>
@@ -2899,7 +2900,7 @@ exposing <a data-link-type="dfn" href="#low-level" id="ref-for-low-level①①">
    <p>It is not advisable to construct multiple <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor③③">Sensor</a></code> instances of the same <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type③②">sensor type</a> with
 equal construction parameters, as it can lead to unnecessary hardware resources consumption.</p>
    <p>In cases when multiple observers are interested in notifications of a newly available <a data-link-type="dfn" href="#sensor-readings" id="ref-for-sensor-readings④⑨">sensor reading</a>, an <a data-link-type="dfn" href="https://dom.spec.whatwg.org#concept-event-listener" id="ref-for-concept-event-listener①">event listener</a> can be added on a single <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor③④">Sensor</a></code> instance instead of
-creating multiple instances of the same <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type③③">sensor type</a> and using simple <code class="idl"><a data-link-type="idl" href="#dom-sensor-onreading" id="ref-for-dom-sensor-onreading②">onreading</a></code> event
+creating multiple instances of the same <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type③③">sensor type</a> and using simple <code class="idl"><a data-link-type="idl" href="#dom-sensor-onreading" id="ref-for-dom-sensor-onreading①">onreading</a></code> event
 handler.</p>
    <p>Conversely, multiple <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor③⑤">Sensors</a></code> of the same <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type③④">sensor type</a> can be created when they
 are intended to be used with different settings, such as: <a data-link-type="dfn" href="#requested-sampling-frequency" id="ref-for-requested-sampling-frequency⑨">requested sampling frequency</a>,
@@ -3857,9 +3858,8 @@ for their editorial input.</p>
   <aside class="dfn-panel" data-for="dom-sensor-onreading">
    <b><a href="#dom-sensor-onreading">#dom-sensor-onreading</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-sensor-onreading">5.5. Sampling Frequency and Reporting Frequency</a>
-    <li><a href="#ref-for-dom-sensor-onreading①">7.1.8. Sensor.onreading</a>
-    <li><a href="#ref-for-dom-sensor-onreading②">9.5. When is Enabling Multiple Sensors of the Same Type Not the Right Choice?</a>
+    <li><a href="#ref-for-dom-sensor-onreading">7.1.8. Sensor.onreading</a>
+    <li><a href="#ref-for-dom-sensor-onreading①">9.5. When is Enabling Multiple Sensors of the Same Type Not the Right Choice?</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-sensor-onactivate">
