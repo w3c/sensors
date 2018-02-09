@@ -202,6 +202,9 @@ but rather to put it in the context of detecting hardware-dependent features.
 Consider the below feature detection examples:
 
 <div class="example">
+    This simple example illustrates how to check whether the User Agent
+    exposes an interface for a particular sensor type. To handle errors in a robust
+    manner, please refer to [this example](#robust-example).
     <pre highlight="js">
         if (typeof Gyroscope === "function") {
             // run in circles...
@@ -249,19 +252,37 @@ and defensive programming which includes:
     enhanced by the possible usage of a sensor, not degraded by its
     absence.
 
-<div class="example">
+<div class="example" id="robust-example">
+    The following snippet illustrates how an Accelerometer sensor can be created
+    in a robust manner. Web application may choose different options for error
+    handling, for example, show notification, choose different sensor type or
+    fallback to other API.
     <pre highlight="js">
-        try { // No need to feature detect thanks to try..catch block.
-            var sensor = new GeolocationSensor();
-            sensor.start();
-            sensor.onerror = error => gracefullyDegrade(error);
-            sensor.onreading = _ => updatePosition(sensor.latitude, sensor.longitude);
-        } catch(error) {
-            gracefullyDegrade(error);
+        let accelerometer = null;
+        try {
+            accelerometer = new Accelerometer({ frequency: 10 });
+            accelerometer.addEventListener('error', event => {
+                // Handle runtime errors.
+                if (event.error.name === 'NotAllowedError') {
+                    console.log('Permission to access sensor was denied.');
+                } else if (event.error.name === 'NotReadableError' ) {
+                    console.log('Cannot connect to the sensor.');
+                }
+            });
+            accelerometer.addEventListener('reading', () => reloadOnShake(accelerometer));
+            accelerometer.start();
+        } catch (error) {
+            // Handle construction errors.
+            if (error.name === 'SecurityError') {
+                console.log('Sensor construction was blocked by the Feature Policy.');
+            } else if (error.name === 'ReferenceError') {
+                console.log('Sensor is not supported by the User Agent.');
+            } else {
+                throw error;
+            }
         }
     </pre>
 </div>
-
 
 <h2 id="security-and-privacy">Security and privacy considerations</h2>
 

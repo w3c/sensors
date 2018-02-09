@@ -1183,7 +1183,7 @@ Possible extra rowspan handling
       background-attachment: fixed;
     }
   </style>
-  <meta content="Bikeshed version 1760a0346ebf3096d8d47b818b15ffcad41e99a0" name="generator">
+  <meta content="Bikeshed version 405e5d97c9744a2182892308d7a95a41731f9220" name="generator">
   <link href="https://www.w3.org/TR/generic-sensor/" rel="canonical">
 <style>
     svg g.edge text {
@@ -1453,7 +1453,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2018-02-01">1 February 2018</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2018-02-13">13 February 2018</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1466,7 +1466,6 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
      <dd><span><a href="mailto:public-device-apis@w3.org?subject=%5Bgeneric-sensor%5D%20YOUR%20TOPIC%20HERE">public-device-apis@w3.org</a> with subject line “<kbd>[generic-sensor] <i data-lt="">… message topic …</i></kbd>” (<a href="https://lists.w3.org/Archives/Public/public-device-apis/" rel="discussion">archives</a>)</span>
      <dd><a href="https://github.com/w3c/sensors">GitHub</a> (<a href="https://github.com/w3c/sensors/issues/new">new issue</a>, <a href="https://github.com/w3c/sensors/milestone/2">level 1 issues</a>, <a href="https://github.com/w3c/sensors/issues">all issues</a>)
      <dt class="editor">Editors:
-     <dd class="editor p-author h-card vcard" data-editor-id="50572"><span class="p-name fn">Rick Waldron</span> (<span class="p-org org">JS Foundation</span>)
      <dd class="editor p-author h-card vcard" data-editor-id="78325"><a class="p-name fn u-url url" href="https://intel.com/">Mikhail Pozdnyakov</a> (<span class="p-org org">Intel Corporation</span>)
      <dd class="editor p-author h-card vcard" data-editor-id="78335"><a class="p-name fn u-url url" href="https://intel.com/">Alexander Shalamov</a> (<span class="p-org org">Intel Corporation</span>)
      <dt class="editor">Former Editor:
@@ -1506,7 +1505,7 @@ that can be extended to accommodate different sensor types.</p>
 	W3C maintains a <a href="https://www.w3.org/2004/01/pp-impl/43696/status" rel="disclosure">public list of any patent disclosures</a> made in connection with the deliverables of the group;
 	that page also includes instructions for disclosing a patent.
 	An individual who has actual knowledge of a patent which the individual believes contains <a href="https://www.w3.org/Consortium/Patent-Policy/#def-essential">Essential Claim(s)</a> must disclose the information in accordance with <a href="https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure">section 6 of the W3C Patent Policy</a>. </p>
-   <p> This document is governed by the <a href="https://www.w3.org/2017/Process-20170301/" id="w3c_process_revision">1 March 2017 W3C Process Document</a>. </p>
+   <p> This document is governed by the <a href="https://www.w3.org/2018/Process-20180201/" id="w3c_process_revision">1 February 2018 W3C Process Document</a>. </p>
    <p></p>
   </div>
   <div data-fill-with="at-risk"></div>
@@ -1689,8 +1688,10 @@ Resources on the topic are plentiful on and offline and
 the purpose of this section is not to discuss it further,
 but rather to put it in the context of detecting hardware-dependent features.</p>
    <p>Consider the below feature detection examples:</p>
-   <div class="example" id="example-6dd6f109">
-    <a class="self-link" href="#example-6dd6f109"></a> 
+   <div class="example" id="example-b9d49fa6">
+    <a class="self-link" href="#example-b9d49fa6"></a> This simple example illustrates how to check whether the User Agent
+    exposes an interface for a particular sensor type. To handle errors in a robust
+    manner, please refer to <a href="#robust-example">this example</a>. 
 <pre class="highlight"><span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> Gyroscope <span class="o">===</span> <span class="s2">"function"</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// run in circles...</span>
 <span class="c1"></span><span class="p">}</span>
@@ -1737,15 +1738,33 @@ and defensive programming which includes:</p>
   enhanced by the possible usage of a sensor, not degraded by its
   absence.</p>
    </ol>
-   <div class="example" id="example-8dd2494f">
-    <a class="self-link" href="#example-8dd2494f"></a> 
-<pre class="highlight"><span class="k">try</span> <span class="p">{</span> <span class="c1">// No need to feature detect thanks to try..catch block.</span>
-<span class="c1"></span>    <span class="kd">var</span> sensor <span class="o">=</span> <span class="k">new</span> GeolocationSensor<span class="p">();</span>
-    sensor<span class="p">.</span>start<span class="p">();</span>
-    sensor<span class="p">.</span>onerror <span class="o">=</span> error <span class="p">=></span> gracefullyDegrade<span class="p">(</span>error<span class="p">);</span>
-    sensor<span class="p">.</span>onreading <span class="o">=</span> _ <span class="p">=></span> updatePosition<span class="p">(</span>sensor<span class="p">.</span>latitude<span class="p">,</span> sensor<span class="p">.</span>longitude<span class="p">);</span>
-<span class="p">}</span> <span class="k">catch</span><span class="p">(</span>error<span class="p">)</span> <span class="p">{</span>
-    gracefullyDegrade<span class="p">(</span>error<span class="p">);</span>
+   <div class="example" id="robust-example">
+    <a class="self-link" href="#robust-example"></a> The following snippet illustrates how an Accelerometer sensor can be created
+    in a robust manner. Web application may choose different options for error
+    handling, for example, show notification, choose different sensor type or
+    fallback to other API. 
+<pre class="highlight"><span class="kd">let</span> accelerometer <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="k">try</span> <span class="p">{</span>
+    accelerometer <span class="o">=</span> <span class="k">new</span> Accelerometer<span class="p">({</span> frequency<span class="o">:</span> <span class="mi">10</span> <span class="p">});</span>
+    accelerometer<span class="p">.</span>addEventListener<span class="p">(</span><span class="s1">'error'</span><span class="p">,</span> event <span class="p">=></span> <span class="p">{</span>
+        <span class="c1">// Handle runtime errors.</span>
+<span class="c1"></span>        <span class="k">if</span> <span class="p">(</span>event<span class="p">.</span>error<span class="p">.</span>name <span class="o">===</span> <span class="s1">'NotAllowedError'</span><span class="p">)</span> <span class="p">{</span>
+            console<span class="p">.</span>log<span class="p">(</span><span class="s1">'Permission to access sensor was denied.'</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span>event<span class="p">.</span>error<span class="p">.</span>name <span class="o">===</span> <span class="s1">'NotReadableError'</span> <span class="p">)</span> <span class="p">{</span>
+            console<span class="p">.</span>log<span class="p">(</span><span class="s1">'Cannot connect to the sensor.'</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+    accelerometer<span class="p">.</span>addEventListener<span class="p">(</span><span class="s1">'reading'</span><span class="p">,</span> <span class="p">()</span> <span class="p">=></span> reloadOnShake<span class="p">(</span>accelerometer<span class="p">));</span>
+    accelerometer<span class="p">.</span>start<span class="p">();</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span>error<span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Handle construction errors.</span>
+<span class="c1"></span>    <span class="k">if</span> <span class="p">(</span>error<span class="p">.</span>name <span class="o">===</span> <span class="s1">'SecurityError'</span><span class="p">)</span> <span class="p">{</span>
+        console<span class="p">.</span>log<span class="p">(</span><span class="s1">'Sensor construction was blocked by the Feature Policy.'</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span>error<span class="p">.</span>name <span class="o">===</span> <span class="s1">'ReferenceError'</span><span class="p">)</span> <span class="p">{</span>
+        console<span class="p">.</span>log<span class="p">(</span><span class="s1">'Sensor is not supported by the User Agent.'</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">throw</span> error<span class="p">;</span>
+    <span class="p">}</span>
 <span class="p">}</span>
 </pre>
    </div>
