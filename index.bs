@@ -74,6 +74,7 @@ urlPrefix: https://wicg.github.io/feature-policy/; spec: FEATURE-POLICY
     text: default allowlist
     text: feature name
     text: policy-controlled feature
+    text: allowed to use
 </pre>
 <pre class=link-defaults>
 spec: webidl; type:dfn; text:attribute
@@ -1209,30 +1210,41 @@ Gets the {{DOMException}} object passed to {{SensorErrorEventInit}}.
 
 <h2 id="abstract-operations">Abstract Operations</h2>
 
-<h3 dfn export>Construct sensor object</h3>
+<h3 dfn export>Initialize a sensor object</h3>
 
-<div algorithm="construct sensor object">
+<div algorithm="initialize a sensor object">
 
     : input
+    :: |sensor_instance|, a {{Sensor}} object.
     :: |options|, a {{SensorOptions}} object.
     : output
-    :: A {{Sensor}} object.
+    :: None
 
-    1.  [=set/For each=] |feature_name| of the associated [=sensor feature names=],
-        1. If [=active document=] is not [=allowed to use=] the
-           [=policy-controlled feature=] named |feature_name|, then:
-           1.  [=Throw=] a {{SecurityError}} {{DOMException}}.
-    1.  Let |sensor_instance| be a new {{Sensor}} object,
     1.  If |options|.{{frequency!!dict-member}} is [=present=], then
         1.  Set |sensor_instance|.{{[[frequency]]}} to |options|.{{frequency!!dict-member}}.
 
         Note: there is not guarantee that the requested |options|.{{frequency!!dict-member}}
         can be respected. The actual [=sampling frequency=] can be calculated using
         {{Sensor}} {{Sensor/timestamp!!attribute}} attributes.
-    1.  Set |sensor_instance|.{{[[state]]}} to "idle".
-    1.  Return |sensor_instance|.
 </div>
 
+<h3 dfn export>Check sensor policy-controlled features</h3>
+
+<div algorithm="check sensor policy-controlled features">
+
+    : input
+    :: |sensor_type|, a [=sensor type=].
+    : output
+    :: True if all of the associated [=sensor feature names=] are [=allowed to use=],
+       false otherwise.
+
+    1.  Let |feature_names| be the |sensor_type|'s associated [=sensor feature names=].
+    1.  [=set/For each=] |feature_name| of |feature_names|,
+        1. If [=active document=] is not [=allowed to use=] the
+           [=policy-controlled feature=] named |feature_name|, then:
+           1.  Return false.
+    1.  Return true.
+</div>
 
 <h3 dfn export>Connect to sensor</h3>
 
