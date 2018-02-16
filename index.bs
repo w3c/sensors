@@ -1214,15 +1214,17 @@ Gets the {{DOMException}} object passed to {{SensorErrorEventInit}}.
 <div algorithm="construct sensor object">
 
     : input
+    :: |sensorInterface|, an [=identifier=] of the [=interface=]
+       whose [=inherited interfaces=] contains {{Sensor}}.
     :: |options|, a {{SensorOptions}} object.
     : output
-    :: A {{Sensor}} object.
+    :: An object of the |sensorInterface| type.
 
     1.  [=set/For each=] |feature_name| of the associated [=sensor feature names=],
         1. If [=active document=] is not [=allowed to use=] the
            [=policy-controlled feature=] named |feature_name|, then:
            1.  [=Throw=] a {{SecurityError}} {{DOMException}}.
-    1.  Let |sensor_instance| be a new {{Sensor}} object,
+    1.  Let |sensor_instance| be a new instance of the [=interface=] identified by |sensorInterface|,
     1.  If |options|.{{frequency!!dict-member}} is [=present=], then
         1.  Set |sensor_instance|.{{[[frequency]]}} to |options|.{{frequency!!dict-member}}.
 
