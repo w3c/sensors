@@ -83,6 +83,17 @@ spec: webidl; type:dfn; text:identifier
 
 <pre class=biblio>
 {
+    "ACCELPRINT": {
+        "authors": [
+            "Dey, Sanorita, et al."
+        ],
+        "id": "ACCELPRINT",
+        "href": "http://synrg.csl.illinois.edu/papers/AccelPrint_NDSS14.pdf",
+        "title": "AccelPrint: Imperfections of Accelerometers Make Smartphones Trackable",
+        "date": "2014",
+        "status": "Informational",
+        "publisher": "Network and Distributed System Security Symposium (NDSS)"
+     },
     "MOBILESENSORS": {
         "authors": [
             "Manish J. Gajjar"
@@ -368,7 +379,7 @@ discover such information about the users. See [[STEALINGPINSVIASENSORS]].
 Sensors can provide information that can uniquely identify the device using those sensors.
 Every concrete sensor model has minor manufacturing imperfections and differences that will be
 unique for this model. These manufacturing variations and imperfections can be used to fingerprint
-the device [[MOBILESENSORS]].
+the device [[ACCELPRINT]] [[MOBILESENSORS]].
 
 <h4 id="user-identifying">User Identifying</h4>
 
