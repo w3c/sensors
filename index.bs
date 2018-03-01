@@ -75,6 +75,10 @@ urlPrefix: https://wicg.github.io/feature-policy/; spec: FEATURE-POLICY
     text: feature name
     text: policy-controlled feature
     text: allowed to use
+urlPrefix: https://www.w3.org/TR/permissions; spec: PERMISSIONS
+  type: dfn
+    text: permission name
+    text: permission state
 </pre>
 <pre class=link-defaults>
 spec: webidl; type:dfn; text:attribute
@@ -744,9 +748,14 @@ never exceed the [=sampling frequency=] for the given [=sensor type=].
 ## Conditions to expose sensor readings ## {#concepts-can-expose-sensor-readings}
 
 The user agent must verify that all [=mandatory conditions=] are satisfied to ensure it
-<dfn>can expose sensor readings</dfn> to a given [=active document=].
+<dfn>can expose sensor readings</dfn> to the {{Sensor}} objects of a certain
+[=sensor type|type=] that belong to a certain [=active document=].
 
 The <dfn>mandatory conditions</dfn> are the following:
+ - The given document is a [=responsible document=] of a [=secure context=].
+ - For each [=permission name=] from the [=sensor type=]'s associated
+   [=sensor permission names=] [=ordered set|set=], the corresponding permission's
+   [=permission state|state=] is "granted".
  - [=document visibility state|Visibility state=] of the document is "visible".
  - The document is [=allowed to use=] all the [=policy-controlled features=] associated
    with the given [=sensor type=].
@@ -771,9 +780,9 @@ A [=sensor type=] has a [=ordered set|set=] of <dfn export>associated sensors</d
 A [=sensor type=] may have a [=default sensor=].
 
 A [=sensor type=] has a [=set/is empty|nonempty=] [=ordered set|set=] of associated
-{{PermissionName|PermissionNames}} referred as <dfn export>sensor permission names</dfn>.
+[=permission names=] referred to as <dfn export>sensor permission names</dfn>.
 
-Note: multiple [=sensor types=] may share the same {{PermissionName}}.
+Note: multiple [=sensor types=] may share the same [=permission name=].
 
 A [=sensor type=] has a [=permission revocation algorithm=].
 
@@ -788,25 +797,23 @@ A [=sensor type=] has a [=permission revocation algorithm=].
 </div>
 
 A [=sensor type=] has a [=set/is empty|nonempty=] [=ordered set|set=] of associated
-[=feature names=] referred as <dfn export>sensor feature names</dfn>.
+[=feature names=] referred to as <dfn export>sensor feature names</dfn>.
 
 <h3 id="model-sensor">Sensor</h3>
 
-A [=platform sensor=] has an associated [=ordered set|set=]
-of <dfn>activated sensor objects</dfn>.
-This set is initially [=set/is empty|empty=].
+The current [=browsing context=]'s [=platform sensor=] has an associated [=ordered set|set=]
+of <dfn>activated sensor objects</dfn>, which is initially [=set/is empty|empty=] and an
+associated <dfn>latest reading</dfn> [=ordered map|map=], which holds the latest available [=sensor readings=].
 
-The current [=browsing context=]'s [=platform sensor=] has an associated <dfn>latest reading</dfn>
-[=ordered map|map=] which holds the latest available [=sensor readings=].
-
-Note: User agents can share [=latest reading=] [=ordered map|map=] between different
+Note: User agents can share the [=latest reading=] [=ordered map|map=] and
+the [=activated sensor objects=] [=ordered set|set=] between different
 [=browsing context|contexts=] only if the [=origins=] of these contexts' [=active documents=]
 are [=same origin-domain=].
 
 Any time a new [=sensor reading=] for a [=platform sensor=] is obtained and if the user agent
 [=can expose sensor readings=] to the current [=browsing context=]'s [=active document=],
-[=update latest reading=] is invoked with the [=platform sensor=]
-and the [=sensor reading=] as arguments.
+the user agent invokes [=update latest reading=] with the [=platform sensor=] and
+the [=sensor reading=] as arguments.
 
 The [=latest reading=] [=ordered map|map=] contains an [=map/entry=] whose [=map/key=] is
 "timestamp" and whose [=map/value=] is a high resolution timestamp that estimates the
@@ -1637,8 +1644,8 @@ each [=sensor type=] in [=extension specifications=]:
     Its [=attributes=] which expose [=sensor readings=] are [=read only=] and
     their getters must return the result of invoking [=get value from latest reading=]
     with <strong>this</strong> and [=attribute=] [=identifier=] as arguments.
--   A {{PermissionName}}, if the [=sensor type=] is not representing
-    [=sensor fusion=] (otherwise, {{PermissionName|PermissionNames}}
+-   A [=permission name=], if the [=sensor type=] is not representing
+    [=sensor fusion=] (otherwise, [=permission names=]
     associated with the fusion source [=sensor types=] must be used).
 
 An [=extension specification=] may specify the following definitions
@@ -1655,8 +1662,8 @@ for each [=sensor types=]:
 <h3 id="permission-api">Extending the Permission API</h3>
 
 An implementation of the {{Sensor}} interface for each [=sensor type=] must protect its
-[=sensor reading|reading=] by associated {{PermissionName}} or {{PermissionDescriptor}}.
-A [=Low-level=] {{Sensor|sensor}} may use its interface name as a {{PermissionName}},
+[=sensor reading|reading=] by associated [=permission name=] or {{PermissionDescriptor}}.
+A [=Low-level=] {{Sensor|sensor}} may use its interface name as a [=permission name=],
 for instance, "gyroscope" or "accelerometer". [=sensor fusion|Fusion sensors=] must
 [=request permission to use|request permission to access=] each of the sensors that are
 used as a source of fusion.
