@@ -525,29 +525,19 @@ which would have issues of its own.
 The term <dfn id="concept-device-sensor">device sensor</dfn> refers to a device's underlying
 physical sensor instance.
 
-The [=device sensors=] measure different physical quantities
-and provide corresponding <dfn>raw sensor readings</dfn>
-which are a source of information about the user and their environment.
+A [=device sensor=] measures a physical quantities
+and provides a corresponding <dfn>sensor reading</dfn>
+which is a source of information about the environment.
 
-Each [=raw sensor reading|reading=] is composed of the <dfn lt="reading value">values</dfn>
-of the different physical quantities measured by the [=device sensor|sensor=]
+Each [=sensor reading=] is composed of the <dfn lt="reading value">values</dfn>
+of the physical quantity measured by the [=device sensor=]
 at time <var ignore>t<sub>n</sub></var> which is called the <dfn>reading timestamp</dfn>.
 
-Known, <em>predictable</em> discrepancies between [=raw sensor readings=]
-and the corresponding physical quantities being measured
-are corrected through <dfn>calibration</dfn>.
-
-Known but <em>unpredictable</em> discrepancies need to be addressed dynamically
-through a process called [=sensor fusion=].
-
-[=calibration|Calibrated=] [=raw sensor readings=] are referred to as <dfn>sensor readings</dfn>,
-whether or not they have undergone [=sensor fusion=].
-
-If the [=sensor readings=] represent spatial measurements (e.g.
-acceleration, angular velocity), they must be resolved in
+If the [=device sensor=] performs a spatial measurement (e.g.
+acceleration, angular velocity), it must be resolved in
 a <dfn export>local coordinate system</dfn> that represents
-a reference frame for these [=sensor readings|readings=].
-A [=device sensor|sensor=] that provides such [=sensor readings|readings=]
+a reference frame for the [=device sensor=]'s [=sensor readings=].
+A [=device sensor=] that provides such [=sensor readings=]
 is referred to as <dfn export>spatial sensor</dfn>.
 
 A [=spatial sensor=] can be <dfn>uniaxial</dfn>, <dfn>biaxial</dfn>,
@@ -561,10 +551,6 @@ The [=local coordinate system=] normally used in a mobile device is
 a Cartesian coordinate system, which is defined relative to the
 device’s screen, so that X and Y axes are parallel to the screen
 dimentions and Z axis is perpendicular to the screen surface.
-
-[=extension specification|Extensions to this specification=]
-may explicitly define the [=local coordinate system=] for the associated
-[=sensor type=] or make it configurable per {{Sensor}} object.
 
 The term <dfn id="concept-platform-sensor">platform sensor</dfn> refers to platform interfaces,
 with which the user agent ineracts to obtain [=sensor readings=] for a single [=sensor type=]
@@ -581,6 +567,11 @@ In simple case a [=platform sensor=] corresponds to a single [=device sensor=],
 but if the provided [=sensor readings=] are product of [=sensor fusion=] performed
 in software, the [=platform sensor=] corresponds to a set of [=device sensors=]
 involved in the [=sensor fusion=] process.
+
+Discrepancies between a [=sensor reading=]
+and the corresponding physical quantity being measured
+are corrected through <dfn>calibration</dfn> that can happen at manufacturing time.
+Some sensors can require dynamic calibration to compensate unknown discrepancies.
 
 Note: [=platform sensors=] created through [=sensor fusion=] are sometimes
 called virtual or synthetic sensors. However, the specification doesn't
@@ -1106,7 +1097,7 @@ with the internal slots described in the following table:
 
 The getter of the {{Sensor/timestamp!!attribute}} attribute returns
 the result of invoking [=get value from latest reading=] with <strong>this</strong>
-and "timestamp" as arguments.
+and "timestamp" as arguments. It represents a [=reading timestamp=].
 
 
 ### Sensor.start() ### {#sensor-start}
@@ -1532,6 +1523,13 @@ This section describes how this specification can be extended to specify APIs fo
 Such <dfn lt="extension specification">extension specifications</dfn> are encouraged to focus on a
 single [=sensor type=], exposing both [=high-level|high=] and [=low-level|low=] level
 as appropriate.
+
+[=Extension specifications=] are encouraged to define whether a [=calibration=]
+process applies to [=sensor readings=].
+
+[=Extension specifications=]
+may explicitly define the [=local coordinate system=] for the associated
+[=sensor type=] or make it configurable per {{Sensor}} object.
 
 For an up-to-date list of [=extension specifications=], please refer to [[GENERIC-SENSOR-USECASES]]
 and [[MOTION-SENSORS]] documents.
