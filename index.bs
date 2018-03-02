@@ -415,19 +415,16 @@ to the user, [=sensor readings=] are only available for the
 [=documents=] which are [=allowed to use=] the [=policy-controlled features=] for
 the given [=sensor type=]. See [[FEATURE-POLICY]] for more details.
 
-<h4 id="losing-focus">Losing Focus</h4>
+<h4 id="focused-area" oldids="losing-focus">Focused Area</h4>
 
-When the [=top-level browsing context=] loses focus,
-or when an element from the [=nested browsing context=] of a different [=origin=]
-[=gains focus=] (for example when the user carries out an in-game purchase
-using a third party payment service from within an iframe)
-the [=top-level browsing contexts=] suddenly becomes in a position
-to carry out a skimming attack against the [=browsing context=] whose element
-has [=gains focus|gained focus=].
+[=Sensor readings=] are only available for [=active documents=] whose
+origin is [=same origin-domain=] with the [=currently focused area=]
+document.
 
-To mitigate this risk [=sensor readings=] are only available to the [=browsing contexts=]
-of the same [=origin=] with the [=browsing context|context=] containing
-the [=focused=] element.
+This is done in order to mitigate the risk of a skimming attack against the
+[=browsing context=] containing an element which has [=gains focus|gained focus=],
+for example when the user carries out an in-game purchase using a third party
+payment service from within an iframe.
 
 <h4 id="visibility-state">Visibility State</h4>
 
