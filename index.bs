@@ -568,7 +568,7 @@ dimentions and Z axis is perpendicular to the screen surface.
 
 The term <dfn id="concept-platform-sensor">platform sensor</dfn> refers to platform interfaces,
 with which the user agent ineracts to obtain [=sensor readings=] for a single [=sensor type=]
-originated from one or several [=device sensors=].
+originated from one or more [=device sensors=].
 
 [=Platform sensor=] can be defined by the underlying platform (e.g. in a native sensors framework)
 or by the user agent, if it has a direct access to [=device sensor=].
@@ -777,8 +777,8 @@ Note: In order to release hardware resources, the user agent can request underly
 
 <h3 id="model-sensor-type">Sensor Type</h3>
 
-A <dfn>sensor type</dfn> has an associated [=interface=]
-whose [=inherited interfaces=] contains {{Sensor}}.
+A <dfn>sensor type</dfn> has one or more associated
+[=extension sensor interface|extension sensor interfaces=].
 
 A [=sensor type=] has a [=ordered set|set=] of <dfn export>associated sensors</dfn>.
 
@@ -833,11 +833,11 @@ unless the [=latest reading=] [=ordered map|map=] caches a previous [=sensor rea
 The other [=map/entries=] of the [=latest reading=] [=ordered map|map=]
 hold the values of the different quantities measured by the [=platform sensor=].
 The [=map/keys=] of these [=map/entries=] must match
-the [=attribute=] [=identifier=] defined by
-the [=sensor type=]'s associated interface.
+the [=attribute=] [=identifier=] defined by the [=sensor type=]'s
+associated [=extension sensor interface=].
 The return value of the [=attribute=] getter is
 easily obtained by invoking [=get value from latest reading=]
-with the object implementing the [=sensor type=]'s associated interface
+with the object implementing the [=extension sensor interface=]
 and the [=attribute=] [=identifier=] as arguments.
 
 The [=map/value=] of all [=latest reading=] [=map/entries=]
@@ -1239,10 +1239,13 @@ Gets the {{DOMException}} object passed to {{SensorErrorEventInit}}.
 
     : input
     :: |sensor_instance|, a {{Sensor}} object.
-    :: |options|, a {{SensorOptions}} object.
+    :: |options|, a [=dictionary=] object.
     : output
     :: None
 
+    1.  [=map/For each=] |key| → <var ignore>value</var> of |options|
+        1.  If the associated [=supported sensor options=] [=set/contains|does not contain=] |key|
+            1. [=Throw=] "{{NotSupportedError!!exception}}" {{DOMException}}.
     1.  If |options|.{{frequency!!dict-member}} is [=present=], then
         1.  Set |sensor_instance|.{{[[frequency]]}} to |options|.{{frequency!!dict-member}}.
 
@@ -1649,13 +1652,19 @@ accuracy or other settings defined in [=extension specifications=].
 The following definitions must be specified for
 each [=sensor type=] in [=extension specifications=]:
 
--   An [=interface=] whose [=inherited interfaces=] contains {{Sensor}}.
-    This interface must be constructible.
+-   An <dfn export>extension sensor interface</dfn>, which is an [=interface=]
+    whose [=inherited interfaces=] contains {{Sensor}}.
+    The [=extension sensor interface=] must be constructible.
     Its [{{Constructor!!extended-attribute}}] must take, as an argument,
     an optional [=dictionary=] whose [=inherited dictionaries=] contains {{SensorOptions}}.
-    Its [=attributes=] which expose [=sensor readings=] are [=read only=] and
-    their getters must return the result of invoking [=get value from latest reading=]
-    with <strong>this</strong> and [=attribute=] [=identifier=] as arguments.
+    The [=extension sensor interface=] has a [=ordered set|set=] of supported options
+    referred to as <dfn export>supported sensor options</dfn>.
+    Unless the [=extension specification=] defines otherwise,
+    [=supported sensor options=] [=set/contain=] a single item which is "frequency".
+    The [=extension sensor interface=] [=attributes=] which expose [=sensor readings=] are
+    [=read only=] and their getters must return the result of invoking
+    [=get value from latest reading=] with <strong>this</strong> and
+    [=attribute=] [=identifier=] as arguments.
 -   A [=permission name=], if the [=sensor type=] is not representing
     [=sensor fusion=] (otherwise, [=permission names=]
     associated with the fusion source [=sensor types=] must be used).
@@ -1716,7 +1725,7 @@ The [=sensor feature names=] [=ordered set|set=] must contain [=feature names=] 
 every associated [=policy-controlled feature|feature=].
 
 A [=Low-level=] {{Sensor|sensor}} may use its interface name as a [=feature name=],
-for instance, "gyroscope" or "accelerometer". Unless the [=extension specification=] tells
+for instance, "gyroscope" or "accelerometer". Unless the [=extension specification=] defines
 otherwise, the [=sensor feature names=] matches the same [=sensor type|type=]-associated
 [=sensor permission names=].
 
