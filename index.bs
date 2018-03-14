@@ -10,7 +10,7 @@ Previous Version: https://www.w3.org/TR/2017/WD-generic-sensor-20171018/
 Editor: Rick Waldron 50572, Bocoup&#44; formerly on behalf of JS Foundation
 Editor: Mikhail Pozdnyakov 78325, Intel Corporation, https://intel.com/
 Editor: Alexander Shalamov 78335, Intel Corporation, https://intel.com/
-Former Editor: Tobie Langel 60809, Codespeaks&#44; formerly on behalf of Intel Corporation, http://tobie.me, tobie@codespeaks.com
+Former Editor: Tobie Langel 60809, Codespeaks&#44; formerly on behalf of Intel Corporation, https://www.codespeaks.com/, tobie@codespeaks.com
 Abstract:
   This specification defines a framework for exposing sensor data
   to the Open Web Platform in a consistent way.
@@ -42,7 +42,6 @@ urlPrefix: https://html.spec.whatwg.org/multipage/; spec: HTML
       text: trusted; url: concept-events-trusted
       text: spin the event loop; url: spin-the-event-loop
     urlPrefix: browsers.html
-      text: origin; url: origin-2
       text: navigating; url: navigate
       text: browsing context
       text: nested browsing context
@@ -55,14 +54,16 @@ urlPrefix: https://html.spec.whatwg.org/multipage/; spec: HTML
       text: focusable area; url: focusable-area
       text: currently focused area; url: currently-focused-area-of-a-top-level-browsing-context
       text: has focus steps; url: has-focus-steps
-urlPrefix: http://w3c.github.io/hr-time/; spec: HR-TIME-2
+    urlPrefix: origin.html
+      text: origin; url: origin-2
+urlPrefix: https://www.w3.org/TR/hr-time-2/; spec: HR-TIME-2
   type: interface
     text: DOMHighResTimeStamp; url: dom-domhighrestimestamp
   type: dfn
-    text: time origin
-urlPrefix: https://w3c.github.io/page-visibility; spec: PAGE-VISIBILITY
+    text: time origin; url: dfn-time-origin
+urlPrefix: https://www.w3.org/TR/page-visibility-2/; spec: PAGE-VISIBILITY
   type: dfn
-    text: document visibility state; url: dom-document-visibilitystate
+    text: document visibility state; url: dom-visibilitystate
     text: visibility states; url: dfn-visibility-states
     text: steps to determine the visibility state; url: dfn-steps-to-determine-the-visibility-state
 urlPrefix: https://w3ctag.github.io/security-questionnaire/; spec: SECURITY-PRIVACY-QUESTIONNAIRE
@@ -70,9 +71,8 @@ urlPrefix: https://w3ctag.github.io/security-questionnaire/; spec: SECURITY-PRIV
     text: same-origin policy violations; url: sop-violations
 urlPrefix: https://wicg.github.io/feature-policy/; spec: FEATURE-POLICY
   type: dfn
-    text: allow attribute
+    text: allow attribute; url: iframe-allow-attribute
     text: default allowlist
-    text: feature name
     text: policy-controlled feature
     text: allowed to use
 urlPrefix: https://www.w3.org/TR/permissions; spec: PERMISSIONS
@@ -802,7 +802,7 @@ A [=sensor type=] has a [=permission revocation algorithm=].
 </div>
 
 A [=sensor type=] has a [=set/is empty|nonempty=] [=ordered set|set=] of associated
-[=feature names=] referred to as <dfn export>sensor feature names</dfn>.
+[=policy-controlled feature=] tokens referred to as <dfn export>sensor feature names</dfn>.
 
 <h3 id="model-sensor">Sensor</h3>
 
@@ -1015,7 +1015,7 @@ The [=task source=] for the [=tasks=] mentioned in this specification is the <df
             <title>start-&gt;idle</title>
             <path d="M19.2724,-44C25.2754,-44 34.8461,-44 44.6767,-44" fill="none" stroke="black"/>
             <polygon fill="black" points="54.8766,-44 44.8767,-48.5001 49.8766,-44 44.8766,-44.0001 44.8766,-44.0001 44.8766,-44.0001 49.8766,-44 44.8766,-39.5001 54.8766,-44 54.8766,-44" stroke="black"/>
-            <a xlink:href="#construct-sensor-object">
+            <a xlink:href="#extension-sensor-interface">
                 <text text-anchor="middle" transform="translate(0,-4)" x="29.5" y="-52.1333">construct</text>
             </a>
         </g>
@@ -1043,7 +1043,7 @@ object=] with this object as argument.
 Instances of {{Sensor}} are created
 with the internal slots described in the following table:
 
-<table id="sensor-slots" class="vert data">
+<table id="sensor-slots" class="def">
     <thead>
         <tr><th>Internal Slot</th><th>Description (non-normative)</th></tr>
     </thead>
@@ -1722,10 +1722,10 @@ Note: The [=default allowlist=] of <code>["self"]</code> allows {{Sensor}} inter
 implementation usage in same-origin nested frames but prevents third-party content
 from [=sensor readings=] access.
 
-The [=sensor feature names=] [=ordered set|set=] must contain [=feature names=] of
-every associated [=policy-controlled feature|feature=].
+The [=sensor feature names=] [=ordered set|set=] must contain [=policy-controlled feature=]
+tokens of every associated [=policy-controlled feature|feature=].
 
-A [=Low-level=] {{Sensor|sensor}} may use its interface name as a [=feature name=],
+A [=Low-level=] {{Sensor|sensor}} may use its interface name as a [=policy-controlled feature=] token,
 for instance, "gyroscope" or "accelerometer". Unless the [=extension specification=] defines
 otherwise, the [=sensor feature names=] matches the same [=sensor type|type=]-associated
 [=sensor permission names=].

@@ -1185,7 +1185,7 @@ Possible extra rowspan handling
   </style>
   <meta content="Bikeshed version 66a76cd06d4fa9e491630583356008a71a166760" name="generator">
   <link href="https://www.w3.org/TR/generic-sensor/" rel="canonical">
-  <meta content="01a54aaa3390a0c290962f32fd4cc8b58a111e6a" name="document-revision">
+  <meta content="280243eb50bd9f6fe61c5a67226c940af8566a0a" name="document-revision">
 <style>
     svg g.edge text {
         font-size: 8px;
@@ -1471,7 +1471,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
      <dd class="editor p-author h-card vcard" data-editor-id="78325"><a class="p-name fn u-url url" href="https://intel.com/">Mikhail Pozdnyakov</a> (<span class="p-org org">Intel Corporation</span>)
      <dd class="editor p-author h-card vcard" data-editor-id="78335"><a class="p-name fn u-url url" href="https://intel.com/">Alexander Shalamov</a> (<span class="p-org org">Intel Corporation</span>)
      <dt class="editor">Former Editor:
-     <dd class="editor p-author h-card vcard" data-editor-id="60809"><a class="p-name fn u-url url" href="http://tobie.me">Tobie Langel</a> (<span class="p-org org">Codespeaks, formerly on behalf of Intel Corporation</span>) <a class="u-email email" href="mailto:tobie@codespeaks.com">tobie@codespeaks.com</a>
+     <dd class="editor p-author h-card vcard" data-editor-id="60809"><a class="p-name fn u-url url" href="https://www.codespeaks.com/">Tobie Langel</a> (<span class="p-org org">Codespeaks, formerly on behalf of Intel Corporation</span>) <a class="u-email email" href="mailto:tobie@codespeaks.com">tobie@codespeaks.com</a>
      <dt>Other:
      <dd><a href="https://github.com/w3c/web-platform-tests/tree/master/generic-sensor">Test suite</a>, <a href="https://github.com/w3c/sensors/commits/master/index.bs">latest version history</a>, <a href="https://github.com/w3c/sensors/commits/gh-pages/index.bs">previous version history</a>
     </dl>
@@ -1867,7 +1867,7 @@ origin is <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/o
 for example when the user carries out an in-game purchase using a third party
 payment service from within an iframe.</p>
    <h4 class="heading settled" data-level="4.2.4" id="visibility-state"><span class="secno">4.2.4. </span><span class="content">Visibility State</span><a class="self-link" href="#visibility-state"></a></h4>
-   <p><a data-link-type="dfn" href="#sensor-reading" id="ref-for-sensor-reading①⓪">Sensor readings</a> are only available for the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#active-document" id="ref-for-active-document①">active documents</a> whose <a data-link-type="dfn" href="https://w3c.github.io/page-visibility#dfn-steps-to-determine-the-visibility-state" id="ref-for-dfn-steps-to-determine-the-visibility-state">visibility state</a> is "visible".</p>
+   <p><a data-link-type="dfn" href="#sensor-reading" id="ref-for-sensor-reading①⓪">Sensor readings</a> are only available for the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#active-document" id="ref-for-active-document①">active documents</a> whose <a data-link-type="dfn" href="https://www.w3.org/TR/page-visibility-2/#dfn-steps-to-determine-the-visibility-state" id="ref-for-dfn-steps-to-determine-the-visibility-state">visibility state</a> is "visible".</p>
    <h4 class="heading settled" data-level="4.2.5" id="permissions"><span class="secno">4.2.5. </span><span class="content">Permissions API</span><span id="permissioning"></span><a class="self-link" href="#permissions"></a></h4>
    <p>Access to <a data-link-type="dfn" href="#sensor-reading" id="ref-for-sensor-reading①①">sensor readings</a> are controlled by the Permissions API <a data-link-type="biblio" href="#biblio-permissions">[PERMISSIONS]</a>.
 User agents use a <a data-link-type="dfn" href="https://w3c.github.io/permissions/#new-information-about-the-users-intent" id="ref-for-new-information-about-the-users-intent①">number of criteria</a> to grant access to the <a data-link-type="dfn" href="#sensor-reading" id="ref-for-sensor-reading①②">readings</a>.
@@ -2072,7 +2072,7 @@ never exceed the <a data-link-type="dfn" href="#sampling-frequency" id="ref-for-
     <li data-md="">
      <p>For each <a data-link-type="dfn" href="https://www.w3.org/TR/permissions#enumdef-permissionname" id="ref-for-enumdef-permissionname">permission name</a> from the <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type②①">sensor type</a>'s associated <a data-link-type="dfn" href="#sensor-permission-names" id="ref-for-sensor-permission-names">sensor permission names</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set" id="ref-for-ordered-set">set</a>, the corresponding permission’s <a data-link-type="dfn" href="https://www.w3.org/TR/permissions#permission-state" id="ref-for-permission-state">state</a> is "granted".</p>
     <li data-md="">
-     <p><a data-link-type="dfn" href="https://w3c.github.io/page-visibility#dom-document-visibilitystate" id="ref-for-dom-document-visibilitystate">Visibility state</a> of the document is "visible".</p>
+     <p><a data-link-type="dfn" href="https://www.w3.org/TR/page-visibility-2/#dom-visibilitystate" id="ref-for-dom-visibilitystate">Visibility state</a> of the document is "visible".</p>
     <li data-md="">
      <p>The document is <a data-link-type="dfn" href="https://wicg.github.io/feature-policy/#allowed-to-use" id="ref-for-allowed-to-use①">allowed to use</a> all the <a data-link-type="dfn" href="https://wicg.github.io/feature-policy/#policy-controlled-feature" id="ref-for-policy-controlled-feature①">policy-controlled features</a> associated
  with the given <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type②②">sensor type</a>.</p>
@@ -2105,17 +2105,17 @@ never exceed the <a data-link-type="dfn" href="#sampling-frequency" id="ref-for-
       </ol>
     </ol>
    </div>
-   <p>A <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type②⑧">sensor type</a> has a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-is-empty" id="ref-for-list-is-empty①">nonempty</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set" id="ref-for-ordered-set④">set</a> of associated <a data-link-type="dfn" href="https://wicg.github.io/feature-policy/#feature-name" id="ref-for-feature-name">feature names</a> referred to as <dfn class="dfn-paneled" data-dfn-type="dfn" data-export="" id="sensor-feature-names">sensor feature names</dfn>.</p>
+   <p>A <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type②⑧">sensor type</a> has a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-is-empty" id="ref-for-list-is-empty①">nonempty</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set" id="ref-for-ordered-set④">set</a> of associated <a data-link-type="dfn" href="https://wicg.github.io/feature-policy/#policy-controlled-feature" id="ref-for-policy-controlled-feature②">policy-controlled feature</a> tokens referred to as <dfn class="dfn-paneled" data-dfn-type="dfn" data-export="" id="sensor-feature-names">sensor feature names</dfn>.</p>
    <h3 class="heading settled" data-level="6.2" id="model-sensor"><span class="secno">6.2. </span><span class="content">Sensor</span><a class="self-link" href="#model-sensor"></a></h3>
    <p>The current <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context①">browsing context</a>'s <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor⑨">platform sensor</a> has an associated <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set" id="ref-for-ordered-set⑤">set</a> of <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="activated-sensor-objects">activated sensor objects</dfn>, which is initially <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-is-empty" id="ref-for-list-is-empty②">empty</a> and an
 associated <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="latest-reading">latest reading</dfn> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map">map</a>, which holds the latest available <a data-link-type="dfn" href="#sensor-reading" id="ref-for-sensor-reading③⑤">sensor readings</a>.</p>
    <p class="note" role="note"><span>Note:</span> User agents can share the <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading">latest reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map①">map</a> and
-the <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects">activated sensor objects</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set" id="ref-for-ordered-set⑥">set</a> between different <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context②">contexts</a> only if the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#origin-2" id="ref-for-origin-2">origins</a> of these contexts' <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#active-document" id="ref-for-active-document④">active documents</a> are <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#same-origin-domain" id="ref-for-same-origin-domain②">same origin-domain</a>.</p>
+the <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects">activated sensor objects</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set" id="ref-for-ordered-set⑥">set</a> between different <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context②">contexts</a> only if the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#origin-2" id="ref-for-origin-2">origins</a> of these contexts' <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#active-document" id="ref-for-active-document④">active documents</a> are <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#same-origin-domain" id="ref-for-same-origin-domain②">same origin-domain</a>.</p>
    <p>Any time a new <a data-link-type="dfn" href="#sensor-reading" id="ref-for-sensor-reading③⑥">sensor reading</a> for a <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①⓪">platform sensor</a> is obtained and if the user agent <a data-link-type="dfn" href="#can-expose-sensor-readings" id="ref-for-can-expose-sensor-readings①">can expose sensor readings</a> to the current <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context③">browsing context</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#active-document" id="ref-for-active-document⑤">active document</a>,
 the user agent invokes <a data-link-type="dfn" href="#update-latest-reading" id="ref-for-update-latest-reading">update latest reading</a> with the <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①①">platform sensor</a> and
 the <a data-link-type="dfn" href="#sensor-reading" id="ref-for-sensor-reading③⑦">sensor reading</a> as arguments.</p>
    <p>The <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading①">latest reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map②">map</a> contains an <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry" id="ref-for-map-entry">entry</a> whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-key" id="ref-for-map-key">key</a> is
-"timestamp" and whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-value" id="ref-for-map-value">value</a> is a high resolution timestamp that estimates the <a data-link-type="dfn" href="#reading-timestamp" id="ref-for-reading-timestamp②">reading timestamp</a> expressed in milliseconds since the <a data-link-type="dfn" href="http://w3c.github.io/hr-time/#time-origin" id="ref-for-time-origin">time origin</a>.</p>
+"timestamp" and whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-value" id="ref-for-map-value">value</a> is a high resolution timestamp that estimates the <a data-link-type="dfn" href="#reading-timestamp" id="ref-for-reading-timestamp②">reading timestamp</a> expressed in milliseconds since the <a data-link-type="dfn" href="https://www.w3.org/TR/hr-time-2/#dfn-time-origin" id="ref-for-dfn-time-origin">time origin</a>.</p>
    <p class="note" role="note"><span>Note:</span> The accuracy of the <a data-link-type="dfn" href="#reading-timestamp" id="ref-for-reading-timestamp③">reading timestamp</a> estimate depends on the underlying
 platform interfaces that expose it.</p>
    <p>The <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading②">latest reading</a>["timestamp"] is initially set to null,
@@ -2151,7 +2151,7 @@ same <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browse
 <span class="kt">interface</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="interface" data-export="" id="sensor"><code>Sensor</code></dfn> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget" id="ref-for-eventtarget">EventTarget</a> {
   <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean"><span class="kt">boolean</span></a> <dfn class="nv dfn-paneled idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-readonly="" data-type="boolean" id="dom-sensor-activated"><code>activated</code></dfn>;
   <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean①"><span class="kt">boolean</span></a> <dfn class="nv dfn-paneled idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-readonly="" data-type="boolean" id="dom-sensor-hasreading"><code>hasReading</code></dfn>;
-  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="http://w3c.github.io/hr-time/#dom-domhighrestimestamp" id="ref-for-dom-domhighrestimestamp">DOMHighResTimeStamp</a>? <dfn class="nv dfn-paneled idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-readonly="" data-type="DOMHighResTimeStamp?" id="dom-sensor-timestamp"><code>timestamp</code></dfn>;
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="https://www.w3.org/TR/hr-time-2/#dom-domhighrestimestamp" id="ref-for-dom-domhighrestimestamp">DOMHighResTimeStamp</a>? <dfn class="nv dfn-paneled idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-readonly="" data-type="DOMHighResTimeStamp?" id="dom-sensor-timestamp"><code>timestamp</code></dfn>;
   <span class="kt">void</span> <dfn class="nv dfn-paneled idl-code" data-dfn-for="Sensor" data-dfn-type="method" data-export="" data-lt="start()" id="dom-sensor-start"><code>start</code></dfn>();
   <span class="kt">void</span> <dfn class="nv dfn-paneled idl-code" data-dfn-for="Sensor" data-dfn-type="method" data-export="" data-lt="stop()" id="dom-sensor-stop"><code>stop</code></dfn>();
   <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler">EventHandler</a> <dfn class="nv dfn-paneled idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" data-type="EventHandler" id="dom-sensor-onreading"><code>onreading</code></dfn>;
@@ -2256,7 +2256,7 @@ same <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browse
       <title>start->idle</title>
       <path d="M19.2724,-44C25.2754,-44 34.8461,-44 44.6767,-44" fill="none" stroke="black"></path>
       <polygon fill="black" points="54.8766,-44 44.8767,-48.5001 49.8766,-44 44.8766,-44.0001 44.8766,-44.0001 44.8766,-44.0001 49.8766,-44 44.8766,-39.5001 54.8766,-44 54.8766,-44" stroke="black"></polygon>
-      <a href="#construct-sensor-object">
+      <a href="#extension-sensor-interface">
        <text text-anchor="middle" transform="translate(0,-4)" x="29.5" y="-52.1333">construct</text>
       </a>
      </g>
@@ -2277,7 +2277,7 @@ object</a> with this object as argument.</p>
    <p>Instances of <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor①④">Sensor</a></code> are created
 with the internal slots described in the following table:</p>
    <p></p>
-   <table class="vert data" id="sensor-slots">
+   <table class="def" id="sensor-slots">
     <thead>
      <tr>
       <th>Internal Slot
@@ -2300,7 +2300,7 @@ with the internal slots described in the following table:</p>
      <tr>
       <td><dfn class="dfn-paneled idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" id="dom-sensor-lasteventfiredat-slot"><code>[[lastEventFiredAt]]</code></dfn>
       <td>The high resolution timestamp of the latest <a data-link-type="dfn" href="#sensor-reading" id="ref-for-sensor-reading④①">sensor reading</a> that was sent to observers of the <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor①⑦">Sensor</a></code> object,
-                expressed in milliseconds that passed since the <a data-link-type="dfn" href="http://w3c.github.io/hr-time/#time-origin" id="ref-for-time-origin①">time origin</a>.
+                expressed in milliseconds that passed since the <a data-link-type="dfn" href="https://www.w3.org/TR/hr-time-2/#dfn-time-origin" id="ref-for-dfn-time-origin①">time origin</a>.
                 It is initially null. 
      <tr>
       <td><dfn class="dfn-paneled idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export="" id="dom-sensor-pendingreadingnotification-slot"><code>[[pendingReadingNotification]]</code></dfn>
@@ -2487,7 +2487,7 @@ that must be supported as attributes by the objects implementing the <code class
       <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate①">For each</a> <var>feature_name</var> of <var>feature_names</var>,</p>
       <ol>
        <li data-md="">
-        <p>If <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#active-document" id="ref-for-active-document⑥">active document</a> is not <a data-link-type="dfn" href="https://wicg.github.io/feature-policy/#allowed-to-use" id="ref-for-allowed-to-use③">allowed to use</a> the <a data-link-type="dfn" href="https://wicg.github.io/feature-policy/#policy-controlled-feature" id="ref-for-policy-controlled-feature②">policy-controlled feature</a> named <var>feature_name</var>, then:</p>
+        <p>If <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#active-document" id="ref-for-active-document⑥">active document</a> is not <a data-link-type="dfn" href="https://wicg.github.io/feature-policy/#allowed-to-use" id="ref-for-allowed-to-use③">allowed to use</a> the <a data-link-type="dfn" href="https://wicg.github.io/feature-policy/#policy-controlled-feature" id="ref-for-policy-controlled-feature③">policy-controlled feature</a> named <var>feature_name</var>, then:</p>
         <ol>
          <li data-md="">
           <p>Return false.</p>
@@ -3040,18 +3040,17 @@ for accelerometer sensor is given below.</p>
 </pre>
    <h3 class="heading settled" data-level="9.8" id="feature-policy-api"><span class="secno">9.8. </span><span class="content">Extending the Feature Policy API</span><a class="self-link" href="#feature-policy-api"></a></h3>
    <p>An implementation of the <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor④①">Sensor</a></code> interface for each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type④⑤">sensor type</a> has one
-(if <a data-link-type="dfn" href="#sensor-fusion" id="ref-for-sensor-fusion①⓪">sensor fusion</a> is not performed) or several <a data-link-type="dfn" href="https://wicg.github.io/feature-policy/#policy-controlled-feature" id="ref-for-policy-controlled-feature③">policy-controlled features</a> that control whether or not this implementation can be used in a document.</p>
-   <p>The <a data-link-type="dfn" href="https://wicg.github.io/feature-policy/#policy-controlled-feature" id="ref-for-policy-controlled-feature④">features</a>' <a data-link-type="dfn" href="https://wicg.github.io/feature-policy/#default-allowlist" id="ref-for-default-allowlist">default allowlist</a> is <code>["self"]</code>.</p>
+(if <a data-link-type="dfn" href="#sensor-fusion" id="ref-for-sensor-fusion①⓪">sensor fusion</a> is not performed) or several <a data-link-type="dfn" href="https://wicg.github.io/feature-policy/#policy-controlled-feature" id="ref-for-policy-controlled-feature④">policy-controlled features</a> that control whether or not this implementation can be used in a document.</p>
+   <p>The <a data-link-type="dfn" href="https://wicg.github.io/feature-policy/#policy-controlled-feature" id="ref-for-policy-controlled-feature⑤">features</a>' <a data-link-type="dfn" href="https://wicg.github.io/feature-policy/#default-allowlist" id="ref-for-default-allowlist">default allowlist</a> is <code>["self"]</code>.</p>
    <p class="note" role="note"><span>Note:</span> The <a data-link-type="dfn" href="https://wicg.github.io/feature-policy/#default-allowlist" id="ref-for-default-allowlist①">default allowlist</a> of <code>["self"]</code> allows <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor④②">Sensor</a></code> interface
 implementation usage in same-origin nested frames but prevents third-party content
 from <a data-link-type="dfn" href="#sensor-reading" id="ref-for-sensor-reading⑤⑧">sensor readings</a> access.</p>
-   <p>The <a data-link-type="dfn" href="#sensor-feature-names" id="ref-for-sensor-feature-names②">sensor feature names</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set" id="ref-for-ordered-set①②">set</a> must contain <a data-link-type="dfn" href="https://wicg.github.io/feature-policy/#feature-name" id="ref-for-feature-name①">feature names</a> of
-every associated <a data-link-type="dfn" href="https://wicg.github.io/feature-policy/#policy-controlled-feature" id="ref-for-policy-controlled-feature⑤">feature</a>.</p>
-   <p>A <a data-link-type="dfn" href="#low-level" id="ref-for-low-level①④">Low-level</a> <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor④③">sensor</a></code> may use its interface name as a <a data-link-type="dfn" href="https://wicg.github.io/feature-policy/#feature-name" id="ref-for-feature-name②">feature name</a>,
+   <p>The <a data-link-type="dfn" href="#sensor-feature-names" id="ref-for-sensor-feature-names②">sensor feature names</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set" id="ref-for-ordered-set①②">set</a> must contain <a data-link-type="dfn" href="https://wicg.github.io/feature-policy/#policy-controlled-feature" id="ref-for-policy-controlled-feature⑥">policy-controlled feature</a> tokens of every associated <a data-link-type="dfn" href="https://wicg.github.io/feature-policy/#policy-controlled-feature" id="ref-for-policy-controlled-feature⑦">feature</a>.</p>
+   <p>A <a data-link-type="dfn" href="#low-level" id="ref-for-low-level①④">Low-level</a> <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor④③">sensor</a></code> may use its interface name as a <a data-link-type="dfn" href="https://wicg.github.io/feature-policy/#policy-controlled-feature" id="ref-for-policy-controlled-feature⑧">policy-controlled feature</a> token,
 for instance, "gyroscope" or "accelerometer". Unless the <a data-link-type="dfn" href="#extension-specification" id="ref-for-extension-specification①⑤">extension specification</a> defines
 otherwise, the <a data-link-type="dfn" href="#sensor-feature-names" id="ref-for-sensor-feature-names③">sensor feature names</a> matches the same <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type④⑥">type</a>-associated <a data-link-type="dfn" href="#sensor-permission-names" id="ref-for-sensor-permission-names③">sensor permission names</a>.</p>
    <div class="example html" id="example-924ff346">
-    <a class="self-link" href="#example-924ff346"></a> The accelerometer feature is selectively enabled for third-party origin by adding <a data-link-type="dfn" href="https://wicg.github.io/feature-policy/#allow-attribute" id="ref-for-allow-attribute">allow attribute</a> to the frame container element: 
+    <a class="self-link" href="#example-924ff346"></a> The accelerometer feature is selectively enabled for third-party origin by adding <a data-link-type="dfn" href="https://wicg.github.io/feature-policy/#iframe-allow-attribute" id="ref-for-iframe-allow-attribute">allow attribute</a> to the frame container element: 
 <pre class="highlight"><span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">src</span><span class="o">=</span><span class="s">"https://third-party.com"</span> <span class="na">allow</span><span class="o">=</span><span class="s">"accelerometer"</span><span class="p">/>&lt;/</span><span class="nt">iframe</span><span class="p">></span>
 </pre>
    </div>
@@ -3440,17 +3439,16 @@ for their editorial input.</p>
    <li>
     <a data-link-type="biblio">[FEATURE-POLICY]</a> defines the following terms:
     <ul>
-     <li><a href="https://wicg.github.io/feature-policy/#allow-attribute">allow attribute</a>
+     <li><a href="https://wicg.github.io/feature-policy/#iframe-allow-attribute">allow attribute</a>
      <li><a href="https://wicg.github.io/feature-policy/#allowed-to-use">allowed to use</a>
      <li><a href="https://wicg.github.io/feature-policy/#default-allowlist">default allowlist</a>
-     <li><a href="https://wicg.github.io/feature-policy/#feature-name">feature name</a>
      <li><a href="https://wicg.github.io/feature-policy/#policy-controlled-feature">policy-controlled feature</a>
     </ul>
    <li>
     <a data-link-type="biblio">[hr-time-2]</a> defines the following terms:
     <ul>
-     <li><a href="http://w3c.github.io/hr-time/#dom-domhighrestimestamp">DOMHighResTimeStamp</a>
-     <li><a href="http://w3c.github.io/hr-time/#time-origin">time origin</a>
+     <li><a href="https://www.w3.org/TR/hr-time-2/#dom-domhighrestimestamp">DOMHighResTimeStamp</a>
+     <li><a href="https://www.w3.org/TR/hr-time-2/#dfn-time-origin">time origin</a>
     </ul>
    <li>
     <a data-link-type="biblio">[HTML]</a> defines the following terms:
@@ -3463,7 +3461,7 @@ for their editorial input.</p>
      <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-type">event handler event type</a>
      <li><a href="https://html.spec.whatwg.org/multipage/interaction.html#gains-focus">gains focus</a>
      <li><a href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in parallel</a>
-     <li><a href="https://html.spec.whatwg.org/multipage/browsers.html#origin-2">origin</a>
+     <li><a href="https://html.spec.whatwg.org/multipage/origin.html#origin-2">origin</a>
      <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#responsible-document">responsible document</a>
      <li><a href="https://html.spec.whatwg.org/multipage/origin.html#same-origin-domain">same origin-domain</a>
      <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#spin-the-event-loop">spin the event loop</a>
@@ -3490,8 +3488,8 @@ for their editorial input.</p>
    <li>
     <a data-link-type="biblio">[page-visibility]</a> defines the following terms:
     <ul>
-     <li><a href="https://w3c.github.io/page-visibility#dom-document-visibilitystate">document visibility state</a>
-     <li><a href="https://w3c.github.io/page-visibility#dfn-steps-to-determine-the-visibility-state">steps to determine the visibility state</a>
+     <li><a href="https://www.w3.org/TR/page-visibility-2/#dom-visibilitystate">document visibility state</a>
+     <li><a href="https://www.w3.org/TR/page-visibility-2/#dfn-steps-to-determine-the-visibility-state">steps to determine the visibility state</a>
     </ul>
    <li>
     <a data-link-type="biblio">[PERMISSIONS]</a> defines the following terms:
@@ -3602,7 +3600,7 @@ for their editorial input.</p>
 <span class="kt">interface</span> <a class="nv" href="#sensor"><code>Sensor</code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget" id="ref-for-eventtarget①">EventTarget</a> {
   <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean②"><span class="kt">boolean</span></a> <a class="nv" data-readonly="" data-type="boolean" href="#dom-sensor-activated"><code>activated</code></a>;
   <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean①①"><span class="kt">boolean</span></a> <a class="nv" data-readonly="" data-type="boolean" href="#dom-sensor-hasreading"><code>hasReading</code></a>;
-  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="http://w3c.github.io/hr-time/#dom-domhighrestimestamp" id="ref-for-dom-domhighrestimestamp①">DOMHighResTimeStamp</a>? <a class="nv" data-readonly="" data-type="DOMHighResTimeStamp?" href="#dom-sensor-timestamp"><code>timestamp</code></a>;
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="https://www.w3.org/TR/hr-time-2/#dom-domhighrestimestamp" id="ref-for-dom-domhighrestimestamp①">DOMHighResTimeStamp</a>? <a class="nv" data-readonly="" data-type="DOMHighResTimeStamp?" href="#dom-sensor-timestamp"><code>timestamp</code></a>;
   <span class="kt">void</span> <a class="nv" href="#dom-sensor-start"><code>start</code></a>();
   <span class="kt">void</span> <a class="nv" href="#dom-sensor-stop"><code>stop</code></a>();
   <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler⑥">EventHandler</a> <a class="nv" data-type="EventHandler" href="#dom-sensor-onreading"><code>onreading</code></a>;
