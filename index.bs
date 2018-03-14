@@ -75,7 +75,7 @@ urlPrefix: https://wicg.github.io/feature-policy/; spec: FEATURE-POLICY
     text: default allowlist
     text: policy-controlled feature
     text: allowed to use
-urlPrefix: https://www.w3.org/TR/permissions; spec: PERMISSIONS
+urlPrefix: https://www.w3.org/TR/permissions/; spec: PERMISSIONS
   type: dfn
     text: permission name; url: enumdef-permissionname
     text: permission state
