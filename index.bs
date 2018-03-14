@@ -1560,7 +1560,8 @@ and [[MOTION-SENSORS]] documents.
   on a case by case basis]],
 - be evaluated against the Self-Review Questionnaire on Security and Privacy
   [[SECURITY-PRIVACY-QUESTIONNAIRE]],
-- and in particular, be evaluated against the <a>same-origin policy violations</a>
+- and in particular, be evaluated against the
+  <a class="non-normative">same-origin policy violations</a>
   that can arise if sensors expose a new communication channel not governed
   by the same-origin policy.
 
