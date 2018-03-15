@@ -1658,14 +1658,21 @@ each [=sensor type=] in [=extension specifications=]:
     The [=extension sensor interface=] must be constructible.
     Its [{{Constructor!!extended-attribute}}] must take, as an argument,
     an optional [=dictionary=] whose [=inherited dictionaries=] contains {{SensorOptions}}.
+
     The [=extension sensor interface=] has a [=ordered set|set=] of supported options
     referred to as <dfn export>supported sensor options</dfn>.
     Unless the [=extension specification=] defines otherwise,
     [=supported sensor options=] [=set/contain=] a single item which is "frequency".
+
+    The user agent must remove items from [=supported sensor options=] for a given
+    [=extension sensor interface=] if it cannot support the corresponding sensor
+    options.
+
     The [=extension sensor interface=] [=attributes=] which expose [=sensor readings=] are
     [=read only=] and their getters must return the result of invoking
     [=get value from latest reading=] with <strong>this</strong> and
     [=attribute=] [=identifier=] as arguments.
+
 -   A [=permission name=], if the [=sensor type=] is not representing
     [=sensor fusion=] (otherwise, [=permission names=]
     associated with the fusion source [=sensor types=] must be used).

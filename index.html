@@ -1183,9 +1183,8 @@ Possible extra rowspan handling
       background-attachment: fixed;
     }
   </style>
-  <meta content="Bikeshed version 66a76cd06d4fa9e491630583356008a71a166760" name="generator">
+  <meta content="Bikeshed version 5afc3ab5248efd53ff0fd6d61ad878a3dc5a357a" name="generator">
   <link href="https://www.w3.org/TR/generic-sensor/" rel="canonical">
-  <meta content="79e055e4ee69938295933e67d8c562070498a67c" name="document-revision">
 <style>
     svg g.edge text {
         font-size: 8px;
@@ -1454,7 +1453,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2018-03-14">14 March 2018</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2018-03-15">15 March 2018</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -3000,11 +2999,13 @@ each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type③⑧">
      <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-export="" id="extension-sensor-interface">extension sensor interface</dfn>, which is an <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-interface" id="ref-for-dfn-interface">interface</a> whose <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-inherited-interfaces" id="ref-for-dfn-inherited-interfaces">inherited interfaces</a> contains <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor③⑧">Sensor</a></code>.
   The <a data-link-type="dfn" href="#extension-sensor-interface" id="ref-for-extension-sensor-interface③">extension sensor interface</a> must be constructible.
   Its [<code class="idl"><a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Constructor" id="ref-for-Constructor">Constructor</a></code>] must take, as an argument,
-  an optional <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-dictionary" id="ref-for-dfn-dictionary①">dictionary</a> whose <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-inherited-dictionaries" id="ref-for-dfn-inherited-dictionaries">inherited dictionaries</a> contains <code class="idl"><a data-link-type="idl" href="#dictdef-sensoroptions" id="ref-for-dictdef-sensoroptions①">SensorOptions</a></code>.
-  The <a data-link-type="dfn" href="#extension-sensor-interface" id="ref-for-extension-sensor-interface④">extension sensor interface</a> has a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set" id="ref-for-ordered-set①①">set</a> of supported options
+  an optional <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-dictionary" id="ref-for-dfn-dictionary①">dictionary</a> whose <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-inherited-dictionaries" id="ref-for-dfn-inherited-dictionaries">inherited dictionaries</a> contains <code class="idl"><a data-link-type="idl" href="#dictdef-sensoroptions" id="ref-for-dictdef-sensoroptions①">SensorOptions</a></code>.</p>
+     <p>The <a data-link-type="dfn" href="#extension-sensor-interface" id="ref-for-extension-sensor-interface④">extension sensor interface</a> has a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set" id="ref-for-ordered-set①①">set</a> of supported options
   referred to as <dfn class="dfn-paneled" data-dfn-type="dfn" data-export="" id="supported-sensor-options">supported sensor options</dfn>.
-  Unless the <a data-link-type="dfn" href="#extension-specification" id="ref-for-extension-specification①②">extension specification</a> defines otherwise, <a data-link-type="dfn" href="#supported-sensor-options" id="ref-for-supported-sensor-options①">supported sensor options</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain③">contain</a> a single item which is "frequency".
-  The <a data-link-type="dfn" href="#extension-sensor-interface" id="ref-for-extension-sensor-interface⑤">extension sensor interface</a> <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-attribute" id="ref-for-dfn-attribute③">attributes</a> which expose <a data-link-type="dfn" href="#sensor-reading" id="ref-for-sensor-reading⑤⑤">sensor readings</a> are <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-read-only" id="ref-for-dfn-read-only">read only</a> and their getters must return the result of invoking <a data-link-type="dfn" href="#get-value-from-latest-reading" id="ref-for-get-value-from-latest-reading③">get value from latest reading</a> with <strong>this</strong> and <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-attribute" id="ref-for-dfn-attribute④">attribute</a> <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-identifier" id="ref-for-dfn-identifier②">identifier</a> as arguments.</p>
+  Unless the <a data-link-type="dfn" href="#extension-specification" id="ref-for-extension-specification①②">extension specification</a> defines otherwise, <a data-link-type="dfn" href="#supported-sensor-options" id="ref-for-supported-sensor-options①">supported sensor options</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain③">contain</a> a single item which is "frequency".</p>
+     <p>The user agent must remove items from <a data-link-type="dfn" href="#supported-sensor-options" id="ref-for-supported-sensor-options②">supported sensor options</a> for a given <a data-link-type="dfn" href="#extension-sensor-interface" id="ref-for-extension-sensor-interface⑤">extension sensor interface</a> if it cannot support the corresponding sensor
+  options.</p>
+     <p>The <a data-link-type="dfn" href="#extension-sensor-interface" id="ref-for-extension-sensor-interface⑥">extension sensor interface</a> <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-attribute" id="ref-for-dfn-attribute③">attributes</a> which expose <a data-link-type="dfn" href="#sensor-reading" id="ref-for-sensor-reading⑤⑤">sensor readings</a> are <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-read-only" id="ref-for-dfn-read-only">read only</a> and their getters must return the result of invoking <a data-link-type="dfn" href="#get-value-from-latest-reading" id="ref-for-get-value-from-latest-reading③">get value from latest reading</a> with <strong>this</strong> and <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-attribute" id="ref-for-dfn-attribute④">attribute</a> <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-identifier" id="ref-for-dfn-identifier②">identifier</a> as arguments.</p>
     <li data-md="">
      <p>A <a data-link-type="dfn" href="https://www.w3.org/TR/permissions/#enumdef-permissionname" id="ref-for-enumdef-permissionname④">permission name</a>, if the <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type③⑨">sensor type</a> is not representing <a data-link-type="dfn" href="#sensor-fusion" id="ref-for-sensor-fusion⑧">sensor fusion</a> (otherwise, <a data-link-type="dfn" href="https://www.w3.org/TR/permissions/#enumdef-permissionname" id="ref-for-enumdef-permissionname⑤">permission names</a> associated with the fusion source <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type④⓪">sensor types</a> must be used).</p>
    </ul>
@@ -4175,14 +4176,14 @@ for their editorial input.</p>
    <ul>
     <li><a href="#ref-for-extension-sensor-interface">6.1. Sensor Type</a>
     <li><a href="#ref-for-extension-sensor-interface①">6.2. Sensor</a> <a href="#ref-for-extension-sensor-interface②">(2)</a>
-    <li><a href="#ref-for-extension-sensor-interface③">9.6. Definition Requirements</a> <a href="#ref-for-extension-sensor-interface④">(2)</a> <a href="#ref-for-extension-sensor-interface⑤">(3)</a>
+    <li><a href="#ref-for-extension-sensor-interface③">9.6. Definition Requirements</a> <a href="#ref-for-extension-sensor-interface④">(2)</a> <a href="#ref-for-extension-sensor-interface⑤">(3)</a> <a href="#ref-for-extension-sensor-interface⑥">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="supported-sensor-options">
    <b><a href="#supported-sensor-options">#supported-sensor-options</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-supported-sensor-options">8.1. Initialize a sensor object</a>
-    <li><a href="#ref-for-supported-sensor-options①">9.6. Definition Requirements</a>
+    <li><a href="#ref-for-supported-sensor-options①">9.6. Definition Requirements</a> <a href="#ref-for-supported-sensor-options②">(2)</a>
    </ul>
   </aside>
 <script>/* script-dfn-panel */
