@@ -577,8 +577,8 @@ From the implementation perspective [=platform sensor=] can be treated as a soft
 corresponding [=device sensor=]. It is possible to have multiple [=platform sensors=] simultaneously
 interacting with the same [=device sensor=] if the underlying platform suppports it.
 
-In simple case a [=platform sensor=] corresponds to a single [=device sensor=],
-but if the provided [=sensor readings=] are product of [=sensor fusion=] performed
+In simple cases, a [=platform sensor=] corresponds to a single [=device sensor=],
+but if the provided [=sensor readings=] are a product of [=sensor fusion=] performed
 in software, the [=platform sensor=] corresponds to a set of [=device sensors=]
 involved in the [=sensor fusion=] process.
 
@@ -1697,7 +1697,7 @@ for instance, "gyroscope" or "accelerometer". [=sensor fusion|Fusion sensors=] m
 [=request permission to use|request permission to access=] each of the sensors that are
 used as a source of fusion.
 
-Even though, it might be difficult to reconstruct [=low-level=] [=sensor readings=] from
+Even though it might be difficult to reconstruct [=low-level=] [=sensor readings=] from
 fused data, some of the original information might be inferred. For example, it is easy to
 deduce user's orientation in space if absolute or geomagnetic orientation sensors are used,
 therefore, these sensors must [=request permission to use|request permission to use=]
@@ -1767,7 +1767,7 @@ that are required by the absolute orientation sensor.
 
 <h3 id="example-webidl">Example WebIDL</h3>
 
-Here's example WebIDL for a possible extension of this specification
+Here's an example WebIDL for a possible extension of this specification
 for proximity [=device sensor|sensors=].
 
 <pre class=example>
