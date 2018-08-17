@@ -6,7 +6,7 @@ Status: ED
 Group: dap
 ED: https://w3c.github.io/sensors/webdriver-extension
 Editor: Wanming Lin 91067, Intel Corporation, https://intel.com/
-Abstract: This document defines <a>extension commands</a> to the [[WebDriver]] specification for the purposes of testing a user agent’s implementation of Generic Sensor API [[GENERIC-SENSOR]] and its concrete Sensor APIs.
+Abstract: This document defines <a>extension commands</a> to the [[WebDriver|WebDriver specification]] for the purposes of testing a user agent’s implementation of [[GENERIC-SENSOR|Generic Sensor API]] and its concrete Sensor APIs.
 Version History: https://github.com/w3c/sensors/commits/gh-pages/index.bs
 !Bug Reports: <a href="https://www.github.com/w3c/sensors/issues/new">via the w3c/sensors repository on GitHub</a>
 Indent: 2
@@ -110,7 +110,7 @@ The UA MAY choose to expose [=mock sensor=] interface only when a runtime or com
 <pre class='idl'>
   dictionary MockSensorConfiguration {
     required MockSensorType mockSensorType;
-    boolean sensorShouldConnected = true;
+    boolean connected = true;
     double? maxSamplingFrequency;
     double? minSamplingFrequency;
   };
@@ -121,7 +121,7 @@ The {{MockSensorConfiguration}} dictionary is used to [[#create-mock-sensor-comm
 : {{MockSensorConfiguration/mockSensorType}} member
 :: A {{MockSensorType}} that is used to set <a>mock sensor type</a>.
 
-: {{MockSensorConfiguration/sensorShouldConnected}} member
+: {{MockSensorConfiguration/connected}} member
 :: A boolean. When set to false the user agent should intecept the result of invoking <a>connect to sensor</a>
    with associated <a>Sensor</a> instance as argument to false, otherwise true.
 
@@ -376,23 +376,23 @@ Extensions {#webdriver-extensions}
   </tbody>
 </table>
 
-The <dfn>Create mock sensor</dfn> <a>extension command</a> simulates user
+The <dfn>create mock sensor</dfn> <a>extension command</a> simulates user
 creation of a <a>mock sensor</a>.
 
 The <a>remote end steps</a> are:
 1. Let |configuration| be the |configuration| argument, <a>converted to an IDL value</a>
    of type {{MockSensorConfiguration}}. If this throws an exception, return a
    <a>WebDriver error</a> with <a>WebDriver error code</a> <a>invalid argument</a>.
-2. Let |type| be the |configuration|.{{MockSensorConfiguration/mockSensorType}}, if <a>current browsing context</a>
-   already exists this |type| of [=mock sensor=], return a <a>WebDriver error</a> with <a>WebDriver error code</a>
+2. Let |type| be the |configuration|.{{MockSensorConfiguration/mockSensorType}}, if the <a>current browsing context</a>
+   already has this |type| of [=mock sensor=], return a <a>WebDriver error</a> with <a>WebDriver error code</a>
    [=mock sensor already created=].
 3. Run these sub-steps [=in parallel=] to create a [=mock sensor=] in <a>current browsing context</a>:
   1. Set the [=mock sensor type|mock sensor's type=] to |type|.
-  2. Let |connected| be the |configuration|.{{MockSensorConfiguration/sensorShouldConnected}},
+  2. Let |connected| be the |configuration|.{{MockSensorConfiguration/connected}},
      force the result of invoking <a>connect to sensor</a> with associated <a>Sensor</a> instance as argument to |connected|.
-  3. If |configuration|.{{MockSensorConfiguration/maxSamplingFrequency}} is [=present=], then
+  3. If |configuration|.{{MockSensorConfiguration/maxSamplingFrequency}} is [=present=], then:
     1. Set the [=mock sensor=]'s associated maximum supported sampling frequency to |configuration|.{{MockSensorConfiguration/maxSamplingFrequency}}.
-  4. If |configuration|.{{MockSensorConfiguration/minSamplingFrequency}} is [=present=], then
+  4. If |configuration|.{{MockSensorConfiguration/minSamplingFrequency}} is [=present=], then:
     1. Set the [=mock sensor=]'s minimum supported sampling frequency to |configuration|.{{MockSensorConfiguration/minSamplingFrequency}}.
 4. Return <a>success</a> with data `null`.
 
@@ -406,6 +406,9 @@ The <a>remote end steps</a> are:
     "minSamplingFrequency": 5
   }
   </pre>
+  Be aware that only one <a>mock sensor</a> of a given <a>mock sensor type</a> can be created in <a>current browsing context</a>,
+  otherwise a <a>WebDriver error</a> with <a>WebDriver error code</a> [=mock sensor already created=] will be thrown.
+  
 </div>
 
 ### Get mock sensor ### {#get-mock-sensor-command}
@@ -423,16 +426,16 @@ The <a>remote end steps</a> are:
   </tbody>
 </table>
 
-The <dfn>Get mock sensor</dfn> <a>extension command</a> simulates user
+The <dfn>get mock sensor</dfn> <a>extension command</a> simulates user
 getting information of a given type of <a>mock sensor</a>.
 
 The <a>remote end steps</a> are:
-1. Let |type| be a <a>url variable</a>.
-2. If {{MockSensorType}} [=set/contains|does not contain=] |type|, return a <a>WebDriver error</a> with
-   <a>WebDriver error code</a> <a>invalid argument</a>.
-3. If |type| does not match a [=mock sensor type=] amongst all associated [=mock sensors=] of the
+1. Let |type| be a <a>url variable</a>, <a>converted to an IDL value</a> of type {{MockSensorType}}.
+   If this throws an exception, return a <a>WebDriver error</a> with <a>WebDriver error code</a>
+   <a>invalid argument</a>.
+2. If |type| does not match a [=mock sensor type=] amongst all associated [=mock sensors=] of the
    <a>current browsing context</a>, return a <a>WebDriver error</a> with <a>WebDriver error code</a> [=no such mock sensor=].
-4. Return <a>success</a> with the <a>serialized mock sensor</a> as data.
+3. Return <a>success</a> with the <a>serialized mock sensor</a> as data.
 
 ### Update mock sensor reading ### {#update-mock-sensor-reading-command}
 
@@ -449,22 +452,22 @@ The <a>remote end steps</a> are:
   </tbody>
 </table>
 
-The <dfn>Update mock sensor reading</dfn> <a>extension command</a> simulates user
+The <dfn>update mock sensor reading</dfn> <a>extension command</a> simulates user
 updating of a given type of <a>mock sensor</a>'s [=mock sensor reading|reading=].
 
 The <a>remote end steps</a> are:
-1. Let |type| be a <a>url variable</a>.
-2. If {{MockSensorType}} [=set/contains|does not contain=] |type|, return a <a>WebDriver error</a> with
-   <a>WebDriver error code</a> <a>invalid argument</a>.
-3. If |type| does not match a [=mock sensor type=] amongst all associated [=mock sensors=] of the
+1. Let |type| be a <a>url variable</a>, <a>converted to an IDL value</a> of type {{MockSensorType}}.
+   If this throws an exception, return a <a>WebDriver error</a> with <a>WebDriver error code</a>
+   <a>invalid argument</a>.
+2. If |type| does not match a [=mock sensor type=] amongst all associated [=mock sensors=] of the
    <a>current browsing context</a>, return a <a>WebDriver error</a> with <a>WebDriver error code</a> [=no such mock sensor=].
-4. Let |readingSet| be the |readingSet| argument, <a>converted to an IDL value</a> of the |type|'s
+3. Let |readingSet| be the |readingSet| argument, <a>converted to an IDL value</a> of the |type|'s
    associated {{MockSensorReadingSet}}. If this throws an exception, return a
    <a>WebDriver error</a> with <a>WebDriver error code</a> <a>invalid argument</a>.
-5. If the user agent <a>can expose sensor readings</a> to the <a>current browsing context</a>'s <a>active document</a>, then
+4. If the user agent <a>can expose sensor readings</a> to the <a>current browsing context</a>'s <a>active document</a>, then:
   1. Simulate invoking <a>update latest reading</a> with the |type| of [=mock sensor=] and the |readingSet| as arguments.
   2. Return <a>success</a> with data `null`.
-6. Otherwise, return a <a>WebDriver error</a> with <a>WebDriver error code</a> [=unable to update mock sensor reading=].
+5. Otherwise, return a <a>WebDriver error</a> with <a>WebDriver error code</a> [=unable to update mock sensor reading=].
 
 ### Delete mock sensor ### {#delete-mock-sensor-command}
 
@@ -481,7 +484,7 @@ The <a>remote end steps</a> are:
   </tbody>
 </table>
 
-The <dfn>Delete mock sensor</dfn> <a>extension command</a> simulates user
+The <dfn>delete mock sensor</dfn> <a>extension command</a> simulates user
 deletion of a given type of <a>mock sensor</a>.
 
 The <a>remote end steps</a> are:
