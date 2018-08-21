@@ -95,7 +95,7 @@ Note: It's up to the user agent to expose what kinds of <a>mock sensor reading</
 
 A [=mock sensor=] has an associated <a>latest reading</a> [=ordered map|map=], which holds the latest available [=mock sensor readings=].
 
-A [=mock sensor=] has an associated <a>requested sampling frequency</a> which is initial set to null.
+A [=mock sensor=] has an associated <a>requested sampling frequency</a> which is initially set to null.
 
 A [=mock sensor=] has an associated <a>sampling frequency</a> with supported bounds, the default values of
 supported bounds are freely defined by user agent.
@@ -122,7 +122,7 @@ The {{MockSensorConfiguration}} dictionary is used to [[#create-mock-sensor-comm
 :: A {{MockSensorType}} that is used to set <a>mock sensor type</a>.
 
 : {{MockSensorConfiguration/connected}} member
-:: A boolean. When set to false the user agent should intecept the result of invoking <a>connect to sensor</a>
+:: A boolean. When set to false the user agent must intercept the result of invoking <a>connect to sensor</a>
    with associated <a>Sensor</a> instance as argument to false, otherwise true.
 
 : {{MockSensorConfiguration/maxSamplingFrequency}} member
@@ -177,8 +177,8 @@ Each enumeration value in the {{MockSensorType}} enum identifies a <a>mock senso
 Each <a>mock sensor type</a> has the following <a>mock sensor reading set</a>:
 
 : A <dfn export>Mock Sensor Reading Set</dfn>
-:: {{MockSensorReadingSet}} dictionary represents a set of user specific <a>mock sensor reading</a> used for
-   [[#update-mock-sensor-reading-command|updating mock sensor reading]]. It must contains all members of a
+:: {{MockSensorReadingSet}} dictionary represents a set of user specified <a>mock sensor reading</a> used for
+   [[#update-mock-sensor-reading-command|updating mock sensor reading]]. It must contain all members of a
    <a>mock sensor type</a>'s <a>mock sensor reading</a> but exclude the <a>reading timestamp</a>. Each [=mock sensor type=]
    has a specific {{MockSensorReadingSet}}, which is defined in each section of [[#section-mock-sensor-type|mock senor type]].
    <pre class="idl">
