@@ -91,7 +91,7 @@ A <dfn id="mock-sensor">mock sensor</dfn> simulates the behavior of a <a>platfor
 A [=mock sensor=] reports corresponding <dfn id="mock-sensor-reading">mock <a>sensor reading</a></dfn>, which is a source of
 mocking information about the environment, to the <a>Sensor</a> objects.
 
-Note: It's up to the user agent to expose what kinds of <a>mock sensor reading</a> to the <a>Sensor</a> objects.
+Note: The user agent must provide the <a>mock sensor reading</a> that are initially exposed to the <a>Sensor</a> objects.
 
 A [=mock sensor=] has an associated <a>latest reading</a> [=ordered map|map=], which holds the latest available [=mock sensor readings=].
 

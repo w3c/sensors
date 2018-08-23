@@ -1220,7 +1220,7 @@ Possible extra rowspan handling
   </style>
   <meta content="Bikeshed version 1a927b7d2ff9a70dcdc5dc9f892fd154b7b64097" name="generator">
   <link href="https://w3c.github.io/sensors/webdriver-extension" rel="canonical">
-  <meta content="33097dd0dd3c7c967a77f2d29be524af7a2894cc" name="document-revision">
+  <meta content="5bdd8ddcb2b9360fbac545e1c236334da1875a72" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1467,7 +1467,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebDriver Extension API for Generic Sensor</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2018-08-17">17 August 2018</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2018-08-23">23 August 2018</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1578,9 +1578,9 @@ and their responses to requests are well defined.</p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="mock-sensor">mock sensor</dfn> simulates the behavior of a <a data-link-type="dfn" href="https://w3c.github.io/sensors/#concept-platform-sensor" id="ref-for-concept-platform-sensor">platform sensor</a> in controlled ways.</p>
    <p>A <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor①">mock sensor</a> reports corresponding <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="mock-sensor-reading">mock <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor-reading" id="ref-for-sensor-reading">sensor reading</a></dfn>, which is a source of
 mocking information about the environment, to the <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor" id="ref-for-sensor">Sensor</a> objects.</p>
-   <p class="note" role="note"><span>Note:</span> It’s up to the user agent to expose what kinds of <a data-link-type="dfn" href="#mock-sensor-reading" id="ref-for-mock-sensor-reading">mock sensor reading</a> to the <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor" id="ref-for-sensor①">Sensor</a> objects.</p>
+   <p class="note" role="note"><span>Note:</span> The user agent must provide the <a data-link-type="dfn" href="#mock-sensor-reading" id="ref-for-mock-sensor-reading">mock sensor reading</a> that are initially exposed to the <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor" id="ref-for-sensor①">Sensor</a> objects.</p>
    <p>A <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②">mock sensor</a> has an associated <a data-link-type="dfn" href="https://w3c.github.io/sensors/#latest-reading" id="ref-for-latest-reading">latest reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map">map</a>, which holds the latest available <a data-link-type="dfn" href="#mock-sensor-reading" id="ref-for-mock-sensor-reading①">mock sensor readings</a>.</p>
-   <p>A <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor③">mock sensor</a> has an associated <a data-link-type="dfn" href="https://w3c.github.io/sensors/#requested-sampling-frequency" id="ref-for-requested-sampling-frequency">requested sampling frequency</a> which is initial set to null.</p>
+   <p>A <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor③">mock sensor</a> has an associated <a data-link-type="dfn" href="https://w3c.github.io/sensors/#requested-sampling-frequency" id="ref-for-requested-sampling-frequency">requested sampling frequency</a> which is initially set to null.</p>
    <p>A <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor④">mock sensor</a> has an associated <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sampling-frequency" id="ref-for-sampling-frequency">sampling frequency</a> with supported bounds, the default values of
 supported bounds are freely defined by user agent.</p>
    <div class="note" role="note"> Note: The <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor⑤">mock sensor</a> defined in this specification is not intended be used by non-testing-related web content.
@@ -1600,7 +1600,7 @@ The UA MAY choose to expose <a data-link-type="dfn" href="#mock-sensor" id="ref-
      <p>A <code class="idl"><a data-link-type="idl" href="#enumdef-mocksensortype" id="ref-for-enumdef-mocksensortype①">MockSensorType</a></code> that is used to set <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-type">mock sensor type</a>.</p>
     <dt data-md=""><code class="idl"><a data-link-type="idl" href="#dom-mocksensorconfiguration-connected" id="ref-for-dom-mocksensorconfiguration-connected">connected</a></code> member
     <dd data-md="">
-     <p>A boolean. When set to false the user agent should intecept the result of invoking <a data-link-type="dfn" href="https://w3c.github.io/sensors/#connect-to-sensor" id="ref-for-connect-to-sensor">connect to sensor</a> with associated <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor" id="ref-for-sensor②">Sensor</a> instance as argument to false, otherwise true.</p>
+     <p>A boolean. When set to false the user agent must intercept the result of invoking <a data-link-type="dfn" href="https://w3c.github.io/sensors/#connect-to-sensor" id="ref-for-connect-to-sensor">connect to sensor</a> with associated <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor" id="ref-for-sensor②">Sensor</a> instance as argument to false, otherwise true.</p>
     <dt data-md=""><code class="idl"><a data-link-type="idl" href="#dom-mocksensorconfiguration-maxsamplingfrequency" id="ref-for-dom-mocksensorconfiguration-maxsamplingfrequency">maxSamplingFrequency</a></code> member
     <dd data-md="">
      <p>A double representing frequency in Hz that is used to set maximum supported <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sampling-frequency" id="ref-for-sampling-frequency①">sampling frequency</a> for the associated <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor⑦">mock sensor</a>.</p>
@@ -1650,7 +1650,7 @@ Each <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-ty
    <dl>
     <dt data-md="">A <dfn class="dfn-paneled" data-dfn-type="dfn" data-export="" id="mock-sensor-reading-set">Mock Sensor Reading Set</dfn>
     <dd data-md="">
-     <p><code class="idl"><a data-link-type="idl" href="#dictdef-mocksensorreadingset" id="ref-for-dictdef-mocksensorreadingset">MockSensorReadingSet</a></code> dictionary represents a set of user specific <a data-link-type="dfn" href="#mock-sensor-reading" id="ref-for-mock-sensor-reading②">mock sensor reading</a> used for <a href="#update-mock-sensor-reading-command">updating mock sensor reading</a>. It must contains all members of a <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-type③">mock sensor type</a>’s <a data-link-type="dfn" href="#mock-sensor-reading" id="ref-for-mock-sensor-reading③">mock sensor reading</a> but exclude the <a data-link-type="dfn" href="https://w3c.github.io/sensors/#reading-timestamp" id="ref-for-reading-timestamp">reading timestamp</a>. Each <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-type④">mock sensor type</a> has a specific <code class="idl"><a data-link-type="idl" href="#dictdef-mocksensorreadingset" id="ref-for-dictdef-mocksensorreadingset①">MockSensorReadingSet</a></code>, which is defined in each section of <a href="#section-mock-sensor-type">mock senor type</a>.</p>
+     <p><code class="idl"><a data-link-type="idl" href="#dictdef-mocksensorreadingset" id="ref-for-dictdef-mocksensorreadingset">MockSensorReadingSet</a></code> dictionary represents a set of user specified <a data-link-type="dfn" href="#mock-sensor-reading" id="ref-for-mock-sensor-reading②">mock sensor reading</a> used for <a href="#update-mock-sensor-reading-command">updating mock sensor reading</a>. It must contain all members of a <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-type③">mock sensor type</a>’s <a data-link-type="dfn" href="#mock-sensor-reading" id="ref-for-mock-sensor-reading③">mock sensor reading</a> but exclude the <a data-link-type="dfn" href="https://w3c.github.io/sensors/#reading-timestamp" id="ref-for-reading-timestamp">reading timestamp</a>. Each <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-type④">mock sensor type</a> has a specific <code class="idl"><a data-link-type="idl" href="#dictdef-mocksensorreadingset" id="ref-for-dictdef-mocksensorreadingset①">MockSensorReadingSet</a></code>, which is defined in each section of <a href="#section-mock-sensor-type">mock senor type</a>.</p>
 <pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-mocksensorreadingset"><code>MockSensorReadingSet</code></dfn> {
 };
 </pre>
