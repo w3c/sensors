@@ -1220,7 +1220,7 @@ Possible extra rowspan handling
   </style>
   <meta content="Bikeshed version 1a927b7d2ff9a70dcdc5dc9f892fd154b7b64097" name="generator">
   <link href="https://w3c.github.io/sensors/webdriver-extension" rel="canonical">
-  <meta content="5bdd8ddcb2b9360fbac545e1c236334da1875a72" name="document-revision">
+  <meta content="892231244d7d4f41292dcc7901876fec84ea2990" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1467,7 +1467,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebDriver Extension API for Generic Sensor</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2018-08-23">23 August 2018</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2018-08-24">24 August 2018</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1646,12 +1646,12 @@ using the <var>JSON Key</var> and the associated field’s value from the availa
 };
 </pre>
    <p>Each enumeration value in the <code class="idl"><a data-link-type="idl" href="#enumdef-mocksensortype" id="ref-for-enumdef-mocksensortype②">MockSensorType</a></code> enum identifies a <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-type①">mock sensor type</a>.
-Each <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-type②">mock sensor type</a> has the following <a data-link-type="dfn" href="#mock-sensor-reading-set" id="ref-for-mock-sensor-reading-set">mock sensor reading set</a>:</p>
+Each <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-type②">mock sensor type</a> has the following <a data-link-type="dfn" href="#mock-sensor-reading-set-params" id="ref-for-mock-sensor-reading-set-params">mock sensor reading set params</a>:</p>
    <dl>
-    <dt data-md="">A <dfn class="dfn-paneled" data-dfn-type="dfn" data-export="" id="mock-sensor-reading-set">Mock Sensor Reading Set</dfn>
+    <dt data-md="">A <dfn class="dfn-paneled" data-dfn-type="dfn" data-export="" id="mock-sensor-reading-set-params">Mock Sensor Reading Set Params</dfn>
     <dd data-md="">
-     <p><code class="idl"><a data-link-type="idl" href="#dictdef-mocksensorreadingset" id="ref-for-dictdef-mocksensorreadingset">MockSensorReadingSet</a></code> dictionary represents a set of user specified <a data-link-type="dfn" href="#mock-sensor-reading" id="ref-for-mock-sensor-reading②">mock sensor reading</a> used for <a href="#update-mock-sensor-reading-command">updating mock sensor reading</a>. It must contain all members of a <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-type③">mock sensor type</a>’s <a data-link-type="dfn" href="#mock-sensor-reading" id="ref-for-mock-sensor-reading③">mock sensor reading</a> but exclude the <a data-link-type="dfn" href="https://w3c.github.io/sensors/#reading-timestamp" id="ref-for-reading-timestamp">reading timestamp</a>. Each <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-type④">mock sensor type</a> has a specific <code class="idl"><a data-link-type="idl" href="#dictdef-mocksensorreadingset" id="ref-for-dictdef-mocksensorreadingset①">MockSensorReadingSet</a></code>, which is defined in each section of <a href="#section-mock-sensor-type">mock senor type</a>.</p>
-<pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-mocksensorreadingset"><code>MockSensorReadingSet</code></dfn> {
+     <p><code class="idl"><a data-link-type="idl" href="#dictdef-mocksensorreadingsetparams" id="ref-for-dictdef-mocksensorreadingsetparams">MockSensorReadingSetParams</a></code> dictionary represents user specified <a data-link-type="dfn" href="#mock-sensor-reading" id="ref-for-mock-sensor-reading②">mock sensor reading</a> used for <a href="#update-mock-sensor-reading-command">updating mock sensor reading</a>. It must contain all members of a <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-type③">mock sensor type</a>’s <a data-link-type="dfn" href="#mock-sensor-reading" id="ref-for-mock-sensor-reading③">mock sensor reading</a> but exclude the <a data-link-type="dfn" href="https://w3c.github.io/sensors/#reading-timestamp" id="ref-for-reading-timestamp">reading timestamp</a>. Each <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-type④">mock sensor type</a> has a specific <code class="idl"><a data-link-type="idl" href="#dictdef-mocksensorreadingsetparams" id="ref-for-dictdef-mocksensorreadingsetparams①">MockSensorReadingSetParams</a></code>, which is defined in each section of <a href="#section-mock-sensor-type">mock senor type</a>.</p>
+<pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-mocksensorreadingsetparams"><code>MockSensorReadingSetParams</code></dfn> {
 };
 </pre>
    </dl>
@@ -1659,10 +1659,10 @@ Each <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-ty
     The <dfn class="dfn-paneled idl-code" data-dfn-for="MockSensorType" data-dfn-type="enum-value" data-export="" id="dom-mocksensortype-ambient-light"><code>"ambient-light"</code></dfn> type is the mock sensor type
 associated with the usage of the <a data-link-type="dfn" href="https://w3c.github.io/ambient-light#ambient-light-sensor-interface" id="ref-for-ambient-light-sensor-interface">AmbientLightSensor</a> interface. 
    <dl>
-    <dt><a data-link-type="dfn" href="#mock-sensor-reading-set" id="ref-for-mock-sensor-reading-set①">Mock Sensor Reading Set</a>
+    <dt><a data-link-type="dfn" href="#mock-sensor-reading-set-params" id="ref-for-mock-sensor-reading-set-params①">Mock Sensor Reading Set Params</a>
     <dd>
-<pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-ambientlightreadingset"><code>AmbientLightReadingSet</code><a class="self-link" href="#dictdef-ambientlightreadingset"></a></dfn> {
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑤"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="AmbientLightReadingSet" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-ambientlightreadingset-illuminance"><code>illuminance</code><a class="self-link" href="#dom-ambientlightreadingset-illuminance"></a></dfn>;
+<pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-ambientlightreadingsetparams"><code>AmbientLightReadingSetParams</code><a class="self-link" href="#dictdef-ambientlightreadingsetparams"></a></dfn> {
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑤"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="AmbientLightReadingSetParams" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-ambientlightreadingsetparams-illuminance"><code>illuminance</code><a class="self-link" href="#dom-ambientlightreadingsetparams-illuminance"></a></dfn>;
 };
 </pre>
    </dl>
@@ -1670,12 +1670,12 @@ associated with the usage of the <a data-link-type="dfn" href="https://w3c.githu
     The <dfn class="dfn-paneled idl-code" data-dfn-for="MockSensorType" data-dfn-type="enum-value" data-export="" id="dom-mocksensortype-accelerometer"><code>"accelerometer"</code></dfn> type is the mock sensor type
 associated with the usage of the <a data-link-type="dfn" href="https://w3c.github.io/accelerometer#accelerometer-interface" id="ref-for-accelerometer-interface">Accelerometer</a> interface. 
    <dl>
-    <dt><a data-link-type="dfn" href="#mock-sensor-reading-set" id="ref-for-mock-sensor-reading-set②">Mock Sensor Reading Set</a>
+    <dt><a data-link-type="dfn" href="#mock-sensor-reading-set-params" id="ref-for-mock-sensor-reading-set-params②">Mock Sensor Reading Set Params</a>
     <dd>
-<pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-accelerometerreadingset"><code>AccelerometerReadingSet</code></dfn> {
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑥"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="AccelerometerReadingSet" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-accelerometerreadingset-x"><code>x</code><a class="self-link" href="#dom-accelerometerreadingset-x"></a></dfn>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑦"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="AccelerometerReadingSet" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-accelerometerreadingset-y"><code>y</code><a class="self-link" href="#dom-accelerometerreadingset-y"></a></dfn>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑧"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="AccelerometerReadingSet" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-accelerometerreadingset-z"><code>z</code><a class="self-link" href="#dom-accelerometerreadingset-z"></a></dfn>;
+<pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-accelerometerreadingsetparams"><code>AccelerometerReadingSetParams</code></dfn> {
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑥"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="AccelerometerReadingSetParams" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-accelerometerreadingsetparams-x"><code>x</code><a class="self-link" href="#dom-accelerometerreadingsetparams-x"></a></dfn>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑦"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="AccelerometerReadingSetParams" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-accelerometerreadingsetparams-y"><code>y</code><a class="self-link" href="#dom-accelerometerreadingsetparams-y"></a></dfn>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑧"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="AccelerometerReadingSetParams" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-accelerometerreadingsetparams-z"><code>z</code><a class="self-link" href="#dom-accelerometerreadingsetparams-z"></a></dfn>;
 };
 </pre>
    </dl>
@@ -1683,9 +1683,9 @@ associated with the usage of the <a data-link-type="dfn" href="https://w3c.githu
     The <dfn class="dfn-paneled idl-code" data-dfn-for="MockSensorType" data-dfn-type="enum-value" data-export="" id="dom-mocksensortype-linear-acceleration"><code>"linear-acceleration"</code></dfn> type is the mock sensor type
 associated with the usage of the <a data-link-type="dfn" href="https://w3c.github.io/accelerometer#linearaccelerationsensor-interface" id="ref-for-linearaccelerationsensor-interface">LinearAccelerationSensor</a> interface. 
    <dl>
-    <dt><a data-link-type="dfn" href="#mock-sensor-reading-set" id="ref-for-mock-sensor-reading-set③">Mock Sensor Reading Set</a>
+    <dt><a data-link-type="dfn" href="#mock-sensor-reading-set-params" id="ref-for-mock-sensor-reading-set-params③">Mock Sensor Reading Set Params</a>
     <dd>
-<pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-linearaccelerationreadingset"><code>LinearAccelerationReadingSet</code><a class="self-link" href="#dictdef-linearaccelerationreadingset"></a></dfn> : <a class="n" data-link-type="idl-name" href="#dictdef-accelerometerreadingset" id="ref-for-dictdef-accelerometerreadingset">AccelerometerReadingSet</a> {
+<pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-linearaccelerationreadingsetparams"><code>LinearAccelerationReadingSetParams</code><a class="self-link" href="#dictdef-linearaccelerationreadingsetparams"></a></dfn> : <a class="n" data-link-type="idl-name" href="#dictdef-accelerometerreadingsetparams" id="ref-for-dictdef-accelerometerreadingsetparams">AccelerometerReadingSetParams</a> {
 };
 </pre>
    </dl>
@@ -1693,9 +1693,9 @@ associated with the usage of the <a data-link-type="dfn" href="https://w3c.githu
     The <dfn class="dfn-paneled idl-code" data-dfn-for="MockSensorType" data-dfn-type="enum-value" data-export="" id="dom-mocksensortype-gravity"><code>"gravity"</code></dfn> type is the mock sensor type
 associated with the usage of the <a data-link-type="dfn" href="https://w3c.github.io/accelerometer#gravitysensor-interface" id="ref-for-gravitysensor-interface">GravitySensor</a> interface. 
    <dl>
-    <dt><a data-link-type="dfn" href="#mock-sensor-reading-set" id="ref-for-mock-sensor-reading-set④">Mock Sensor Reading Set</a>
+    <dt><a data-link-type="dfn" href="#mock-sensor-reading-set-params" id="ref-for-mock-sensor-reading-set-params④">Mock Sensor Reading Set Params</a>
     <dd>
-<pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-gravityreadingset"><code>GravityReadingSet</code><a class="self-link" href="#dictdef-gravityreadingset"></a></dfn> : <a class="n" data-link-type="idl-name" href="#dictdef-accelerometerreadingset" id="ref-for-dictdef-accelerometerreadingset①">AccelerometerReadingSet</a> {
+<pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-gravityreadingsetparams"><code>GravityReadingSetParams</code><a class="self-link" href="#dictdef-gravityreadingsetparams"></a></dfn> : <a class="n" data-link-type="idl-name" href="#dictdef-accelerometerreadingsetparams" id="ref-for-dictdef-accelerometerreadingsetparams①">AccelerometerReadingSetParams</a> {
 };
 </pre>
    </dl>
@@ -1703,12 +1703,12 @@ associated with the usage of the <a data-link-type="dfn" href="https://w3c.githu
     The <dfn class="dfn-paneled idl-code" data-dfn-for="MockSensorType" data-dfn-type="enum-value" data-export="" id="dom-mocksensortype-gyroscope"><code>"gyroscope"</code></dfn> type is the mock sensor type
 associated with the usage of the <a data-link-type="dfn" href="https://w3c.github.io/gyroscope#gyroscope-interface" id="ref-for-gyroscope-interface">Gyroscope</a> interface. 
    <dl>
-    <dt><a data-link-type="dfn" href="#mock-sensor-reading-set" id="ref-for-mock-sensor-reading-set⑤">Mock Sensor Reading Set</a>
+    <dt><a data-link-type="dfn" href="#mock-sensor-reading-set-params" id="ref-for-mock-sensor-reading-set-params⑤">Mock Sensor Reading Set Params</a>
     <dd>
-<pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-gyroscopereadingset"><code>GyroscopeReadingSet</code><a class="self-link" href="#dictdef-gyroscopereadingset"></a></dfn> {
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑨"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="GyroscopeReadingSet" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-gyroscopereadingset-x"><code>x</code><a class="self-link" href="#dom-gyroscopereadingset-x"></a></dfn>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⓪"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="GyroscopeReadingSet" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-gyroscopereadingset-y"><code>y</code><a class="self-link" href="#dom-gyroscopereadingset-y"></a></dfn>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①①"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="GyroscopeReadingSet" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-gyroscopereadingset-z"><code>z</code><a class="self-link" href="#dom-gyroscopereadingset-z"></a></dfn>;
+<pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-gyroscopereadingsetparams"><code>GyroscopeReadingSetParams</code><a class="self-link" href="#dictdef-gyroscopereadingsetparams"></a></dfn> {
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑨"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="GyroscopeReadingSetParams" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-gyroscopereadingsetparams-x"><code>x</code><a class="self-link" href="#dom-gyroscopereadingsetparams-x"></a></dfn>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⓪"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="GyroscopeReadingSetParams" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-gyroscopereadingsetparams-y"><code>y</code><a class="self-link" href="#dom-gyroscopereadingsetparams-y"></a></dfn>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①①"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="GyroscopeReadingSetParams" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-gyroscopereadingsetparams-z"><code>z</code><a class="self-link" href="#dom-gyroscopereadingsetparams-z"></a></dfn>;
 };
 </pre>
    </dl>
@@ -1716,12 +1716,12 @@ associated with the usage of the <a data-link-type="dfn" href="https://w3c.githu
     The <dfn class="dfn-paneled idl-code" data-dfn-for="MockSensorType" data-dfn-type="enum-value" data-export="" id="dom-mocksensortype-magnetometer"><code>"magnetometer"</code></dfn> type is the mock sensor type
 associated with the usage of the <a data-link-type="dfn" href="https://w3c.github.io/magnetometer#magnetometer-interface" id="ref-for-magnetometer-interface">Magnetometer</a> interface. 
    <dl>
-    <dt><a data-link-type="dfn" href="#mock-sensor-reading-set" id="ref-for-mock-sensor-reading-set⑥">Mock Sensor Reading Set</a>
+    <dt><a data-link-type="dfn" href="#mock-sensor-reading-set-params" id="ref-for-mock-sensor-reading-set-params⑥">Mock Sensor Reading Set Params</a>
     <dd>
-<pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-magnetometerreadingset"><code>MagnetometerReadingSet</code><a class="self-link" href="#dictdef-magnetometerreadingset"></a></dfn> {
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①②"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="MagnetometerReadingSet" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-magnetometerreadingset-x"><code>x</code><a class="self-link" href="#dom-magnetometerreadingset-x"></a></dfn>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①③"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="MagnetometerReadingSet" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-magnetometerreadingset-y"><code>y</code><a class="self-link" href="#dom-magnetometerreadingset-y"></a></dfn>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①④"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="MagnetometerReadingSet" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-magnetometerreadingset-z"><code>z</code><a class="self-link" href="#dom-magnetometerreadingset-z"></a></dfn>;
+<pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-magnetometerreadingsetparams"><code>MagnetometerReadingSetParams</code><a class="self-link" href="#dictdef-magnetometerreadingsetparams"></a></dfn> {
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①②"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="MagnetometerReadingSetParams" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-magnetometerreadingsetparams-x"><code>x</code><a class="self-link" href="#dom-magnetometerreadingsetparams-x"></a></dfn>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①③"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="MagnetometerReadingSetParams" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-magnetometerreadingsetparams-y"><code>y</code><a class="self-link" href="#dom-magnetometerreadingsetparams-y"></a></dfn>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①④"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="MagnetometerReadingSetParams" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-magnetometerreadingsetparams-z"><code>z</code><a class="self-link" href="#dom-magnetometerreadingsetparams-z"></a></dfn>;
 };
 </pre>
    </dl>
@@ -1729,15 +1729,15 @@ associated with the usage of the <a data-link-type="dfn" href="https://w3c.githu
     The <dfn class="dfn-paneled idl-code" data-dfn-for="MockSensorType" data-dfn-type="enum-value" data-export="" id="dom-mocksensortype-uncalibrated-magnetometer"><code>"uncalibrated-magnetometer"</code></dfn> type is the mock sensor type
 associated with the usage of the <a data-link-type="dfn" href="https://w3c.github.io/magnetometer#uncalibrated-magnetometer-interface" id="ref-for-uncalibrated-magnetometer-interface">UncalibratedMagnetometer</a> interface. 
    <dl>
-    <dt><a data-link-type="dfn" href="#mock-sensor-reading-set" id="ref-for-mock-sensor-reading-set⑦">Mock Sensor Reading Set</a>
+    <dt><a data-link-type="dfn" href="#mock-sensor-reading-set-params" id="ref-for-mock-sensor-reading-set-params⑦">Mock Sensor Reading Set Params</a>
     <dd>
-<pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-uncalibratedmagnetometerreadingset"><code>UncalibratedMagnetometerReadingSet</code><a class="self-link" href="#dictdef-uncalibratedmagnetometerreadingset"></a></dfn> {
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑤"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="UncalibratedMagnetometerReadingSet" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-uncalibratedmagnetometerreadingset-x"><code>x</code><a class="self-link" href="#dom-uncalibratedmagnetometerreadingset-x"></a></dfn>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑥"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="UncalibratedMagnetometerReadingSet" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-uncalibratedmagnetometerreadingset-y"><code>y</code><a class="self-link" href="#dom-uncalibratedmagnetometerreadingset-y"></a></dfn>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑦"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="UncalibratedMagnetometerReadingSet" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-uncalibratedmagnetometerreadingset-z"><code>z</code><a class="self-link" href="#dom-uncalibratedmagnetometerreadingset-z"></a></dfn>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑧"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="UncalibratedMagnetometerReadingSet" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-uncalibratedmagnetometerreadingset-xbias"><code>xBias</code><a class="self-link" href="#dom-uncalibratedmagnetometerreadingset-xbias"></a></dfn>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑨"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="UncalibratedMagnetometerReadingSet" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-uncalibratedmagnetometerreadingset-ybias"><code>yBias</code><a class="self-link" href="#dom-uncalibratedmagnetometerreadingset-ybias"></a></dfn>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⓪"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="UncalibratedMagnetometerReadingSet" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-uncalibratedmagnetometerreadingset-zbias"><code>zBias</code><a class="self-link" href="#dom-uncalibratedmagnetometerreadingset-zbias"></a></dfn>;
+<pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-uncalibratedmagnetometerreadingsetparams"><code>UncalibratedMagnetometerReadingSetParams</code><a class="self-link" href="#dictdef-uncalibratedmagnetometerreadingsetparams"></a></dfn> {
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑤"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="UncalibratedMagnetometerReadingSetParams" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-uncalibratedmagnetometerreadingsetparams-x"><code>x</code><a class="self-link" href="#dom-uncalibratedmagnetometerreadingsetparams-x"></a></dfn>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑥"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="UncalibratedMagnetometerReadingSetParams" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-uncalibratedmagnetometerreadingsetparams-y"><code>y</code><a class="self-link" href="#dom-uncalibratedmagnetometerreadingsetparams-y"></a></dfn>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑦"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="UncalibratedMagnetometerReadingSetParams" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-uncalibratedmagnetometerreadingsetparams-z"><code>z</code><a class="self-link" href="#dom-uncalibratedmagnetometerreadingsetparams-z"></a></dfn>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑧"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="UncalibratedMagnetometerReadingSetParams" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-uncalibratedmagnetometerreadingsetparams-xbias"><code>xBias</code><a class="self-link" href="#dom-uncalibratedmagnetometerreadingsetparams-xbias"></a></dfn>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑨"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="UncalibratedMagnetometerReadingSetParams" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-uncalibratedmagnetometerreadingsetparams-ybias"><code>yBias</code><a class="self-link" href="#dom-uncalibratedmagnetometerreadingsetparams-ybias"></a></dfn>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⓪"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="UncalibratedMagnetometerReadingSetParams" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-uncalibratedmagnetometerreadingsetparams-zbias"><code>zBias</code><a class="self-link" href="#dom-uncalibratedmagnetometerreadingsetparams-zbias"></a></dfn>;
 };
 </pre>
    </dl>
@@ -1745,10 +1745,10 @@ associated with the usage of the <a data-link-type="dfn" href="https://w3c.githu
     The <dfn class="dfn-paneled idl-code" data-dfn-for="MockSensorType" data-dfn-type="enum-value" data-export="" id="dom-mocksensortype-absolute-orientation"><code>"absolute-orientation"</code></dfn> type is the mock sensor type
 associated with the usage of the <a data-link-type="dfn" href="https://w3c.github.io/orientation-sensor#absoluteorientationsensor-interface" id="ref-for-absoluteorientationsensor-interface">AbsoluteOrientationSensor</a> interface. 
    <dl>
-    <dt><a data-link-type="dfn" href="#mock-sensor-reading-set" id="ref-for-mock-sensor-reading-set⑧">Mock Sensor Reading Set</a>
+    <dt><a data-link-type="dfn" href="#mock-sensor-reading-set-params" id="ref-for-mock-sensor-reading-set-params⑧">Mock Sensor Reading Set Params</a>
     <dd>
-<pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-absoluteorientationreadingset"><code>AbsoluteOrientationReadingSet</code></dfn> {
-  <span class="kt">required</span> <span class="kt">FrozenArray</span>&lt;<a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②①"><span class="kt">double</span></a>>? <dfn class="nv idl-code" data-dfn-for="AbsoluteOrientationReadingSet" data-dfn-type="dict-member" data-export="" data-type="FrozenArray<double>? " id="dom-absoluteorientationreadingset-quaternion"><code>quaternion</code><a class="self-link" href="#dom-absoluteorientationreadingset-quaternion"></a></dfn>;
+<pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-absoluteorientationreadingsetparams"><code>AbsoluteOrientationReadingSetParams</code></dfn> {
+  <span class="kt">required</span> <span class="kt">FrozenArray</span>&lt;<a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②①"><span class="kt">double</span></a>>? <dfn class="nv idl-code" data-dfn-for="AbsoluteOrientationReadingSetParams" data-dfn-type="dict-member" data-export="" data-type="FrozenArray<double>? " id="dom-absoluteorientationreadingsetparams-quaternion"><code>quaternion</code><a class="self-link" href="#dom-absoluteorientationreadingsetparams-quaternion"></a></dfn>;
 };
 </pre>
    </dl>
@@ -1756,9 +1756,9 @@ associated with the usage of the <a data-link-type="dfn" href="https://w3c.githu
     The <dfn class="dfn-paneled idl-code" data-dfn-for="MockSensorType" data-dfn-type="enum-value" data-export="" id="dom-mocksensortype-relative-orientation"><code>"relative-orientation"</code></dfn> type is the mock sensor type
 associated with the usage of the <a data-link-type="dfn" href="https://w3c.github.io/orientation-sensor#relativeorientationsensor-interface" id="ref-for-relativeorientationsensor-interface">RelativeOrientationSensor</a> interface. 
    <dl>
-    <dt><a data-link-type="dfn" href="#mock-sensor-reading-set" id="ref-for-mock-sensor-reading-set⑨">Mock Sensor Reading Set</a>
+    <dt><a data-link-type="dfn" href="#mock-sensor-reading-set-params" id="ref-for-mock-sensor-reading-set-params⑨">Mock Sensor Reading Set Params</a>
     <dd>
-<pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-relativeorientationreadingset"><code>RelativeOrientationReadingSet</code><a class="self-link" href="#dictdef-relativeorientationreadingset"></a></dfn> : <a class="n" data-link-type="idl-name" href="#dictdef-absoluteorientationreadingset" id="ref-for-dictdef-absoluteorientationreadingset">AbsoluteOrientationReadingSet</a> {
+<pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-relativeorientationreadingsetparams"><code>RelativeOrientationReadingSetParams</code><a class="self-link" href="#dictdef-relativeorientationreadingsetparams"></a></dfn> : <a class="n" data-link-type="idl-name" href="#dictdef-absoluteorientationreadingsetparams" id="ref-for-dictdef-absoluteorientationreadingsetparams">AbsoluteOrientationReadingSetParams</a> {
 };
 </pre>
    </dl>
@@ -1766,16 +1766,16 @@ associated with the usage of the <a data-link-type="dfn" href="https://w3c.githu
     The <dfn class="dfn-paneled idl-code" data-dfn-for="MockSensorType" data-dfn-type="enum-value" data-export="" id="dom-mocksensortype-geolocation"><code>"geolocation"</code></dfn> type is the mock sensor type
 associated with the usage of the <a data-link-type="dfn" href="https://wicg.github.io/geolocation-sensor/#geolocationsensor-interface" id="ref-for-geolocationsensor-interface">GeolocationSensor</a> interface. 
    <dl>
-    <dt><a data-link-type="dfn" href="#mock-sensor-reading-set" id="ref-for-mock-sensor-reading-set①⓪">Mock Sensor Reading Set</a>
+    <dt><a data-link-type="dfn" href="#mock-sensor-reading-set-params" id="ref-for-mock-sensor-reading-set-params①⓪">Mock Sensor Reading Set Params</a>
     <dd>
-<pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-geolocationreadingset"><code>GeolocationReadingSet</code><a class="self-link" href="#dictdef-geolocationreadingset"></a></dfn> {
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②②"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="GeolocationReadingSet" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-geolocationreadingset-latitude"><code>latitude</code><a class="self-link" href="#dom-geolocationreadingset-latitude"></a></dfn>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②③"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="GeolocationReadingSet" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-geolocationreadingset-longitude"><code>longitude</code><a class="self-link" href="#dom-geolocationreadingset-longitude"></a></dfn>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②④"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="GeolocationReadingSet" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-geolocationreadingset-altitude"><code>altitude</code><a class="self-link" href="#dom-geolocationreadingset-altitude"></a></dfn>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⑤"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="GeolocationReadingSet" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-geolocationreadingset-accuracy"><code>accuracy</code><a class="self-link" href="#dom-geolocationreadingset-accuracy"></a></dfn>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⑥"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="GeolocationReadingSet" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-geolocationreadingset-altitudeaccuracy"><code>altitudeAccuracy</code><a class="self-link" href="#dom-geolocationreadingset-altitudeaccuracy"></a></dfn>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⑦"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="GeolocationReadingSet" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-geolocationreadingset-heading"><code>heading</code><a class="self-link" href="#dom-geolocationreadingset-heading"></a></dfn>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⑧"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="GeolocationReadingSet" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-geolocationreadingset-speed"><code>speed</code><a class="self-link" href="#dom-geolocationreadingset-speed"></a></dfn>;
+<pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-geolocationreadingsetparams"><code>GeolocationReadingSetParams</code><a class="self-link" href="#dictdef-geolocationreadingsetparams"></a></dfn> {
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②②"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="GeolocationReadingSetParams" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-geolocationreadingsetparams-latitude"><code>latitude</code><a class="self-link" href="#dom-geolocationreadingsetparams-latitude"></a></dfn>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②③"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="GeolocationReadingSetParams" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-geolocationreadingsetparams-longitude"><code>longitude</code><a class="self-link" href="#dom-geolocationreadingsetparams-longitude"></a></dfn>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②④"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="GeolocationReadingSetParams" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-geolocationreadingsetparams-altitude"><code>altitude</code><a class="self-link" href="#dom-geolocationreadingsetparams-altitude"></a></dfn>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⑤"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="GeolocationReadingSetParams" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-geolocationreadingsetparams-accuracy"><code>accuracy</code><a class="self-link" href="#dom-geolocationreadingsetparams-accuracy"></a></dfn>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⑥"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="GeolocationReadingSetParams" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-geolocationreadingsetparams-altitudeaccuracy"><code>altitudeAccuracy</code><a class="self-link" href="#dom-geolocationreadingsetparams-altitudeaccuracy"></a></dfn>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⑦"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="GeolocationReadingSetParams" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-geolocationreadingsetparams-heading"><code>heading</code><a class="self-link" href="#dom-geolocationreadingsetparams-heading"></a></dfn>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⑧"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="GeolocationReadingSetParams" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-geolocationreadingsetparams-speed"><code>speed</code><a class="self-link" href="#dom-geolocationreadingsetparams-speed"></a></dfn>;
 };
 </pre>
    </dl>
@@ -1783,12 +1783,12 @@ associated with the usage of the <a data-link-type="dfn" href="https://wicg.gith
     The <dfn class="dfn-paneled idl-code" data-dfn-for="MockSensorType" data-dfn-type="enum-value" data-export="" id="dom-mocksensortype-proximity"><code>"proximity"</code></dfn> type is the mock sensor type
 associated with the usage of the <a data-link-type="dfn" href="https://w3c.github.io/proximity#proximity-sensor-interface" id="ref-for-proximity-sensor-interface">ProximitySensor</a> interface. 
    <dl>
-    <dt><a data-link-type="dfn" href="#mock-sensor-reading-set" id="ref-for-mock-sensor-reading-set①①">Mock Sensor Reading Set</a>
+    <dt><a data-link-type="dfn" href="#mock-sensor-reading-set-params" id="ref-for-mock-sensor-reading-set-params①①">Mock Sensor Reading Set Params</a>
     <dd>
-<pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-proximityreadingset"><code>ProximityReadingSet</code><a class="self-link" href="#dictdef-proximityreadingset"></a></dfn> {
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⑨"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="ProximityReadingSet" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-proximityreadingset-distance"><code>distance</code><a class="self-link" href="#dom-proximityreadingset-distance"></a></dfn>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double③⓪"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="ProximityReadingSet" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-proximityreadingset-max"><code>max</code><a class="self-link" href="#dom-proximityreadingset-max"></a></dfn>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean①"><span class="kt">boolean</span></a>? <dfn class="nv idl-code" data-dfn-for="ProximityReadingSet" data-dfn-type="dict-member" data-export="" data-type="boolean? " id="dom-proximityreadingset-near"><code>near</code><a class="self-link" href="#dom-proximityreadingset-near"></a></dfn>;
+<pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-proximityreadingsetparams"><code>ProximityReadingSetParams</code><a class="self-link" href="#dictdef-proximityreadingsetparams"></a></dfn> {
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⑨"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="ProximityReadingSetParams" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-proximityreadingsetparams-distance"><code>distance</code><a class="self-link" href="#dom-proximityreadingsetparams-distance"></a></dfn>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double③⓪"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="ProximityReadingSetParams" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-proximityreadingsetparams-max"><code>max</code><a class="self-link" href="#dom-proximityreadingsetparams-max"></a></dfn>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean①"><span class="kt">boolean</span></a>? <dfn class="nv idl-code" data-dfn-for="ProximityReadingSetParams" data-dfn-type="dict-member" data-export="" data-type="boolean? " id="dom-proximityreadingsetparams-near"><code>near</code><a class="self-link" href="#dom-proximityreadingsetparams-near"></a></dfn>;
 };
 </pre>
    </dl>
@@ -1890,13 +1890,13 @@ updating of a given type of <a data-link-type="dfn" href="#mock-sensor" id="ref-
     <li data-md="">
      <p>If <var>type</var> does not match a <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-type⑧">mock sensor type</a> amongst all associated <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②④">mock sensors</a> of the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context⑥">current browsing context</a>, return a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-errors" id="ref-for-dfn-errors⑥">WebDriver error</a> with <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-error-code" id="ref-for-dfn-error-code⑥">WebDriver error code</a> <a data-link-type="dfn" href="#no-such-mock-sensor" id="ref-for-no-such-mock-sensor①">no such mock sensor</a>.</p>
     <li data-md="">
-     <p>Let <var>readingSet</var> be the <var>readingSet</var> argument, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-convert-ecmascript-to-idl-value" id="ref-for-dfn-convert-ecmascript-to-idl-value③">converted to an IDL value</a> of the <var>type</var>’s
- associated <code class="idl"><a data-link-type="idl" href="#dictdef-mocksensorreadingset" id="ref-for-dictdef-mocksensorreadingset②">MockSensorReadingSet</a></code>. If this throws an exception, return a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-errors" id="ref-for-dfn-errors⑦">WebDriver error</a> with <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-error-code" id="ref-for-dfn-error-code⑦">WebDriver error code</a> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-invalid-argument" id="ref-for-dfn-invalid-argument③">invalid argument</a>.</p>
+     <p>Let <var>parameters</var> be the <var>parameters</var> argument, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-convert-ecmascript-to-idl-value" id="ref-for-dfn-convert-ecmascript-to-idl-value③">converted to an IDL value</a> of the <var>type</var>’s
+ associated <code class="idl"><a data-link-type="idl" href="#dictdef-mocksensorreadingsetparams" id="ref-for-dictdef-mocksensorreadingsetparams②">MockSensorReadingSetParams</a></code>. If this throws an exception, return a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-errors" id="ref-for-dfn-errors⑦">WebDriver error</a> with <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-error-code" id="ref-for-dfn-error-code⑦">WebDriver error code</a> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-invalid-argument" id="ref-for-dfn-invalid-argument③">invalid argument</a>.</p>
     <li data-md="">
      <p>If the user agent <a data-link-type="dfn" href="https://w3c.github.io/sensors/#can-expose-sensor-readings" id="ref-for-can-expose-sensor-readings">can expose sensor readings</a> to the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context⑦">current browsing context</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#active-document" id="ref-for-active-document">active document</a>, then:</p>
      <ol>
       <li data-md="">
-       <p>Simulate invoking <a data-link-type="dfn" href="https://w3c.github.io/sensors/#update-latest-reading" id="ref-for-update-latest-reading">update latest reading</a> with the <var>type</var> of <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②⑤">mock sensor</a> and the <var>readingSet</var> as arguments.</p>
+       <p>Simulate invoking <a data-link-type="dfn" href="https://w3c.github.io/sensors/#update-latest-reading" id="ref-for-update-latest-reading">update latest reading</a> with the <var>type</var> of <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②⑤">mock sensor</a> and the <var>parameters</var> as arguments.</p>
       <li data-md="">
        <p>Return <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-success" id="ref-for-dfn-success②">success</a> with data <code>null</code>.</p>
      </ol>
@@ -1960,34 +1960,34 @@ deletion of a given type of <a data-link-type="dfn" href="#mock-sensor" id="ref-
   <h3 class="no-num no-ref heading settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
   <ul class="index">
    <li><a href="#dom-mocksensortype-absolute-orientation">"absolute-orientation"</a><span>, in §2.3.8</span>
-   <li><a href="#dictdef-absoluteorientationreadingset">AbsoluteOrientationReadingSet</a><span>, in §2.3.8</span>
+   <li><a href="#dictdef-absoluteorientationreadingsetparams">AbsoluteOrientationReadingSetParams</a><span>, in §2.3.8</span>
    <li><a href="#dom-mocksensortype-accelerometer">"accelerometer"</a><span>, in §2.3.2</span>
-   <li><a href="#dictdef-accelerometerreadingset">AccelerometerReadingSet</a><span>, in §2.3.2</span>
-   <li><a href="#dom-geolocationreadingset-accuracy">accuracy</a><span>, in §2.3.10</span>
-   <li><a href="#dom-geolocationreadingset-altitude">altitude</a><span>, in §2.3.10</span>
-   <li><a href="#dom-geolocationreadingset-altitudeaccuracy">altitudeAccuracy</a><span>, in §2.3.10</span>
+   <li><a href="#dictdef-accelerometerreadingsetparams">AccelerometerReadingSetParams</a><span>, in §2.3.2</span>
+   <li><a href="#dom-geolocationreadingsetparams-accuracy">accuracy</a><span>, in §2.3.10</span>
+   <li><a href="#dom-geolocationreadingsetparams-altitude">altitude</a><span>, in §2.3.10</span>
+   <li><a href="#dom-geolocationreadingsetparams-altitudeaccuracy">altitudeAccuracy</a><span>, in §2.3.10</span>
    <li><a href="#dom-mocksensortype-ambient-light">"ambient-light"</a><span>, in §2.3.1</span>
-   <li><a href="#dictdef-ambientlightreadingset">AmbientLightReadingSet</a><span>, in §2.3.1</span>
+   <li><a href="#dictdef-ambientlightreadingsetparams">AmbientLightReadingSetParams</a><span>, in §2.3.1</span>
    <li><a href="#dom-mocksensorconfiguration-connected">connected</a><span>, in §2.1</span>
    <li><a href="#create-mock-sensor">create mock sensor</a><span>, in §3.1.1</span>
    <li><a href="#delete-mock-sensor">delete mock sensor</a><span>, in §3.1.4</span>
-   <li><a href="#dom-proximityreadingset-distance">distance</a><span>, in §2.3.11</span>
+   <li><a href="#dom-proximityreadingsetparams-distance">distance</a><span>, in §2.3.11</span>
    <li><a href="#dom-mocksensortype-geolocation">"geolocation"</a><span>, in §2.3.10</span>
-   <li><a href="#dictdef-geolocationreadingset">GeolocationReadingSet</a><span>, in §2.3.10</span>
+   <li><a href="#dictdef-geolocationreadingsetparams">GeolocationReadingSetParams</a><span>, in §2.3.10</span>
    <li><a href="#get-mock-sensor">get mock sensor</a><span>, in §3.1.2</span>
    <li><a href="#dom-mocksensortype-gravity">"gravity"</a><span>, in §2.3.4</span>
-   <li><a href="#dictdef-gravityreadingset">GravityReadingSet</a><span>, in §2.3.4</span>
+   <li><a href="#dictdef-gravityreadingsetparams">GravityReadingSetParams</a><span>, in §2.3.4</span>
    <li><a href="#dom-mocksensortype-gyroscope">"gyroscope"</a><span>, in §2.3.5</span>
-   <li><a href="#dictdef-gyroscopereadingset">GyroscopeReadingSet</a><span>, in §2.3.5</span>
-   <li><a href="#dom-geolocationreadingset-heading">heading</a><span>, in §2.3.10</span>
-   <li><a href="#dom-ambientlightreadingset-illuminance">illuminance</a><span>, in §2.3.1</span>
-   <li><a href="#dom-geolocationreadingset-latitude">latitude</a><span>, in §2.3.10</span>
+   <li><a href="#dictdef-gyroscopereadingsetparams">GyroscopeReadingSetParams</a><span>, in §2.3.5</span>
+   <li><a href="#dom-geolocationreadingsetparams-heading">heading</a><span>, in §2.3.10</span>
+   <li><a href="#dom-ambientlightreadingsetparams-illuminance">illuminance</a><span>, in §2.3.1</span>
+   <li><a href="#dom-geolocationreadingsetparams-latitude">latitude</a><span>, in §2.3.10</span>
    <li><a href="#dom-mocksensortype-linear-acceleration">"linear-acceleration"</a><span>, in §2.3.3</span>
-   <li><a href="#dictdef-linearaccelerationreadingset">LinearAccelerationReadingSet</a><span>, in §2.3.3</span>
-   <li><a href="#dom-geolocationreadingset-longitude">longitude</a><span>, in §2.3.10</span>
+   <li><a href="#dictdef-linearaccelerationreadingsetparams">LinearAccelerationReadingSetParams</a><span>, in §2.3.3</span>
+   <li><a href="#dom-geolocationreadingsetparams-longitude">longitude</a><span>, in §2.3.10</span>
    <li><a href="#dom-mocksensortype-magnetometer">"magnetometer"</a><span>, in §2.3.6</span>
-   <li><a href="#dictdef-magnetometerreadingset">MagnetometerReadingSet</a><span>, in §2.3.6</span>
-   <li><a href="#dom-proximityreadingset-max">max</a><span>, in §2.3.11</span>
+   <li><a href="#dictdef-magnetometerreadingsetparams">MagnetometerReadingSetParams</a><span>, in §2.3.6</span>
+   <li><a href="#dom-proximityreadingsetparams-max">max</a><span>, in §2.3.11</span>
    <li>
     maxSamplingFrequency
     <ul>
@@ -2005,52 +2005,52 @@ deletion of a given type of <a data-link-type="dfn" href="#mock-sensor" id="ref-
    <li><a href="#mock-sensor-already-created">mock sensor already created</a><span>, in §3.2</span>
    <li><a href="#dictdef-mocksensorconfiguration">MockSensorConfiguration</a><span>, in §2.1</span>
    <li><a href="#mock-sensor-reading">mock sensor reading</a><span>, in §2</span>
-   <li><a href="#dictdef-mocksensorreadingset">MockSensorReadingSet</a><span>, in §2.3</span>
-   <li><a href="#mock-sensor-reading-set">Mock Sensor Reading Set</a><span>, in §2.3</span>
+   <li><a href="#mock-sensor-reading-set-params">Mock Sensor Reading Set Params</a><span>, in §2.3</span>
+   <li><a href="#dictdef-mocksensorreadingsetparams">MockSensorReadingSetParams</a><span>, in §2.3</span>
    <li><a href="#mock-sensor-type">mock sensor type</a><span>, in §2.3</span>
    <li><a href="#enumdef-mocksensortype">MockSensorType</a><span>, in §2.3</span>
    <li><a href="#dom-mocksensorconfiguration-mocksensortype">mockSensorType</a><span>, in §2.1</span>
-   <li><a href="#dom-proximityreadingset-near">near</a><span>, in §2.3.11</span>
+   <li><a href="#dom-proximityreadingsetparams-near">near</a><span>, in §2.3.11</span>
    <li><a href="#no-such-mock-sensor">no such mock sensor</a><span>, in §3.2</span>
    <li><a href="#dom-mocksensortype-proximity">"proximity"</a><span>, in §2.3.11</span>
-   <li><a href="#dictdef-proximityreadingset">ProximityReadingSet</a><span>, in §2.3.11</span>
-   <li><a href="#dom-absoluteorientationreadingset-quaternion">quaternion</a><span>, in §2.3.8</span>
+   <li><a href="#dictdef-proximityreadingsetparams">ProximityReadingSetParams</a><span>, in §2.3.11</span>
+   <li><a href="#dom-absoluteorientationreadingsetparams-quaternion">quaternion</a><span>, in §2.3.8</span>
    <li><a href="#dom-mocksensortype-relative-orientation">"relative-orientation"</a><span>, in §2.3.9</span>
-   <li><a href="#dictdef-relativeorientationreadingset">RelativeOrientationReadingSet</a><span>, in §2.3.9</span>
+   <li><a href="#dictdef-relativeorientationreadingsetparams">RelativeOrientationReadingSetParams</a><span>, in §2.3.9</span>
    <li><a href="#dom-mocksensor-requestedsamplingfrequency">requestedSamplingFrequency</a><span>, in §2.2</span>
    <li><a href="#serialized-mock-sensor">serialized mock sensor</a><span>, in §2.2</span>
-   <li><a href="#dom-geolocationreadingset-speed">speed</a><span>, in §2.3.10</span>
+   <li><a href="#dom-geolocationreadingsetparams-speed">speed</a><span>, in §2.3.10</span>
    <li><a href="#unable-to-update-mock-sensor-reading">unable to update mock sensor reading</a><span>, in §3.2</span>
    <li><a href="#dom-mocksensortype-uncalibrated-magnetometer">"uncalibrated-magnetometer"</a><span>, in §2.3.7</span>
-   <li><a href="#dictdef-uncalibratedmagnetometerreadingset">UncalibratedMagnetometerReadingSet</a><span>, in §2.3.7</span>
+   <li><a href="#dictdef-uncalibratedmagnetometerreadingsetparams">UncalibratedMagnetometerReadingSetParams</a><span>, in §2.3.7</span>
    <li><a href="#update-mock-sensor-reading">update mock sensor reading</a><span>, in §3.1.3</span>
    <li>
     x
     <ul>
-     <li><a href="#dom-accelerometerreadingset-x">dict-member for AccelerometerReadingSet</a><span>, in §2.3.2</span>
-     <li><a href="#dom-gyroscopereadingset-x">dict-member for GyroscopeReadingSet</a><span>, in §2.3.5</span>
-     <li><a href="#dom-magnetometerreadingset-x">dict-member for MagnetometerReadingSet</a><span>, in §2.3.6</span>
-     <li><a href="#dom-uncalibratedmagnetometerreadingset-x">dict-member for UncalibratedMagnetometerReadingSet</a><span>, in §2.3.7</span>
+     <li><a href="#dom-accelerometerreadingsetparams-x">dict-member for AccelerometerReadingSetParams</a><span>, in §2.3.2</span>
+     <li><a href="#dom-gyroscopereadingsetparams-x">dict-member for GyroscopeReadingSetParams</a><span>, in §2.3.5</span>
+     <li><a href="#dom-magnetometerreadingsetparams-x">dict-member for MagnetometerReadingSetParams</a><span>, in §2.3.6</span>
+     <li><a href="#dom-uncalibratedmagnetometerreadingsetparams-x">dict-member for UncalibratedMagnetometerReadingSetParams</a><span>, in §2.3.7</span>
     </ul>
-   <li><a href="#dom-uncalibratedmagnetometerreadingset-xbias">xBias</a><span>, in §2.3.7</span>
+   <li><a href="#dom-uncalibratedmagnetometerreadingsetparams-xbias">xBias</a><span>, in §2.3.7</span>
    <li>
     y
     <ul>
-     <li><a href="#dom-accelerometerreadingset-y">dict-member for AccelerometerReadingSet</a><span>, in §2.3.2</span>
-     <li><a href="#dom-gyroscopereadingset-y">dict-member for GyroscopeReadingSet</a><span>, in §2.3.5</span>
-     <li><a href="#dom-magnetometerreadingset-y">dict-member for MagnetometerReadingSet</a><span>, in §2.3.6</span>
-     <li><a href="#dom-uncalibratedmagnetometerreadingset-y">dict-member for UncalibratedMagnetometerReadingSet</a><span>, in §2.3.7</span>
+     <li><a href="#dom-accelerometerreadingsetparams-y">dict-member for AccelerometerReadingSetParams</a><span>, in §2.3.2</span>
+     <li><a href="#dom-gyroscopereadingsetparams-y">dict-member for GyroscopeReadingSetParams</a><span>, in §2.3.5</span>
+     <li><a href="#dom-magnetometerreadingsetparams-y">dict-member for MagnetometerReadingSetParams</a><span>, in §2.3.6</span>
+     <li><a href="#dom-uncalibratedmagnetometerreadingsetparams-y">dict-member for UncalibratedMagnetometerReadingSetParams</a><span>, in §2.3.7</span>
     </ul>
-   <li><a href="#dom-uncalibratedmagnetometerreadingset-ybias">yBias</a><span>, in §2.3.7</span>
+   <li><a href="#dom-uncalibratedmagnetometerreadingsetparams-ybias">yBias</a><span>, in §2.3.7</span>
    <li>
     z
     <ul>
-     <li><a href="#dom-accelerometerreadingset-z">dict-member for AccelerometerReadingSet</a><span>, in §2.3.2</span>
-     <li><a href="#dom-gyroscopereadingset-z">dict-member for GyroscopeReadingSet</a><span>, in §2.3.5</span>
-     <li><a href="#dom-magnetometerreadingset-z">dict-member for MagnetometerReadingSet</a><span>, in §2.3.6</span>
-     <li><a href="#dom-uncalibratedmagnetometerreadingset-z">dict-member for UncalibratedMagnetometerReadingSet</a><span>, in §2.3.7</span>
+     <li><a href="#dom-accelerometerreadingsetparams-z">dict-member for AccelerometerReadingSetParams</a><span>, in §2.3.2</span>
+     <li><a href="#dom-gyroscopereadingsetparams-z">dict-member for GyroscopeReadingSetParams</a><span>, in §2.3.5</span>
+     <li><a href="#dom-magnetometerreadingsetparams-z">dict-member for MagnetometerReadingSetParams</a><span>, in §2.3.6</span>
+     <li><a href="#dom-uncalibratedmagnetometerreadingsetparams-z">dict-member for UncalibratedMagnetometerReadingSetParams</a><span>, in §2.3.7</span>
     </ul>
-   <li><a href="#dom-uncalibratedmagnetometerreadingset-zbias">zBias</a><span>, in §2.3.7</span>
+   <li><a href="#dom-uncalibratedmagnetometerreadingsetparams-zbias">zBias</a><span>, in §2.3.7</span>
   </ul>
   <aside class="dfn-panel" data-for="term-for-accelerometer-interface">
    <a href="https://w3c.github.io/accelerometer#accelerometer-interface">https://w3c.github.io/accelerometer#accelerometer-interface</a><b>Referenced in:</b>
@@ -2518,67 +2518,67 @@ deletion of a given type of <a data-link-type="dfn" href="#mock-sensor" id="ref-
   <a class="s idl-code" data-link-type="enum-value" href="#dom-mocksensortype-proximity" id="ref-for-dom-mocksensortype-proximity①">"proximity"</a>,
 };
 
-<span class="kt">dictionary</span> <a class="nv" href="#dictdef-mocksensorreadingset"><code>MockSensorReadingSet</code></a> {
+<span class="kt">dictionary</span> <a class="nv" href="#dictdef-mocksensorreadingsetparams"><code>MockSensorReadingSetParams</code></a> {
 };
 
-<span class="kt">dictionary</span> <a class="nv" href="#dictdef-ambientlightreadingset"><code>AmbientLightReadingSet</code></a> {
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑤①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-ambientlightreadingset-illuminance"><code>illuminance</code></a>;
+<span class="kt">dictionary</span> <a class="nv" href="#dictdef-ambientlightreadingsetparams"><code>AmbientLightReadingSetParams</code></a> {
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑤①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-ambientlightreadingsetparams-illuminance"><code>illuminance</code></a>;
 };
 
-<span class="kt">dictionary</span> <a class="nv" href="#dictdef-accelerometerreadingset"><code>AccelerometerReadingSet</code></a> {
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑥①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-accelerometerreadingset-x"><code>x</code></a>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑦①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-accelerometerreadingset-y"><code>y</code></a>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑧①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-accelerometerreadingset-z"><code>z</code></a>;
+<span class="kt">dictionary</span> <a class="nv" href="#dictdef-accelerometerreadingsetparams"><code>AccelerometerReadingSetParams</code></a> {
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑥①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-accelerometerreadingsetparams-x"><code>x</code></a>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑦①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-accelerometerreadingsetparams-y"><code>y</code></a>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑧①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-accelerometerreadingsetparams-z"><code>z</code></a>;
 };
 
-<span class="kt">dictionary</span> <a class="nv" href="#dictdef-linearaccelerationreadingset"><code>LinearAccelerationReadingSet</code></a> : <a class="n" data-link-type="idl-name" href="#dictdef-accelerometerreadingset" id="ref-for-dictdef-accelerometerreadingset②">AccelerometerReadingSet</a> {
+<span class="kt">dictionary</span> <a class="nv" href="#dictdef-linearaccelerationreadingsetparams"><code>LinearAccelerationReadingSetParams</code></a> : <a class="n" data-link-type="idl-name" href="#dictdef-accelerometerreadingsetparams" id="ref-for-dictdef-accelerometerreadingsetparams②">AccelerometerReadingSetParams</a> {
 };
 
-<span class="kt">dictionary</span> <a class="nv" href="#dictdef-gravityreadingset"><code>GravityReadingSet</code></a> : <a class="n" data-link-type="idl-name" href="#dictdef-accelerometerreadingset" id="ref-for-dictdef-accelerometerreadingset①①">AccelerometerReadingSet</a> {
+<span class="kt">dictionary</span> <a class="nv" href="#dictdef-gravityreadingsetparams"><code>GravityReadingSetParams</code></a> : <a class="n" data-link-type="idl-name" href="#dictdef-accelerometerreadingsetparams" id="ref-for-dictdef-accelerometerreadingsetparams①①">AccelerometerReadingSetParams</a> {
 };
 
-<span class="kt">dictionary</span> <a class="nv" href="#dictdef-gyroscopereadingset"><code>GyroscopeReadingSet</code></a> {
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑨①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-gyroscopereadingset-x"><code>x</code></a>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⓪①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-gyroscopereadingset-y"><code>y</code></a>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①①①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-gyroscopereadingset-z"><code>z</code></a>;
+<span class="kt">dictionary</span> <a class="nv" href="#dictdef-gyroscopereadingsetparams"><code>GyroscopeReadingSetParams</code></a> {
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑨①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-gyroscopereadingsetparams-x"><code>x</code></a>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⓪①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-gyroscopereadingsetparams-y"><code>y</code></a>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①①①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-gyroscopereadingsetparams-z"><code>z</code></a>;
 };
 
-<span class="kt">dictionary</span> <a class="nv" href="#dictdef-magnetometerreadingset"><code>MagnetometerReadingSet</code></a> {
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①②①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-magnetometerreadingset-x"><code>x</code></a>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①③①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-magnetometerreadingset-y"><code>y</code></a>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①④①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-magnetometerreadingset-z"><code>z</code></a>;
+<span class="kt">dictionary</span> <a class="nv" href="#dictdef-magnetometerreadingsetparams"><code>MagnetometerReadingSetParams</code></a> {
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①②①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-magnetometerreadingsetparams-x"><code>x</code></a>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①③①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-magnetometerreadingsetparams-y"><code>y</code></a>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①④①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-magnetometerreadingsetparams-z"><code>z</code></a>;
 };
 
-<span class="kt">dictionary</span> <a class="nv" href="#dictdef-uncalibratedmagnetometerreadingset"><code>UncalibratedMagnetometerReadingSet</code></a> {
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑤①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-uncalibratedmagnetometerreadingset-x"><code>x</code></a>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑥①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-uncalibratedmagnetometerreadingset-y"><code>y</code></a>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑦①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-uncalibratedmagnetometerreadingset-z"><code>z</code></a>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑧①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-uncalibratedmagnetometerreadingset-xbias"><code>xBias</code></a>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑨①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-uncalibratedmagnetometerreadingset-ybias"><code>yBias</code></a>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⓪①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-uncalibratedmagnetometerreadingset-zbias"><code>zBias</code></a>;
+<span class="kt">dictionary</span> <a class="nv" href="#dictdef-uncalibratedmagnetometerreadingsetparams"><code>UncalibratedMagnetometerReadingSetParams</code></a> {
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑤①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-uncalibratedmagnetometerreadingsetparams-x"><code>x</code></a>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑥①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-uncalibratedmagnetometerreadingsetparams-y"><code>y</code></a>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑦①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-uncalibratedmagnetometerreadingsetparams-z"><code>z</code></a>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑧①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-uncalibratedmagnetometerreadingsetparams-xbias"><code>xBias</code></a>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑨①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-uncalibratedmagnetometerreadingsetparams-ybias"><code>yBias</code></a>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⓪①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-uncalibratedmagnetometerreadingsetparams-zbias"><code>zBias</code></a>;
 };
 
-<span class="kt">dictionary</span> <a class="nv" href="#dictdef-absoluteorientationreadingset"><code>AbsoluteOrientationReadingSet</code></a> {
-  <span class="kt">required</span> <span class="kt">FrozenArray</span>&lt;<a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②①①"><span class="kt">double</span></a>>? <a class="nv" data-type="FrozenArray<double>? " href="#dom-absoluteorientationreadingset-quaternion"><code>quaternion</code></a>;
+<span class="kt">dictionary</span> <a class="nv" href="#dictdef-absoluteorientationreadingsetparams"><code>AbsoluteOrientationReadingSetParams</code></a> {
+  <span class="kt">required</span> <span class="kt">FrozenArray</span>&lt;<a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②①①"><span class="kt">double</span></a>>? <a class="nv" data-type="FrozenArray<double>? " href="#dom-absoluteorientationreadingsetparams-quaternion"><code>quaternion</code></a>;
 };
 
-<span class="kt">dictionary</span> <a class="nv" href="#dictdef-relativeorientationreadingset"><code>RelativeOrientationReadingSet</code></a> : <a class="n" data-link-type="idl-name" href="#dictdef-absoluteorientationreadingset" id="ref-for-dictdef-absoluteorientationreadingset①">AbsoluteOrientationReadingSet</a> {
+<span class="kt">dictionary</span> <a class="nv" href="#dictdef-relativeorientationreadingsetparams"><code>RelativeOrientationReadingSetParams</code></a> : <a class="n" data-link-type="idl-name" href="#dictdef-absoluteorientationreadingsetparams" id="ref-for-dictdef-absoluteorientationreadingsetparams①">AbsoluteOrientationReadingSetParams</a> {
 };
 
-<span class="kt">dictionary</span> <a class="nv" href="#dictdef-geolocationreadingset"><code>GeolocationReadingSet</code></a> {
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②②①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-geolocationreadingset-latitude"><code>latitude</code></a>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②③①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-geolocationreadingset-longitude"><code>longitude</code></a>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②④①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-geolocationreadingset-altitude"><code>altitude</code></a>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⑤①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-geolocationreadingset-accuracy"><code>accuracy</code></a>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⑥①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-geolocationreadingset-altitudeaccuracy"><code>altitudeAccuracy</code></a>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⑦①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-geolocationreadingset-heading"><code>heading</code></a>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⑧①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-geolocationreadingset-speed"><code>speed</code></a>;
+<span class="kt">dictionary</span> <a class="nv" href="#dictdef-geolocationreadingsetparams"><code>GeolocationReadingSetParams</code></a> {
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②②①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-geolocationreadingsetparams-latitude"><code>latitude</code></a>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②③①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-geolocationreadingsetparams-longitude"><code>longitude</code></a>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②④①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-geolocationreadingsetparams-altitude"><code>altitude</code></a>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⑤①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-geolocationreadingsetparams-accuracy"><code>accuracy</code></a>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⑥①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-geolocationreadingsetparams-altitudeaccuracy"><code>altitudeAccuracy</code></a>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⑦①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-geolocationreadingsetparams-heading"><code>heading</code></a>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⑧①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-geolocationreadingsetparams-speed"><code>speed</code></a>;
 };
 
-<span class="kt">dictionary</span> <a class="nv" href="#dictdef-proximityreadingset"><code>ProximityReadingSet</code></a> {
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⑨①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-proximityreadingset-distance"><code>distance</code></a>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double③⓪①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-proximityreadingset-max"><code>max</code></a>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean①①"><span class="kt">boolean</span></a>? <a class="nv" data-type="boolean? " href="#dom-proximityreadingset-near"><code>near</code></a>;
+<span class="kt">dictionary</span> <a class="nv" href="#dictdef-proximityreadingsetparams"><code>ProximityReadingSetParams</code></a> {
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⑨①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-proximityreadingsetparams-distance"><code>distance</code></a>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double③⓪①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-proximityreadingsetparams-max"><code>max</code></a>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean①①"><span class="kt">boolean</span></a>? <a class="nv" data-type="boolean? " href="#dom-proximityreadingsetparams-near"><code>near</code></a>;
 };
 
 </pre>
@@ -2690,28 +2690,28 @@ deletion of a given type of <a data-link-type="dfn" href="#mock-sensor" id="ref-
     <li><a href="#ref-for-enumdef-mocksensortype⑤">3.1.4. Delete mock sensor</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="mock-sensor-reading-set">
-   <b><a href="#mock-sensor-reading-set">#mock-sensor-reading-set</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="mock-sensor-reading-set-params">
+   <b><a href="#mock-sensor-reading-set-params">#mock-sensor-reading-set-params</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-mock-sensor-reading-set">2.3. Mock sensor type</a>
-    <li><a href="#ref-for-mock-sensor-reading-set①">2.3.1. Ambient Light Sensor</a>
-    <li><a href="#ref-for-mock-sensor-reading-set②">2.3.2. Accelerometer</a>
-    <li><a href="#ref-for-mock-sensor-reading-set③">2.3.3. Linear Acceleration Sensor</a>
-    <li><a href="#ref-for-mock-sensor-reading-set④">2.3.4. Gravity Sensor</a>
-    <li><a href="#ref-for-mock-sensor-reading-set⑤">2.3.5. Gyroscope</a>
-    <li><a href="#ref-for-mock-sensor-reading-set⑥">2.3.6. Magnetometer</a>
-    <li><a href="#ref-for-mock-sensor-reading-set⑦">2.3.7. Uncalibrated Magnetometer</a>
-    <li><a href="#ref-for-mock-sensor-reading-set⑧">2.3.8. Absolute Orientation Sensor</a>
-    <li><a href="#ref-for-mock-sensor-reading-set⑨">2.3.9. Relative Orientation Sensor</a>
-    <li><a href="#ref-for-mock-sensor-reading-set①⓪">2.3.10. Geolocation Sensor</a>
-    <li><a href="#ref-for-mock-sensor-reading-set①①">2.3.11. Proximity Sensor</a>
+    <li><a href="#ref-for-mock-sensor-reading-set-params">2.3. Mock sensor type</a>
+    <li><a href="#ref-for-mock-sensor-reading-set-params①">2.3.1. Ambient Light Sensor</a>
+    <li><a href="#ref-for-mock-sensor-reading-set-params②">2.3.2. Accelerometer</a>
+    <li><a href="#ref-for-mock-sensor-reading-set-params③">2.3.3. Linear Acceleration Sensor</a>
+    <li><a href="#ref-for-mock-sensor-reading-set-params④">2.3.4. Gravity Sensor</a>
+    <li><a href="#ref-for-mock-sensor-reading-set-params⑤">2.3.5. Gyroscope</a>
+    <li><a href="#ref-for-mock-sensor-reading-set-params⑥">2.3.6. Magnetometer</a>
+    <li><a href="#ref-for-mock-sensor-reading-set-params⑦">2.3.7. Uncalibrated Magnetometer</a>
+    <li><a href="#ref-for-mock-sensor-reading-set-params⑧">2.3.8. Absolute Orientation Sensor</a>
+    <li><a href="#ref-for-mock-sensor-reading-set-params⑨">2.3.9. Relative Orientation Sensor</a>
+    <li><a href="#ref-for-mock-sensor-reading-set-params①⓪">2.3.10. Geolocation Sensor</a>
+    <li><a href="#ref-for-mock-sensor-reading-set-params①①">2.3.11. Proximity Sensor</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="dictdef-mocksensorreadingset">
-   <b><a href="#dictdef-mocksensorreadingset">#dictdef-mocksensorreadingset</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="dictdef-mocksensorreadingsetparams">
+   <b><a href="#dictdef-mocksensorreadingsetparams">#dictdef-mocksensorreadingsetparams</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dictdef-mocksensorreadingset">2.3. Mock sensor type</a> <a href="#ref-for-dictdef-mocksensorreadingset①">(2)</a>
-    <li><a href="#ref-for-dictdef-mocksensorreadingset②">3.1.3. Update mock sensor reading</a>
+    <li><a href="#ref-for-dictdef-mocksensorreadingsetparams">2.3. Mock sensor type</a> <a href="#ref-for-dictdef-mocksensorreadingsetparams①">(2)</a>
+    <li><a href="#ref-for-dictdef-mocksensorreadingsetparams②">3.1.3. Update mock sensor reading</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-mocksensortype-ambient-light">
@@ -2726,11 +2726,11 @@ deletion of a given type of <a data-link-type="dfn" href="#mock-sensor" id="ref-
     <li><a href="#ref-for-dom-mocksensortype-accelerometer">2.3. Mock sensor type</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="dictdef-accelerometerreadingset">
-   <b><a href="#dictdef-accelerometerreadingset">#dictdef-accelerometerreadingset</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="dictdef-accelerometerreadingsetparams">
+   <b><a href="#dictdef-accelerometerreadingsetparams">#dictdef-accelerometerreadingsetparams</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dictdef-accelerometerreadingset">2.3.3. Linear Acceleration Sensor</a>
-    <li><a href="#ref-for-dictdef-accelerometerreadingset①">2.3.4. Gravity Sensor</a>
+    <li><a href="#ref-for-dictdef-accelerometerreadingsetparams">2.3.3. Linear Acceleration Sensor</a>
+    <li><a href="#ref-for-dictdef-accelerometerreadingsetparams①">2.3.4. Gravity Sensor</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-mocksensortype-linear-acceleration">
@@ -2769,10 +2769,10 @@ deletion of a given type of <a data-link-type="dfn" href="#mock-sensor" id="ref-
     <li><a href="#ref-for-dom-mocksensortype-absolute-orientation">2.3. Mock sensor type</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="dictdef-absoluteorientationreadingset">
-   <b><a href="#dictdef-absoluteorientationreadingset">#dictdef-absoluteorientationreadingset</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="dictdef-absoluteorientationreadingsetparams">
+   <b><a href="#dictdef-absoluteorientationreadingsetparams">#dictdef-absoluteorientationreadingsetparams</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dictdef-absoluteorientationreadingset">2.3.9. Relative Orientation Sensor</a>
+    <li><a href="#ref-for-dictdef-absoluteorientationreadingsetparams">2.3.9. Relative Orientation Sensor</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-mocksensortype-relative-orientation">
