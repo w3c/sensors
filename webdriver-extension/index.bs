@@ -45,6 +45,7 @@ urlPrefix: https://w3c.github.io/sensors/; spec: GENERIC-SENSOR
     text: requested sampling frequency
     text: can expose sensor readings
     text: update latest reading
+    text: extension sensor interface
 urlPrefix: https://w3c.github.io/ambient-light; spec: AMBIENT-LIGHT
   type: dfn
     text: AmbientLightSensor; url: ambient-light-sensor-interface
@@ -71,6 +72,10 @@ urlPrefix: https://w3c.github.io/proximity; spec: PROXIMITY
   type: dfn
     text: ProximitySensor; url: proximity-sensor-interface
 </pre>
+<pre class=link-defaults>
+spec: webidl; type:dfn; text:attribute
+spec: webidl; type:dfn; text:identifier
+</pre>
 
 Introduction {#intro}
 =====================
@@ -95,10 +100,11 @@ Note: The user agent must provide the <a>mock sensor reading</a> that are initia
 
 A [=mock sensor=] has an associated <a>latest reading</a> [=ordered map|map=], which holds the latest available [=mock sensor readings=].
 
-A [=mock sensor=] has an associated <a>requested sampling frequency</a> which is initially set to null.
+A [=mock sensor=] has an associated <a>requested sampling frequency</a>, it's default value is implementation-dependent
+but must be set within [=mock sensor=]'s associated <a>sampling frequency</a> bounds.
 
 A [=mock sensor=] has an associated <a>sampling frequency</a> with supported bounds, the default values of
-supported bounds are freely defined by user agent.
+supported bounds are implementation-dependent.
 
 <div class='note'>
 Note: The [=mock sensor=] defined in this specification is not intended be used by non-testing-related web content.
@@ -174,15 +180,18 @@ A <dfn id="mock-sensor-type">mock sensor type</dfn> is equivalent to a <a>sensor
 </pre>
 
 Each enumeration value in the {{MockSensorType}} enum identifies a <a>mock sensor type</a>.
-Each <a>mock sensor type</a> has the following <a>mock sensor reading set params</a>:
+Each <a>mock sensor type</a> has the following <a>mock sensor reading Values</a>:
 
-: A <dfn export>Mock Sensor Reading Set Params</dfn>
-:: {{MockSensorReadingSetParams}} dictionary represents user specified <a>mock sensor reading</a> used for
-   [[#update-mock-sensor-reading-command|updating mock sensor reading]]. It must contain all members of a
-   <a>mock sensor type</a>'s <a>mock sensor reading</a> but exclude the <a>reading timestamp</a>. Each [=mock sensor type=]
-   has a specific {{MockSensorReadingSetParams}}, which is defined in each section of [[#section-mock-sensor-type|mock senor type]].
+: A <dfn export>Mock Sensor Reading Values</dfn>
+:: {{MockSensorReadingValues}} dictionary represents user specified <a>mock sensor reading</a> used for
+   [[#update-mock-sensor-reading-command|updating mock sensor reading]]. Its members must match the
+   [=attribute=] [=identifier=] defined by the <a>sensor type</a>'s
+   associated <a>extension sensor interface</a>. Each [=mock sensor type=]
+   has a specific {{MockSensorReadingValues}}, which is defined in each section of [[#section-mock-sensor-type|mock senor type]].
+
+
    <pre class="idl">
-     dictionary MockSensorReadingSetParams {
+     dictionary MockSensorReadingValues {
      };
    </pre>
 
@@ -190,10 +199,10 @@ Each <a>mock sensor type</a> has the following <a>mock sensor reading set params
 The <dfn for="MockSensorType" enum-value>"ambient-light"</dfn> type is the mock sensor type
 associated with the usage of the <a>AmbientLightSensor</a> interface.
 <dl>
-  <dt><a>Mock Sensor Reading Set Params</a></dt>
+  <dt><a>Mock Sensor Reading Values</a></dt>
   <dd>
     <pre class="idl">
-      dictionary AmbientLightReadingSetParams {
+      dictionary AmbientLightReadingValues {
         required double? illuminance;
       };
     </pre>
@@ -204,10 +213,10 @@ associated with the usage of the <a>AmbientLightSensor</a> interface.
 The <dfn for="MockSensorType" enum-value>"accelerometer"</dfn> type is the mock sensor type
 associated with the usage of the <a>Accelerometer</a> interface.
 <dl>
-  <dt><a>Mock Sensor Reading Set Params</a></dt>
+  <dt><a>Mock Sensor Reading Values</a></dt>
   <dd>
     <pre class="idl">
-      dictionary AccelerometerReadingSetParams {
+      dictionary AccelerometerReadingValues {
         required double? x;
         required double? y;
         required double? z;
@@ -220,10 +229,10 @@ associated with the usage of the <a>Accelerometer</a> interface.
 The <dfn for="MockSensorType" enum-value>"linear-acceleration"</dfn> type is the mock sensor type
 associated with the usage of the <a>LinearAccelerationSensor</a> interface.
 <dl>
-  <dt><a>Mock Sensor Reading Set Params</a></dt>
+  <dt><a>Mock Sensor Reading Values</a></dt>
   <dd>
     <pre class="idl">
-      dictionary LinearAccelerationReadingSetParams : AccelerometerReadingSetParams {
+      dictionary LinearAccelerationReadingValues : AccelerometerReadingValues {
       };
     </pre>
   </dd>
@@ -233,10 +242,10 @@ associated with the usage of the <a>LinearAccelerationSensor</a> interface.
 The <dfn for="MockSensorType" enum-value>"gravity"</dfn> type is the mock sensor type
 associated with the usage of the <a>GravitySensor</a> interface.
 <dl>
-  <dt><a>Mock Sensor Reading Set Params</a></dt>
+  <dt><a>Mock Sensor Reading Values</a></dt>
   <dd>
     <pre class="idl">
-      dictionary GravityReadingSetParams : AccelerometerReadingSetParams {
+      dictionary GravityReadingValues : AccelerometerReadingValues {
       };
     </pre>
   </dd>
@@ -246,10 +255,10 @@ associated with the usage of the <a>GravitySensor</a> interface.
 The <dfn for="MockSensorType" enum-value>"gyroscope"</dfn> type is the mock sensor type
 associated with the usage of the <a>Gyroscope</a> interface.
 <dl>
-  <dt><a>Mock Sensor Reading Set Params</a></dt>
+  <dt><a>Mock Sensor Reading Values</a></dt>
   <dd>
     <pre class="idl">
-      dictionary GyroscopeReadingSetParams {
+      dictionary GyroscopeReadingValues {
         required double? x;
         required double? y;
         required double? z;
@@ -262,10 +271,10 @@ associated with the usage of the <a>Gyroscope</a> interface.
 The <dfn for="MockSensorType" enum-value>"magnetometer"</dfn> type is the mock sensor type
 associated with the usage of the <a>Magnetometer</a> interface.
 <dl>
-  <dt><a>Mock Sensor Reading Set Params</a></dt>
+  <dt><a>Mock Sensor Reading Values</a></dt>
   <dd>
     <pre class="idl">
-      dictionary MagnetometerReadingSetParams {
+      dictionary MagnetometerReadingValues {
         required double? x;
         required double? y;
         required double? z;
@@ -278,10 +287,10 @@ associated with the usage of the <a>Magnetometer</a> interface.
 The <dfn for="MockSensorType" enum-value>"uncalibrated-magnetometer"</dfn> type is the mock sensor type
 associated with the usage of the <a>UncalibratedMagnetometer</a> interface.
 <dl>
-  <dt><a>Mock Sensor Reading Set Params</a></dt>
+  <dt><a>Mock Sensor Reading Values</a></dt>
   <dd>
     <pre class="idl">
-      dictionary UncalibratedMagnetometerReadingSetParams {
+      dictionary UncalibratedMagnetometerReadingValues {
         required double? x;
         required double? y;
         required double? z;
@@ -297,10 +306,10 @@ associated with the usage of the <a>UncalibratedMagnetometer</a> interface.
 The <dfn for="MockSensorType" enum-value>"absolute-orientation"</dfn> type is the mock sensor type
 associated with the usage of the <a>AbsoluteOrientationSensor</a> interface.
 <dl>
-  <dt><a>Mock Sensor Reading Set Params</a></dt>
+  <dt><a>Mock Sensor Reading Values</a></dt>
   <dd>
     <pre class="idl">
-      dictionary AbsoluteOrientationReadingSetParams {
+      dictionary AbsoluteOrientationReadingValues {
         required FrozenArray&lt;double>? quaternion;
       };
     </pre>
@@ -311,10 +320,10 @@ associated with the usage of the <a>AbsoluteOrientationSensor</a> interface.
 The <dfn for="MockSensorType" enum-value>"relative-orientation"</dfn> type is the mock sensor type
 associated with the usage of the <a>RelativeOrientationSensor</a> interface.
 <dl>
-  <dt><a>Mock Sensor Reading Set Params</a></dt>
+  <dt><a>Mock Sensor Reading Values</a></dt>
   <dd>
     <pre class="idl">
-      dictionary RelativeOrientationReadingSetParams : AbsoluteOrientationReadingSetParams {
+      dictionary RelativeOrientationReadingValues : AbsoluteOrientationReadingValues {
       };
     </pre>
   </dd>
@@ -324,10 +333,10 @@ associated with the usage of the <a>RelativeOrientationSensor</a> interface.
 The <dfn for="MockSensorType" enum-value>"geolocation"</dfn> type is the mock sensor type
 associated with the usage of the <a>GeolocationSensor</a> interface.
 <dl>
-  <dt><a>Mock Sensor Reading Set Params</a></dt>
+  <dt><a>Mock Sensor Reading Values</a></dt>
   <dd>
     <pre class="idl">
-      dictionary GeolocationReadingSetParams {
+      dictionary GeolocationReadingValues {
         required double? latitude;
         required double? longitude;
         required double? altitude;
@@ -344,10 +353,10 @@ associated with the usage of the <a>GeolocationSensor</a> interface.
 The <dfn for="MockSensorType" enum-value>"proximity"</dfn> type is the mock sensor type
 associated with the usage of the <a>ProximitySensor</a> interface.
 <dl>
-  <dt><a>Mock Sensor Reading Set Params</a></dt>
+  <dt><a>Mock Sensor Reading Values</a></dt>
   <dd>
     <pre class="idl">
-      dictionary ProximityReadingSetParams {
+      dictionary ProximityReadingValues {
         required double? distance;
         required double? max;
         required boolean? near;
@@ -462,7 +471,7 @@ The <a>remote end steps</a> are:
 2. If |type| does not match a [=mock sensor type=] amongst all associated [=mock sensors=] of the
    <a>current browsing context</a>, return a <a>WebDriver error</a> with <a>WebDriver error code</a> [=no such mock sensor=].
 3. Let |parameters| be the |parameters| argument, <a>converted to an IDL value</a> of the |type|'s
-   associated {{MockSensorReadingSetParams}}. If this throws an exception, return a
+   associated {{MockSensorReadingValues}}. If this throws an exception, return a
    <a>WebDriver error</a> with <a>WebDriver error code</a> <a>invalid argument</a>.
 4. If the user agent <a>can expose sensor readings</a> to the <a>current browsing context</a>'s <a>active document</a>, then:
   1. Simulate invoking <a>update latest reading</a> with the |type| of [=mock sensor=] and the |parameters| as arguments.
