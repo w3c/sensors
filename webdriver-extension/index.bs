@@ -74,6 +74,7 @@ urlPrefix: https://w3c.github.io/proximity; spec: PROXIMITY
 </pre>
 <pre class=link-defaults>
 spec: webidl; type:dfn; text:attribute
+spec: webidl; type:dfn; text:dictionary member
 spec: webidl; type:dfn; text:identifier
 </pre>
 
@@ -96,15 +97,24 @@ A <dfn id="mock-sensor">mock sensor</dfn> simulates the behavior of a <a>platfor
 A [=mock sensor=] reports corresponding <dfn id="mock-sensor-reading">mock <a>sensor reading</a></dfn>, which is a source of
 mocking information about the environment, to the <a>Sensor</a> objects.
 
-Note: The user agent must provide the <a>mock sensor reading</a> that are initially exposed to the <a>Sensor</a> objects.
+The user agent must provide the <a>mock sensor reading</a> that are initially exposed to the <a>Sensor</a> objects,
+which is called <dfn id="default-mock-sensor-reading">default mock sensor reading</dfn>.
 
-A [=mock sensor=] has an associated <a>latest reading</a> [=ordered map|map=], which holds the latest available [=mock sensor readings=].
+The <a>current browsing context</a>'s [=mock sensor=] has an associated <a>default mock sensor reading</a> [=ordered map|map=],
+It includes [=map/entries=] whose [=map/keys=] must match the [=dictionary members=] [=identifier=] defined by the
+[=mock sensor type=]'s {{MockSensorReadingValues}} and whose [=map/values=] are implementation-dependent.
+
+The <a>current browsing context</a>'s [=mock sensor=] has an associated <a>latest reading</a> [=ordered map|map=],
+which holds the latest available [=mock sensor readings=].
 
 A [=mock sensor=] has an associated <a>requested sampling frequency</a>, it's default value is implementation-dependent
 but must be set within [=mock sensor=]'s associated <a>sampling frequency</a> bounds.
 
 A [=mock sensor=] has an associated <a>sampling frequency</a> with supported bounds, the default values of
 supported bounds are implementation-dependent.
+
+A [=mock sensor=] must report the [=default mock sensor reading=] at the rate of its [=requested sampling frequency=]
+if the user agent <a>can expose sensor readings</a> to the <a>current browsing context</a>'s <a>active document</a>.
 
 <div class='note'>
 Note: The [=mock sensor=] defined in this specification is not intended be used by non-testing-related web content.
@@ -180,9 +190,9 @@ A <dfn id="mock-sensor-type">mock sensor type</dfn> is equivalent to a <a>sensor
 </pre>
 
 Each enumeration value in the {{MockSensorType}} enum identifies a <a>mock sensor type</a>.
-Each <a>mock sensor type</a> has the following <a>mock sensor reading Values</a>:
+Each <a>mock sensor type</a> has a <a>mock sensor reading values</a> dictionary:
 
-: A <dfn export>Mock Sensor Reading Values</dfn>
+: <dfn export>Mock Sensor Reading Values</dfn> dictionary
 :: {{MockSensorReadingValues}} dictionary represents user specified <a>mock sensor reading</a> used for
    [[#update-mock-sensor-reading-command|updating mock sensor reading]]. Its members must match the
    [=attribute=] [=identifier=] defined by the <a>sensor type</a>'s
@@ -403,6 +413,7 @@ The <a>remote end steps</a> are:
     1. Set the [=mock sensor=]'s associated maximum supported sampling frequency to |configuration|.{{MockSensorConfiguration/maxSamplingFrequency}}.
   4. If |configuration|.{{MockSensorConfiguration/minSamplingFrequency}} is [=present=], then:
     1. Set the [=mock sensor=]'s minimum supported sampling frequency to |configuration|.{{MockSensorConfiguration/minSamplingFrequency}}.
+  5. Let all the |type| of <a>Sensor</a> objects' associated <a>platform sensor</a> be the |type|'s associated [=mock sensor=].
 4. Return <a>success</a> with data `null`.
 
 <div class="example">
@@ -470,13 +481,12 @@ The <a>remote end steps</a> are:
    <a>invalid argument</a>.
 2. If |type| does not match a [=mock sensor type=] amongst all associated [=mock sensors=] of the
    <a>current browsing context</a>, return a <a>WebDriver error</a> with <a>WebDriver error code</a> [=no such mock sensor=].
-3. Let |parameters| be the |parameters| argument, <a>converted to an IDL value</a> of the |type|'s
+3. Let |reading| be the |reading| argument, <a>converted to an IDL value</a> of the |type|'s
    associated {{MockSensorReadingValues}}. If this throws an exception, return a
    <a>WebDriver error</a> with <a>WebDriver error code</a> <a>invalid argument</a>.
-4. If the user agent <a>can expose sensor readings</a> to the <a>current browsing context</a>'s <a>active document</a>, then:
-  1. Simulate invoking <a>update latest reading</a> with the |type| of [=mock sensor=] and the |parameters| as arguments.
-  2. Return <a>success</a> with data `null`.
-5. Otherwise, return a <a>WebDriver error</a> with <a>WebDriver error code</a> [=unable to update mock sensor reading=].
+4. [=map/For each=] |key| → <var ignore>value</var> of |reading|.
+  1.  [=map/Set=] [=default mock sensor reading=][|key|] to the corresponding value of |reading|.
+5. Return <a>success</a> with data `null`.
 
 ### Delete mock sensor ### {#delete-mock-sensor-command}
 
@@ -529,14 +539,6 @@ specific for [=mock sensor=] in following table.
       <td>|mock sensor already created|</td>
       <td>
         A [[#mock-sensor-commands|command]] to create a mock sensor could not be satisfied because the given type of mock sensor is already existed.
-      </td>
-    </tr>
-    <tr>
-      <td><dfn id="unable-to-update-mock-sensor-reading">unable to update mock sensor reading</dfn></td>
-      <td>500</td>
-      <td>|unable to update mock sensor reading|</td>
-      <td>
-        A [[#mock-sensor-commands|command]] to update mock sensor reading could not be satisfied.
       </td>
     </tr>
   </tbody>
