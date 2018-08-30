@@ -71,6 +71,9 @@ urlPrefix: https://wicg.github.io/geolocation-sensor/; spec: GEOLOCATION-SENSOR
 urlPrefix: https://w3c.github.io/proximity; spec: PROXIMITY
   type: dfn
     text: ProximitySensor; url: proximity-sensor-interface
+urlPrefix: https://www.w3.org/TR/hr-time-2/; spec: HR-TIME-2
+  type: dfn
+    text: time origin; url: dfn-time-origin
 </pre>
 <pre class=link-defaults>
 spec: webidl; type:dfn; text:attribute
@@ -97,15 +100,17 @@ A <dfn id="mock-sensor">mock sensor</dfn> simulates the behavior of a <a>platfor
 A [=mock sensor=] reports corresponding <dfn id="mock-sensor-reading">mock <a>sensor reading</a></dfn>, which is a source of
 mocking information about the environment, to the <a>Sensor</a> objects.
 
-The user agent must provide the <a>mock sensor reading</a> that are initially exposed to the <a>Sensor</a> objects,
-which is called <dfn id="default-mock-sensor-reading">default mock sensor reading</dfn>.
+The <a>current browsing context</a>'s [=mock sensor=] has an associated <a>mock sensor reading</a> [=ordered map|map=].
 
-The <a>current browsing context</a>'s [=mock sensor=] has an associated <a>default mock sensor reading</a> [=ordered map|map=],
-It includes [=map/entries=] whose [=map/keys=] must match the [=dictionary members=] [=identifier=] defined by the
-[=mock sensor type=]'s {{MockSensorReadingValues}} and whose [=map/values=] are implementation-dependent.
+The <a>mock sensor reading</a> [=ordered map|map=] contains an [=map/entry=] whose [=map/key=] is
+"timestamp" and whose [=map/value=] is a high resolution timestamp that estimates the time <a>mock sensor reading</a>
+sent to observers of the <a>Sensor</a> object, expressed in milliseconds since the [=time origin=].
 
-The <a>current browsing context</a>'s [=mock sensor=] has an associated <a>latest reading</a> [=ordered map|map=],
-which holds the latest available [=mock sensor readings=].
+The other [=map/entries=] of the <a>mock sensor reading</a> [=ordered map|map=] whose [=map/keys=] must match the
+[=dictionary members=] [=identifier=] defined by the [=mock sensor type=]'s {{MockSensorReadingValues}}
+and whose initial [=map/values=] are implementation-dependent.
+
+Note: The user agent must provide the <a>mock sensor reading</a> that are initially exposed to the <a>Sensor</a> objects.
 
 A [=mock sensor=] has an associated <a>requested sampling frequency</a>, it's default value is implementation-dependent
 but must be set within [=mock sensor=]'s associated <a>sampling frequency</a> bounds.
@@ -113,7 +118,7 @@ but must be set within [=mock sensor=]'s associated <a>sampling frequency</a> bo
 A [=mock sensor=] has an associated <a>sampling frequency</a> with supported bounds, the default values of
 supported bounds are implementation-dependent.
 
-A [=mock sensor=] must report the [=default mock sensor reading=] at the rate of its [=requested sampling frequency=]
+A [=mock sensor=] must report the [=mock sensor reading=] at the rate of its [=requested sampling frequency=]
 if the user agent <a>can expose sensor readings</a> to the <a>current browsing context</a>'s <a>active document</a>.
 
 <div class='note'>
@@ -485,7 +490,7 @@ The <a>remote end steps</a> are:
    associated {{MockSensorReadingValues}}. If this throws an exception, return a
    <a>WebDriver error</a> with <a>WebDriver error code</a> <a>invalid argument</a>.
 4. [=map/For each=] |key| → <var ignore>value</var> of |reading|.
-  1.  [=map/Set=] [=default mock sensor reading=][|key|] to the corresponding value of |reading|.
+  1.  [=map/Set=] [=mock sensor reading=][|key|] to the corresponding value of |reading|.
 5. Return <a>success</a> with data `null`.
 
 ### Delete mock sensor ### {#delete-mock-sensor-command}

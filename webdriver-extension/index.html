@@ -1220,7 +1220,7 @@ Possible extra rowspan handling
   </style>
   <meta content="Bikeshed version 1a927b7d2ff9a70dcdc5dc9f892fd154b7b64097" name="generator">
   <link href="https://w3c.github.io/sensors/webdriver-extension" rel="canonical">
-  <meta content="db015aea3caa08bf2cb11ebe4684cc74ea4cc5a9" name="document-revision">
+  <meta content="a03fcb1f1ddd98853ddeb28f39a98b854caefe12" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1467,7 +1467,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebDriver Extension API for Generic Sensor</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2018-08-28">28 August 2018</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2018-08-30">30 August 2018</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1578,19 +1578,18 @@ and their responses to requests are well defined.</p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="mock-sensor">mock sensor</dfn> simulates the behavior of a <a data-link-type="dfn" href="https://w3c.github.io/sensors/#concept-platform-sensor" id="ref-for-concept-platform-sensor">platform sensor</a> in controlled ways.</p>
    <p>A <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor①">mock sensor</a> reports corresponding <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="mock-sensor-reading">mock <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor-reading" id="ref-for-sensor-reading">sensor reading</a></dfn>, which is a source of
 mocking information about the environment, to the <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor" id="ref-for-sensor">Sensor</a> objects.</p>
-   <p>The user agent must provide the <a data-link-type="dfn" href="#mock-sensor-reading" id="ref-for-mock-sensor-reading">mock sensor reading</a> that are initially exposed to the <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor" id="ref-for-sensor①">Sensor</a> objects,
-which is called <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="default-mock-sensor-reading">default mock sensor reading</dfn>.</p>
-   <p>The <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context">current browsing context</a>’s <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②">mock sensor</a> has an associated <a data-link-type="dfn" href="#default-mock-sensor-reading" id="ref-for-default-mock-sensor-reading">default mock sensor reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map">map</a>,
-It includes <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry" id="ref-for-map-entry">entries</a> whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-key" id="ref-for-map-key">keys</a> must match the <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-dictionary-member" id="ref-for-dfn-dictionary-member">dictionary members</a> <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-identifier" id="ref-for-dfn-identifier">identifier</a> defined by the <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-type">mock sensor type</a>'s <code class="idl"><a data-link-type="idl" href="#dictdef-mocksensorreadingvalues" id="ref-for-dictdef-mocksensorreadingvalues">MockSensorReadingValues</a></code> and whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-value" id="ref-for-map-value">values</a> are implementation-dependent.</p>
-   <p>The <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context①">current browsing context</a>’s <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor③">mock sensor</a> has an associated <a data-link-type="dfn" href="https://w3c.github.io/sensors/#latest-reading" id="ref-for-latest-reading">latest reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map①">map</a>,
-which holds the latest available <a data-link-type="dfn" href="#mock-sensor-reading" id="ref-for-mock-sensor-reading①">mock sensor readings</a>.</p>
-   <p>A <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor④">mock sensor</a> has an associated <a data-link-type="dfn" href="https://w3c.github.io/sensors/#requested-sampling-frequency" id="ref-for-requested-sampling-frequency">requested sampling frequency</a>, it’s default value is implementation-dependent
-but must be set within <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor⑤">mock sensor</a>'s associated <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sampling-frequency" id="ref-for-sampling-frequency">sampling frequency</a> bounds.</p>
-   <p>A <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor⑥">mock sensor</a> has an associated <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sampling-frequency" id="ref-for-sampling-frequency①">sampling frequency</a> with supported bounds, the default values of
+   <p>The <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context">current browsing context</a>’s <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②">mock sensor</a> has an associated <a data-link-type="dfn" href="#mock-sensor-reading" id="ref-for-mock-sensor-reading">mock sensor reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map">map</a>.</p>
+   <p>The <a data-link-type="dfn" href="#mock-sensor-reading" id="ref-for-mock-sensor-reading①">mock sensor reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map①">map</a> contains an <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry" id="ref-for-map-entry">entry</a> whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-key" id="ref-for-map-key">key</a> is
+"timestamp" and whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-value" id="ref-for-map-value">value</a> is a high resolution timestamp that estimates the time <a data-link-type="dfn" href="#mock-sensor-reading" id="ref-for-mock-sensor-reading②">mock sensor reading</a> sent to observers of the <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor" id="ref-for-sensor①">Sensor</a> object, expressed in milliseconds since the <a data-link-type="dfn" href="https://www.w3.org/TR/hr-time-2/#dfn-time-origin" id="ref-for-dfn-time-origin">time origin</a>.</p>
+   <p>The other <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry" id="ref-for-map-entry①">entries</a> of the <a data-link-type="dfn" href="#mock-sensor-reading" id="ref-for-mock-sensor-reading③">mock sensor reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map②">map</a> whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-key" id="ref-for-map-key①">keys</a> must match the <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-dictionary-member" id="ref-for-dfn-dictionary-member">dictionary members</a> <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-identifier" id="ref-for-dfn-identifier">identifier</a> defined by the <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-type">mock sensor type</a>'s <code class="idl"><a data-link-type="idl" href="#dictdef-mocksensorreadingvalues" id="ref-for-dictdef-mocksensorreadingvalues">MockSensorReadingValues</a></code> and whose initial <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-value" id="ref-for-map-value①">values</a> are implementation-dependent.</p>
+   <p class="note" role="note"><span>Note:</span> The user agent must provide the <a data-link-type="dfn" href="#mock-sensor-reading" id="ref-for-mock-sensor-reading④">mock sensor reading</a> that are initially exposed to the <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor" id="ref-for-sensor②">Sensor</a> objects.</p>
+   <p>A <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor③">mock sensor</a> has an associated <a data-link-type="dfn" href="https://w3c.github.io/sensors/#requested-sampling-frequency" id="ref-for-requested-sampling-frequency">requested sampling frequency</a>, it’s default value is implementation-dependent
+but must be set within <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor④">mock sensor</a>'s associated <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sampling-frequency" id="ref-for-sampling-frequency">sampling frequency</a> bounds.</p>
+   <p>A <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor⑤">mock sensor</a> has an associated <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sampling-frequency" id="ref-for-sampling-frequency①">sampling frequency</a> with supported bounds, the default values of
 supported bounds are implementation-dependent.</p>
-   <p>A <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor⑦">mock sensor</a> must report the <a data-link-type="dfn" href="#default-mock-sensor-reading" id="ref-for-default-mock-sensor-reading①">default mock sensor reading</a> at the rate of its <a data-link-type="dfn" href="https://w3c.github.io/sensors/#requested-sampling-frequency" id="ref-for-requested-sampling-frequency①">requested sampling frequency</a> if the user agent <a data-link-type="dfn" href="https://w3c.github.io/sensors/#can-expose-sensor-readings" id="ref-for-can-expose-sensor-readings">can expose sensor readings</a> to the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context②">current browsing context</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#active-document" id="ref-for-active-document">active document</a>.</p>
-   <div class="note" role="note"> Note: The <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor⑧">mock sensor</a> defined in this specification is not intended be used by non-testing-related web content.
-The UA MAY choose to expose <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor⑨">mock sensor</a> interface only when a runtime or compile-time flag has been set. </div>
+   <p>A <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor⑥">mock sensor</a> must report the <a data-link-type="dfn" href="#mock-sensor-reading" id="ref-for-mock-sensor-reading⑤">mock sensor reading</a> at the rate of its <a data-link-type="dfn" href="https://w3c.github.io/sensors/#requested-sampling-frequency" id="ref-for-requested-sampling-frequency①">requested sampling frequency</a> if the user agent <a data-link-type="dfn" href="https://w3c.github.io/sensors/#can-expose-sensor-readings" id="ref-for-can-expose-sensor-readings">can expose sensor readings</a> to the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context①">current browsing context</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#active-document" id="ref-for-active-document">active document</a>.</p>
+   <div class="note" role="note"> Note: The <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor⑦">mock sensor</a> defined in this specification is not intended be used by non-testing-related web content.
+The UA MAY choose to expose <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor⑧">mock sensor</a> interface only when a runtime or compile-time flag has been set. </div>
    <h3 class="heading settled" data-level="2.1" id="dictionary-mocksensorconfiguration"><span class="secno">2.1. </span><span class="content">MockSensorConfiguration dictionary</span><a class="self-link" href="#dictionary-mocksensorconfiguration"></a></h3>
 <pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-mocksensorconfiguration"><code>MockSensorConfiguration</code></dfn> {
   <span class="kt">required</span> <a class="n" data-link-type="idl-name" href="#enumdef-mocksensortype" id="ref-for-enumdef-mocksensortype">MockSensorType</a> <dfn class="nv dfn-paneled idl-code" data-dfn-for="MockSensorConfiguration" data-dfn-type="dict-member" data-export="" data-type="MockSensorType " id="dom-mocksensorconfiguration-mocksensortype"><code>mockSensorType</code></dfn>;
@@ -1606,13 +1605,13 @@ The UA MAY choose to expose <a data-link-type="dfn" href="#mock-sensor" id="ref-
      <p>A <code class="idl"><a data-link-type="idl" href="#enumdef-mocksensortype" id="ref-for-enumdef-mocksensortype①">MockSensorType</a></code> that is used to set <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-type①">mock sensor type</a>.</p>
     <dt data-md=""><code class="idl"><a data-link-type="idl" href="#dom-mocksensorconfiguration-connected" id="ref-for-dom-mocksensorconfiguration-connected">connected</a></code> member
     <dd data-md="">
-     <p>A boolean. When set to false the user agent must intercept the result of invoking <a data-link-type="dfn" href="https://w3c.github.io/sensors/#connect-to-sensor" id="ref-for-connect-to-sensor">connect to sensor</a> with associated <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor" id="ref-for-sensor②">Sensor</a> instance as argument to false, otherwise true.</p>
+     <p>A boolean. When set to false the user agent must intercept the result of invoking <a data-link-type="dfn" href="https://w3c.github.io/sensors/#connect-to-sensor" id="ref-for-connect-to-sensor">connect to sensor</a> with associated <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor" id="ref-for-sensor③">Sensor</a> instance as argument to false, otherwise true.</p>
     <dt data-md=""><code class="idl"><a data-link-type="idl" href="#dom-mocksensorconfiguration-maxsamplingfrequency" id="ref-for-dom-mocksensorconfiguration-maxsamplingfrequency">maxSamplingFrequency</a></code> member
     <dd data-md="">
-     <p>A double representing frequency in Hz that is used to set maximum supported <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sampling-frequency" id="ref-for-sampling-frequency②">sampling frequency</a> for the associated <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor①⓪">mock sensor</a>.</p>
+     <p>A double representing frequency in Hz that is used to set maximum supported <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sampling-frequency" id="ref-for-sampling-frequency②">sampling frequency</a> for the associated <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor⑨">mock sensor</a>.</p>
     <dt data-md=""><code class="idl"><a data-link-type="idl" href="#dom-mocksensorconfiguration-minsamplingfrequency" id="ref-for-dom-mocksensorconfiguration-minsamplingfrequency">minSamplingFrequency</a></code> member
     <dd data-md="">
-     <p>A double representing frequency in Hz that is used to set minimum supported <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sampling-frequency" id="ref-for-sampling-frequency③">sampling frequency</a> for the associated <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor①①">mock sensor</a>.</p>
+     <p>A double representing frequency in Hz that is used to set minimum supported <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sampling-frequency" id="ref-for-sampling-frequency③">sampling frequency</a> for the associated <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor①⓪">mock sensor</a>.</p>
    </dl>
    <h3 class="heading settled" data-level="2.2" id="dictionary-mocksensor"><span class="secno">2.2. </span><span class="content">MockSensor dictionary</span><a class="self-link" href="#dictionary-mocksensor"></a></h3>
 <pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-mocksensor"><code>MockSensor</code></dfn> {
@@ -1621,22 +1620,22 @@ The UA MAY choose to expose <a data-link-type="dfn" href="#mock-sensor" id="ref-
   <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double④"><span class="kt">double</span></a> <dfn class="nv dfn-paneled idl-code" data-dfn-for="MockSensor" data-dfn-type="dict-member" data-export="" data-type="double " id="dom-mocksensor-requestedsamplingfrequency"><code>requestedSamplingFrequency</code></dfn>;
 };
 </pre>
-   <p>The <code class="idl"><a data-link-type="idl" href="#dictdef-mocksensor" id="ref-for-dictdef-mocksensor">MockSensor</a></code> dictionary provides information of a <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor①②">mock sensor</a>.</p>
+   <p>The <code class="idl"><a data-link-type="idl" href="#dictdef-mocksensor" id="ref-for-dictdef-mocksensor">MockSensor</a></code> dictionary provides information of a <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor①①">mock sensor</a>.</p>
    <dl>
     <dt data-md=""><code class="idl"><a data-link-type="idl" href="#dom-mocksensor-maxsamplingfrequency" id="ref-for-dom-mocksensor-maxsamplingfrequency">maxSamplingFrequency</a></code> member
     <dd data-md="">
-     <p>A double representing frequency in Hz that indicates the maximum supported <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sampling-frequency" id="ref-for-sampling-frequency④">sampling frequency</a> of the associated <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor①③">mock sensor</a>.</p>
+     <p>A double representing frequency in Hz that indicates the maximum supported <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sampling-frequency" id="ref-for-sampling-frequency④">sampling frequency</a> of the associated <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor①②">mock sensor</a>.</p>
     <dt data-md=""><code class="idl"><a data-link-type="idl" href="#dom-mocksensor-minsamplingfrequency" id="ref-for-dom-mocksensor-minsamplingfrequency">minSamplingFrequency</a></code> member
     <dd data-md="">
-     <p>A double representing frequency in Hz that indicates the minimum supported <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sampling-frequency" id="ref-for-sampling-frequency⑤">sampling frequency</a> of the associated <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor①④">mock sensor</a>.</p>
+     <p>A double representing frequency in Hz that indicates the minimum supported <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sampling-frequency" id="ref-for-sampling-frequency⑤">sampling frequency</a> of the associated <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor①③">mock sensor</a>.</p>
     <dt data-md=""><code class="idl"><a data-link-type="idl" href="#dom-mocksensor-requestedsamplingfrequency" id="ref-for-dom-mocksensor-requestedsamplingfrequency">requestedSamplingFrequency</a></code> member
     <dd data-md="">
-     <p>A double representing frequency in Hz that indicates the <a data-link-type="dfn" href="https://w3c.github.io/sensors/#requested-sampling-frequency" id="ref-for-requested-sampling-frequency②">requested sampling frequency</a> of the associated <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor①⑤">mock sensor</a>.</p>
+     <p>A double representing frequency in Hz that indicates the <a data-link-type="dfn" href="https://w3c.github.io/sensors/#requested-sampling-frequency" id="ref-for-requested-sampling-frequency②">requested sampling frequency</a> of the associated <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor①④">mock sensor</a>.</p>
    </dl>
-   <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="serialized-mock-sensor">serialized mock sensor</dfn> is a JSON <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-object" id="ref-for-dfn-object">Object</a> where a <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor①⑥">mock sensor</a>'s fields listed in the <code class="idl"><a data-link-type="idl" href="#dictdef-mocksensor" id="ref-for-dictdef-mocksensor①">MockSensor</a></code> dictionary are mapped
-using the <var>JSON Key</var> and the associated field’s value from the available <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor①⑦">mock sensor</a> in <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context③">current browsing context</a>.</p>
+   <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="serialized-mock-sensor">serialized mock sensor</dfn> is a JSON <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-object" id="ref-for-dfn-object">Object</a> where a <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor①⑤">mock sensor</a>'s fields listed in the <code class="idl"><a data-link-type="idl" href="#dictdef-mocksensor" id="ref-for-dictdef-mocksensor①">MockSensor</a></code> dictionary are mapped
+using the <var>JSON Key</var> and the associated field’s value from the available <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor①⑥">mock sensor</a> in <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context②">current browsing context</a>.</p>
    <h3 class="heading settled" data-level="2.3" id="section-mock-sensor-type"><span class="secno">2.3. </span><span class="content">Mock sensor type</span><a class="self-link" href="#section-mock-sensor-type"></a></h3>
-   <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="mock-sensor-type">mock sensor type</dfn> is equivalent to a <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor-type" id="ref-for-sensor-type">sensor type</a>’s associated <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/sensors/#sensor" id="ref-for-sensor③">Sensor</a></code> subclass.</p>
+   <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="mock-sensor-type">mock sensor type</dfn> is equivalent to a <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor-type" id="ref-for-sensor-type">sensor type</a>’s associated <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/sensors/#sensor" id="ref-for-sensor④">Sensor</a></code> subclass.</p>
 <pre class="idl highlight def"><span class="kt">enum</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="enum" data-export="" id="enumdef-mocksensortype"><code>MockSensorType</code></dfn> {
   <a class="s idl-code" data-link-type="enum-value" href="#dom-mocksensortype-ambient-light" id="ref-for-dom-mocksensortype-ambient-light">"ambient-light"</a>,
   <a class="s idl-code" data-link-type="enum-value" href="#dom-mocksensortype-accelerometer" id="ref-for-dom-mocksensortype-accelerometer">"accelerometer"</a>,
@@ -1656,7 +1655,7 @@ Each <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-ty
    <dl>
     <dt data-md=""><dfn class="dfn-paneled" data-dfn-type="dfn" data-export="" id="mock-sensor-reading-values">Mock Sensor Reading Values</dfn> dictionary
     <dd data-md="">
-     <p><code class="idl"><a data-link-type="idl" href="#dictdef-mocksensorreadingvalues" id="ref-for-dictdef-mocksensorreadingvalues①">MockSensorReadingValues</a></code> dictionary represents user specified <a data-link-type="dfn" href="#mock-sensor-reading" id="ref-for-mock-sensor-reading②">mock sensor reading</a> used for <a href="#update-mock-sensor-reading-command">updating mock sensor reading</a>. Its members must match the <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-attribute" id="ref-for-dfn-attribute">attribute</a> <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-identifier" id="ref-for-dfn-identifier①">identifier</a> defined by the <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor-type" id="ref-for-sensor-type①">sensor type</a>’s
+     <p><code class="idl"><a data-link-type="idl" href="#dictdef-mocksensorreadingvalues" id="ref-for-dictdef-mocksensorreadingvalues①">MockSensorReadingValues</a></code> dictionary represents user specified <a data-link-type="dfn" href="#mock-sensor-reading" id="ref-for-mock-sensor-reading⑥">mock sensor reading</a> used for <a href="#update-mock-sensor-reading-command">updating mock sensor reading</a>. Its members must match the <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-attribute" id="ref-for-dfn-attribute">attribute</a> <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-identifier" id="ref-for-dfn-identifier①">identifier</a> defined by the <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor-type" id="ref-for-sensor-type①">sensor type</a>’s
  associated <a data-link-type="dfn" href="https://w3c.github.io/sensors/#extension-sensor-interface" id="ref-for-extension-sensor-interface">extension sensor interface</a>. Each <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-type④">mock sensor type</a> has a specific <code class="idl"><a data-link-type="idl" href="#dictdef-mocksensorreadingvalues" id="ref-for-dictdef-mocksensorreadingvalues②">MockSensorReadingValues</a></code>, which is defined in each section of <a href="#section-mock-sensor-type">mock senor type</a>.</p>
 <pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-mocksensorreadingvalues"><code>MockSensorReadingValues</code></dfn> {
 };
@@ -1812,41 +1811,41 @@ associated with the usage of the <a data-link-type="dfn" href="https://w3c.githu
       <td>/session/{session id}/sensor
    </table>
    <p>The <dfn data-dfn-type="dfn" data-noexport="" id="create-mock-sensor">create mock sensor<a class="self-link" href="#create-mock-sensor"></a></dfn> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-extension-command" id="ref-for-dfn-extension-command③">extension command</a> simulates user
-creation of a <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor①⑧">mock sensor</a>.</p>
+creation of a <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor①⑦">mock sensor</a>.</p>
    <p>The <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-remote-end-steps" id="ref-for-dfn-remote-end-steps">remote end steps</a> are:</p>
    <ol>
     <li data-md="">
      <p>Let <var>configuration</var> be the <var>configuration</var> argument, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-convert-ecmascript-to-idl-value" id="ref-for-dfn-convert-ecmascript-to-idl-value">converted to an IDL value</a> of type <code class="idl"><a data-link-type="idl" href="#dictdef-mocksensorconfiguration" id="ref-for-dictdef-mocksensorconfiguration①">MockSensorConfiguration</a></code>. If this throws an exception, return a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-errors" id="ref-for-dfn-errors">WebDriver error</a> with <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-error-code" id="ref-for-dfn-error-code">WebDriver error code</a> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-invalid-argument" id="ref-for-dfn-invalid-argument">invalid argument</a>.</p>
     <li data-md="">
-     <p>Let <var>type</var> be the <var>configuration</var>.<code class="idl"><a data-link-type="idl" href="#dom-mocksensorconfiguration-mocksensortype" id="ref-for-dom-mocksensorconfiguration-mocksensortype①">mockSensorType</a></code>, if the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context④">current browsing context</a> already has this <var>type</var> of <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor①⑨">mock sensor</a>, return a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-errors" id="ref-for-dfn-errors①">WebDriver error</a> with <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-error-code" id="ref-for-dfn-error-code①">WebDriver error code</a> <a data-link-type="dfn" href="#mock-sensor-already-created" id="ref-for-mock-sensor-already-created">mock sensor already created</a>.</p>
+     <p>Let <var>type</var> be the <var>configuration</var>.<code class="idl"><a data-link-type="idl" href="#dom-mocksensorconfiguration-mocksensortype" id="ref-for-dom-mocksensorconfiguration-mocksensortype①">mockSensorType</a></code>, if the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context③">current browsing context</a> already has this <var>type</var> of <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor①⑧">mock sensor</a>, return a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-errors" id="ref-for-dfn-errors①">WebDriver error</a> with <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-error-code" id="ref-for-dfn-error-code①">WebDriver error code</a> <a data-link-type="dfn" href="#mock-sensor-already-created" id="ref-for-mock-sensor-already-created">mock sensor already created</a>.</p>
     <li data-md="">
-     <p>Run these sub-steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel">in parallel</a> to create a <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②⓪">mock sensor</a> in <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context⑤">current browsing context</a>:</p>
+     <p>Run these sub-steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel">in parallel</a> to create a <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor①⑨">mock sensor</a> in <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context④">current browsing context</a>:</p>
      <ol>
       <li data-md="">
        <p>Set the <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-type⑤">mock sensor’s type</a> to <var>type</var>.</p>
       <li data-md="">
        <p>Let <var>connected</var> be the <var>configuration</var>.<code class="idl"><a data-link-type="idl" href="#dom-mocksensorconfiguration-connected" id="ref-for-dom-mocksensorconfiguration-connected①">connected</a></code>,
- force the result of invoking <a data-link-type="dfn" href="https://w3c.github.io/sensors/#connect-to-sensor" id="ref-for-connect-to-sensor①">connect to sensor</a> with associated <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor" id="ref-for-sensor④">Sensor</a> instance as argument to <var>connected</var>.</p>
+ force the result of invoking <a data-link-type="dfn" href="https://w3c.github.io/sensors/#connect-to-sensor" id="ref-for-connect-to-sensor①">connect to sensor</a> with associated <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor" id="ref-for-sensor⑤">Sensor</a> instance as argument to <var>connected</var>.</p>
       <li data-md="">
        <p>If <var>configuration</var>.<code class="idl"><a data-link-type="idl" href="#dom-mocksensorconfiguration-maxsamplingfrequency" id="ref-for-dom-mocksensorconfiguration-maxsamplingfrequency①">maxSamplingFrequency</a></code> is <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-present" id="ref-for-dfn-present">present</a>, then:</p>
        <ol>
         <li data-md="">
-         <p>Set the <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②①">mock sensor</a>'s associated maximum supported sampling frequency to <var>configuration</var>.<code class="idl"><a data-link-type="idl" href="#dom-mocksensorconfiguration-maxsamplingfrequency" id="ref-for-dom-mocksensorconfiguration-maxsamplingfrequency②">maxSamplingFrequency</a></code>.</p>
+         <p>Set the <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②⓪">mock sensor</a>'s associated maximum supported sampling frequency to <var>configuration</var>.<code class="idl"><a data-link-type="idl" href="#dom-mocksensorconfiguration-maxsamplingfrequency" id="ref-for-dom-mocksensorconfiguration-maxsamplingfrequency②">maxSamplingFrequency</a></code>.</p>
        </ol>
       <li data-md="">
        <p>If <var>configuration</var>.<code class="idl"><a data-link-type="idl" href="#dom-mocksensorconfiguration-minsamplingfrequency" id="ref-for-dom-mocksensorconfiguration-minsamplingfrequency①">minSamplingFrequency</a></code> is <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-present" id="ref-for-dfn-present①">present</a>, then:</p>
        <ol>
         <li data-md="">
-         <p>Set the <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②②">mock sensor</a>'s minimum supported sampling frequency to <var>configuration</var>.<code class="idl"><a data-link-type="idl" href="#dom-mocksensorconfiguration-minsamplingfrequency" id="ref-for-dom-mocksensorconfiguration-minsamplingfrequency②">minSamplingFrequency</a></code>.</p>
+         <p>Set the <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②①">mock sensor</a>'s minimum supported sampling frequency to <var>configuration</var>.<code class="idl"><a data-link-type="idl" href="#dom-mocksensorconfiguration-minsamplingfrequency" id="ref-for-dom-mocksensorconfiguration-minsamplingfrequency②">minSamplingFrequency</a></code>.</p>
        </ol>
       <li data-md="">
-       <p>Let all the <var>type</var> of <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor" id="ref-for-sensor⑤">Sensor</a> objects' associated <a data-link-type="dfn" href="https://w3c.github.io/sensors/#concept-platform-sensor" id="ref-for-concept-platform-sensor①">platform sensor</a> be the <var>type</var>’s associated <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②③">mock sensor</a>.</p>
+       <p>Let all the <var>type</var> of <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor" id="ref-for-sensor⑥">Sensor</a> objects' associated <a data-link-type="dfn" href="https://w3c.github.io/sensors/#concept-platform-sensor" id="ref-for-concept-platform-sensor①">platform sensor</a> be the <var>type</var>’s associated <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②②">mock sensor</a>.</p>
      </ol>
     <li data-md="">
      <p>Return <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-success" id="ref-for-dfn-success">success</a> with data <code>null</code>.</p>
    </ol>
    <div class="example" id="example-ff24a2bb">
-    <a class="self-link" href="#example-ff24a2bb"></a> To create an "ambient-light" mock sensor of <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context⑥">current browsing context</a> of the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-session" id="ref-for-dfn-session">session</a> with ID 23,
+    <a class="self-link" href="#example-ff24a2bb"></a> To create an "ambient-light" mock sensor of <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context⑤">current browsing context</a> of the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-session" id="ref-for-dfn-session">session</a> with ID 23,
   the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-local-end" id="ref-for-dfn-local-end">local end</a> would POST to <code>/session/23/sensor/</code> with the body: 
 <pre class="lang-json highlight"><span class="p">{</span>
   <span class="nt">"mockSensorType"</span><span class="p">:</span> <span class="s2">"ambient-light"</span><span class="p">,</span>
@@ -1854,7 +1853,7 @@ creation of a <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-senso
   <span class="nt">"minSamplingFrequency"</span><span class="p">:</span> <span class="mi">5</span>
 <span class="p">}</span>
 </pre>
-    <p>Be aware that only one <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②④">mock sensor</a> of a given <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-type⑥">mock sensor type</a> can be created in <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context⑦">current browsing context</a>,
+    <p>Be aware that only one <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②③">mock sensor</a> of a given <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-type⑥">mock sensor type</a> can be created in <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context⑥">current browsing context</a>,
   otherwise a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-errors" id="ref-for-dfn-errors②">WebDriver error</a> with <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-error-code" id="ref-for-dfn-error-code②">WebDriver error code</a> <a data-link-type="dfn" href="#mock-sensor-already-created" id="ref-for-mock-sensor-already-created①">mock sensor already created</a> will be thrown.</p>
    </div>
    <h4 class="heading settled" data-level="3.1.2" id="get-mock-sensor-command"><span class="secno">3.1.2. </span><span class="content">Get mock sensor</span><a class="self-link" href="#get-mock-sensor-command"></a></h4>
@@ -1868,14 +1867,14 @@ creation of a <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-senso
       <td>/session/{session id}/sensor/{type}
    </table>
    <p>The <dfn data-dfn-type="dfn" data-noexport="" id="get-mock-sensor">get mock sensor<a class="self-link" href="#get-mock-sensor"></a></dfn> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-extension-command" id="ref-for-dfn-extension-command④">extension command</a> simulates user
-getting information of a given type of <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②⑤">mock sensor</a>.</p>
+getting information of a given type of <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②④">mock sensor</a>.</p>
    <p>The <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-remote-end-steps" id="ref-for-dfn-remote-end-steps①">remote end steps</a> are:</p>
    <ol>
     <li data-md="">
      <p>Let <var>type</var> be a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-url-variables" id="ref-for-dfn-url-variables">url variable</a>, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-convert-ecmascript-to-idl-value" id="ref-for-dfn-convert-ecmascript-to-idl-value①">converted to an IDL value</a> of type <code class="idl"><a data-link-type="idl" href="#enumdef-mocksensortype" id="ref-for-enumdef-mocksensortype③">MockSensorType</a></code>.
  If this throws an exception, return a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-errors" id="ref-for-dfn-errors③">WebDriver error</a> with <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-error-code" id="ref-for-dfn-error-code③">WebDriver error code</a> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-invalid-argument" id="ref-for-dfn-invalid-argument①">invalid argument</a>.</p>
     <li data-md="">
-     <p>If <var>type</var> does not match a <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-type⑦">mock sensor type</a> amongst all associated <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②⑥">mock sensors</a> of the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context⑧">current browsing context</a>, return a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-errors" id="ref-for-dfn-errors④">WebDriver error</a> with <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-error-code" id="ref-for-dfn-error-code④">WebDriver error code</a> <a data-link-type="dfn" href="#no-such-mock-sensor" id="ref-for-no-such-mock-sensor">no such mock sensor</a>.</p>
+     <p>If <var>type</var> does not match a <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-type⑦">mock sensor type</a> amongst all associated <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②⑤">mock sensors</a> of the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context⑦">current browsing context</a>, return a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-errors" id="ref-for-dfn-errors④">WebDriver error</a> with <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-error-code" id="ref-for-dfn-error-code④">WebDriver error code</a> <a data-link-type="dfn" href="#no-such-mock-sensor" id="ref-for-no-such-mock-sensor">no such mock sensor</a>.</p>
     <li data-md="">
      <p>Return <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-success" id="ref-for-dfn-success①">success</a> with the <a data-link-type="dfn" href="#serialized-mock-sensor" id="ref-for-serialized-mock-sensor">serialized mock sensor</a> as data.</p>
    </ol>
@@ -1890,14 +1889,14 @@ getting information of a given type of <a data-link-type="dfn" href="#mock-senso
       <td>/session/{session id}/sensor/{type}
    </table>
    <p>The <dfn data-dfn-type="dfn" data-noexport="" id="update-mock-sensor-reading">update mock sensor reading<a class="self-link" href="#update-mock-sensor-reading"></a></dfn> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-extension-command" id="ref-for-dfn-extension-command⑤">extension command</a> simulates user
-updating of a given type of <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②⑦">mock sensor</a>’s <a data-link-type="dfn" href="#mock-sensor-reading" id="ref-for-mock-sensor-reading③">reading</a>.</p>
+updating of a given type of <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②⑥">mock sensor</a>’s <a data-link-type="dfn" href="#mock-sensor-reading" id="ref-for-mock-sensor-reading⑦">reading</a>.</p>
    <p>The <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-remote-end-steps" id="ref-for-dfn-remote-end-steps②">remote end steps</a> are:</p>
    <ol>
     <li data-md="">
      <p>Let <var>type</var> be a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-url-variables" id="ref-for-dfn-url-variables①">url variable</a>, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-convert-ecmascript-to-idl-value" id="ref-for-dfn-convert-ecmascript-to-idl-value②">converted to an IDL value</a> of type <code class="idl"><a data-link-type="idl" href="#enumdef-mocksensortype" id="ref-for-enumdef-mocksensortype④">MockSensorType</a></code>.
  If this throws an exception, return a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-errors" id="ref-for-dfn-errors⑤">WebDriver error</a> with <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-error-code" id="ref-for-dfn-error-code⑤">WebDriver error code</a> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-invalid-argument" id="ref-for-dfn-invalid-argument②">invalid argument</a>.</p>
     <li data-md="">
-     <p>If <var>type</var> does not match a <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-type⑧">mock sensor type</a> amongst all associated <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②⑧">mock sensors</a> of the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context⑨">current browsing context</a>, return a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-errors" id="ref-for-dfn-errors⑥">WebDriver error</a> with <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-error-code" id="ref-for-dfn-error-code⑥">WebDriver error code</a> <a data-link-type="dfn" href="#no-such-mock-sensor" id="ref-for-no-such-mock-sensor①">no such mock sensor</a>.</p>
+     <p>If <var>type</var> does not match a <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-type⑧">mock sensor type</a> amongst all associated <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②⑦">mock sensors</a> of the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context⑧">current browsing context</a>, return a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-errors" id="ref-for-dfn-errors⑥">WebDriver error</a> with <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-error-code" id="ref-for-dfn-error-code⑥">WebDriver error code</a> <a data-link-type="dfn" href="#no-such-mock-sensor" id="ref-for-no-such-mock-sensor①">no such mock sensor</a>.</p>
     <li data-md="">
      <p>Let <var>reading</var> be the <var>reading</var> argument, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-convert-ecmascript-to-idl-value" id="ref-for-dfn-convert-ecmascript-to-idl-value③">converted to an IDL value</a> of the <var>type</var>’s
  associated <code class="idl"><a data-link-type="idl" href="#dictdef-mocksensorreadingvalues" id="ref-for-dictdef-mocksensorreadingvalues③">MockSensorReadingValues</a></code>. If this throws an exception, return a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-errors" id="ref-for-dfn-errors⑦">WebDriver error</a> with <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-error-code" id="ref-for-dfn-error-code⑦">WebDriver error code</a> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-invalid-argument" id="ref-for-dfn-invalid-argument③">invalid argument</a>.</p>
@@ -1905,7 +1904,7 @@ updating of a given type of <a data-link-type="dfn" href="#mock-sensor" id="ref-
      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-iterate" id="ref-for-map-iterate">For each</a> <var>key</var> → <var>value</var> of <var>reading</var>.</p>
      <ol>
       <li data-md="">
-       <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set" id="ref-for-map-set">Set</a> <a data-link-type="dfn" href="#default-mock-sensor-reading" id="ref-for-default-mock-sensor-reading②">default mock sensor reading</a>[<var>key</var>] to the corresponding value of <var>reading</var>.</p>
+       <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set" id="ref-for-map-set">Set</a> <a data-link-type="dfn" href="#mock-sensor-reading" id="ref-for-mock-sensor-reading⑧">mock sensor reading</a>[<var>key</var>] to the corresponding value of <var>reading</var>.</p>
      </ol>
     <li data-md="">
      <p>Return <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-success" id="ref-for-dfn-success②">success</a> with data <code>null</code>.</p>
@@ -1921,7 +1920,7 @@ updating of a given type of <a data-link-type="dfn" href="#mock-sensor" id="ref-
       <td>/session/{session id}/sensor/{type}
    </table>
    <p>The <dfn data-dfn-type="dfn" data-noexport="" id="delete-mock-sensor">delete mock sensor<a class="self-link" href="#delete-mock-sensor"></a></dfn> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-extension-command" id="ref-for-dfn-extension-command⑥">extension command</a> simulates user
-deletion of a given type of <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②⑨">mock sensor</a>.</p>
+deletion of a given type of <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②⑧">mock sensor</a>.</p>
    <p>The <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-remote-end-steps" id="ref-for-dfn-remote-end-steps③">remote end steps</a> are:</p>
    <ol>
     <li data-md="">
@@ -1929,14 +1928,14 @@ deletion of a given type of <a data-link-type="dfn" href="#mock-sensor" id="ref-
     <li data-md="">
      <p>If <code class="idl"><a data-link-type="idl" href="#enumdef-mocksensortype" id="ref-for-enumdef-mocksensortype⑤">MockSensorType</a></code> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain">does not contain</a> <var>type</var>, return a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-errors" id="ref-for-dfn-errors⑧">WebDriver error</a> with <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-error-code" id="ref-for-dfn-error-code⑧">WebDriver error code</a> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-invalid-argument" id="ref-for-dfn-invalid-argument④">invalid argument</a>.</p>
     <li data-md="">
-     <p>If <var>type</var> does not match a <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-type⑨">mock sensor type</a> amongst all associated <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor③⓪">mock sensors</a> of the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context①⓪">current browsing context</a>, return a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-errors" id="ref-for-dfn-errors⑨">WebDriver error</a> with <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-error-code" id="ref-for-dfn-error-code⑨">WebDriver error code</a> <a data-link-type="dfn" href="#no-such-mock-sensor" id="ref-for-no-such-mock-sensor②">no such mock sensor</a>.</p>
+     <p>If <var>type</var> does not match a <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-type⑨">mock sensor type</a> amongst all associated <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②⑨">mock sensors</a> of the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context⑨">current browsing context</a>, return a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-errors" id="ref-for-dfn-errors⑨">WebDriver error</a> with <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-error-code" id="ref-for-dfn-error-code⑨">WebDriver error code</a> <a data-link-type="dfn" href="#no-such-mock-sensor" id="ref-for-no-such-mock-sensor②">no such mock sensor</a>.</p>
     <li data-md="">
-     <p>Delete <var>type</var> of <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor③①">mock sensor</a> in <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context①①">current browsing context</a>.</p>
+     <p>Delete <var>type</var> of <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor③⓪">mock sensor</a> in <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context①⓪">current browsing context</a>.</p>
     <li data-md="">
      <p>Return <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-success" id="ref-for-dfn-success③">success</a> with data <code>null</code>.</p>
    </ol>
    <h3 class="heading settled" data-level="3.2" id="extension-handling-errors"><span class="secno">3.2. </span><span class="content">Handling errors</span><a class="self-link" href="#extension-handling-errors"></a></h3>
-   <p>This section extends the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#handling-errors" id="ref-for-handling-errors">Handling Errors</a> and defines extended <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-error-code" id="ref-for-dfn-error-code①⓪">WebDriver error codes</a> specific for <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor③②">mock sensor</a> in following table.</p>
+   <p>This section extends the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#handling-errors" id="ref-for-handling-errors">Handling Errors</a> and defines extended <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-error-code" id="ref-for-dfn-error-code①⓪">WebDriver error codes</a> specific for <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor③①">mock sensor</a> in following table.</p>
    <table class="def" id="mock-sensor-error-code">
     <thead>
      <tr>
@@ -1972,7 +1971,6 @@ deletion of a given type of <a data-link-type="dfn" href="#mock-sensor" id="ref-
    <li><a href="#dictdef-ambientlightreadingvalues">AmbientLightReadingValues</a><span>, in §2.3.1</span>
    <li><a href="#dom-mocksensorconfiguration-connected">connected</a><span>, in §2.1</span>
    <li><a href="#create-mock-sensor">create mock sensor</a><span>, in §3.1.1</span>
-   <li><a href="#default-mock-sensor-reading">default mock sensor reading</a><span>, in §2</span>
    <li><a href="#delete-mock-sensor">delete mock sensor</a><span>, in §3.1.4</span>
    <li><a href="#dom-proximityreadingvalues-distance">distance</a><span>, in §2.3.11</span>
    <li><a href="#dom-mocksensortype-geolocation">"geolocation"</a><span>, in §2.3.10</span>
@@ -2081,10 +2079,10 @@ deletion of a given type of <a data-link-type="dfn" href="#mock-sensor" id="ref-
   <aside class="dfn-panel" data-for="term-for-sensor">
    <a href="https://w3c.github.io/sensors/#sensor">https://w3c.github.io/sensors/#sensor</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-sensor">2. Mock Sensors</a> <a href="#ref-for-sensor①">(2)</a>
-    <li><a href="#ref-for-sensor②">2.1. MockSensorConfiguration dictionary</a>
-    <li><a href="#ref-for-sensor③">2.3. Mock sensor type</a>
-    <li><a href="#ref-for-sensor④">3.1.1. Create mock sensor</a> <a href="#ref-for-sensor⑤">(2)</a>
+    <li><a href="#ref-for-sensor">2. Mock Sensors</a> <a href="#ref-for-sensor①">(2)</a> <a href="#ref-for-sensor②">(3)</a>
+    <li><a href="#ref-for-sensor③">2.1. MockSensorConfiguration dictionary</a>
+    <li><a href="#ref-for-sensor④">2.3. Mock sensor type</a>
+    <li><a href="#ref-for-sensor⑤">3.1.1. Create mock sensor</a> <a href="#ref-for-sensor⑥">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-can-expose-sensor-readings">
@@ -2104,12 +2102,6 @@ deletion of a given type of <a data-link-type="dfn" href="#mock-sensor" id="ref-
    <a href="https://w3c.github.io/sensors/#extension-sensor-interface">https://w3c.github.io/sensors/#extension-sensor-interface</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-extension-sensor-interface">2.3. Mock sensor type</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-latest-reading">
-   <a href="https://w3c.github.io/sensors/#latest-reading">https://w3c.github.io/sensors/#latest-reading</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-latest-reading">2. Mock Sensors</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-concept-platform-sensor">
@@ -2137,10 +2129,10 @@ deletion of a given type of <a data-link-type="dfn" href="#mock-sensor" id="ref-
   <aside class="dfn-panel" data-for="term-for-sensor">
    <a href="https://w3c.github.io/sensors/#sensor">https://w3c.github.io/sensors/#sensor</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-sensor">2. Mock Sensors</a> <a href="#ref-for-sensor①">(2)</a>
-    <li><a href="#ref-for-sensor②">2.1. MockSensorConfiguration dictionary</a>
-    <li><a href="#ref-for-sensor③">2.3. Mock sensor type</a>
-    <li><a href="#ref-for-sensor④">3.1.1. Create mock sensor</a> <a href="#ref-for-sensor⑤">(2)</a>
+    <li><a href="#ref-for-sensor">2. Mock Sensors</a> <a href="#ref-for-sensor①">(2)</a> <a href="#ref-for-sensor②">(3)</a>
+    <li><a href="#ref-for-sensor③">2.1. MockSensorConfiguration dictionary</a>
+    <li><a href="#ref-for-sensor④">2.3. Mock sensor type</a>
+    <li><a href="#ref-for-sensor⑤">3.1.1. Create mock sensor</a> <a href="#ref-for-sensor⑥">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-sensor-reading">
@@ -2167,6 +2159,12 @@ deletion of a given type of <a data-link-type="dfn" href="#mock-sensor" id="ref-
     <li><a href="#ref-for-gyroscope-interface">2.3.5. Gyroscope</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-dfn-time-origin">
+   <a href="https://www.w3.org/TR/hr-time-2/#dfn-time-origin">https://www.w3.org/TR/hr-time-2/#dfn-time-origin</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dfn-time-origin">2. Mock Sensors</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-active-document">
    <a href="https://html.spec.whatwg.org/multipage/browsers.html#active-document">https://html.spec.whatwg.org/multipage/browsers.html#active-document</a><b>Referenced in:</b>
    <ul>
@@ -2188,7 +2186,7 @@ deletion of a given type of <a data-link-type="dfn" href="#mock-sensor" id="ref-
   <aside class="dfn-panel" data-for="term-for-map-entry">
    <a href="https://infra.spec.whatwg.org/#map-entry">https://infra.spec.whatwg.org/#map-entry</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-map-entry">2. Mock Sensors</a>
+    <li><a href="#ref-for-map-entry">2. Mock Sensors</a> <a href="#ref-for-map-entry①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-map-iterate">
@@ -2200,13 +2198,13 @@ deletion of a given type of <a data-link-type="dfn" href="#mock-sensor" id="ref-
   <aside class="dfn-panel" data-for="term-for-map-key">
    <a href="https://infra.spec.whatwg.org/#map-key">https://infra.spec.whatwg.org/#map-key</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-map-key">2. Mock Sensors</a>
+    <li><a href="#ref-for-map-key">2. Mock Sensors</a> <a href="#ref-for-map-key①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-ordered-map">
    <a href="https://infra.spec.whatwg.org/#ordered-map">https://infra.spec.whatwg.org/#ordered-map</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-ordered-map">2. Mock Sensors</a> <a href="#ref-for-ordered-map①">(2)</a>
+    <li><a href="#ref-for-ordered-map">2. Mock Sensors</a> <a href="#ref-for-ordered-map①">(2)</a> <a href="#ref-for-ordered-map②">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-map-set">
@@ -2218,7 +2216,7 @@ deletion of a given type of <a data-link-type="dfn" href="#mock-sensor" id="ref-
   <aside class="dfn-panel" data-for="term-for-map-value">
    <a href="https://infra.spec.whatwg.org/#map-value">https://infra.spec.whatwg.org/#map-value</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-map-value">2. Mock Sensors</a>
+    <li><a href="#ref-for-map-value">2. Mock Sensors</a> <a href="#ref-for-map-value①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-magnetometer-interface">
@@ -2254,12 +2252,12 @@ deletion of a given type of <a data-link-type="dfn" href="#mock-sensor" id="ref-
   <aside class="dfn-panel" data-for="term-for-dfn-current-browsing-context">
    <a href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-current-browsing-context">https://w3c.github.io/webdriver/webdriver-spec.html#dfn-current-browsing-context</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dfn-current-browsing-context">2. Mock Sensors</a> <a href="#ref-for-dfn-current-browsing-context①">(2)</a> <a href="#ref-for-dfn-current-browsing-context②">(3)</a>
-    <li><a href="#ref-for-dfn-current-browsing-context③">2.2. MockSensor dictionary</a>
-    <li><a href="#ref-for-dfn-current-browsing-context④">3.1.1. Create mock sensor</a> <a href="#ref-for-dfn-current-browsing-context⑤">(2)</a> <a href="#ref-for-dfn-current-browsing-context⑥">(3)</a> <a href="#ref-for-dfn-current-browsing-context⑦">(4)</a>
-    <li><a href="#ref-for-dfn-current-browsing-context⑧">3.1.2. Get mock sensor</a>
-    <li><a href="#ref-for-dfn-current-browsing-context⑨">3.1.3. Update mock sensor reading</a>
-    <li><a href="#ref-for-dfn-current-browsing-context①⓪">3.1.4. Delete mock sensor</a> <a href="#ref-for-dfn-current-browsing-context①①">(2)</a>
+    <li><a href="#ref-for-dfn-current-browsing-context">2. Mock Sensors</a> <a href="#ref-for-dfn-current-browsing-context①">(2)</a>
+    <li><a href="#ref-for-dfn-current-browsing-context②">2.2. MockSensor dictionary</a>
+    <li><a href="#ref-for-dfn-current-browsing-context③">3.1.1. Create mock sensor</a> <a href="#ref-for-dfn-current-browsing-context④">(2)</a> <a href="#ref-for-dfn-current-browsing-context⑤">(3)</a> <a href="#ref-for-dfn-current-browsing-context⑥">(4)</a>
+    <li><a href="#ref-for-dfn-current-browsing-context⑦">3.1.2. Get mock sensor</a>
+    <li><a href="#ref-for-dfn-current-browsing-context⑧">3.1.3. Update mock sensor reading</a>
+    <li><a href="#ref-for-dfn-current-browsing-context⑨">3.1.4. Delete mock sensor</a> <a href="#ref-for-dfn-current-browsing-context①⓪">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-dfn-extension-command-uri-template">
@@ -2435,7 +2433,6 @@ deletion of a given type of <a data-link-type="dfn" href="#mock-sensor" id="ref-
      <li><span class="dfn-paneled" id="term-for-can-expose-sensor-readings" style="color:initial">can expose sensor readings</span>
      <li><span class="dfn-paneled" id="term-for-connect-to-sensor" style="color:initial">connect to sensor</span>
      <li><span class="dfn-paneled" id="term-for-extension-sensor-interface" style="color:initial">extension sensor interface</span>
-     <li><span class="dfn-paneled" id="term-for-latest-reading" style="color:initial">latest reading</span>
      <li><span class="dfn-paneled" id="term-for-concept-platform-sensor" style="color:initial">platform sensor</span>
      <li><span class="dfn-paneled" id="term-for-requested-sampling-frequency" style="color:initial">requested sampling frequency</span>
      <li><span class="dfn-paneled" id="term-for-sampling-frequency" style="color:initial">sampling frequency</span>
@@ -2452,6 +2449,11 @@ deletion of a given type of <a data-link-type="dfn" href="#mock-sensor" id="ref-
     <a data-link-type="biblio">[gyroscope]</a> defines the following terms:
     <ul>
      <li><span class="dfn-paneled" id="term-for-gyroscope-interface" style="color:initial">gyroscope</span>
+    </ul>
+   <li>
+    <a data-link-type="biblio">[hr-time-2]</a> defines the following terms:
+    <ul>
+     <li><span class="dfn-paneled" id="term-for-dfn-time-origin" style="color:initial">time origin</span>
     </ul>
    <li>
     <a data-link-type="biblio">[HTML]</a> defines the following terms:
@@ -2529,6 +2531,8 @@ deletion of a given type of <a data-link-type="dfn" href="#mock-sensor" id="ref-
    <dd><a href="https://wicg.github.io/geolocation-sensor/">Geolocation Sensor</a>. Living Standard. URL: <a href="https://wicg.github.io/geolocation-sensor/">https://wicg.github.io/geolocation-sensor/</a>
    <dt id="biblio-gyroscope">[GYROSCOPE]
    <dd>Anssi Kostiainen; Mikhail Pozdnyakov. <a href="https://www.w3.org/TR/gyroscope/">Gyroscope</a>. 20 March 2018. CR. URL: <a href="https://www.w3.org/TR/gyroscope/">https://www.w3.org/TR/gyroscope/</a>
+   <dt id="biblio-hr-time-2">[HR-TIME-2]
+   <dd>Ilya Grigorik; James Simonsen; Jatinder Mann. <a href="https://www.w3.org/TR/hr-time-2/">High Resolution Time Level 2</a>. 1 March 2018. CR. URL: <a href="https://www.w3.org/TR/hr-time-2/">https://www.w3.org/TR/hr-time-2/</a>
    <dt id="biblio-html">[HTML]
    <dd>Anne van Kesteren; et al. <a href="https://html.spec.whatwg.org/multipage/">HTML Standard</a>. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a>
    <dt id="biblio-infra">[INFRA]
@@ -2640,29 +2644,22 @@ deletion of a given type of <a data-link-type="dfn" href="#mock-sensor" id="ref-
    <b><a href="#mock-sensor">#mock-sensor</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-mock-sensor">1. Introduction</a>
-    <li><a href="#ref-for-mock-sensor①">2. Mock Sensors</a> <a href="#ref-for-mock-sensor②">(2)</a> <a href="#ref-for-mock-sensor③">(3)</a> <a href="#ref-for-mock-sensor④">(4)</a> <a href="#ref-for-mock-sensor⑤">(5)</a> <a href="#ref-for-mock-sensor⑥">(6)</a> <a href="#ref-for-mock-sensor⑦">(7)</a> <a href="#ref-for-mock-sensor⑧">(8)</a> <a href="#ref-for-mock-sensor⑨">(9)</a>
-    <li><a href="#ref-for-mock-sensor①⓪">2.1. MockSensorConfiguration dictionary</a> <a href="#ref-for-mock-sensor①①">(2)</a>
-    <li><a href="#ref-for-mock-sensor①②">2.2. MockSensor dictionary</a> <a href="#ref-for-mock-sensor①③">(2)</a> <a href="#ref-for-mock-sensor①④">(3)</a> <a href="#ref-for-mock-sensor①⑤">(4)</a> <a href="#ref-for-mock-sensor①⑥">(5)</a> <a href="#ref-for-mock-sensor①⑦">(6)</a>
-    <li><a href="#ref-for-mock-sensor①⑧">3.1.1. Create mock sensor</a> <a href="#ref-for-mock-sensor①⑨">(2)</a> <a href="#ref-for-mock-sensor②⓪">(3)</a> <a href="#ref-for-mock-sensor②①">(4)</a> <a href="#ref-for-mock-sensor②②">(5)</a> <a href="#ref-for-mock-sensor②③">(6)</a> <a href="#ref-for-mock-sensor②④">(7)</a>
-    <li><a href="#ref-for-mock-sensor②⑤">3.1.2. Get mock sensor</a> <a href="#ref-for-mock-sensor②⑥">(2)</a>
-    <li><a href="#ref-for-mock-sensor②⑦">3.1.3. Update mock sensor reading</a> <a href="#ref-for-mock-sensor②⑧">(2)</a>
-    <li><a href="#ref-for-mock-sensor②⑨">3.1.4. Delete mock sensor</a> <a href="#ref-for-mock-sensor③⓪">(2)</a> <a href="#ref-for-mock-sensor③①">(3)</a>
-    <li><a href="#ref-for-mock-sensor③②">3.2. Handling errors</a>
+    <li><a href="#ref-for-mock-sensor①">2. Mock Sensors</a> <a href="#ref-for-mock-sensor②">(2)</a> <a href="#ref-for-mock-sensor③">(3)</a> <a href="#ref-for-mock-sensor④">(4)</a> <a href="#ref-for-mock-sensor⑤">(5)</a> <a href="#ref-for-mock-sensor⑥">(6)</a> <a href="#ref-for-mock-sensor⑦">(7)</a> <a href="#ref-for-mock-sensor⑧">(8)</a>
+    <li><a href="#ref-for-mock-sensor⑨">2.1. MockSensorConfiguration dictionary</a> <a href="#ref-for-mock-sensor①⓪">(2)</a>
+    <li><a href="#ref-for-mock-sensor①①">2.2. MockSensor dictionary</a> <a href="#ref-for-mock-sensor①②">(2)</a> <a href="#ref-for-mock-sensor①③">(3)</a> <a href="#ref-for-mock-sensor①④">(4)</a> <a href="#ref-for-mock-sensor①⑤">(5)</a> <a href="#ref-for-mock-sensor①⑥">(6)</a>
+    <li><a href="#ref-for-mock-sensor①⑦">3.1.1. Create mock sensor</a> <a href="#ref-for-mock-sensor①⑧">(2)</a> <a href="#ref-for-mock-sensor①⑨">(3)</a> <a href="#ref-for-mock-sensor②⓪">(4)</a> <a href="#ref-for-mock-sensor②①">(5)</a> <a href="#ref-for-mock-sensor②②">(6)</a> <a href="#ref-for-mock-sensor②③">(7)</a>
+    <li><a href="#ref-for-mock-sensor②④">3.1.2. Get mock sensor</a> <a href="#ref-for-mock-sensor②⑤">(2)</a>
+    <li><a href="#ref-for-mock-sensor②⑥">3.1.3. Update mock sensor reading</a> <a href="#ref-for-mock-sensor②⑦">(2)</a>
+    <li><a href="#ref-for-mock-sensor②⑧">3.1.4. Delete mock sensor</a> <a href="#ref-for-mock-sensor②⑨">(2)</a> <a href="#ref-for-mock-sensor③⓪">(3)</a>
+    <li><a href="#ref-for-mock-sensor③①">3.2. Handling errors</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="mock-sensor-reading">
    <b><a href="#mock-sensor-reading">#mock-sensor-reading</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-mock-sensor-reading">2. Mock Sensors</a> <a href="#ref-for-mock-sensor-reading①">(2)</a>
-    <li><a href="#ref-for-mock-sensor-reading②">2.3. Mock sensor type</a>
-    <li><a href="#ref-for-mock-sensor-reading③">3.1.3. Update mock sensor reading</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="default-mock-sensor-reading">
-   <b><a href="#default-mock-sensor-reading">#default-mock-sensor-reading</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-default-mock-sensor-reading">2. Mock Sensors</a> <a href="#ref-for-default-mock-sensor-reading①">(2)</a>
-    <li><a href="#ref-for-default-mock-sensor-reading②">3.1.3. Update mock sensor reading</a>
+    <li><a href="#ref-for-mock-sensor-reading">2. Mock Sensors</a> <a href="#ref-for-mock-sensor-reading①">(2)</a> <a href="#ref-for-mock-sensor-reading②">(3)</a> <a href="#ref-for-mock-sensor-reading③">(4)</a> <a href="#ref-for-mock-sensor-reading④">(5)</a> <a href="#ref-for-mock-sensor-reading⑤">(6)</a>
+    <li><a href="#ref-for-mock-sensor-reading⑥">2.3. Mock sensor type</a>
+    <li><a href="#ref-for-mock-sensor-reading⑦">3.1.3. Update mock sensor reading</a> <a href="#ref-for-mock-sensor-reading⑧">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dictdef-mocksensorconfiguration">
