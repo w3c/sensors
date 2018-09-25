@@ -1035,8 +1035,8 @@ A {{Sensor}} object whose {{[[state]]}} is "activated" must not be garbage colle
 if there are any event listeners registered for "reading" events, or "error" events.
 
 When a {{Sensor}} object whose {{[[state]]}} is "activated" or "activating" is
-eligible for garbage collection, the user agent must invoke [=deactivate a sensor
-object=] with this object as argument.
+garbage collected, the user agent must invoke [=deactivate a sensor object=]
+with this object as argument.
 
 ### Sensor internal slots ### {#sensor-internal-slots}
 
