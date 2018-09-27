@@ -100,17 +100,17 @@ A <dfn id="mock-sensor">mock sensor</dfn> simulates the behavior of a <a>platfor
 A [=mock sensor=] reports corresponding <dfn id="mock-sensor-reading">mock <a>sensor reading</a></dfn>, which is a source of
 mocking information about the environment, to the <a>Sensor</a> objects.
 
-The <a>current browsing context</a>'s [=mock sensor=] has an associated <a>mock sensor reading</a> [=ordered map|map=].
+The <a>current browsing context</a>'s [=mock sensor=] has an associated [=mock sensor reading=] [=ordered map|map=].
 
-The <a>mock sensor reading</a> [=ordered map|map=] contains an [=map/entry=] whose [=map/key=] is
-"timestamp" and whose [=map/value=] is a high resolution timestamp that estimates the time <a>mock sensor reading</a>
+The [=mock sensor reading=] [=ordered map|map=] contains an [=map/entry=] whose [=map/key=] is
+"timestamp" and whose [=map/value=] is a high resolution timestamp that estimates the time [=mock sensor reading=]
 sent to observers of the <a>Sensor</a> object, expressed in milliseconds since the [=time origin=].
 
-The other [=map/entries=] of the <a>mock sensor reading</a> [=ordered map|map=] whose [=map/keys=] must match the
+The other [=map/entries=] of the [=mock sensor reading=] [=ordered map|map=] whose [=map/keys=] must match the
 [=dictionary members=] [=identifier=] defined by the [=mock sensor type=]'s {{MockSensorReadingValues}}
 and whose initial [=map/values=] are implementation-dependent.
 
-Note: The user agent must provide the <a>mock sensor reading</a> that are initially exposed to the <a>Sensor</a> objects.
+Note: The user agent must provide the [=mock sensor reading=] that are initially exposed to the <a>Sensor</a> objects.
 
 A [=mock sensor=] has an associated <a>requested sampling frequency</a>, it's default value is implementation-dependent
 but must be set within [=mock sensor=]'s associated <a>sampling frequency</a> bounds.
@@ -140,11 +140,12 @@ The UA MAY choose to expose [=mock sensor=] interface only when a runtime or com
 The {{MockSensorConfiguration}} dictionary is used to [[#create-mock-sensor-command|create mock sensor]].
 
 : {{MockSensorConfiguration/mockSensorType}} member
-:: A {{MockSensorType}} that is used to set <a>mock sensor type</a>.
+:: A {{MockSensorType}} that is used to set [=mock sensor type=].
 
 : {{MockSensorConfiguration/connected}} member
-:: A boolean. When set to false the user agent must intercept the result of invoking <a>connect to sensor</a>
-   with associated <a>Sensor</a> instance as argument to false, otherwise true.
+:: A boolean that indicates a [=mock sensor=]'s <dfn id="connection-flag">connection flag</dfn> which is used for switching the connection
+   between <a>Sensor</a> object and [=mock sensor=]. When set to false the user agent must force the result of invoking
+   <a>connect to sensor</a> with [=mock sensor=]'s associated <a>Sensor</a> object as argument to false, otherwise true.
 
 : {{MockSensorConfiguration/maxSamplingFrequency}} member
 :: A double representing frequency in Hz that is used to set maximum supported <a>sampling frequency</a> for the associated [=mock sensor=].
@@ -160,7 +161,7 @@ The {{MockSensorConfiguration}} dictionary is used to [[#create-mock-sensor-comm
     double requestedSamplingFrequency;
   };
 </pre>
-The {{MockSensor}} dictionary provides information of a <a>mock sensor</a>.
+The {{MockSensor}} dictionary provides information of a [=mock sensor=].
 
 : {{MockSensor/maxSamplingFrequency}} member
 :: A double representing frequency in Hz that indicates the maximum supported <a>sampling frequency</a> of the associated [=mock sensor=].
@@ -194,11 +195,11 @@ A <dfn id="mock-sensor-type">mock sensor type</dfn> is equivalent to a <a>sensor
   };
 </pre>
 
-Each enumeration value in the {{MockSensorType}} enum identifies a <a>mock sensor type</a>.
-Each <a>mock sensor type</a> has a <a>mock sensor reading values</a> dictionary:
+Each enumeration value in the {{MockSensorType}} enum identifies a [=mock sensor type=].
+Each [=mock sensor type=] has a [=mock sensor reading values=] dictionary:
 
 : <dfn export>Mock Sensor Reading Values</dfn> dictionary
-:: {{MockSensorReadingValues}} dictionary represents user specified <a>mock sensor reading</a> used for
+:: {{MockSensorReadingValues}} dictionary represents user specified [=mock sensor reading=] used for
    [[#update-mock-sensor-reading-command|updating mock sensor reading]]. Its members must match the
    [=attribute=] [=identifier=] defined by the <a>sensor type</a>'s
    associated <a>extension sensor interface</a>. Each [=mock sensor type=]
@@ -214,7 +215,7 @@ Each <a>mock sensor type</a> has a <a>mock sensor reading values</a> dictionary:
 The <dfn for="MockSensorType" enum-value>"ambient-light"</dfn> type is the mock sensor type
 associated with the usage of the <a>AmbientLightSensor</a> interface.
 <dl>
-  <dt><a>Mock Sensor Reading Values</a></dt>
+  <dt>[=Mock Sensor Reading Values=]</dt>
   <dd>
     <pre class="idl">
       dictionary AmbientLightReadingValues {
@@ -228,7 +229,7 @@ associated with the usage of the <a>AmbientLightSensor</a> interface.
 The <dfn for="MockSensorType" enum-value>"accelerometer"</dfn> type is the mock sensor type
 associated with the usage of the <a>Accelerometer</a> interface.
 <dl>
-  <dt><a>Mock Sensor Reading Values</a></dt>
+  <dt>[=Mock Sensor Reading Values=]</dt>
   <dd>
     <pre class="idl">
       dictionary AccelerometerReadingValues {
@@ -244,7 +245,7 @@ associated with the usage of the <a>Accelerometer</a> interface.
 The <dfn for="MockSensorType" enum-value>"linear-acceleration"</dfn> type is the mock sensor type
 associated with the usage of the <a>LinearAccelerationSensor</a> interface.
 <dl>
-  <dt><a>Mock Sensor Reading Values</a></dt>
+  <dt>[=Mock Sensor Reading Values=]</dt>
   <dd>
     <pre class="idl">
       dictionary LinearAccelerationReadingValues : AccelerometerReadingValues {
@@ -257,7 +258,7 @@ associated with the usage of the <a>LinearAccelerationSensor</a> interface.
 The <dfn for="MockSensorType" enum-value>"gravity"</dfn> type is the mock sensor type
 associated with the usage of the <a>GravitySensor</a> interface.
 <dl>
-  <dt><a>Mock Sensor Reading Values</a></dt>
+  <dt>[=Mock Sensor Reading Values=]</dt>
   <dd>
     <pre class="idl">
       dictionary GravityReadingValues : AccelerometerReadingValues {
@@ -270,7 +271,7 @@ associated with the usage of the <a>GravitySensor</a> interface.
 The <dfn for="MockSensorType" enum-value>"gyroscope"</dfn> type is the mock sensor type
 associated with the usage of the <a>Gyroscope</a> interface.
 <dl>
-  <dt><a>Mock Sensor Reading Values</a></dt>
+  <dt>[=Mock Sensor Reading Values=]</dt>
   <dd>
     <pre class="idl">
       dictionary GyroscopeReadingValues {
@@ -286,7 +287,7 @@ associated with the usage of the <a>Gyroscope</a> interface.
 The <dfn for="MockSensorType" enum-value>"magnetometer"</dfn> type is the mock sensor type
 associated with the usage of the <a>Magnetometer</a> interface.
 <dl>
-  <dt><a>Mock Sensor Reading Values</a></dt>
+  <dt>[=Mock Sensor Reading Values=]</dt>
   <dd>
     <pre class="idl">
       dictionary MagnetometerReadingValues {
@@ -302,7 +303,7 @@ associated with the usage of the <a>Magnetometer</a> interface.
 The <dfn for="MockSensorType" enum-value>"uncalibrated-magnetometer"</dfn> type is the mock sensor type
 associated with the usage of the <a>UncalibratedMagnetometer</a> interface.
 <dl>
-  <dt><a>Mock Sensor Reading Values</a></dt>
+  <dt>[=Mock Sensor Reading Values=]</dt>
   <dd>
     <pre class="idl">
       dictionary UncalibratedMagnetometerReadingValues {
@@ -321,7 +322,7 @@ associated with the usage of the <a>UncalibratedMagnetometer</a> interface.
 The <dfn for="MockSensorType" enum-value>"absolute-orientation"</dfn> type is the mock sensor type
 associated with the usage of the <a>AbsoluteOrientationSensor</a> interface.
 <dl>
-  <dt><a>Mock Sensor Reading Values</a></dt>
+  <dt>[=Mock Sensor Reading Values=]</dt>
   <dd>
     <pre class="idl">
       dictionary AbsoluteOrientationReadingValues {
@@ -335,7 +336,7 @@ associated with the usage of the <a>AbsoluteOrientationSensor</a> interface.
 The <dfn for="MockSensorType" enum-value>"relative-orientation"</dfn> type is the mock sensor type
 associated with the usage of the <a>RelativeOrientationSensor</a> interface.
 <dl>
-  <dt><a>Mock Sensor Reading Values</a></dt>
+  <dt>[=Mock Sensor Reading Values=]</dt>
   <dd>
     <pre class="idl">
       dictionary RelativeOrientationReadingValues : AbsoluteOrientationReadingValues {
@@ -348,7 +349,7 @@ associated with the usage of the <a>RelativeOrientationSensor</a> interface.
 The <dfn for="MockSensorType" enum-value>"geolocation"</dfn> type is the mock sensor type
 associated with the usage of the <a>GeolocationSensor</a> interface.
 <dl>
-  <dt><a>Mock Sensor Reading Values</a></dt>
+  <dt>[=Mock Sensor Reading Values=]</dt>
   <dd>
     <pre class="idl">
       dictionary GeolocationReadingValues {
@@ -368,7 +369,7 @@ associated with the usage of the <a>GeolocationSensor</a> interface.
 The <dfn for="MockSensorType" enum-value>"proximity"</dfn> type is the mock sensor type
 associated with the usage of the <a>ProximitySensor</a> interface.
 <dl>
-  <dt><a>Mock Sensor Reading Values</a></dt>
+  <dt>[=Mock Sensor Reading Values=]</dt>
   <dd>
     <pre class="idl">
       dictionary ProximityReadingValues {
@@ -401,7 +402,7 @@ Extensions {#webdriver-extensions}
 </table>
 
 The <dfn>create mock sensor</dfn> <a>extension command</a> simulates user
-creation of a <a>mock sensor</a>.
+creation of a [=mock sensor=].
 
 The <a>remote end steps</a> are:
 1. Let |configuration| be the |configuration| argument, <a>converted to an IDL value</a>
@@ -411,14 +412,15 @@ The <a>remote end steps</a> are:
    already has this |type| of [=mock sensor=], return a <a>WebDriver error</a> with <a>WebDriver error code</a>
    [=mock sensor already created=].
 3. Run these sub-steps [=in parallel=] to create a [=mock sensor=] in <a>current browsing context</a>:
-  1. Set the [=mock sensor type|mock sensor's type=] to |type|.
-  2. Let |connected| be the |configuration|.{{MockSensorConfiguration/connected}},
-     force the result of invoking <a>connect to sensor</a> with associated <a>Sensor</a> instance as argument to |connected|.
-  3. If |configuration|.{{MockSensorConfiguration/maxSamplingFrequency}} is [=present=], then:
-    1. Set the [=mock sensor=]'s associated maximum supported sampling frequency to |configuration|.{{MockSensorConfiguration/maxSamplingFrequency}}.
-  4. If |configuration|.{{MockSensorConfiguration/minSamplingFrequency}} is [=present=], then:
-    1. Set the [=mock sensor=]'s minimum supported sampling frequency to |configuration|.{{MockSensorConfiguration/minSamplingFrequency}}.
-  5. Let all the |type| of <a>Sensor</a> objects' associated <a>platform sensor</a> be the |type|'s associated [=mock sensor=].
+  1. Let |mock| be a new [=mock sensor=].
+  2. Set |mock|'s [=mock sensor type=] to |type|.
+  3. Let |connected| be the |configuration|.{{MockSensorConfiguration/connected}}, set |mock|'s associated
+     [=connection flag=] to |connected|.
+  4. If |configuration|.{{MockSensorConfiguration/maxSamplingFrequency}} is [=present=], then:
+    1. Set |mock|'s maximum supported sampling frequency to |configuration|.{{MockSensorConfiguration/maxSamplingFrequency}}.
+  5. If |configuration|.{{MockSensorConfiguration/minSamplingFrequency}} is [=present=], then:
+    1. Set |mock|'s minimum supported sampling frequency to |configuration|.{{MockSensorConfiguration/minSamplingFrequency}}.
+  6. Let |sensor_instance| be a |type| of <a>Sensor</a> object, set |sensor_instance|'s associated <a>platform sensor</a> to |mock|.
 4. Return <a>success</a> with data `null`.
 
 <div class="example">
@@ -431,7 +433,7 @@ The <a>remote end steps</a> are:
     "minSamplingFrequency": 5
   }
   </pre>
-  Be aware that only one <a>mock sensor</a> of a given <a>mock sensor type</a> can be created in <a>current browsing context</a>,
+  Be aware that only one [=mock sensor=] of a given [=mock sensor type=] can be created in <a>current browsing context</a>,
   otherwise a <a>WebDriver error</a> with <a>WebDriver error code</a> [=mock sensor already created=] will be thrown.
   
 </div>
@@ -452,7 +454,7 @@ The <a>remote end steps</a> are:
 </table>
 
 The <dfn>get mock sensor</dfn> <a>extension command</a> simulates user
-getting information of a given type of <a>mock sensor</a>.
+getting information of a given type of [=mock sensor=].
 
 The <a>remote end steps</a> are:
 1. Let |type| be a <a>url variable</a>, <a>converted to an IDL value</a> of type {{MockSensorType}}.
@@ -478,7 +480,7 @@ The <a>remote end steps</a> are:
 </table>
 
 The <dfn>update mock sensor reading</dfn> <a>extension command</a> simulates user
-updating of a given type of <a>mock sensor</a>'s [=mock sensor reading|reading=].
+updating of a given type of [=mock sensor=]'s [=mock sensor reading|reading=].
 
 The <a>remote end steps</a> are:
 1. Let |type| be a <a>url variable</a>, <a>converted to an IDL value</a> of type {{MockSensorType}}.
@@ -509,7 +511,7 @@ The <a>remote end steps</a> are:
 </table>
 
 The <dfn>delete mock sensor</dfn> <a>extension command</a> simulates user
-deletion of a given type of <a>mock sensor</a>.
+deletion of a given type of [=mock sensor=].
 
 The <a>remote end steps</a> are:
 1. Let |type| be a <a>url variable</a>.
