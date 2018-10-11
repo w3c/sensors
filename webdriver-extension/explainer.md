@@ -15,7 +15,7 @@ around making the web a more appealing platform. The secondary reason is that in
 
 ### Goals
 
- - Allow user agents to create mock sensor devices that have certain characteristics and benaved in a specific way.
+ - Allow user agents to create mock sensor devices that have certain characteristics and behaved in a specific way.
  - Easy controlling mock sensor via [WebDriver Protocol Extension Commands](https://w3c.github.io/webdriver/#protocol-extensions).
 
 ### Non-goals
@@ -67,7 +67,7 @@ Once a mock sensor instance is presented, the user agent must force the same sen
  
 ### Get mock sensor
 
-To get an "accelerometer" mock sensor with session ID 22, the local end would send a `GET` request to `/session/22/sensor/accelerometer/` without body, if succeed, the remote end would response with the serialized mock sensor as data:
+To get an "accelerometer" mock sensor with session ID 22, the local end would send a `GET` request to `/session/22/sensor/accelerometer/` with body, if succeed, the remote end would response with the serialized mock sensor as data:
  ```
 {
     "maxSamplingFrequency": 60,
