@@ -5,7 +5,7 @@
 
 [Generic Sensor API](https://w3c.github.io/sensors/) and its concrete Sensor APIs pose a challenge to test authors because to fully exercise their interfaces requires physical hardware devices that respond in predictable ways.
 
-At best some of vendors have their own automation by using a mocking mechanism however that also introduces the challenge of duplicate efforts across different browsers as well as inconsistency of different automation meaning that different proprietary automation may not do the exact same thing.
+At best some vendors have their own automation by using a mocking mechanism, which however introduces the challenge of duplicate efforts across different browsers as well as inconsistency of different automation, meaning that different proprietary automation may not do the exact same thing.
 
 To address these challenges, this proposal attempts to define extension commands to the [WebDriver](https://w3c.github.io/webdriver/) specification for controlling mock sensor on the host that the user agent is running on. With these extension commands devices with particular properties can be created and their responses to requests are well defined.
 
@@ -15,7 +15,7 @@ around making the web a more appealing platform. The secondary reason is that in
 
 ### Goals
 
- - Allow user agents to create mock sensor devices that have certain characteristics and behaved in a specific way.
+ - Allow user agents to create mock sensor devices that have certain characteristics and behave in a specific way.
  - Easy controlling mock sensor via [WebDriver Protocol Extension Commands](https://w3c.github.io/webdriver/#protocol-extensions).
 
 ### Non-goals
@@ -32,7 +32,7 @@ around making the web a more appealing platform. The secondary reason is that in
 A mock sensor simulates the behavior of a [platform sensor](https://w3c.github.io/sensors/#concept-platform-sensor) in controlled ways for the purpose of sufficiently meeting requirements of automation testing for Generic Sensor API. A mock sensor should have the following capabilities:
  - Reporting mock sensor readings, which is a source of mocking information about the environment, to [Sensor](https://w3c.github.io/sensors/#sensor) objects at the rate of its requested sampling frequency if the user agent is [allowed to expose sensor readings](https://w3c.github.io/sensors/#can-expose-sensor-readings). 
  - User specified mock sensor reading, user agent allows user-customized mock sensor reading for a mock sensor.
- - A sampling frequency, which is defined as a frequency at which the user agent obtains sensor readings from mock sensor. The sampling frequency has an upper and lower bounds, which is designed for the purpose of calculating expected sampling frequency. For instance, When construct a Sensor object with frequency option that exceed the maxmium supported sampling frequency, the exact requested sampling frequency should capped to the maximum sampling frequency.
+ - A sampling frequency, which is defined as a frequency at which the user agent obtains sensor readings from mock sensor. The sampling frequency has an upper and lower bounds, which is designed for the purpose of calculating expected sampling frequency. For instance, when construct a Sensor object with frequency option that exceed the maximium supported sampling frequency, the exact requested sampling frequency should capped to the maximum sampling frequency.
  - A requested sampling frequency, used for calculating expected sampling frequency.
  - A connection flag that is used for switching the connection between Sensor object and mock sensor, for testing the `NotReadableError` exception when calling [`sensor.start()`](https://w3c.github.io/sensors/#sensor-start) fails.
 
@@ -67,7 +67,7 @@ Once a mock sensor instance is presented, the user agent must force the same sen
  
 ### Get mock sensor
 
-To get an "accelerometer" mock sensor with session ID 22, the local end would send a `GET` request to `/session/22/sensor/accelerometer/` with body, if succeed, the remote end would response with the serialized mock sensor as data:
+To get an "accelerometer" mock sensor with session ID 22, the local end would send a `GET` request to `/session/22/sensor/accelerometer/` without body, if succeed, the remote end would response with the serialized mock sensor as data:
  ```
 {
     "maxSamplingFrequency": 60,
@@ -91,7 +91,7 @@ A mock sensor reading contains attributes of:
   - Attributes that defined by the [sensor type](https://w3c.github.io/sensors/#sensor-type)'s associated [extension sensor interface](https://w3c.github.io/sensors/#extension-sensor-interface), which could be updated with this command.
   - `timestamp`: For all tests mock sensor reading should have monotonically increasing timestamp, its value is a high resolution timestamp that estimates the [reading timestamp](https://w3c.github.io/sensors/#reading-timestamp) expressed in milliseconds since the time origin. User agent could easily implement it by using the [Performance API](https://www.w3.org/TR/hr-time-2/#sec-performance).
 
-User agent must provide the mock sensor reaing that are initially exposed to the Sensor objects for the convience of testing some cases that no need a user-specified mock sensor reading.
+User agent must provide the mock sensor reading that are initially exposed to the Sensor objects for the convenience of testing some cases that don't need a user-specified mock sensor reading.
 
 ### Delete mock sensor
 
