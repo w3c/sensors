@@ -84,12 +84,12 @@ spec: webidl; type:dfn; text:identifier
 Introduction {#intro}
 =====================
 
-Generic Sensor API [[GENERIC-SENSOR]] and its concrete Sensor APIs pose a challenge
-to test authors because to fully exercise their interfaces requires physical hardware
+The Generic Sensor API [[GENERIC-SENSOR]] and its concrete Sensor APIs pose a challenge
+to test authors, as fully exercising those interfaces requires physical hardware
 devices that respond in predictable ways. To address this challenge this specification
 defines <a>extension commands</a> to the [[WebDriver]] specification for controlling
 [=mock sensor=] on the host that the user agent is running on.
-With these <a>extension commands</a> devices with particular properties can be created
+With these <a>extension commands</a>, devices with particular properties can be created
 and their responses to requests are well defined.
 
 Mock Sensors {#mock-sensors}
@@ -97,7 +97,7 @@ Mock Sensors {#mock-sensors}
 
 A <dfn id="mock-sensor">mock sensor</dfn> simulates the behavior of a <a>platform sensor</a> in controlled ways.
 
-A [=mock sensor=] reports corresponding <dfn id="mock-sensor-reading">mock <a>sensor reading</a></dfn>, which is a source of
+A [=mock sensor=] reports a corresponding <dfn id="mock-sensor-reading">mock <a>sensor reading</a></dfn>, which is a source of
 mocking information about the environment, to the <a>Sensor</a> objects.
 
 The <a>current browsing context</a>'s [=mock sensor=] has an associated [=mock sensor reading=] [=ordered map|map=].
@@ -112,10 +112,10 @@ and whose initial [=map/values=] are implementation-dependent.
 
 Note: The user agent must provide the [=mock sensor reading=] that are initially exposed to the <a>Sensor</a> objects.
 
-A [=mock sensor=] has an associated <a>requested sampling frequency</a>, it's default value is implementation-dependent
-but must be set within [=mock sensor=]'s associated <a>sampling frequency</a> bounds.
+A [=mock sensor=] has an associated <a>requested sampling frequency</a>. Its default value is implementation-dependent
+but must be set within a [=mock sensor=]'s associated <a>sampling frequency</a> bounds.
 
-A [=mock sensor=] has an associated <a>sampling frequency</a> with supported bounds, the default values of
+A [=mock sensor=] has an associated <a>sampling frequency</a> with supported bounds. The default values of
 supported bounds are implementation-dependent.
 
 A [=mock sensor=] must report the [=mock sensor reading=] at the rate of its [=requested sampling frequency=]
@@ -137,7 +137,7 @@ The UA MAY choose to expose [=mock sensor=] interface only when a runtime or com
   };
 </pre>
 
-The {{MockSensorConfiguration}} dictionary is used to [[#create-mock-sensor-command|create mock sensor]].
+The {{MockSensorConfiguration}} dictionary is used to [[#create-mock-sensor-command|create a mock sensor]].
 
 : {{MockSensorConfiguration/mockSensorType}} member
 :: A {{MockSensorType}} that is used to set [=mock sensor type=].
@@ -161,7 +161,8 @@ The {{MockSensorConfiguration}} dictionary is used to [[#create-mock-sensor-comm
     double requestedSamplingFrequency;
   };
 </pre>
-The {{MockSensor}} dictionary provides information of a [=mock sensor=].
+
+The {{MockSensor}} dictionary provides information about a [=mock sensor=].
 
 : {{MockSensor/maxSamplingFrequency}} member
 :: A double representing frequency in Hz that indicates the maximum supported <a>sampling frequency</a> of the associated [=mock sensor=].
@@ -199,12 +200,11 @@ Each enumeration value in the {{MockSensorType}} enum identifies a [=mock sensor
 Each [=mock sensor type=] has a [=mock sensor reading values=] dictionary:
 
 : <dfn export>Mock Sensor Reading Values</dfn> dictionary
-:: {{MockSensorReadingValues}} dictionary represents user specified [=mock sensor reading=] used for
-   [[#update-mock-sensor-reading-command|updating mock sensor reading]]. Its members must match the
+:: {{MockSensorReadingValues}} dictionary represents a user-specified [=mock sensor reading=] used for
+   [[#update-mock-sensor-reading-command|updating a mock sensor reading]]. Its members must match the
    [=attribute=] [=identifier=] defined by the <a>sensor type</a>'s
    associated <a>extension sensor interface</a>. Each [=mock sensor type=]
-   has a specific {{MockSensorReadingValues}}, which is defined in each section of [[#section-mock-sensor-type|mock senor type]].
-
+   has a specific {{MockSensorReadingValues}}, which is defined in each section of [[#section-mock-sensor-type|mock sensor type]].
 
    <pre class="idl">
      dictionary MockSensorReadingValues {
@@ -401,17 +401,17 @@ Extensions {#webdriver-extensions}
   </tbody>
 </table>
 
-The <dfn>create mock sensor</dfn> <a>extension command</a> simulates user
-creation of a [=mock sensor=].
+The <dfn>create mock sensor</dfn> <a>extension command</a> creates a
+new [=mock sensor=].
 
 The <a>remote end steps</a> are:
 1. Let |configuration| be the |configuration| argument, <a>converted to an IDL value</a>
    of type {{MockSensorConfiguration}}. If this throws an exception, return a
    <a>WebDriver error</a> with <a>WebDriver error code</a> <a>invalid argument</a>.
-2. Let |type| be the |configuration|.{{MockSensorConfiguration/mockSensorType}}, if the <a>current browsing context</a>
+2. Let |type| be the |configuration|.{{MockSensorConfiguration/mockSensorType}}. If the <a>current browsing context</a>
    already has this |type| of [=mock sensor=], return a <a>WebDriver error</a> with <a>WebDriver error code</a>
    [=mock sensor already created=].
-3. Run these sub-steps [=in parallel=] to create a [=mock sensor=] in <a>current browsing context</a>:
+3. Run these sub-steps [=in parallel=] to create a [=mock sensor=] in the <a>current browsing context</a>:
   1. Let |mock| be a new [=mock sensor=].
   2. Set |mock|'s [=mock sensor type=] to |type|.
   3. Let |connected| be the |configuration|.{{MockSensorConfiguration/connected}}, set |mock|'s associated
@@ -424,7 +424,7 @@ The <a>remote end steps</a> are:
 4. Return <a>success</a> with data `null`.
 
 <div class="example">
-  To create an "ambient-light" mock sensor of <a>current browsing context</a> of the <a>session</a> with ID 23,
+  To create an "ambient-light" mock sensor in the <a>current browsing context</a> of the <a>session</a> with ID 23,
   the <a>local end</a> would POST to `/session/23/sensor/` with the body:
   <pre class="lang-json">
   {
@@ -435,7 +435,6 @@ The <a>remote end steps</a> are:
   </pre>
   Be aware that only one [=mock sensor=] of a given [=mock sensor type=] can be created in <a>current browsing context</a>,
   otherwise a <a>WebDriver error</a> with <a>WebDriver error code</a> [=mock sensor already created=] will be thrown.
-  
 </div>
 
 ### Get mock sensor ### {#get-mock-sensor-command}
@@ -453,8 +452,8 @@ The <a>remote end steps</a> are:
   </tbody>
 </table>
 
-The <dfn>get mock sensor</dfn> <a>extension command</a> simulates user
-getting information of a given type of [=mock sensor=].
+The <dfn>get mock sensor</dfn> <a>extension command</a> retrieves
+information about a given type of [=mock sensor=].
 
 The <a>remote end steps</a> are:
 1. Let |type| be a <a>url variable</a>, <a>converted to an IDL value</a> of type {{MockSensorType}}.
@@ -479,8 +478,8 @@ The <a>remote end steps</a> are:
   </tbody>
 </table>
 
-The <dfn>update mock sensor reading</dfn> <a>extension command</a> simulates user
-updating of a given type of [=mock sensor=]'s [=mock sensor reading|reading=].
+The <dfn>update mock sensor reading</dfn> <a>extension command</a> updates
+a given type of [=mock sensor=]'s [=mock sensor reading|reading=].
 
 The <a>remote end steps</a> are:
 1. Let |type| be a <a>url variable</a>, <a>converted to an IDL value</a> of type {{MockSensorType}}.
@@ -510,8 +509,8 @@ The <a>remote end steps</a> are:
   </tbody>
 </table>
 
-The <dfn>delete mock sensor</dfn> <a>extension command</a> simulates user
-deletion of a given type of [=mock sensor=].
+The <dfn>delete mock sensor</dfn> <a>extension command</a> deletes
+a given type of [=mock sensor=].
 
 The <a>remote end steps</a> are:
 1. Let |type| be a <a>url variable</a>.
