@@ -32,6 +32,9 @@ urlPrefix: https://w3c.github.io/webdriver/webdriver-spec.html#; spec: WebDriver
     text: success; url: dfn-success
     text: handling errors
     text: Object; url: dfn-object
+    text: no longer open; url: dfn-no-longer-open
+    text: no such window; url: dfn-no-such-window
+    text: Handle any user prompts; url: dfn-handle-any-user-prompts
 urlPrefix: https://w3c.github.io/sensors/; spec: GENERIC-SENSOR
   type: dfn
     text: platform sensor; url: concept-platform-sensor
@@ -405,13 +408,16 @@ The <dfn>create mock sensor</dfn> <a>extension command</a> creates a
 new [=mock sensor=].
 
 The <a>remote end steps</a> are:
-1. Let |configuration| be the |configuration| argument, <a>converted to an IDL value</a>
+1. Let |configuration| be the |configuration| parameter, <a>converted to an IDL value</a>
    of type {{MockSensorConfiguration}}. If this throws an exception, return a
    <a>WebDriver error</a> with <a>WebDriver error code</a> <a>invalid argument</a>.
 2. Let |type| be the |configuration|.{{MockSensorConfiguration/mockSensorType}}. If the <a>current browsing context</a>
    already has this |type| of [=mock sensor=], return a <a>WebDriver error</a> with <a>WebDriver error code</a>
    [=mock sensor already created=].
-3. Run these sub-steps [=in parallel=] to create a [=mock sensor=] in the <a>current browsing context</a>:
+3. If the <a>current browsing context</a> is <a>no longer open</a>, return a <a>WebDriver error</a> with
+   <a>WebDriver error code</a> <a>no such window</a>.
+4. <a>Handle any user prompts</a>, and return its value if it is a <a>WebDriver error</a>.
+5. Run these sub-steps [=in parallel=] to create a [=mock sensor=] in the <a>current browsing context</a>:
   1. Let |mock| be a new [=mock sensor=].
   2. Set |mock|'s [=mock sensor type=] to |type|.
   3. Let |connected| be the |configuration|.{{MockSensorConfiguration/connected}}, set |mock|'s associated
@@ -421,11 +427,11 @@ The <a>remote end steps</a> are:
   5. If |configuration|.{{MockSensorConfiguration/minSamplingFrequency}} is [=present=], then:
     1. Set |mock|'s minimum supported sampling frequency to |configuration|.{{MockSensorConfiguration/minSamplingFrequency}}.
   6. Let |sensor_instance| be a |type| of <a>Sensor</a> object, set |sensor_instance|'s associated <a>platform sensor</a> to |mock|.
-4. Return <a>success</a> with data `null`.
+6. Return <a>success</a> with data `null`.
 
 <div class="example">
   To create an "ambient-light" mock sensor in the <a>current browsing context</a> of the <a>session</a> with ID 23,
-  the <a>local end</a> would POST to `/session/23/sensor/` with the body:
+  the <a>local end</a> would POST to `/session/23/sensor` with the body:
   <pre class="lang-json">
   {
     "mockSensorType": "ambient-light",
@@ -459,9 +465,12 @@ The <a>remote end steps</a> are:
 1. Let |type| be a <a>url variable</a>, <a>converted to an IDL value</a> of type {{MockSensorType}}.
    If this throws an exception, return a <a>WebDriver error</a> with <a>WebDriver error code</a>
    <a>invalid argument</a>.
-2. If |type| does not match a [=mock sensor type=] amongst all associated [=mock sensors=] of the
+2. If the <a>current browsing context</a> is <a>no longer open</a>, return a <a>WebDriver error</a> with
+   <a>WebDriver error code</a> <a>no such window</a>.
+3. <a>Handle any user prompts</a>, and return its value if it is a <a>WebDriver error</a>.
+4. If |type| does not match a [=mock sensor type=] amongst all associated [=mock sensors=] of the
    <a>current browsing context</a>, return a <a>WebDriver error</a> with <a>WebDriver error code</a> [=no such mock sensor=].
-3. Return <a>success</a> with the <a>serialized mock sensor</a> as data.
+5. Return <a>success</a> with the <a>serialized mock sensor</a> as data.
 
 ### Update mock sensor reading ### {#update-mock-sensor-reading-command}
 
@@ -485,14 +494,17 @@ The <a>remote end steps</a> are:
 1. Let |type| be a <a>url variable</a>, <a>converted to an IDL value</a> of type {{MockSensorType}}.
    If this throws an exception, return a <a>WebDriver error</a> with <a>WebDriver error code</a>
    <a>invalid argument</a>.
-2. If |type| does not match a [=mock sensor type=] amongst all associated [=mock sensors=] of the
+2. If the <a>current browsing context</a> is <a>no longer open</a>, return a <a>WebDriver error</a> with
+   <a>WebDriver error code</a> <a>no such window</a>.
+3. <a>Handle any user prompts</a>, and return its value if it is a <a>WebDriver error</a>.
+4. If |type| does not match a [=mock sensor type=] amongst all associated [=mock sensors=] of the
    <a>current browsing context</a>, return a <a>WebDriver error</a> with <a>WebDriver error code</a> [=no such mock sensor=].
-3. Let |reading| be the |reading| argument, <a>converted to an IDL value</a> of the |type|'s
+5. Let |reading| be the |reading| argument, <a>converted to an IDL value</a> of the |type|'s
    associated {{MockSensorReadingValues}}. If this throws an exception, return a
    <a>WebDriver error</a> with <a>WebDriver error code</a> <a>invalid argument</a>.
-4. [=map/For each=] |key| → <var ignore>value</var> of |reading|.
+6. [=map/For each=] |key| → <var ignore>value</var> of |reading|.
   1.  [=map/Set=] [=mock sensor reading=][|key|] to the corresponding value of |reading|.
-5. Return <a>success</a> with data `null`.
+7. Return <a>success</a> with data `null`.
 
 ### Delete mock sensor ### {#delete-mock-sensor-command}
 
@@ -516,10 +528,13 @@ The <a>remote end steps</a> are:
 1. Let |type| be a <a>url variable</a>.
 2. If {{MockSensorType}} [=set/contains|does not contain=] |type|, return a <a>WebDriver error</a> with
    <a>WebDriver error code</a> <a>invalid argument</a>.
-3. If |type| does not match a [=mock sensor type=] amongst all associated [=mock sensors=] of the
+3. If the <a>current browsing context</a> is <a>no longer open</a>, return a <a>WebDriver error</a> with
+   <a>WebDriver error code</a> <a>no such window</a>.
+4. <a>Handle any user prompts</a>, and return its value if it is a <a>WebDriver error</a>.
+5. If |type| does not match a [=mock sensor type=] amongst all associated [=mock sensors=] of the
    <a>current browsing context</a>, return a <a>WebDriver error</a> with <a>WebDriver error code</a> [=no such mock sensor=].
-4. Delete |type| of [=mock sensor=] in <a>current browsing context</a>.
-5. Return <a>success</a> with data `null`.
+6. Delete |type| of [=mock sensor=] in <a>current browsing context</a>.
+7. Return <a>success</a> with data `null`.
 
 ## Handling errors ## {#extension-handling-errors}
 

@@ -46,7 +46,7 @@ Tests could be written in any languages, as long as they wrap the WebDriver HTTP
 
 ### Create mock sensor
 
- To create an "accelerometer" mock sensor with session ID 21, the local end would send a `POST` request to `/session/21/sensor/` with the body:
+ To create an "accelerometer" mock sensor with session ID 21, the local end would send a `POST` request to `/session/21/sensor` with the body:
  ```
 {
     "mockSensorType": "accelerometer",
@@ -65,7 +65,7 @@ Once a mock sensor instance is presented, the user agent must force the same sen
 
 ### Get mock sensor
 
-To get an "accelerometer" mock sensor with session ID 22, the local end would send a `GET` request to `/session/22/sensor/accelerometer/` without body. On success, the remote end would respond with the serialized mock sensor as data:
+To get an "accelerometer" mock sensor with session ID 22, the local end would send a `GET` request to `/session/22/sensor/accelerometer` without body. On success, the remote end would respond with the serialized mock sensor as data:
  ```
 {
     "maxSamplingFrequency": 60,
@@ -76,7 +76,7 @@ To get an "accelerometer" mock sensor with session ID 22, the local end would se
 
 ### Update mock sensor reading
 
-To update the mock sensor reading of an "accelerometer" mock sensor with session ID 23, the local end would send a `POST` request to `/session/23/sensor/accelerometer/` with body:
+To update the mock sensor reading of an "accelerometer" mock sensor with session ID 23, the local end would send a `POST` request to `/session/23/sensor/accelerometer` with body:
  ```
 {
     "x": 1.12345,
@@ -93,11 +93,11 @@ A user agent must provide the mock sensor readings that are initially exposed to
 
 ### Delete mock sensor
 
-To delete an "accelerometer" mock sensor with session ID 24, the local end would send a `DELETE` request to `/session/24/sensor/accelerometer/` without body.
+To delete an "accelerometer" mock sensor with session ID 24, the local end would send a `DELETE` request to `/session/24/sensor/accelerometer` without body.
 
 ## References & acknowledgements
 
  - Discussion on public-test-infra mailing list: [UserAgent-specific files in Web Platform Tests](https://www.w3.org/Search/Mail/Public/search?keywords=&hdr-1-name=subject&hdr-1-query=%22UserAgent-specific+files+in+Web+Platform+Tests%22&index-grp=Public_FULL&index-type=g&type-index=)
  - [Generic Sesnor API](https://w3c.github.io/sensors/#sensor)
 
-Many thanks to Anssi Kostiainen, Raphael Kubo da Costa, Alexander Shalamov, Tobie Langel, Philip Jägenstedt, Jonathon Kereliuk, and Mike Pennisi for their comments and contributions to the discussions that have informed it.
+Many thanks to Anssi Kostiainen, Raphael Kubo da Costa, Alexander Shalamov, Tobie Langel, Philip Jägenstedt, Jonathon Kereliuk, John Chen, and Mike Pennisi for their comments and contributions to the discussions that have informed it.
