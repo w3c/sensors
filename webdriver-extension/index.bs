@@ -1,0 +1,567 @@
+<pre class='metadata'>
+Title: WebDriver Extension API for Generic Sensor
+Shortname: webdriver-extension
+Level: none
+Status: ED
+Group: dap
+ED: https://w3c.github.io/sensors/webdriver-extension
+Editor: Wanming Lin 91067, Intel Corporation, https://intel.com/
+Abstract: This document defines <a>extension commands</a> to the [[WebDriver|WebDriver specification]] for the purposes of testing a user agent’s implementation of [[GENERIC-SENSOR|Generic Sensor API]] and its concrete Sensor APIs.
+Version History: https://github.com/w3c/sensors/commits/gh-pages/index.bs
+!Bug Reports: <a href="https://www.github.com/w3c/sensors/issues/new">via the w3c/sensors repository on GitHub</a>
+Indent: 2
+Repository: w3c/sensors
+Markup Shorthands: markdown on
+Inline Github Issues: true
+Boilerplate: omit issues-index, omit conformance
+</pre>
+
+<pre class="anchors">
+urlPrefix: https://w3c.github.io/webdriver/webdriver-spec.html#; spec: WebDriver
+  type: dfn
+    text: current browsing context; url: dfn-current-browsing-context
+    text: WebDriver error; url: dfn-errors
+    text: WebDriver error code; url: dfn-error-code
+    text: extension commands; url: dfn-extension-command
+    text: remote end steps; url: dfn-remote-end-steps
+    text: extension command URI template; url: dfn-extension-command-uri-template
+    text: invalid argument; url: dfn-invalid-argument
+    text: local end; url: dfn-local-end
+    text: url variable; url: dfn-url-variables
+    text: session; url: dfn-session
+    text: success; url: dfn-success
+    text: handling errors
+    text: Object; url: dfn-object
+    text: no longer open; url: dfn-no-longer-open
+    text: no such window; url: dfn-no-such-window
+    text: Handle any user prompts; url: dfn-handle-any-user-prompts
+urlPrefix: https://w3c.github.io/sensors/; spec: GENERIC-SENSOR
+  type: dfn
+    text: platform sensor; url: concept-platform-sensor
+    text: sensor
+    text: sensor reading
+    text: sensor type
+    text: reading timestamp
+    text: latest reading
+    text: connect to sensor
+    text: sampling frequency
+    text: requested sampling frequency
+    text: can expose sensor readings
+    text: update latest reading
+    text: extension sensor interface
+urlPrefix: https://w3c.github.io/ambient-light; spec: AMBIENT-LIGHT
+  type: dfn
+    text: AmbientLightSensor; url: ambient-light-sensor-interface
+urlPrefix: https://w3c.github.io/accelerometer; spec: ACCELEROMETER
+  type: dfn
+    text: Accelerometer; url: accelerometer-interface
+    text: LinearAccelerationSensor; url: linearaccelerationsensor-interface
+    text: GravitySensor; url: gravitysensor-interface
+urlPrefix: https://w3c.github.io/gyroscope; spec: GYROSCOPE
+  type: dfn
+    text: Gyroscope; url: gyroscope-interface
+urlPrefix: https://w3c.github.io/magnetometer; spec: MAGNETOMETER
+  type: dfn
+    text: Magnetometer; url: magnetometer-interface
+    text: UncalibratedMagnetometer; url: uncalibrated-magnetometer-interface
+urlPrefix: https://w3c.github.io/orientation-sensor; spec: ORIENTATION-SENSOR
+  type: dfn
+    text: AbsoluteOrientationSensor; url: absoluteorientationsensor-interface
+    text: RelativeOrientationSensor; url: relativeorientationsensor-interface
+urlPrefix: https://wicg.github.io/geolocation-sensor/; spec: GEOLOCATION-SENSOR
+  type: dfn
+    text: GeolocationSensor; url: geolocationsensor-interface
+urlPrefix: https://w3c.github.io/proximity; spec: PROXIMITY
+  type: dfn
+    text: ProximitySensor; url: proximity-sensor-interface
+urlPrefix: https://www.w3.org/TR/hr-time-2/; spec: HR-TIME-2
+  type: dfn
+    text: time origin; url: dfn-time-origin
+</pre>
+<pre class=link-defaults>
+spec: webidl; type:dfn; text:attribute
+spec: webidl; type:dfn; text:dictionary member
+spec: webidl; type:dfn; text:identifier
+</pre>
+
+Introduction {#intro}
+=====================
+
+The Generic Sensor API [[GENERIC-SENSOR]] and its concrete Sensor APIs pose a challenge
+to test authors, as fully exercising those interfaces requires physical hardware
+devices that respond in predictable ways. To address this challenge this specification
+defines <a>extension commands</a> to the [[WebDriver]] specification for controlling
+[=mock sensor=] on the host that the user agent is running on.
+With these <a>extension commands</a>, devices with particular properties can be created
+and their responses to requests are well defined.
+
+Mock Sensors {#mock-sensors}
+=====================
+
+A <dfn id="mock-sensor">mock sensor</dfn> simulates the behavior of a <a>platform sensor</a> in controlled ways.
+
+A [=mock sensor=] reports a corresponding <dfn id="mock-sensor-reading">mock <a>sensor reading</a></dfn>, which is a source of
+mocking information about the environment, to the <a>Sensor</a> objects.
+
+The <a>current browsing context</a>'s [=mock sensor=] has an associated [=mock sensor reading=] [=ordered map|map=].
+
+The [=mock sensor reading=] [=ordered map|map=] contains an [=map/entry=] whose [=map/key=] is
+"timestamp" and whose [=map/value=] is a high resolution timestamp that estimates the time [=mock sensor reading=]
+sent to observers of the <a>Sensor</a> object, expressed in milliseconds since the [=time origin=].
+
+The other [=map/entries=] of the [=mock sensor reading=] [=ordered map|map=] whose [=map/keys=] must match the
+[=dictionary members=] [=identifier=] defined by the [=mock sensor type=]'s {{MockSensorReadingValues}}
+and whose initial [=map/values=] are implementation-dependent.
+
+Note: The user agent must provide the [=mock sensor reading=] that are initially exposed to the <a>Sensor</a> objects.
+
+A [=mock sensor=] has an associated <a>requested sampling frequency</a>. Its default value is implementation-dependent
+but must be set within a [=mock sensor=]'s associated <a>sampling frequency</a> bounds.
+
+A [=mock sensor=] has an associated <a>sampling frequency</a> with supported bounds. The default values of
+supported bounds are implementation-dependent.
+
+A [=mock sensor=] must report the [=mock sensor reading=] at the rate of its [=requested sampling frequency=]
+if the user agent <a>can expose sensor readings</a> to the <a>current browsing context</a>'s <a>active document</a>.
+
+<div class='note'>
+Note: The [=mock sensor=] defined in this specification is not intended be used by non-testing-related web content.
+The UA MAY choose to expose [=mock sensor=] interface only when a runtime or compile-time flag has been set.
+</div>
+
+## MockSensorConfiguration dictionary ## {#dictionary-mocksensorconfiguration}
+
+<pre class='idl'>
+  dictionary MockSensorConfiguration {
+    required MockSensorType mockSensorType;
+    boolean connected = true;
+    double? maxSamplingFrequency;
+    double? minSamplingFrequency;
+  };
+</pre>
+
+The {{MockSensorConfiguration}} dictionary is used to [[#create-mock-sensor-command|create a mock sensor]].
+
+: {{MockSensorConfiguration/mockSensorType}} member
+:: A {{MockSensorType}} that is used to set [=mock sensor type=].
+
+: {{MockSensorConfiguration/connected}} member
+:: A boolean that indicates a [=mock sensor=]'s <dfn id="connection-flag">connection flag</dfn> which is used for switching the connection
+   between <a>Sensor</a> object and [=mock sensor=]. When set to false the user agent must force the result of invoking
+   <a>connect to sensor</a> with [=mock sensor=]'s associated <a>Sensor</a> object as argument to false, otherwise true.
+
+: {{MockSensorConfiguration/maxSamplingFrequency}} member
+:: A double representing frequency in Hz that is used to set maximum supported <a>sampling frequency</a> for the associated [=mock sensor=].
+
+: {{MockSensorConfiguration/minSamplingFrequency}} member
+:: A double representing frequency in Hz that is used to set minimum supported <a>sampling frequency</a> for the associated [=mock sensor=].
+
+## MockSensor dictionary ## {#dictionary-mocksensor}
+<pre class='idl'>
+  dictionary MockSensor {
+    double maxSamplingFrequency;
+    double minSamplingFrequency;
+    double requestedSamplingFrequency;
+  };
+</pre>
+
+The {{MockSensor}} dictionary provides information about a [=mock sensor=].
+
+: {{MockSensor/maxSamplingFrequency}} member
+:: A double representing frequency in Hz that indicates the maximum supported <a>sampling frequency</a> of the associated [=mock sensor=].
+
+: {{MockSensor/minSamplingFrequency}} member
+:: A double representing frequency in Hz that indicates the minimum supported <a>sampling frequency</a> of the associated [=mock sensor=].
+
+: {{MockSensor/requestedSamplingFrequency}} member
+:: A double representing frequency in Hz that indicates the <a>requested sampling frequency</a> of the associated [=mock sensor=].
+
+A <dfn>serialized mock sensor</dfn> is a JSON <a>Object</a> where a [=mock sensor=]'s fields listed in the {{MockSensor}} dictionary are mapped
+using the |JSON Key| and the associated field’s value from the available [=mock sensor=] in <a>current browsing context</a>.
+
+## Mock sensor type ## {#section-mock-sensor-type}
+
+A <dfn id="mock-sensor-type">mock sensor type</dfn> is equivalent to a <a>sensor type</a>’s associated {{Sensor}} subclass.
+
+<pre class='idl'>
+  enum MockSensorType {
+    "ambient-light",
+    "accelerometer",
+    "linear-acceleration",
+    "gravity",
+    "gyroscope",
+    "magnetometer",
+    "uncalibrated-magnetometer",
+    "absolute-orientation",
+    "relative-orientation",
+    "geolocation",
+    "proximity",
+  };
+</pre>
+
+Each enumeration value in the {{MockSensorType}} enum identifies a [=mock sensor type=].
+Each [=mock sensor type=] has a [=mock sensor reading values=] dictionary:
+
+: <dfn export>Mock Sensor Reading Values</dfn> dictionary
+:: {{MockSensorReadingValues}} dictionary represents a user-specified [=mock sensor reading=] used for
+   [[#update-mock-sensor-reading-command|updating a mock sensor reading]]. Its members must match the
+   [=attribute=] [=identifier=] defined by the <a>sensor type</a>'s
+   associated <a>extension sensor interface</a>. Each [=mock sensor type=]
+   has a specific {{MockSensorReadingValues}}, which is defined in each section of [[#section-mock-sensor-type|mock sensor type]].
+
+   <pre class="idl">
+     dictionary MockSensorReadingValues {
+     };
+   </pre>
+
+### Ambient Light Sensor ### {#mock-ambient-light-sensor}
+The <dfn for="MockSensorType" enum-value>"ambient-light"</dfn> type is the mock sensor type
+associated with the usage of the <a>AmbientLightSensor</a> interface.
+<dl>
+  <dt>[=Mock Sensor Reading Values=]</dt>
+  <dd>
+    <pre class="idl">
+      dictionary AmbientLightReadingValues {
+        required double? illuminance;
+      };
+    </pre>
+  </dd>
+</dl>
+
+### Accelerometer ### {#mock-accelerometer}
+The <dfn for="MockSensorType" enum-value>"accelerometer"</dfn> type is the mock sensor type
+associated with the usage of the <a>Accelerometer</a> interface.
+<dl>
+  <dt>[=Mock Sensor Reading Values=]</dt>
+  <dd>
+    <pre class="idl">
+      dictionary AccelerometerReadingValues {
+        required double? x;
+        required double? y;
+        required double? z;
+      };
+    </pre>
+  </dd>
+</dl>
+
+### Linear Acceleration Sensor### {#mock-linear-acceleration-sensor}
+The <dfn for="MockSensorType" enum-value>"linear-acceleration"</dfn> type is the mock sensor type
+associated with the usage of the <a>LinearAccelerationSensor</a> interface.
+<dl>
+  <dt>[=Mock Sensor Reading Values=]</dt>
+  <dd>
+    <pre class="idl">
+      dictionary LinearAccelerationReadingValues : AccelerometerReadingValues {
+      };
+    </pre>
+  </dd>
+</dl>
+
+### Gravity Sensor### {#mock-gravity}
+The <dfn for="MockSensorType" enum-value>"gravity"</dfn> type is the mock sensor type
+associated with the usage of the <a>GravitySensor</a> interface.
+<dl>
+  <dt>[=Mock Sensor Reading Values=]</dt>
+  <dd>
+    <pre class="idl">
+      dictionary GravityReadingValues : AccelerometerReadingValues {
+      };
+    </pre>
+  </dd>
+</dl>
+
+### Gyroscope ### {#mock-gyroscope}
+The <dfn for="MockSensorType" enum-value>"gyroscope"</dfn> type is the mock sensor type
+associated with the usage of the <a>Gyroscope</a> interface.
+<dl>
+  <dt>[=Mock Sensor Reading Values=]</dt>
+  <dd>
+    <pre class="idl">
+      dictionary GyroscopeReadingValues {
+        required double? x;
+        required double? y;
+        required double? z;
+      };
+    </pre>
+  </dd>
+</dl>
+
+### Magnetometer ### {#mock-magnetometer}
+The <dfn for="MockSensorType" enum-value>"magnetometer"</dfn> type is the mock sensor type
+associated with the usage of the <a>Magnetometer</a> interface.
+<dl>
+  <dt>[=Mock Sensor Reading Values=]</dt>
+  <dd>
+    <pre class="idl">
+      dictionary MagnetometerReadingValues {
+        required double? x;
+        required double? y;
+        required double? z;
+      };
+    </pre>
+  </dd>
+</dl>
+
+### Uncalibrated Magnetometer ### {#mock-uncalibrated-magnetometer}
+The <dfn for="MockSensorType" enum-value>"uncalibrated-magnetometer"</dfn> type is the mock sensor type
+associated with the usage of the <a>UncalibratedMagnetometer</a> interface.
+<dl>
+  <dt>[=Mock Sensor Reading Values=]</dt>
+  <dd>
+    <pre class="idl">
+      dictionary UncalibratedMagnetometerReadingValues {
+        required double? x;
+        required double? y;
+        required double? z;
+        required double? xBias;
+        required double? yBias;
+        required double? zBias;
+      };
+    </pre>
+  </dd>
+</dl>
+
+### Absolute Orientation Sensor ### {#mock-absolute-orientation-sensor}
+The <dfn for="MockSensorType" enum-value>"absolute-orientation"</dfn> type is the mock sensor type
+associated with the usage of the <a>AbsoluteOrientationSensor</a> interface.
+<dl>
+  <dt>[=Mock Sensor Reading Values=]</dt>
+  <dd>
+    <pre class="idl">
+      dictionary AbsoluteOrientationReadingValues {
+        required FrozenArray&lt;double>? quaternion;
+      };
+    </pre>
+  </dd>
+</dl>
+
+### Relative Orientation Sensor ### {#mock-relative-orientation-sensor}
+The <dfn for="MockSensorType" enum-value>"relative-orientation"</dfn> type is the mock sensor type
+associated with the usage of the <a>RelativeOrientationSensor</a> interface.
+<dl>
+  <dt>[=Mock Sensor Reading Values=]</dt>
+  <dd>
+    <pre class="idl">
+      dictionary RelativeOrientationReadingValues : AbsoluteOrientationReadingValues {
+      };
+    </pre>
+  </dd>
+</dl>
+
+### Geolocation Sensor ### {#mock-geolocation-sensor}
+The <dfn for="MockSensorType" enum-value>"geolocation"</dfn> type is the mock sensor type
+associated with the usage of the <a>GeolocationSensor</a> interface.
+<dl>
+  <dt>[=Mock Sensor Reading Values=]</dt>
+  <dd>
+    <pre class="idl">
+      dictionary GeolocationReadingValues {
+        required double? latitude;
+        required double? longitude;
+        required double? altitude;
+        required double? accuracy;
+        required double? altitudeAccuracy;
+        required double? heading;
+        required double? speed;
+      };
+    </pre>
+  </dd>
+</dl>
+
+### Proximity Sensor ### {#mock-proximity-sensor}
+The <dfn for="MockSensorType" enum-value>"proximity"</dfn> type is the mock sensor type
+associated with the usage of the <a>ProximitySensor</a> interface.
+<dl>
+  <dt>[=Mock Sensor Reading Values=]</dt>
+  <dd>
+    <pre class="idl">
+      dictionary ProximityReadingValues {
+        required double? distance;
+        required double? max;
+        required boolean? near;
+      };
+    </pre>
+  </dd>
+</dl>
+
+Extensions {#webdriver-extensions}
+=====================
+
+## Commands ## {#mock-sensor-commands}
+
+### Create mock sensor ### {#create-mock-sensor-command}
+
+<table>
+  <tbody>
+    <tr>
+      <th>HTTP Method</th>
+      <th><a lt="extension command URI template">URI Template</a></th>
+    </tr>
+    <tr>
+      <td>POST</td>
+      <td>/session/{session id}/sensor</td>
+    </tr>
+  </tbody>
+</table>
+
+The <dfn>create mock sensor</dfn> <a>extension command</a> creates a
+new [=mock sensor=].
+
+The <a>remote end steps</a> are:
+1. Let |configuration| be the |configuration| parameter, <a>converted to an IDL value</a>
+   of type {{MockSensorConfiguration}}. If this throws an exception, return a
+   <a>WebDriver error</a> with <a>WebDriver error code</a> <a>invalid argument</a>.
+2. Let |type| be the |configuration|.{{MockSensorConfiguration/mockSensorType}}. If the <a>current browsing context</a>
+   already has this |type| of [=mock sensor=], return a <a>WebDriver error</a> with <a>WebDriver error code</a>
+   [=mock sensor already created=].
+3. If the <a>current browsing context</a> is <a>no longer open</a>, return a <a>WebDriver error</a> with
+   <a>WebDriver error code</a> <a>no such window</a>.
+4. <a>Handle any user prompts</a>, and return its value if it is a <a>WebDriver error</a>.
+5. Run these sub-steps [=in parallel=] to create a [=mock sensor=] in the <a>current browsing context</a>:
+  1. Let |mock| be a new [=mock sensor=].
+  2. Set |mock|'s [=mock sensor type=] to |type|.
+  3. Let |connected| be the |configuration|.{{MockSensorConfiguration/connected}}, set |mock|'s associated
+     [=connection flag=] to |connected|.
+  4. If |configuration|.{{MockSensorConfiguration/maxSamplingFrequency}} is [=present=], then:
+    1. Set |mock|'s maximum supported sampling frequency to |configuration|.{{MockSensorConfiguration/maxSamplingFrequency}}.
+  5. If |configuration|.{{MockSensorConfiguration/minSamplingFrequency}} is [=present=], then:
+    1. Set |mock|'s minimum supported sampling frequency to |configuration|.{{MockSensorConfiguration/minSamplingFrequency}}.
+  6. Let |sensor_instance| be a |type| of <a>Sensor</a> object, set |sensor_instance|'s associated <a>platform sensor</a> to |mock|.
+6. Return <a>success</a> with data `null`.
+
+<div class="example">
+  To create an "ambient-light" mock sensor in the <a>current browsing context</a> of the <a>session</a> with ID 23,
+  the <a>local end</a> would POST to `/session/23/sensor` with the body:
+  <pre class="lang-json">
+  {
+    "mockSensorType": "ambient-light",
+    "maxSamplingFrequency": 60,
+    "minSamplingFrequency": 5
+  }
+  </pre>
+  Be aware that only one [=mock sensor=] of a given [=mock sensor type=] can be created in <a>current browsing context</a>,
+  otherwise a <a>WebDriver error</a> with <a>WebDriver error code</a> [=mock sensor already created=] will be thrown.
+</div>
+
+### Get mock sensor ### {#get-mock-sensor-command}
+
+<table>
+  <tbody>
+    <tr>
+      <th>HTTP Method</th>
+      <th><a lt="extension command uri template">URI Template</a></th>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td>/session/{session id}/sensor/{type}</td>
+    </tr>
+  </tbody>
+</table>
+
+The <dfn>get mock sensor</dfn> <a>extension command</a> retrieves
+information about a given type of [=mock sensor=].
+
+The <a>remote end steps</a> are:
+1. Let |type| be a <a>url variable</a>, <a>converted to an IDL value</a> of type {{MockSensorType}}.
+   If this throws an exception, return a <a>WebDriver error</a> with <a>WebDriver error code</a>
+   <a>invalid argument</a>.
+2. If the <a>current browsing context</a> is <a>no longer open</a>, return a <a>WebDriver error</a> with
+   <a>WebDriver error code</a> <a>no such window</a>.
+3. <a>Handle any user prompts</a>, and return its value if it is a <a>WebDriver error</a>.
+4. If |type| does not match a [=mock sensor type=] amongst all associated [=mock sensors=] of the
+   <a>current browsing context</a>, return a <a>WebDriver error</a> with <a>WebDriver error code</a> [=no such mock sensor=].
+5. Return <a>success</a> with the <a>serialized mock sensor</a> as data.
+
+### Update mock sensor reading ### {#update-mock-sensor-reading-command}
+
+<table>
+  <tbody>
+    <tr>
+      <th>HTTP Method</th>
+      <th><a lt="extension command uri template">URI Template</a></th>
+    </tr>
+    <tr>
+      <td>POST</td>
+      <td>/session/{session id}/sensor/{type}</td>
+    </tr>
+  </tbody>
+</table>
+
+The <dfn>update mock sensor reading</dfn> <a>extension command</a> updates
+a given type of [=mock sensor=]'s [=mock sensor reading|reading=].
+
+The <a>remote end steps</a> are:
+1. Let |type| be a <a>url variable</a>, <a>converted to an IDL value</a> of type {{MockSensorType}}.
+   If this throws an exception, return a <a>WebDriver error</a> with <a>WebDriver error code</a>
+   <a>invalid argument</a>.
+2. If the <a>current browsing context</a> is <a>no longer open</a>, return a <a>WebDriver error</a> with
+   <a>WebDriver error code</a> <a>no such window</a>.
+3. <a>Handle any user prompts</a>, and return its value if it is a <a>WebDriver error</a>.
+4. If |type| does not match a [=mock sensor type=] amongst all associated [=mock sensors=] of the
+   <a>current browsing context</a>, return a <a>WebDriver error</a> with <a>WebDriver error code</a> [=no such mock sensor=].
+5. Let |reading| be the |reading| argument, <a>converted to an IDL value</a> of the |type|'s
+   associated {{MockSensorReadingValues}}. If this throws an exception, return a
+   <a>WebDriver error</a> with <a>WebDriver error code</a> <a>invalid argument</a>.
+6. [=map/For each=] |key| → <var ignore>value</var> of |reading|.
+  1.  [=map/Set=] [=mock sensor reading=][|key|] to the corresponding value of |reading|.
+7. Return <a>success</a> with data `null`.
+
+### Delete mock sensor ### {#delete-mock-sensor-command}
+
+<table>
+  <tbody>
+    <tr>
+      <th>HTTP Method</th>
+      <th><a lt="extension command uri template">URI Template</a></th>
+    </tr>
+    <tr>
+      <td>DELETE</td>
+      <td>/session/{session id}/sensor/{type}</td>
+    </tr>
+  </tbody>
+</table>
+
+The <dfn>delete mock sensor</dfn> <a>extension command</a> deletes
+a given type of [=mock sensor=].
+
+The <a>remote end steps</a> are:
+1. Let |type| be a <a>url variable</a>.
+2. If {{MockSensorType}} [=set/contains|does not contain=] |type|, return a <a>WebDriver error</a> with
+   <a>WebDriver error code</a> <a>invalid argument</a>.
+3. If the <a>current browsing context</a> is <a>no longer open</a>, return a <a>WebDriver error</a> with
+   <a>WebDriver error code</a> <a>no such window</a>.
+4. <a>Handle any user prompts</a>, and return its value if it is a <a>WebDriver error</a>.
+5. If |type| does not match a [=mock sensor type=] amongst all associated [=mock sensors=] of the
+   <a>current browsing context</a>, return a <a>WebDriver error</a> with <a>WebDriver error code</a> [=no such mock sensor=].
+6. Delete |type| of [=mock sensor=] in <a>current browsing context</a>.
+7. Return <a>success</a> with data `null`.
+
+## Handling errors ## {#extension-handling-errors}
+
+This section extends the <a>Handling Errors</a> and defines extended <a>WebDriver error codes</a>
+specific for [=mock sensor=] in following table.
+
+<table id="mock-sensor-error-code" class="def">
+  <thead>
+    <tr>
+      <th>Error Code</th><th>HTTP Status</th><th>JSON Error Code</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><dfn id="no-such-mock-sensor">no such mock sensor</dfn></td>
+      <td>404</td>
+      <td>|no such mock sensor|</td>
+      <td>no mock sensor matching the given type was found.</td>
+    </tr>
+    <tr>
+      <td><dfn id="mock-sensor-already-created">mock sensor already created</dfn></td>
+      <td>500</td>
+      <td>|mock sensor already created|</td>
+      <td>
+        A [[#mock-sensor-commands|command]] to create a mock sensor could not be satisfied because the given type of mock sensor is already existed.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
