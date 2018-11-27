@@ -98,6 +98,6 @@ To delete an "accelerometer" mock sensor with session ID 24, the local end would
 ## References & acknowledgements
 
  - Discussion on public-test-infra mailing list: [UserAgent-specific files in Web Platform Tests](https://www.w3.org/Search/Mail/Public/search?keywords=&hdr-1-name=subject&hdr-1-query=%22UserAgent-specific+files+in+Web+Platform+Tests%22&index-grp=Public_FULL&index-type=g&type-index=)
- - [Generic Sesnor API](https://w3c.github.io/sensors/#sensor)
+ - [Generic Sensor API](https://w3c.github.io/sensors/#sensor)
 
 Many thanks to Anssi Kostiainen, Raphael Kubo da Costa, Alexander Shalamov, Tobie Langel, Philip Jägenstedt, Jonathon Kereliuk, John Chen, and Mike Pennisi for their comments and contributions to the discussions that have informed it.
