@@ -1059,9 +1059,10 @@ Possible extra rowspan handling
 			   comprising the first items of each top-level section. */
 			margin-top: 1.1rem;
 		}
-		#toc .secno {
+		#toc#toc .secno { /* Ugh, need more specificity to override base.css */
 			grid-column: 1;
 			width: auto;
+			margin-left: 0;
 		}
 		#toc .content {
 			grid-column: 2;
@@ -1218,9 +1219,9 @@ Possible extra rowspan handling
       background-attachment: fixed;
     }
   </style>
-  <meta content="Bikeshed version 1a927b7d2ff9a70dcdc5dc9f892fd154b7b64097" name="generator">
+  <meta content="Bikeshed version 0da7328bb90ef81993146377e4e0fed236969c4c" name="generator">
   <link href="https://w3c.github.io/sensors/webdriver-extension" rel="canonical">
-  <meta content="67a5046cffefa7e352c64937f9e89eeb4dc3baf2" name="document-revision">
+  <meta content="9e85d6cef31e0a74e670df76b4a27be439fd9dcb" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1410,64 +1411,64 @@ pre.idl.highlight { color: #708090; }
 .highlight:not(.idl) { background: hsl(24, 20%, 95%); }
 code.highlight { padding: .1em; border-radius: .3em; }
 pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em 0; overflow: auto; border-radius: 0; }
-.highlight .c { color: #708090 } /* Comment */
-.highlight .k { color: #990055 } /* Keyword */
-.highlight .l { color: #000000 } /* Literal */
-.highlight .n { color: #0077aa } /* Name */
-.highlight .o { color: #999999 } /* Operator */
-.highlight .p { color: #999999 } /* Punctuation */
-.highlight .cm { color: #708090 } /* Comment.Multiline */
-.highlight .cp { color: #708090 } /* Comment.Preproc */
-.highlight .c1 { color: #708090 } /* Comment.Single */
-.highlight .cs { color: #708090 } /* Comment.Special */
-.highlight .kc { color: #990055 } /* Keyword.Constant */
-.highlight .kd { color: #990055 } /* Keyword.Declaration */
-.highlight .kn { color: #990055 } /* Keyword.Namespace */
-.highlight .kp { color: #990055 } /* Keyword.Pseudo */
-.highlight .kr { color: #990055 } /* Keyword.Reserved */
-.highlight .kt { color: #990055 } /* Keyword.Type */
-.highlight .ld { color: #000000 } /* Literal.Date */
-.highlight .m { color: #000000 } /* Literal.Number */
-.highlight .s { color: #a67f59 } /* Literal.String */
-.highlight .na { color: #0077aa } /* Name.Attribute */
-.highlight .nc { color: #0077aa } /* Name.Class */
-.highlight .no { color: #0077aa } /* Name.Constant */
-.highlight .nd { color: #0077aa } /* Name.Decorator */
-.highlight .ni { color: #0077aa } /* Name.Entity */
-.highlight .ne { color: #0077aa } /* Name.Exception */
-.highlight .nf { color: #0077aa } /* Name.Function */
-.highlight .nl { color: #0077aa } /* Name.Label */
-.highlight .nn { color: #0077aa } /* Name.Namespace */
-.highlight .py { color: #0077aa } /* Name.Property */
-.highlight .nt { color: #669900 } /* Name.Tag */
-.highlight .nv { color: #222222 } /* Name.Variable */
-.highlight .ow { color: #999999 } /* Operator.Word */
-.highlight .mb { color: #000000 } /* Literal.Number.Bin */
-.highlight .mf { color: #000000 } /* Literal.Number.Float */
-.highlight .mh { color: #000000 } /* Literal.Number.Hex */
-.highlight .mi { color: #000000 } /* Literal.Number.Integer */
-.highlight .mo { color: #000000 } /* Literal.Number.Oct */
-.highlight .sb { color: #a67f59 } /* Literal.String.Backtick */
-.highlight .sc { color: #a67f59 } /* Literal.String.Char */
-.highlight .sd { color: #a67f59 } /* Literal.String.Doc */
-.highlight .s2 { color: #a67f59 } /* Literal.String.Double */
-.highlight .se { color: #a67f59 } /* Literal.String.Escape */
-.highlight .sh { color: #a67f59 } /* Literal.String.Heredoc */
-.highlight .si { color: #a67f59 } /* Literal.String.Interpol */
-.highlight .sx { color: #a67f59 } /* Literal.String.Other */
-.highlight .sr { color: #a67f59 } /* Literal.String.Regex */
-.highlight .s1 { color: #a67f59 } /* Literal.String.Single */
-.highlight .ss { color: #a67f59 } /* Literal.String.Symbol */
-.highlight .vc { color: #0077aa } /* Name.Variable.Class */
-.highlight .vg { color: #0077aa } /* Name.Variable.Global */
-.highlight .vi { color: #0077aa } /* Name.Variable.Instance */
-.highlight .il { color: #000000 } /* Literal.Number.Integer.Long */
+c-[a] { color: #990055 } /* Keyword.Declaration */
+c-[b] { color: #990055 } /* Keyword.Type */
+c-[c] { color: #708090 } /* Comment */
+c-[d] { color: #708090 } /* Comment.Multiline */
+c-[e] { color: #0077aa } /* Name.Attribute */
+c-[f] { color: #669900 } /* Name.Tag */
+c-[g] { color: #222222 } /* Name.Variable */
+c-[k] { color: #990055 } /* Keyword */
+c-[l] { color: #000000 } /* Literal */
+c-[m] { color: #000000 } /* Literal.Number */
+c-[n] { color: #0077aa } /* Name */
+c-[o] { color: #999999 } /* Operator */
+c-[p] { color: #999999 } /* Punctuation */
+c-[s] { color: #a67f59 } /* Literal.String */
+c-[t] { color: #a67f59 } /* Literal.String.Single */
+c-[u] { color: #a67f59 } /* Literal.String.Double */
+c-[cp] { color: #708090 } /* Comment.Preproc */
+c-[c1] { color: #708090 } /* Comment.Single */
+c-[cs] { color: #708090 } /* Comment.Special */
+c-[kc] { color: #990055 } /* Keyword.Constant */
+c-[kn] { color: #990055 } /* Keyword.Namespace */
+c-[kp] { color: #990055 } /* Keyword.Pseudo */
+c-[kr] { color: #990055 } /* Keyword.Reserved */
+c-[ld] { color: #000000 } /* Literal.Date */
+c-[nc] { color: #0077aa } /* Name.Class */
+c-[no] { color: #0077aa } /* Name.Constant */
+c-[nd] { color: #0077aa } /* Name.Decorator */
+c-[ni] { color: #0077aa } /* Name.Entity */
+c-[ne] { color: #0077aa } /* Name.Exception */
+c-[nf] { color: #0077aa } /* Name.Function */
+c-[nl] { color: #0077aa } /* Name.Label */
+c-[nn] { color: #0077aa } /* Name.Namespace */
+c-[py] { color: #0077aa } /* Name.Property */
+c-[ow] { color: #999999 } /* Operator.Word */
+c-[mb] { color: #000000 } /* Literal.Number.Bin */
+c-[mf] { color: #000000 } /* Literal.Number.Float */
+c-[mh] { color: #000000 } /* Literal.Number.Hex */
+c-[mi] { color: #000000 } /* Literal.Number.Integer */
+c-[mo] { color: #000000 } /* Literal.Number.Oct */
+c-[sb] { color: #a67f59 } /* Literal.String.Backtick */
+c-[sc] { color: #a67f59 } /* Literal.String.Char */
+c-[sd] { color: #a67f59 } /* Literal.String.Doc */
+c-[se] { color: #a67f59 } /* Literal.String.Escape */
+c-[sh] { color: #a67f59 } /* Literal.String.Heredoc */
+c-[si] { color: #a67f59 } /* Literal.String.Interpol */
+c-[sx] { color: #a67f59 } /* Literal.String.Other */
+c-[sr] { color: #a67f59 } /* Literal.String.Regex */
+c-[ss] { color: #a67f59 } /* Literal.String.Symbol */
+c-[vc] { color: #0077aa } /* Name.Variable.Class */
+c-[vg] { color: #0077aa } /* Name.Variable.Global */
+c-[vi] { color: #0077aa } /* Name.Variable.Instance */
+c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
 </style>
  <body class="h-entry">
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebDriver Extension API for Generic Sensor</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2018-11-23">23 November 2018</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2018-11-27">27 November 2018</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1475,13 +1476,15 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
      <dt>Version History:
      <dd><a href="https://github.com/w3c/sensors/commits/gh-pages/index.bs">https://github.com/w3c/sensors/commits/gh-pages/index.bs</a>
      <dt>Feedback:
-     <dd><span><a href="mailto:public-device-apis@w3.org?subject=%5Bwebdriver-extension%5D%20YOUR%20TOPIC%20HERE">public-device-apis@w3.org</a> with subject line “<kbd>[webdriver-extension] <i data-lt="">… message topic …</i></kbd>” (<a href="https://lists.w3.org/Archives/Public/public-device-apis/" rel="discussion">archives</a>)</span>
+     <dd><span><a href="mailto:public-device-apis@w3.org?subject=%5Bwebdriver-extension%5D%20YOUR%20TOPIC%20HERE">public-device-apis@w3.org</a> with subject line “<kbd>[webdriver-extension] <i data-lt>… message topic …</i></kbd>” (<a href="https://lists.w3.org/Archives/Public/public-device-apis/" rel="discussion">archives</a>)</span>
      <dt>Issue Tracking:
      <dd><a href="https://github.com/w3c/sensors/issues/">GitHub</a>
      <dt class="editor">Editor:
      <dd class="editor p-author h-card vcard" data-editor-id="91067"><a class="p-name fn u-url url" href="https://intel.com/">Wanming Lin</a> (<span class="p-org org">Intel Corporation</span>)
      <dt>Bug Reports:
      <dd><a href="https://www.github.com/w3c/sensors/issues/new">via the w3c/sensors repository on GitHub</a>
+     <dt>Other:
+     <dd><a href="https://github.com/w3c/sensors/blob/master/webdriver-extension/explainer.md">Explainer</a>
     </dl>
    </div>
    <div data-fill-with="warning"></div>
@@ -1504,7 +1507,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
 	preferably like this:
 	“[webdriver-extension] <em>…summary of comment…</em>”.
 	All comments are welcome. </p>
-   <p> This document was produced by the <a href="https://www.w3.org/2009/dap/">Device and Sensors Working Group</a>. </p>
+   <p> This document was produced by the <a href="https://www.w3.org/das/">Devices and Sensors Working Group</a>. </p>
    <p> This document was produced by a group operating under
 	the <a href="https://www.w3.org/Consortium/Patent-Policy/">W3C Patent Policy</a>.
 	W3C maintains a <a href="https://www.w3.org/2004/01/pp-impl/43696/status" rel="disclosure">public list of any patent disclosures</a> made in connection with the deliverables of the group;
@@ -1575,8 +1578,8 @@ defines <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-
 With these <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-extension-command" id="ref-for-dfn-extension-command②">extension commands</a>, devices with particular properties can be created
 and their responses to requests are well defined.</p>
    <h2 class="heading settled" data-level="2" id="mock-sensors"><span class="secno">2. </span><span class="content">Mock Sensors</span><a class="self-link" href="#mock-sensors"></a></h2>
-   <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="mock-sensor">mock sensor</dfn> simulates the behavior of a <a data-link-type="dfn" href="https://w3c.github.io/sensors/#concept-platform-sensor" id="ref-for-concept-platform-sensor">platform sensor</a> in controlled ways.</p>
-   <p>A <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor①">mock sensor</a> reports a corresponding <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="mock-sensor-reading">mock <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor-reading" id="ref-for-sensor-reading">sensor reading</a></dfn>, which is a source of
+   <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="mock-sensor">mock sensor</dfn> simulates the behavior of a <a data-link-type="dfn" href="https://w3c.github.io/sensors/#concept-platform-sensor" id="ref-for-concept-platform-sensor">platform sensor</a> in controlled ways.</p>
+   <p>A <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor①">mock sensor</a> reports a corresponding <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="mock-sensor-reading">mock <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor-reading" id="ref-for-sensor-reading">sensor reading</a></dfn>, which is a source of
 mocking information about the environment, to the <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor" id="ref-for-sensor">Sensor</a> objects.</p>
    <p>The <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context">current browsing context</a>’s <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②">mock sensor</a> has an associated <a data-link-type="dfn" href="#mock-sensor-reading" id="ref-for-mock-sensor-reading">mock sensor reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map">map</a>.</p>
    <p>The <a data-link-type="dfn" href="#mock-sensor-reading" id="ref-for-mock-sensor-reading①">mock sensor reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map①">map</a> contains an <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry" id="ref-for-map-entry">entry</a> whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-key" id="ref-for-map-key">key</a> is
@@ -1591,211 +1594,211 @@ supported bounds are implementation-dependent.</p>
    <div class="note" role="note"> Note: The <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor⑦">mock sensor</a> defined in this specification is not intended be used by non-testing-related web content.
 The UA MAY choose to expose <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor⑧">mock sensor</a> interface only when a runtime or compile-time flag has been set. </div>
    <h3 class="heading settled" data-level="2.1" id="dictionary-mocksensorconfiguration"><span class="secno">2.1. </span><span class="content">MockSensorConfiguration dictionary</span><a class="self-link" href="#dictionary-mocksensorconfiguration"></a></h3>
-<pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-mocksensorconfiguration"><code>MockSensorConfiguration</code></dfn> {
-  <span class="kt">required</span> <a class="n" data-link-type="idl-name" href="#enumdef-mocksensortype" id="ref-for-enumdef-mocksensortype">MockSensorType</a> <dfn class="nv dfn-paneled idl-code" data-dfn-for="MockSensorConfiguration" data-dfn-type="dict-member" data-export="" data-type="MockSensorType " id="dom-mocksensorconfiguration-mocksensortype"><code>mockSensorType</code></dfn>;
-  <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean"><span class="kt">boolean</span></a> <dfn class="nv dfn-paneled idl-code" data-default="true" data-dfn-for="MockSensorConfiguration" data-dfn-type="dict-member" data-export="" data-type="boolean " id="dom-mocksensorconfiguration-connected"><code>connected</code></dfn> = <span class="kt">true</span>;
-  <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double"><span class="kt">double</span></a>? <dfn class="nv dfn-paneled idl-code" data-dfn-for="MockSensorConfiguration" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-mocksensorconfiguration-maxsamplingfrequency"><code>maxSamplingFrequency</code></dfn>;
-  <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①"><span class="kt">double</span></a>? <dfn class="nv dfn-paneled idl-code" data-dfn-for="MockSensorConfiguration" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-mocksensorconfiguration-minsamplingfrequency"><code>minSamplingFrequency</code></dfn>;
+<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-mocksensorconfiguration"><code><c- g>MockSensorConfiguration</c-></code></dfn> {
+  <c- b>required</c-> <a class="n" data-link-type="idl-name" href="#enumdef-mocksensortype" id="ref-for-enumdef-mocksensortype"><c- n>MockSensorType</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="MockSensorConfiguration" data-dfn-type="dict-member" data-export data-type="MockSensorType " id="dom-mocksensorconfiguration-mocksensortype"><code><c- g>mockSensorType</c-></code></dfn>;
+  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean"><c- b>boolean</c-></a> <dfn class="dfn-paneled idl-code" data-default="true" data-dfn-for="MockSensorConfiguration" data-dfn-type="dict-member" data-export data-type="boolean " id="dom-mocksensorconfiguration-connected"><code><c- g>connected</c-></code></dfn> = <c- b>true</c->;
+  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double"><c- b>double</c-></a>? <dfn class="dfn-paneled idl-code" data-dfn-for="MockSensorConfiguration" data-dfn-type="dict-member" data-export data-type="double? " id="dom-mocksensorconfiguration-maxsamplingfrequency"><code><c- g>maxSamplingFrequency</c-></code></dfn>;
+  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①"><c- b>double</c-></a>? <dfn class="dfn-paneled idl-code" data-dfn-for="MockSensorConfiguration" data-dfn-type="dict-member" data-export data-type="double? " id="dom-mocksensorconfiguration-minsamplingfrequency"><code><c- g>minSamplingFrequency</c-></code></dfn>;
 };
 </pre>
    <p>The <code class="idl"><a data-link-type="idl" href="#dictdef-mocksensorconfiguration" id="ref-for-dictdef-mocksensorconfiguration">MockSensorConfiguration</a></code> dictionary is used to <a href="#create-mock-sensor-command">create a mock sensor</a>.</p>
    <dl>
-    <dt data-md=""><code class="idl"><a data-link-type="idl" href="#dom-mocksensorconfiguration-mocksensortype" id="ref-for-dom-mocksensorconfiguration-mocksensortype">mockSensorType</a></code> member
-    <dd data-md="">
+    <dt data-md><code class="idl"><a data-link-type="idl" href="#dom-mocksensorconfiguration-mocksensortype" id="ref-for-dom-mocksensorconfiguration-mocksensortype">mockSensorType</a></code> member
+    <dd data-md>
      <p>A <code class="idl"><a data-link-type="idl" href="#enumdef-mocksensortype" id="ref-for-enumdef-mocksensortype①">MockSensorType</a></code> that is used to set <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-type①">mock sensor type</a>.</p>
-    <dt data-md=""><code class="idl"><a data-link-type="idl" href="#dom-mocksensorconfiguration-connected" id="ref-for-dom-mocksensorconfiguration-connected">connected</a></code> member
-    <dd data-md="">
-     <p>A boolean that indicates a <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor⑨">mock sensor</a>'s <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="connection-flag">connection flag</dfn> which is used for switching the connection
+    <dt data-md><code class="idl"><a data-link-type="idl" href="#dom-mocksensorconfiguration-connected" id="ref-for-dom-mocksensorconfiguration-connected">connected</a></code> member
+    <dd data-md>
+     <p>A boolean that indicates a <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor⑨">mock sensor</a>'s <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="connection-flag">connection flag</dfn> which is used for switching the connection
  between <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor" id="ref-for-sensor③">Sensor</a> object and <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor①⓪">mock sensor</a>. When set to false the user agent must force the result of invoking <a data-link-type="dfn" href="https://w3c.github.io/sensors/#connect-to-sensor" id="ref-for-connect-to-sensor">connect to sensor</a> with <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor①①">mock sensor</a>'s associated <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor" id="ref-for-sensor④">Sensor</a> object as argument to false, otherwise true.</p>
-    <dt data-md=""><code class="idl"><a data-link-type="idl" href="#dom-mocksensorconfiguration-maxsamplingfrequency" id="ref-for-dom-mocksensorconfiguration-maxsamplingfrequency">maxSamplingFrequency</a></code> member
-    <dd data-md="">
+    <dt data-md><code class="idl"><a data-link-type="idl" href="#dom-mocksensorconfiguration-maxsamplingfrequency" id="ref-for-dom-mocksensorconfiguration-maxsamplingfrequency">maxSamplingFrequency</a></code> member
+    <dd data-md>
      <p>A double representing frequency in Hz that is used to set maximum supported <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sampling-frequency" id="ref-for-sampling-frequency②">sampling frequency</a> for the associated <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor①②">mock sensor</a>.</p>
-    <dt data-md=""><code class="idl"><a data-link-type="idl" href="#dom-mocksensorconfiguration-minsamplingfrequency" id="ref-for-dom-mocksensorconfiguration-minsamplingfrequency">minSamplingFrequency</a></code> member
-    <dd data-md="">
+    <dt data-md><code class="idl"><a data-link-type="idl" href="#dom-mocksensorconfiguration-minsamplingfrequency" id="ref-for-dom-mocksensorconfiguration-minsamplingfrequency">minSamplingFrequency</a></code> member
+    <dd data-md>
      <p>A double representing frequency in Hz that is used to set minimum supported <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sampling-frequency" id="ref-for-sampling-frequency③">sampling frequency</a> for the associated <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor①③">mock sensor</a>.</p>
    </dl>
    <h3 class="heading settled" data-level="2.2" id="dictionary-mocksensor"><span class="secno">2.2. </span><span class="content">MockSensor dictionary</span><a class="self-link" href="#dictionary-mocksensor"></a></h3>
-<pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-mocksensor"><code>MockSensor</code></dfn> {
-  <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②"><span class="kt">double</span></a> <dfn class="nv dfn-paneled idl-code" data-dfn-for="MockSensor" data-dfn-type="dict-member" data-export="" data-type="double " id="dom-mocksensor-maxsamplingfrequency"><code>maxSamplingFrequency</code></dfn>;
-  <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double③"><span class="kt">double</span></a> <dfn class="nv dfn-paneled idl-code" data-dfn-for="MockSensor" data-dfn-type="dict-member" data-export="" data-type="double " id="dom-mocksensor-minsamplingfrequency"><code>minSamplingFrequency</code></dfn>;
-  <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double④"><span class="kt">double</span></a> <dfn class="nv dfn-paneled idl-code" data-dfn-for="MockSensor" data-dfn-type="dict-member" data-export="" data-type="double " id="dom-mocksensor-requestedsamplingfrequency"><code>requestedSamplingFrequency</code></dfn>;
+<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-mocksensor"><code><c- g>MockSensor</c-></code></dfn> {
+  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②"><c- b>double</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="MockSensor" data-dfn-type="dict-member" data-export data-type="double " id="dom-mocksensor-maxsamplingfrequency"><code><c- g>maxSamplingFrequency</c-></code></dfn>;
+  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double③"><c- b>double</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="MockSensor" data-dfn-type="dict-member" data-export data-type="double " id="dom-mocksensor-minsamplingfrequency"><code><c- g>minSamplingFrequency</c-></code></dfn>;
+  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double④"><c- b>double</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="MockSensor" data-dfn-type="dict-member" data-export data-type="double " id="dom-mocksensor-requestedsamplingfrequency"><code><c- g>requestedSamplingFrequency</c-></code></dfn>;
 };
 </pre>
    <p>The <code class="idl"><a data-link-type="idl" href="#dictdef-mocksensor" id="ref-for-dictdef-mocksensor">MockSensor</a></code> dictionary provides information about a <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor①④">mock sensor</a>.</p>
    <dl>
-    <dt data-md=""><code class="idl"><a data-link-type="idl" href="#dom-mocksensor-maxsamplingfrequency" id="ref-for-dom-mocksensor-maxsamplingfrequency">maxSamplingFrequency</a></code> member
-    <dd data-md="">
+    <dt data-md><code class="idl"><a data-link-type="idl" href="#dom-mocksensor-maxsamplingfrequency" id="ref-for-dom-mocksensor-maxsamplingfrequency">maxSamplingFrequency</a></code> member
+    <dd data-md>
      <p>A double representing frequency in Hz that indicates the maximum supported <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sampling-frequency" id="ref-for-sampling-frequency④">sampling frequency</a> of the associated <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor①⑤">mock sensor</a>.</p>
-    <dt data-md=""><code class="idl"><a data-link-type="idl" href="#dom-mocksensor-minsamplingfrequency" id="ref-for-dom-mocksensor-minsamplingfrequency">minSamplingFrequency</a></code> member
-    <dd data-md="">
+    <dt data-md><code class="idl"><a data-link-type="idl" href="#dom-mocksensor-minsamplingfrequency" id="ref-for-dom-mocksensor-minsamplingfrequency">minSamplingFrequency</a></code> member
+    <dd data-md>
      <p>A double representing frequency in Hz that indicates the minimum supported <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sampling-frequency" id="ref-for-sampling-frequency⑤">sampling frequency</a> of the associated <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor①⑥">mock sensor</a>.</p>
-    <dt data-md=""><code class="idl"><a data-link-type="idl" href="#dom-mocksensor-requestedsamplingfrequency" id="ref-for-dom-mocksensor-requestedsamplingfrequency">requestedSamplingFrequency</a></code> member
-    <dd data-md="">
+    <dt data-md><code class="idl"><a data-link-type="idl" href="#dom-mocksensor-requestedsamplingfrequency" id="ref-for-dom-mocksensor-requestedsamplingfrequency">requestedSamplingFrequency</a></code> member
+    <dd data-md>
      <p>A double representing frequency in Hz that indicates the <a data-link-type="dfn" href="https://w3c.github.io/sensors/#requested-sampling-frequency" id="ref-for-requested-sampling-frequency②">requested sampling frequency</a> of the associated <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor①⑦">mock sensor</a>.</p>
    </dl>
-   <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="serialized-mock-sensor">serialized mock sensor</dfn> is a JSON <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-object" id="ref-for-dfn-object">Object</a> where a <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor①⑧">mock sensor</a>'s fields listed in the <code class="idl"><a data-link-type="idl" href="#dictdef-mocksensor" id="ref-for-dictdef-mocksensor①">MockSensor</a></code> dictionary are mapped
+   <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="serialized-mock-sensor">serialized mock sensor</dfn> is a JSON <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-object" id="ref-for-dfn-object">Object</a> where a <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor①⑧">mock sensor</a>'s fields listed in the <code class="idl"><a data-link-type="idl" href="#dictdef-mocksensor" id="ref-for-dictdef-mocksensor①">MockSensor</a></code> dictionary are mapped
 using the <var>JSON Key</var> and the associated field’s value from the available <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor①⑨">mock sensor</a> in <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context②">current browsing context</a>.</p>
    <h3 class="heading settled" data-level="2.3" id="section-mock-sensor-type"><span class="secno">2.3. </span><span class="content">Mock sensor type</span><a class="self-link" href="#section-mock-sensor-type"></a></h3>
-   <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="mock-sensor-type">mock sensor type</dfn> is equivalent to a <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor-type" id="ref-for-sensor-type">sensor type</a>’s associated <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/sensors/#sensor" id="ref-for-sensor⑤">Sensor</a></code> subclass.</p>
-<pre class="idl highlight def"><span class="kt">enum</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="enum" data-export="" id="enumdef-mocksensortype"><code>MockSensorType</code></dfn> {
-  <a class="s idl-code" data-link-type="enum-value" href="#dom-mocksensortype-ambient-light" id="ref-for-dom-mocksensortype-ambient-light">"ambient-light"</a>,
-  <a class="s idl-code" data-link-type="enum-value" href="#dom-mocksensortype-accelerometer" id="ref-for-dom-mocksensortype-accelerometer">"accelerometer"</a>,
-  <a class="s idl-code" data-link-type="enum-value" href="#dom-mocksensortype-linear-acceleration" id="ref-for-dom-mocksensortype-linear-acceleration">"linear-acceleration"</a>,
-  <a class="s idl-code" data-link-type="enum-value" href="#dom-mocksensortype-gravity" id="ref-for-dom-mocksensortype-gravity">"gravity"</a>,
-  <a class="s idl-code" data-link-type="enum-value" href="#dom-mocksensortype-gyroscope" id="ref-for-dom-mocksensortype-gyroscope">"gyroscope"</a>,
-  <a class="s idl-code" data-link-type="enum-value" href="#dom-mocksensortype-magnetometer" id="ref-for-dom-mocksensortype-magnetometer">"magnetometer"</a>,
-  <a class="s idl-code" data-link-type="enum-value" href="#dom-mocksensortype-uncalibrated-magnetometer" id="ref-for-dom-mocksensortype-uncalibrated-magnetometer">"uncalibrated-magnetometer"</a>,
-  <a class="s idl-code" data-link-type="enum-value" href="#dom-mocksensortype-absolute-orientation" id="ref-for-dom-mocksensortype-absolute-orientation">"absolute-orientation"</a>,
-  <a class="s idl-code" data-link-type="enum-value" href="#dom-mocksensortype-relative-orientation" id="ref-for-dom-mocksensortype-relative-orientation">"relative-orientation"</a>,
-  <a class="s idl-code" data-link-type="enum-value" href="#dom-mocksensortype-geolocation" id="ref-for-dom-mocksensortype-geolocation">"geolocation"</a>,
-  <a class="s idl-code" data-link-type="enum-value" href="#dom-mocksensortype-proximity" id="ref-for-dom-mocksensortype-proximity">"proximity"</a>,
+   <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="mock-sensor-type">mock sensor type</dfn> is equivalent to a <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor-type" id="ref-for-sensor-type">sensor type</a>’s associated <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/sensors/#sensor" id="ref-for-sensor⑤">Sensor</a></code> subclass.</p>
+<pre class="idl highlight def"><c- b>enum</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="enum" data-export id="enumdef-mocksensortype"><code><c- g>MockSensorType</c-></code></dfn> {
+  <a class="idl-code" data-link-type="enum-value" href="#dom-mocksensortype-ambient-light" id="ref-for-dom-mocksensortype-ambient-light"><c- s>"ambient-light"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-mocksensortype-accelerometer" id="ref-for-dom-mocksensortype-accelerometer"><c- s>"accelerometer"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-mocksensortype-linear-acceleration" id="ref-for-dom-mocksensortype-linear-acceleration"><c- s>"linear-acceleration"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-mocksensortype-gravity" id="ref-for-dom-mocksensortype-gravity"><c- s>"gravity"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-mocksensortype-gyroscope" id="ref-for-dom-mocksensortype-gyroscope"><c- s>"gyroscope"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-mocksensortype-magnetometer" id="ref-for-dom-mocksensortype-magnetometer"><c- s>"magnetometer"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-mocksensortype-uncalibrated-magnetometer" id="ref-for-dom-mocksensortype-uncalibrated-magnetometer"><c- s>"uncalibrated-magnetometer"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-mocksensortype-absolute-orientation" id="ref-for-dom-mocksensortype-absolute-orientation"><c- s>"absolute-orientation"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-mocksensortype-relative-orientation" id="ref-for-dom-mocksensortype-relative-orientation"><c- s>"relative-orientation"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-mocksensortype-geolocation" id="ref-for-dom-mocksensortype-geolocation"><c- s>"geolocation"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-mocksensortype-proximity" id="ref-for-dom-mocksensortype-proximity"><c- s>"proximity"</c-></a>,
 };
 </pre>
    <p>Each enumeration value in the <code class="idl"><a data-link-type="idl" href="#enumdef-mocksensortype" id="ref-for-enumdef-mocksensortype②">MockSensorType</a></code> enum identifies a <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-type②">mock sensor type</a>.
 Each <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-type③">mock sensor type</a> has a <a data-link-type="dfn" href="#mock-sensor-reading-values" id="ref-for-mock-sensor-reading-values">mock sensor reading values</a> dictionary:</p>
    <dl>
-    <dt data-md=""><dfn class="dfn-paneled" data-dfn-type="dfn" data-export="" id="mock-sensor-reading-values">Mock Sensor Reading Values</dfn> dictionary
-    <dd data-md="">
+    <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="mock-sensor-reading-values">Mock Sensor Reading Values</dfn> dictionary
+    <dd data-md>
      <p><code class="idl"><a data-link-type="idl" href="#dictdef-mocksensorreadingvalues" id="ref-for-dictdef-mocksensorreadingvalues①">MockSensorReadingValues</a></code> dictionary represents a user-specified <a data-link-type="dfn" href="#mock-sensor-reading" id="ref-for-mock-sensor-reading⑥">mock sensor reading</a> used for <a href="#update-mock-sensor-reading-command">updating a mock sensor reading</a>. Its members must match the <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-attribute" id="ref-for-dfn-attribute">attribute</a> <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-identifier" id="ref-for-dfn-identifier①">identifier</a> defined by the <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor-type" id="ref-for-sensor-type①">sensor type</a>’s
  associated <a data-link-type="dfn" href="https://w3c.github.io/sensors/#extension-sensor-interface" id="ref-for-extension-sensor-interface">extension sensor interface</a>. Each <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-type④">mock sensor type</a> has a specific <code class="idl"><a data-link-type="idl" href="#dictdef-mocksensorreadingvalues" id="ref-for-dictdef-mocksensorreadingvalues②">MockSensorReadingValues</a></code>, which is defined in each section of <a href="#section-mock-sensor-type">mock sensor type</a>.</p>
-<pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-mocksensorreadingvalues"><code>MockSensorReadingValues</code></dfn> {
+<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-mocksensorreadingvalues"><code><c- g>MockSensorReadingValues</c-></code></dfn> {
 };
 </pre>
    </dl>
    <h4 class="heading settled" data-level="2.3.1" id="mock-ambient-light-sensor"><span class="secno">2.3.1. </span><span class="content">Ambient Light Sensor</span><a class="self-link" href="#mock-ambient-light-sensor"></a></h4>
-    The <dfn class="dfn-paneled idl-code" data-dfn-for="MockSensorType" data-dfn-type="enum-value" data-export="" id="dom-mocksensortype-ambient-light"><code>"ambient-light"</code></dfn> type is the mock sensor type
+    The <dfn class="dfn-paneled idl-code" data-dfn-for="MockSensorType" data-dfn-type="enum-value" data-export id="dom-mocksensortype-ambient-light"><code>"ambient-light"</code></dfn> type is the mock sensor type
 associated with the usage of the <a data-link-type="dfn" href="https://w3c.github.io/ambient-light#ambient-light-sensor-interface" id="ref-for-ambient-light-sensor-interface">AmbientLightSensor</a> interface. 
    <dl>
     <dt><a data-link-type="dfn" href="#mock-sensor-reading-values" id="ref-for-mock-sensor-reading-values①">Mock Sensor Reading Values</a>
     <dd>
-<pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-ambientlightreadingvalues"><code>AmbientLightReadingValues</code><a class="self-link" href="#dictdef-ambientlightreadingvalues"></a></dfn> {
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑤"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="AmbientLightReadingValues" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-ambientlightreadingvalues-illuminance"><code>illuminance</code><a class="self-link" href="#dom-ambientlightreadingvalues-illuminance"></a></dfn>;
+<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="idl-code" data-dfn-type="dictionary" data-export id="dictdef-ambientlightreadingvalues"><code><c- g>AmbientLightReadingValues</c-></code><a class="self-link" href="#dictdef-ambientlightreadingvalues"></a></dfn> {
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑤"><c- b>double</c-></a>? <dfn class="idl-code" data-dfn-for="AmbientLightReadingValues" data-dfn-type="dict-member" data-export data-type="double? " id="dom-ambientlightreadingvalues-illuminance"><code><c- g>illuminance</c-></code><a class="self-link" href="#dom-ambientlightreadingvalues-illuminance"></a></dfn>;
 };
 </pre>
    </dl>
    <h4 class="heading settled" data-level="2.3.2" id="mock-accelerometer"><span class="secno">2.3.2. </span><span class="content">Accelerometer</span><a class="self-link" href="#mock-accelerometer"></a></h4>
-    The <dfn class="dfn-paneled idl-code" data-dfn-for="MockSensorType" data-dfn-type="enum-value" data-export="" id="dom-mocksensortype-accelerometer"><code>"accelerometer"</code></dfn> type is the mock sensor type
+    The <dfn class="dfn-paneled idl-code" data-dfn-for="MockSensorType" data-dfn-type="enum-value" data-export id="dom-mocksensortype-accelerometer"><code>"accelerometer"</code></dfn> type is the mock sensor type
 associated with the usage of the <a data-link-type="dfn" href="https://w3c.github.io/accelerometer#accelerometer-interface" id="ref-for-accelerometer-interface">Accelerometer</a> interface. 
    <dl>
     <dt><a data-link-type="dfn" href="#mock-sensor-reading-values" id="ref-for-mock-sensor-reading-values②">Mock Sensor Reading Values</a>
     <dd>
-<pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-accelerometerreadingvalues"><code>AccelerometerReadingValues</code></dfn> {
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑥"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="AccelerometerReadingValues" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-accelerometerreadingvalues-x"><code>x</code><a class="self-link" href="#dom-accelerometerreadingvalues-x"></a></dfn>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑦"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="AccelerometerReadingValues" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-accelerometerreadingvalues-y"><code>y</code><a class="self-link" href="#dom-accelerometerreadingvalues-y"></a></dfn>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑧"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="AccelerometerReadingValues" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-accelerometerreadingvalues-z"><code>z</code><a class="self-link" href="#dom-accelerometerreadingvalues-z"></a></dfn>;
+<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-accelerometerreadingvalues"><code><c- g>AccelerometerReadingValues</c-></code></dfn> {
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑥"><c- b>double</c-></a>? <dfn class="idl-code" data-dfn-for="AccelerometerReadingValues" data-dfn-type="dict-member" data-export data-type="double? " id="dom-accelerometerreadingvalues-x"><code><c- g>x</c-></code><a class="self-link" href="#dom-accelerometerreadingvalues-x"></a></dfn>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑦"><c- b>double</c-></a>? <dfn class="idl-code" data-dfn-for="AccelerometerReadingValues" data-dfn-type="dict-member" data-export data-type="double? " id="dom-accelerometerreadingvalues-y"><code><c- g>y</c-></code><a class="self-link" href="#dom-accelerometerreadingvalues-y"></a></dfn>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑧"><c- b>double</c-></a>? <dfn class="idl-code" data-dfn-for="AccelerometerReadingValues" data-dfn-type="dict-member" data-export data-type="double? " id="dom-accelerometerreadingvalues-z"><code><c- g>z</c-></code><a class="self-link" href="#dom-accelerometerreadingvalues-z"></a></dfn>;
 };
 </pre>
    </dl>
    <h4 class="heading settled" data-level="2.3.3" id="mock-linear-acceleration-sensor"><span class="secno">2.3.3. </span><span class="content">Linear Acceleration Sensor</span><a class="self-link" href="#mock-linear-acceleration-sensor"></a></h4>
-    The <dfn class="dfn-paneled idl-code" data-dfn-for="MockSensorType" data-dfn-type="enum-value" data-export="" id="dom-mocksensortype-linear-acceleration"><code>"linear-acceleration"</code></dfn> type is the mock sensor type
+    The <dfn class="dfn-paneled idl-code" data-dfn-for="MockSensorType" data-dfn-type="enum-value" data-export id="dom-mocksensortype-linear-acceleration"><code>"linear-acceleration"</code></dfn> type is the mock sensor type
 associated with the usage of the <a data-link-type="dfn" href="https://w3c.github.io/accelerometer#linearaccelerationsensor-interface" id="ref-for-linearaccelerationsensor-interface">LinearAccelerationSensor</a> interface. 
    <dl>
     <dt><a data-link-type="dfn" href="#mock-sensor-reading-values" id="ref-for-mock-sensor-reading-values③">Mock Sensor Reading Values</a>
     <dd>
-<pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-linearaccelerationreadingvalues"><code>LinearAccelerationReadingValues</code><a class="self-link" href="#dictdef-linearaccelerationreadingvalues"></a></dfn> : <a class="n" data-link-type="idl-name" href="#dictdef-accelerometerreadingvalues" id="ref-for-dictdef-accelerometerreadingvalues">AccelerometerReadingValues</a> {
+<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="idl-code" data-dfn-type="dictionary" data-export id="dictdef-linearaccelerationreadingvalues"><code><c- g>LinearAccelerationReadingValues</c-></code><a class="self-link" href="#dictdef-linearaccelerationreadingvalues"></a></dfn> : <a class="n" data-link-type="idl-name" href="#dictdef-accelerometerreadingvalues" id="ref-for-dictdef-accelerometerreadingvalues"><c- n>AccelerometerReadingValues</c-></a> {
 };
 </pre>
    </dl>
    <h4 class="heading settled" data-level="2.3.4" id="mock-gravity"><span class="secno">2.3.4. </span><span class="content">Gravity Sensor</span><a class="self-link" href="#mock-gravity"></a></h4>
-    The <dfn class="dfn-paneled idl-code" data-dfn-for="MockSensorType" data-dfn-type="enum-value" data-export="" id="dom-mocksensortype-gravity"><code>"gravity"</code></dfn> type is the mock sensor type
+    The <dfn class="dfn-paneled idl-code" data-dfn-for="MockSensorType" data-dfn-type="enum-value" data-export id="dom-mocksensortype-gravity"><code>"gravity"</code></dfn> type is the mock sensor type
 associated with the usage of the <a data-link-type="dfn" href="https://w3c.github.io/accelerometer#gravitysensor-interface" id="ref-for-gravitysensor-interface">GravitySensor</a> interface. 
    <dl>
     <dt><a data-link-type="dfn" href="#mock-sensor-reading-values" id="ref-for-mock-sensor-reading-values④">Mock Sensor Reading Values</a>
     <dd>
-<pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-gravityreadingvalues"><code>GravityReadingValues</code><a class="self-link" href="#dictdef-gravityreadingvalues"></a></dfn> : <a class="n" data-link-type="idl-name" href="#dictdef-accelerometerreadingvalues" id="ref-for-dictdef-accelerometerreadingvalues①">AccelerometerReadingValues</a> {
+<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="idl-code" data-dfn-type="dictionary" data-export id="dictdef-gravityreadingvalues"><code><c- g>GravityReadingValues</c-></code><a class="self-link" href="#dictdef-gravityreadingvalues"></a></dfn> : <a class="n" data-link-type="idl-name" href="#dictdef-accelerometerreadingvalues" id="ref-for-dictdef-accelerometerreadingvalues①"><c- n>AccelerometerReadingValues</c-></a> {
 };
 </pre>
    </dl>
    <h4 class="heading settled" data-level="2.3.5" id="mock-gyroscope"><span class="secno">2.3.5. </span><span class="content">Gyroscope</span><a class="self-link" href="#mock-gyroscope"></a></h4>
-    The <dfn class="dfn-paneled idl-code" data-dfn-for="MockSensorType" data-dfn-type="enum-value" data-export="" id="dom-mocksensortype-gyroscope"><code>"gyroscope"</code></dfn> type is the mock sensor type
+    The <dfn class="dfn-paneled idl-code" data-dfn-for="MockSensorType" data-dfn-type="enum-value" data-export id="dom-mocksensortype-gyroscope"><code>"gyroscope"</code></dfn> type is the mock sensor type
 associated with the usage of the <a data-link-type="dfn" href="https://w3c.github.io/gyroscope#gyroscope-interface" id="ref-for-gyroscope-interface">Gyroscope</a> interface. 
    <dl>
     <dt><a data-link-type="dfn" href="#mock-sensor-reading-values" id="ref-for-mock-sensor-reading-values⑤">Mock Sensor Reading Values</a>
     <dd>
-<pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-gyroscopereadingvalues"><code>GyroscopeReadingValues</code><a class="self-link" href="#dictdef-gyroscopereadingvalues"></a></dfn> {
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑨"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="GyroscopeReadingValues" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-gyroscopereadingvalues-x"><code>x</code><a class="self-link" href="#dom-gyroscopereadingvalues-x"></a></dfn>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⓪"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="GyroscopeReadingValues" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-gyroscopereadingvalues-y"><code>y</code><a class="self-link" href="#dom-gyroscopereadingvalues-y"></a></dfn>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①①"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="GyroscopeReadingValues" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-gyroscopereadingvalues-z"><code>z</code><a class="self-link" href="#dom-gyroscopereadingvalues-z"></a></dfn>;
+<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="idl-code" data-dfn-type="dictionary" data-export id="dictdef-gyroscopereadingvalues"><code><c- g>GyroscopeReadingValues</c-></code><a class="self-link" href="#dictdef-gyroscopereadingvalues"></a></dfn> {
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑨"><c- b>double</c-></a>? <dfn class="idl-code" data-dfn-for="GyroscopeReadingValues" data-dfn-type="dict-member" data-export data-type="double? " id="dom-gyroscopereadingvalues-x"><code><c- g>x</c-></code><a class="self-link" href="#dom-gyroscopereadingvalues-x"></a></dfn>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⓪"><c- b>double</c-></a>? <dfn class="idl-code" data-dfn-for="GyroscopeReadingValues" data-dfn-type="dict-member" data-export data-type="double? " id="dom-gyroscopereadingvalues-y"><code><c- g>y</c-></code><a class="self-link" href="#dom-gyroscopereadingvalues-y"></a></dfn>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①①"><c- b>double</c-></a>? <dfn class="idl-code" data-dfn-for="GyroscopeReadingValues" data-dfn-type="dict-member" data-export data-type="double? " id="dom-gyroscopereadingvalues-z"><code><c- g>z</c-></code><a class="self-link" href="#dom-gyroscopereadingvalues-z"></a></dfn>;
 };
 </pre>
    </dl>
    <h4 class="heading settled" data-level="2.3.6" id="mock-magnetometer"><span class="secno">2.3.6. </span><span class="content">Magnetometer</span><a class="self-link" href="#mock-magnetometer"></a></h4>
-    The <dfn class="dfn-paneled idl-code" data-dfn-for="MockSensorType" data-dfn-type="enum-value" data-export="" id="dom-mocksensortype-magnetometer"><code>"magnetometer"</code></dfn> type is the mock sensor type
+    The <dfn class="dfn-paneled idl-code" data-dfn-for="MockSensorType" data-dfn-type="enum-value" data-export id="dom-mocksensortype-magnetometer"><code>"magnetometer"</code></dfn> type is the mock sensor type
 associated with the usage of the <a data-link-type="dfn" href="https://w3c.github.io/magnetometer#magnetometer-interface" id="ref-for-magnetometer-interface">Magnetometer</a> interface. 
    <dl>
     <dt><a data-link-type="dfn" href="#mock-sensor-reading-values" id="ref-for-mock-sensor-reading-values⑥">Mock Sensor Reading Values</a>
     <dd>
-<pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-magnetometerreadingvalues"><code>MagnetometerReadingValues</code><a class="self-link" href="#dictdef-magnetometerreadingvalues"></a></dfn> {
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①②"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="MagnetometerReadingValues" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-magnetometerreadingvalues-x"><code>x</code><a class="self-link" href="#dom-magnetometerreadingvalues-x"></a></dfn>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①③"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="MagnetometerReadingValues" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-magnetometerreadingvalues-y"><code>y</code><a class="self-link" href="#dom-magnetometerreadingvalues-y"></a></dfn>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①④"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="MagnetometerReadingValues" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-magnetometerreadingvalues-z"><code>z</code><a class="self-link" href="#dom-magnetometerreadingvalues-z"></a></dfn>;
+<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="idl-code" data-dfn-type="dictionary" data-export id="dictdef-magnetometerreadingvalues"><code><c- g>MagnetometerReadingValues</c-></code><a class="self-link" href="#dictdef-magnetometerreadingvalues"></a></dfn> {
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①②"><c- b>double</c-></a>? <dfn class="idl-code" data-dfn-for="MagnetometerReadingValues" data-dfn-type="dict-member" data-export data-type="double? " id="dom-magnetometerreadingvalues-x"><code><c- g>x</c-></code><a class="self-link" href="#dom-magnetometerreadingvalues-x"></a></dfn>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①③"><c- b>double</c-></a>? <dfn class="idl-code" data-dfn-for="MagnetometerReadingValues" data-dfn-type="dict-member" data-export data-type="double? " id="dom-magnetometerreadingvalues-y"><code><c- g>y</c-></code><a class="self-link" href="#dom-magnetometerreadingvalues-y"></a></dfn>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①④"><c- b>double</c-></a>? <dfn class="idl-code" data-dfn-for="MagnetometerReadingValues" data-dfn-type="dict-member" data-export data-type="double? " id="dom-magnetometerreadingvalues-z"><code><c- g>z</c-></code><a class="self-link" href="#dom-magnetometerreadingvalues-z"></a></dfn>;
 };
 </pre>
    </dl>
    <h4 class="heading settled" data-level="2.3.7" id="mock-uncalibrated-magnetometer"><span class="secno">2.3.7. </span><span class="content">Uncalibrated Magnetometer</span><a class="self-link" href="#mock-uncalibrated-magnetometer"></a></h4>
-    The <dfn class="dfn-paneled idl-code" data-dfn-for="MockSensorType" data-dfn-type="enum-value" data-export="" id="dom-mocksensortype-uncalibrated-magnetometer"><code>"uncalibrated-magnetometer"</code></dfn> type is the mock sensor type
+    The <dfn class="dfn-paneled idl-code" data-dfn-for="MockSensorType" data-dfn-type="enum-value" data-export id="dom-mocksensortype-uncalibrated-magnetometer"><code>"uncalibrated-magnetometer"</code></dfn> type is the mock sensor type
 associated with the usage of the <a data-link-type="dfn" href="https://w3c.github.io/magnetometer#uncalibrated-magnetometer-interface" id="ref-for-uncalibrated-magnetometer-interface">UncalibratedMagnetometer</a> interface. 
    <dl>
     <dt><a data-link-type="dfn" href="#mock-sensor-reading-values" id="ref-for-mock-sensor-reading-values⑦">Mock Sensor Reading Values</a>
     <dd>
-<pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-uncalibratedmagnetometerreadingvalues"><code>UncalibratedMagnetometerReadingValues</code><a class="self-link" href="#dictdef-uncalibratedmagnetometerreadingvalues"></a></dfn> {
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑤"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="UncalibratedMagnetometerReadingValues" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-uncalibratedmagnetometerreadingvalues-x"><code>x</code><a class="self-link" href="#dom-uncalibratedmagnetometerreadingvalues-x"></a></dfn>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑥"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="UncalibratedMagnetometerReadingValues" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-uncalibratedmagnetometerreadingvalues-y"><code>y</code><a class="self-link" href="#dom-uncalibratedmagnetometerreadingvalues-y"></a></dfn>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑦"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="UncalibratedMagnetometerReadingValues" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-uncalibratedmagnetometerreadingvalues-z"><code>z</code><a class="self-link" href="#dom-uncalibratedmagnetometerreadingvalues-z"></a></dfn>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑧"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="UncalibratedMagnetometerReadingValues" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-uncalibratedmagnetometerreadingvalues-xbias"><code>xBias</code><a class="self-link" href="#dom-uncalibratedmagnetometerreadingvalues-xbias"></a></dfn>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑨"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="UncalibratedMagnetometerReadingValues" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-uncalibratedmagnetometerreadingvalues-ybias"><code>yBias</code><a class="self-link" href="#dom-uncalibratedmagnetometerreadingvalues-ybias"></a></dfn>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⓪"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="UncalibratedMagnetometerReadingValues" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-uncalibratedmagnetometerreadingvalues-zbias"><code>zBias</code><a class="self-link" href="#dom-uncalibratedmagnetometerreadingvalues-zbias"></a></dfn>;
+<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="idl-code" data-dfn-type="dictionary" data-export id="dictdef-uncalibratedmagnetometerreadingvalues"><code><c- g>UncalibratedMagnetometerReadingValues</c-></code><a class="self-link" href="#dictdef-uncalibratedmagnetometerreadingvalues"></a></dfn> {
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑤"><c- b>double</c-></a>? <dfn class="idl-code" data-dfn-for="UncalibratedMagnetometerReadingValues" data-dfn-type="dict-member" data-export data-type="double? " id="dom-uncalibratedmagnetometerreadingvalues-x"><code><c- g>x</c-></code><a class="self-link" href="#dom-uncalibratedmagnetometerreadingvalues-x"></a></dfn>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑥"><c- b>double</c-></a>? <dfn class="idl-code" data-dfn-for="UncalibratedMagnetometerReadingValues" data-dfn-type="dict-member" data-export data-type="double? " id="dom-uncalibratedmagnetometerreadingvalues-y"><code><c- g>y</c-></code><a class="self-link" href="#dom-uncalibratedmagnetometerreadingvalues-y"></a></dfn>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑦"><c- b>double</c-></a>? <dfn class="idl-code" data-dfn-for="UncalibratedMagnetometerReadingValues" data-dfn-type="dict-member" data-export data-type="double? " id="dom-uncalibratedmagnetometerreadingvalues-z"><code><c- g>z</c-></code><a class="self-link" href="#dom-uncalibratedmagnetometerreadingvalues-z"></a></dfn>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑧"><c- b>double</c-></a>? <dfn class="idl-code" data-dfn-for="UncalibratedMagnetometerReadingValues" data-dfn-type="dict-member" data-export data-type="double? " id="dom-uncalibratedmagnetometerreadingvalues-xbias"><code><c- g>xBias</c-></code><a class="self-link" href="#dom-uncalibratedmagnetometerreadingvalues-xbias"></a></dfn>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑨"><c- b>double</c-></a>? <dfn class="idl-code" data-dfn-for="UncalibratedMagnetometerReadingValues" data-dfn-type="dict-member" data-export data-type="double? " id="dom-uncalibratedmagnetometerreadingvalues-ybias"><code><c- g>yBias</c-></code><a class="self-link" href="#dom-uncalibratedmagnetometerreadingvalues-ybias"></a></dfn>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⓪"><c- b>double</c-></a>? <dfn class="idl-code" data-dfn-for="UncalibratedMagnetometerReadingValues" data-dfn-type="dict-member" data-export data-type="double? " id="dom-uncalibratedmagnetometerreadingvalues-zbias"><code><c- g>zBias</c-></code><a class="self-link" href="#dom-uncalibratedmagnetometerreadingvalues-zbias"></a></dfn>;
 };
 </pre>
    </dl>
    <h4 class="heading settled" data-level="2.3.8" id="mock-absolute-orientation-sensor"><span class="secno">2.3.8. </span><span class="content">Absolute Orientation Sensor</span><a class="self-link" href="#mock-absolute-orientation-sensor"></a></h4>
-    The <dfn class="dfn-paneled idl-code" data-dfn-for="MockSensorType" data-dfn-type="enum-value" data-export="" id="dom-mocksensortype-absolute-orientation"><code>"absolute-orientation"</code></dfn> type is the mock sensor type
+    The <dfn class="dfn-paneled idl-code" data-dfn-for="MockSensorType" data-dfn-type="enum-value" data-export id="dom-mocksensortype-absolute-orientation"><code>"absolute-orientation"</code></dfn> type is the mock sensor type
 associated with the usage of the <a data-link-type="dfn" href="https://w3c.github.io/orientation-sensor#absoluteorientationsensor-interface" id="ref-for-absoluteorientationsensor-interface">AbsoluteOrientationSensor</a> interface. 
    <dl>
     <dt><a data-link-type="dfn" href="#mock-sensor-reading-values" id="ref-for-mock-sensor-reading-values⑧">Mock Sensor Reading Values</a>
     <dd>
-<pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-absoluteorientationreadingvalues"><code>AbsoluteOrientationReadingValues</code></dfn> {
-  <span class="kt">required</span> <span class="kt">FrozenArray</span>&lt;<a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②①"><span class="kt">double</span></a>>? <dfn class="nv idl-code" data-dfn-for="AbsoluteOrientationReadingValues" data-dfn-type="dict-member" data-export="" data-type="FrozenArray<double>? " id="dom-absoluteorientationreadingvalues-quaternion"><code>quaternion</code><a class="self-link" href="#dom-absoluteorientationreadingvalues-quaternion"></a></dfn>;
+<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-absoluteorientationreadingvalues"><code><c- g>AbsoluteOrientationReadingValues</c-></code></dfn> {
+  <c- b>required</c-> <c- b>FrozenArray</c->&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②①"><c- b>double</c-></a>>? <dfn class="idl-code" data-dfn-for="AbsoluteOrientationReadingValues" data-dfn-type="dict-member" data-export data-type="FrozenArray<double>? " id="dom-absoluteorientationreadingvalues-quaternion"><code><c- g>quaternion</c-></code><a class="self-link" href="#dom-absoluteorientationreadingvalues-quaternion"></a></dfn>;
 };
 </pre>
    </dl>
    <h4 class="heading settled" data-level="2.3.9" id="mock-relative-orientation-sensor"><span class="secno">2.3.9. </span><span class="content">Relative Orientation Sensor</span><a class="self-link" href="#mock-relative-orientation-sensor"></a></h4>
-    The <dfn class="dfn-paneled idl-code" data-dfn-for="MockSensorType" data-dfn-type="enum-value" data-export="" id="dom-mocksensortype-relative-orientation"><code>"relative-orientation"</code></dfn> type is the mock sensor type
+    The <dfn class="dfn-paneled idl-code" data-dfn-for="MockSensorType" data-dfn-type="enum-value" data-export id="dom-mocksensortype-relative-orientation"><code>"relative-orientation"</code></dfn> type is the mock sensor type
 associated with the usage of the <a data-link-type="dfn" href="https://w3c.github.io/orientation-sensor#relativeorientationsensor-interface" id="ref-for-relativeorientationsensor-interface">RelativeOrientationSensor</a> interface. 
    <dl>
     <dt><a data-link-type="dfn" href="#mock-sensor-reading-values" id="ref-for-mock-sensor-reading-values⑨">Mock Sensor Reading Values</a>
     <dd>
-<pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-relativeorientationreadingvalues"><code>RelativeOrientationReadingValues</code><a class="self-link" href="#dictdef-relativeorientationreadingvalues"></a></dfn> : <a class="n" data-link-type="idl-name" href="#dictdef-absoluteorientationreadingvalues" id="ref-for-dictdef-absoluteorientationreadingvalues">AbsoluteOrientationReadingValues</a> {
+<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="idl-code" data-dfn-type="dictionary" data-export id="dictdef-relativeorientationreadingvalues"><code><c- g>RelativeOrientationReadingValues</c-></code><a class="self-link" href="#dictdef-relativeorientationreadingvalues"></a></dfn> : <a class="n" data-link-type="idl-name" href="#dictdef-absoluteorientationreadingvalues" id="ref-for-dictdef-absoluteorientationreadingvalues"><c- n>AbsoluteOrientationReadingValues</c-></a> {
 };
 </pre>
    </dl>
    <h4 class="heading settled" data-level="2.3.10" id="mock-geolocation-sensor"><span class="secno">2.3.10. </span><span class="content">Geolocation Sensor</span><a class="self-link" href="#mock-geolocation-sensor"></a></h4>
-    The <dfn class="dfn-paneled idl-code" data-dfn-for="MockSensorType" data-dfn-type="enum-value" data-export="" id="dom-mocksensortype-geolocation"><code>"geolocation"</code></dfn> type is the mock sensor type
+    The <dfn class="dfn-paneled idl-code" data-dfn-for="MockSensorType" data-dfn-type="enum-value" data-export id="dom-mocksensortype-geolocation"><code>"geolocation"</code></dfn> type is the mock sensor type
 associated with the usage of the <a data-link-type="dfn" href="https://wicg.github.io/geolocation-sensor/#geolocationsensor-interface" id="ref-for-geolocationsensor-interface">GeolocationSensor</a> interface. 
    <dl>
     <dt><a data-link-type="dfn" href="#mock-sensor-reading-values" id="ref-for-mock-sensor-reading-values①⓪">Mock Sensor Reading Values</a>
     <dd>
-<pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-geolocationreadingvalues"><code>GeolocationReadingValues</code><a class="self-link" href="#dictdef-geolocationreadingvalues"></a></dfn> {
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②②"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="GeolocationReadingValues" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-geolocationreadingvalues-latitude"><code>latitude</code><a class="self-link" href="#dom-geolocationreadingvalues-latitude"></a></dfn>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②③"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="GeolocationReadingValues" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-geolocationreadingvalues-longitude"><code>longitude</code><a class="self-link" href="#dom-geolocationreadingvalues-longitude"></a></dfn>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②④"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="GeolocationReadingValues" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-geolocationreadingvalues-altitude"><code>altitude</code><a class="self-link" href="#dom-geolocationreadingvalues-altitude"></a></dfn>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⑤"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="GeolocationReadingValues" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-geolocationreadingvalues-accuracy"><code>accuracy</code><a class="self-link" href="#dom-geolocationreadingvalues-accuracy"></a></dfn>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⑥"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="GeolocationReadingValues" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-geolocationreadingvalues-altitudeaccuracy"><code>altitudeAccuracy</code><a class="self-link" href="#dom-geolocationreadingvalues-altitudeaccuracy"></a></dfn>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⑦"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="GeolocationReadingValues" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-geolocationreadingvalues-heading"><code>heading</code><a class="self-link" href="#dom-geolocationreadingvalues-heading"></a></dfn>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⑧"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="GeolocationReadingValues" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-geolocationreadingvalues-speed"><code>speed</code><a class="self-link" href="#dom-geolocationreadingvalues-speed"></a></dfn>;
+<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="idl-code" data-dfn-type="dictionary" data-export id="dictdef-geolocationreadingvalues"><code><c- g>GeolocationReadingValues</c-></code><a class="self-link" href="#dictdef-geolocationreadingvalues"></a></dfn> {
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②②"><c- b>double</c-></a>? <dfn class="idl-code" data-dfn-for="GeolocationReadingValues" data-dfn-type="dict-member" data-export data-type="double? " id="dom-geolocationreadingvalues-latitude"><code><c- g>latitude</c-></code><a class="self-link" href="#dom-geolocationreadingvalues-latitude"></a></dfn>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②③"><c- b>double</c-></a>? <dfn class="idl-code" data-dfn-for="GeolocationReadingValues" data-dfn-type="dict-member" data-export data-type="double? " id="dom-geolocationreadingvalues-longitude"><code><c- g>longitude</c-></code><a class="self-link" href="#dom-geolocationreadingvalues-longitude"></a></dfn>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②④"><c- b>double</c-></a>? <dfn class="idl-code" data-dfn-for="GeolocationReadingValues" data-dfn-type="dict-member" data-export data-type="double? " id="dom-geolocationreadingvalues-altitude"><code><c- g>altitude</c-></code><a class="self-link" href="#dom-geolocationreadingvalues-altitude"></a></dfn>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⑤"><c- b>double</c-></a>? <dfn class="idl-code" data-dfn-for="GeolocationReadingValues" data-dfn-type="dict-member" data-export data-type="double? " id="dom-geolocationreadingvalues-accuracy"><code><c- g>accuracy</c-></code><a class="self-link" href="#dom-geolocationreadingvalues-accuracy"></a></dfn>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⑥"><c- b>double</c-></a>? <dfn class="idl-code" data-dfn-for="GeolocationReadingValues" data-dfn-type="dict-member" data-export data-type="double? " id="dom-geolocationreadingvalues-altitudeaccuracy"><code><c- g>altitudeAccuracy</c-></code><a class="self-link" href="#dom-geolocationreadingvalues-altitudeaccuracy"></a></dfn>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⑦"><c- b>double</c-></a>? <dfn class="idl-code" data-dfn-for="GeolocationReadingValues" data-dfn-type="dict-member" data-export data-type="double? " id="dom-geolocationreadingvalues-heading"><code><c- g>heading</c-></code><a class="self-link" href="#dom-geolocationreadingvalues-heading"></a></dfn>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⑧"><c- b>double</c-></a>? <dfn class="idl-code" data-dfn-for="GeolocationReadingValues" data-dfn-type="dict-member" data-export data-type="double? " id="dom-geolocationreadingvalues-speed"><code><c- g>speed</c-></code><a class="self-link" href="#dom-geolocationreadingvalues-speed"></a></dfn>;
 };
 </pre>
    </dl>
    <h4 class="heading settled" data-level="2.3.11" id="mock-proximity-sensor"><span class="secno">2.3.11. </span><span class="content">Proximity Sensor</span><a class="self-link" href="#mock-proximity-sensor"></a></h4>
-    The <dfn class="dfn-paneled idl-code" data-dfn-for="MockSensorType" data-dfn-type="enum-value" data-export="" id="dom-mocksensortype-proximity"><code>"proximity"</code></dfn> type is the mock sensor type
+    The <dfn class="dfn-paneled idl-code" data-dfn-for="MockSensorType" data-dfn-type="enum-value" data-export id="dom-mocksensortype-proximity"><code>"proximity"</code></dfn> type is the mock sensor type
 associated with the usage of the <a data-link-type="dfn" href="https://w3c.github.io/proximity#proximity-sensor-interface" id="ref-for-proximity-sensor-interface">ProximitySensor</a> interface. 
    <dl>
     <dt><a data-link-type="dfn" href="#mock-sensor-reading-values" id="ref-for-mock-sensor-reading-values①①">Mock Sensor Reading Values</a>
     <dd>
-<pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-proximityreadingvalues"><code>ProximityReadingValues</code><a class="self-link" href="#dictdef-proximityreadingvalues"></a></dfn> {
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⑨"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="ProximityReadingValues" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-proximityreadingvalues-distance"><code>distance</code><a class="self-link" href="#dom-proximityreadingvalues-distance"></a></dfn>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double③⓪"><span class="kt">double</span></a>? <dfn class="nv idl-code" data-dfn-for="ProximityReadingValues" data-dfn-type="dict-member" data-export="" data-type="double? " id="dom-proximityreadingvalues-max"><code>max</code><a class="self-link" href="#dom-proximityreadingvalues-max"></a></dfn>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean①"><span class="kt">boolean</span></a>? <dfn class="nv idl-code" data-dfn-for="ProximityReadingValues" data-dfn-type="dict-member" data-export="" data-type="boolean? " id="dom-proximityreadingvalues-near"><code>near</code><a class="self-link" href="#dom-proximityreadingvalues-near"></a></dfn>;
+<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="idl-code" data-dfn-type="dictionary" data-export id="dictdef-proximityreadingvalues"><code><c- g>ProximityReadingValues</c-></code><a class="self-link" href="#dictdef-proximityreadingvalues"></a></dfn> {
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⑨"><c- b>double</c-></a>? <dfn class="idl-code" data-dfn-for="ProximityReadingValues" data-dfn-type="dict-member" data-export data-type="double? " id="dom-proximityreadingvalues-distance"><code><c- g>distance</c-></code><a class="self-link" href="#dom-proximityreadingvalues-distance"></a></dfn>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double③⓪"><c- b>double</c-></a>? <dfn class="idl-code" data-dfn-for="ProximityReadingValues" data-dfn-type="dict-member" data-export data-type="double? " id="dom-proximityreadingvalues-max"><code><c- g>max</c-></code><a class="self-link" href="#dom-proximityreadingvalues-max"></a></dfn>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean①"><c- b>boolean</c-></a>? <dfn class="idl-code" data-dfn-for="ProximityReadingValues" data-dfn-type="dict-member" data-export data-type="boolean? " id="dom-proximityreadingvalues-near"><code><c- g>near</c-></code><a class="self-link" href="#dom-proximityreadingvalues-near"></a></dfn>;
 };
 </pre>
    </dl>
@@ -1811,53 +1814,53 @@ associated with the usage of the <a data-link-type="dfn" href="https://w3c.githu
       <td>POST
       <td>/session/{session id}/sensor
    </table>
-   <p>The <dfn data-dfn-type="dfn" data-noexport="" id="create-mock-sensor">create mock sensor<a class="self-link" href="#create-mock-sensor"></a></dfn> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-extension-command" id="ref-for-dfn-extension-command③">extension command</a> creates a
+   <p>The <dfn data-dfn-type="dfn" data-noexport id="create-mock-sensor">create mock sensor<a class="self-link" href="#create-mock-sensor"></a></dfn> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-extension-command" id="ref-for-dfn-extension-command③">extension command</a> creates a
 new <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②⓪">mock sensor</a>.</p>
    <p>The <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-remote-end-steps" id="ref-for-dfn-remote-end-steps">remote end steps</a> are:</p>
    <ol>
-    <li data-md="">
+    <li data-md>
      <p>Let <var>configuration</var> be the <var>configuration</var> parameter, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-convert-ecmascript-to-idl-value" id="ref-for-dfn-convert-ecmascript-to-idl-value">converted to an IDL value</a> of type <code class="idl"><a data-link-type="idl" href="#dictdef-mocksensorconfiguration" id="ref-for-dictdef-mocksensorconfiguration①">MockSensorConfiguration</a></code>. If this throws an exception, return a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-errors" id="ref-for-dfn-errors">WebDriver error</a> with <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-error-code" id="ref-for-dfn-error-code">WebDriver error code</a> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-invalid-argument" id="ref-for-dfn-invalid-argument">invalid argument</a>.</p>
-    <li data-md="">
+    <li data-md>
      <p>Let <var>type</var> be the <var>configuration</var>.<code class="idl"><a data-link-type="idl" href="#dom-mocksensorconfiguration-mocksensortype" id="ref-for-dom-mocksensorconfiguration-mocksensortype①">mockSensorType</a></code>. If the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context③">current browsing context</a> already has this <var>type</var> of <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②①">mock sensor</a>, return a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-errors" id="ref-for-dfn-errors①">WebDriver error</a> with <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-error-code" id="ref-for-dfn-error-code①">WebDriver error code</a> <a data-link-type="dfn" href="#mock-sensor-already-created" id="ref-for-mock-sensor-already-created">mock sensor already created</a>.</p>
-    <li data-md="">
+    <li data-md>
      <p>If the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context④">current browsing context</a> is <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-no-longer-open" id="ref-for-dfn-no-longer-open">no longer open</a>, return a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-errors" id="ref-for-dfn-errors②">WebDriver error</a> with <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-error-code" id="ref-for-dfn-error-code②">WebDriver error code</a> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-no-such-window" id="ref-for-dfn-no-such-window">no such window</a>.</p>
-    <li data-md="">
+    <li data-md>
      <p><a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-handle-any-user-prompts" id="ref-for-dfn-handle-any-user-prompts">Handle any user prompts</a>, and return its value if it is a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-errors" id="ref-for-dfn-errors③">WebDriver error</a>.</p>
-    <li data-md="">
+    <li data-md>
      <p>Run these sub-steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel">in parallel</a> to create a <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②②">mock sensor</a> in the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context⑤">current browsing context</a>:</p>
      <ol>
-      <li data-md="">
+      <li data-md>
        <p>Let <var>mock</var> be a new <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②③">mock sensor</a>.</p>
-      <li data-md="">
+      <li data-md>
        <p>Set <var>mock</var>’s <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-type⑤">mock sensor type</a> to <var>type</var>.</p>
-      <li data-md="">
+      <li data-md>
        <p>Let <var>connected</var> be the <var>configuration</var>.<code class="idl"><a data-link-type="idl" href="#dom-mocksensorconfiguration-connected" id="ref-for-dom-mocksensorconfiguration-connected①">connected</a></code>, set <var>mock</var>’s associated <a data-link-type="dfn" href="#connection-flag" id="ref-for-connection-flag">connection flag</a> to <var>connected</var>.</p>
-      <li data-md="">
+      <li data-md>
        <p>If <var>configuration</var>.<code class="idl"><a data-link-type="idl" href="#dom-mocksensorconfiguration-maxsamplingfrequency" id="ref-for-dom-mocksensorconfiguration-maxsamplingfrequency①">maxSamplingFrequency</a></code> is <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-present" id="ref-for-dfn-present">present</a>, then:</p>
        <ol>
-        <li data-md="">
+        <li data-md>
          <p>Set <var>mock</var>’s maximum supported sampling frequency to <var>configuration</var>.<code class="idl"><a data-link-type="idl" href="#dom-mocksensorconfiguration-maxsamplingfrequency" id="ref-for-dom-mocksensorconfiguration-maxsamplingfrequency②">maxSamplingFrequency</a></code>.</p>
        </ol>
-      <li data-md="">
+      <li data-md>
        <p>If <var>configuration</var>.<code class="idl"><a data-link-type="idl" href="#dom-mocksensorconfiguration-minsamplingfrequency" id="ref-for-dom-mocksensorconfiguration-minsamplingfrequency①">minSamplingFrequency</a></code> is <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-present" id="ref-for-dfn-present①">present</a>, then:</p>
        <ol>
-        <li data-md="">
+        <li data-md>
          <p>Set <var>mock</var>’s minimum supported sampling frequency to <var>configuration</var>.<code class="idl"><a data-link-type="idl" href="#dom-mocksensorconfiguration-minsamplingfrequency" id="ref-for-dom-mocksensorconfiguration-minsamplingfrequency②">minSamplingFrequency</a></code>.</p>
        </ol>
-      <li data-md="">
+      <li data-md>
        <p>Let <var>sensor_instance</var> be a <var>type</var> of <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor" id="ref-for-sensor⑥">Sensor</a> object, set <var>sensor_instance</var>’s associated <a data-link-type="dfn" href="https://w3c.github.io/sensors/#concept-platform-sensor" id="ref-for-concept-platform-sensor①">platform sensor</a> to <var>mock</var>.</p>
      </ol>
-    <li data-md="">
+    <li data-md>
      <p>Return <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-success" id="ref-for-dfn-success">success</a> with data <code>null</code>.</p>
    </ol>
    <div class="example" id="example-1f159a4e">
     <a class="self-link" href="#example-1f159a4e"></a> To create an "ambient-light" mock sensor in the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context⑥">current browsing context</a> of the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-session" id="ref-for-dfn-session">session</a> with ID 23,
   the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-local-end" id="ref-for-dfn-local-end">local end</a> would POST to <code>/session/23/sensor</code> with the body: 
-<pre class="lang-json highlight"><span class="p">{</span>
-  <span class="nt">"mockSensorType"</span><span class="p">:</span> <span class="s2">"ambient-light"</span><span class="p">,</span>
-  <span class="nt">"maxSamplingFrequency"</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span>
-  <span class="nt">"minSamplingFrequency"</span><span class="p">:</span> <span class="mi">5</span>
-<span class="p">}</span>
+<pre class="lang-json highlight"><c- p>{</c->
+  <c- f>"mockSensorType"</c-><c- p>:</c-> <c- u>"ambient-light"</c-><c- p>,</c->
+  <c- f>"maxSamplingFrequency"</c-><c- p>:</c-> <c- mi>60</c-><c- p>,</c->
+  <c- f>"minSamplingFrequency"</c-><c- p>:</c-> <c- mi>5</c->
+<c- p>}</c->
 </pre>
     <p>Be aware that only one <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②④">mock sensor</a> of a given <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-type⑥">mock sensor type</a> can be created in <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context⑦">current browsing context</a>,
   otherwise a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-errors" id="ref-for-dfn-errors④">WebDriver error</a> with <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-error-code" id="ref-for-dfn-error-code③">WebDriver error code</a> <a data-link-type="dfn" href="#mock-sensor-already-created" id="ref-for-mock-sensor-already-created①">mock sensor already created</a> will be thrown.</p>
@@ -1872,20 +1875,20 @@ new <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②⓪">m
       <td>GET
       <td>/session/{session id}/sensor/{type}
    </table>
-   <p>The <dfn data-dfn-type="dfn" data-noexport="" id="get-mock-sensor">get mock sensor<a class="self-link" href="#get-mock-sensor"></a></dfn> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-extension-command" id="ref-for-dfn-extension-command④">extension command</a> retrieves
+   <p>The <dfn data-dfn-type="dfn" data-noexport id="get-mock-sensor">get mock sensor<a class="self-link" href="#get-mock-sensor"></a></dfn> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-extension-command" id="ref-for-dfn-extension-command④">extension command</a> retrieves
 information about a given type of <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②⑤">mock sensor</a>.</p>
    <p>The <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-remote-end-steps" id="ref-for-dfn-remote-end-steps①">remote end steps</a> are:</p>
    <ol>
-    <li data-md="">
+    <li data-md>
      <p>Let <var>type</var> be a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-url-variables" id="ref-for-dfn-url-variables">url variable</a>, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-convert-ecmascript-to-idl-value" id="ref-for-dfn-convert-ecmascript-to-idl-value①">converted to an IDL value</a> of type <code class="idl"><a data-link-type="idl" href="#enumdef-mocksensortype" id="ref-for-enumdef-mocksensortype③">MockSensorType</a></code>.
  If this throws an exception, return a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-errors" id="ref-for-dfn-errors⑤">WebDriver error</a> with <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-error-code" id="ref-for-dfn-error-code④">WebDriver error code</a> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-invalid-argument" id="ref-for-dfn-invalid-argument①">invalid argument</a>.</p>
-    <li data-md="">
+    <li data-md>
      <p>If the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context⑧">current browsing context</a> is <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-no-longer-open" id="ref-for-dfn-no-longer-open①">no longer open</a>, return a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-errors" id="ref-for-dfn-errors⑥">WebDriver error</a> with <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-error-code" id="ref-for-dfn-error-code⑤">WebDriver error code</a> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-no-such-window" id="ref-for-dfn-no-such-window①">no such window</a>.</p>
-    <li data-md="">
+    <li data-md>
      <p><a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-handle-any-user-prompts" id="ref-for-dfn-handle-any-user-prompts①">Handle any user prompts</a>, and return its value if it is a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-errors" id="ref-for-dfn-errors⑦">WebDriver error</a>.</p>
-    <li data-md="">
+    <li data-md>
      <p>If <var>type</var> does not match a <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-type⑦">mock sensor type</a> amongst all associated <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②⑥">mock sensors</a> of the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context⑨">current browsing context</a>, return a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-errors" id="ref-for-dfn-errors⑧">WebDriver error</a> with <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-error-code" id="ref-for-dfn-error-code⑥">WebDriver error code</a> <a data-link-type="dfn" href="#no-such-mock-sensor" id="ref-for-no-such-mock-sensor">no such mock sensor</a>.</p>
-    <li data-md="">
+    <li data-md>
      <p>Return <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-success" id="ref-for-dfn-success①">success</a> with the <a data-link-type="dfn" href="#serialized-mock-sensor" id="ref-for-serialized-mock-sensor">serialized mock sensor</a> as data.</p>
    </ol>
    <h4 class="heading settled" data-level="3.1.3" id="update-mock-sensor-reading-command"><span class="secno">3.1.3. </span><span class="content">Update mock sensor reading</span><a class="self-link" href="#update-mock-sensor-reading-command"></a></h4>
@@ -1898,29 +1901,29 @@ information about a given type of <a data-link-type="dfn" href="#mock-sensor" id
       <td>POST
       <td>/session/{session id}/sensor/{type}
    </table>
-   <p>The <dfn data-dfn-type="dfn" data-noexport="" id="update-mock-sensor-reading">update mock sensor reading<a class="self-link" href="#update-mock-sensor-reading"></a></dfn> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-extension-command" id="ref-for-dfn-extension-command⑤">extension command</a> updates
+   <p>The <dfn data-dfn-type="dfn" data-noexport id="update-mock-sensor-reading">update mock sensor reading<a class="self-link" href="#update-mock-sensor-reading"></a></dfn> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-extension-command" id="ref-for-dfn-extension-command⑤">extension command</a> updates
 a given type of <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②⑦">mock sensor</a>'s <a data-link-type="dfn" href="#mock-sensor-reading" id="ref-for-mock-sensor-reading⑦">reading</a>.</p>
    <p>The <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-remote-end-steps" id="ref-for-dfn-remote-end-steps②">remote end steps</a> are:</p>
    <ol>
-    <li data-md="">
+    <li data-md>
      <p>Let <var>type</var> be a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-url-variables" id="ref-for-dfn-url-variables①">url variable</a>, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-convert-ecmascript-to-idl-value" id="ref-for-dfn-convert-ecmascript-to-idl-value②">converted to an IDL value</a> of type <code class="idl"><a data-link-type="idl" href="#enumdef-mocksensortype" id="ref-for-enumdef-mocksensortype④">MockSensorType</a></code>.
  If this throws an exception, return a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-errors" id="ref-for-dfn-errors⑨">WebDriver error</a> with <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-error-code" id="ref-for-dfn-error-code⑦">WebDriver error code</a> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-invalid-argument" id="ref-for-dfn-invalid-argument②">invalid argument</a>.</p>
-    <li data-md="">
+    <li data-md>
      <p>If the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context①⓪">current browsing context</a> is <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-no-longer-open" id="ref-for-dfn-no-longer-open②">no longer open</a>, return a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-errors" id="ref-for-dfn-errors①⓪">WebDriver error</a> with <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-error-code" id="ref-for-dfn-error-code⑧">WebDriver error code</a> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-no-such-window" id="ref-for-dfn-no-such-window②">no such window</a>.</p>
-    <li data-md="">
+    <li data-md>
      <p><a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-handle-any-user-prompts" id="ref-for-dfn-handle-any-user-prompts②">Handle any user prompts</a>, and return its value if it is a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-errors" id="ref-for-dfn-errors①①">WebDriver error</a>.</p>
-    <li data-md="">
+    <li data-md>
      <p>If <var>type</var> does not match a <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-type⑧">mock sensor type</a> amongst all associated <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②⑧">mock sensors</a> of the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context①①">current browsing context</a>, return a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-errors" id="ref-for-dfn-errors①②">WebDriver error</a> with <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-error-code" id="ref-for-dfn-error-code⑨">WebDriver error code</a> <a data-link-type="dfn" href="#no-such-mock-sensor" id="ref-for-no-such-mock-sensor①">no such mock sensor</a>.</p>
-    <li data-md="">
+    <li data-md>
      <p>Let <var>reading</var> be the <var>reading</var> argument, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-convert-ecmascript-to-idl-value" id="ref-for-dfn-convert-ecmascript-to-idl-value③">converted to an IDL value</a> of the <var>type</var>’s
  associated <code class="idl"><a data-link-type="idl" href="#dictdef-mocksensorreadingvalues" id="ref-for-dictdef-mocksensorreadingvalues③">MockSensorReadingValues</a></code>. If this throws an exception, return a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-errors" id="ref-for-dfn-errors①③">WebDriver error</a> with <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-error-code" id="ref-for-dfn-error-code①⓪">WebDriver error code</a> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-invalid-argument" id="ref-for-dfn-invalid-argument③">invalid argument</a>.</p>
-    <li data-md="">
+    <li data-md>
      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-iterate" id="ref-for-map-iterate">For each</a> <var>key</var> → <var>value</var> of <var>reading</var>.</p>
      <ol>
-      <li data-md="">
+      <li data-md>
        <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set" id="ref-for-map-set">Set</a> <a data-link-type="dfn" href="#mock-sensor-reading" id="ref-for-mock-sensor-reading⑧">mock sensor reading</a>[<var>key</var>] to the corresponding value of <var>reading</var>.</p>
      </ol>
-    <li data-md="">
+    <li data-md>
      <p>Return <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-success" id="ref-for-dfn-success②">success</a> with data <code>null</code>.</p>
    </ol>
    <h4 class="heading settled" data-level="3.1.4" id="delete-mock-sensor-command"><span class="secno">3.1.4. </span><span class="content">Delete mock sensor</span><a class="self-link" href="#delete-mock-sensor-command"></a></h4>
@@ -1933,23 +1936,23 @@ a given type of <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sen
       <td>DELETE
       <td>/session/{session id}/sensor/{type}
    </table>
-   <p>The <dfn data-dfn-type="dfn" data-noexport="" id="delete-mock-sensor">delete mock sensor<a class="self-link" href="#delete-mock-sensor"></a></dfn> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-extension-command" id="ref-for-dfn-extension-command⑥">extension command</a> deletes
+   <p>The <dfn data-dfn-type="dfn" data-noexport id="delete-mock-sensor">delete mock sensor<a class="self-link" href="#delete-mock-sensor"></a></dfn> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-extension-command" id="ref-for-dfn-extension-command⑥">extension command</a> deletes
 a given type of <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②⑨">mock sensor</a>.</p>
    <p>The <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-remote-end-steps" id="ref-for-dfn-remote-end-steps③">remote end steps</a> are:</p>
    <ol>
-    <li data-md="">
+    <li data-md>
      <p>Let <var>type</var> be a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-url-variables" id="ref-for-dfn-url-variables②">url variable</a>.</p>
-    <li data-md="">
+    <li data-md>
      <p>If <code class="idl"><a data-link-type="idl" href="#enumdef-mocksensortype" id="ref-for-enumdef-mocksensortype⑤">MockSensorType</a></code> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain">does not contain</a> <var>type</var>, return a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-errors" id="ref-for-dfn-errors①④">WebDriver error</a> with <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-error-code" id="ref-for-dfn-error-code①①">WebDriver error code</a> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-invalid-argument" id="ref-for-dfn-invalid-argument④">invalid argument</a>.</p>
-    <li data-md="">
+    <li data-md>
      <p>If the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context①②">current browsing context</a> is <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-no-longer-open" id="ref-for-dfn-no-longer-open③">no longer open</a>, return a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-errors" id="ref-for-dfn-errors①⑤">WebDriver error</a> with <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-error-code" id="ref-for-dfn-error-code①②">WebDriver error code</a> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-no-such-window" id="ref-for-dfn-no-such-window③">no such window</a>.</p>
-    <li data-md="">
+    <li data-md>
      <p><a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-handle-any-user-prompts" id="ref-for-dfn-handle-any-user-prompts③">Handle any user prompts</a>, and return its value if it is a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-errors" id="ref-for-dfn-errors①⑥">WebDriver error</a>.</p>
-    <li data-md="">
+    <li data-md>
      <p>If <var>type</var> does not match a <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-type⑨">mock sensor type</a> amongst all associated <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor③⓪">mock sensors</a> of the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context①③">current browsing context</a>, return a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-errors" id="ref-for-dfn-errors①⑦">WebDriver error</a> with <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-error-code" id="ref-for-dfn-error-code①③">WebDriver error code</a> <a data-link-type="dfn" href="#no-such-mock-sensor" id="ref-for-no-such-mock-sensor②">no such mock sensor</a>.</p>
-    <li data-md="">
+    <li data-md>
      <p>Delete <var>type</var> of <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor③①">mock sensor</a> in <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context①④">current browsing context</a>.</p>
-    <li data-md="">
+    <li data-md>
      <p>Return <a data-link-type="dfn" href="https://w3c.github.io/webdriver/webdriver-spec.html#dfn-success" id="ref-for-dfn-success③">success</a> with data <code>null</code>.</p>
    </ol>
    <h3 class="heading settled" data-level="3.2" id="extension-handling-errors"><span class="secno">3.2. </span><span class="content">Handling errors</span><a class="self-link" href="#extension-handling-errors"></a></h3>
@@ -1963,12 +1966,12 @@ a given type of <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sen
       <th>Description
     <tbody>
      <tr>
-      <td><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="no-such-mock-sensor">no such mock sensor</dfn>
+      <td><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="no-such-mock-sensor">no such mock sensor</dfn>
       <td>404
       <td><var>no such mock sensor</var>
       <td>no mock sensor matching the given type was found.
      <tr>
-      <td><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="mock-sensor-already-created">mock sensor already created</dfn>
+      <td><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="mock-sensor-already-created">mock sensor already created</dfn>
       <td>500
       <td><var>mock sensor already created</var>
       <td> A <a href="#mock-sensor-commands">command</a> to create a mock sensor could not be satisfied because the given type of mock sensor is already existed. 
@@ -2597,94 +2600,94 @@ a given type of <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sen
    <dd>Cameron McCormack; Boris Zbarsky; Tobie Langel. <a href="https://heycam.github.io/webidl/">Web IDL</a>. 15 December 2016. ED. URL: <a href="https://heycam.github.io/webidl/">https://heycam.github.io/webidl/</a>
   </dl>
   <h2 class="no-num no-ref heading settled" id="idl-index"><span class="content">IDL Index</span><a class="self-link" href="#idl-index"></a></h2>
-<pre class="idl highlight def"><span class="kt">dictionary</span> <a class="nv" href="#dictdef-mocksensorconfiguration"><code>MockSensorConfiguration</code></a> {
-  <span class="kt">required</span> <a class="n" data-link-type="idl-name" href="#enumdef-mocksensortype" id="ref-for-enumdef-mocksensortype⑥">MockSensorType</a> <a class="nv" data-type="MockSensorType " href="#dom-mocksensorconfiguration-mocksensortype"><code>mockSensorType</code></a>;
-  <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean②"><span class="kt">boolean</span></a> <a class="nv" data-default="true" data-type="boolean " href="#dom-mocksensorconfiguration-connected"><code>connected</code></a> = <span class="kt">true</span>;
-  <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double③②"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-mocksensorconfiguration-maxsamplingfrequency"><code>maxSamplingFrequency</code></a>;
-  <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①①⓪"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-mocksensorconfiguration-minsamplingfrequency"><code>minSamplingFrequency</code></a>;
+<pre class="idl highlight def"><c- b>dictionary</c-> <a href="#dictdef-mocksensorconfiguration"><code><c- g>MockSensorConfiguration</c-></code></a> {
+  <c- b>required</c-> <a class="n" data-link-type="idl-name" href="#enumdef-mocksensortype" id="ref-for-enumdef-mocksensortype⑥"><c- n>MockSensorType</c-></a> <a data-type="MockSensorType " href="#dom-mocksensorconfiguration-mocksensortype"><code><c- g>mockSensorType</c-></code></a>;
+  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean②"><c- b>boolean</c-></a> <a data-default="true" data-type="boolean " href="#dom-mocksensorconfiguration-connected"><code><c- g>connected</c-></code></a> = <c- b>true</c->;
+  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double③②"><c- b>double</c-></a>? <a data-type="double? " href="#dom-mocksensorconfiguration-maxsamplingfrequency"><code><c- g>maxSamplingFrequency</c-></code></a>;
+  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①①⓪"><c- b>double</c-></a>? <a data-type="double? " href="#dom-mocksensorconfiguration-minsamplingfrequency"><code><c- g>minSamplingFrequency</c-></code></a>;
 };
 
-<span class="kt">dictionary</span> <a class="nv" href="#dictdef-mocksensor"><code>MockSensor</code></a> {
-  <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②①⓪"><span class="kt">double</span></a> <a class="nv" data-type="double " href="#dom-mocksensor-maxsamplingfrequency"><code>maxSamplingFrequency</code></a>;
-  <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double③①"><span class="kt">double</span></a> <a class="nv" data-type="double " href="#dom-mocksensor-minsamplingfrequency"><code>minSamplingFrequency</code></a>;
-  <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double④①"><span class="kt">double</span></a> <a class="nv" data-type="double " href="#dom-mocksensor-requestedsamplingfrequency"><code>requestedSamplingFrequency</code></a>;
+<c- b>dictionary</c-> <a href="#dictdef-mocksensor"><code><c- g>MockSensor</c-></code></a> {
+  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②①⓪"><c- b>double</c-></a> <a data-type="double " href="#dom-mocksensor-maxsamplingfrequency"><code><c- g>maxSamplingFrequency</c-></code></a>;
+  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double③①"><c- b>double</c-></a> <a data-type="double " href="#dom-mocksensor-minsamplingfrequency"><code><c- g>minSamplingFrequency</c-></code></a>;
+  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double④①"><c- b>double</c-></a> <a data-type="double " href="#dom-mocksensor-requestedsamplingfrequency"><code><c- g>requestedSamplingFrequency</c-></code></a>;
 };
 
-<span class="kt">enum</span> <a class="nv" href="#enumdef-mocksensortype"><code>MockSensorType</code></a> {
-  <a class="s idl-code" data-link-type="enum-value" href="#dom-mocksensortype-ambient-light" id="ref-for-dom-mocksensortype-ambient-light①">"ambient-light"</a>,
-  <a class="s idl-code" data-link-type="enum-value" href="#dom-mocksensortype-accelerometer" id="ref-for-dom-mocksensortype-accelerometer①">"accelerometer"</a>,
-  <a class="s idl-code" data-link-type="enum-value" href="#dom-mocksensortype-linear-acceleration" id="ref-for-dom-mocksensortype-linear-acceleration①">"linear-acceleration"</a>,
-  <a class="s idl-code" data-link-type="enum-value" href="#dom-mocksensortype-gravity" id="ref-for-dom-mocksensortype-gravity①">"gravity"</a>,
-  <a class="s idl-code" data-link-type="enum-value" href="#dom-mocksensortype-gyroscope" id="ref-for-dom-mocksensortype-gyroscope①">"gyroscope"</a>,
-  <a class="s idl-code" data-link-type="enum-value" href="#dom-mocksensortype-magnetometer" id="ref-for-dom-mocksensortype-magnetometer①">"magnetometer"</a>,
-  <a class="s idl-code" data-link-type="enum-value" href="#dom-mocksensortype-uncalibrated-magnetometer" id="ref-for-dom-mocksensortype-uncalibrated-magnetometer①">"uncalibrated-magnetometer"</a>,
-  <a class="s idl-code" data-link-type="enum-value" href="#dom-mocksensortype-absolute-orientation" id="ref-for-dom-mocksensortype-absolute-orientation①">"absolute-orientation"</a>,
-  <a class="s idl-code" data-link-type="enum-value" href="#dom-mocksensortype-relative-orientation" id="ref-for-dom-mocksensortype-relative-orientation①">"relative-orientation"</a>,
-  <a class="s idl-code" data-link-type="enum-value" href="#dom-mocksensortype-geolocation" id="ref-for-dom-mocksensortype-geolocation①">"geolocation"</a>,
-  <a class="s idl-code" data-link-type="enum-value" href="#dom-mocksensortype-proximity" id="ref-for-dom-mocksensortype-proximity①">"proximity"</a>,
+<c- b>enum</c-> <a href="#enumdef-mocksensortype"><code><c- g>MockSensorType</c-></code></a> {
+  <a class="idl-code" data-link-type="enum-value" href="#dom-mocksensortype-ambient-light" id="ref-for-dom-mocksensortype-ambient-light①"><c- s>"ambient-light"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-mocksensortype-accelerometer" id="ref-for-dom-mocksensortype-accelerometer①"><c- s>"accelerometer"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-mocksensortype-linear-acceleration" id="ref-for-dom-mocksensortype-linear-acceleration①"><c- s>"linear-acceleration"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-mocksensortype-gravity" id="ref-for-dom-mocksensortype-gravity①"><c- s>"gravity"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-mocksensortype-gyroscope" id="ref-for-dom-mocksensortype-gyroscope①"><c- s>"gyroscope"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-mocksensortype-magnetometer" id="ref-for-dom-mocksensortype-magnetometer①"><c- s>"magnetometer"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-mocksensortype-uncalibrated-magnetometer" id="ref-for-dom-mocksensortype-uncalibrated-magnetometer①"><c- s>"uncalibrated-magnetometer"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-mocksensortype-absolute-orientation" id="ref-for-dom-mocksensortype-absolute-orientation①"><c- s>"absolute-orientation"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-mocksensortype-relative-orientation" id="ref-for-dom-mocksensortype-relative-orientation①"><c- s>"relative-orientation"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-mocksensortype-geolocation" id="ref-for-dom-mocksensortype-geolocation①"><c- s>"geolocation"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-mocksensortype-proximity" id="ref-for-dom-mocksensortype-proximity①"><c- s>"proximity"</c-></a>,
 };
 
-<span class="kt">dictionary</span> <a class="nv" href="#dictdef-mocksensorreadingvalues"><code>MockSensorReadingValues</code></a> {
+<c- b>dictionary</c-> <a href="#dictdef-mocksensorreadingvalues"><code><c- g>MockSensorReadingValues</c-></code></a> {
 };
 
-<span class="kt">dictionary</span> <a class="nv" href="#dictdef-ambientlightreadingvalues"><code>AmbientLightReadingValues</code></a> {
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑤①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-ambientlightreadingvalues-illuminance"><code>illuminance</code></a>;
+<c- b>dictionary</c-> <a href="#dictdef-ambientlightreadingvalues"><code><c- g>AmbientLightReadingValues</c-></code></a> {
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑤①"><c- b>double</c-></a>? <a data-type="double? " href="#dom-ambientlightreadingvalues-illuminance"><code><c- g>illuminance</c-></code></a>;
 };
 
-<span class="kt">dictionary</span> <a class="nv" href="#dictdef-accelerometerreadingvalues"><code>AccelerometerReadingValues</code></a> {
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑥①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-accelerometerreadingvalues-x"><code>x</code></a>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑦①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-accelerometerreadingvalues-y"><code>y</code></a>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑧①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-accelerometerreadingvalues-z"><code>z</code></a>;
+<c- b>dictionary</c-> <a href="#dictdef-accelerometerreadingvalues"><code><c- g>AccelerometerReadingValues</c-></code></a> {
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑥①"><c- b>double</c-></a>? <a data-type="double? " href="#dom-accelerometerreadingvalues-x"><code><c- g>x</c-></code></a>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑦①"><c- b>double</c-></a>? <a data-type="double? " href="#dom-accelerometerreadingvalues-y"><code><c- g>y</c-></code></a>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑧①"><c- b>double</c-></a>? <a data-type="double? " href="#dom-accelerometerreadingvalues-z"><code><c- g>z</c-></code></a>;
 };
 
-<span class="kt">dictionary</span> <a class="nv" href="#dictdef-linearaccelerationreadingvalues"><code>LinearAccelerationReadingValues</code></a> : <a class="n" data-link-type="idl-name" href="#dictdef-accelerometerreadingvalues" id="ref-for-dictdef-accelerometerreadingvalues②">AccelerometerReadingValues</a> {
+<c- b>dictionary</c-> <a href="#dictdef-linearaccelerationreadingvalues"><code><c- g>LinearAccelerationReadingValues</c-></code></a> : <a class="n" data-link-type="idl-name" href="#dictdef-accelerometerreadingvalues" id="ref-for-dictdef-accelerometerreadingvalues②"><c- n>AccelerometerReadingValues</c-></a> {
 };
 
-<span class="kt">dictionary</span> <a class="nv" href="#dictdef-gravityreadingvalues"><code>GravityReadingValues</code></a> : <a class="n" data-link-type="idl-name" href="#dictdef-accelerometerreadingvalues" id="ref-for-dictdef-accelerometerreadingvalues①①">AccelerometerReadingValues</a> {
+<c- b>dictionary</c-> <a href="#dictdef-gravityreadingvalues"><code><c- g>GravityReadingValues</c-></code></a> : <a class="n" data-link-type="idl-name" href="#dictdef-accelerometerreadingvalues" id="ref-for-dictdef-accelerometerreadingvalues①①"><c- n>AccelerometerReadingValues</c-></a> {
 };
 
-<span class="kt">dictionary</span> <a class="nv" href="#dictdef-gyroscopereadingvalues"><code>GyroscopeReadingValues</code></a> {
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑨①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-gyroscopereadingvalues-x"><code>x</code></a>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⓪①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-gyroscopereadingvalues-y"><code>y</code></a>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①①①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-gyroscopereadingvalues-z"><code>z</code></a>;
+<c- b>dictionary</c-> <a href="#dictdef-gyroscopereadingvalues"><code><c- g>GyroscopeReadingValues</c-></code></a> {
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑨①"><c- b>double</c-></a>? <a data-type="double? " href="#dom-gyroscopereadingvalues-x"><code><c- g>x</c-></code></a>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⓪①"><c- b>double</c-></a>? <a data-type="double? " href="#dom-gyroscopereadingvalues-y"><code><c- g>y</c-></code></a>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①①①"><c- b>double</c-></a>? <a data-type="double? " href="#dom-gyroscopereadingvalues-z"><code><c- g>z</c-></code></a>;
 };
 
-<span class="kt">dictionary</span> <a class="nv" href="#dictdef-magnetometerreadingvalues"><code>MagnetometerReadingValues</code></a> {
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①②①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-magnetometerreadingvalues-x"><code>x</code></a>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①③①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-magnetometerreadingvalues-y"><code>y</code></a>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①④①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-magnetometerreadingvalues-z"><code>z</code></a>;
+<c- b>dictionary</c-> <a href="#dictdef-magnetometerreadingvalues"><code><c- g>MagnetometerReadingValues</c-></code></a> {
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①②①"><c- b>double</c-></a>? <a data-type="double? " href="#dom-magnetometerreadingvalues-x"><code><c- g>x</c-></code></a>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①③①"><c- b>double</c-></a>? <a data-type="double? " href="#dom-magnetometerreadingvalues-y"><code><c- g>y</c-></code></a>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①④①"><c- b>double</c-></a>? <a data-type="double? " href="#dom-magnetometerreadingvalues-z"><code><c- g>z</c-></code></a>;
 };
 
-<span class="kt">dictionary</span> <a class="nv" href="#dictdef-uncalibratedmagnetometerreadingvalues"><code>UncalibratedMagnetometerReadingValues</code></a> {
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑤①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-uncalibratedmagnetometerreadingvalues-x"><code>x</code></a>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑥①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-uncalibratedmagnetometerreadingvalues-y"><code>y</code></a>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑦①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-uncalibratedmagnetometerreadingvalues-z"><code>z</code></a>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑧①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-uncalibratedmagnetometerreadingvalues-xbias"><code>xBias</code></a>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑨①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-uncalibratedmagnetometerreadingvalues-ybias"><code>yBias</code></a>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⓪①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-uncalibratedmagnetometerreadingvalues-zbias"><code>zBias</code></a>;
+<c- b>dictionary</c-> <a href="#dictdef-uncalibratedmagnetometerreadingvalues"><code><c- g>UncalibratedMagnetometerReadingValues</c-></code></a> {
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑤①"><c- b>double</c-></a>? <a data-type="double? " href="#dom-uncalibratedmagnetometerreadingvalues-x"><code><c- g>x</c-></code></a>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑥①"><c- b>double</c-></a>? <a data-type="double? " href="#dom-uncalibratedmagnetometerreadingvalues-y"><code><c- g>y</c-></code></a>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑦①"><c- b>double</c-></a>? <a data-type="double? " href="#dom-uncalibratedmagnetometerreadingvalues-z"><code><c- g>z</c-></code></a>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑧①"><c- b>double</c-></a>? <a data-type="double? " href="#dom-uncalibratedmagnetometerreadingvalues-xbias"><code><c- g>xBias</c-></code></a>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑨①"><c- b>double</c-></a>? <a data-type="double? " href="#dom-uncalibratedmagnetometerreadingvalues-ybias"><code><c- g>yBias</c-></code></a>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⓪①"><c- b>double</c-></a>? <a data-type="double? " href="#dom-uncalibratedmagnetometerreadingvalues-zbias"><code><c- g>zBias</c-></code></a>;
 };
 
-<span class="kt">dictionary</span> <a class="nv" href="#dictdef-absoluteorientationreadingvalues"><code>AbsoluteOrientationReadingValues</code></a> {
-  <span class="kt">required</span> <span class="kt">FrozenArray</span>&lt;<a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②①①"><span class="kt">double</span></a>>? <a class="nv" data-type="FrozenArray<double>? " href="#dom-absoluteorientationreadingvalues-quaternion"><code>quaternion</code></a>;
+<c- b>dictionary</c-> <a href="#dictdef-absoluteorientationreadingvalues"><code><c- g>AbsoluteOrientationReadingValues</c-></code></a> {
+  <c- b>required</c-> <c- b>FrozenArray</c->&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②①①"><c- b>double</c-></a>>? <a data-type="FrozenArray<double>? " href="#dom-absoluteorientationreadingvalues-quaternion"><code><c- g>quaternion</c-></code></a>;
 };
 
-<span class="kt">dictionary</span> <a class="nv" href="#dictdef-relativeorientationreadingvalues"><code>RelativeOrientationReadingValues</code></a> : <a class="n" data-link-type="idl-name" href="#dictdef-absoluteorientationreadingvalues" id="ref-for-dictdef-absoluteorientationreadingvalues①">AbsoluteOrientationReadingValues</a> {
+<c- b>dictionary</c-> <a href="#dictdef-relativeorientationreadingvalues"><code><c- g>RelativeOrientationReadingValues</c-></code></a> : <a class="n" data-link-type="idl-name" href="#dictdef-absoluteorientationreadingvalues" id="ref-for-dictdef-absoluteorientationreadingvalues①"><c- n>AbsoluteOrientationReadingValues</c-></a> {
 };
 
-<span class="kt">dictionary</span> <a class="nv" href="#dictdef-geolocationreadingvalues"><code>GeolocationReadingValues</code></a> {
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②②①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-geolocationreadingvalues-latitude"><code>latitude</code></a>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②③①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-geolocationreadingvalues-longitude"><code>longitude</code></a>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②④①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-geolocationreadingvalues-altitude"><code>altitude</code></a>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⑤①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-geolocationreadingvalues-accuracy"><code>accuracy</code></a>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⑥①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-geolocationreadingvalues-altitudeaccuracy"><code>altitudeAccuracy</code></a>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⑦①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-geolocationreadingvalues-heading"><code>heading</code></a>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⑧①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-geolocationreadingvalues-speed"><code>speed</code></a>;
+<c- b>dictionary</c-> <a href="#dictdef-geolocationreadingvalues"><code><c- g>GeolocationReadingValues</c-></code></a> {
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②②①"><c- b>double</c-></a>? <a data-type="double? " href="#dom-geolocationreadingvalues-latitude"><code><c- g>latitude</c-></code></a>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②③①"><c- b>double</c-></a>? <a data-type="double? " href="#dom-geolocationreadingvalues-longitude"><code><c- g>longitude</c-></code></a>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②④①"><c- b>double</c-></a>? <a data-type="double? " href="#dom-geolocationreadingvalues-altitude"><code><c- g>altitude</c-></code></a>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⑤①"><c- b>double</c-></a>? <a data-type="double? " href="#dom-geolocationreadingvalues-accuracy"><code><c- g>accuracy</c-></code></a>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⑥①"><c- b>double</c-></a>? <a data-type="double? " href="#dom-geolocationreadingvalues-altitudeaccuracy"><code><c- g>altitudeAccuracy</c-></code></a>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⑦①"><c- b>double</c-></a>? <a data-type="double? " href="#dom-geolocationreadingvalues-heading"><code><c- g>heading</c-></code></a>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⑧①"><c- b>double</c-></a>? <a data-type="double? " href="#dom-geolocationreadingvalues-speed"><code><c- g>speed</c-></code></a>;
 };
 
-<span class="kt">dictionary</span> <a class="nv" href="#dictdef-proximityreadingvalues"><code>ProximityReadingValues</code></a> {
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⑨①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-proximityreadingvalues-distance"><code>distance</code></a>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double③⓪①"><span class="kt">double</span></a>? <a class="nv" data-type="double? " href="#dom-proximityreadingvalues-max"><code>max</code></a>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean①①"><span class="kt">boolean</span></a>? <a class="nv" data-type="boolean? " href="#dom-proximityreadingvalues-near"><code>near</code></a>;
+<c- b>dictionary</c-> <a href="#dictdef-proximityreadingvalues"><code><c- g>ProximityReadingValues</c-></code></a> {
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⑨①"><c- b>double</c-></a>? <a data-type="double? " href="#dom-proximityreadingvalues-distance"><code><c- g>distance</c-></code></a>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double③⓪①"><c- b>double</c-></a>? <a data-type="double? " href="#dom-proximityreadingvalues-max"><code><c- g>max</c-></code></a>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean①①"><c- b>boolean</c-></a>? <a data-type="boolean? " href="#dom-proximityreadingvalues-near"><code><c- g>near</c-></code></a>;
 };
 
 </pre>

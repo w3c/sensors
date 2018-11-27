@@ -9,6 +9,7 @@ Editor: Wanming Lin 91067, Intel Corporation, https://intel.com/
 Abstract: This document defines <a>extension commands</a> to the [[WebDriver|WebDriver specification]] for the purposes of testing a user agent’s implementation of [[GENERIC-SENSOR|Generic Sensor API]] and its concrete Sensor APIs.
 Version History: https://github.com/w3c/sensors/commits/gh-pages/index.bs
 !Bug Reports: <a href="https://www.github.com/w3c/sensors/issues/new">via the w3c/sensors repository on GitHub</a>
+!Other: <a href="https://github.com/w3c/sensors/blob/master/webdriver-extension/explainer.md">Explainer</a>
 Indent: 2
 Repository: w3c/sensors
 Markup Shorthands: markdown on
