@@ -7,4 +7,4 @@ DECISION="https://lists.w3.org/Archives/Public/public-device-apis/2015Oct/att-00
 
 # use --force option to allow building the spec despite not having a level.
 # UPDATE: --force not needed when Level: none
-output=$(bikeshed echidna --u $W3C_USERNAME --p $W3C_PASSWORD  --d $DECISION --md-status=WD)
+output=$(bikeshed echidna --u $W3C_USERNAME --p $W3C_PASSWORD  --decision $DECISION --md-status=WD)
