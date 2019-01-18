@@ -11,6 +11,7 @@ Editor: Rick Waldron 50572, Bocoup&#44; formerly on behalf of JS Foundation
 Former Editor: Mikhail Pozdnyakov 78325, Intel Corporation, https://intel.com/
 Former Editor: Alexander Shalamov 78335, Intel Corporation, https://intel.com/
 Former Editor: Tobie Langel 60809, Codespeaks&#44; formerly on behalf of Intel Corporation, https://www.codespeaks.com/, tobie@codespeaks.com
+!Test Facilitator: Wanming Lin (Intel Corporation)
 Abstract:
   This specification defines a framework for exposing sensor data
   to the Open Web Platform in a consistent way.
