@@ -1671,19 +1671,21 @@ using the <i>JSON Key</i> and the associated field's value from the available [=
 
 A <dfn>mock sensor type</dfn> is equivalent to a [=sensor type=]'s associated {{Sensor}} subclass.
 
-<pre class="idl">
-enum MockSensorType {
-  "ambient-light",
-  "accelerometer",
-  "linear-acceleration",
-  "gravity",
-  "gyroscope",
-  "magnetometer",
-  "uncalibrated-magnetometer",
-  "absolute-orientation",
-  "relative-orientation",
-  "geolocation",
-  "proximity",
+<!-- IDL blocks can't be linked outside the current spec, but these enum-values are
+     supposed to be defined in concrete sensor specs. -->
+<pre class="idl" link-for="MockSensorType">
+enum <dfn enum>MockSensorType</dfn> {
+  <a enum-value>"ambient-light"</a>,
+  <a enum-value>"accelerometer"</a>,
+  <a enum-value>"linear-acceleration"</a>,
+  <a enum-value>"gravity"</a>,
+  <a enum-value>"gyroscope"</a>,
+  <a enum-value>"magnetometer"</a>,
+  <a enum-value>"uncalibrated-magnetometer"</a>,
+  <a enum-value>"absolute-orientation"</a>,
+  <a enum-value>"relative-orientation"</a>,
+  <a enum-value>"geolocation"</a>,
+  <a enum-value>"proximity"</a>,
 };
 </pre>
 
