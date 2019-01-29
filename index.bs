@@ -1690,6 +1690,40 @@ enum <dfn enum>MockSensorType</dfn> {
 </pre>
 
 Each enumeration value in the {{MockSensorType}} enum identifies a [=mock sensor type=].
+
+: <dfn for="MockSensorType" enum-value>"ambient-light"</dfn>
+:: A [=mock sensor type=] associated with the usage of the [=AmbientLightSensor=] interface.
+
+: <dfn for="MockSensorType" enum-value>"accelerometer"</dfn>
+:: A [=mock sensor type=] associated with the usage of the [=Accelerometer=] interface.
+
+: <dfn for="MockSensorType" enum-value>"linear-acceleration"</dfn>
+:: A [=mock sensor type=] associated with the usage of the [=LinearAccelerationSensor=] interface.
+
+: <dfn for="MockSensorType" enum-value>"gravity"</dfn>
+:: A [=mock sensor type=] associated with the usage of the [=GravitySensor=] interface.
+
+: <dfn for="MockSensorType" enum-value>"gyroscope"</dfn>
+:: A [=mock sensor type=] associated with the usage of the [=Gyroscope=] interface.
+
+: <dfn for="MockSensorType" enum-value>"magnetometer"</dfn>
+:: A [=mock sensor type=] associated with the usage of the [=Magnetometer=] interface.
+
+: <dfn for="MockSensorType" enum-value>"uncalibrated-magnetometer"</dfn>
+:: A [=mock sensor type=] associated with the usage of the [=UncalibratedMagnetometer=] interface.
+
+: <dfn for="MockSensorType" enum-value>"absolute-orientation"</dfn>
+:: A [=mock sensor type=] associated with the usage of the [=AbsoluteOrientationSensor=] interface.
+
+: <dfn for="MockSensorType" enum-value>"relative-orientation"</dfn>
+:: A [=mock sensor type=] associated with the usage of the [=RelativeOrientationSensor=] interface.
+
+: <dfn for="MockSensorType" enum-value>"geolocation"</dfn>
+:: A [=mock sensor type=] associated with the usage of the [=GeolocationSensor=] interface.
+
+: <dfn for="MockSensorType" enum-value>"proximity"</dfn>
+:: A [=mock sensor type=] associated with the usage of the [=ProximitySensor=] interface.
+
 Each [=mock sensor type=] has a [=mock sensor reading values=] dictionary:
 
 : <dfn export>Mock Sensor Reading Values</dfn> dictionary
@@ -1697,204 +1731,12 @@ Each [=mock sensor type=] has a [=mock sensor reading values=] dictionary:
    [[#update-mock-sensor-reading-command|updating a mock sensor reading]]. Its members must match the
    [=attribute=] [=identifier=] defined by the [=sensor type=]'s
    associated [=extension sensor interface=]. Each [=mock sensor type=]
-   has a specific {{MockSensorReadingValues}}, which is defined in each section of [[#section-mock-sensor-type|mock sensor type]].
+   has a specific {{MockSensorReadingValues}}, which is defined in each [=extension specifications=].
 
    <pre class="idl">
    dictionary MockSensorReadingValues {
    };
    </pre>
-
-#### Ambient Light Sensor #### {#mock-ambient-light-sensor}
-
-The <dfn for="MockSensorType" enum-value>"ambient-light"</dfn> type is the [=mock sensor type=]
-associated with the usage of the [=AmbientLightSensor=] interface.
-
-<dl>
-  <dt>[=Mock Sensor Reading Values=]</dt>
-  <dd>
-    <pre class="idl">
-    dictionary AmbientLightReadingValues {
-      required double? illuminance;
-    };
-    </pre>
-  </dd>
-</dl>
-
-#### Accelerometer #### {#mock-accelerometer}
-
-The <dfn for="MockSensorType" enum-value>"accelerometer"</dfn> type is the [=mock sensor type=]
-associated with the usage of the [=Accelerometer=] interface.
-
-<dl>
-  <dt>[=Mock Sensor Reading Values=]</dt>
-  <dd>
-    <pre class="idl">
-    dictionary AccelerometerReadingValues {
-      required double? x;
-      required double? y;
-      required double? z;
-    };
-    </pre>
-  </dd>
-</dl>
-
-#### Linear Acceleration Sensor #### {#mock-linear-acceleration-sensor}
-
-The <dfn for="MockSensorType" enum-value>"linear-acceleration"</dfn> type is the [=mock sensor type=]
-associated with the usage of the [=LinearAccelerationSensor=] interface.
-
-<dl>
-  <dt>[=Mock Sensor Reading Values=]</dt>
-  <dd>
-    <pre class="idl">
-    dictionary LinearAccelerationReadingValues : AccelerometerReadingValues {
-    };
-    </pre>
-  </dd>
-</dl>
-
-#### Gravity Sensor #### {#mock-gravity}
-
-The <dfn for="MockSensorType" enum-value>"gravity"</dfn> type is the [=mock sensor type=]
-associated with the usage of the [=GravitySensor=] interface.
-
-<dl>
-  <dt>[=Mock Sensor Reading Values=]</dt>
-  <dd>
-    <pre class="idl">
-    dictionary GravityReadingValues : AccelerometerReadingValues {
-    };
-    </pre>
-  </dd>
-</dl>
-
-#### Gyroscope #### {#mock-gyroscope}
-
-The <dfn for="MockSensorType" enum-value>"gyroscope"</dfn> type is the [=mock sensor type=]
-associated with the usage of the [=Gyroscope=] interface.
-
-<dl>
-  <dt>[=Mock Sensor Reading Values=]</dt>
-  <dd>
-    <pre class="idl">
-    dictionary GyroscopeReadingValues {
-      required double? x;
-      required double? y;
-      required double? z;
-    };
-    </pre>
-  </dd>
-</dl>
-
-#### Magnetometer #### {#mock-magnetometer}
-
-The <dfn for="MockSensorType" enum-value>"magnetometer"</dfn> type is the [=mock sensor type=]
-associated with the usage of the [=Magnetometer=] interface.
-
-<dl>
-  <dt>[=Mock Sensor Reading Values=]</dt>
-  <dd>
-    <pre class="idl">
-    dictionary MagnetometerReadingValues {
-      required double? x;
-      required double? y;
-      required double? z;
-    };
-    </pre>
-  </dd>
-</dl>
-
-#### Uncalibrated Magnetometer #### {#mock-uncalibrated-magnetometer}
-
-The <dfn for="MockSensorType" enum-value>"uncalibrated-magnetometer"</dfn> type is the [=mock sensor type=]
-associated with the usage of the [=UncalibratedMagnetometer=] interface.
-
-<dl>
-  <dt>[=Mock Sensor Reading Values=]</dt>
-  <dd>
-    <pre class="idl">
-    dictionary UncalibratedMagnetometerReadingValues {
-      required double? x;
-      required double? y;
-      required double? z;
-      required double? xBias;
-      required double? yBias;
-      required double? zBias;
-    };
-    </pre>
-  </dd>
-</dl>
-
-#### Absolute Orientation Sensor #### {#mock-absolute-orientation-sensor}
-
-The <dfn for="MockSensorType" enum-value>"absolute-orientation"</dfn> type is the [=mock sensor type=]
-associated with the usage of the [=AbsoluteOrientationSensor=] interface.
-
-<dl>
-  <dt>[=Mock Sensor Reading Values=]</dt>
-  <dd>
-    <pre class="idl">
-    dictionary AbsoluteOrientationReadingValues {
-      required FrozenArray&lt;double>? quaternion;
-    };
-    </pre>
-  </dd>
-</dl>
-
-#### Relative Orientation Sensor #### {#mock-relative-orientation-sensor}
-
-The <dfn for="MockSensorType" enum-value>"relative-orientation"</dfn> type is the [=mock sensor type=]
-associated with the usage of the [=RelativeOrientationSensor=] interface.
-
-<dl>
-  <dt>[=Mock Sensor Reading Values=]</dt>
-  <dd>
-    <pre class="idl">
-    dictionary RelativeOrientationReadingValues : AbsoluteOrientationReadingValues {
-    };
-    </pre>
-  </dd>
-</dl>
-
-#### Geolocation Sensor #### {#mock-geolocation-sensor}
-
-The <dfn for="MockSensorType" enum-value>"geolocation"</dfn> type is the [=mock sensor type=]
-associated with the usage of the [=GeolocationSensor=] interface.
-
-<dl>
-  <dt>[=Mock Sensor Reading Values=]</dt>
-  <dd>
-    <pre class="idl">
-    dictionary GeolocationReadingValues {
-      required double? latitude;
-      required double? longitude;
-      required double? altitude;
-      required double? accuracy;
-      required double? altitudeAccuracy;
-      required double? heading;
-      required double? speed;
-    };
-    </pre>
-  </dd>
-</dl>
-
-#### Proximity Sensor #### {#mock-proximity-sensor}
-
-The <dfn for="MockSensorType" enum-value>"proximity"</dfn> type is the [=mock sensor type=]
-associated with the usage of the [=ProximitySensor=] interface.
-
-<dl>
-  <dt>[=Mock Sensor Reading Values=]</dt>
-  <dd>
-    <pre class="idl">
-    dictionary ProximityReadingValues {
-      required double? distance;
-      required double? max;
-      required boolean? near;
-    };
-    </pre>
-  </dd>
-</dl>
 
 <h3 id="section-extension-commands">Extension Commands</h3>
 
