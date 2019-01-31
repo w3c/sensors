@@ -2087,6 +2087,16 @@ for each [=sensor types=]:
     [=extension specifications=] may choose not to define a [=default sensor=],
     especially when doing so would not make sense.
 
+<h3 id="extend-automation">Automation</h3>
+
+In order to enable user-agent automation and application testing,
+[=extension specifications=] are encouraged to:
+
+- Add new [=mock sensor type=] for each [=extension sensor interface=]
+  to the {{MockSensorType}} enum.
+- Define a [=mock sensor reading values=] dictionary.
+
+
 <h3 id="permission-api">Extending the Permission API</h3>
 
 An implementation of the {{Sensor}} interface for each [=sensor type=] must protect its
