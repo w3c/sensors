@@ -2089,7 +2089,7 @@ for each [=sensor types=]:
 
 <h3 id="extend-automation">Automation</h3>
 
-In order to user-agent automation and application testing,
+In order to enable user-agent automation and application testing,
 [=extension specifications=] are encouraged to:
 
 - Add new [=mock sensor type=] for each [=extension sensor interface=]
