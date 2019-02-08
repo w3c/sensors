@@ -1933,6 +1933,10 @@ specific for [=mock sensor=] in following table.
 
 <em>This section is non-normative.</em>
 
+Note: This section and its subsections provide guidance to [=extension specification=]
+<em>authors</em> using normative language. From <em>implementers'</em> point of view,
+this section and its subsections are considered non-normative.
+
 This section describes how this specification can be extended to specify APIs for different
 [=sensor types=].
 
