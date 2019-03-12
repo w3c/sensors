@@ -933,7 +933,7 @@ of the corresponding [=platform sensor=].
 <h3 id="the-sensor-interface">The Sensor Interface</h3>
 
 <pre class="idl">
-[SecureContext, Exposed=Window]
+[SecureContext, Exposed=(DedicatedWorker, Window)]
 interface Sensor : EventTarget {
   readonly attribute boolean activated;
   readonly attribute boolean hasReading;
@@ -1261,7 +1261,7 @@ that must be supported as attributes by the objects implementing the {{Sensor}} 
 
 <pre class="idl">
 [Constructor(DOMString type, SensorErrorEventInit errorEventInitDict),
- SecureContext, Exposed=Window]
+ SecureContext, Exposed=(DedicatedWorker, Window)]
 interface SensorErrorEvent : Event {
   readonly attribute DOMException error;
 };
