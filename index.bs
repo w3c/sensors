@@ -356,7 +356,7 @@ The Generic Sensor API and its [=extension specifications=] are agnostic with re
 interface aspects. This specification defines an [[#request-sensor-access|integration point]] to the
 Permissions API [[PERMISSIONS]] that implementers can use for [=new information about the user's intent|
 explicit or implicit user consenting=]. In addition, implementers are encouraged to use additional
-privacy enchancing mechanisms inline with their product requirements to provide a consistent and
+privacy-enhancing mechanisms inline with their product requirements to provide a consistent and
 cohesive experience. Such mechanisms can include, for example, global and per-origin access controls,
 page info dialogs, location bar indicators, or other disclosure user interface elements.
 
