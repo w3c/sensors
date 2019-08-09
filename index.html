@@ -1030,7 +1030,7 @@ Possible extra rowspan handling
 		}
 	/* } */
 
-	@supports (display:grid) {
+	@supports (display:grid) and (display:contents) {
 		/* Use #toc over .toc to override non-@supports rules. */
 		#toc {
 			display: grid;
@@ -1219,9 +1219,9 @@ Possible extra rowspan handling
       background-attachment: fixed;
     }
   </style>
-  <meta content="Bikeshed version df1bf04b71c9fb8a3d724e46fc13f9cf7065df60" name="generator">
+  <meta content="Bikeshed version 220086d88511a9c99d7a1f9b5447db7e7b99e053" name="generator">
   <link href="https://www.w3.org/TR/generic-sensor/" rel="canonical">
-  <meta content="87489306f0161b67f7db025365781946ce2de780" name="document-revision">
+  <meta content="e4ddca003bcd5587c0f25b78c62439227d5978b7" name="document-revision">
 <style>
     svg g.edge text {
         font-size: 8px;
@@ -1501,7 +1501,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-03-19">19 March 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-08-09">9 August 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1556,7 +1556,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
 	W3C maintains a <a href="https://www.w3.org/2004/01/pp-impl/43696/status" rel="disclosure">public list of any patent disclosures</a> made in connection with the deliverables of the group;
 	that page also includes instructions for disclosing a patent.
 	An individual who has actual knowledge of a patent which the individual believes contains <a href="https://www.w3.org/Consortium/Patent-Policy/#def-essential">Essential Claim(s)</a> must disclose the information in accordance with <a href="https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure">section 6 of the W3C Patent Policy</a>. </p>
-   <p> This document is governed by the <a href="https://www.w3.org/2018/Process-20180201/" id="w3c_process_revision">1 February 2018 W3C Process Document</a>. </p>
+   <p> This document is governed by the <a href="https://www.w3.org/2019/Process-20190301/" id="w3c_process_revision">1 March 2019 W3C Process Document</a>. </p>
    <p></p>
   </div>
   <div data-fill-with="at-risk"></div>
@@ -1750,7 +1750,7 @@ This should have little to no effects on implementations, however.</p>
 sensor discovery API.
 This is because the limited number of sensors currently available to user agents
 does not warrant such an API.
-Using feature detection, such as described in <a href="#feature-detection">§3 A note on Feature Detection of Hardware Features</a>,
+Using feature detection, such as described in <a href="#feature-detection">§ 3 A note on Feature Detection of Hardware Features</a>,
 is good enough for now.
 A subsequent version of this specification might specify such an API,
 and the current API has been designed with this in mind.</p>
@@ -2052,7 +2052,7 @@ who cares about the temperature of a piezo-electric sensor?
 A pressure-altimeter would probably fall in the same category,
 while a nondescript altimeter—<wbr>which could get its data from either a barometer or a GPS signal—<wbr>would clearly be categorized as a <a data-link-type="dfn" href="#high-level" id="ref-for-high-level④">high-level</a> <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type①⓪">sensor type</a>.</p>
    <p>Because the distinction is somewhat blurry,
-extensions to this specification (see <a href="#extensibility">§10 Extensibility</a>)
+extensions to this specification (see <a href="#extensibility">§ 10 Extensibility</a>)
 are encouraged to provide domain-specific definitions of <a data-link-type="dfn" href="#high-level" id="ref-for-high-level⑤">high-level</a> and <a data-link-type="dfn" href="#low-level" id="ref-for-low-level⑥">low-level</a> sensors
 for the given <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type①①">sensor types</a> they are targeting.</p>
    <p><a data-link-type="dfn" href="#sensor-reading" id="ref-for-sensor-reading②⑤">Sensor readings</a> from different <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type①②">sensor types</a> can be combined together
@@ -2472,7 +2472,7 @@ to notify that new <a data-link-type="dfn" href="#sensor-reading" id="ref-for-se
    <p><code class="idl"><a data-link-type="idl" href="#dom-sensor-onactivate" id="ref-for-dom-sensor-onactivate">onactivate</a></code> is an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler④">EventHandler</a></code> which is called when <strong>this</strong>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-state-slot" id="ref-for-dom-sensor-state-slot⑧">[[state]]</a></code> transitions from "activating" to "activated".</p>
    <h4 class="heading settled" data-level="7.1.11" id="sensor-onerror"><span class="secno">7.1.11. </span><span class="content">Sensor.onerror</span><a class="self-link" href="#sensor-onerror"></a></h4>
    <p><code class="idl"><a data-link-type="idl" href="#dom-sensor-onerror" id="ref-for-dom-sensor-onerror">onerror</a></code> is an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler⑤">EventHandler</a></code> which is called whenever
-an <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-exception-type" id="ref-for-dfn-exception-type">exception</a> cannot be handled synchronously.</p>
+an <a data-link-type="dfn">exception</a> cannot be handled synchronously.</p>
    <h4 class="heading settled" data-level="7.1.12" id="event-handlers"><span class="secno">7.1.12. </span><span class="content">Event handlers</span><a class="self-link" href="#event-handlers"></a></h4>
    <p>The following are the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers" id="ref-for-event-handlers①">event handlers</a> (and their corresponding <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-type" id="ref-for-event-handler-event-type①">event handler event types</a>)
 that must be supported as attributes by the objects implementing the <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor①⑧">Sensor</a></code> interface:</p>
@@ -3465,7 +3465,7 @@ that are required by the absolute orientation sensor.
    <h3 class="heading settled" data-level="10.10" id="example-webidl"><span class="secno">10.10. </span><span class="content">Example WebIDL</span><a class="self-link" href="#example-webidl"></a></h3>
    <p>Here’s an example WebIDL for a possible extension of this specification
 for proximity <a data-link-type="dfn" href="#concept-device-sensor" id="ref-for-concept-device-sensor③③">sensors</a>.</p>
-<pre class="example" id="example-457db57a"><a class="self-link" href="#example-457db57a"></a>[Constructor(optional ProximitySensorOptions proximitySensorOptions),
+<pre class="example" id="example-cea89858"><a class="self-link" href="#example-cea89858"></a>[Constructor(optional ProximitySensorOptions proximitySensorOptions = {}),
  SecureContext, Exposed=Window]
 interface ProximitySensor : Sensor {
     readonly attribute double? distance;
@@ -4527,12 +4527,6 @@ for their editorial input.</p>
     <li><a href="#ref-for-idl-double③">9.1.2. MockSensor dictionary</a> <a href="#ref-for-idl-double④">(2)</a> <a href="#ref-for-idl-double⑤">(3)</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-dfn-exception-type">
-   <a href="https://heycam.github.io/webidl/#dfn-exception-type">https://heycam.github.io/webidl/#dfn-exception-type</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dfn-exception-type">7.1.11. Sensor.onerror</a>
-   </ul>
-  </aside>
   <aside class="dfn-panel" data-for="term-for-dfn-identifier">
    <a href="https://heycam.github.io/webidl/#dfn-identifier">https://heycam.github.io/webidl/#dfn-identifier</a><b>Referenced in:</b>
    <ul>
@@ -4744,7 +4738,6 @@ for their editorial input.</p>
      <li><span class="dfn-paneled" id="term-for-dfn-dictionary" style="color:initial">dictionary</span>
      <li><span class="dfn-paneled" id="term-for-dfn-dictionary-member" style="color:initial">dictionary members</span>
      <li><span class="dfn-paneled" id="term-for-idl-double" style="color:initial">double</span>
-     <li><span class="dfn-paneled" id="term-for-dfn-exception-type" style="color:initial">exception types</span>
      <li><span class="dfn-paneled" id="term-for-dfn-identifier" style="color:initial">identifier</span>
      <li><span class="dfn-paneled" id="term-for-dfn-inherited-dictionaries" style="color:initial">inherited dictionaries</span>
      <li><span class="dfn-paneled" id="term-for-dfn-inherited-interfaces" style="color:initial">inherited interfaces</span>
@@ -4758,17 +4751,17 @@ for their editorial input.</p>
   <h3 class="no-num no-ref heading settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
   <dl>
    <dt id="biblio-accelerometer">[ACCELEROMETER]
-   <dd>Anssi Kostiainen; Alexander Shalamov. <a href="https://w3c.github.io/accelerometer/">Accelerometer</a>. URL: <a href="https://w3c.github.io/accelerometer/">https://w3c.github.io/accelerometer/</a>
+   <dd>Anssi Kostiainen. <a href="https://w3c.github.io/accelerometer/">Accelerometer</a>. URL: <a href="https://w3c.github.io/accelerometer/">https://w3c.github.io/accelerometer/</a>
    <dt id="biblio-ambient-light">[AMBIENT-LIGHT]
    <dd>Anssi Kostiainen. <a href="https://w3c.github.io/ambient-light/">Ambient Light Sensor</a>. URL: <a href="https://w3c.github.io/ambient-light/">https://w3c.github.io/ambient-light/</a>
    <dt id="biblio-dom">[DOM]
    <dd>Anne van Kesteren. <a href="https://dom.spec.whatwg.org/">DOM Standard</a>. Living Standard. URL: <a href="https://dom.spec.whatwg.org/">https://dom.spec.whatwg.org/</a>
    <dt id="biblio-feature-policy">[FEATURE-POLICY]
-   <dd><a href="https://wicg.github.io/feature-policy/">Feature Policy</a>. Living Standard. URL: <a href="https://wicg.github.io/feature-policy/">https://wicg.github.io/feature-policy/</a>
+   <dd>Ian Clelland. <a href="https://w3c.github.io/webappsec-feature-policy/">Feature Policy</a>. URL: <a href="https://w3c.github.io/webappsec-feature-policy/">https://w3c.github.io/webappsec-feature-policy/</a>
    <dt id="biblio-geolocation-sensor">[GEOLOCATION-SENSOR]
    <dd>Anssi Kostiainen; Thomas Steiner. <a href="https://w3c.github.io/geolocation-sensor/">Geolocation Sensor</a>. URL: <a href="https://w3c.github.io/geolocation-sensor/">https://w3c.github.io/geolocation-sensor/</a>
    <dt id="biblio-gyroscope">[GYROSCOPE]
-   <dd>Anssi Kostiainen; Mikhail Pozdnyakov. <a href="https://w3c.github.io/gyroscope/">Gyroscope</a>. URL: <a href="https://w3c.github.io/gyroscope/">https://w3c.github.io/gyroscope/</a>
+   <dd>Anssi Kostiainen. <a href="https://w3c.github.io/gyroscope/">Gyroscope</a>. URL: <a href="https://w3c.github.io/gyroscope/">https://w3c.github.io/gyroscope/</a>
    <dt id="biblio-hr-time-2">[HR-TIME-2]
    <dd>Ilya Grigorik; James Simonsen; Jatinder Mann. <a href="https://w3c.github.io/hr-time/">High Resolution Time Level 2</a>. URL: <a href="https://w3c.github.io/hr-time/">https://w3c.github.io/hr-time/</a>
    <dt id="biblio-html">[HTML]
@@ -4778,7 +4771,7 @@ for their editorial input.</p>
    <dt id="biblio-magnetometer">[MAGNETOMETER]
    <dd>Anssi Kostiainen; Rijubrata Bhaumik. <a href="https://w3c.github.io/magnetometer/">Magnetometer</a>. URL: <a href="https://w3c.github.io/magnetometer/">https://w3c.github.io/magnetometer/</a>
    <dt id="biblio-orientation-sensor">[ORIENTATION-SENSOR]
-   <dd>Mikhail Pozdnyakov; et al. <a href="https://w3c.github.io/orientation-sensor/">Orientation Sensor</a>. URL: <a href="https://w3c.github.io/orientation-sensor/">https://w3c.github.io/orientation-sensor/</a>
+   <dd>Kenneth Christiansen; Anssi Kostiainen. <a href="https://w3c.github.io/orientation-sensor/">Orientation Sensor</a>. URL: <a href="https://w3c.github.io/orientation-sensor/">https://w3c.github.io/orientation-sensor/</a>
    <dt id="biblio-page-visibility">[PAGE-VISIBILITY]
    <dd>Jatinder Mann; Arvind Jain. <a href="https://www.w3.org/TR/page-visibility/">Page Visibility (Second Edition)</a>. 29 October 2013. REC. URL: <a href="https://www.w3.org/TR/page-visibility/">https://www.w3.org/TR/page-visibility/</a>
    <dt id="biblio-permissions">[PERMISSIONS]
@@ -4792,7 +4785,7 @@ for their editorial input.</p>
    <dt id="biblio-webdriver">[WebDriver]
    <dd>Simon Stewart; David Burns. <a href="https://w3c.github.io/webdriver/">WebDriver</a>. URL: <a href="https://w3c.github.io/webdriver/">https://w3c.github.io/webdriver/</a>
    <dt id="biblio-webidl">[WebIDL]
-   <dd>Cameron McCormack; Boris Zbarsky; Tobie Langel. <a href="https://heycam.github.io/webidl/">Web IDL</a>. URL: <a href="https://heycam.github.io/webidl/">https://heycam.github.io/webidl/</a>
+   <dd>Boris Zbarsky. <a href="https://heycam.github.io/webidl/">Web IDL</a>. URL: <a href="https://heycam.github.io/webidl/">https://heycam.github.io/webidl/</a>
   </dl>
   <h3 class="no-num no-ref heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
   <dl>
@@ -4821,7 +4814,7 @@ for their editorial input.</p>
    <dt id="biblio-rfc6454">[RFC6454]
    <dd>A. Barth. <a href="https://tools.ietf.org/html/rfc6454">The Web Origin Concept</a>. December 2011. Proposed Standard. URL: <a href="https://tools.ietf.org/html/rfc6454">https://tools.ietf.org/html/rfc6454</a>
    <dt id="biblio-security-privacy-questionnaire">[SECURITY-PRIVACY-QUESTIONNAIRE]
-   <dd>Mike West. <a href="https://w3ctag.github.io/security-questionnaire/">Self-Review Questionnaire: Security and Privacy</a>. URL: <a href="https://w3ctag.github.io/security-questionnaire/">https://w3ctag.github.io/security-questionnaire/</a>
+   <dd>Lukasz Olejnik; Jason Novak. <a href="https://w3ctag.github.io/security-questionnaire/">Self-Review Questionnaire: Security and Privacy</a>. URL: <a href="https://w3ctag.github.io/security-questionnaire/">https://w3ctag.github.io/security-questionnaire/</a>
    <dt id="biblio-si">[SI]
    <dd><a href="http://www.bipm.org/en/publications/si-brochure/">SI Brochure: The International System of Units (SI), 8th edition</a>. 2014. URL: <a href="http://www.bipm.org/en/publications/si-brochure/">http://www.bipm.org/en/publications/si-brochure/</a>
    <dt id="biblio-stealingpinsviasensors">[STEALINGPINSVIASENSORS]
