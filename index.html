@@ -1219,9 +1219,9 @@ Possible extra rowspan handling
       background-attachment: fixed;
     }
   </style>
-  <meta content="Bikeshed version 220086d88511a9c99d7a1f9b5447db7e7b99e053" name="generator">
+  <meta content="Bikeshed version e86d5b1b47a216fa66165c234892adc259212183" name="generator">
   <link href="https://www.w3.org/TR/generic-sensor/" rel="canonical">
-  <meta content="e4ddca003bcd5587c0f25b78c62439227d5978b7" name="document-revision">
+  <meta content="8c9505c66fb3b55414850337e211a80ef713c9ca" name="document-revision">
 <style>
     svg g.edge text {
         font-size: 8px;
@@ -1501,7 +1501,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-08-09">9 August 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-09-24">24 September 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2493,9 +2493,9 @@ that must be supported as attributes by the objects implementing the <code class
       <td><code>error</code>
    </table>
    <h3 class="heading settled" data-level="7.2" id="the-sensor-error-event-interface"><span class="secno">7.2. </span><span class="content">The SensorErrorEvent Interface</span><a class="self-link" href="#the-sensor-error-event-interface"></a></h3>
-<pre class="idl highlight def">[<dfn class="idl-code" data-dfn-for="SensorErrorEvent" data-dfn-type="constructor" data-export data-lt="SensorErrorEvent(type, errorEventInitDict)" id="dom-sensorerrorevent-sensorerrorevent"><code><c- g>Constructor</c-></code><a class="self-link" href="#dom-sensorerrorevent-sensorerrorevent"></a></dfn>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString"><c- b>DOMString</c-></a> <dfn class="idl-code" data-dfn-for="SensorErrorEvent/SensorErrorEvent(type, errorEventInitDict)" data-dfn-type="argument" data-export id="dom-sensorerrorevent-sensorerrorevent-type-erroreventinitdict-type"><code><c- g>type</c-></code><a class="self-link" href="#dom-sensorerrorevent-sensorerrorevent-type-erroreventinitdict-type"></a></dfn>, <a class="n" data-link-type="idl-name" href="#dictdef-sensorerroreventinit" id="ref-for-dictdef-sensorerroreventinit"><c- n>SensorErrorEventInit</c-></a> <dfn class="idl-code" data-dfn-for="SensorErrorEvent/SensorErrorEvent(type, errorEventInitDict)" data-dfn-type="argument" data-export id="dom-sensorerrorevent-sensorerrorevent-type-erroreventinitdict-erroreventinitdict"><code><c- g>errorEventInitDict</c-></code><a class="self-link" href="#dom-sensorerrorevent-sensorerrorevent-type-erroreventinitdict-erroreventinitdict"></a></dfn>),
- <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①"><c- g>Exposed</c-></a>=(<c- n>DedicatedWorker</c->, <c- n>Window</c->)]
+<pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①"><c- g>Exposed</c-></a>=(<c- n>DedicatedWorker</c->, <c- n>Window</c->)]
 <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="sensorerrorevent"><code><c- g>SensorErrorEvent</c-></code></dfn> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#event" id="ref-for-event"><c- n>Event</c-></a> {
+  <dfn class="idl-code" data-dfn-for="SensorErrorEvent" data-dfn-type="constructor" data-export data-lt="SensorErrorEvent(type, errorEventInitDict)|constructor(type, errorEventInitDict)" id="dom-sensorerrorevent-sensorerrorevent"><code><c- g>constructor</c-></code><a class="self-link" href="#dom-sensorerrorevent-sensorerrorevent"></a></dfn>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString"><c- b>DOMString</c-></a> <dfn class="idl-code" data-dfn-for="SensorErrorEvent/constructor(type, errorEventInitDict)" data-dfn-type="argument" data-export id="dom-sensorerrorevent-constructor-type-erroreventinitdict-type"><code><c- g>type</c-></code><a class="self-link" href="#dom-sensorerrorevent-constructor-type-erroreventinitdict-type"></a></dfn>, <a class="n" data-link-type="idl-name" href="#dictdef-sensorerroreventinit" id="ref-for-dictdef-sensorerroreventinit"><c- n>SensorErrorEventInit</c-></a> <dfn class="idl-code" data-dfn-for="SensorErrorEvent/constructor(type, errorEventInitDict)" data-dfn-type="argument" data-export id="dom-sensorerrorevent-constructor-type-erroreventinitdict-erroreventinitdict"><code><c- g>errorEventInitDict</c-></code><a class="self-link" href="#dom-sensorerrorevent-constructor-type-erroreventinitdict-erroreventinitdict"></a></dfn>);
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException②"><c- n>DOMException</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="SensorErrorEvent" data-dfn-type="attribute" data-export data-readonly data-type="DOMException" id="dom-sensorerrorevent-error"><code><c- g>error</c-></code></dfn>;
 };
 
@@ -3383,7 +3383,7 @@ each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type④⓪">
     <li data-md>
      <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="extension-sensor-interface">extension sensor interface</dfn>, which is an <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-interface" id="ref-for-dfn-interface">interface</a> whose <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-inherited-interfaces" id="ref-for-dfn-inherited-interfaces">inherited interfaces</a> contains <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor④⑤">Sensor</a></code>.
   The <a data-link-type="dfn" href="#extension-sensor-interface" id="ref-for-extension-sensor-interface④">extension sensor interface</a> must be constructible.
-  Its [<code class="idl"><a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Constructor" id="ref-for-Constructor">Constructor</a></code>] must take, as an argument,
+  Its [<code class="idl"><a class="idl-code" data-link-type="extended-attribute">Constructor</a></code>] must take, as an argument,
   an optional <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-dictionary" id="ref-for-dfn-dictionary①">dictionary</a> whose <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-inherited-dictionaries" id="ref-for-dfn-inherited-dictionaries">inherited dictionaries</a> contains <code class="idl"><a data-link-type="idl" href="#dictdef-sensoroptions" id="ref-for-dictdef-sensoroptions①">SensorOptions</a></code>.</p>
      <p>The <a data-link-type="dfn" href="#extension-sensor-interface" id="ref-for-extension-sensor-interface⑤">extension sensor interface</a> has a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set" id="ref-for-ordered-set①①">set</a> of supported options
   referred to as <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="supported-sensor-options">supported sensor options</dfn>.
@@ -3465,9 +3465,9 @@ that are required by the absolute orientation sensor.
    <h3 class="heading settled" data-level="10.10" id="example-webidl"><span class="secno">10.10. </span><span class="content">Example WebIDL</span><a class="self-link" href="#example-webidl"></a></h3>
    <p>Here’s an example WebIDL for a possible extension of this specification
 for proximity <a data-link-type="dfn" href="#concept-device-sensor" id="ref-for-concept-device-sensor③③">sensors</a>.</p>
-<pre class="example" id="example-cea89858"><a class="self-link" href="#example-cea89858"></a>[Constructor(optional ProximitySensorOptions proximitySensorOptions = {}),
- SecureContext, Exposed=Window]
+<pre class="example" id="example-ce90960e"><a class="self-link" href="#example-ce90960e"></a>[SecureContext, Exposed=Window]
 interface ProximitySensor : Sensor {
+    constructor(optional ProximitySensorOptions proximitySensorOptions = {});
     readonly attribute double? distance;
 };
 
@@ -3750,6 +3750,7 @@ for their editorial input.</p>
    <li><a href="#dom-mocksensorconfiguration-connected">connected</a><span>, in §9.1.1</span>
    <li><a href="#connection-flag">connection flag</a><span>, in §9.1.1</span>
    <li><a href="#connect-to-sensor">Connect to sensor</a><span>, in §8.2</span>
+   <li><a href="#dom-sensorerrorevent-sensorerrorevent">constructor(type, errorEventInitDict)</a><span>, in §7.2</span>
    <li><a href="#create-mock-sensor">create mock sensor</a><span>, in §9.2.1</span>
    <li><a href="#deactivate-a-sensor-object">Deactivate a sensor object</a><span>, in §8.4</span>
    <li><a href="#default-sensor">default sensor</a><span>, in §5.3</span>
@@ -4420,12 +4421,6 @@ for their editorial input.</p>
     <li><a href="#ref-for-dfn-error-code①④">9.3. Handling errors</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-Constructor">
-   <a href="https://heycam.github.io/webidl/#Constructor">https://heycam.github.io/webidl/#Constructor</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-Constructor">10.6. Definition Requirements</a>
-   </ul>
-  </aside>
   <aside class="dfn-panel" data-for="term-for-idl-DOMException">
    <a href="https://heycam.github.io/webidl/#idl-DOMException">https://heycam.github.io/webidl/#idl-DOMException</a><b>Referenced in:</b>
    <ul>
@@ -4723,7 +4718,6 @@ for their editorial input.</p>
    <li>
     <a data-link-type="biblio">[WebIDL]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-Constructor" style="color:initial">Constructor</span>
      <li><span class="dfn-paneled" id="term-for-idl-DOMException" style="color:initial">DOMException</span>
      <li><span class="dfn-paneled" id="term-for-idl-DOMString" style="color:initial">DOMString</span>
      <li><span class="dfn-paneled" id="term-for-Exposed" style="color:initial">Exposed</span>
@@ -4800,7 +4794,7 @@ for their editorial input.</p>
    <dt id="biblio-generic-sensor-usecases">[GENERIC-SENSOR-USECASES]
    <dd>Rick Waldron, Mikhail Pozdnyakov, Alexander Shalamov. <a href="https://w3c.github.io/sensors/usecases">Sensor Use Cases</a>. 2017. Note. URL: <a href="https://w3c.github.io/sensors/usecases">https://w3c.github.io/sensors/usecases</a>
    <dt id="biblio-geolocation-api">[GEOLOCATION-API]
-   <dd>Andrei Popescu. <a href="http://dev.w3.org/geo/api/spec-source.html">Geolocation API Specification 2nd Edition</a>. URL: <a href="http://dev.w3.org/geo/api/spec-source.html">http://dev.w3.org/geo/api/spec-source.html</a>
+   <dd>Andrei Popescu. <a href="https://w3c.github.io/geolocation-api/">Geolocation API Specification 2nd Edition</a>. URL: <a href="https://w3c.github.io/geolocation-api/">https://w3c.github.io/geolocation-api/</a>
    <dt id="biblio-gyrospeechrecognition">[GYROSPEECHRECOGNITION]
    <dd>Michalevsky, Y., Boneh, D. and Nakibly, G.. <a href="https://www.usenix.org/system/files/conference/usenixsecurity14/sec14-paper-michalevsky.pdf">Gyrophone: Recognizing Speech from Gyroscope Signals</a>. 2014. Informational. URL: <a href="https://www.usenix.org/system/files/conference/usenixsecurity14/sec14-paper-michalevsky.pdf">https://www.usenix.org/system/files/conference/usenixsecurity14/sec14-paper-michalevsky.pdf</a>
    <dt id="biblio-mobilesensors">[MOBILESENSORS]
@@ -4808,7 +4802,7 @@ for their editorial input.</p>
    <dt id="biblio-motion-sensors">[MOTION-SENSORS]
    <dd>Kenneth Christiansen; Alexander Shalamov. <a href="https://w3c.github.io/motion-sensors/">Motion Sensors Explainer</a>. URL: <a href="https://w3c.github.io/motion-sensors/">https://w3c.github.io/motion-sensors/</a>
    <dt id="biblio-orientation-event">[ORIENTATION-EVENT]
-   <dd>Rich Tibbett; et al. <a href="https://w3c.github.io/deviceorientation/spec-source-orientation.html">DeviceOrientation Event Specification</a>. URL: <a href="https://w3c.github.io/deviceorientation/spec-source-orientation.html">https://w3c.github.io/deviceorientation/spec-source-orientation.html</a>
+   <dd>Rich Tibbett; et al. <a href="https://w3c.github.io/deviceorientation/">DeviceOrientation Event Specification</a>. URL: <a href="https://w3c.github.io/deviceorientation/">https://w3c.github.io/deviceorientation/</a>
    <dt id="biblio-qudt">[QUDT]
    <dd>Ralph Hodgson; et al. <a href="http://www.qudt.org/">QUDT - Quantities, Units, Dimensions and Data Types Ontologies</a>. 18 March 2014. URL: <a href="http://www.qudt.org/">http://www.qudt.org/</a>
    <dt id="biblio-rfc6454">[RFC6454]
@@ -4837,9 +4831,9 @@ for their editorial input.</p>
   <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑥"><c- b>double</c-></a> <a data-type="double " href="#dom-sensoroptions-frequency"><code><c- g>frequency</c-></code></a>;
 };
 
-[<a href="#dom-sensorerrorevent-sensorerrorevent"><code><c- g>Constructor</c-></code></a>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString①"><c- b>DOMString</c-></a> <a href="#dom-sensorerrorevent-sensorerrorevent-type-erroreventinitdict-type"><code><c- g>type</c-></code></a>, <a class="n" data-link-type="idl-name" href="#dictdef-sensorerroreventinit" id="ref-for-dictdef-sensorerroreventinit②"><c- n>SensorErrorEventInit</c-></a> <a href="#dom-sensorerrorevent-sensorerrorevent-type-erroreventinitdict-erroreventinitdict"><code><c- g>errorEventInitDict</c-></code></a>),
- <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①①"><c- g>Exposed</c-></a>=(<c- n>DedicatedWorker</c->, <c- n>Window</c->)]
+[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①①"><c- g>Exposed</c-></a>=(<c- n>DedicatedWorker</c->, <c- n>Window</c->)]
 <c- b>interface</c-> <a href="#sensorerrorevent"><code><c- g>SensorErrorEvent</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#event" id="ref-for-event①"><c- n>Event</c-></a> {
+  <a href="#dom-sensorerrorevent-sensorerrorevent"><code><c- g>constructor</c-></code></a>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString①"><c- b>DOMString</c-></a> <a href="#dom-sensorerrorevent-constructor-type-erroreventinitdict-type"><code><c- g>type</c-></code></a>, <a class="n" data-link-type="idl-name" href="#dictdef-sensorerroreventinit" id="ref-for-dictdef-sensorerroreventinit②"><c- n>SensorErrorEventInit</c-></a> <a href="#dom-sensorerrorevent-constructor-type-erroreventinitdict-erroreventinitdict"><code><c- g>errorEventInitDict</c-></code></a>);
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException②①"><c- n>DOMException</c-></a> <a data-readonly data-type="DOMException" href="#dom-sensorerrorevent-error"><code><c- g>error</c-></code></a>;
 };
 
