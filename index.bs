@@ -1260,9 +1260,9 @@ that must be supported as attributes by the objects implementing the {{Sensor}} 
 <h3 id="the-sensor-error-event-interface">The SensorErrorEvent Interface</h3>
 
 <pre class="idl">
-[Constructor(DOMString type, SensorErrorEventInit errorEventInitDict),
- SecureContext, Exposed=(DedicatedWorker, Window)]
+[SecureContext, Exposed=(DedicatedWorker, Window)]
 interface SensorErrorEvent : Event {
+  constructor(DOMString type, SensorErrorEventInit errorEventInitDict);
   readonly attribute DOMException error;
 };
 
