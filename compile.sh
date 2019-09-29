@@ -8,5 +8,5 @@ if [ -d out ]; then
   echo Copy the generated spec into out/
   cp index.html out/index.html
   cp usecases.html out/usecases.html
-  cp -R images/ out/images/
+  rm -rf out/images && cp -R images/ out/images/
 fi
