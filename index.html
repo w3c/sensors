@@ -1219,9 +1219,9 @@ Possible extra rowspan handling
       background-attachment: fixed;
     }
   </style>
-  <meta content="Bikeshed version e86d5b1b47a216fa66165c234892adc259212183" name="generator">
+  <meta content="Bikeshed version 98212c11613b78977e54b28cc53499f2ee83d388" name="generator">
   <link href="https://www.w3.org/TR/generic-sensor/" rel="canonical">
-  <meta content="7c0b8f9f230496ac1962abe1e054a100135becd8" name="document-revision">
+  <meta content="89c2080d6e70bd367de071002eeee718fec45db0" name="document-revision">
 <style>
     svg g.edge text {
         font-size: 8px;
@@ -1501,7 +1501,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-09-29">29 September 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-10-21">21 October 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -3448,10 +3448,10 @@ otherwise, the <a data-link-type="dfn" href="#sensor-feature-names" id="ref-for-
 <pre class="highlight"><c- p>&lt;</c-><c- f>iframe</c-> <c- e>src</c-><c- o>=</c-><c- s>"https://third-party.com"</c-> <c- e>allow</c-><c- o>=</c-><c- s>"accelerometer"</c-><c- p>/>&lt;/</c-><c- f>iframe</c-><c- p>></c->
 </pre>
    </div>
-   <div class="example html" id="example-c8a0fab8">
-    <a class="self-link" href="#example-c8a0fab8"></a> A sensor usage is disabled completely by specifying the feature policy in a HTTP
+   <div class="example html" id="example-a3ba22ce">
+    <a class="self-link" href="#example-a3ba22ce"></a> A sensor usage is disabled completely by specifying the feature policy in a HTTP
 response header: 
-<pre class="highlight">Feature<c- o>-</c->Policy<c- o>:</c-> <c- p>{</c-><c- u>"accelerometer"</c-><c- o>:</c-> <c- p>[]}</c->
+<pre class="highlight">Feature<c- o>-</c->Policy<c- o>:</c-> accelerometer <c- t>'none'</c->
 </pre>
    </div>
    <p><a data-link-type="dfn" href="#sensor-fusion" id="ref-for-sensor-fusion①①">Fusion sensors</a> must use <a data-link-type="dfn" href="#sensor-feature-names" id="ref-for-sensor-feature-names④">sensor feature names</a> of the sensors
