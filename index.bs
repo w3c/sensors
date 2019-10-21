@@ -2162,7 +2162,7 @@ The accelerometer feature is selectively enabled for third-party origin by addin
 A sensor usage is disabled completely by specifying the feature policy in a HTTP
 response header:
 <pre highlight="js">
- Feature-Policy: {"accelerometer": []}
+ Feature-Policy: accelerometer 'none'
 </pre>
 </div>
 
