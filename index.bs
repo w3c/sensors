@@ -27,6 +27,8 @@ Boilerplate: omit issues-index, omit conformance, omit feedback-header
 Ignored Vars: activated_sensors
 Inline GitHub Issues: yes
 Default Biblio Status: current
+Status Text: Further implementation experience is being gathered for the [=permission request algorithm=] and specification clarifications informed by this experience are being discussed in <a href="https://github.com/w3c/sensors/issues/397">GitHub issue #397</a>.
+At Risk: [[PERMISSIONS-REQUEST]]
 </pre>
 <pre class="anchors">
 urlPrefix: https://dom.spec.whatwg.org; spec: DOM
@@ -831,6 +833,8 @@ A [=sensor type=] has a [=permission revocation algorithm=].
         1.  [=set/For each=] |sensor| in |sensor_type|'s [=ordered set|set=] of [=associated sensors=],
             1.  Invoke [=revoke sensor permission=] with |sensor| as argument.
 </div>
+
+A [=sensor type=] has a [=permission request algorithm=].
 
 A [=sensor type=] has a [=set/is empty|nonempty=] [=ordered set|set=] of associated
 [=policy-controlled feature=] tokens referred to as <dfn export>sensor feature names</dfn>.
