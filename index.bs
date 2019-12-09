@@ -34,7 +34,6 @@ Status Text:
   <a href="https://github.com/w3c/sensors/issues/397">GitHub issue #397</a>.
   The group does not expect to advance this specification beyond CR until
   [[PERMISSIONS-REQUEST]] moves beyond incubation.
-At Risk: [[PERMISSIONS-REQUEST]]
 </pre>
 <pre class="anchors">
 urlPrefix: https://dom.spec.whatwg.org; spec: DOM
