@@ -475,9 +475,9 @@ the given [=sensor type=]. See [[FEATURE-POLICY]] for more details.
 
 <h4 id="focused-area" oldids="losing-focus">Focused Area</h4>
 
-[=Sensor readings=] are only available for [=active documents=] whose
-origin is [=same origin-domain=] with the [=currently focused area=]
-document.
+[=Sensor readings=] are only available for [=active documents=] whose origin is
+[=same origin-domain=] with the document of the [=currently focused area=] of
+the [=top-level browsing context=] of the specified [=active document=].
 
 This is done in order to mitigate the risk of a skimming attack against the
 [=browsing context=] containing an element which has [=gains focus|gained focus=],
@@ -802,8 +802,10 @@ The <dfn>mandatory conditions</dfn> are the following:
  - [=document visibility state|Visibility state=] of the document is "visible".
  - The document is [=allowed to use=] all the [=policy-controlled features=] associated
    with the given [=sensor type=].
- - [=Currently focused area=] belongs to a document whose origin is [=same origin-domain=]
-   with the origin of the given [=active document=].
+ - The [=currently focused area=] of the [=top-level browsing context=] of the
+   [=Document/browsing context=] of the given [=active document=] belongs to a
+   document whose origin is [=same origin-domain=] with the origin of the given
+   [=active document=].
  - <dfn>Specific conditions</dfn>: The [=extension specifications=] that add new
    [=mandatory conditions|conditions=] hook into this specification at this point.
 
