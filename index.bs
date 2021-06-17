@@ -74,7 +74,7 @@ urlPrefix: https://www.w3.org/TR/page-visibility-2/; spec: PAGE-VISIBILITY
   type: dfn
     text: document visibility state; url: dom-visibilitystate
     text: visibility states; url: dfn-visibility-states
-    text: steps to determine the visibility state; url: dfn-steps-to-determine-the-visibility-state
+    text: steps to determine the visibility state; url: dfn-determine-the-visibility-state
 urlPrefix: https://w3ctag.github.io/security-questionnaire/; spec: SECURITY-PRIVACY-QUESTIONNAIRE
   type: dfn
     text: same-origin policy violations; url: sop-violations
@@ -91,9 +91,9 @@ urlPrefix: https://w3c.github.io/webdriver/; spec: WebDriver
     text: remote end steps; url: dfn-remote-end-steps
     text: extension command URI template; url: dfn-extension-command-uri-template
     text: invalid argument; url: dfn-invalid-argument
-    text: local end; url: dfn-local-end
+    text: local end; url: dfn-local-ends
     text: url variable; url: dfn-url-variables
-    text: session; url: dfn-session
+    text: session; url: dfn-sessions
     text: success; url: dfn-success
     text: handling errors
     text: Object; url: dfn-object
