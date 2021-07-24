@@ -5,9 +5,9 @@
   <title>Generic Sensor API</title>
   <meta content="ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED" rel="stylesheet" type="text/css">
-  <meta content="Bikeshed version 3d6a6fcbb, updated Wed Jun 16 16:19:39 2021 -0700" name="generator">
+  <meta content="Bikeshed version 59d067506, updated Fri Jul 23 15:43:29 2021 -0700" name="generator">
   <link href="https://www.w3.org/TR/generic-sensor/" rel="canonical">
-  <meta content="2d0672722d5e278faa4b6fd737f133902edcedfb" name="document-revision">
+  <meta content="1dc88b5525a21d51cd069226d1f4280c7bdf918a" name="document-revision">
 <style>
     svg g.edge text {
         font-size: 8px;
@@ -657,7 +657,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2021-06-17">17 June 2021</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2021-07-24">24 July 2021</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1087,7 +1087,7 @@ origin is <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/o
 for example when the user carries out an in-game purchase using a third party
 payment service from within an iframe.</p>
    <h4 class="heading settled" data-level="4.2.4" id="visibility-state"><span class="secno">4.2.4. </span><span class="content">Visibility State</span><a class="self-link" href="#visibility-state"></a></h4>
-   <p><a data-link-type="dfn" href="#sensor-reading" id="ref-for-sensor-reading①⓪">Sensor readings</a> are only available for the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#active-document" id="ref-for-active-document①">active documents</a> whose <a data-link-type="dfn" href="https://www.w3.org/TR/page-visibility-2/#dfn-steps-to-determine-the-visibility-state" id="ref-for-dfn-steps-to-determine-the-visibility-state">visibility state</a> is "visible".</p>
+   <p><a data-link-type="dfn" href="#sensor-reading" id="ref-for-sensor-reading①⓪">Sensor readings</a> are only available for the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#active-document" id="ref-for-active-document①">active documents</a> whose <a data-link-type="dfn" href="https://www.w3.org/TR/page-visibility-2/#dfn-determine-the-visibility-state" id="ref-for-dfn-determine-the-visibility-state">visibility state</a> is "visible".</p>
    <h4 class="heading settled" data-level="4.2.5" id="permissions"><span class="secno">4.2.5. </span><span class="content">Permissions API</span><span id="permissioning"></span><a class="self-link" href="#permissions"></a></h4>
    <p>Access to <a data-link-type="dfn" href="#sensor-reading" id="ref-for-sensor-reading①①">sensor readings</a> are controlled by the Permissions API <a data-link-type="biblio" href="#biblio-permissions">[PERMISSIONS]</a>.</p>
    <h3 class="heading settled" data-level="4.3" id="mitigation-strategies-case-by-case"><span class="secno">4.3. </span><span class="content">Mitigation strategies applied on a case by case basis</span><a class="self-link" href="#mitigation-strategies-case-by-case"></a></h3>
@@ -1340,7 +1340,7 @@ platform interfaces that expose it.</p>
    <p>The <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading②">latest reading</a>["timestamp"] is initially set to null,
 unless the <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading③">latest reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map③">map</a> caches a previous <a data-link-type="dfn" href="#sensor-reading" id="ref-for-sensor-reading③⑦">reading</a>.</p>
    <p>The other <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry" id="ref-for-map-entry①">entries</a> of the <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading④">latest reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map④">map</a> hold the values of the different quantities measured by the <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①②">platform sensor</a>.
-The <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-key" id="ref-for-map-key①">keys</a> of these <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry" id="ref-for-map-entry②">entries</a> must match
+The <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-keys" id="ref-for-map-getting-the-keys">keys</a> of these <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry" id="ref-for-map-entry②">entries</a> must match
 the <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-attribute" id="ref-for-dfn-attribute">attribute</a> <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-identifier" id="ref-for-dfn-identifier">identifier</a> defined by the <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type③⓪">sensor type</a>'s
 associated <a data-link-type="dfn" href="#extension-sensor-interface" id="ref-for-extension-sensor-interface①">extension sensor interface</a>.
 The return value of the <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-attribute" id="ref-for-dfn-attribute①">attribute</a> getter is
@@ -1546,7 +1546,7 @@ with the internal slots described in the following table:</p>
    <div class="mdn-anno wrapped after">
     <button class="mdn-anno-btn"><b class="less-than-two-engines-flag" title="This feature is in less than two current engines.">⚠</b><span>MDN</span></button>
     <div class="feature">
-     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Sensor/activated" title="The activated read-only property of the Sensor interface returns a Boolean indicating whether the sensor is active. ">Sensor/activated</a></p>
+     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Sensor/activated" title="The activated read-only property of the Sensor interface returns a Boolean indicating whether the sensor is active.">Sensor/activated</a></p>
      <p class="less-than-two-engines-text">In only one current engine.</p>
      <div class="support">
       <span class="firefox no"><span>Firefox</span><span>None</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>67+</span></span>
@@ -1573,7 +1573,7 @@ with the internal slots described in the following table:</p>
    <div class="mdn-anno wrapped after">
     <button class="mdn-anno-btn"><b class="less-than-two-engines-flag" title="This feature is in less than two current engines.">⚠</b><span>MDN</span></button>
     <div class="feature">
-     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Sensor/hasReading" title="The hasReading read-only property of the Sensor interface returns a Boolean indicating whether the sensor has a reading. ">Sensor/hasReading</a></p>
+     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Sensor/hasReading" title="The hasReading read-only property of the Sensor interface returns a Boolean indicating whether the sensor has a reading.">Sensor/hasReading</a></p>
      <p class="less-than-two-engines-text">In only one current engine.</p>
      <div class="support">
       <span class="firefox no"><span>Firefox</span><span>None</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>67+</span></span>
@@ -1601,7 +1601,7 @@ with the internal slots described in the following table:</p>
    <div class="mdn-anno wrapped after">
     <button class="mdn-anno-btn"><b class="less-than-two-engines-flag" title="This feature is in less than two current engines.">⚠</b><span>MDN</span></button>
     <div class="feature">
-     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Sensor/timestamp" title="The timestamp read-only property of the Sensor interface returns the time stamp of the latest sensor reading. ">Sensor/timestamp</a></p>
+     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Sensor/timestamp" title="The timestamp read-only property of the Sensor interface returns the time stamp of the latest sensor reading.">Sensor/timestamp</a></p>
      <p class="less-than-two-engines-text">In only one current engine.</p>
      <div class="support">
       <span class="firefox no"><span>Firefox</span><span>None</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>67+</span></span>
@@ -1620,7 +1620,7 @@ the result of invoking <a data-link-type="dfn" href="#get-value-from-latest-read
    <div class="mdn-anno wrapped after">
     <button class="mdn-anno-btn"><b class="less-than-two-engines-flag" title="This feature is in less than two current engines.">⚠</b><span>MDN</span></button>
     <div class="feature">
-     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Sensor/start" title="The start method activates one of the sensors based on Sensor. ">Sensor/start</a></p>
+     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Sensor/start" title="The start method activates one of the sensors based on Sensor.">Sensor/start</a></p>
      <p class="less-than-two-engines-text">In only one current engine.</p>
      <div class="support">
       <span class="firefox no"><span>Firefox</span><span>None</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>67+</span></span>
@@ -1682,7 +1682,7 @@ the result of invoking <a data-link-type="dfn" href="#get-value-from-latest-read
    <div class="mdn-anno wrapped after">
     <button class="mdn-anno-btn"><b class="less-than-two-engines-flag" title="This feature is in less than two current engines.">⚠</b><span>MDN</span></button>
     <div class="feature">
-     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Sensor/stop" title="The stop method of the Sensor interface deactivates the current sensor. ">Sensor/stop</a></p>
+     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Sensor/stop" title="The stop method of the Sensor interface deactivates the current sensor.">Sensor/stop</a></p>
      <p class="less-than-two-engines-text">In only one current engine.</p>
      <div class="support">
       <span class="firefox no"><span>Firefox</span><span>None</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>67+</span></span>
@@ -1789,7 +1789,7 @@ that must be supported as attributes by the objects implementing the <code class
    <div class="mdn-anno wrapped after">
     <button class="mdn-anno-btn"><b class="less-than-two-engines-flag" title="This feature is in less than two current engines.">⚠</b><span>MDN</span></button>
     <div class="feature">
-     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/SensorErrorEvent" title="The SensorErrorEvent interface of the Sensor APIs provides information about errors thrown by a Sensor or related interface. ">SensorErrorEvent</a></p>
+     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/SensorErrorEvent" title="The SensorErrorEvent interface of the Sensor APIs provides information about errors thrown by a Sensor or derivated interface.">SensorErrorEvent</a></p>
      <p class="less-than-two-engines-text">In only one current engine.</p>
      <div class="support">
       <span class="firefox no"><span>Firefox</span><span>None</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>67+</span></span>
@@ -1832,7 +1832,7 @@ that must be supported as attributes by the objects implementing the <code class
    <div class="mdn-anno wrapped after">
     <button class="mdn-anno-btn"><b class="less-than-two-engines-flag" title="This feature is in less than two current engines.">⚠</b><span>MDN</span></button>
     <div class="feature">
-     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/SensorErrorEvent/error" title="The error read-only property of the SensorErrorEvent interface returns the DOMException object passed in the event&apos;s contructor. ">SensorErrorEvent/error</a></p>
+     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/SensorErrorEvent/error" title="The error read-only property of the SensorErrorEvent interface returns the DOMException object passed in the event&apos;s contructor.">SensorErrorEvent/error</a></p>
      <p class="less-than-two-engines-text">In only one current engine.</p>
      <div class="support">
       <span class="firefox no"><span>Firefox</span><span>None</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>67+</span></span>
@@ -2326,9 +2326,9 @@ and their responses to requests are well defined.</p>
    <p>A <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor①">mock sensor</a> reports a corresponding <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="mock-sensor-reading">mock <a data-link-type="dfn" href="#sensor-reading" id="ref-for-sensor-reading④⑨">sensor reading</a></dfn>, which is a source of
 mocking information about the environment, to the <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor③①">Sensor</a></code> objects.</p>
    <p>The <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context">current browsing context</a>'s <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②">mock sensor</a> has an associated <a data-link-type="dfn" href="#mock-sensor-reading" id="ref-for-mock-sensor-reading">mock sensor reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map⑥">map</a>.</p>
-   <p>The <a data-link-type="dfn" href="#mock-sensor-reading" id="ref-for-mock-sensor-reading①">mock sensor reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map⑦">map</a> contains an <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry" id="ref-for-map-entry④">entry</a> whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-key" id="ref-for-map-key②">key</a> is
+   <p>The <a data-link-type="dfn" href="#mock-sensor-reading" id="ref-for-mock-sensor-reading①">mock sensor reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map⑦">map</a> contains an <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry" id="ref-for-map-entry④">entry</a> whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-key" id="ref-for-map-key①">key</a> is
 "timestamp" and whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-value" id="ref-for-map-value②">value</a> is a high resolution timestamp that estimates the time <a data-link-type="dfn" href="#mock-sensor-reading" id="ref-for-mock-sensor-reading②">mock sensor reading</a> sent to observers of the <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor③②">Sensor</a></code> object, expressed in milliseconds since the <a data-link-type="dfn" href="https://www.w3.org/TR/hr-time-2/#dfn-time-origin" id="ref-for-dfn-time-origin②">time origin</a>.</p>
-   <p>The other <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry" id="ref-for-map-entry⑤">entries</a> of the <a data-link-type="dfn" href="#mock-sensor-reading" id="ref-for-mock-sensor-reading③">mock sensor reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map⑧">map</a> whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-key" id="ref-for-map-key③">keys</a> must match the <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-dictionary-member" id="ref-for-dfn-dictionary-member">dictionary members</a> <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-identifier" id="ref-for-dfn-identifier②">identifier</a> defined by the <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-type">mock sensor type</a>'s <code class="idl"><a data-link-type="idl" href="#dictdef-mocksensorreadingvalues" id="ref-for-dictdef-mocksensorreadingvalues">MockSensorReadingValues</a></code> and whose initial <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-value" id="ref-for-map-value③">values</a> are implementation-dependent.</p>
+   <p>The other <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry" id="ref-for-map-entry⑤">entries</a> of the <a data-link-type="dfn" href="#mock-sensor-reading" id="ref-for-mock-sensor-reading③">mock sensor reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map⑧">map</a> whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-keys" id="ref-for-map-getting-the-keys①">keys</a> must match the <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-dictionary-member" id="ref-for-dfn-dictionary-member">dictionary members</a> <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-identifier" id="ref-for-dfn-identifier②">identifier</a> defined by the <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-type">mock sensor type</a>'s <code class="idl"><a data-link-type="idl" href="#dictdef-mocksensorreadingvalues" id="ref-for-dictdef-mocksensorreadingvalues">MockSensorReadingValues</a></code> and whose initial <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-values" id="ref-for-map-getting-the-values">values</a> are implementation-dependent.</p>
    <p class="note" role="note"><span>Note:</span> The user agent must provide the <a data-link-type="dfn" href="#mock-sensor-reading" id="ref-for-mock-sensor-reading④">mock sensor reading</a> that are initially exposed to the <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor③③">Sensor</a></code> objects.</p>
    <p>A <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor③">mock sensor</a> has an associated <a data-link-type="dfn" href="#requested-sampling-frequency" id="ref-for-requested-sampling-frequency⑨">requested sampling frequency</a>. Its default value is implementation-dependent
 but must be set within a <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor④">mock sensor</a>'s associated <a data-link-type="dfn" href="#sampling-frequency" id="ref-for-sampling-frequency①①">sampling frequency</a> bounds.</p>
@@ -2497,8 +2497,8 @@ using the <i>JSON Key</i> and the associated field’s value from the available 
     </ol>
    </div>
    <div class="example" id="example-1f159a4e">
-    <a class="self-link" href="#example-1f159a4e"></a> To create an "ambient-light" mock sensor in the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context⑥">current browsing context</a> of the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-session" id="ref-for-dfn-session">session</a> with ID 23,
-  the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-local-end" id="ref-for-dfn-local-end">local end</a> would POST to <code>/session/23/sensor</code> with the body: 
+    <a class="self-link" href="#example-1f159a4e"></a> To create an "ambient-light" mock sensor in the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context⑥">current browsing context</a> of the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-sessions" id="ref-for-dfn-sessions">session</a> with ID 23,
+  the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-local-ends" id="ref-for-dfn-local-ends">local end</a> would POST to <code>/session/23/sensor</code> with the body: 
 <pre class="lang-json highlight"><c- p>{</c->
   <c- f>"mockSensorType"</c-><c- p>:</c-> <c- u>"ambient-light"</c-><c- p>,</c->
   <c- f>"maxSamplingFrequency"</c-><c- p>:</c-> <c- mi>60</c-><c- p>,</c->
@@ -3470,8 +3470,15 @@ for their editorial input.</p>
   <aside class="dfn-panel" data-for="term-for-map-key">
    <a href="https://infra.spec.whatwg.org/#map-key">https://infra.spec.whatwg.org/#map-key</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-map-key">6.2. Sensor</a> <a href="#ref-for-map-key①">(2)</a>
-    <li><a href="#ref-for-map-key②">9.1. Mock Sensors</a> <a href="#ref-for-map-key③">(2)</a>
+    <li><a href="#ref-for-map-key">6.2. Sensor</a>
+    <li><a href="#ref-for-map-key①">9.1. Mock Sensors</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-map-getting-the-keys">
+   <a href="https://infra.spec.whatwg.org/#map-getting-the-keys">https://infra.spec.whatwg.org/#map-getting-the-keys</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-map-getting-the-keys">6.2. Sensor</a>
+    <li><a href="#ref-for-map-getting-the-keys①">9.1. Mock Sensors</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-ordered-map">
@@ -3512,7 +3519,13 @@ for their editorial input.</p>
    <a href="https://infra.spec.whatwg.org/#map-value">https://infra.spec.whatwg.org/#map-value</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-map-value">6.2. Sensor</a> <a href="#ref-for-map-value①">(2)</a>
-    <li><a href="#ref-for-map-value②">9.1. Mock Sensors</a> <a href="#ref-for-map-value③">(2)</a>
+    <li><a href="#ref-for-map-value②">9.1. Mock Sensors</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-map-getting-the-values">
+   <a href="https://infra.spec.whatwg.org/#map-getting-the-values">https://infra.spec.whatwg.org/#map-getting-the-values</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-map-getting-the-values">9.1. Mock Sensors</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-magnetometer-interface">
@@ -3545,10 +3558,10 @@ for their editorial input.</p>
     <li><a href="#ref-for-dom-visibilitystate">5.6. Conditions to expose sensor readings</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-dfn-steps-to-determine-the-visibility-state">
-   <a href="https://www.w3.org/TR/page-visibility-2/#dfn-steps-to-determine-the-visibility-state">https://www.w3.org/TR/page-visibility-2/#dfn-steps-to-determine-the-visibility-state</a><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="term-for-dfn-determine-the-visibility-state">
+   <a href="https://www.w3.org/TR/page-visibility-2/#dfn-determine-the-visibility-state">https://www.w3.org/TR/page-visibility-2/#dfn-determine-the-visibility-state</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dfn-steps-to-determine-the-visibility-state">4.2.4. Visibility State</a>
+    <li><a href="#ref-for-dfn-determine-the-visibility-state">4.2.4. Visibility State</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-dictdef-permissiondescriptor">
@@ -3681,10 +3694,10 @@ for their editorial input.</p>
     <li><a href="#ref-for-dfn-invalid-argument④">9.2.4. Delete mock sensor</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-dfn-local-end">
-   <a href="https://w3c.github.io/webdriver/#dfn-local-end">https://w3c.github.io/webdriver/#dfn-local-end</a><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="term-for-dfn-local-ends">
+   <a href="https://w3c.github.io/webdriver/#dfn-local-ends">https://w3c.github.io/webdriver/#dfn-local-ends</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dfn-local-end">9.2.1. Create mock sensor</a>
+    <li><a href="#ref-for-dfn-local-ends">9.2.1. Create mock sensor</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-dfn-no-longer-open">
@@ -3720,10 +3733,10 @@ for their editorial input.</p>
     <li><a href="#ref-for-dfn-remote-end-steps③">9.2.4. Delete mock sensor</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-dfn-session">
-   <a href="https://w3c.github.io/webdriver/#dfn-session">https://w3c.github.io/webdriver/#dfn-session</a><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="term-for-dfn-sessions">
+   <a href="https://w3c.github.io/webdriver/#dfn-sessions">https://w3c.github.io/webdriver/#dfn-sessions</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dfn-session">9.2.1. Create mock sensor</a>
+    <li><a href="#ref-for-dfn-sessions">9.2.1. Create mock sensor</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-dfn-success">
@@ -3980,11 +3993,13 @@ for their editorial input.</p>
      <li><span class="dfn-paneled" id="term-for-map-iterate">for each <small>(for map)</small></span>
      <li><span class="dfn-paneled" id="term-for-list-is-empty">is empty</span>
      <li><span class="dfn-paneled" id="term-for-map-key">key</span>
+     <li><span class="dfn-paneled" id="term-for-map-getting-the-keys">keys</span>
      <li><span class="dfn-paneled" id="term-for-ordered-map">ordered map</span>
      <li><span class="dfn-paneled" id="term-for-ordered-set">ordered set</span>
      <li><span class="dfn-paneled" id="term-for-list-remove">remove</span>
      <li><span class="dfn-paneled" id="term-for-map-set">set</span>
      <li><span class="dfn-paneled" id="term-for-map-value">value</span>
+     <li><span class="dfn-paneled" id="term-for-map-getting-the-values">values</span>
     </ul>
    <li>
     <a data-link-type="biblio">[magnetometer]</a> defines the following terms:
@@ -4002,7 +4017,7 @@ for their editorial input.</p>
     <a data-link-type="biblio">[page-visibility]</a> defines the following terms:
     <ul>
      <li><span class="dfn-paneled" id="term-for-dom-visibilitystate">document visibility state</span>
-     <li><span class="dfn-paneled" id="term-for-dfn-steps-to-determine-the-visibility-state">steps to determine the visibility state</span>
+     <li><span class="dfn-paneled" id="term-for-dfn-determine-the-visibility-state">steps to determine the visibility state</span>
     </ul>
    <li>
     <a data-link-type="biblio">[PERMISSIONS]</a> defines the following terms:
@@ -4044,12 +4059,12 @@ for their editorial input.</p>
      <li><span class="dfn-paneled" id="term-for-dfn-handle-any-user-prompts">handle any user prompts</span>
      <li><span class="dfn-paneled" id="term-for-handling-errors">handling errors</span>
      <li><span class="dfn-paneled" id="term-for-dfn-invalid-argument">invalid argument</span>
-     <li><span class="dfn-paneled" id="term-for-dfn-local-end">local end</span>
+     <li><span class="dfn-paneled" id="term-for-dfn-local-ends">local end</span>
      <li><span class="dfn-paneled" id="term-for-dfn-no-longer-open">no longer open</span>
      <li><span class="dfn-paneled" id="term-for-dfn-no-such-window">no such window</span>
      <li><span class="dfn-paneled" id="term-for-dfn-object">object</span>
      <li><span class="dfn-paneled" id="term-for-dfn-remote-end-steps">remote end steps</span>
-     <li><span class="dfn-paneled" id="term-for-dfn-session">session</span>
+     <li><span class="dfn-paneled" id="term-for-dfn-sessions">session</span>
      <li><span class="dfn-paneled" id="term-for-dfn-success">success</span>
      <li><span class="dfn-paneled" id="term-for-dfn-url-variables">url variable</span>
      <li><span class="dfn-paneled" id="term-for-dfn-errors">webdriver error</span>
@@ -4115,7 +4130,7 @@ for their editorial input.</p>
    <dt id="biblio-proximity">[PROXIMITY]
    <dd>Anssi Kostiainen; Rijubrata Bhaumik. <a href="https://w3c.github.io/proximity/">Proximity Sensor</a>. URL: <a href="https://w3c.github.io/proximity/">https://w3c.github.io/proximity/</a>
    <dt id="biblio-rfc2119">[RFC2119]
-   <dd>S. Bradner. <a href="https://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>. March 1997. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc2119">https://tools.ietf.org/html/rfc2119</a>
+   <dd>S. Bradner. <a href="https://datatracker.ietf.org/doc/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>. March 1997. Best Current Practice. URL: <a href="https://datatracker.ietf.org/doc/html/rfc2119">https://datatracker.ietf.org/doc/html/rfc2119</a>
    <dt id="biblio-webdriver">[WebDriver]
    <dd>Simon Stewart; David Burns. <a href="https://w3c.github.io/webdriver/">WebDriver</a>. URL: <a href="https://w3c.github.io/webdriver/">https://w3c.github.io/webdriver/</a>
    <dt id="biblio-webidl">[WebIDL]
@@ -4148,7 +4163,7 @@ for their editorial input.</p>
    <dt id="biblio-qudt">[QUDT]
    <dd>Ralph Hodgson; et al. <a href="http://www.qudt.org/">QUDT - Quantities, Units, Dimensions and Data Types Ontologies</a>. 18 March 2014. URL: <a href="http://www.qudt.org/">http://www.qudt.org/</a>
    <dt id="biblio-rfc6454">[RFC6454]
-   <dd>A. Barth. <a href="https://datatracker.ietf.org/doc/html/rfc6454">The Web Origin Concept</a>. December 2011. Proposed Standard. URL: <a href="https://datatracker.ietf.org/doc/html/rfc6454">https://datatracker.ietf.org/doc/html/rfc6454</a>
+   <dd>A. Barth. <a href="https://www.rfc-editor.org/rfc/rfc6454">The Web Origin Concept</a>. December 2011. Proposed Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc6454">https://www.rfc-editor.org/rfc/rfc6454</a>
    <dt id="biblio-security-privacy-questionnaire">[SECURITY-PRIVACY-QUESTIONNAIRE]
    <dd>Theresa O'Connor; Peter Snyder. <a href="https://w3ctag.github.io/security-questionnaire/">Self-Review Questionnaire: Security and Privacy</a>. URL: <a href="https://w3ctag.github.io/security-questionnaire/">https://w3ctag.github.io/security-questionnaire/</a>
    <dt id="biblio-si">[SI]
