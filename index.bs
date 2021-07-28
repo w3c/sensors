@@ -826,7 +826,8 @@ A [=sensor type=] has a [=permission revocation algorithm=].
 
 <div algorithm>
 
-    To invoke the <dfn lt="generic sensor permission revocation algorithm">permission revocation algorithm</dfn>
+    To invoke the <dfn local-lt="permission revocation algorithm" export>
+    generic sensor permission revocation algorithm</dfn>
     with {{PermissionName}} |permission_name|, run the following steps:
 
     1.  For each |sensor_type| whose [=sensor permission names|permission names=] [=set/contains=] |permission_name|:
