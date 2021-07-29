@@ -7,7 +7,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED" rel="stylesheet" type="text/css">
   <meta content="Bikeshed version 59d067506, updated Fri Jul 23 15:43:29 2021 -0700" name="generator">
   <link href="https://www.w3.org/TR/generic-sensor/" rel="canonical">
-  <meta content="1dc88b5525a21d51cd069226d1f4280c7bdf918a" name="document-revision">
+  <meta content="de5164e3322eaaf44407f47ed956bfc5b534e38f" name="document-revision">
 <style>
     svg g.edge text {
         font-size: 8px;
@@ -657,7 +657,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2021-07-24">24 July 2021</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2021-07-29">29 July 2021</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1307,9 +1307,9 @@ never exceed the <a data-link-type="dfn" href="#sampling-frequency" id="ref-for-
    <p>A <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type②④">sensor type</a> may have a <a data-link-type="dfn" href="#default-sensor" id="ref-for-default-sensor③">default sensor</a>.</p>
    <p>A <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type②⑤">sensor type</a> has a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-is-empty" id="ref-for-list-is-empty">nonempty</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set" id="ref-for-ordered-set②">set</a> of associated <a data-link-type="dfn" href="https://www.w3.org/TR/permissions/#enumdef-permissionname" id="ref-for-enumdef-permissionname①">permission names</a> referred to as <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="sensor-permission-names">sensor permission names</dfn>.</p>
    <p class="note" role="note"><span>Note:</span> multiple <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type②⑥">sensor types</a> may share the same <a data-link-type="dfn" href="https://www.w3.org/TR/permissions/#enumdef-permissionname" id="ref-for-enumdef-permissionname②">permission name</a>.</p>
-   <p>A <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type②⑦">sensor type</a> has a <a data-link-type="dfn" href="https://w3c.github.io/permissions/#permission-revocation-algorithm" id="ref-for-permission-revocation-algorithm">permission revocation algorithm</a>.</p>
+   <p>A <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type②⑦">sensor type</a> has a <a data-link-type="dfn" href="#generic-sensor-permission-revocation-algorithm" id="ref-for-generic-sensor-permission-revocation-algorithm">permission revocation algorithm</a>.</p>
    <div class="algorithm" data-algorithm="generic sensor permission revocation algorithm">
-    <p>To invoke the <dfn data-dfn-type="dfn" data-lt="generic sensor permission revocation algorithm" data-noexport id="generic-sensor-permission-revocation-algorithm">permission revocation algorithm<a class="self-link" href="#generic-sensor-permission-revocation-algorithm"></a></dfn> with <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/permissions/#enumdef-permissionname" id="ref-for-enumdef-permissionname③">PermissionName</a></code> <var>permission_name</var>, run the following steps:</p>
+    <p>To invoke the <dfn class="dfn-paneled" data-dfn-type="dfn" data-export data-local-lt="permission revocation algorithm" data-lt="generic sensor permission revocation algorithm" id="generic-sensor-permission-revocation-algorithm"> generic sensor permission revocation algorithm</dfn> with <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/permissions/#enumdef-permissionname" id="ref-for-enumdef-permissionname③">PermissionName</a></code> <var>permission_name</var>, run the following steps:</p>
     <ol>
      <li data-md>
       <p>For each <var>sensor_type</var> whose <a data-link-type="dfn" href="#sensor-permission-names" id="ref-for-sensor-permission-names①">permission names</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain">contains</a> <var>permission_name</var>:</p>
@@ -1546,7 +1546,7 @@ with the internal slots described in the following table:</p>
    <div class="mdn-anno wrapped after">
     <button class="mdn-anno-btn"><b class="less-than-two-engines-flag" title="This feature is in less than two current engines.">⚠</b><span>MDN</span></button>
     <div class="feature">
-     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Sensor/activated" title="The activated read-only property of the Sensor interface returns a Boolean indicating whether the sensor is active.">Sensor/activated</a></p>
+     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Sensor/activated" title="The activated read-only property of the Sensor interface returns a boolean value indicating whether the sensor is active.">Sensor/activated</a></p>
      <p class="less-than-two-engines-text">In only one current engine.</p>
      <div class="support">
       <span class="firefox no"><span>Firefox</span><span>None</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>67+</span></span>
@@ -1573,7 +1573,7 @@ with the internal slots described in the following table:</p>
    <div class="mdn-anno wrapped after">
     <button class="mdn-anno-btn"><b class="less-than-two-engines-flag" title="This feature is in less than two current engines.">⚠</b><span>MDN</span></button>
     <div class="feature">
-     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Sensor/hasReading" title="The hasReading read-only property of the Sensor interface returns a Boolean indicating whether the sensor has a reading.">Sensor/hasReading</a></p>
+     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Sensor/hasReading" title="The hasReading read-only property of the Sensor interface returns a boolean value indicating whether the sensor has a reading.">Sensor/hasReading</a></p>
      <p class="less-than-two-engines-text">In only one current engine.</p>
      <div class="support">
       <span class="firefox no"><span>Firefox</span><span>None</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>67+</span></span>
@@ -3158,6 +3158,7 @@ for their editorial input.</p>
    <li><a href="#dom-sensor-onreading">onreading</a><span>, in §7.1</span>
    <li><a href="#optimal-sampling-frequency">optimal sampling frequency</a><span>, in §6.2</span>
    <li><a href="#dom-sensor-pendingreadingnotification-slot">[[pendingReadingNotification]]</a><span>, in §7.1.3</span>
+   <li><a href="#generic-sensor-permission-revocation-algorithm">permission revocation algorithm</a><span>, in §6.1</span>
    <li><a href="#concept-platform-sensor">platform sensor</a><span>, in §5.1</span>
    <li><a href="#dom-mocksensortype-proximity">"proximity"</a><span>, in §9.1.3</span>
    <li><a href="#reading-change-threshold">reading change threshold</a><span>, in §5.4</span>
@@ -3583,12 +3584,6 @@ for their editorial input.</p>
     <li><a href="#ref-for-enumdef-permissionname①">6.1. Sensor Type</a> <a href="#ref-for-enumdef-permissionname②">(2)</a>
     <li><a href="#ref-for-enumdef-permissionname④">10.6. Definition Requirements</a> <a href="#ref-for-enumdef-permissionname⑤">(2)</a>
     <li><a href="#ref-for-enumdef-permissionname⑥">10.8. Extending the Permission API</a> <a href="#ref-for-enumdef-permissionname⑦">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-permission-revocation-algorithm">
-   <a href="https://w3c.github.io/permissions/#permission-revocation-algorithm">https://w3c.github.io/permissions/#permission-revocation-algorithm</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-permission-revocation-algorithm">6.1. Sensor Type</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-permission-state">
@@ -4025,7 +4020,6 @@ for their editorial input.</p>
      <li><span class="dfn-paneled" id="term-for-dictdef-permissiondescriptor">PermissionDescriptor</span>
      <li><span class="dfn-paneled" id="term-for-enumdef-permissionname">PermissionName</span>
      <li><span class="dfn-paneled" id="term-for-enumdef-permissionname①">permission name</span>
-     <li><span class="dfn-paneled" id="term-for-permission-revocation-algorithm">permission revocation algorithm</span>
      <li><span class="dfn-paneled" id="term-for-permission-state">permission state</span>
      <li><span class="dfn-paneled" id="term-for-request-permission-to-use">request permission to use</span>
     </ul>
@@ -4100,7 +4094,7 @@ for their editorial input.</p>
   <h3 class="no-num no-ref heading settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
   <dl>
    <dt id="biblio-accelerometer">[ACCELEROMETER]
-   <dd>Anssi Kostiainen. <a href="https://w3c.github.io/accelerometer/">Accelerometer</a>. URL: <a href="https://w3c.github.io/accelerometer/">https://w3c.github.io/accelerometer/</a>
+   <dd>Anssi Kostiainen; Alexander Shalamov. <a href="https://w3c.github.io/accelerometer/">Accelerometer</a>. URL: <a href="https://w3c.github.io/accelerometer/">https://w3c.github.io/accelerometer/</a>
    <dt id="biblio-ambient-light">[AMBIENT-LIGHT]
    <dd>Anssi Kostiainen; Rijubrata Bhaumik; Tobie Langel. <a href="https://w3c.github.io/ambient-light/">Ambient Light Sensor</a>. URL: <a href="https://w3c.github.io/ambient-light/">https://w3c.github.io/ambient-light/</a>
    <dt id="biblio-dom">[DOM]
@@ -4108,7 +4102,7 @@ for their editorial input.</p>
    <dt id="biblio-geolocation-sensor">[GEOLOCATION-SENSOR]
    <dd>Anssi Kostiainen; Thomas Steiner; Marijn Kruisselbrink. <a href="https://w3c.github.io/geolocation-sensor/">Geolocation Sensor</a>. URL: <a href="https://w3c.github.io/geolocation-sensor/">https://w3c.github.io/geolocation-sensor/</a>
    <dt id="biblio-gyroscope">[GYROSCOPE]
-   <dd>Anssi Kostiainen. <a href="https://w3c.github.io/gyroscope/">Gyroscope</a>. URL: <a href="https://w3c.github.io/gyroscope/">https://w3c.github.io/gyroscope/</a>
+   <dd>Anssi Kostiainen; Mikhail Pozdnyakov. <a href="https://w3c.github.io/gyroscope/">Gyroscope</a>. URL: <a href="https://w3c.github.io/gyroscope/">https://w3c.github.io/gyroscope/</a>
    <dt id="biblio-hr-time-2">[HR-TIME-2]
    <dd>Ilya Grigorik. <a href="https://w3c.github.io/hr-time/">High Resolution Time Level 2</a>. URL: <a href="https://w3c.github.io/hr-time/">https://w3c.github.io/hr-time/</a>
    <dt id="biblio-html">[HTML]
@@ -4118,7 +4112,7 @@ for their editorial input.</p>
    <dt id="biblio-magnetometer">[MAGNETOMETER]
    <dd>Anssi Kostiainen; Rijubrata Bhaumik. <a href="https://w3c.github.io/magnetometer/">Magnetometer</a>. URL: <a href="https://w3c.github.io/magnetometer/">https://w3c.github.io/magnetometer/</a>
    <dt id="biblio-orientation-sensor">[ORIENTATION-SENSOR]
-   <dd>Kenneth Christiansen; Anssi Kostiainen. <a href="https://w3c.github.io/orientation-sensor/">Orientation Sensor</a>. URL: <a href="https://w3c.github.io/orientation-sensor/">https://w3c.github.io/orientation-sensor/</a>
+   <dd>Kenneth Christiansen; et al. <a href="https://w3c.github.io/orientation-sensor/">Orientation Sensor</a>. URL: <a href="https://w3c.github.io/orientation-sensor/">https://w3c.github.io/orientation-sensor/</a>
    <dt id="biblio-page-visibility">[PAGE-VISIBILITY]
    <dd>Jatinder Mann; Arvind Jain. <a href="https://www.w3.org/TR/page-visibility/">Page Visibility (Second Edition)</a>. 29 October 2013. REC. URL: <a href="https://www.w3.org/TR/page-visibility/">https://www.w3.org/TR/page-visibility/</a>
    <dt id="biblio-permissions">[PERMISSIONS]
@@ -4505,6 +4499,12 @@ for their editorial input.</p>
     <li><a href="#ref-for-sensor-permission-names①">6.1. Sensor Type</a>
     <li><a href="#ref-for-sensor-permission-names②">8.15. Request sensor access</a>
     <li><a href="#ref-for-sensor-permission-names③">10.9. Extending the Permissions Policy API</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="generic-sensor-permission-revocation-algorithm">
+   <b><a href="#generic-sensor-permission-revocation-algorithm">#generic-sensor-permission-revocation-algorithm</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-generic-sensor-permission-revocation-algorithm">6.1. Sensor Type</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="sensor-feature-names">
