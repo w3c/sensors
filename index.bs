@@ -80,7 +80,7 @@ urlPrefix: https://w3ctag.github.io/security-questionnaire/; spec: SECURITY-PRIV
     text: same-origin policy violations; url: sop-violations
 urlPrefix: https://www.w3.org/TR/permissions/; spec: PERMISSIONS
   type: dfn
-    text: permission name; url: enumdef-permissionname
+    text: name; url: dfn-name
     text: permission state
 urlPrefix: https://w3c.github.io/webdriver/; spec: WebDriver
   type: dfn
@@ -791,7 +791,7 @@ The user agent must verify that all [=mandatory conditions=] are satisfied to en
 
 The <dfn>mandatory conditions</dfn> are the following:
  - The given document is a [=responsible document=] of a [=secure context=].
- - For each [=permission name=] from the [=sensor type=]'s associated
+ - For each [=name=] from the [=sensor type=]'s associated
    [=sensor permission names=] [=ordered set|set=], the corresponding permission's
    [=permission state|state=] is "granted".
  - [=document visibility state|Visibility state=] of the document is "visible".
@@ -818,9 +818,9 @@ A [=sensor type=] has a [=ordered set|set=] of <dfn export>associated sensors</d
 A [=sensor type=] may have a [=default sensor=].
 
 A [=sensor type=] has a [=set/is empty|nonempty=] [=ordered set|set=] of associated
-[=permission names=] referred to as <dfn export>sensor permission names</dfn>.
+[=names=] referred to as <dfn export>sensor permission names</dfn>.
 
-Note: multiple [=sensor types=] may share the same [=permission name=].
+Note: multiple [=sensor types=] may share the same [=name=].
 
 A [=sensor type=] has a [=permission revocation algorithm=].
 
@@ -828,7 +828,7 @@ A [=sensor type=] has a [=permission revocation algorithm=].
 
     To invoke the <dfn local-lt="permission revocation algorithm" export>
     generic sensor permission revocation algorithm</dfn>
-    with {{PermissionName}} |permission_name|, run the following steps:
+    with [=name=] |permission_name|, run the following steps:
 
     1.  For each |sensor_type| whose [=sensor permission names|permission names=] [=set/contains=] |permission_name|:
         1.  [=set/For each=] |sensor| in |sensor_type|'s [=ordered set|set=] of [=associated sensors=],
@@ -2067,8 +2067,8 @@ each [=sensor type=] in [=extension specifications=]:
     [=get value from latest reading=] with <strong>this</strong> and
     [=attribute=] [=identifier=] as arguments.
 
--   A [=permission name=], if the [=sensor type=] is not representing
-    [=sensor fusion=] (otherwise, [=permission names=]
+-   A [=name=], if the [=sensor type=] is not representing
+    [=sensor fusion=] (otherwise, [=names=]
     associated with the fusion source [=sensor types=] must be used).
 
 An [=extension specification=] may specify the following definitions
@@ -2095,8 +2095,8 @@ In order to enable user-agent automation and application testing,
 <h3 id="permission-api">Extending the Permission API</h3>
 
 An implementation of the {{Sensor}} interface for each [=sensor type=] must protect its
-[=sensor reading|reading=] by associated [=permission name=] or {{PermissionDescriptor}}.
-A [=Low-level=] {{Sensor|sensor}} may use its interface name as a [=permission name=],
+[=sensor reading|reading=] by associated [=name=] or {{PermissionDescriptor}}.
+A [=Low-level=] {{Sensor|sensor}} may use its interface name as a [=name=],
 for instance, "gyroscope" or "accelerometer". [=sensor fusion|Fusion sensors=] must
 [=request permission to use|request permission to access=] each of the sensors that are
 used as a source of fusion.
