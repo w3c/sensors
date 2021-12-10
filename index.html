@@ -7,7 +7,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet" type="text/css">
   <meta content="Bikeshed version cace53f8c, updated Tue Dec 7 12:12:54 2021 -0800" name="generator">
   <link href="https://www.w3.org/TR/generic-sensor/" rel="canonical">
-  <meta content="429fc2cd53da309e153eb951d47b55c934ebe764" name="document-revision">
+  <meta content="20b756232593bb8522712bb07cb1e132bd63d826" name="document-revision">
 <style>
     svg g.edge text {
         font-size: 8px;
@@ -1097,7 +1097,7 @@ origin is <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/o
 for example when the user carries out an in-game purchase using a third party
 payment service from within an iframe.</p>
    <h4 class="heading settled" data-level="4.2.4" id="visibility-state"><span class="secno">4.2.4. </span><span class="content">Visibility State</span><a class="self-link" href="#visibility-state"></a></h4>
-   <p><a data-link-type="dfn" href="#sensor-reading" id="ref-for-sensor-reading①⓪">Sensor readings</a> are only available for the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#active-document" id="ref-for-active-document①">active documents</a> whose <a data-link-type="dfn" href="https://www.w3.org/TR/page-visibility-2/#dfn-determine-the-visibility-state" id="ref-for-dfn-determine-the-visibility-state">visibility state</a> is "visible".</p>
+   <p><a data-link-type="dfn" href="#sensor-reading" id="ref-for-sensor-reading①⓪">Sensor readings</a> are only available for the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#active-document" id="ref-for-active-document①">active documents</a> whose <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#visibility-state" id="ref-for-visibility-state">visibility state</a> is "visible".</p>
    <h4 class="heading settled" data-level="4.2.5" id="permissions"><span class="secno">4.2.5. </span><span class="content">Permissions API</span><span id="permissioning"></span><a class="self-link" href="#permissions"></a></h4>
    <p>Access to <a data-link-type="dfn" href="#sensor-reading" id="ref-for-sensor-reading①①">sensor readings</a> are controlled by the Permissions API <a data-link-type="biblio" href="#biblio-permissions">[PERMISSIONS]</a>.</p>
    <h3 class="heading settled" data-level="4.3" id="mitigation-strategies-case-by-case"><span class="secno">4.3. </span><span class="content">Mitigation strategies applied on a case by case basis</span><a class="self-link" href="#mitigation-strategies-case-by-case"></a></h3>
@@ -1300,7 +1300,7 @@ never exceed the <a data-link-type="dfn" href="#sampling-frequency" id="ref-for-
     <li data-md>
      <p>For each <a data-link-type="dfn" href="https://w3c.github.io/permissions/#dfn-name" id="ref-for-dfn-name">name</a> from the <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type②①">sensor type</a>'s associated <a data-link-type="dfn" href="#sensor-permission-names" id="ref-for-sensor-permission-names">sensor permission names</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set" id="ref-for-ordered-set">set</a>, the corresponding permission’s <a data-link-type="dfn" href="https://w3c.github.io/permissions/#dfn-permission-state" id="ref-for-dfn-permission-state">state</a> is "granted".</p>
     <li data-md>
-     <p><a data-link-type="dfn" href="https://www.w3.org/TR/page-visibility-2/#dom-visibilitystate" id="ref-for-dom-visibilitystate">Visibility state</a> of the document is "visible".</p>
+     <p>The <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#visibility-state" id="ref-for-visibility-state①">visibility state</a> of the document is "visible".</p>
     <li data-md>
      <p>The document is <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/iframe-embed-object.html#allowed-to-use" id="ref-for-allowed-to-use①">allowed to use</a> all the <a data-link-type="dfn" href="https://w3c.github.io/webappsec-permissions-policy/#policy-controlled-feature" id="ref-for-policy-controlled-feature①">policy-controlled features</a> associated
  with the given <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type②②">sensor type</a>.</p>
@@ -1339,7 +1339,7 @@ never exceed the <a data-link-type="dfn" href="#sampling-frequency" id="ref-for-
    <p>The current <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context①">browsing context</a>'s <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor⑨">platform sensor</a> has an associated <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set" id="ref-for-ordered-set⑤">set</a> of <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="activated-sensor-objects">activated sensor objects</dfn>, which is initially <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-is-empty" id="ref-for-list-is-empty②">empty</a> and an
 associated <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="latest-reading">latest reading</dfn> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map">map</a>, which holds the latest available <a data-link-type="dfn" href="#sensor-reading" id="ref-for-sensor-reading③④">sensor readings</a>.</p>
    <p class="note" role="note"><span>Note:</span> User agents can share the <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading">latest reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map①">map</a> and
-the <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects">activated sensor objects</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set" id="ref-for-ordered-set⑥">set</a> between different <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context②">contexts</a> only if the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#origin-2" id="ref-for-origin-2">origins</a> of these contexts' <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#active-document" id="ref-for-active-document④">active documents</a> are <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#same-origin-domain" id="ref-for-same-origin-domain②">same origin-domain</a>.</p>
+the <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects">activated sensor objects</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set" id="ref-for-ordered-set⑥">set</a> between different <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context②">contexts</a> only if the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#concept-origin" id="ref-for-concept-origin">origins</a> of these contexts' <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#active-document" id="ref-for-active-document④">active documents</a> are <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#same-origin-domain" id="ref-for-same-origin-domain②">same origin-domain</a>.</p>
    <p>Any time a new <a data-link-type="dfn" href="#sensor-reading" id="ref-for-sensor-reading③⑤">sensor reading</a> for a <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①⓪">platform sensor</a> is obtained and if the user agent <a data-link-type="dfn" href="#can-expose-sensor-readings" id="ref-for-can-expose-sensor-readings①">can expose sensor readings</a> to the current <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context③">browsing context</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#active-document" id="ref-for-active-document⑤">active document</a>,
 the user agent invokes <a data-link-type="dfn" href="#update-latest-reading" id="ref-for-update-latest-reading">update latest reading</a> with the <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①①">platform sensor</a> and
 the <a data-link-type="dfn" href="#sensor-reading" id="ref-for-sensor-reading③⑥">sensor reading</a> as arguments.</p>
@@ -1411,7 +1411,7 @@ same <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browse
    <p>A <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor⑨">Sensor</a></code> object has an associated <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①⑦">platform sensor</a>.</p>
    <p>The <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#task-source" id="ref-for-task-source">task source</a> for the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-task" id="ref-for-concept-task">tasks</a> mentioned in this specification is the <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="sensor-task-source">sensor task source</dfn>.</p>
    <div class="example" id="example-c4eab8e2">
-    <a class="self-link" href="#example-c4eab8e2"></a> In the following example, firstly, we check whether the user agent has permission to access <a data-link-type="dfn" href="#sensor-reading" id="ref-for-sensor-reading③⑧">sensor readings</a>, then we construct accelerometer sensor and add <a data-link-type="dfn" href="https://dom.spec.whatwg.org#concept-event-listener" id="ref-for-concept-event-listener">event listeners</a> to get <a data-link-type="dfn" href="https://dom.spec.whatwg.org#concept-event" id="ref-for-concept-event">events</a> for <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①⑧">platform sensor</a> activation,
+    <a class="self-link" href="#example-c4eab8e2"></a> In the following example, firstly, we check whether the user agent has permission to access <a data-link-type="dfn" href="#sensor-reading" id="ref-for-sensor-reading③⑧">sensor readings</a>, then we construct accelerometer sensor and add <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-listener" id="ref-for-concept-event-listener">event listeners</a> to get <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event" id="ref-for-concept-event">events</a> for <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①⑧">platform sensor</a> activation,
     error conditions and notifications about newly available <a data-link-type="dfn" href="#sensor-reading" id="ref-for-sensor-reading③⑨">sensor readings</a>. The example
     measures and logs maximum total acceleration of a device hosting the <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①⑨">platform sensor</a>. 
     <p>The <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-type" id="ref-for-event-handler-event-type">event handler event types</a> for the corresponding <a href="#the-sensor-interface"> Sensor Interface</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers" id="ref-for-event-handlers">event handler</a> attributes are defined in <a href="#event-handlers">Event handlers</a> section.</p>
@@ -2721,7 +2721,7 @@ exposing <a data-link-type="dfn" href="#low-level" id="ref-for-low-level①①">
    <h3 class="heading settled" data-level="10.5" id="multiple-sensors"><span class="secno">10.5. </span><span class="content">When is Enabling Multiple Sensors of the Same Type Not the Right Choice?</span><a class="self-link" href="#multiple-sensors"></a></h3>
    <p>It is not advisable to construct multiple <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor④②">Sensor</a></code> instances of the same <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type③⑧">sensor type</a> with
 equal construction parameters, as it can lead to unnecessary hardware resources consumption.</p>
-   <p>In cases when multiple observers are interested in notifications of a newly available <a data-link-type="dfn" href="#sensor-reading" id="ref-for-sensor-reading⑤④">sensor reading</a>, an <a data-link-type="dfn" href="https://dom.spec.whatwg.org#concept-event-listener" id="ref-for-concept-event-listener①">event listener</a> can be added on a single <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor④③">Sensor</a></code> instance instead of
+   <p>In cases when multiple observers are interested in notifications of a newly available <a data-link-type="dfn" href="#sensor-reading" id="ref-for-sensor-reading⑤④">sensor reading</a>, an <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-listener" id="ref-for-concept-event-listener①">event listener</a> can be added on a single <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor④③">Sensor</a></code> instance instead of
 creating multiple instances of the same <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type③⑨">sensor type</a> and using simple <code class="idl"><a data-link-type="idl" href="#dom-sensor-onreading" id="ref-for-dom-sensor-onreading①">onreading</a></code> event
 handler.</p>
    <p>Conversely, multiple <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor④④">Sensors</a></code> of the same <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type④⓪">sensor type</a> can be created when they
@@ -3261,13 +3261,13 @@ for their editorial input.</p>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-concept-event">
-   <a href="https://dom.spec.whatwg.org#concept-event">https://dom.spec.whatwg.org#concept-event</a><b>Referenced in:</b>
+   <a href="https://dom.spec.whatwg.org/#concept-event">https://dom.spec.whatwg.org/#concept-event</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-concept-event">7.1. The Sensor Interface</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-concept-event-listener">
-   <a href="https://dom.spec.whatwg.org#concept-event-listener">https://dom.spec.whatwg.org#concept-event-listener</a><b>Referenced in:</b>
+   <a href="https://dom.spec.whatwg.org/#concept-event-listener">https://dom.spec.whatwg.org/#concept-event-listener</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-concept-event-listener">7.1. The Sensor Interface</a>
     <li><a href="#ref-for-concept-event-listener①">10.5. When is Enabling Multiple Sensors of the Same Type Not the Right Choice?</a>
@@ -3386,10 +3386,10 @@ for their editorial input.</p>
     <li><a href="#ref-for-in-parallel④">9.2.1. Create mock sensor</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-origin-2">
-   <a href="https://html.spec.whatwg.org/multipage/origin.html#origin-2">https://html.spec.whatwg.org/multipage/origin.html#origin-2</a><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="term-for-concept-origin">
+   <a href="https://html.spec.whatwg.org/multipage/origin.html#concept-origin">https://html.spec.whatwg.org/multipage/origin.html#concept-origin</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-origin-2">6.2. Sensor</a>
+    <li><a href="#ref-for-concept-origin">6.2. Sensor</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-responsible-document">
@@ -3436,6 +3436,13 @@ for their editorial input.</p>
    <a href="https://html.spec.whatwg.org/multipage/webappapis.html#task-source">https://html.spec.whatwg.org/multipage/webappapis.html#task-source</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-task-source">7.1. The Sensor Interface</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-visibility-state">
+   <a href="https://html.spec.whatwg.org/multipage/interaction.html#visibility-state">https://html.spec.whatwg.org/multipage/interaction.html#visibility-state</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-visibility-state">4.2.4. Visibility State</a>
+    <li><a href="#ref-for-visibility-state①">5.6. Conditions to expose sensor readings</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-set-append">
@@ -3561,18 +3568,6 @@ for their editorial input.</p>
    <a href="https://w3c.github.io/orientation-sensor#relativeorientationsensor-interface">https://w3c.github.io/orientation-sensor#relativeorientationsensor-interface</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-relativeorientationsensor-interface">9.1.3. Mock sensor type</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-dom-visibilitystate">
-   <a href="https://www.w3.org/TR/page-visibility-2/#dom-visibilitystate">https://www.w3.org/TR/page-visibility-2/#dom-visibilitystate</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-visibilitystate">5.6. Conditions to expose sensor readings</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-dfn-determine-the-visibility-state">
-   <a href="https://www.w3.org/TR/page-visibility-2/#dfn-determine-the-visibility-state">https://www.w3.org/TR/page-visibility-2/#dfn-determine-the-visibility-state</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dfn-determine-the-visibility-state">4.2.4. Visibility State</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-dom-permissiondescriptor">
@@ -3974,7 +3969,7 @@ for their editorial input.</p>
      <li><span class="dfn-paneled" id="term-for-event-handler-event-type">event handler event type</span>
      <li><span class="dfn-paneled" id="term-for-gains-focus">gains focus</span>
      <li><span class="dfn-paneled" id="term-for-in-parallel">in parallel</span>
-     <li><span class="dfn-paneled" id="term-for-origin-2">origin</span>
+     <li><span class="dfn-paneled" id="term-for-concept-origin">origin</span>
      <li><span class="dfn-paneled" id="term-for-responsible-document">responsible document</span>
      <li><span class="dfn-paneled" id="term-for-same-origin-domain">same origin-domain</span>
      <li><span class="dfn-paneled" id="term-for-secure-context">secure context</span>
@@ -3982,6 +3977,7 @@ for their editorial input.</p>
      <li><span class="dfn-paneled" id="term-for-concept-task">task</span>
      <li><span class="dfn-paneled" id="term-for-task-queue">task queue</span>
      <li><span class="dfn-paneled" id="term-for-task-source">task source</span>
+     <li><span class="dfn-paneled" id="term-for-visibility-state">visibility state</span>
     </ul>
    <li>
     <a data-link-type="biblio">[INFRA]</a> defines the following terms:
@@ -4011,12 +4007,6 @@ for their editorial input.</p>
     <ul>
      <li><span class="dfn-paneled" id="term-for-absoluteorientationsensor-interface">absoluteorientationsensor</span>
      <li><span class="dfn-paneled" id="term-for-relativeorientationsensor-interface">relativeorientationsensor</span>
-    </ul>
-   <li>
-    <a data-link-type="biblio">[page-visibility]</a> defines the following terms:
-    <ul>
-     <li><span class="dfn-paneled" id="term-for-dom-visibilitystate">document visibility state</span>
-     <li><span class="dfn-paneled" id="term-for-dfn-determine-the-visibility-state">steps to determine the visibility state</span>
     </ul>
    <li>
     <a data-link-type="biblio">[PERMISSIONS]</a> defines the following terms:
@@ -4116,8 +4106,6 @@ for their editorial input.</p>
    <dd>Anssi Kostiainen; Rijubrata Bhaumik. <a href="https://w3c.github.io/magnetometer/"><cite>Magnetometer</cite></a>. URL: <a href="https://w3c.github.io/magnetometer/">https://w3c.github.io/magnetometer/</a>
    <dt id="biblio-orientation-sensor">[ORIENTATION-SENSOR]
    <dd>Kenneth Christiansen; et al. <a href="https://w3c.github.io/orientation-sensor/"><cite>Orientation Sensor</cite></a>. URL: <a href="https://w3c.github.io/orientation-sensor/">https://w3c.github.io/orientation-sensor/</a>
-   <dt id="biblio-page-visibility">[PAGE-VISIBILITY]
-   <dd>Jatinder Mann; Arvind Jain. <a href="https://www.w3.org/TR/page-visibility/"><cite>Page Visibility (Second Edition)</cite></a>. 29 October 2013. REC. URL: <a href="https://www.w3.org/TR/page-visibility/">https://www.w3.org/TR/page-visibility/</a>
    <dt id="biblio-permissions">[PERMISSIONS]
    <dd>Marcos Caceres; Mike Taylor. <a href="https://w3c.github.io/permissions/"><cite>Permissions</cite></a>. URL: <a href="https://w3c.github.io/permissions/">https://w3c.github.io/permissions/</a>
    <dt id="biblio-permissions-policy">[PERMISSIONS-POLICY]
