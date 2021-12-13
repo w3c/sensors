@@ -854,10 +854,10 @@ or being granted permission to access the [=platform sensor=]. -->
 
 A [=platform sensor=] has an associated [=requested sampling frequency=] which is initially null.
 
-For a non[=set/is empty|empty=] [=ordered set|set=] of [=activated sensor objects=] the
-[=requested sampling frequency=] is equal to <dfn>optimal sampling frequency</dfn>, which is estimated
-by the user agent taking into account {{[[frequency]]|provided frequencies}}
-of [=activated sensor objects|activated=] {{Sensor|Sensors}} and [=sampling frequency=] bounds
+For a non-[=set/is empty|empty=] [=ordered set|set=] of [=activated sensor objects=] the
+[=requested sampling frequency=] is equal to the <dfn>optimal sampling frequency</dfn>, which is estimated
+by the user agent by taking into account the {{[[frequency]]|provided frequencies}}
+of [=activated sensor objects|activated=] {{Sensor|Sensors}} and the [=sampling frequency=] bounds
 defined by the underlying platform.
 
 Note: For example, the user agent may estimate [=optimal sampling frequency=] as a Least Common
@@ -879,7 +879,7 @@ The {{Sensor}} object in "idle" [[#sensor-lifecycle|state]] is not among the [=p
 In this example there is a [=platform sensor=] instance per [=browsing context=].
 
 The [=latest reading=] [=ordered map|map=] is shared between {{Sensor}} objects from the
-same [=browsing context|context=] and is updated at rate equal to [=requested sampling frequency=]
+same [=browsing context|context=] and is updated at a rate equal to the [=requested sampling frequency=]
 of the corresponding [=platform sensor=].
 
 </div>
