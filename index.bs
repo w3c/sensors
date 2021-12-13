@@ -557,7 +557,7 @@ A [=spatial sensor=] can be <dfn>uniaxial</dfn>, <dfn>biaxial</dfn>,
 or <dfn>triaxial</dfn>, depending on the number of orthogonal axes in
 which it can perform simultaneous measurements.
 
-Scalar physical quantities (i.e. temperature) do not require
+Scalar physical quantities (e.g. temperature) do not require
 a [=local coordinate system=] for resolution.
 
 The [=local coordinate system=] normally used in a mobile device is
