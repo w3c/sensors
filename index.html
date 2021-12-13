@@ -7,7 +7,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet" type="text/css">
   <meta content="Bikeshed version cace53f8c, updated Tue Dec 7 12:12:54 2021 -0800" name="generator">
   <link href="https://www.w3.org/TR/generic-sensor/" rel="canonical">
-  <meta content="20b756232593bb8522712bb07cb1e132bd63d826" name="document-revision">
+  <meta content="a7526c49bb3774edbb912796f408e5bc43f74706" name="document-revision">
 <style>
     svg g.edge text {
         font-size: 8px;
@@ -667,7 +667,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2021-12-10">10 December 2021</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2021-12-13">13 December 2021</time></p>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1357,14 +1357,14 @@ The return value of the <a data-link-type="dfn" href="https://webidl.spec.whatwg
 easily obtained by invoking <a data-link-type="dfn" href="#get-value-from-latest-reading" id="ref-for-get-value-from-latest-reading">get value from latest reading</a> with the object implementing the <a data-link-type="dfn" href="#extension-sensor-interface" id="ref-for-extension-sensor-interface②">extension sensor interface</a> and the <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-attribute" id="ref-for-dfn-attribute②">attribute</a> <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-identifier" id="ref-for-dfn-identifier①">identifier</a> as arguments.</p>
    <p>The <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-value" id="ref-for-map-value①">value</a> of all <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading⑤">latest reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry" id="ref-for-map-entry③">entries</a> is initially set to null.</p>
    <p>A <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①③">platform sensor</a> has an associated <a data-link-type="dfn" href="#requested-sampling-frequency" id="ref-for-requested-sampling-frequency③">requested sampling frequency</a> which is initially null.</p>
-   <p>For a non<a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-is-empty" id="ref-for-list-is-empty③">empty</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set" id="ref-for-ordered-set⑦">set</a> of <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects①">activated sensor objects</a> the <a data-link-type="dfn" href="#requested-sampling-frequency" id="ref-for-requested-sampling-frequency④">requested sampling frequency</a> is equal to <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="optimal-sampling-frequency">optimal sampling frequency</dfn>, which is estimated
-by the user agent taking into account <code class="idl"><a data-link-type="idl" href="#dom-sensor-frequency-slot" id="ref-for-dom-sensor-frequency-slot">provided frequencies</a></code> of <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects②">activated</a> <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor⑤">Sensors</a></code> and <a data-link-type="dfn" href="#sampling-frequency" id="ref-for-sampling-frequency⑦">sampling frequency</a> bounds
+   <p>For a non-<a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-is-empty" id="ref-for-list-is-empty③">empty</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set" id="ref-for-ordered-set⑦">set</a> of <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects①">activated sensor objects</a> the <a data-link-type="dfn" href="#requested-sampling-frequency" id="ref-for-requested-sampling-frequency④">requested sampling frequency</a> is equal to the <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="optimal-sampling-frequency">optimal sampling frequency</dfn>, which is estimated
+by the user agent by taking into account the <code class="idl"><a data-link-type="idl" href="#dom-sensor-frequency-slot" id="ref-for-dom-sensor-frequency-slot">provided frequencies</a></code> of <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects②">activated</a> <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor⑤">Sensors</a></code> and the <a data-link-type="dfn" href="#sampling-frequency" id="ref-for-sampling-frequency⑦">sampling frequency</a> bounds
 defined by the underlying platform.</p>
    <p class="note" role="note"><span>Note:</span> For example, the user agent may estimate <a data-link-type="dfn" href="#optimal-sampling-frequency" id="ref-for-optimal-sampling-frequency">optimal sampling frequency</a> as a Least Common
 Denominator (LCD) for a set of <code class="idl"><a data-link-type="idl" href="#dom-sensor-frequency-slot" id="ref-for-dom-sensor-frequency-slot①">provided frequencies</a></code> capped
 by <a data-link-type="dfn" href="#sampling-frequency" id="ref-for-sampling-frequency⑧">sampling frequency</a> bounds defined by the underlying platform.</p>
-   <div class="example" id="example-c4bd9af5">
-    <a class="self-link" href="#example-c4bd9af5"></a> 
+   <div class="example" id="example-b6449ddc">
+    <a class="self-link" href="#example-b6449ddc"></a> 
     <p>This example illustrates a possible implementation of the described <a href="#model">Model</a>.</p>
     <p>In the diagram below several <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects③">activated</a> <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor⑥">Sensor</a></code> objects from two
 different <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context④">browsing contexts</a> interact with a single <a data-link-type="dfn" href="#concept-device-sensor" id="ref-for-concept-device-sensor②⑥">device sensor</a>.</p>
@@ -1372,7 +1372,7 @@ different <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/b
     <p>The <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor⑦">Sensor</a></code> object in "idle" <a href="#sensor-lifecycle">state</a> is not among the <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①④">platform sensor</a>'s <a data-link-type="dfn" href="#activated-sensor-objects" id="ref-for-activated-sensor-objects④">activated sensor objects</a> and thus it does not interact with the <a data-link-type="dfn" href="#concept-device-sensor" id="ref-for-concept-device-sensor②⑦">device sensor</a>.</p>
     <p>In this example there is a <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①⑤">platform sensor</a> instance per <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context⑤">browsing context</a>.</p>
     <p>The <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading⑥">latest reading</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map⑤">map</a> is shared between <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor⑧">Sensor</a></code> objects from the
-same <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context⑥">context</a> and is updated at rate equal to <a data-link-type="dfn" href="#requested-sampling-frequency" id="ref-for-requested-sampling-frequency⑤">requested sampling frequency</a> of the corresponding <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①⑥">platform sensor</a>.</p>
+same <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context⑥">context</a> and is updated at a rate equal to the <a data-link-type="dfn" href="#requested-sampling-frequency" id="ref-for-requested-sampling-frequency⑤">requested sampling frequency</a> of the corresponding <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor①⑥">platform sensor</a>.</p>
    </div>
    <h2 class="heading settled" data-level="7" id="api"><span class="secno">7. </span><span class="content">API</span><a class="self-link" href="#api"></a></h2>
    <h3 class="heading settled" data-level="7.1" id="the-sensor-interface"><span class="secno">7.1. </span><span class="content">The Sensor Interface</span><a class="self-link" href="#the-sensor-interface"></a></h3>
