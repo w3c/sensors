@@ -962,10 +962,10 @@ The [=task source=] for the [=tasks=] mentioned in this specification is the <df
         @media (prefers-color-scheme: dark) {
             path,
             polygon {
-                filter:invert(1);
+                filter: invert(1);
             }
             text {
-                fill:white;
+                fill: #fff;
             }
         }
     </style>
