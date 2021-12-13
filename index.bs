@@ -1091,9 +1091,9 @@ with the internal slots described in the following table:
 
 <div algorithm="is sensor activated">
 
-    The getter of the {{Sensor/activated!!attribute}} attribute must run these steps:
+    The {{Sensor/activated!!attribute}} getter steps are:
 
-    1.  If <strong>this</strong>.{{[[state]]}} is "activated",
+    1.  If [=this=].{{[[state]]}} is "activated",
         return true.
     1.  Otherwise, return false.
 </div>
@@ -1102,32 +1102,32 @@ with the internal slots described in the following table:
 
 <div algorithm="sensor has reading">
 
-    The getter of the {{Sensor/hasReading!!attribute}} attribute must run these steps:
+    The {{Sensor/hasReading!!attribute}} getter steps are:
 
-    1. Let |timestamp| be the result of invoking [=get value from latest reading=] with <strong>this</strong> and "timestamp" as arguments.
+    1. Let |timestamp| be the result of invoking [=get value from latest reading=] with [=this=] and "timestamp" as arguments.
     1.  If |timestamp| is not null, return true.
     1.  Otherwise, return false.
 </div>
 
 ### Sensor.timestamp ### {#sensor-timestamp}
 
-The getter of the {{Sensor/timestamp!!attribute}} attribute returns
-the result of invoking [=get value from latest reading=] with <strong>this</strong>
-and "timestamp" as arguments. It represents a [=reading timestamp=].
+The {{Sensor/timestamp!!attribute}} getter steps are to return
+the result of invoking [=get value from latest reading=] with [=this=]
+and "timestamp" as arguments.
 
+It represents a [=reading timestamp=].
 
 ### Sensor.start() ### {#sensor-start}
 
 <div algorithm="to start a sensor">
 
-    The {{Sensor/start()}} method must run these steps:
+    The {{Sensor/start()}} method steps are:
 
-    1.  Let |sensor_state| be the value of |sensor_instance|.{{[[state]]}}.
-    1.  If |sensor_state| is either "activating"
-        or "activated", then return.
-    1.  Set |sensor_instance|.{{[[state]]}} to "activating".
+    1.  If [=this=].{{[[state]]}} is either "activating" or "activated", then
+        return.
+    1.  Set [=this=].{{[[state]]}} to "activating".
     1.  Run these sub-steps [=in parallel=]:
-        1.  let |connected| be the result of invoking [=connect to sensor=] with |sensor_instance|
+        1.  Let |connected| be the result of invoking [=connect to sensor=] with [=this=]
             as argument.
         1.  If |connected| is false, then
             1.  Let |e| be the result of [=created|creating=] a
@@ -1142,16 +1142,16 @@ and "timestamp" as arguments. It represents a [=reading timestamp=].
                 correctly diagnosing the reason for the rejection
                 and might lead to confusing instructions to the user,
                 but it is a tradeoff some User Agent might choose to make. -->
-            1.  Queue a task to run [=notify error=] with |e| and |sensor_instance| as arguments.
+            1.  Queue a task to run [=notify error=] with [=this=] and |e| as arguments.
             1.  Return.
         1.  Let |permission_state| be the result of invoking
-            [=request sensor access=] with |sensor_instance| as argument.
+            [=request sensor access=] with [=this=] as argument.
         1.  If |permission_state| is "granted",
-            1.  Invoke [=activate a sensor object=] with |sensor_instance| as argument.
+            1.  Invoke [=activate a sensor object=] with [=this=] as argument.
         1.  Otherwise, if |permission_state| is "denied",
-            1.  let |e| be the result of [=created|creating=]
+            1.  Let |e| be the result of [=created|creating=]
                 a "{{NotAllowedError!!exception}}" {{DOMException}}.
-            1.  Queue a task to run [=notify error=] with |e| and |sensor_instance| as arguments.
+            1.  Queue a task to run [=notify error=] with [=this=] and |e| as arguments.
 </div>
 
 
@@ -1159,12 +1159,12 @@ and "timestamp" as arguments. It represents a [=reading timestamp=].
 
 <div algorithm="to stop a sensor">
 
-    The {{Sensor/stop()}} method must run these steps:
+    The {{Sensor/stop()}} method steps are:
 
-    1.  If |sensor_instance|.{{[[state]]}} is "idle", then return.
-    1.  Set |sensor_instance|.{{[[state]]}} to "idle".
+    1.  If [=this=].{{[[state]]}} is "idle", then return.
+    1.  Set [=this=].{{[[state]]}} to "idle".
     1.  Run these sub-steps [=in parallel=]:
-        1.  Invoke [=deactivate a sensor object=] with |sensor_instance| as argument.
+        1.  Invoke [=deactivate a sensor object=] with [=this=] as argument.
 </div>
 
 
@@ -1177,7 +1177,7 @@ to notify that new [=sensor reading|reading=] is available.
 ### Sensor.onactivate ### {#sensor-onactivate}
 
 {{Sensor/onactivate}} is an {{EventHandler}} which is called when
-<strong>this</strong>.{{[[state]]}} transitions from "activating" to "activated".
+[=this=].{{[[state]]}} transitions from "activating" to "activated".
 
 
 ### Sensor.onerror ### {#sensor-onerror}
@@ -1231,7 +1231,9 @@ dictionary SensorErrorEventInit : EventInit {
 
 ### SensorErrorEvent.error ### {#sensor-error-event-error}
 
-Gets the {{DOMException}} object passed to {{SensorErrorEventInit}}.
+The {{SensorErrorEvent/error!!attribute}} getter steps are to return the value it was initialized to.
+
+It represents the {{DOMException}} object passed to {{SensorErrorEventInit}}.
 
 <h2 id="abstract-operations">Abstract Operations</h2>
 
@@ -1350,7 +1352,7 @@ Gets the {{DOMException}} object passed to {{SensorErrorEventInit}}.
         1.  Invoke [=deactivate a sensor object=] with |s| as argument.
         1.  Let |e| be the result of [=created|creating=]
             a "{{NotAllowedError!!exception}}" {{DOMException}}.
-        1.  Queue a task to run [=notify error=] with |e| and |s| as arguments.
+        1.  Queue a task to run [=notify error=] with |s| and |e| as arguments.
 </div>
 
 
