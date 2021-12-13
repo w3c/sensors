@@ -960,7 +960,8 @@ The [=task source=] for the [=tasks=] mentioned in this specification is the <df
 <svg xmlns="http://www.w3.org/2000/svg" height="79pt" viewBox="0.00 0.00 351.00 78.51" width="351pt">
     <style>
         @media (prefers-color-scheme: dark) {
-            path {
+            path,
+            polygon {
                 filter:invert(1);
             }
             text {
