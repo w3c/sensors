@@ -7,7 +7,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet" type="text/css">
   <meta content="Bikeshed version cace53f8c, updated Tue Dec 7 12:12:54 2021 -0800" name="generator">
   <link href="https://www.w3.org/TR/generic-sensor/" rel="canonical">
-  <meta content="ef6a1e33ad03bc19702bc2b9acb000af291d3e90" name="document-revision">
+  <meta content="f9caadf67cee024911ef2934f495aeeb6893d697" name="document-revision">
 <style>
     svg g.edge text {
         font-size: 8px;
@@ -1581,10 +1581,10 @@ with the internal slots described in the following table:</p>
     </div>
    </div>
    <div class="algorithm" data-algorithm="is sensor activated">
-    <p>The getter of the <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensor-activated" id="ref-for-dom-sensor-activated">activated</a></code> attribute must run these steps:</p>
+    <p>The <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensor-activated" id="ref-for-dom-sensor-activated">activated</a></code> getter steps are:</p>
     <ol>
      <li data-md>
-      <p>If <strong>this</strong>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-state-slot" id="ref-for-dom-sensor-state-slot③">[[state]]</a></code> is "activated",
+      <p>If <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this">this</a>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-state-slot" id="ref-for-dom-sensor-state-slot③">[[state]]</a></code> is "activated",
   return true.</p>
      <li data-md>
       <p>Otherwise, return false.</p>
@@ -1608,10 +1608,10 @@ with the internal slots described in the following table:</p>
     </div>
    </div>
    <div class="algorithm" data-algorithm="sensor has reading">
-    <p>The getter of the <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensor-hasreading" id="ref-for-dom-sensor-hasreading">hasReading</a></code> attribute must run these steps:</p>
+    <p>The <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensor-hasreading" id="ref-for-dom-sensor-hasreading">hasReading</a></code> getter steps are:</p>
     <ol>
      <li data-md>
-      <p>Let <var>timestamp</var> be the result of invoking <a data-link-type="dfn" href="#get-value-from-latest-reading" id="ref-for-get-value-from-latest-reading①">get value from latest reading</a> with <strong>this</strong> and "timestamp" as arguments.</p>
+      <p>Let <var>timestamp</var> be the result of invoking <a data-link-type="dfn" href="#get-value-from-latest-reading" id="ref-for-get-value-from-latest-reading①">get value from latest reading</a> with <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①">this</a> and "timestamp" as arguments.</p>
      <li data-md>
       <p>If <var>timestamp</var> is not null, return true.</p>
      <li data-md>
@@ -1635,8 +1635,9 @@ with the internal slots described in the following table:</p>
      </div>
     </div>
    </div>
-   <p>The getter of the <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensor-timestamp" id="ref-for-dom-sensor-timestamp">timestamp</a></code> attribute returns
-the result of invoking <a data-link-type="dfn" href="#get-value-from-latest-reading" id="ref-for-get-value-from-latest-reading②">get value from latest reading</a> with <strong>this</strong> and "timestamp" as arguments. It represents a <a data-link-type="dfn" href="#reading-timestamp" id="ref-for-reading-timestamp④">reading timestamp</a>.</p>
+   <p>The <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensor-timestamp" id="ref-for-dom-sensor-timestamp">timestamp</a></code> getter steps are to return
+the result of invoking <a data-link-type="dfn" href="#get-value-from-latest-reading" id="ref-for-get-value-from-latest-reading②">get value from latest reading</a> with <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②">this</a> and "timestamp" as arguments.</p>
+   <p>It represents a <a data-link-type="dfn" href="#reading-timestamp" id="ref-for-reading-timestamp④">reading timestamp</a>.</p>
    <h4 class="heading settled" data-level="7.1.7" id="sensor-start"><span class="secno">7.1.7. </span><span class="content">Sensor.start()</span><a class="self-link" href="#sensor-start"></a></h4>
    <div class="mdn-anno wrapped after">
     <button class="mdn-anno-btn"><b class="less-than-two-engines-flag" title="This feature is in less than two current engines.">⚠</b><span>MDN</span></button>
@@ -1655,20 +1656,18 @@ the result of invoking <a data-link-type="dfn" href="#get-value-from-latest-read
     </div>
    </div>
    <div class="algorithm" data-algorithm="to start a sensor">
-    <p>The <code class="idl"><a data-link-type="idl" href="#dom-sensor-start" id="ref-for-dom-sensor-start">start()</a></code> method must run these steps:</p>
+    <p>The <code class="idl"><a data-link-type="idl" href="#dom-sensor-start" id="ref-for-dom-sensor-start">start()</a></code> method steps are:</p>
     <ol>
      <li data-md>
-      <p>Let <var>sensor_state</var> be the value of <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-state-slot" id="ref-for-dom-sensor-state-slot④">[[state]]</a></code>.</p>
+      <p>If <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this③">this</a>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-state-slot" id="ref-for-dom-sensor-state-slot④">[[state]]</a></code> is either "activating" or "activated", then
+  return.</p>
      <li data-md>
-      <p>If <var>sensor_state</var> is either "activating"
-  or "activated", then return.</p>
-     <li data-md>
-      <p>Set <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-state-slot" id="ref-for-dom-sensor-state-slot⑤">[[state]]</a></code> to "activating".</p>
+      <p>Set <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this④">this</a>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-state-slot" id="ref-for-dom-sensor-state-slot⑤">[[state]]</a></code> to "activating".</p>
      <li data-md>
       <p>Run these sub-steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel">in parallel</a>:</p>
       <ol>
        <li data-md>
-        <p>let <var>connected</var> be the result of invoking <a data-link-type="dfn" href="#connect-to-sensor" id="ref-for-connect-to-sensor">connect to sensor</a> with <var>sensor_instance</var> as argument.</p>
+        <p>Let <var>connected</var> be the result of invoking <a data-link-type="dfn" href="#connect-to-sensor" id="ref-for-connect-to-sensor">connect to sensor</a> with <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑤">this</a> as argument.</p>
        <li data-md>
         <p>If <var>connected</var> is false, then</p>
         <ol>
@@ -1676,25 +1675,25 @@ the result of invoking <a data-link-type="dfn" href="#get-value-from-latest-read
           <p>Let <var>e</var> be the result of <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-create-exception" id="ref-for-dfn-create-exception">creating</a> a
   "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#notreadableerror" id="ref-for-notreadableerror">NotReadableError</a></code>" <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException">DOMException</a></code>.</p>
          <li data-md>
-          <p>Queue a task to run <a data-link-type="dfn" href="#notify-error" id="ref-for-notify-error">notify error</a> with <var>e</var> and <var>sensor_instance</var> as arguments.</p>
+          <p>Queue a task to run <a data-link-type="dfn" href="#notify-error" id="ref-for-notify-error">notify error</a> with <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑥">this</a> and <var>e</var> as arguments.</p>
          <li data-md>
           <p>Return.</p>
         </ol>
        <li data-md>
-        <p>Let <var>permission_state</var> be the result of invoking <a data-link-type="dfn" href="#request-sensor-access" id="ref-for-request-sensor-access">request sensor access</a> with <var>sensor_instance</var> as argument.</p>
+        <p>Let <var>permission_state</var> be the result of invoking <a data-link-type="dfn" href="#request-sensor-access" id="ref-for-request-sensor-access">request sensor access</a> with <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑦">this</a> as argument.</p>
        <li data-md>
         <p>If <var>permission_state</var> is "granted",</p>
         <ol>
          <li data-md>
-          <p>Invoke <a data-link-type="dfn" href="#activate-a-sensor-object" id="ref-for-activate-a-sensor-object">activate a sensor object</a> with <var>sensor_instance</var> as argument.</p>
+          <p>Invoke <a data-link-type="dfn" href="#activate-a-sensor-object" id="ref-for-activate-a-sensor-object">activate a sensor object</a> with <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑧">this</a> as argument.</p>
         </ol>
        <li data-md>
         <p>Otherwise, if <var>permission_state</var> is "denied",</p>
         <ol>
          <li data-md>
-          <p>let <var>e</var> be the result of <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-create-exception" id="ref-for-dfn-create-exception①">creating</a> a "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#notallowederror" id="ref-for-notallowederror">NotAllowedError</a></code>" <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException①">DOMException</a></code>.</p>
+          <p>Let <var>e</var> be the result of <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-create-exception" id="ref-for-dfn-create-exception①">creating</a> a "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#notallowederror" id="ref-for-notallowederror">NotAllowedError</a></code>" <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException①">DOMException</a></code>.</p>
          <li data-md>
-          <p>Queue a task to run <a data-link-type="dfn" href="#notify-error" id="ref-for-notify-error①">notify error</a> with <var>e</var> and <var>sensor_instance</var> as arguments.</p>
+          <p>Queue a task to run <a data-link-type="dfn" href="#notify-error" id="ref-for-notify-error①">notify error</a> with <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑨">this</a> and <var>e</var> as arguments.</p>
         </ol>
       </ol>
     </ol>
@@ -1717,17 +1716,17 @@ the result of invoking <a data-link-type="dfn" href="#get-value-from-latest-read
     </div>
    </div>
    <div class="algorithm" data-algorithm="to stop a sensor">
-    <p>The <code class="idl"><a data-link-type="idl" href="#dom-sensor-stop" id="ref-for-dom-sensor-stop">stop()</a></code> method must run these steps:</p>
+    <p>The <code class="idl"><a data-link-type="idl" href="#dom-sensor-stop" id="ref-for-dom-sensor-stop">stop()</a></code> method steps are:</p>
     <ol>
      <li data-md>
-      <p>If <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-state-slot" id="ref-for-dom-sensor-state-slot⑥">[[state]]</a></code> is "idle", then return.</p>
+      <p>If <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①⓪">this</a>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-state-slot" id="ref-for-dom-sensor-state-slot⑥">[[state]]</a></code> is "idle", then return.</p>
      <li data-md>
-      <p>Set <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-state-slot" id="ref-for-dom-sensor-state-slot⑦">[[state]]</a></code> to "idle".</p>
+      <p>Set <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①①">this</a>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-state-slot" id="ref-for-dom-sensor-state-slot⑦">[[state]]</a></code> to "idle".</p>
      <li data-md>
       <p>Run these sub-steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel①">in parallel</a>:</p>
       <ol>
        <li data-md>
-        <p>Invoke <a data-link-type="dfn" href="#deactivate-a-sensor-object" id="ref-for-deactivate-a-sensor-object①">deactivate a sensor object</a> with <var>sensor_instance</var> as argument.</p>
+        <p>Invoke <a data-link-type="dfn" href="#deactivate-a-sensor-object" id="ref-for-deactivate-a-sensor-object①">deactivate a sensor object</a> with <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①②">this</a> as argument.</p>
       </ol>
     </ol>
    </div>
@@ -1767,7 +1766,7 @@ to notify that new <a data-link-type="dfn" href="#sensor-reading" id="ref-for-se
      </div>
     </div>
    </div>
-   <p><code class="idl"><a data-link-type="idl" href="#dom-sensor-onactivate" id="ref-for-dom-sensor-onactivate">onactivate</a></code> is an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler④">EventHandler</a></code> which is called when <strong>this</strong>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-state-slot" id="ref-for-dom-sensor-state-slot⑧">[[state]]</a></code> transitions from "activating" to "activated".</p>
+   <p><code class="idl"><a data-link-type="idl" href="#dom-sensor-onactivate" id="ref-for-dom-sensor-onactivate">onactivate</a></code> is an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler④">EventHandler</a></code> which is called when <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①③">this</a>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-state-slot" id="ref-for-dom-sensor-state-slot⑧">[[state]]</a></code> transitions from "activating" to "activated".</p>
    <h4 class="heading settled" data-level="7.1.11" id="sensor-onerror"><span class="secno">7.1.11. </span><span class="content">Sensor.onerror</span><a class="self-link" href="#sensor-onerror"></a></h4>
    <div class="mdn-anno wrapped after">
     <button class="mdn-anno-btn"><b class="less-than-two-engines-flag" title="This feature is in less than two current engines.">⚠</b><span>MDN</span></button>
@@ -1866,7 +1865,8 @@ that must be supported as attributes by the objects implementing the <code class
      </div>
     </div>
    </div>
-   <p>Gets the <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException④">DOMException</a></code> object passed to <code class="idl"><a data-link-type="idl" href="#dictdef-sensorerroreventinit" id="ref-for-dictdef-sensorerroreventinit①">SensorErrorEventInit</a></code>.</p>
+   <p>The <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensorerrorevent-error" id="ref-for-dom-sensorerrorevent-error">error</a></code> getter steps are to return the value it was initialized to.</p>
+   <p>It represents the <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException④">DOMException</a></code> object passed to <code class="idl"><a data-link-type="idl" href="#dictdef-sensorerroreventinit" id="ref-for-dictdef-sensorerroreventinit①">SensorErrorEventInit</a></code>.</p>
    <h2 class="heading settled" data-level="8" id="abstract-operations"><span class="secno">8. </span><span class="content">Abstract Operations</span><a class="self-link" href="#abstract-operations"></a></h2>
    <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-export data-level="8.1" data-lt="Initialize a sensor object" id="initialize-a-sensor-object"><span class="secno">8.1. </span><span class="content">Initialize a sensor object</span><a class="self-link" href="#initialize-a-sensor-object" id="ref-for-initialize-a-sensor-object"></a></h3>
    <div class="algorithm" data-algorithm="initialize a sensor object">
@@ -2040,7 +2040,7 @@ that must be supported as attributes by the objects implementing the <code class
        <li data-md>
         <p>Let <var>e</var> be the result of <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-create-exception" id="ref-for-dfn-create-exception②">creating</a> a "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#notallowederror" id="ref-for-notallowederror①">NotAllowedError</a></code>" <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException⑥">DOMException</a></code>.</p>
        <li data-md>
-        <p>Queue a task to run <a data-link-type="dfn" href="#notify-error" id="ref-for-notify-error②">notify error</a> with <var>e</var> and <var>s</var> as arguments.</p>
+        <p>Queue a task to run <a data-link-type="dfn" href="#notify-error" id="ref-for-notify-error②">notify error</a> with <var>s</var> and <var>e</var> as arguments.</p>
       </ol>
     </ol>
    </div>
@@ -2265,7 +2265,7 @@ that must be supported as attributes by the objects implementing the <code class
      <li data-md>
       <p>Set <var>sensor_instance</var>.<code class="idl"><a data-link-type="idl" href="#dom-sensor-state-slot" id="ref-for-dom-sensor-state-slot①⓪">[[state]]</a></code> to "idle".</p>
      <li data-md>
-      <p><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire" id="ref-for-concept-event-fire③">Fire an event</a> named "error" at <var>sensor_instance</var> using <code class="idl"><a data-link-type="idl" href="#sensorerrorevent" id="ref-for-sensorerrorevent">SensorErrorEvent</a></code> with its <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensorerrorevent-error" id="ref-for-dom-sensorerrorevent-error">error</a></code> attribute initialized to <var>error</var>.</p>
+      <p><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire" id="ref-for-concept-event-fire③">Fire an event</a> named "error" at <var>sensor_instance</var> using <code class="idl"><a data-link-type="idl" href="#sensorerrorevent" id="ref-for-sensorerrorevent">SensorErrorEvent</a></code> with its <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-sensorerrorevent-error" id="ref-for-dom-sensorerrorevent-error①">error</a></code> attribute initialized to <var>error</var>.</p>
     </ol>
    </div>
    <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="8.14" data-lt="Get value from latest reading" data-noexport id="get-value-from-latest-reading"><span class="secno">8.14. </span><span class="content">Get value from latest reading</span><a class="self-link" href="#get-value-from-latest-reading" id="ref-for-get-value-from-latest-reading④"></a></h3>
@@ -3914,6 +3914,17 @@ for their editorial input.</p>
     <li><a href="#ref-for-dfn-read-only">10.6. Definition Requirements</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-this">
+   <a href="https://webidl.spec.whatwg.org/#this">https://webidl.spec.whatwg.org/#this</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-this">7.1.4. Sensor.activated</a>
+    <li><a href="#ref-for-this①">7.1.5. Sensor.hasReading</a>
+    <li><a href="#ref-for-this②">7.1.6. Sensor.timestamp</a>
+    <li><a href="#ref-for-this③">7.1.7. Sensor.start()</a> <a href="#ref-for-this④">(2)</a> <a href="#ref-for-this⑤">(3)</a> <a href="#ref-for-this⑥">(4)</a> <a href="#ref-for-this⑦">(5)</a> <a href="#ref-for-this⑧">(6)</a> <a href="#ref-for-this⑨">(7)</a>
+    <li><a href="#ref-for-this①⓪">7.1.8. Sensor.stop()</a> <a href="#ref-for-this①①">(2)</a> <a href="#ref-for-this①②">(3)</a>
+    <li><a href="#ref-for-this①③">7.1.10. Sensor.onactivate</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-dfn-throw">
    <a href="https://webidl.spec.whatwg.org/#dfn-throw">https://webidl.spec.whatwg.org/#dfn-throw</a><b>Referenced in:</b>
    <ul>
@@ -4090,6 +4101,7 @@ for their editorial input.</p>
      <li><span class="dfn-paneled" id="term-for-dfn-inherited-interfaces">inherited interfaces</span>
      <li><span class="dfn-paneled" id="term-for-dfn-interface">interface</span>
      <li><span class="dfn-paneled" id="term-for-dfn-read-only">read only</span>
+     <li><span class="dfn-paneled" id="term-for-this">this</span>
      <li><span class="dfn-paneled" id="term-for-dfn-throw">throw</span>
      <li><span class="dfn-paneled" id="term-for-idl-undefined">undefined</span>
     </ul>
@@ -4698,7 +4710,8 @@ for their editorial input.</p>
   <aside class="dfn-panel" data-for="dom-sensorerrorevent-error">
    <b><a href="#dom-sensorerrorevent-error">#dom-sensorerrorevent-error</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-sensorerrorevent-error">8.13. Notify error</a>
+    <li><a href="#ref-for-dom-sensorerrorevent-error">7.2.1. SensorErrorEvent.error</a>
+    <li><a href="#ref-for-dom-sensorerrorevent-error①">8.13. Notify error</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dictdef-sensorerroreventinit">
