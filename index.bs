@@ -2092,7 +2092,7 @@ it does not need to [=request permission to use|request permission to use=] magn
 for accuracy or [=sampling frequency=]. An example for a possible extension of the Permission API
 for accelerometer sensor is given below.
 
-<pre class=example>
+<pre class="example" highlight="idl">
     dictionary AccelerometerPermissionDescriptor : PermissionDescriptor {
         boolean highAccuracy = false;
         boolean highFrequency = false;
@@ -2153,7 +2153,7 @@ that are required by the absolute orientation sensor.
 Here's an example WebIDL for a possible extension of this specification
 for proximity [=device sensor|sensors=].
 
-<pre class=example>
+<pre class="example" highlight="idl">
     [SecureContext, Exposed=Window]
     interface ProximitySensor : Sensor {
         constructor(optional ProximitySensorOptions proximitySensorOptions = {});
