@@ -958,6 +958,17 @@ The [=task source=] for the [=tasks=] mentioned in this specification is the <df
     }
 </style>
 <svg xmlns="http://www.w3.org/2000/svg" height="79pt" viewBox="0.00 0.00 351.00 78.51" width="351pt">
+    <style>
+        @media (prefers-color-scheme: dark) {
+            path,
+            polygon {
+                filter: invert(1);
+            }
+            text {
+                fill: #fff;
+            }
+        }
+    </style>
     <g class="graph" transform="scale(1 1) rotate(0) translate(4 74.5122)">
         <title>Sensor lifecycle</title>
         <a xlink:href="#dom-sensor-state-slot">
