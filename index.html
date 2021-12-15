@@ -7,7 +7,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet" type="text/css">
   <meta content="Bikeshed version cace53f8c, updated Tue Dec 7 12:12:54 2021 -0800" name="generator">
   <link href="https://www.w3.org/TR/generic-sensor/" rel="canonical">
-  <meta content="f9caadf67cee024911ef2934f495aeeb6893d697" name="document-revision">
+  <meta content="182a3673227995dd9321e3f8413e3503f0e67a33" name="document-revision">
 <style>
     svg g.edge text {
         font-size: 8px;
@@ -667,7 +667,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2021-12-14">14 December 2021</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2021-12-15">15 December 2021</time></p>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2789,9 +2789,9 @@ it does not need to <a data-link-type="dfn" href="https://w3c.github.io/permissi
    <p><code class="idl"><a data-link-type="idl" href="https://w3c.github.io/permissions/#dom-permissiondescriptor" id="ref-for-dom-permissiondescriptor①">Permission descriptors</a></code> can also be used to set maximum allowed limits
 for accuracy or <a data-link-type="dfn" href="#sampling-frequency" id="ref-for-sampling-frequency①⑦">sampling frequency</a>. An example for a possible extension of the Permission API
 for accelerometer sensor is given below.</p>
-<pre class="example" id="example-88a9149d"><a class="self-link" href="#example-88a9149d"></a>dictionary AccelerometerPermissionDescriptor : PermissionDescriptor {
-    boolean highAccuracy = false;
-    boolean highFrequency = false;
+<pre class="example highlight" id="example-88a9149d"><a class="self-link" href="#example-88a9149d"></a><c- b>dictionary</c-> <c- g>AccelerometerPermissionDescriptor</c-> : <c- n>PermissionDescriptor</c-> {
+    <c- b>boolean</c-> <c- g>highAccuracy</c-> = <c- b>false</c->;
+    <c- b>boolean</c-> <c- g>highFrequency</c-> = <c- b>false</c->;
 };
 </pre>
    <h3 class="heading settled" data-level="10.9" id="permissions-policy-api"><span class="secno">10.9. </span><span class="content">Extending the Permissions Policy API</span><span id="feature-policy-api"></span><a class="self-link" href="#permissions-policy-api"></a></h3>
@@ -2827,38 +2827,38 @@ that are required by the absolute orientation sensor.
    <h3 class="heading settled" data-level="10.10" id="example-webidl"><span class="secno">10.10. </span><span class="content">Example WebIDL</span><a class="self-link" href="#example-webidl"></a></h3>
    <p>Here’s an example WebIDL for a possible extension of this specification
 for proximity <a data-link-type="dfn" href="#concept-device-sensor" id="ref-for-concept-device-sensor③③">sensors</a>.</p>
-<pre class="example" id="example-ce90960e"><a class="self-link" href="#example-ce90960e"></a>[SecureContext, Exposed=Window]
-interface ProximitySensor : Sensor {
-    constructor(optional ProximitySensorOptions proximitySensorOptions = {});
-    readonly attribute double? distance;
+<pre class="example highlight" id="example-ce90960e"><a class="self-link" href="#example-ce90960e"></a>[<c- g>SecureContext</c->, <c- g>Exposed</c->=<c- n>Window</c->]
+<c- b>interface</c-> <c- g>ProximitySensor</c-> : <c- n>Sensor</c-> {
+    <c- g>constructor</c->(<c- b>optional</c-> <c- n>ProximitySensorOptions</c-> <c- g>proximitySensorOptions</c-> = {});
+    <c- b>readonly</c-> <c- b>attribute</c-> <c- b>double</c->? <c- g>distance</c->;
 };
 
-dictionary ProximitySensorOptions : SensorOptions {
-    double min;
-    double max;
-    ProximitySensorPosition position;
-    ProximitySensorDirection direction;
+<c- b>dictionary</c-> <c- g>ProximitySensorOptions</c-> : <c- n>SensorOptions</c-> {
+    <c- b>double</c-> <c- g>min</c->;
+    <c- b>double</c-> <c- g>max</c->;
+    <c- n>ProximitySensorPosition</c-> <c- g>position</c->;
+    <c- n>ProximitySensorDirection</c-> <c- g>direction</c->;
 };
 
-enum ProximitySensorPosition {
-    "top-left",
-    "top",
-    "top-right",
-    "middle-left",
-    "middle",
-    "middle-right",
-    "bottom-left",
-    "bottom",
-    "bottom-right"
+<c- b>enum</c-> <c- g>ProximitySensorPosition</c-> {
+    <c- s>"top-left"</c->,
+    <c- s>"top"</c->,
+    <c- s>"top-right"</c->,
+    <c- s>"middle-left"</c->,
+    <c- s>"middle"</c->,
+    <c- s>"middle-right"</c->,
+    <c- s>"bottom-left"</c->,
+    <c- s>"bottom"</c->,
+    <c- s>"bottom-right"</c->
 };
 
-enum ProximitySensorDirection {
-    "front",
-    "rear",
-    "left",
-    "right",
-    "top",
-    "bottom"
+<c- b>enum</c-> <c- g>ProximitySensorDirection</c-> {
+    <c- s>"front"</c->,
+    <c- s>"rear"</c->,
+    <c- s>"left"</c->,
+    <c- s>"right"</c->,
+    <c- s>"top"</c->,
+    <c- s>"bottom"</c->
 };
 </pre>
    <h2 class="heading settled" data-level="11" id="acknowledgements"><span class="secno">11. </span><span class="content">Acknowledgements</span><a class="self-link" href="#acknowledgements"></a></h2>
