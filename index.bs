@@ -2075,7 +2075,7 @@ In order to enable user-agent automation and application testing,
 
 An implementation of the {{Sensor}} interface for each [=sensor type=] must protect its
 [=sensor reading|reading=] by associated [=powerful feature/name=] or {{PermissionDescriptor}}.
-A [=Low-level=] {{Sensor|sensor}} may use its interface name as a [=powerful feature/name=],
+A [=low-level=] {{Sensor|sensor}} may use its interface name as a [=powerful feature/name=],
 for instance, "gyroscope" or "accelerometer". [=sensor fusion|Fusion sensors=] must
 [=request permission to use|request permission to access=] each of the sensors that are
 used as a source of fusion.
@@ -2115,7 +2115,7 @@ from [=sensor readings=] access.
 The [=sensor feature names=] [=ordered set|set=] must contain [=policy-controlled feature=]
 tokens of every associated [=policy-controlled feature|feature=].
 
-A [=Low-level=] {{Sensor|sensor}} may use its interface name as a [=policy-controlled feature=] token,
+A [=low-level=] {{Sensor|sensor}} may use its interface name as a [=policy-controlled feature=] token,
 for instance, "gyroscope" or "accelerometer". Unless the [=extension specification=] defines
 otherwise, the [=sensor feature names=] matches the same [=sensor type|type=]-associated
 [=sensor permission names=].
