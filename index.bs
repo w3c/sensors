@@ -1239,12 +1239,12 @@ dictionary SensorErrorEventInit : EventInit {
 };
 </pre>
 
+{{SensorErrorEvent}} instances are constructed by following the steps described
+in {{Event}}'s <a for="Event">constructor</a>.
 
-### SensorErrorEvent.error ### {#sensor-error-event-error}
-
-The {{SensorErrorEvent/error!!attribute}} getter steps are to return the value it was initialized to.
-
-It represents the {{DOMException}} object passed to {{SensorErrorEventInit}}.
+The <dfn attribute for="SensorErrorEvent">error</dfn> attribute must return the
+value it was initialized to. It represents the {{DOMException}} object passed
+to {{SensorErrorEventInit}}.
 
 <h2 id="abstract-operations">Abstract Operations</h2>
 
