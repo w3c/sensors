@@ -756,7 +756,7 @@ The user agent must verify that all [=mandatory conditions=] are satisfied to en
 [=sensor type|type=] that belong to a certain [=active document=].
 
 The <dfn>mandatory conditions</dfn> are the following:
- - The given document is a [=responsible document=] of a [=secure context=].
+ - The given document's [=relevant settings object=] is a [=secure context=].
  - For each [=powerful feature/name=] from the [=sensor type=]'s associated
    [=sensor permission names=] [=ordered set|set=], the corresponding permission's
    [=permission state|state=] is "granted".
