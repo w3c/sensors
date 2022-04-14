@@ -751,22 +751,19 @@ never exceed the [=sampling frequency=] for the given [=sensor type=].
 
 ## Conditions to expose sensor readings ## {#concepts-can-expose-sensor-readings}
 
-The user agent must verify that all [=mandatory conditions=] are satisfied to ensure it
-<dfn>can expose sensor readings</dfn> to the {{Sensor}} objects of a certain
-[=sensor type|type=] that belong to a certain [=active document=].
-
-The <dfn>mandatory conditions</dfn> are the following:
- - The given document's [=relevant settings object=] is a [=secure context=].
- - For each [=powerful feature/name=] from the [=sensor type=]'s associated
-   [=sensor permission names=] [=ordered set|set=], the corresponding permission's
-   [=permission state|state=] is "granted".
- - The [=visibility state=] of the document is "visible".
- - The document is [=allowed to use=] all the [=policy-controlled features=] associated
-   with the given [=sensor type=].
- - [=Currently focused area=] belongs to a document whose origin is [=same origin-domain=]
-   with the origin of the given [=active document=].
+The user agent <dfn>can expose sensor readings</dfn> to a given |document| if and only if
+all of the following are true:
+ - |document|'s [=relevant settings object=] is a [=secure context=].
+ - |document|'s [=visibility state=] is "visible".
+ - The [=currently focused area=] belongs to a document whose origin is [=same
+   origin-domain=] with |document|'s origin.
  - <dfn>Specific conditions</dfn>: The [=extension specifications=] that add new
    [=mandatory conditions|conditions=] hook into this specification at this point.
+
+Note: In addition to the conditions above, it is important to note that {{Sensor}}
+subclasses invoke the [=check sensor policy-controlled features=] operation in their
+constructors, and [[#sensor-start]] invokes [=request sensor access=]. Together, these
+checks correspond to the mitigation strategies described in [[#mitigation-strategies]].
 
 Note: In order to release hardware resources, the user agent can request underlying
 [=platform sensor=] to suspend notifications about newly available readings until it
