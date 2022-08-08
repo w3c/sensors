@@ -512,6 +512,20 @@ might also help mitigate certain threats,
 thus user agents should not provide
 unnecessarily verbose readouts of sensors data.
 
+Implementations of concrete sensors may define a [=threshold check algorithm=]
+so that new readings that do not differ enough from the [=latest readings=] are
+discarded.
+
+Implementations of concrete sensors may define a [=reading quantization
+algorithm=] to reduce the accuracy of the [=sensor readings=] received from a
+[=device sensor=].
+
+Note: these two mitigation measures often complement each other. An
+implementation that only executes the [=threshold check algorithm=] might
+expose readings that are too precise, while an implementation that only rounds
+readings up may provide attackers with information about more precise readings
+when raw readings are rounded to different values.
+
 Note: Inaccuracies will further increase for operations carried out on the
 [=sensor readings=], or time deltas calculated from the [=reading timestamp|timestamps=].
 So, this mitigation strategy can affect certain use cases.
@@ -711,19 +725,6 @@ define ways to uniquely identify each one.
     </pre>
 </div>
 
-## Reading change threshold ## {#concepts-reading-change-threshold}
-
-A [=platform sensor=] reports [=sensor readings|readings=] to the user agent considering
-the [=reading change threshold=].
-
-The <dfn>reading change threshold</dfn> refers to a value which indicates whether or
-not the changes in the [=device sensor=]'s measurements were significant enough to
-update the corresponding [=sensor readings=].
-
-The [=reading change threshold|threshold=] value depends on the surrounding software and hardware
-environment constraints, e.g., software power consumption optimizations or the underlying
-[=device sensor=]'s accuracy.
-
 ## Sampling Frequency and Reporting Frequency ## {#concepts-sampling-and-reporting-frequencies}
 
 For the purpose of this specification, <dfn>sampling frequency</dfn> for a [=platform sensor=] is
@@ -739,8 +740,12 @@ can support it.
 The [=sampling frequency=] differs from the [=requested sampling frequency=] in the following cases:
  - the [=requested sampling frequency=] exceeds upper or lower [=sampling frequency=] bounds
    supported by the underlying platform.
- - the [=reading change threshold|threshold=] value is significant so that some of the
-   [=device sensor=]'s measurements are skipped and the [=sensor readings=] are not updated.
+ - the operating system and/or the [=device sensor=] automatically discard
+   readings that do not differ enough (in absolute or relative terms) from the
+   previously reported ones via a hardware or operating system filter.
+ - the [=platform sensor=]'s associated [=sensor type=]'s [=threshold check
+   algorithm=] fails and the [=platform sensor=]'s [=latest readings=] are not
+   updated.
 
 The <dfn>reporting frequency</dfn> for a concrete {{Sensor}} object is defined as a frequency at which
 the "reading" event is [=fire an event|fired=] at this object.
@@ -803,11 +808,23 @@ A [=sensor type=] has a [=permission request algorithm=].
 A [=sensor type=] has a [=set/is empty|nonempty=] [=ordered set|set=] of associated
 [=policy-controlled feature=] tokens referred to as <dfn export>sensor feature names</dfn>.
 
+A [=sensor type=] may have an associated <dfn export>threshold check
+algorithm</dfn>, which takes as arguments two separate [=sensor readings=] and
+determines if they differ enough to cause a [=platform sensor=]'s [=latest
+reading=] map to be updated.
+
+A [=sensor type=] may have an associated <dfn export>reading quantization
+algorithm</dfn>, which takes a [=sensor reading=] and returns a less accurate
+[=sensor reading=].
+
 <h3 id="model-sensor">Sensor</h3>
 
-The current [=browsing context=]'s [=platform sensor=] has an associated [=ordered set|set=]
-of <dfn>activated sensor objects</dfn>, which is initially [=set/is empty|empty=] and an
-associated <dfn>latest reading</dfn> [=ordered map|map=], which holds the latest available [=sensor readings=].
+The current [=browsing context=]'s [=platform sensor=] must have:
+- An associated [=ordered set|set=] of <dfn>activated sensor objects</dfn>,
+  which is initially [=set/is empty|empty=];
+- An associated <dfn>latest reading</dfn> [=ordered map|map=], which holds the
+  latest available [=sensor readings=].
+- An associated [=sensor type=].
 
 Note: User agents can share the [=latest reading=] [=ordered map|map=] and
 the [=activated sensor objects=] [=ordered set|set=] between different
@@ -1393,6 +1410,11 @@ to {{SensorErrorEventInit}}.
     : output
     :: None
 
+    1.  Let |type| be |sensor|'s associated [=sensor type=].
+    1.  If |type|'s [=threshold check algorithm=] is defined, then:
+        1.  Let |result| be the result of invoking |type|'s [=threshold check algorithm=]
+            with |reading| and |latest reading|.
+        1.  If |result| is false, then abort these steps.
     1.  [=map/For each=] |key| → <var ignore>value</var> of [=latest reading=].
         1.  [=map/Set=] [=latest reading=][|key|] to the corresponding
             value of |reading|.
@@ -1514,6 +1536,9 @@ to {{SensorErrorEventInit}}.
 
     1.  If |sensor_instance|.{{[[state]]}} is "activated",
         1.  Let |readings| be the [=latest reading=] of |sensor_instance|'s related [=platform sensor=].
+        1.  Let |type| be |sensor_instance|'s associated [=platform sensor=]'s associated [=sensor type=].
+        1.  If |type|'s [=reading quantization algorithm=] is defined, then:
+            1.  Set |readings| to the result of invoking |type|'s [=reading quantization algorithm=] with |readings|.
         1.  If the [=extension specification=] defines a [=local coordinate system=] for |sensor_instance|,
             1. Remap (see [[COORDINATES-TRANSFORMATION]]) |readings| values to the
                [=local coordinate system=].
