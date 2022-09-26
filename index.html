@@ -7,7 +7,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
   <meta content="Bikeshed version 44af0bf3e, updated Fri Jul 29 17:05:16 2022 -0700" name="generator">
   <link href="https://www.w3.org/TR/generic-sensor/" rel="canonical">
-  <meta content="9711ca460237d65eb6a80458ea41e8ee571d5ab4" name="document-revision">
+  <meta content="b574bb9e3dec9acb4f0e4565b390b25eb7736ca4" name="document-revision">
 <style>
     svg g.edge text {
         font-size: 8px;
@@ -1893,7 +1893,7 @@ to <code class="idl"><a data-link-type="idl" href="#dictdef-sensorerroreventinit
      <dd data-md>
       <p><var>sensor_instance</var>, a <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor①⑨">Sensor</a></code> object.</p>
      <dd data-md>
-      <p><var>options</var>, a <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-dictionary" id="ref-for-dfn-dictionary">dictionary</a> object.</p>
+      <p><var>options</var>, a <code class="idl"><a data-link-type="idl" href="#dictdef-sensoroptions" id="ref-for-dictdef-sensoroptions①">SensorOptions</a></code> dictionary instance.</p>
      <dt data-md>output
      <dd data-md>
       <p>None</p>
@@ -2783,7 +2783,7 @@ each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type④④">
      <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="extension-sensor-interface">extension sensor interface</dfn>, which is an <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-interface" id="ref-for-dfn-interface">interface</a> whose <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-inherited-interfaces" id="ref-for-dfn-inherited-interfaces">inherited interfaces</a> contains <code class="idl"><a data-link-type="idl" href="#sensor" id="ref-for-sensor④⑤">Sensor</a></code>.
   The <a data-link-type="dfn" href="#extension-sensor-interface" id="ref-for-extension-sensor-interface④">extension sensor interface</a> must be constructible.
   Its [<code class="idl"><a class="idl-code" data-link-type="extended-attribute">Constructor</a></code>] must take, as an argument,
-  an optional <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-dictionary" id="ref-for-dfn-dictionary①">dictionary</a> whose <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-inherited-dictionaries" id="ref-for-dfn-inherited-dictionaries">inherited dictionaries</a> contains <code class="idl"><a data-link-type="idl" href="#dictdef-sensoroptions" id="ref-for-dictdef-sensoroptions①">SensorOptions</a></code>.</p>
+  an optional <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-dictionary" id="ref-for-dfn-dictionary">dictionary</a> whose <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-inherited-dictionaries" id="ref-for-dfn-inherited-dictionaries">inherited dictionaries</a> contains <code class="idl"><a data-link-type="idl" href="#dictdef-sensoroptions" id="ref-for-dictdef-sensoroptions②">SensorOptions</a></code>.</p>
      <p>The <a data-link-type="dfn" href="#extension-sensor-interface" id="ref-for-extension-sensor-interface⑤">extension sensor interface</a> has a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set" id="ref-for-ordered-set①⓪">set</a> of supported options
   referred to as <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="supported-sensor-options">supported sensor options</dfn>.
   Unless the <a data-link-type="dfn" href="#extension-specification" id="ref-for-extension-specification①④">extension specification</a> defines otherwise, <a data-link-type="dfn" href="#supported-sensor-options" id="ref-for-supported-sensor-options①">supported sensor options</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain④">contain</a> a single item which is "frequency".</p>
@@ -2797,7 +2797,7 @@ each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type④④">
 for each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type④⑦">sensor types</a>:</p>
    <ul>
     <li data-md>
-     <p>A <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-dictionary" id="ref-for-dfn-dictionary②">dictionary</a> whose <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-inherited-dictionaries" id="ref-for-dfn-inherited-dictionaries①">inherited dictionaries</a> contains <code class="idl"><a data-link-type="idl" href="#dictdef-sensoroptions" id="ref-for-dictdef-sensoroptions②">SensorOptions</a></code>.</p>
+     <p>A <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-dictionary" id="ref-for-dfn-dictionary①">dictionary</a> whose <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-inherited-dictionaries" id="ref-for-dfn-inherited-dictionaries①">inherited dictionaries</a> contains <code class="idl"><a data-link-type="idl" href="#dictdef-sensoroptions" id="ref-for-dictdef-sensoroptions③">SensorOptions</a></code>.</p>
     <li data-md>
      <p>A <a data-link-type="dfn" href="#default-sensor" id="ref-for-default-sensor⑥">default sensor</a>. Generally, devices are equipped with a single <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor④②">platform sensor</a> of each <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type④⑧">type</a>,
   so defining a <a data-link-type="dfn" href="#default-sensor" id="ref-for-default-sensor⑦">default sensor</a> should be straightforward.
@@ -3905,8 +3905,7 @@ for their editorial input.</p>
   <aside class="dfn-panel" data-for="term-for-dfn-dictionary">
    <a href="https://webidl.spec.whatwg.org/#dfn-dictionary">https://webidl.spec.whatwg.org/#dfn-dictionary</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dfn-dictionary">8.1. Initialize a sensor object</a>
-    <li><a href="#ref-for-dfn-dictionary①">10.6. Definition Requirements</a> <a href="#ref-for-dfn-dictionary②">(2)</a>
+    <li><a href="#ref-for-dfn-dictionary">10.6. Definition Requirements</a> <a href="#ref-for-dfn-dictionary①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-dfn-dictionary-member">
@@ -4697,7 +4696,8 @@ for their editorial input.</p>
    <b><a href="#dictdef-sensoroptions">#dictdef-sensoroptions</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dictdef-sensoroptions">7.1.3. Sensor internal slots</a>
-    <li><a href="#ref-for-dictdef-sensoroptions①">10.6. Definition Requirements</a> <a href="#ref-for-dictdef-sensoroptions②">(2)</a>
+    <li><a href="#ref-for-dictdef-sensoroptions①">8.1. Initialize a sensor object</a>
+    <li><a href="#ref-for-dictdef-sensoroptions②">10.6. Definition Requirements</a> <a href="#ref-for-dictdef-sensoroptions③">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-sensoroptions-frequency">
