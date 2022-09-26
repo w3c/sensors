@@ -1275,10 +1275,10 @@ to {{SensorErrorEventInit}}.
     1.  [=map/For each=] |key| → <var ignore>value</var> of |options|
         1.  If the associated [=supported sensor options=] [=set/contains|does not contain=] |key|
             1. [=Throw=] "{{NotSupportedError!!exception}}" {{DOMException}}.
-    1.  If |options|.{{frequency!!dict-member}} is [=present=], then
-        1.  Set |sensor_instance|.{{[[frequency]]}} to |options|.{{frequency!!dict-member}}.
+    1.  If |options|["{{frequency!!dict-member}}"] [=map/exists=], then
+        1.  Set |sensor_instance|.{{[[frequency]]}} to |options|["{{frequency!!dict-member}}"].
 
-        Note: there is not guarantee that the requested |options|.{{frequency!!dict-member}}
+        Note: there is not guarantee that the requested |options|["{{frequency!!dict-member}}"]
         can be respected. The actual [=sampling frequency=] can be calculated using
         {{Sensor}} {{Sensor/timestamp!!attribute}} attributes.
 </div>
