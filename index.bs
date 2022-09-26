@@ -1268,7 +1268,7 @@ to {{SensorErrorEventInit}}.
 
     : input
     :: |sensor_instance|, a {{Sensor}} object.
-    :: |options|, a [=dictionary=] object.
+    :: |options|, a {{SensorOptions}} dictionary instance.
     : output
     :: None
 
