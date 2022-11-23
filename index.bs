@@ -2128,9 +2128,9 @@ An implementation of the {{Sensor}} interface for each [=sensor type=] has one
 that control whether or not this implementation can be used in a document.
 
 The [=policy-controlled feature|features=]' [=default allowlist=] is
-<code>["self"]</code>.
+`'self'`.
 
-Note: The [=default allowlist=] of <code>["self"]</code> allows {{Sensor}} interface
+Note: The [=default allowlist=] of `'self'` allows {{Sensor}} interface
 implementation usage in same-origin nested frames but prevents third-party content
 from [=sensor readings=] access.
 
