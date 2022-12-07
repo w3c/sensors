@@ -1767,9 +1767,9 @@ Each [=mock sensor type=] has a [=mock sensor reading values=] dictionary:
         1.  Set |mock|'s [=mock sensor type=] to |type|.
         1.  Let |connected| be the |configuration|.{{MockSensorConfiguration/connected}}, set |mock|'s associated
             [=connection flag=] to |connected|.
-        1.  If |configuration|.{{MockSensorConfiguration/maxSamplingFrequency}} is [=present=], then:
+        1.  If |configuration|.{{MockSensorConfiguration/maxSamplingFrequency}} [=map/exists=], then:
             1.  Set |mock|'s maximum supported sampling frequency to |configuration|.{{MockSensorConfiguration/maxSamplingFrequency}}.
-        1.  If |configuration|.{{MockSensorConfiguration/minSamplingFrequency}} is [=present=], then:
+        1.  If |configuration|.{{MockSensorConfiguration/minSamplingFrequency}} [=map/exists=], then:
             1.  Set |mock|'s minimum supported sampling frequency to |configuration|.{{MockSensorConfiguration/minSamplingFrequency}}.
         1.  Let |sensor_instance| be a |type| of {{Sensor}} object, set |sensor_instance|'s associated [=platform sensor=] to |mock|.
     1.  Return [=success=] with data `null`.
