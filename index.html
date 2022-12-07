@@ -7,7 +7,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
   <meta content="Bikeshed version 63e66730b, updated Tue Oct 25 12:35:05 2022 -0700" name="generator">
   <link href="https://www.w3.org/TR/generic-sensor/" rel="canonical">
-  <meta content="9f4381443f007bf0d8fd2b8d2fff44085661393a" name="document-revision">
+  <meta content="39ae75f2a9fec44ebed24028b3251ca59f7ccdbc" name="document-revision">
 <style>
     svg g.edge text {
         font-size: 8px;
@@ -846,7 +846,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-11-23">23 November 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-12-07">7 December 2022</time></p>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2715,13 +2715,13 @@ using the <i>JSON Key</i> and the associated field’s value from the available 
        <li data-md>
         <p>Let <var>connected</var> be the <var>configuration</var>.<code class="idl"><a data-link-type="idl" href="#dom-mocksensorconfiguration-connected" id="ref-for-dom-mocksensorconfiguration-connected①">connected</a></code>, set <var>mock</var>’s associated <a data-link-type="dfn" href="#connection-flag" id="ref-for-connection-flag">connection flag</a> to <var>connected</var>.</p>
        <li data-md>
-        <p>If <var>configuration</var>.<code class="idl"><a data-link-type="idl" href="#dom-mocksensorconfiguration-maxsamplingfrequency" id="ref-for-dom-mocksensorconfiguration-maxsamplingfrequency①">maxSamplingFrequency</a></code> is <a data-link-type="dfn">present</a>, then:</p>
+        <p>If <var>configuration</var>.<code class="idl"><a data-link-type="idl" href="#dom-mocksensorconfiguration-maxsamplingfrequency" id="ref-for-dom-mocksensorconfiguration-maxsamplingfrequency①">maxSamplingFrequency</a></code> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists①">exists</a>, then:</p>
         <ol>
          <li data-md>
           <p>Set <var>mock</var>’s maximum supported sampling frequency to <var>configuration</var>.<code class="idl"><a data-link-type="idl" href="#dom-mocksensorconfiguration-maxsamplingfrequency" id="ref-for-dom-mocksensorconfiguration-maxsamplingfrequency②">maxSamplingFrequency</a></code>.</p>
         </ol>
        <li data-md>
-        <p>If <var>configuration</var>.<code class="idl"><a data-link-type="idl" href="#dom-mocksensorconfiguration-minsamplingfrequency" id="ref-for-dom-mocksensorconfiguration-minsamplingfrequency①">minSamplingFrequency</a></code> is <a data-link-type="dfn">present</a>, then:</p>
+        <p>If <var>configuration</var>.<code class="idl"><a data-link-type="idl" href="#dom-mocksensorconfiguration-minsamplingfrequency" id="ref-for-dom-mocksensorconfiguration-minsamplingfrequency①">minSamplingFrequency</a></code> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists②">exists</a>, then:</p>
         <ol>
          <li data-md>
           <p>Set <var>mock</var>’s minimum supported sampling frequency to <var>configuration</var>.<code class="idl"><a data-link-type="idl" href="#dom-mocksensorconfiguration-minsamplingfrequency" id="ref-for-dom-mocksensorconfiguration-minsamplingfrequency②">minSamplingFrequency</a></code>.</p>
@@ -3703,6 +3703,7 @@ for their editorial input.</p>
    <a href="https://infra.spec.whatwg.org/#map-exists">https://infra.spec.whatwg.org/#map-exists</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-map-exists">8.1. Initialize a sensor object</a>
+    <li><a href="#ref-for-map-exists①">9.2.1. Create mock sensor</a> <a href="#ref-for-map-exists②">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-list-iterate">
