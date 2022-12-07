@@ -49,20 +49,12 @@ urlPrefix: https://html.spec.whatwg.org/multipage/; spec: HTML
 urlPrefix: https://w3ctag.github.io/security-questionnaire/; spec: SECURITY-PRIVACY-QUESTIONNAIRE
   type: dfn
     text: same-origin policy violations; url: sop-violations
-urlPrefix: https://w3c.github.io/webdriver/; spec: WebDriver
+urlPrefix: https://w3c.github.io/webdriver/; spec: WEBDRIVER2
   type: dfn
     text: current browsing context; url: dfn-current-browsing-context
-    text: WebDriver error; url: dfn-errors
     text: WebDriver error code; url: dfn-error-code
-    text: extension commands; url: dfn-extension-command
-    text: remote end steps; url: dfn-remote-end-steps
-    text: extension command URI template; url: dfn-extension-command-uri-template
-    text: invalid argument; url: dfn-invalid-argument
     text: local end; url: dfn-local-ends
     text: url variable; url: dfn-url-variables
-    text: session; url: dfn-sessions
-    text: success; url: dfn-success
-    text: handling errors
     text: Object; url: dfn-object
     text: no longer open; url: dfn-no-longer-open
     text: no such window; url: dfn-no-such-window
@@ -97,6 +89,7 @@ urlPrefix: https://w3c.github.io/proximity; spec: PROXIMITY
 spec: webidl; type:dfn; text:attribute
 spec: webidl; type:dfn; text:dictionary member
 spec: webidl; type:dfn; text:identifier
+spec: webdriver-2; type:dfn; text:error
 </pre>
 
 <pre class=biblio>
@@ -1572,7 +1565,7 @@ to {{SensorErrorEventInit}}.
 The Generic Sensor API and its [=extension specifications=] pose a challenge
 to test authors, as fully exercising those interfaces requires physical hardware
 devices that respond in predictable ways. To address this challenge this document
-defines a number of [=extension commands=] to the [[WebDriver]] specification
+defines a number of [=extension commands=] to the [[WEBDRIVER2]] specification
 for controlling [=mock sensor=] on the host that the user agent is running on.
 With these [=extension commands=], devices with particular properties can be created
 and their responses to requests are well defined.
@@ -1754,14 +1747,12 @@ Each [=mock sensor type=] has a [=mock sensor reading values=] dictionary:
 
     The [=remote end steps=] are:
     1.  Let |configuration| be the |configuration| parameter, [=converted to an IDL value=]
-        of type {{MockSensorConfiguration}}. If this throws an exception, return a
-        [=WebDriver error=] with [=WebDriver error code=] [=invalid argument=].
+        of type {{MockSensorConfiguration}}. If this throws an exception, return an
+        [=invalid argument=] [=error=].
     1.  Let |type| be the |configuration|.{{MockSensorConfiguration/mockSensorType}}. If the [=current browsing context=]
-        already has this |type| of [=mock sensor=], return a [=WebDriver error=] with [=WebDriver error code=]
-        [=mock sensor already created=].
-    1.  If the [=current browsing context=] is [=no longer open=], return a [=WebDriver error=] with
-        [=WebDriver error code=] [=no such window=].
-    1.  [=Handle any user prompts=], and return its value if it is a [=WebDriver error=].
+        already has this |type| of [=mock sensor=], return a [=mock sensor already created=] [=error=].
+    1.  If the [=current browsing context=] is [=no longer open=], return a [=no such window=] [=error=].
+    1.  [=Handle any user prompts=], and return its value if it is an [=error=].
     1.  Run these sub-steps [=in parallel=] to create a [=mock sensor=] in the [=current browsing context=]:
         1.  Let |mock| be a new [=mock sensor=].
         1.  Set |mock|'s [=mock sensor type=] to |type|.
@@ -1786,7 +1777,7 @@ Each [=mock sensor type=] has a [=mock sensor reading values=] dictionary:
   }
   </pre>
   Be aware that only one [=mock sensor=] of a given [=mock sensor type=] can be created in [=current browsing context=],
-  otherwise a [=WebDriver error=] with [=WebDriver error code=] [=mock sensor already created=] will be thrown.
+  otherwise a [=mock sensor already created=] [=error=] will be thrown.
 </div>
 
 ### Get mock sensor ### {#get-mock-sensor-command}
@@ -1811,13 +1802,11 @@ Each [=mock sensor type=] has a [=mock sensor reading values=] dictionary:
 
     The [=remote end steps=] are:
     1.  Let |type| be a [=url variable=], [=converted to an IDL value=] of type {{MockSensorType}}.
-        If this throws an exception, return a [=WebDriver error=] with [=WebDriver error code=]
-        [=invalid argument=].
-    1.  If the [=current browsing context=] is [=no longer open=], return a [=WebDriver error=] with
-        [=WebDriver error code=] [=no such window=].
-    1.  [=Handle any user prompts=], and return its value if it is a [=WebDriver error=].
+        If this throws an exception, return an [=invalid argument=] [=error=].
+    1.  If the [=current browsing context=] is [=no longer open=], return a [=no such window=] [=error=].
+    1.  [=Handle any user prompts=], and return its value if it is an [=error=].
     1.  If |type| does not match a [=mock sensor type=] amongst all associated [=mock sensors=] of the
-        [=current browsing context=], return a [=WebDriver error=] with [=WebDriver error code=] [=no such mock sensor=].
+        [=current browsing context=], return a [=no such mock sensor=] [=error=].
     1.  Return [=success=] with the [=serialized mock sensor=] as data.
 </div>
 
@@ -1843,16 +1832,14 @@ Each [=mock sensor type=] has a [=mock sensor reading values=] dictionary:
 
     The [=remote end steps=] are:
     1.  Let |type| be a [=url variable=], [=converted to an IDL value=] of type {{MockSensorType}}.
-        If this throws an exception, return a [=WebDriver error=] with [=WebDriver error code=]
-        [=invalid argument=].
-    1.  If the [=current browsing context=] is [=no longer open=], return a [=WebDriver error=] with
-        [=WebDriver error code=] [=no such window=].
-    1.  [=Handle any user prompts=], and return its value if it is a [=WebDriver error=].
+        If this throws an exception, return an [=invalid argument=] [=error=].
+    1.  If the [=current browsing context=] is [=no longer open=], return a [=no such window=] [=error=].
+    1.  [=Handle any user prompts=], and return its value if it is an [=error=].
     1.  If |type| does not match a [=mock sensor type=] amongst all associated [=mock sensors=] of the
-        [=current browsing context=], return a [=WebDriver error=] with [=WebDriver error code=] [=no such mock sensor=].
+        [=current browsing context=], return a [=no such mock sensor=] [=error=].
     1.  Let |reading| be the |reading| argument, [=converted to an IDL value=] of the |type|'s
-        associated {{MockSensorReadingValues}}. If this throws an exception, return a
-        [=WebDriver error=] with [=WebDriver error code=] [=invalid argument=].
+        associated {{MockSensorReadingValues}}. If this throws an exception, return an
+        [=invalid argument=] [=error=].
     1.  [=map/For each=] |key| → <var ignore>value</var> of |reading|.
         1.  [=map/Set=] [=mock sensor reading=][|key|] to the corresponding value of |reading|.
     1.  Return [=success=] with data `null`.
@@ -1880,20 +1867,18 @@ Each [=mock sensor type=] has a [=mock sensor reading values=] dictionary:
 
     The [=remote end steps=] are:
     1.  Let |type| be a [=url variable=].
-    1.  If {{MockSensorType}} [=set/contains|does not contain=] |type|, return a [=WebDriver error=] with
-        [=WebDriver error code=] [=invalid argument=].
-    1.  If the [=current browsing context=] is [=no longer open=], return a [=WebDriver error=] with
-        [=WebDriver error code=] [=no such window=].
-    1.  [=Handle any user prompts=], and return its value if it is a [=WebDriver error=].
+    1.  If {{MockSensorType}} [=set/contains|does not contain=] |type|, return an [=invalid argument=] [=error=].
+    1.  If the [=current browsing context=] is [=no longer open=], return a [=no such window=] [=error=].
+    1.  [=Handle any user prompts=], and return its value if it is an [=error=].
     1.  If |type| does not match a [=mock sensor type=] amongst all associated [=mock sensors=] of the
-        [=current browsing context=], return a [=WebDriver error=] with [=WebDriver error code=] [=no such mock sensor=].
+        [=current browsing context=], return a [=no such mock sensor=] [=error=].
     1.  Delete |type| of [=mock sensor=] in [=current browsing context=].
     1.  Return [=success=] with data `null`.
 </div>
 
 <h3 id="extension-handling-errors">Handling errors</h3>
 
-This section extends the [=Handling Errors=] and defines extended [=WebDriver error codes=]
+This section extends the [[WEBDRIVER2#errors]] section and defines extended [=WebDriver error codes=]
 specific for [=mock sensor=] in following table.
 
 <table id="mock-sensor-error-code" class="def">
