@@ -1145,6 +1145,13 @@ It represents a [=reading timestamp=].
         return.
     1.  Set [=this=].{{[[state]]}} to "activating".
     1.  Run these sub-steps [=in parallel=]:
+        1.  Let |permissionState| be the result of invoking
+            [=request sensor access=] with [=this=] as argument.
+        1.  If |permissionState| is "denied", then:
+            1.  Let |e| be the result of [=created|creating=]
+                a "{{NotAllowedError!!exception}}" {{DOMException}}.
+            1.  Queue a task to run [=notify error=] with [=this=] and |e| as arguments.
+            1.  Return.
         1.  Let |connected| be the result of invoking [=connect to sensor=] with [=this=]
             as argument.
         1.  If |connected| is false, then
@@ -1162,14 +1169,7 @@ It represents a [=reading timestamp=].
                 but it is a tradeoff some User Agent might choose to make. -->
             1.  Queue a task to run [=notify error=] with [=this=] and |e| as arguments.
             1.  Return.
-        1.  Let |permission_state| be the result of invoking
-            [=request sensor access=] with [=this=] as argument.
-        1.  If |permission_state| is "granted",
-            1.  Invoke [=activate a sensor object=] with [=this=] as argument.
-        1.  Otherwise, if |permission_state| is "denied",
-            1.  Let |e| be the result of [=created|creating=]
-                a "{{NotAllowedError!!exception}}" {{DOMException}}.
-            1.  Queue a task to run [=notify error=] with [=this=] and |e| as arguments.
+        1.  Invoke [=activate a sensor object=] with [=this=] as argument.
 </div>
 
 
