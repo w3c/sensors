@@ -7,7 +7,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
   <meta content="Bikeshed version 63e66730b, updated Tue Oct 25 12:35:05 2022 -0700" name="generator">
   <link href="https://www.w3.org/TR/generic-sensor/" rel="canonical">
-  <meta content="5766a8e7e1b1942cfd7cf0aeb28e4e70f1e6318e" name="document-revision">
+  <meta content="287dc5393da34eb7299e5f48d6dd5337e94a93b9" name="document-revision">
 <style>
     svg g.edge text {
         font-size: 8px;
@@ -1862,34 +1862,32 @@ the result of invoking <a data-link-type="dfn" href="#get-value-from-latest-read
       <p>Run these sub-steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel">in parallel</a>:</p>
       <ol>
        <li data-md>
-        <p>Let <var>connected</var> be the result of invoking <a data-link-type="dfn" href="#connect-to-sensor" id="ref-for-connect-to-sensor">connect to sensor</a> with <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑤">this</a> as argument.</p>
+        <p>Let <var>permissionState</var> be the result of invoking <a data-link-type="dfn" href="#request-sensor-access" id="ref-for-request-sensor-access①">request sensor access</a> with <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑤">this</a> as argument.</p>
        <li data-md>
-        <p>If <var>connected</var> is false, then</p>
+        <p>If <var>permissionState</var> is "denied", then:</p>
         <ol>
          <li data-md>
-          <p>Let <var>e</var> be the result of <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-create-exception" id="ref-for-dfn-create-exception">creating</a> a
-  "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#notreadableerror" id="ref-for-notreadableerror">NotReadableError</a></code>" <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException">DOMException</a></code>.</p>
+          <p>Let <var>e</var> be the result of <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-create-exception" id="ref-for-dfn-create-exception">creating</a> a "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#notallowederror" id="ref-for-notallowederror">NotAllowedError</a></code>" <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException">DOMException</a></code>.</p>
          <li data-md>
           <p>Queue a task to run <a data-link-type="dfn" href="#notify-error" id="ref-for-notify-error">notify error</a> with <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑥">this</a> and <var>e</var> as arguments.</p>
          <li data-md>
           <p>Return.</p>
         </ol>
        <li data-md>
-        <p>Let <var>permission_state</var> be the result of invoking <a data-link-type="dfn" href="#request-sensor-access" id="ref-for-request-sensor-access①">request sensor access</a> with <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑦">this</a> as argument.</p>
+        <p>Let <var>connected</var> be the result of invoking <a data-link-type="dfn" href="#connect-to-sensor" id="ref-for-connect-to-sensor">connect to sensor</a> with <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑦">this</a> as argument.</p>
        <li data-md>
-        <p>If <var>permission_state</var> is "granted",</p>
+        <p>If <var>connected</var> is false, then</p>
         <ol>
          <li data-md>
-          <p>Invoke <a data-link-type="dfn" href="#activate-a-sensor-object" id="ref-for-activate-a-sensor-object">activate a sensor object</a> with <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑧">this</a> as argument.</p>
+          <p>Let <var>e</var> be the result of <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-create-exception" id="ref-for-dfn-create-exception①">creating</a> a
+  "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#notreadableerror" id="ref-for-notreadableerror">NotReadableError</a></code>" <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException①">DOMException</a></code>.</p>
+         <li data-md>
+          <p>Queue a task to run <a data-link-type="dfn" href="#notify-error" id="ref-for-notify-error①">notify error</a> with <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑧">this</a> and <var>e</var> as arguments.</p>
+         <li data-md>
+          <p>Return.</p>
         </ol>
        <li data-md>
-        <p>Otherwise, if <var>permission_state</var> is "denied",</p>
-        <ol>
-         <li data-md>
-          <p>Let <var>e</var> be the result of <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-create-exception" id="ref-for-dfn-create-exception①">creating</a> a "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#notallowederror" id="ref-for-notallowederror">NotAllowedError</a></code>" <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException①">DOMException</a></code>.</p>
-         <li data-md>
-          <p>Queue a task to run <a data-link-type="dfn" href="#notify-error" id="ref-for-notify-error①">notify error</a> with <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑨">this</a> and <var>e</var> as arguments.</p>
-        </ol>
+        <p>Invoke <a data-link-type="dfn" href="#activate-a-sensor-object" id="ref-for-activate-a-sensor-object">activate a sensor object</a> with <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑨">this</a> as argument.</p>
       </ol>
     </ol>
    </div>
