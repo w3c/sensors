@@ -7,7 +7,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
   <meta content="Bikeshed version 63e66730b, updated Tue Oct 25 12:35:05 2022 -0700" name="generator">
   <link href="https://www.w3.org/TR/generic-sensor/" rel="canonical">
-  <meta content="39ae75f2a9fec44ebed24028b3251ca59f7ccdbc" name="document-revision">
+  <meta content="5766a8e7e1b1942cfd7cf0aeb28e4e70f1e6318e" name="document-revision">
 <style>
     svg g.edge text {
         font-size: 8px;
@@ -846,7 +846,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-12-07">7 December 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-12-08">8 December 2022</time></p>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2554,9 +2554,9 @@ to <code class="idl"><a data-link-type="idl" href="#dictdef-sensorerroreventinit
    <p>The Generic Sensor API and its <a data-link-type="dfn" href="#extension-specification" id="ref-for-extension-specification③">extension specifications</a> pose a challenge
 to test authors, as fully exercising those interfaces requires physical hardware
 devices that respond in predictable ways. To address this challenge this document
-defines a number of <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-extension-command" id="ref-for-dfn-extension-command">extension commands</a> to the <a data-link-type="biblio" href="#biblio-webdriver">[WebDriver]</a> specification
+defines a number of <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-extension-commands" id="ref-for-dfn-extension-commands">extension commands</a> to the <a data-link-type="biblio" href="#biblio-webdriver2">[WEBDRIVER2]</a> specification
 for controlling <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor">mock sensor</a> on the host that the user agent is running on.
-With these <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-extension-command" id="ref-for-dfn-extension-command①">extension commands</a>, devices with particular properties can be created
+With these <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-extension-commands" id="ref-for-dfn-extension-commands①">extension commands</a>, devices with particular properties can be created
 and their responses to requests are well defined.</p>
    <h3 class="heading settled" data-level="9.1" id="mock-sensors"><span class="secno">9.1. </span><span class="content">Mock Sensors</span><a class="self-link" href="#mock-sensors"></a></h3>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="mock-sensor">mock sensor</dfn> simulates the behavior of a <a data-link-type="dfn" href="#concept-platform-sensor" id="ref-for-concept-platform-sensor③⑦">platform sensor</a> in controlled ways.</p>
@@ -2693,18 +2693,18 @@ using the <i>JSON Key</i> and the associated field’s value from the available 
       <td>/session/{session id}/sensor
    </table>
    <div class="algorithm" data-algorithm="create mock sensor">
-    <p>The <dfn data-dfn-type="dfn" data-noexport id="create-mock-sensor">create mock sensor<a class="self-link" href="#create-mock-sensor"></a></dfn> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-extension-command" id="ref-for-dfn-extension-command②">extension command</a> creates a
+    <p>The <dfn data-dfn-type="dfn" data-noexport id="create-mock-sensor">create mock sensor<a class="self-link" href="#create-mock-sensor"></a></dfn> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-extension-commands" id="ref-for-dfn-extension-commands②">extension command</a> creates a
     new <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②⓪">mock sensor</a>.</p>
     <p>The <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-remote-end-steps" id="ref-for-dfn-remote-end-steps">remote end steps</a> are:</p>
     <ol>
      <li data-md>
-      <p>Let <var>configuration</var> be the <var>configuration</var> parameter, <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-convert-ecmascript-to-idl-value" id="ref-for-dfn-convert-ecmascript-to-idl-value">converted to an IDL value</a> of type <code class="idl"><a data-link-type="idl" href="#dictdef-mocksensorconfiguration" id="ref-for-dictdef-mocksensorconfiguration①">MockSensorConfiguration</a></code>. If this throws an exception, return a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-errors" id="ref-for-dfn-errors">WebDriver error</a> with <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-error-code" id="ref-for-dfn-error-code">WebDriver error code</a> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-invalid-argument" id="ref-for-dfn-invalid-argument">invalid argument</a>.</p>
+      <p>Let <var>configuration</var> be the <var>configuration</var> parameter, <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-convert-ecmascript-to-idl-value" id="ref-for-dfn-convert-ecmascript-to-idl-value">converted to an IDL value</a> of type <code class="idl"><a data-link-type="idl" href="#dictdef-mocksensorconfiguration" id="ref-for-dictdef-mocksensorconfiguration①">MockSensorConfiguration</a></code>. If this throws an exception, return an <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-invalid-argument" id="ref-for-dfn-invalid-argument">invalid argument</a> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-error" id="ref-for-dfn-error">error</a>.</p>
      <li data-md>
-      <p>Let <var>type</var> be the <var>configuration</var>.<code class="idl"><a data-link-type="idl" href="#dom-mocksensorconfiguration-mocksensortype" id="ref-for-dom-mocksensorconfiguration-mocksensortype①">mockSensorType</a></code>. If the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context③">current browsing context</a> already has this <var>type</var> of <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②①">mock sensor</a>, return a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-errors" id="ref-for-dfn-errors①">WebDriver error</a> with <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-error-code" id="ref-for-dfn-error-code①">WebDriver error code</a> <a data-link-type="dfn" href="#mock-sensor-already-created" id="ref-for-mock-sensor-already-created">mock sensor already created</a>.</p>
+      <p>Let <var>type</var> be the <var>configuration</var>.<code class="idl"><a data-link-type="idl" href="#dom-mocksensorconfiguration-mocksensortype" id="ref-for-dom-mocksensorconfiguration-mocksensortype①">mockSensorType</a></code>. If the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context③">current browsing context</a> already has this <var>type</var> of <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②①">mock sensor</a>, return a <a data-link-type="dfn" href="#mock-sensor-already-created" id="ref-for-mock-sensor-already-created">mock sensor already created</a> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-error" id="ref-for-dfn-error①">error</a>.</p>
      <li data-md>
-      <p>If the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context④">current browsing context</a> is <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-no-longer-open" id="ref-for-dfn-no-longer-open">no longer open</a>, return a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-errors" id="ref-for-dfn-errors②">WebDriver error</a> with <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-error-code" id="ref-for-dfn-error-code②">WebDriver error code</a> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-no-such-window" id="ref-for-dfn-no-such-window">no such window</a>.</p>
+      <p>If the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context④">current browsing context</a> is <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-no-longer-open" id="ref-for-dfn-no-longer-open">no longer open</a>, return a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-no-such-window" id="ref-for-dfn-no-such-window">no such window</a> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-error" id="ref-for-dfn-error②">error</a>.</p>
      <li data-md>
-      <p><a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-handle-any-user-prompts" id="ref-for-dfn-handle-any-user-prompts">Handle any user prompts</a>, and return its value if it is a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-errors" id="ref-for-dfn-errors③">WebDriver error</a>.</p>
+      <p><a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-handle-any-user-prompts" id="ref-for-dfn-handle-any-user-prompts">Handle any user prompts</a>, and return its value if it is an <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-error" id="ref-for-dfn-error③">error</a>.</p>
      <li data-md>
       <p>Run these sub-steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel④">in parallel</a> to create a <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②②">mock sensor</a> in the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context⑤">current browsing context</a>:</p>
       <ol>
@@ -2733,8 +2733,8 @@ using the <i>JSON Key</i> and the associated field’s value from the available 
       <p>Return <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-success" id="ref-for-dfn-success">success</a> with data <code>null</code>.</p>
     </ol>
    </div>
-   <div class="example" id="example-1f159a4e">
-    <a class="self-link" href="#example-1f159a4e"></a> To create an "ambient-light" mock sensor in the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context⑥">current browsing context</a> of the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-sessions" id="ref-for-dfn-sessions">session</a> with ID 23,
+   <div class="example" id="example-dd45869f">
+    <a class="self-link" href="#example-dd45869f"></a> To create an "ambient-light" mock sensor in the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context⑥">current browsing context</a> of the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-session" id="ref-for-dfn-session">session</a> with ID 23,
   the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-local-ends" id="ref-for-dfn-local-ends">local end</a> would POST to <code>/session/23/sensor</code> with the body: 
 <pre class="lang-json highlight"><c- p>{</c->
   <c- f>"mockSensorType"</c-><c- p>:</c-> <c- u>"ambient-light"</c-><c- p>,</c->
@@ -2743,7 +2743,7 @@ using the <i>JSON Key</i> and the associated field’s value from the available 
 <c- p>}</c->
 </pre>
     <p>Be aware that only one <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②④">mock sensor</a> of a given <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-type①⑦">mock sensor type</a> can be created in <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context⑦">current browsing context</a>,
-  otherwise a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-errors" id="ref-for-dfn-errors④">WebDriver error</a> with <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-error-code" id="ref-for-dfn-error-code③">WebDriver error code</a> <a data-link-type="dfn" href="#mock-sensor-already-created" id="ref-for-mock-sensor-already-created①">mock sensor already created</a> will be thrown.</p>
+  otherwise a <a data-link-type="dfn" href="#mock-sensor-already-created" id="ref-for-mock-sensor-already-created①">mock sensor already created</a> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-error" id="ref-for-dfn-error④">error</a> will be thrown.</p>
    </div>
    <h4 class="heading settled" data-level="9.2.2" id="get-mock-sensor-command"><span class="secno">9.2.2. </span><span class="content">Get mock sensor</span><a class="self-link" href="#get-mock-sensor-command"></a></h4>
    <table>
@@ -2756,19 +2756,19 @@ using the <i>JSON Key</i> and the associated field’s value from the available 
       <td>/session/{session id}/sensor/{type}
    </table>
    <div class="algorithm" data-algorithm="get mock sensor">
-    <p>The <dfn data-dfn-type="dfn" data-noexport id="get-mock-sensor">get mock sensor<a class="self-link" href="#get-mock-sensor"></a></dfn> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-extension-command" id="ref-for-dfn-extension-command③">extension command</a> retrieves
+    <p>The <dfn data-dfn-type="dfn" data-noexport id="get-mock-sensor">get mock sensor<a class="self-link" href="#get-mock-sensor"></a></dfn> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-extension-commands" id="ref-for-dfn-extension-commands③">extension command</a> retrieves
     information about a given type of <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②⑤">mock sensor</a>.</p>
     <p>The <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-remote-end-steps" id="ref-for-dfn-remote-end-steps①">remote end steps</a> are:</p>
     <ol>
      <li data-md>
       <p>Let <var>type</var> be a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-url-variables" id="ref-for-dfn-url-variables">url variable</a>, <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-convert-ecmascript-to-idl-value" id="ref-for-dfn-convert-ecmascript-to-idl-value①">converted to an IDL value</a> of type <code class="idl"><a data-link-type="idl" href="#enumdef-mocksensortype" id="ref-for-enumdef-mocksensortype③">MockSensorType</a></code>.
-  If this throws an exception, return a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-errors" id="ref-for-dfn-errors⑤">WebDriver error</a> with <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-error-code" id="ref-for-dfn-error-code④">WebDriver error code</a> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-invalid-argument" id="ref-for-dfn-invalid-argument①">invalid argument</a>.</p>
+  If this throws an exception, return an <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-invalid-argument" id="ref-for-dfn-invalid-argument①">invalid argument</a> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-error" id="ref-for-dfn-error⑤">error</a>.</p>
      <li data-md>
-      <p>If the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context⑧">current browsing context</a> is <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-no-longer-open" id="ref-for-dfn-no-longer-open①">no longer open</a>, return a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-errors" id="ref-for-dfn-errors⑥">WebDriver error</a> with <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-error-code" id="ref-for-dfn-error-code⑤">WebDriver error code</a> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-no-such-window" id="ref-for-dfn-no-such-window①">no such window</a>.</p>
+      <p>If the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context⑧">current browsing context</a> is <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-no-longer-open" id="ref-for-dfn-no-longer-open①">no longer open</a>, return a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-no-such-window" id="ref-for-dfn-no-such-window①">no such window</a> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-error" id="ref-for-dfn-error⑥">error</a>.</p>
      <li data-md>
-      <p><a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-handle-any-user-prompts" id="ref-for-dfn-handle-any-user-prompts①">Handle any user prompts</a>, and return its value if it is a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-errors" id="ref-for-dfn-errors⑦">WebDriver error</a>.</p>
+      <p><a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-handle-any-user-prompts" id="ref-for-dfn-handle-any-user-prompts①">Handle any user prompts</a>, and return its value if it is an <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-error" id="ref-for-dfn-error⑦">error</a>.</p>
      <li data-md>
-      <p>If <var>type</var> does not match a <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-type①⑧">mock sensor type</a> amongst all associated <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②⑥">mock sensors</a> of the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context⑨">current browsing context</a>, return a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-errors" id="ref-for-dfn-errors⑧">WebDriver error</a> with <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-error-code" id="ref-for-dfn-error-code⑥">WebDriver error code</a> <a data-link-type="dfn" href="#no-such-mock-sensor" id="ref-for-no-such-mock-sensor">no such mock sensor</a>.</p>
+      <p>If <var>type</var> does not match a <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-type①⑧">mock sensor type</a> amongst all associated <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②⑥">mock sensors</a> of the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context⑨">current browsing context</a>, return a <a data-link-type="dfn" href="#no-such-mock-sensor" id="ref-for-no-such-mock-sensor">no such mock sensor</a> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-error" id="ref-for-dfn-error⑧">error</a>.</p>
      <li data-md>
       <p>Return <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-success" id="ref-for-dfn-success①">success</a> with the <a data-link-type="dfn" href="#serialized-mock-sensor" id="ref-for-serialized-mock-sensor">serialized mock sensor</a> as data.</p>
     </ol>
@@ -2784,22 +2784,22 @@ using the <i>JSON Key</i> and the associated field’s value from the available 
       <td>/session/{session id}/sensor/{type}
    </table>
    <div class="algorithm" data-algorithm="update mock sensor reading">
-    <p>The <dfn data-dfn-type="dfn" data-noexport id="update-mock-sensor-reading">update mock sensor reading<a class="self-link" href="#update-mock-sensor-reading"></a></dfn> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-extension-command" id="ref-for-dfn-extension-command④">extension command</a> updates
+    <p>The <dfn data-dfn-type="dfn" data-noexport id="update-mock-sensor-reading">update mock sensor reading<a class="self-link" href="#update-mock-sensor-reading"></a></dfn> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-extension-commands" id="ref-for-dfn-extension-commands④">extension command</a> updates
     a given type of <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②⑦">mock sensor</a>'s <a data-link-type="dfn" href="#mock-sensor-reading" id="ref-for-mock-sensor-reading⑦">reading</a>.</p>
     <p>The <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-remote-end-steps" id="ref-for-dfn-remote-end-steps②">remote end steps</a> are:</p>
     <ol>
      <li data-md>
       <p>Let <var>type</var> be a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-url-variables" id="ref-for-dfn-url-variables①">url variable</a>, <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-convert-ecmascript-to-idl-value" id="ref-for-dfn-convert-ecmascript-to-idl-value②">converted to an IDL value</a> of type <code class="idl"><a data-link-type="idl" href="#enumdef-mocksensortype" id="ref-for-enumdef-mocksensortype④">MockSensorType</a></code>.
-  If this throws an exception, return a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-errors" id="ref-for-dfn-errors⑨">WebDriver error</a> with <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-error-code" id="ref-for-dfn-error-code⑦">WebDriver error code</a> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-invalid-argument" id="ref-for-dfn-invalid-argument②">invalid argument</a>.</p>
+  If this throws an exception, return an <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-invalid-argument" id="ref-for-dfn-invalid-argument②">invalid argument</a> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-error" id="ref-for-dfn-error⑨">error</a>.</p>
      <li data-md>
-      <p>If the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context①⓪">current browsing context</a> is <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-no-longer-open" id="ref-for-dfn-no-longer-open②">no longer open</a>, return a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-errors" id="ref-for-dfn-errors①⓪">WebDriver error</a> with <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-error-code" id="ref-for-dfn-error-code⑧">WebDriver error code</a> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-no-such-window" id="ref-for-dfn-no-such-window②">no such window</a>.</p>
+      <p>If the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context①⓪">current browsing context</a> is <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-no-longer-open" id="ref-for-dfn-no-longer-open②">no longer open</a>, return a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-no-such-window" id="ref-for-dfn-no-such-window②">no such window</a> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-error" id="ref-for-dfn-error①⓪">error</a>.</p>
      <li data-md>
-      <p><a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-handle-any-user-prompts" id="ref-for-dfn-handle-any-user-prompts②">Handle any user prompts</a>, and return its value if it is a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-errors" id="ref-for-dfn-errors①①">WebDriver error</a>.</p>
+      <p><a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-handle-any-user-prompts" id="ref-for-dfn-handle-any-user-prompts②">Handle any user prompts</a>, and return its value if it is an <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-error" id="ref-for-dfn-error①①">error</a>.</p>
      <li data-md>
-      <p>If <var>type</var> does not match a <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-type①⑨">mock sensor type</a> amongst all associated <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②⑧">mock sensors</a> of the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context①①">current browsing context</a>, return a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-errors" id="ref-for-dfn-errors①②">WebDriver error</a> with <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-error-code" id="ref-for-dfn-error-code⑨">WebDriver error code</a> <a data-link-type="dfn" href="#no-such-mock-sensor" id="ref-for-no-such-mock-sensor①">no such mock sensor</a>.</p>
+      <p>If <var>type</var> does not match a <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-type①⑨">mock sensor type</a> amongst all associated <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②⑧">mock sensors</a> of the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context①①">current browsing context</a>, return a <a data-link-type="dfn" href="#no-such-mock-sensor" id="ref-for-no-such-mock-sensor①">no such mock sensor</a> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-error" id="ref-for-dfn-error①②">error</a>.</p>
      <li data-md>
       <p>Let <var>reading</var> be the <var>reading</var> argument, <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-convert-ecmascript-to-idl-value" id="ref-for-dfn-convert-ecmascript-to-idl-value③">converted to an IDL value</a> of the <var>type</var>’s
-  associated <code class="idl"><a data-link-type="idl" href="#dictdef-mocksensorreadingvalues" id="ref-for-dictdef-mocksensorreadingvalues③">MockSensorReadingValues</a></code>. If this throws an exception, return a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-errors" id="ref-for-dfn-errors①③">WebDriver error</a> with <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-error-code" id="ref-for-dfn-error-code①⓪">WebDriver error code</a> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-invalid-argument" id="ref-for-dfn-invalid-argument③">invalid argument</a>.</p>
+  associated <code class="idl"><a data-link-type="idl" href="#dictdef-mocksensorreadingvalues" id="ref-for-dictdef-mocksensorreadingvalues③">MockSensorReadingValues</a></code>. If this throws an exception, return an <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-invalid-argument" id="ref-for-dfn-invalid-argument③">invalid argument</a> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-error" id="ref-for-dfn-error①③">error</a>.</p>
      <li data-md>
       <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-iterate" id="ref-for-map-iterate③">For each</a> <var>key</var> → <var>value</var> of <var>reading</var>.</p>
       <ol>
@@ -2821,20 +2821,20 @@ using the <i>JSON Key</i> and the associated field’s value from the available 
       <td>/session/{session id}/sensor/{type}
    </table>
    <div class="algorithm" data-algorithm="delete mock sensor">
-    <p>The <dfn data-dfn-type="dfn" data-noexport id="delete-mock-sensor">delete mock sensor<a class="self-link" href="#delete-mock-sensor"></a></dfn> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-extension-command" id="ref-for-dfn-extension-command⑤">extension command</a> deletes
+    <p>The <dfn data-dfn-type="dfn" data-noexport id="delete-mock-sensor">delete mock sensor<a class="self-link" href="#delete-mock-sensor"></a></dfn> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-extension-commands" id="ref-for-dfn-extension-commands⑤">extension command</a> deletes
     a given type of <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②⑨">mock sensor</a>.</p>
     <p>The <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-remote-end-steps" id="ref-for-dfn-remote-end-steps③">remote end steps</a> are:</p>
     <ol>
      <li data-md>
       <p>Let <var>type</var> be a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-url-variables" id="ref-for-dfn-url-variables②">url variable</a>.</p>
      <li data-md>
-      <p>If <code class="idl"><a data-link-type="idl" href="#enumdef-mocksensortype" id="ref-for-enumdef-mocksensortype⑤">MockSensorType</a></code> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain③">does not contain</a> <var>type</var>, return a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-errors" id="ref-for-dfn-errors①④">WebDriver error</a> with <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-error-code" id="ref-for-dfn-error-code①①">WebDriver error code</a> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-invalid-argument" id="ref-for-dfn-invalid-argument④">invalid argument</a>.</p>
+      <p>If <code class="idl"><a data-link-type="idl" href="#enumdef-mocksensortype" id="ref-for-enumdef-mocksensortype⑤">MockSensorType</a></code> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain③">does not contain</a> <var>type</var>, return an <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-invalid-argument" id="ref-for-dfn-invalid-argument④">invalid argument</a> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-error" id="ref-for-dfn-error①④">error</a>.</p>
      <li data-md>
-      <p>If the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context①②">current browsing context</a> is <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-no-longer-open" id="ref-for-dfn-no-longer-open③">no longer open</a>, return a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-errors" id="ref-for-dfn-errors①⑤">WebDriver error</a> with <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-error-code" id="ref-for-dfn-error-code①②">WebDriver error code</a> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-no-such-window" id="ref-for-dfn-no-such-window③">no such window</a>.</p>
+      <p>If the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context①②">current browsing context</a> is <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-no-longer-open" id="ref-for-dfn-no-longer-open③">no longer open</a>, return a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-no-such-window" id="ref-for-dfn-no-such-window③">no such window</a> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-error" id="ref-for-dfn-error①⑤">error</a>.</p>
      <li data-md>
-      <p><a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-handle-any-user-prompts" id="ref-for-dfn-handle-any-user-prompts③">Handle any user prompts</a>, and return its value if it is a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-errors" id="ref-for-dfn-errors①⑥">WebDriver error</a>.</p>
+      <p><a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-handle-any-user-prompts" id="ref-for-dfn-handle-any-user-prompts③">Handle any user prompts</a>, and return its value if it is an <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-error" id="ref-for-dfn-error①⑥">error</a>.</p>
      <li data-md>
-      <p>If <var>type</var> does not match a <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-type②⓪">mock sensor type</a> amongst all associated <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor③⓪">mock sensors</a> of the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context①③">current browsing context</a>, return a <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-errors" id="ref-for-dfn-errors①⑦">WebDriver error</a> with <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-error-code" id="ref-for-dfn-error-code①③">WebDriver error code</a> <a data-link-type="dfn" href="#no-such-mock-sensor" id="ref-for-no-such-mock-sensor②">no such mock sensor</a>.</p>
+      <p>If <var>type</var> does not match a <a data-link-type="dfn" href="#mock-sensor-type" id="ref-for-mock-sensor-type②⓪">mock sensor type</a> amongst all associated <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor③⓪">mock sensors</a> of the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context①③">current browsing context</a>, return a <a data-link-type="dfn" href="#no-such-mock-sensor" id="ref-for-no-such-mock-sensor②">no such mock sensor</a> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-error" id="ref-for-dfn-error①⑦">error</a>.</p>
      <li data-md>
       <p>Delete <var>type</var> of <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor③①">mock sensor</a> in <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context①④">current browsing context</a>.</p>
      <li data-md>
@@ -2842,7 +2842,7 @@ using the <i>JSON Key</i> and the associated field’s value from the available 
     </ol>
    </div>
    <h3 class="heading settled" data-level="9.3" id="extension-handling-errors"><span class="secno">9.3. </span><span class="content">Handling errors</span><a class="self-link" href="#extension-handling-errors"></a></h3>
-   <p>This section extends the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#handling-errors" id="ref-for-handling-errors">Handling Errors</a> and defines extended <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-error-code" id="ref-for-dfn-error-code①④">WebDriver error codes</a> specific for <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor③②">mock sensor</a> in following table.</p>
+   <p>This section extends the <a href="https://w3c.github.io/webdriver/#errors">WebDriver § errors</a> section and defines extended <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-error-code" id="ref-for-dfn-error-code">WebDriver error codes</a> specific for <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor③②">mock sensor</a> in following table.</p>
    <table class="def" id="mock-sensor-error-code">
     <thead>
      <tr>
@@ -3889,6 +3889,15 @@ for their editorial input.</p>
     <li><a href="#ref-for-dfn-current-browsing-context①②">9.2.4. Delete mock sensor</a> <a href="#ref-for-dfn-current-browsing-context①③">(2)</a> <a href="#ref-for-dfn-current-browsing-context①④">(3)</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-dfn-error">
+   <a href="https://w3c.github.io/webdriver/#dfn-error">https://w3c.github.io/webdriver/#dfn-error</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dfn-error">9.2.1. Create mock sensor</a> <a href="#ref-for-dfn-error①">(2)</a> <a href="#ref-for-dfn-error②">(3)</a> <a href="#ref-for-dfn-error③">(4)</a> <a href="#ref-for-dfn-error④">(5)</a>
+    <li><a href="#ref-for-dfn-error⑤">9.2.2. Get mock sensor</a> <a href="#ref-for-dfn-error⑥">(2)</a> <a href="#ref-for-dfn-error⑦">(3)</a> <a href="#ref-for-dfn-error⑧">(4)</a>
+    <li><a href="#ref-for-dfn-error⑨">9.2.3. Update mock sensor reading</a> <a href="#ref-for-dfn-error①⓪">(2)</a> <a href="#ref-for-dfn-error①①">(3)</a> <a href="#ref-for-dfn-error①②">(4)</a> <a href="#ref-for-dfn-error①③">(5)</a>
+    <li><a href="#ref-for-dfn-error①④">9.2.4. Delete mock sensor</a> <a href="#ref-for-dfn-error①⑤">(2)</a> <a href="#ref-for-dfn-error①⑥">(3)</a> <a href="#ref-for-dfn-error①⑦">(4)</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-dfn-extension-command-uri-template">
    <a href="https://w3c.github.io/webdriver/#dfn-extension-command-uri-template">https://w3c.github.io/webdriver/#dfn-extension-command-uri-template</a><b>Referenced in:</b>
    <ul>
@@ -3898,14 +3907,14 @@ for their editorial input.</p>
     <li><a href="#ref-for-dfn-extension-command-uri-template③">9.2.4. Delete mock sensor</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-dfn-extension-command">
-   <a href="https://w3c.github.io/webdriver/#dfn-extension-command">https://w3c.github.io/webdriver/#dfn-extension-command</a><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="term-for-dfn-extension-commands">
+   <a href="https://w3c.github.io/webdriver/#dfn-extension-commands">https://w3c.github.io/webdriver/#dfn-extension-commands</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dfn-extension-command">9. Automation</a> <a href="#ref-for-dfn-extension-command①">(2)</a>
-    <li><a href="#ref-for-dfn-extension-command②">9.2.1. Create mock sensor</a>
-    <li><a href="#ref-for-dfn-extension-command③">9.2.2. Get mock sensor</a>
-    <li><a href="#ref-for-dfn-extension-command④">9.2.3. Update mock sensor reading</a>
-    <li><a href="#ref-for-dfn-extension-command⑤">9.2.4. Delete mock sensor</a>
+    <li><a href="#ref-for-dfn-extension-commands">9. Automation</a> <a href="#ref-for-dfn-extension-commands①">(2)</a>
+    <li><a href="#ref-for-dfn-extension-commands②">9.2.1. Create mock sensor</a>
+    <li><a href="#ref-for-dfn-extension-commands③">9.2.2. Get mock sensor</a>
+    <li><a href="#ref-for-dfn-extension-commands④">9.2.3. Update mock sensor reading</a>
+    <li><a href="#ref-for-dfn-extension-commands⑤">9.2.4. Delete mock sensor</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-dfn-handle-any-user-prompts">
@@ -3915,12 +3924,6 @@ for their editorial input.</p>
     <li><a href="#ref-for-dfn-handle-any-user-prompts①">9.2.2. Get mock sensor</a>
     <li><a href="#ref-for-dfn-handle-any-user-prompts②">9.2.3. Update mock sensor reading</a>
     <li><a href="#ref-for-dfn-handle-any-user-prompts③">9.2.4. Delete mock sensor</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-handling-errors">
-   <a href="https://w3c.github.io/webdriver/#handling-errors">https://w3c.github.io/webdriver/#handling-errors</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-handling-errors">9.3. Handling errors</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-dfn-invalid-argument">
@@ -3971,10 +3974,10 @@ for their editorial input.</p>
     <li><a href="#ref-for-dfn-remote-end-steps③">9.2.4. Delete mock sensor</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-dfn-sessions">
-   <a href="https://w3c.github.io/webdriver/#dfn-sessions">https://w3c.github.io/webdriver/#dfn-sessions</a><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="term-for-dfn-session">
+   <a href="https://w3c.github.io/webdriver/#dfn-session">https://w3c.github.io/webdriver/#dfn-session</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dfn-sessions">9.2.1. Create mock sensor</a>
+    <li><a href="#ref-for-dfn-session">9.2.1. Create mock sensor</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-dfn-success">
@@ -3994,23 +3997,10 @@ for their editorial input.</p>
     <li><a href="#ref-for-dfn-url-variables②">9.2.4. Delete mock sensor</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-dfn-errors">
-   <a href="https://w3c.github.io/webdriver/#dfn-errors">https://w3c.github.io/webdriver/#dfn-errors</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dfn-errors">9.2.1. Create mock sensor</a> <a href="#ref-for-dfn-errors①">(2)</a> <a href="#ref-for-dfn-errors②">(3)</a> <a href="#ref-for-dfn-errors③">(4)</a> <a href="#ref-for-dfn-errors④">(5)</a>
-    <li><a href="#ref-for-dfn-errors⑤">9.2.2. Get mock sensor</a> <a href="#ref-for-dfn-errors⑥">(2)</a> <a href="#ref-for-dfn-errors⑦">(3)</a> <a href="#ref-for-dfn-errors⑧">(4)</a>
-    <li><a href="#ref-for-dfn-errors⑨">9.2.3. Update mock sensor reading</a> <a href="#ref-for-dfn-errors①⓪">(2)</a> <a href="#ref-for-dfn-errors①①">(3)</a> <a href="#ref-for-dfn-errors①②">(4)</a> <a href="#ref-for-dfn-errors①③">(5)</a>
-    <li><a href="#ref-for-dfn-errors①④">9.2.4. Delete mock sensor</a> <a href="#ref-for-dfn-errors①⑤">(2)</a> <a href="#ref-for-dfn-errors①⑥">(3)</a> <a href="#ref-for-dfn-errors①⑦">(4)</a>
-   </ul>
-  </aside>
   <aside class="dfn-panel" data-for="term-for-dfn-error-code">
    <a href="https://w3c.github.io/webdriver/#dfn-error-code">https://w3c.github.io/webdriver/#dfn-error-code</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dfn-error-code">9.2.1. Create mock sensor</a> <a href="#ref-for-dfn-error-code①">(2)</a> <a href="#ref-for-dfn-error-code②">(3)</a> <a href="#ref-for-dfn-error-code③">(4)</a>
-    <li><a href="#ref-for-dfn-error-code④">9.2.2. Get mock sensor</a> <a href="#ref-for-dfn-error-code⑤">(2)</a> <a href="#ref-for-dfn-error-code⑥">(3)</a>
-    <li><a href="#ref-for-dfn-error-code⑦">9.2.3. Update mock sensor reading</a> <a href="#ref-for-dfn-error-code⑧">(2)</a> <a href="#ref-for-dfn-error-code⑨">(3)</a> <a href="#ref-for-dfn-error-code①⓪">(4)</a>
-    <li><a href="#ref-for-dfn-error-code①①">9.2.4. Delete mock sensor</a> <a href="#ref-for-dfn-error-code①②">(2)</a> <a href="#ref-for-dfn-error-code①③">(3)</a>
-    <li><a href="#ref-for-dfn-error-code①④">9.3. Handling errors</a>
+    <li><a href="#ref-for-dfn-error-code">9.3. Handling errors</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-idl-DOMException">
@@ -4294,23 +4284,22 @@ for their editorial input.</p>
      <li><span class="dfn-paneled" id="term-for-sop-violations">same-origin policy violations</span>
     </ul>
    <li>
-    <a data-link-type="biblio">[WebDriver]</a> defines the following terms:
+    <a data-link-type="biblio">[WEBDRIVER2]</a> defines the following terms:
     <ul>
      <li><span class="dfn-paneled" id="term-for-dfn-current-browsing-context">current browsing context</span>
+     <li><span class="dfn-paneled" id="term-for-dfn-error">error</span>
      <li><span class="dfn-paneled" id="term-for-dfn-extension-command-uri-template">extension command uri template</span>
-     <li><span class="dfn-paneled" id="term-for-dfn-extension-command">extension commands</span>
+     <li><span class="dfn-paneled" id="term-for-dfn-extension-commands">extension commands</span>
      <li><span class="dfn-paneled" id="term-for-dfn-handle-any-user-prompts">handle any user prompts</span>
-     <li><span class="dfn-paneled" id="term-for-handling-errors">handling errors</span>
      <li><span class="dfn-paneled" id="term-for-dfn-invalid-argument">invalid argument</span>
      <li><span class="dfn-paneled" id="term-for-dfn-local-ends">local end</span>
      <li><span class="dfn-paneled" id="term-for-dfn-no-longer-open">no longer open</span>
      <li><span class="dfn-paneled" id="term-for-dfn-no-such-window">no such window</span>
      <li><span class="dfn-paneled" id="term-for-dfn-object">object</span>
      <li><span class="dfn-paneled" id="term-for-dfn-remote-end-steps">remote end steps</span>
-     <li><span class="dfn-paneled" id="term-for-dfn-sessions">session</span>
+     <li><span class="dfn-paneled" id="term-for-dfn-session">session</span>
      <li><span class="dfn-paneled" id="term-for-dfn-success">success</span>
      <li><span class="dfn-paneled" id="term-for-dfn-url-variables">url variable</span>
-     <li><span class="dfn-paneled" id="term-for-dfn-errors">webdriver error</span>
      <li><span class="dfn-paneled" id="term-for-dfn-error-code">webdriver error code</span>
     </ul>
    <li>
@@ -4373,7 +4362,9 @@ for their editorial input.</p>
    <dd>Anssi Kostiainen; Rijubrata Bhaumik. <a href="https://w3c.github.io/proximity/"><cite>Proximity Sensor</cite></a>. URL: <a href="https://w3c.github.io/proximity/">https://w3c.github.io/proximity/</a>
    <dt id="biblio-rfc2119">[RFC2119]
    <dd>S. Bradner. <a href="https://datatracker.ietf.org/doc/html/rfc2119"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. March 1997. Best Current Practice. URL: <a href="https://datatracker.ietf.org/doc/html/rfc2119">https://datatracker.ietf.org/doc/html/rfc2119</a>
-   <dt id="biblio-webdriver">[WebDriver]
+   <dt id="biblio-webdriver2">[WEBDRIVER2]
+   <dd>Simon Stewart; David Burns. <a href="https://w3c.github.io/webdriver/"><cite>WebDriver</cite></a>. URL: <a href="https://w3c.github.io/webdriver/">https://w3c.github.io/webdriver/</a>
+   <dt id="biblio-webdriver2①">[WEBDRIVER2]
    <dd>Simon Stewart; David Burns. <a href="https://w3c.github.io/webdriver/"><cite>WebDriver</cite></a>. URL: <a href="https://w3c.github.io/webdriver/">https://w3c.github.io/webdriver/</a>
    <dt id="biblio-webidl">[WEBIDL]
    <dd>Edgar Chen; Timothy Gu. <a href="https://webidl.spec.whatwg.org/"><cite>Web IDL Standard</cite></a>. Living Standard. URL: <a href="https://webidl.spec.whatwg.org/">https://webidl.spec.whatwg.org/</a>
