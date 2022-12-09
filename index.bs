@@ -89,7 +89,7 @@ urlPrefix: https://w3c.github.io/proximity; spec: PROXIMITY
 spec: webidl; type:dfn; text:attribute
 spec: webidl; type:dfn; text:dictionary member
 spec: webidl; type:dfn; text:identifier
-spec: webdriver-2; type:dfn; text:error
+spec: webdriver2; type:dfn; text:error
 </pre>
 
 <pre class=biblio>
