@@ -7,7 +7,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
   <meta content="Bikeshed version 26e85e599, updated Thu Dec 8 15:29:31 2022 -0800" name="generator">
   <link href="https://www.w3.org/TR/generic-sensor/" rel="canonical">
-  <meta content="dff9ee6d2794386579f2d3db837a73e48ab7a7a8" name="document-revision">
+  <meta content="c04e32401a2c6522ce1710f042b886cfce1d9ec4" name="document-revision">
 <style>
     svg g.edge text {
         font-size: 8px;
@@ -846,7 +846,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-12-09">9 December 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-12-10">10 December 2022</time></p>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2529,23 +2529,19 @@ to <code class="idl"><a data-link-type="idl" href="#dictdef-sensorerroreventinit
      <li data-md>
       <p>Let <var>sensor_permissions</var> be <var>sensor</var>’s associated <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set" id="ref-for-ordered-set⑨">set</a> of <a data-link-type="dfn" href="#sensor-permission-names" id="ref-for-sensor-permission-names①">permission names</a>.</p>
      <li data-md>
-      <p>Run these sub-steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel③">in parallel</a>:</p>
+      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate④">For each</a> <var>permission_name</var> in <var>sensor_permissions</var>,</p>
       <ol>
        <li data-md>
-        <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate④">For each</a> <var>permission_name</var> in <var>sensor_permissions</var>,</p>
+        <p>Let <var>state</var> be the result of <a data-link-type="dfn" href="https://w3c.github.io/permissions/#dfn-request-permission-to-use" id="ref-for-dfn-request-permission-to-use">requesting permission to use</a> <var>permission_name</var>.</p>
+       <li data-md>
+        <p>If <var>state</var> is "denied"</p>
         <ol>
          <li data-md>
-          <p>Let <var>state</var> be the result of <a data-link-type="dfn" href="https://w3c.github.io/permissions/#dfn-request-permission-to-use" id="ref-for-dfn-request-permission-to-use">requesting permission to use</a> <var>permission_name</var>.</p>
-         <li data-md>
-          <p>If <var>state</var> is "denied"</p>
-          <ol>
-           <li data-md>
-            <p>Return "denied".</p>
-          </ol>
+          <p>Return "denied".</p>
         </ol>
-       <li data-md>
-        <p>Otherwise, return "granted".</p>
       </ol>
+     <li data-md>
+      <p>Return "granted".</p>
     </ol>
    </div>
    <h2 class="heading settled" data-level="9" id="automation"><span class="secno">9. </span><span class="content">Automation</span><a class="self-link" href="#automation"></a></h2>
@@ -2704,7 +2700,7 @@ using the <i>JSON Key</i> and the associated field’s value from the available 
      <li data-md>
       <p><a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-handle-any-user-prompts" id="ref-for-dfn-handle-any-user-prompts">Handle any user prompts</a>, and return its value if it is an <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-error" id="ref-for-dfn-error③">error</a>.</p>
      <li data-md>
-      <p>Run these sub-steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel④">in parallel</a> to create a <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②②">mock sensor</a> in the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context⑤">current browsing context</a>:</p>
+      <p>Run these sub-steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel③">in parallel</a> to create a <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②②">mock sensor</a> in the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context⑤">current browsing context</a>:</p>
       <ol>
        <li data-md>
         <p>Let <var>mock</var> be a new <a data-link-type="dfn" href="#mock-sensor" id="ref-for-mock-sensor②③">mock sensor</a>.</p>
@@ -3611,8 +3607,7 @@ for their editorial input.</p>
     <li><a href="#ref-for-in-parallel">7.1.7. Sensor.start()</a>
     <li><a href="#ref-for-in-parallel①">7.1.8. Sensor.stop()</a>
     <li><a href="#ref-for-in-parallel②">8.8. Update latest reading</a>
-    <li><a href="#ref-for-in-parallel③">8.15. Request sensor access</a>
-    <li><a href="#ref-for-in-parallel④">9.2.1. Create mock sensor</a>
+    <li><a href="#ref-for-in-parallel③">9.2.1. Create mock sensor</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-concept-origin">
