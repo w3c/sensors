@@ -916,7 +916,7 @@ dictionary SensorOptions {
 
 A {{Sensor}} object has an associated [=platform sensor=].
 
-The [=task source=] for the [=tasks=] mentioned in this specification is the <dfn>sensor task source</dfn>.
+The [=task source=] for the [=tasks=] mentioned in this specification is the <dfn export>sensor task source</dfn>.
 
 <div class="example">
     In the following example, firstly, we check whether the user agent has permission to access
