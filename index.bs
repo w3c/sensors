@@ -84,8 +84,12 @@ urlPrefix: https://w3c.github.io/geolocation-sensor/; spec: GEOLOCATION-SENSOR
 urlPrefix: https://w3c.github.io/proximity; spec: PROXIMITY
   type: dfn
     text: ProximitySensor; url: proximity-sensor-interface
+urlPrefix: https://w3c.github.io/mediacapture-main/; spec: MEDIACAPTURE-STREAMS
+  type: dfn
+    text: stopped; url: source-stopped
 </pre>
 <pre class=link-defaults>
+spec: mediacapture-streams; type:dfn; text:source
 spec: webidl; type:dfn; text:attribute
 spec: webidl; type:dfn; text:dictionary member
 spec: webidl; type:dfn; text:identifier
@@ -448,6 +452,11 @@ payment service from within an iframe.
 
 Access to [=sensor readings=] are controlled by the Permissions API [[!PERMISSIONS]].
 
+Note: in specific cases such as [[AMBIENT-LIGHT]], integration with the
+Permissions API is done indirectly -- illuminance readings are provided only
+when at least one local video [=source=] is not [=muted=] or [=stopped=]. By
+definition, that implies the <a permission>"camera"</a> permission has been granted.
+
 <h3 id="mitigation-strategies-case-by-case">Mitigation strategies applied on a case by case basis</h3>
 
 Each [=sensor type=] will need to be assessed individually,
@@ -778,10 +787,13 @@ A [=sensor type=] has a [=ordered set|set=] of <dfn export>associated sensors</d
 
 A [=sensor type=] may have a [=default sensor=].
 
-A [=sensor type=] has a [=set/is empty|nonempty=] [=ordered set|set=] of associated
-[=powerful feature/names=] referred to as <dfn export>sensor permission names</dfn>.
+A [=sensor type=] has a [=ordered set|set=] of associated [=powerful
+feature/names=] referred to as <dfn export>sensor permission names</dfn>.
 
 Note: multiple [=sensor types=] may share the same [=powerful feature/name=].
+In specific cases, [=extension specifications=] might choose to define an
+[=set/empty=] set of [=sensor permission names=] if their permission model is
+integrated with that of another specification.
 
 A [=sensor type=] has a [=permission revocation algorithm=].
 
@@ -2104,6 +2116,11 @@ A [=low-level=] {{Sensor|sensor}} may use its interface name as a [=powerful fea
 for instance, "gyroscope" or "accelerometer". [=sensor fusion|Fusion sensors=] must
 [=request permission to use|request permission to access=] each of the sensors that are
 used as a source of fusion.
+
+Note: see the note in [[#permissions]]. In specific cases such as
+[[AMBIENT-LIGHT]], an [=extension specification=] may choose to rely on
+[=powerful feature/names=] defined in another specification rather than
+specifying their own [=sensor permission names=].
 
 Even though it might be difficult to reconstruct [=low-level=] [=sensor readings=] from
 fused data, some of the original information might be inferred. For example, it is easy to
