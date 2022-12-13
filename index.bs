@@ -2066,6 +2066,11 @@ for each [=sensor types=]:
     For [=sensor types=] where multiple [=device sensor|sensors=] are common,
     [=extension specifications=] may choose not to define a [=default sensor=],
     especially when doing so would not make sense.
+-   A [=threshold check algorithm=], which returns a boolean indicating whether
+    two sensor readings differ enough to cause the [=latest readings=] map to
+    be updated.
+-   A [=reading quantization algorithm=], which may return a sensor reading
+    with reduced accuracy.
 
 <h3 id="extend-automation">Automation</h3>
 
