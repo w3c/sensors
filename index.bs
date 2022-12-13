@@ -810,6 +810,10 @@ A [=sensor type=] may have an associated <dfn export>reading quantization
 algorithm</dfn>, which takes a [=sensor reading=] and returns a less accurate
 [=sensor reading=].
 
+A [=sensor type=] may have an associated <dfn export>pre-activation checks
+algorithm</dfn>, which takes a {{Sensor}} instance and returns a boolean, to
+perform extra checks before activating the given {{Sensor}} instance.
+
 <h3 id="model-sensor">Sensor</h3>
 
 The current [=browsing context=]'s [=platform sensor=] must have:
@@ -1169,7 +1173,7 @@ It represents a [=reading timestamp=].
                 but it is a tradeoff some User Agent might choose to make. -->
             1.  Queue a task to run [=notify error=] with [=this=] and |e| as arguments.
             1.  Return.
-        1.  Invoke [=activate a sensor object=] with [=this=] as argument.
+        1.  Queue a task to run [=activate a sensor object=] with [=this=] as argument.
 </div>
 
 
@@ -1330,6 +1334,14 @@ to {{SensorErrorEventInit}}.
     :: None
 
     1.  Let |sensor| be the [=platform sensor=] associated with |sensor_instance|.
+    1.  Let |type| be |sensor|'s associated [=sensor type=].
+    1.  If |type|'s [=pre-activation checks algorithm=] is defined:
+        1.  Let |result| be the result of invoking |type|'s [=pre-activation checks algorithm=] with |sensor_instance|.
+        1.  If |result| is false:
+            1.  Let |e| be the result of [=created|creating=] a "{{NotReadableError}}" {{DOMException}}.
+            <!-- Or a NotAllowedError exception, see the comment in Sensor.start(). -->
+            1.  Queue a task to run [=notify error=] with |sensor_instance| and |e|.
+            1.  Return.
     1.  [=set/Append=] |sensor_instance| to |sensor|'s set of [=activated sensor objects=].
     1.  Invoke [=set sensor settings=] with |sensor| as argument.
     1.  Queue a task to run [=notify activated state=] with |sensor_instance|
@@ -2071,6 +2083,8 @@ for each [=sensor types=]:
     be updated.
 -   A [=reading quantization algorithm=], which may return a sensor reading
     with reduced accuracy.
+-   A [=pre-activation checks algorithm=] with extra steps that are run
+    before a {{Sensor}} instance is activated.
 
 <h3 id="extend-automation">Automation</h3>
 
