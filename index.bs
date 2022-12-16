@@ -454,7 +454,7 @@ Access to [=sensor readings=] are controlled by the Permissions API [[!PERMISSIO
 
 Note: in specific cases such as [[AMBIENT-LIGHT]], integration with the
 Permissions API is done indirectly -- illuminance readings are provided only
-when at least one local video [=source=] is not [=muted=] or [=stopped=]. By
+when at least one local camera [=source=] is not [=muted=] or [=stopped=]. By
 definition, that implies the <a permission>"camera"</a> permission has been granted.
 
 <h3 id="mitigation-strategies-case-by-case">Mitigation strategies applied on a case by case basis</h3>
