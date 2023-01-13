@@ -755,8 +755,8 @@ all of the following are true:
  - |document|'s [=visibility state=] is "visible".
  - The [=currently focused area=] belongs to a document whose origin is [=same
    origin-domain=] with |document|'s origin.
- - <dfn>Specific conditions</dfn>: The [=extension specifications=] that add new
-   [=mandatory conditions|conditions=] hook into this specification at this point.
+ - <dfn export>Specific conditions</dfn>: [=Extension specifications=] may add new
+   conditions to this list to have stricter requirements for their sensor types.
 
 Note: In addition to the conditions above, it is important to note that {{Sensor}}
 subclasses invoke the [=check sensor policy-controlled features=] operation in their
