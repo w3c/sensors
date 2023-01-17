@@ -1393,7 +1393,7 @@ to {{SensorErrorEventInit}}.
     1.  Set [=requested sampling frequency=] to [=optimal sampling frequency=].
 </div>
 
-<h3 dfn>Update latest reading</h3>
+<h3 dfn export>Update latest reading</h3>
 
 <div algorithm="update latest reading">
 
@@ -1517,7 +1517,7 @@ to {{SensorErrorEventInit}}.
 </div>
 
 
-<h3 dfn>Get value from latest reading</h3>
+<h3 dfn export>Get value from latest reading</h3>
 
 <div algorithm="get value from latest reading">
 
