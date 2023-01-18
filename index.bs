@@ -1319,8 +1319,7 @@ to {{SensorErrorEventInit}}.
     1.  Return false.
 </div>
 
-
-<h3 dfn>Activate a sensor object</h3>
+<h3 dfn export>Activate a sensor object</h3>
 
 <div algorithm="activate a sensor object">
 
@@ -1336,8 +1335,7 @@ to {{SensorErrorEventInit}}.
         as an argument.
 </div>
 
-
-<h3 dfn>Deactivate a sensor object</h3>
+<h3 dfn export>Deactivate a sensor object</h3>
 
 <div algorithm="deactivate a sensor object">
 
@@ -1356,7 +1354,7 @@ to {{SensorErrorEventInit}}.
         1.  Set |sensor_instance|.{{[[lastEventFiredAt]]}} to null.
 </div>
 
-<h3 dfn>Revoke sensor permission</h3>
+<h3 dfn export>Revoke sensor permission</h3>
 
 <div algorithm="revoke sensor permission">
 
@@ -1373,8 +1371,7 @@ to {{SensorErrorEventInit}}.
         1.  Queue a task to run [=notify error=] with |s| and |e| as arguments.
 </div>
 
-
-<h3 dfn>Set sensor settings</h3>
+<h3 dfn export>Set sensor settings</h3>
 
 <div algorithm="set sensor settings">
 
@@ -1418,7 +1415,7 @@ to {{SensorErrorEventInit}}.
             1.  Invoke [=report latest reading updated=] with |s| as an argument.
 </div>
 
-<h3 dfn>Find the reporting frequency of a sensor object</h3>
+<h3 dfn export>Find the reporting frequency of a sensor object</h3>
 
 <div algorithm="find the reporting frequency of a sensor object">
 
@@ -1437,8 +1434,7 @@ to {{SensorErrorEventInit}}.
     1. return |frequency|.
 </div>
 
-
-<h3 dfn>Report latest reading updated</h3>
+<h3 dfn export>Report latest reading updated</h3>
 
 <div algorithm="report latest reading updated">
 
@@ -1469,7 +1465,7 @@ to {{SensorErrorEventInit}}.
         1.  Queue a task to run [=notify new reading=] with |sensor_instance| as an argument.
 </div>
 
-<h3 dfn>Notify new reading</h3>
+<h3 dfn export>Notify new reading</h3>
 
 <div algorithm="notify new reading">
 
@@ -1483,7 +1479,7 @@ to {{SensorErrorEventInit}}.
     1.  [=Fire an event=] named "reading" at |sensor_instance|.
 </div>
 
-<h3 dfn>Notify activated state</h3>
+<h3 dfn export>Notify activated state</h3>
 
 <div algorithm="notify activated state">
 
@@ -1500,8 +1496,7 @@ to {{SensorErrorEventInit}}.
             as an argument.
 </div>
 
-
-<h3 dfn>Notify error</h3>
+<h3 dfn export>Notify error</h3>
 
 <div algorithm="notify error">
 
@@ -1515,7 +1510,6 @@ to {{SensorErrorEventInit}}.
     1.  [=Fire an event=] named "error" at |sensor_instance| using {{SensorErrorEvent}}
         with its {{SensorErrorEvent/error!!attribute}} attribute initialized to |error|.
 </div>
-
 
 <h3 dfn export>Get value from latest reading</h3>
 
@@ -1539,8 +1533,7 @@ to {{SensorErrorEventInit}}.
     1.  Otherwise, return null.
 </div>
 
-
-<h3 dfn>Request sensor access</h3>
+<h3 dfn export>Request sensor access</h3>
 
 <div algorithm="request sensor access">
 
