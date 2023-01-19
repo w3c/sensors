@@ -6,9 +6,9 @@
   <meta content="ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
-  <meta content="Bikeshed version 2aae228dc, updated Thu Jan 12 16:52:25 2023 -0800" name="generator">
+  <meta content="Bikeshed version d6f2d6445, updated Tue Jan 17 11:25:25 2023 -0800" name="generator">
   <link href="https://www.w3.org/TR/generic-sensor/" rel="canonical">
-  <meta content="3bb5f52a932810e084c9c2367663425a9757aebf" name="document-revision">
+  <meta content="86b448c966a9a4b0e9884a5178414a6ef70d581b" name="document-revision">
 <style>
     svg g.edge text {
         font-size: 8px;
@@ -847,7 +847,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-01-17">17 January 2023</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-01-19">19 January 2023</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -2169,7 +2169,7 @@ to <code class="idl"><a data-link-type="idl" href="#dictdef-sensorerroreventinit
       <p>Return false.</p>
     </ol>
    </div>
-   <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="8.4" data-lt="Activate a sensor object" data-noexport id="activate-a-sensor-object"><span class="secno">8.4. </span><span class="content">Activate a sensor object</span><a class="self-link" href="#activate-a-sensor-object" id="ref-for-activate-a-sensor-object①"></a></h3>
+   <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-export data-level="8.4" data-lt="Activate a sensor object" id="activate-a-sensor-object"><span class="secno">8.4. </span><span class="content">Activate a sensor object</span><a class="self-link" href="#activate-a-sensor-object" id="ref-for-activate-a-sensor-object①"></a></h3>
    <div class="algorithm" data-algorithm="activate a sensor object">
     <dl>
      <dt data-md>input
@@ -2190,7 +2190,7 @@ to <code class="idl"><a data-link-type="idl" href="#dictdef-sensorerroreventinit
       <p>Queue a task to run <a data-link-type="dfn" href="#notify-activated-state" id="ref-for-notify-activated-state">notify activated state</a> with <var>sensor_instance</var> as an argument.</p>
     </ol>
    </div>
-   <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="8.5" data-lt="Deactivate a sensor object" data-noexport id="deactivate-a-sensor-object"><span class="secno">8.5. </span><span class="content">Deactivate a sensor object</span><a class="self-link" href="#deactivate-a-sensor-object" id="ref-for-deactivate-a-sensor-object③"></a></h3>
+   <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-export data-level="8.5" data-lt="Deactivate a sensor object" id="deactivate-a-sensor-object"><span class="secno">8.5. </span><span class="content">Deactivate a sensor object</span><a class="self-link" href="#deactivate-a-sensor-object" id="ref-for-deactivate-a-sensor-object③"></a></h3>
    <div class="algorithm" data-algorithm="deactivate a sensor object">
     <dl>
      <dt data-md>input
@@ -2220,7 +2220,7 @@ to <code class="idl"><a data-link-type="idl" href="#dictdef-sensorerroreventinit
       </ol>
     </ol>
    </div>
-   <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="8.6" data-lt="Revoke sensor permission" data-noexport id="revoke-sensor-permission"><span class="secno">8.6. </span><span class="content">Revoke sensor permission</span><a class="self-link" href="#revoke-sensor-permission" id="ref-for-revoke-sensor-permission①"></a></h3>
+   <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-export data-level="8.6" data-lt="Revoke sensor permission" id="revoke-sensor-permission"><span class="secno">8.6. </span><span class="content">Revoke sensor permission</span><a class="self-link" href="#revoke-sensor-permission" id="ref-for-revoke-sensor-permission①"></a></h3>
    <div class="algorithm" data-algorithm="revoke sensor permission">
     <dl>
      <dt data-md>input
@@ -2245,7 +2245,7 @@ to <code class="idl"><a data-link-type="idl" href="#dictdef-sensorerroreventinit
       </ol>
     </ol>
    </div>
-   <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="8.7" data-lt="Set sensor settings" data-noexport id="set-sensor-settings"><span class="secno">8.7. </span><span class="content">Set sensor settings</span><a class="self-link" href="#set-sensor-settings" id="ref-for-set-sensor-settings②"></a></h3>
+   <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-export data-level="8.7" data-lt="Set sensor settings" id="set-sensor-settings"><span class="secno">8.7. </span><span class="content">Set sensor settings</span><a class="self-link" href="#set-sensor-settings" id="ref-for-set-sensor-settings②"></a></h3>
    <div class="algorithm" data-algorithm="set sensor settings">
     <dl>
      <dt data-md>input
@@ -2320,7 +2320,7 @@ to <code class="idl"><a data-link-type="idl" href="#dictdef-sensorerroreventinit
       </ol>
     </ol>
    </div>
-   <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="8.9" data-lt="Find the reporting frequency of a sensor object" data-noexport id="find-the-reporting-frequency-of-a-sensor-object"><span class="secno">8.9. </span><span class="content">Find the reporting frequency of a sensor object</span><a class="self-link" href="#find-the-reporting-frequency-of-a-sensor-object" id="ref-for-find-the-reporting-frequency-of-a-sensor-object"></a></h3>
+   <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-export data-level="8.9" data-lt="Find the reporting frequency of a sensor object" id="find-the-reporting-frequency-of-a-sensor-object"><span class="secno">8.9. </span><span class="content">Find the reporting frequency of a sensor object</span><a class="self-link" href="#find-the-reporting-frequency-of-a-sensor-object" id="ref-for-find-the-reporting-frequency-of-a-sensor-object"></a></h3>
    <div class="algorithm" data-algorithm="find the reporting frequency of a sensor object">
     <dl>
      <dt data-md>input
@@ -2353,7 +2353,7 @@ to <code class="idl"><a data-link-type="idl" href="#dictdef-sensorerroreventinit
       <p>return <var>frequency</var>.</p>
     </ol>
    </div>
-   <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="8.10" data-lt="Report latest reading updated" data-noexport id="report-latest-reading-updated"><span class="secno">8.10. </span><span class="content">Report latest reading updated</span><a class="self-link" href="#report-latest-reading-updated" id="ref-for-report-latest-reading-updated①"></a></h3>
+   <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-export data-level="8.10" data-lt="Report latest reading updated" id="report-latest-reading-updated"><span class="secno">8.10. </span><span class="content">Report latest reading updated</span><a class="self-link" href="#report-latest-reading-updated" id="ref-for-report-latest-reading-updated①"></a></h3>
    <div class="algorithm" data-algorithm="report latest reading updated">
     <dl>
      <dt data-md>input
@@ -2416,7 +2416,7 @@ to <code class="idl"><a data-link-type="idl" href="#dictdef-sensorerroreventinit
       </ol>
     </ol>
    </div>
-   <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="8.11" data-lt="Notify new reading" data-noexport id="notify-new-reading"><span class="secno">8.11. </span><span class="content">Notify new reading</span><a class="self-link" href="#notify-new-reading" id="ref-for-notify-new-reading⑤"></a></h3>
+   <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-export data-level="8.11" data-lt="Notify new reading" id="notify-new-reading"><span class="secno">8.11. </span><span class="content">Notify new reading</span><a class="self-link" href="#notify-new-reading" id="ref-for-notify-new-reading⑤"></a></h3>
    <div class="algorithm" data-algorithm="notify new reading">
     <dl>
      <dt data-md>input
@@ -2435,7 +2435,7 @@ to <code class="idl"><a data-link-type="idl" href="#dictdef-sensorerroreventinit
       <p><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire" id="ref-for-concept-event-fire①">Fire an event</a> named "reading" at <var>sensor_instance</var>.</p>
     </ol>
    </div>
-   <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="8.12" data-lt="Notify activated state" data-noexport id="notify-activated-state"><span class="secno">8.12. </span><span class="content">Notify activated state</span><a class="self-link" href="#notify-activated-state" id="ref-for-notify-activated-state①"></a></h3>
+   <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-export data-level="8.12" data-lt="Notify activated state" id="notify-activated-state"><span class="secno">8.12. </span><span class="content">Notify activated state</span><a class="self-link" href="#notify-activated-state" id="ref-for-notify-activated-state①"></a></h3>
    <div class="algorithm" data-algorithm="notify activated state">
     <dl>
      <dt data-md>input
@@ -2460,7 +2460,7 @@ to <code class="idl"><a data-link-type="idl" href="#dictdef-sensorerroreventinit
       </ol>
     </ol>
    </div>
-   <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="8.13" data-lt="Notify error" data-noexport id="notify-error"><span class="secno">8.13. </span><span class="content">Notify error</span><a class="self-link" href="#notify-error" id="ref-for-notify-error③"></a></h3>
+   <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-export data-level="8.13" data-lt="Notify error" id="notify-error"><span class="secno">8.13. </span><span class="content">Notify error</span><a class="self-link" href="#notify-error" id="ref-for-notify-error③"></a></h3>
    <div class="algorithm" data-algorithm="notify error">
     <dl>
      <dt data-md>input
@@ -2518,7 +2518,7 @@ to <code class="idl"><a data-link-type="idl" href="#dictdef-sensorerroreventinit
       <p>Otherwise, return null.</p>
     </ol>
    </div>
-   <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="8.15" data-lt="Request sensor access" data-noexport id="request-sensor-access"><span class="secno">8.15. </span><span class="content">Request sensor access</span><a class="self-link" href="#request-sensor-access" id="ref-for-request-sensor-access②"></a></h3>
+   <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-export data-level="8.15" data-lt="Request sensor access" id="request-sensor-access"><span class="secno">8.15. </span><span class="content">Request sensor access</span><a class="self-link" href="#request-sensor-access" id="ref-for-request-sensor-access②"></a></h3>
    <div class="algorithm" data-algorithm="request sensor access">
     <dl>
      <dt data-md>input
