@@ -8,7 +8,7 @@
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
   <meta content="Bikeshed version d6f2d6445, updated Tue Jan 17 11:25:25 2023 -0800" name="generator">
   <link href="https://www.w3.org/TR/generic-sensor/" rel="canonical">
-  <meta content="86b448c966a9a4b0e9884a5178414a6ef70d581b" name="document-revision">
+  <meta content="6e46cdd8abf3a74fd3677894bd993b5084d5162f" name="document-revision">
 <style>
     svg g.edge text {
         font-size: 8px;
@@ -847,7 +847,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-01-19">19 January 2023</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-01-27">27 January 2023</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -1338,7 +1338,7 @@ about current and past use of the API.</p>
    <p>The term <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="concept-device-sensor">device sensor</dfn> refers to a device’s underlying
 physical sensor instance.</p>
    <p>A <a data-link-type="dfn" href="#concept-device-sensor" id="ref-for-concept-device-sensor⑥">device sensor</a> measures a physical quantities
-and provides a corresponding <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="sensor-reading">sensor reading</dfn> which is a source of information about the environment.</p>
+and provides a corresponding <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="sensor-reading">sensor reading</dfn> which is a source of information about the environment.</p>
    <p>Each <a data-link-type="dfn" href="#sensor-reading" id="ref-for-sensor-reading①⑧">sensor reading</a> is composed of the <dfn data-dfn-type="dfn" data-lt="reading value" data-noexport id="reading-value">values<a class="self-link" href="#reading-value"></a></dfn> of the physical quantity measured by the <a data-link-type="dfn" href="#concept-device-sensor" id="ref-for-concept-device-sensor⑦">device sensor</a> at time <var>t<sub>n</sub></var> which is called the <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="reading-timestamp">reading timestamp</dfn>.</p>
    <p>If the <a data-link-type="dfn" href="#concept-device-sensor" id="ref-for-concept-device-sensor⑧">device sensor</a> performs a spatial measurement (e.g.
 acceleration, angular velocity), it must be resolved in
