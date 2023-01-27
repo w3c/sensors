@@ -546,7 +546,7 @@ The term <dfn id="concept-device-sensor">device sensor</dfn> refers to a device'
 physical sensor instance.
 
 A [=device sensor=] measures a physical quantities
-and provides a corresponding <dfn>sensor reading</dfn>
+and provides a corresponding <dfn export>sensor reading</dfn>
 which is a source of information about the environment.
 
 Each [=sensor reading=] is composed of the <dfn lt="reading value">values</dfn>
