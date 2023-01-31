@@ -1201,7 +1201,8 @@ to notify that new [=sensor reading|reading=] is available.
 ### Sensor.onerror ### {#sensor-onerror}
 
 {{Sensor/onerror}} is an {{EventHandler}} which is called whenever
-an [=exception type|exception=] cannot be handled synchronously.
+an error in an abstract or IDL operation cannot be handled
+synchronously.
 
 
 ### Event handlers ### {#event-handlers}
