@@ -1,7 +1,7 @@
 Generic Sensor API
 ==================
 
-This is the repo for the W3C Generic Sensor API specification. The goal of this specification is to drive consistency across sensor APIs, enable new use cases, and speed-up and ease specification and implementation of new sensors.
+This is the repo for the W3C Generic Sensor API specification. The goal of this specification is to drive consistency across sensor APIs, enable new use cases, and speed-up and ease specification and implementation of new sensors as outlined in the [Designing A Generic Sensor API For The Web Platform](https://bocoup.com/work/generic-sensor-api-for-the-web-platform) article by the initial editor.
 
 The bulk of the work happens on [Github Issues][1]. [Contributions][2] are welcomed!
 
