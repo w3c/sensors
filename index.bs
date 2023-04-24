@@ -84,8 +84,12 @@ urlPrefix: https://w3c.github.io/geolocation-sensor/; spec: GEOLOCATION-SENSOR
 urlPrefix: https://w3c.github.io/proximity; spec: PROXIMITY
   type: dfn
     text: ProximitySensor; url: proximity-sensor-interface
+urlPrefix: https://w3c.github.io/mediacapture-main/; spec: MEDIACAPTURE-STREAMS
+  type: dfn
+    text: stopped; url: source-stopped
 </pre>
 <pre class=link-defaults>
+spec: mediacapture-streams; type:dfn; text:source
 spec: webidl; type:dfn; text:attribute
 spec: webidl; type:dfn; text:dictionary member
 spec: webidl; type:dfn; text:identifier
@@ -448,6 +452,11 @@ payment service from within an iframe.
 
 Access to [=sensor readings=] are controlled by the Permissions API [[!PERMISSIONS]].
 
+Note: in specific cases such as [[AMBIENT-LIGHT]], integration with the
+Permissions API is done indirectly -- illuminance readings are provided only
+when at least one local camera [=source=] is not [=muted=] or [=stopped=]. By
+definition, that implies the <a permission>"camera"</a> permission has been granted.
+
 <h3 id="mitigation-strategies-case-by-case">Mitigation strategies applied on a case by case basis</h3>
 
 Each [=sensor type=] will need to be assessed individually,
@@ -778,10 +787,13 @@ A [=sensor type=] has a [=ordered set|set=] of <dfn export>associated sensors</d
 
 A [=sensor type=] may have a [=default sensor=].
 
-A [=sensor type=] has a [=set/is empty|nonempty=] [=ordered set|set=] of associated
-[=powerful feature/names=] referred to as <dfn export>sensor permission names</dfn>.
+A [=sensor type=] has a [=ordered set|set=] of associated [=powerful
+feature/names=] referred to as <dfn export>sensor permission names</dfn>.
 
 Note: multiple [=sensor types=] may share the same [=powerful feature/name=].
+In specific cases, [=extension specifications=] might choose to define an
+[=set/empty=] set of [=sensor permission names=] if their permission model is
+integrated with that of another specification.
 
 A [=sensor type=] has a [=permission revocation algorithm=].
 
@@ -809,6 +821,10 @@ reading=] map to be updated.
 A [=sensor type=] may have an associated <dfn export>reading quantization
 algorithm</dfn>, which takes a [=sensor reading=] and returns a less accurate
 [=sensor reading=].
+
+A [=sensor type=] may have an associated <dfn export>pre-activation checks
+algorithm</dfn>, which takes a {{Sensor}} instance and returns a boolean, to
+perform extra checks before activating the given {{Sensor}} instance.
 
 <h3 id="model-sensor">Sensor</h3>
 
@@ -916,7 +932,7 @@ dictionary SensorOptions {
 
 A {{Sensor}} object has an associated [=platform sensor=].
 
-The [=task source=] for the [=tasks=] mentioned in this specification is the <dfn>sensor task source</dfn>.
+The [=task source=] for the [=tasks=] mentioned in this specification is the <dfn export>sensor task source</dfn>.
 
 <div class="example">
     In the following example, firstly, we check whether the user agent has permission to access
@@ -1169,7 +1185,7 @@ It represents a [=reading timestamp=].
                 but it is a tradeoff some User Agent might choose to make. -->
             1.  Queue a task to run [=notify error=] with [=this=] and |e| as arguments.
             1.  Return.
-        1.  Invoke [=activate a sensor object=] with [=this=] as argument.
+        1.  Queue a task to run [=activate a sensor object=] with [=this=] as argument.
 </div>
 
 
@@ -1330,6 +1346,14 @@ to {{SensorErrorEventInit}}.
     :: None
 
     1.  Let |sensor| be the [=platform sensor=] associated with |sensor_instance|.
+    1.  Let |type| be |sensor|'s associated [=sensor type=].
+    1.  If |type|'s [=pre-activation checks algorithm=] is defined:
+        1.  Let |result| be the result of invoking |type|'s [=pre-activation checks algorithm=] with |sensor_instance|.
+        1.  If |result| is false:
+            1.  Let |e| be the result of [=created|creating=] a "{{NotReadableError}}" {{DOMException}}.
+            <!-- Or a NotAllowedError exception, see the comment in Sensor.start(). -->
+            1.  Queue a task to run [=notify error=] with |sensor_instance| and |e|.
+            1.  Return.
     1.  [=set/Append=] |sensor_instance| to |sensor|'s set of [=activated sensor objects=].
     1.  Invoke [=set sensor settings=] with |sensor| as argument.
     1.  Queue a task to run [=notify activated state=] with |sensor_instance|
@@ -2060,6 +2084,13 @@ for each [=sensor types=]:
     For [=sensor types=] where multiple [=device sensor|sensors=] are common,
     [=extension specifications=] may choose not to define a [=default sensor=],
     especially when doing so would not make sense.
+-   A [=threshold check algorithm=], which returns a boolean indicating whether
+    two sensor readings differ enough to cause the [=latest readings=] map to
+    be updated.
+-   A [=reading quantization algorithm=], which may return a sensor reading
+    with reduced accuracy.
+-   A [=pre-activation checks algorithm=] with extra steps that are run
+    before a {{Sensor}} instance is activated.
 
 <h3 id="extend-automation">Automation</h3>
 
@@ -2079,6 +2110,11 @@ A [=low-level=] {{Sensor|sensor}} may use its interface name as a [=powerful fea
 for instance, "gyroscope" or "accelerometer". [=sensor fusion|Fusion sensors=] must
 [=request permission to use|request permission to access=] each of the sensors that are
 used as a source of fusion.
+
+Note: see the note in [[#permissions]]. In specific cases such as
+[[AMBIENT-LIGHT]], an [=extension specification=] may choose to rely on
+[=powerful feature/names=] defined in another specification rather than
+specifying their own [=sensor permission names=].
 
 Even though it might be difficult to reconstruct [=low-level=] [=sensor readings=] from
 fused data, some of the original information might be inferred. For example, it is easy to
