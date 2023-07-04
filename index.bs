@@ -515,7 +515,7 @@ Implementations of concrete sensors may define a [=reading quantization
 algorithm=] to reduce the accuracy of the [=sensor readings=] received from a
 [=device sensor=].
 
-Note: these two mitigation measures often complement each other. An
+Note: These two mitigation measures often complement each other. An
 implementation that only executes the [=threshold check algorithm=] might
 expose readings that are too precise, while an implementation that only rounds
 readings up may provide attackers with information about more precise readings
@@ -525,7 +525,7 @@ Note: Inaccuracies will further increase for operations carried out on the
 [=sensor readings=], or time deltas calculated from the [=reading timestamp|timestamps=].
 So, this mitigation strategy can affect certain use cases.
 
-Note: while adding random bias to [=sensor readings=] has similar effects,
+Note: While adding random bias to [=sensor readings=] has similar effects,
 it shouldn't be used in practice
 as it is easy to filter out the added noise.
 
@@ -535,7 +535,7 @@ as it is easy to filter out the added noise.
 User agents may choose to keep the user informed
 about current and past use of the API.
 
-Note: this does not imply keeping a log of the actual [=sensor readings=]
+Note: This does not imply keeping a log of the actual [=sensor readings=]
 which would have issues of its own.
 
 
@@ -595,7 +595,7 @@ and the corresponding physical quantity being measured
 are corrected through <dfn>calibration</dfn> that can happen at manufacturing time.
 Some sensors can require dynamic calibration to compensate unknown discrepancies.
 
-Note: [=platform sensors=] created through [=sensor fusion=] are sometimes
+Note: [=Platform sensors=] created through [=sensor fusion=] are sometimes
 called virtual or synthetic sensors. However, the specification doesn't
 make any practical distinction between them.
 
@@ -698,7 +698,7 @@ the [=default sensor=].
     </pre>
 </div>
 
-Note: extension to this specification may choose not to define a [=default sensor=]
+Note: Extension to this specification may choose not to define a [=default sensor=]
 when doing so wouldn't make sense.
 For example, it does not make sense to explicitly define a default
 [=device sensor|sensor=] for geolocation [=sensor type=] as the
@@ -783,7 +783,7 @@ A [=sensor type=] may have a [=default sensor=].
 A [=sensor type=] has a [=set/is empty|nonempty=] [=ordered set|set=] of associated
 [=powerful feature/names=] referred to as <dfn export>sensor permission names</dfn>.
 
-Note: multiple [=sensor types=] may share the same [=powerful feature/name=].
+Note: Multiple [=sensor types=] may share the same [=powerful feature/name=].
 
 A [=sensor type=] has a [=permission revocation algorithm=].
 
@@ -857,7 +857,7 @@ is initially set to null.
 unless the [=latest reading=] [=ordered map|map=]
 caches a previous [=sensor readings|reading=].
 
-Note: there are additional privacy concerns when using cached [=sensor readings|readings=]
+Note: There are additional privacy concerns when using cached [=sensor readings|readings=]
 which predate either [=navigating=] to resources in the current [=origin=],
 or being granted permission to access the [=platform sensor=]. -->
 
@@ -1044,7 +1044,7 @@ The [=task source=] for the [=tasks=] mentioned in this specification is the <df
     </g>
 </svg>
 
-Note: the nodes in the diagram above represent the states of a {{Sensor}} object and they should not be
+Note: The nodes in the diagram above represent the states of a {{Sensor}} object and they should not be
 confused with the possible states of the underlying [=platform sensor=] or [=device sensor=].
 
 ### Sensor garbage collection ### {#sensor-garbage-collection}
@@ -1274,7 +1274,7 @@ to {{SensorErrorEventInit}}.
     1.  If |options|["{{frequency!!dict-member}}"] [=map/exists=], then
         1.  Set |sensor_instance|.{{[[frequency]]}} to |options|["{{frequency!!dict-member}}"].
 
-        Note: there is not guarantee that the requested |options|["{{frequency!!dict-member}}"]
+        Note: There is no guarantee that the requested |options|["{{frequency!!dict-member}}"]
         can be respected. The actual [=sampling frequency=] can be calculated using
         {{Sensor}} {{Sensor/timestamp!!attribute}} attributes.
 </div>
