@@ -86,10 +86,12 @@ urlPrefix: https://w3c.github.io/proximity; spec: PROXIMITY
     text: ProximitySensor; url: proximity-sensor-interface
 </pre>
 <pre class=link-defaults>
+spec: dom; type:dfn; text:event
 spec: webidl; type:dfn; text:attribute
 spec: webidl; type:dfn; text:dictionary member
 spec: webidl; type:dfn; text:identifier
 spec: webdriver2; type:dfn; text:error
+spec: webdriver2; type:dfn; text:session
 </pre>
 
 <pre class=biblio>
@@ -1148,14 +1150,14 @@ It represents a [=reading timestamp=].
         1.  Let |permissionState| be the result of invoking
             [=request sensor access=] with [=this=] as argument.
         1.  If |permissionState| is "denied", then:
-            1.  Let |e| be the result of [=created|creating=]
+            1.  Let |e| be the result of [=exception/create|creating=]
                 a "{{NotAllowedError!!exception}}" {{DOMException}}.
             1.  Queue a task to run [=notify error=] with [=this=] and |e| as arguments.
             1.  Return.
         1.  Let |connected| be the result of invoking [=connect to sensor=] with [=this=]
             as argument.
         1.  If |connected| is false, then
-            1.  Let |e| be the result of [=created|creating=] a
+            1.  Let |e| be the result of [=exception/create|creating=] a
                 "{{NotReadableError!!exception}}" {{DOMException}}.
                 <!-- Note: user agents may decide to use a
                 "{{NotAllowedError!!exception}}" {{DOMException}},
@@ -1367,7 +1369,7 @@ to {{SensorErrorEventInit}}.
     1.  Let |activated_sensors| be |sensor|'s associated [=ordered set|set=] of [=activated sensor objects=].
     1.  [=set/For each=] |s| of |activated_sensors|,
         1.  Invoke [=deactivate a sensor object=] with |s| as argument.
-        1.  Let |e| be the result of [=created|creating=]
+        1.  Let |e| be the result of [=exception/create|creating=]
             a "{{NotAllowedError!!exception}}" {{DOMException}}.
         1.  Queue a task to run [=notify error=] with |s| and |e| as arguments.
 </div>
