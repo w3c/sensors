@@ -698,7 +698,7 @@ the [=default sensor=].
     </pre>
 </div>
 
-Note: Extension to this specification may choose not to define a [=default sensor=]
+Note: Extensions to this specification may choose not to define a [=default sensor=]
 when doing so wouldn't make sense.
 For example, it does not make sense to explicitly define a default
 [=device sensor|sensor=] for geolocation [=sensor type=] as the
