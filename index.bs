@@ -845,13 +845,10 @@ the [=sensor reading=] as arguments.
 
 The [=latest reading=] [=ordered map|map=] contains an [=map/entry=] whose [=map/key=] is
 "timestamp" and whose [=map/value=] is a high resolution timestamp that estimates the
-[=reading timestamp=] expressed in milliseconds since the [=time origin=].
+[=reading timestamp=] expressed in milliseconds as an [=monotonic clock/unsafe current time=].
 
-Note: The accuracy of the [=reading timestamp=] estimate depends on the underlying
-platform interfaces that expose it.
-
-The [=latest reading=]["timestamp"] is initially set to null,
-unless the [=latest reading=] [=ordered map|map=] caches a previous [=sensor readings|reading=].
+[=Latest reading=]["timestamp"] is initially set to null, unless the [=latest reading=] [=map=]
+caches a previous [=sensor readings|reading=].
 
 The other [=map/entries=] of the [=latest reading=] [=ordered map|map=]
 hold the values of the different quantities measured by the [=platform sensor=].
@@ -1146,11 +1143,14 @@ with the internal slots described in the following table:
 
 ### Sensor.timestamp ### {#sensor-timestamp}
 
-The {{Sensor/timestamp!!attribute}} getter steps are to return
-the result of invoking [=get value from latest reading=] with [=this=]
-and "timestamp" as arguments.
+<div algorithm="sensor timestamp">
+    The {{Sensor/timestamp}} getter steps are:
 
-It represents a [=reading timestamp=].
+    1. Let |global| be [=this=]'s [=relevant global object=].
+    2. Let |unsafeTimestamp| be the result of invoking [=get value from latest reading=] with
+       [=this=] and "timestamp" as arguments.
+    3. Return [=relative high resolution time=] with |unsafeTimestamp| and |global|.
+</div>
 
 ### Sensor.start() ### {#sensor-start}
 
@@ -1437,6 +1437,21 @@ to {{SensorErrorEventInit}}.
         1.  Let |result| be the result of invoking |type|'s [=threshold check algorithm=]
             with |reading| and |sensor|'s [=latest reading=].
         1.  If |result| is false, then abort these steps.
+    1.  If |reading|["timestamp"] [=map/exists=]:
+        <!-- The language below is similar to what is found in
+             https://w3c.github.io/hr-time/#timeorigin-attribute -->
+        1.  Set |reading|["timestamp"] to the result of converting its current value in an
+            [=implementation-defined=] way to an [=monotonic clock/unsafe current time=] using the
+            same [=monotonic clock=] that is shared by [=time origins=].
+
+            Note: The goal of this step is to ensure that a timestamp that may have been relative to
+            a different time origin is converted to a value that can be used in computations with
+            the same [=monotonic clock=] used by the operations described in [[HR-TIME]].
+    1.  Otherwise, [=map/set=] |reading|["timestamp"] to the [=unsafe shared current time=].
+
+        Note: In neither case is an [=monotonic clock/unsafe current time=] ever exposed to script.
+        {{Sensor/timestamp|Sensor.timestamp}} always returns a [=moment/coarsened moment=] relative
+        to a [=time origin=].
     1.  [=map/For each=] |key| → <var ignore>value</var> of [=latest reading=].
         1.  [=map/Set=] [=latest reading=][|key|] to the corresponding
             value of |reading|.
