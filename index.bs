@@ -896,6 +896,9 @@ dictionary SensorOptions {
 
 A {{Sensor}} object has an associated [=platform sensor=].
 
+Concrete {{Sensor}} objects also have an associated [=sensor type=], which is the [=sensor type=]
+that has their [=interface=] among its [=extension sensor interfaces=].
+
 The [=task source=] for the [=tasks=] mentioned in this specification is the <dfn>sensor task source</dfn>.
 
 <div class="example">
@@ -1346,8 +1349,8 @@ to {{SensorErrorEventInit}}.
 
     1. For each {{Sensor}} instance |sensor| in the [=current realm=]:
        1. If |sensor|.{{[[state]]}} is "idle", then [=continue=].
-       1. If |sensor|'s associated [=platform sensor=]'s [=sensor type=]'s [=sensor permission
-          names=] [=set/contains=] |permissionName|:
+       1. If |sensor|'s [=sensor type=]'s [=sensor permission names=] [=set/contains=]
+          |permissionName|:
           1. Invoke [=deactivate a sensor object=] with |sensor|.
           1. Let |exception| be the result of [=exception/create|creating=]
              a "{{NotAllowedError}}" {{DOMException}}.
@@ -1506,7 +1509,7 @@ to {{SensorErrorEventInit}}.
 
     1.  If |sensor_instance|.{{[[state]]}} is "activated",
         1.  Let |readings| be the [=latest reading=] of |sensor_instance|'s related [=platform sensor=].
-        1.  Let |type| be |sensor_instance|'s associated [=platform sensor=]'s associated [=sensor type=].
+        1.  Let |type| be |sensor_instance|'s associated [=sensor type=].
         1.  If |type|'s [=reading quantization algorithm=] is defined, then:
             1.  Set |readings| to the result of invoking |type|'s [=reading quantization algorithm=] with |readings|.
         1.  If the [=extension specification=] defines a [=local coordinate system=] for |sensor_instance|,
