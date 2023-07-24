@@ -51,35 +51,9 @@ urlPrefix: https://w3c.github.io/webdriver/; spec: WEBDRIVER2
     text: WebDriver error code; url: dfn-error-code
     text: local end; url: dfn-local-ends
     text: url variable; url: dfn-url-variables
-    text: Object; url: dfn-object
-    text: no longer open; url: dfn-no-longer-open
-    text: no such window; url: dfn-no-such-window
-    text: Handle any user prompts; url: dfn-handle-any-user-prompts
-urlPrefix: https://w3c.github.io/ambient-light; spec: AMBIENT-LIGHT
-  type: dfn
-    text: AmbientLightSensor; url: ambient-light-sensor-interface
-urlPrefix: https://w3c.github.io/accelerometer; spec: ACCELEROMETER
-  type: dfn
-    text: Accelerometer; url: accelerometer-interface
-    text: LinearAccelerationSensor; url: linearaccelerationsensor-interface
-    text: GravitySensor; url: gravitysensor-interface
-urlPrefix: https://w3c.github.io/gyroscope; spec: GYROSCOPE
-  type: dfn
-    text: Gyroscope; url: gyroscope-interface
-urlPrefix: https://w3c.github.io/magnetometer; spec: MAGNETOMETER
-  type: dfn
-    text: Magnetometer; url: magnetometer-interface
-    text: UncalibratedMagnetometer; url: uncalibrated-magnetometer-interface
-urlPrefix: https://w3c.github.io/orientation-sensor; spec: ORIENTATION-SENSOR
-  type: dfn
-    text: AbsoluteOrientationSensor; url: absoluteorientationsensor-interface
-    text: RelativeOrientationSensor; url: relativeorientationsensor-interface
-urlPrefix: https://w3c.github.io/geolocation-sensor/; spec: GEOLOCATION-SENSOR
-  type: dfn
-    text: GeolocationSensor; url: geolocationsensor-interface
-urlPrefix: https://w3c.github.io/proximity; spec: PROXIMITY
-  type: dfn
-    text: ProximitySensor; url: proximity-sensor-interface
+    text: get a property; url: dfn-getting-properties
+    text: get a property with default; url: dfn-getting-the-property-with-default
+    text: set a property; url: dfn-set-a-property
 urlPrefix: https://tc39.github.io/ecma262/; spec: ECMAScript
   type: dfn
     text: current realm; url: current-realm
@@ -1169,8 +1143,8 @@ with the internal slots described in the following table:
                 a "{{NotAllowedError!!exception}}" {{DOMException}}.
             1.  Queue a task to run [=notify error=] with [=this=] and |e| as arguments.
             1.  Return.
-        1.  Let |connected| be the result of invoking [=connect to sensor=] with [=this=]
-            as argument.
+        1.  Let |connected| be the result of invoking [=connect to sensor=] with [=this=] and
+            [=this=]'s [=relevant global object=] as argument.
         1.  If |connected| is false, then
             1.  Let |e| be the result of [=exception/create|creating=] a
                 "{{NotReadableError!!exception}}" {{DOMException}}.
@@ -1318,21 +1292,32 @@ to {{SensorErrorEventInit}}.
 
     : input
     :: |sensor|, a {{Sensor}} object.
+    :: |global|, a [=/global object=].
     : output
     :: True if |sensor| was associated with a [=platform sensor=],
        false otherwise.
 
     1.  Let |platformSensor| be null.
     1.  Let |type| be |sensor|'s associated [=sensor type=].
-    1.  If the device has a single [=device sensor=] which can provide [=sensor readings|readings=]
-        for |type|, then
-        1.  Set |platformSensor| to a [=platform sensor=] corresponding
-            to this [=device sensor=].
-    1.  If the device has multiple [=device sensors=] which can provide [=sensor readings|readings=]
-        for |type|, then
-        1.  If |type| has an associated [=default sensor=], then
+    1.  Let |topLevelTraversable| be |global|'s [=Window/navigable=]'s [=navigable/top-level
+        traversable=].
+    1.  If |topLevelTraversable|'s [=virtual sensor mapping=] [=map/contains=] |type|:
+        1. Let |virtualSensor| be |topLevelTraversable|'s [=virtual sensor mapping=][|type|].
+        1. If |virtualSensor|'s [=virtual sensor/can provide readings flag=] is true, set |platformSensor|
+           to a [=platform sensor=] corresponding to |virtualSensor|.
+
+           Note: If the [=virtual sensor/can provide readings flag=] is false, |platformSensor| will
+           remain null and this algorithm will return false.
+    1.  Otherwise:
+        1.  If the device has a single [=device sensor=] which can provide [=sensor
+            readings|readings=] for |type|, then
             1.  Set |platformSensor| to a [=platform sensor=] corresponding
-                to this [=default sensor|default device sensor=].
+                to this [=device sensor=].
+        1.  If the device has multiple [=device sensors=] which can provide [=sensor
+            readings|readings=] for |type|, then
+            1.  If |type| has an associated [=default sensor=], then
+                1.  Set |platformSensor| to a [=platform sensor=] corresponding to this [=default
+                    sensor|default device sensor=].
     1.  If |platformSensor| is null, return false.
     1.  Let |bounds| be the result of invoking [=get a platform sensor's sampling bounds=] with
         |platformSensor|.
@@ -1583,166 +1568,65 @@ to {{SensorErrorEventInit}}.
 The Generic Sensor API and its [=extension specifications=] pose a challenge
 to test authors, as fully exercising those interfaces requires physical hardware
 devices that respond in predictable ways. To address this challenge this document
-defines a number of [=extension commands=] to the [[WEBDRIVER2]] specification
-for controlling [=mock sensor=] on the host that the user agent is running on.
-With these [=extension commands=], devices with particular properties can be created
-and their responses to requests are well defined.
+defines a number of [[WEBDRIVER2]] [=extension commands=] that allow defining and
+controlling [=virtual sensors=] that behave like [=device sensors=]. These [=virtual
+sensors=] represent devices with particular properties and whose readings can be
+entirely defined by users.
 
-<h3 id="mock-sensors">Mock Sensors</h3>
+<h3 id="virtual-sensors">Virtual Sensors</h3>
 
-A <dfn>mock sensor</dfn> simulates the behavior of a [=platform sensor=] in controlled ways.
+A <dfn>virtual sensor</dfn> simulates the behavior of a [=device sensor=] in controlled ways. It
+reports [=sensor readings=] to zero or more [=platform sensors=] connected to it.
 
-A [=mock sensor=] reports a corresponding <dfn id="mock-sensor-reading">mock [=sensor reading=]</dfn>, which is a source of
-mocking information about the environment, to the {{Sensor}} objects.
+A [=virtual sensor=] has the following associated data:
+- A <dfn for="virtual sensor">can provide readings flag</dfn> (a [=boolean=]).
+- A <dfn for="virtual sensor">requested sampling frequency</dfn> (a number). Just like a regular
+  [=device sensor=]'s actual sampling frequency is opaque, a [=virtual sensor=]'s [=virtual
+  sensor/requested sampling frequency=] is an [=implementation-defined=] value that lies within the
+  bounds set by the [=virtual sensor/minimum sampling frequency=] and the [=virtual sensor/maximum
+  sampling frequency=]. If a [=virtual sensor=] is not providing readings to any [=platform
+  sensor=], its [=virtual sensor/requested sampling frequency=] is 0.
 
-The [=current browsing context=]'s [=mock sensor=] has an associated [=mock sensor reading=] [=ordered map|map=].
+  Note: [=virtual sensor/Requested sampling frequency=]'s value depends, among other things, on
+  whether connected [=platform sensors=] have requested a certain sampling frequency (which might
+  differ per [=platform sensor=]), or whether they are polling the [=virtual sensor=], in which case
+  no sampling frequency might have been requested at all.
+- A <dfn for="virtual sensor">minimum sampling frequency</dfn> (a number). A [=virtual sensor=] is a
+  [=device sensor=], so this corresponds to the [=device sensor=]'s [=device sensor/minimum sampling
+  frequency=].
+- A <dfn for="virtual sensor">maximum sampling frequency</dfn> (a number). A [=virtual sensor=] is a
+  [=device sensor=], so this corresponds to the [=device sensor=]'s [=device sensor/maximum sampling
+  frequency=].
 
-The [=mock sensor reading=] [=ordered map|map=] contains an [=map/entry=] whose [=map/key=] is
-"timestamp" and whose [=map/value=] is a high resolution timestamp that estimates the time [=mock sensor reading=]
-sent to observers of the {{Sensor}} object, expressed in milliseconds since the [=time origin=].
+The <dfn export>per-type virtual sensor metadata</dfn> is an [=ordered map=] of [=strings=] to
+[=virtual sensor metadata=]. It is initially empty, and [=extension specifications=] are supposed to
+define one or more entries in the [=map=].
 
-The other [=map/entries=] of the [=mock sensor reading=] [=ordered map|map=] whose [=map/keys=] must match the
-[=dictionary members=] [=identifier=] defined by the [=mock sensor type=]'s {{MockSensorReadingValues}}
-and whose initial [=map/values=] are implementation-dependent.
+A <dfn export>virtual sensor metadata</dfn> is a [=struct=] whose [=struct/items=] are:
+  - : <dfn for="virtual sensor metadata" export>virtual sensor type</dfn>
+    :: A [=sensor type=].
+  - : <dfn for="virtual sensor metadata" export>reading parsing algorithm</dfn>
+    :: An algorithm that takes a JSON {{Object}} and returns a [=sensor reading=] or **undefined**.
 
-Note: The user agent must provide the [=mock sensor reading=] that are initially exposed to the {{Sensor}} objects.
+Each [=/top-level traversable=] has a <dfn>virtual sensor mapping</dfn>, which is an [=ordered map=]
+of [=sensor type=] to [=virtual sensor=].
 
-A [=mock sensor=] has an associated [=sampling frequency=] with supported bounds. The default values of
-supported bounds are implementation-dependent.
+Note: [=Virtual sensor mappings=] are tied to [=/top-level traversables=] rather than any
+[=/navigable=] because [=platform sensors=] with a given [=sensor type=] in all [=/navigables=] with
+the same [=navigable/top-level traversable=] are supposed to connect to the same [=virtual sensor=].
+This better mimics real-world behavior, where the same hardware (or fusion) sensor provides readings
+to different [=/navigables=].
 
-A [=mock sensor=] must report the [=mock sensor reading=] at the rate of its [=sampling frequency=]
-if the user agent [=can expose sensor readings=] to the [=current browsing context=]'s [=active document=].
-
-Note: The [=mock sensor=] defined in this specification is not intended be used by non-testing-related web content.
-The UA MAY choose to expose [=mock sensor=] interface only when a runtime or compile-time flag has been set.
-
-### MockSensorConfiguration dictionary ### {#dictionary-mocksensorconfiguration}
-
-<pre class="idl">
-dictionary MockSensorConfiguration {
-  required MockSensorType mockSensorType;
-  boolean connected = true;
-  double? maxSamplingFrequency;
-  double? minSamplingFrequency;
-};
-</pre>
-
-The {{MockSensorConfiguration}} dictionary is used to [[#create-mock-sensor-command|create a mock sensor]].
-
-: {{MockSensorConfiguration/mockSensorType}} member
-:: A {{MockSensorType}} that is used to set [=mock sensor type=].
-
-: {{MockSensorConfiguration/connected}} member
-:: A boolean that indicates a [=mock sensor=]'s <dfn>connection flag</dfn> which is used for switching the connection
-   between {{Sensor}} object and [=mock sensor=]. When set to false the user agent must force the result of invoking
-   [=connect to sensor=] with [=mock sensor=]'s associated {{Sensor}} object as argument to false, otherwise true.
-
-: {{MockSensorConfiguration/maxSamplingFrequency}} member
-:: A double representing frequency in Hz that is used to set maximum supported [=sampling frequency=] for the associated [=mock sensor=].
-
-: {{MockSensorConfiguration/minSamplingFrequency}} member
-:: A double representing frequency in Hz that is used to set minimum supported [=sampling frequency=] for the associated [=mock sensor=].
-
-### MockSensor dictionary ### {#dictionary-mocksensor}
-
-<pre class="idl">
-dictionary MockSensor {
-  double maxSamplingFrequency;
-  double minSamplingFrequency;
-  double requestedSamplingFrequency;
-};
-</pre>
-
-The {{MockSensor}} dictionary provides information about a [=mock sensor=].
-
-: {{MockSensor/maxSamplingFrequency}} member
-:: A double representing frequency in Hz that indicates the maximum supported [=sampling frequency=] of the associated [=mock sensor=].
-
-: {{MockSensor/minSamplingFrequency}} member
-:: A double representing frequency in Hz that indicates the minimum supported [=sampling frequency=] of the associated [=mock sensor=].
-
-: {{MockSensor/requestedSamplingFrequency}} member
-:: A double representing frequency in Hz that indicates the [=sampling frequency=] of the associated [=mock sensor=].
-
-A <dfn>serialized mock sensor</dfn> is a JSON [=Object=] where a [=mock sensor=]'s fields listed in the {{MockSensor}} dictionary are mapped
-using the <i>JSON Key</i> and the associated field's value from the available [=mock sensor=] in [=current browsing context=].
-
-### Mock sensor type ### {#section-mock-sensor-type}
-
-A <dfn>mock sensor type</dfn> is equivalent to a [=sensor type=]'s associated {{Sensor}} subclass.
-
-<!-- IDL blocks can't be linked outside the current spec, but these enum-values are
-     supposed to be defined in concrete sensor specs. -->
-<pre class="idl" link-for="MockSensorType">
-enum <dfn enum>MockSensorType</dfn> {
-  <a enum-value>"ambient-light"</a>,
-  <a enum-value>"accelerometer"</a>,
-  <a enum-value>"linear-acceleration"</a>,
-  <a enum-value>"gravity"</a>,
-  <a enum-value>"gyroscope"</a>,
-  <a enum-value>"magnetometer"</a>,
-  <a enum-value>"uncalibrated-magnetometer"</a>,
-  <a enum-value>"absolute-orientation"</a>,
-  <a enum-value>"relative-orientation"</a>,
-  <a enum-value>"geolocation"</a>,
-  <a enum-value>"proximity"</a>,
-};
-</pre>
-
-Each enumeration value in the {{MockSensorType}} enum identifies a [=mock sensor type=].
-
-: <dfn for="MockSensorType" enum-value>"ambient-light"</dfn>
-:: A [=mock sensor type=] associated with the usage of the [=AmbientLightSensor=] interface.
-
-: <dfn for="MockSensorType" enum-value>"accelerometer"</dfn>
-:: A [=mock sensor type=] associated with the usage of the [=Accelerometer=] interface.
-
-: <dfn for="MockSensorType" enum-value>"linear-acceleration"</dfn>
-:: A [=mock sensor type=] associated with the usage of the [=LinearAccelerationSensor=] interface.
-
-: <dfn for="MockSensorType" enum-value>"gravity"</dfn>
-:: A [=mock sensor type=] associated with the usage of the [=GravitySensor=] interface.
-
-: <dfn for="MockSensorType" enum-value>"gyroscope"</dfn>
-:: A [=mock sensor type=] associated with the usage of the [=Gyroscope=] interface.
-
-: <dfn for="MockSensorType" enum-value>"magnetometer"</dfn>
-:: A [=mock sensor type=] associated with the usage of the [=Magnetometer=] interface.
-
-: <dfn for="MockSensorType" enum-value>"uncalibrated-magnetometer"</dfn>
-:: A [=mock sensor type=] associated with the usage of the [=UncalibratedMagnetometer=] interface.
-
-: <dfn for="MockSensorType" enum-value>"absolute-orientation"</dfn>
-:: A [=mock sensor type=] associated with the usage of the [=AbsoluteOrientationSensor=] interface.
-
-: <dfn for="MockSensorType" enum-value>"relative-orientation"</dfn>
-:: A [=mock sensor type=] associated with the usage of the [=RelativeOrientationSensor=] interface.
-
-: <dfn for="MockSensorType" enum-value>"geolocation"</dfn>
-:: A [=mock sensor type=] associated with the usage of the [=GeolocationSensor=] interface.
-
-: <dfn for="MockSensorType" enum-value>"proximity"</dfn>
-:: A [=mock sensor type=] associated with the usage of the [=ProximitySensor=] interface.
-
-Each [=mock sensor type=] has a [=mock sensor reading values=] dictionary:
-
-: <dfn export>Mock Sensor Reading Values</dfn> dictionary
-:: {{MockSensorReadingValues}} dictionary represents a user-specified [=mock sensor reading=] used for
-   [[#update-mock-sensor-reading-command|updating a mock sensor reading]]. Its members must match the
-   [=attribute=] [=identifier=] defined by the [=sensor type=]'s
-   associated [=extension sensor interface=]. Each [=mock sensor type=]
-   has a specific {{MockSensorReadingValues}}, which is defined in each [=extension specifications=].
-
-   <pre class="idl">
-   dictionary MockSensorReadingValues {
-   };
-   </pre>
+Note: This behavior additionally aids testing of this specification through <a
+href="https://web-platform-tests.org">web-platform-tests</a>, as <a
+href="https://web-platform-tests.org/writing-tests/testdriver.html#using-test-driver-in-other-browsing-contexts">all
+WebDriver communication via testdriver.js goes through the frame containing the test harness</a>.
 
 <h3 id="section-extension-commands">Extension Commands</h3>
 
-### Create mock sensor ### {#create-mock-sensor-command}
+### Create virtual sensor ### {#create-virtual-sensor-command}
 
-<table>
+<table class="def">
   <tbody>
     <tr>
       <th>HTTP Method</th>
@@ -1755,49 +1639,99 @@ Each [=mock sensor type=] has a [=mock sensor reading values=] dictionary:
   </tbody>
 </table>
 
-<div algorithm>
+This [=extension command=] creates a new [=virtual sensor=] of a certain [=sensor type=]. Calls to
+{{Sensor}}.{{Sensor/start()}} from {{Sensor}} instances of the same [=sensor type=] will cause this
+[=virtual sensor=] to be used as their backing [=device sensor=] until
+[[#delete-virtual-sensor-command]] is run.
 
-    The <dfn>create mock sensor</dfn> [=extension command=] creates a
-    new [=mock sensor=].
+Note: The way this [=extension command=] works allows {{Sensor}} instances of the same type to
+coexist and have different [=device sensors=]. A {{Sensor}} `sensor` may have been created and
+connected to a real, hardware sensor before this [=extension command=] is invoked. It continues to
+work and receive readings from it, and only receives readings from a [=virtual sensor=] if [=connect
+to sensor=] is invoked again.
 
+<table class="data">
+  <caption>Properties of the `parameters` argument used by this algorithm</caption>
+  <thead>
+    <tr>
+      <th>Parameter name</th>
+      <th>Value type</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>"`type`"</td>
+      <td>{{String}}</td>
+      <td>Yes</td>
+    <tr>
+      <td>"`connected`"</td>
+      <td>{{Boolean}}</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td>"`maxSamplingFrequency`"</td>
+      <td>{{Number}}</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td>"`minSamplingFrequency`"</td>
+      <td>{{Number}}</td>
+      <td>No</td>
+    </tr>
+  </tbody>
+</table>
+
+<div algorithm="create virtual sensor">
     The [=remote end steps=] are:
-    1.  Let |configuration| be the |configuration| parameter, [=converted to an IDL value=]
-        of type {{MockSensorConfiguration}}. If this throws an exception, return an
-        [=invalid argument=] [=error=].
-    1.  Let |type| be the |configuration|.{{MockSensorConfiguration/mockSensorType}}. If the [=current browsing context=]
-        already has this |type| of [=mock sensor=], return a [=mock sensor already created=] [=error=].
-    1.  If the [=current browsing context=] is [=no longer open=], return a [=no such window=] [=error=].
-    1.  [=Handle any user prompts=], and return its value if it is an [=error=].
-    1.  Run these sub-steps [=in parallel=] to create a [=mock sensor=] in the [=current browsing context=]:
-        1.  Let |mock| be a new [=mock sensor=].
-        1.  Set |mock|'s [=mock sensor type=] to |type|.
-        1.  Let |connected| be the |configuration|.{{MockSensorConfiguration/connected}}, set |mock|'s associated
-            [=connection flag=] to |connected|.
-        1.  If |configuration|.{{MockSensorConfiguration/maxSamplingFrequency}} [=map/exists=], then:
-            1.  Set |mock|'s maximum supported sampling frequency to |configuration|.{{MockSensorConfiguration/maxSamplingFrequency}}.
-        1.  If |configuration|.{{MockSensorConfiguration/minSamplingFrequency}} [=map/exists=], then:
-            1.  Set |mock|'s minimum supported sampling frequency to |configuration|.{{MockSensorConfiguration/minSamplingFrequency}}.
-        1.  Let |sensor_instance| be a |type| of {{Sensor}} object, set |sensor_instance|'s associated [=platform sensor=] to |mock|.
+    1.  Let |type| be the result of invoking [=get a property=] "`type`" from |parameters|.
+    1.  If |type| is not a {{String}}, return [=error=] with [=WebDriver error code=] [=invalid
+        argument=].
+    1.  If [=per-type virtual sensor metadata=] does not [=map/contain=] |type|, return [=error=]
+        with [=WebDriver error code=] [=invalid argument=].
+    1.  Let |sensorType| be [=per-type virtual sensor metadata=][|type|]'s [=virtual sensor
+        metadata/virtual sensor type=].
+    1.  Let |topLevelVirtualSensorMapping| be the [=current browsing context=]'s
+        [=browsing context/top-level traversable=]'s [=virtual sensor mapping=].
+    1.  If |topLevelVirtualSensorMapping| [=map/contains=] |sensorType|, return [=error=] with
+        [=WebDriver error code=] [=invalid argument=].
+    1.  Let |connected| be the result of invoking [=get a property with default=] with
+        "`connected`" and true from |parameters|.
+    1.  Let |maxSamplingFrequency| be the result of [=get a property with default=] with
+        "`maxSamplingFrequency`" and an [=implementation-defined=] value from |parameters|.
+    1.  If |maxSamplingFrequency| is not a {{Number}}, or its value is **NaN**, +∞, or −∞, return
+        [=error=] with [=WebDriver error code=] [=invalid argument=].
+    1.  Let |minSamplingFrequency| be the result of [=get a property with default=] with
+        "`minSamplingFrequency`" and an [=implementation-defined=] value from |parameters|.
+    1.  If |minSamplingFrequency| is not a {{Number}}, or its value is **NaN**, +∞, or −∞, return
+        [=error=] with [=WebDriver error code=] [=invalid argument=].
+    1.  If |minSamplingFrequency| is greater than |maxSamplingFrequency|, return [=error=]
+        with [=WebDriver error code=] [=invalid argument=].
+    1.  Let |virtualSensor| be a new [=virtual sensor=].
+    1.  Set |virtualSensor|'s [=virtual sensor/can provide readings flag=] to |connected|.
+    1.  Set |virtualSensor|'s [=virtual sensor/minimum sampling frequency=] to |minSamplingFrequency|.
+    1.  Set |virtualSensor|'s [=virtual sensor/maximum sampling frequency=] to |maxSamplingFrequency|.
+    1.  Set |topLevelVirtualSensorMapping|[|sensorType|] to |virtualSensor|.
     1.  Return [=success=] with data `null`.
 </div>
 
 <div class="example">
-  To create an "ambient-light" mock sensor in the [=current browsing context=] of the [=session=] with ID 23,
+  To create an "ambient-light" virtual sensor in the [=current browsing context=] of the [=session=] with ID 23,
   the [=local end=] would POST to `/session/23/sensor` with the body:
   <pre class="lang-json">
   {
-    "mockSensorType": "ambient-light",
+    "type": "ambient-light",
     "maxSamplingFrequency": 60,
     "minSamplingFrequency": 5
   }
   </pre>
-  Be aware that only one [=mock sensor=] of a given [=mock sensor type=] can be created in [=current browsing context=],
-  otherwise a [=mock sensor already created=] [=error=] will be thrown.
+  Be aware that only one [=virtual sensor=] of a given [=sensor type=] can be created in a
+  [=/navigable=], otherwise an [=invalid argument=] [=WebDriver error code=] will be returned.
 </div>
 
-### Get mock sensor ### {#get-mock-sensor-command}
+### Get virtual sensor information ### {#get-virtual-sensor-information-command}
 
-<table>
+<table class="def">
   <tbody>
     <tr>
       <th>HTTP Method</th>
@@ -1810,24 +1744,56 @@ Each [=mock sensor type=] has a [=mock sensor reading values=] dictionary:
   </tbody>
 </table>
 
-<div algorithm>
+This [=extension command=] retrieves information about a given [=virtual sensor=] created by
+[[#create-virtual-sensor-command]].
 
-    The <dfn>get mock sensor</dfn> [=extension command=] retrieves
-    information about a given type of [=mock sensor=].
+When it returns [=success=], [=success=]'s associated data is an {{Object}} with the following
+properties:
 
+<table class="data">
+  <thead>
+    <tr>
+      <th>Property name</th>
+      <th>Value type</th>
+      <th>Description (non-normative)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>"`requestedSamplingFrequency`"</td>
+      <td>{{Number}}</td>
+      <td>The [=virtual sensor=]'s [=sampling frequency=]</td>
+    </tr>
+  </tbody>
+</table>
+
+Note: See [[#concepts-sampling-and-reporting-frequencies]] for some constraints on [=sampling
+frequency=] as well as the explanation about why a [=virtual sensor/requested sampling frequency=]
+is an [=implementation-defined=] value in [[#virtual-sensors]]. In general, it is only safe to
+assume that the value lies within the bounds set by the [=virtual sensor=]'s [=virtual
+sensor/minimum sampling frequency=] and [=virtual sensor/maximum sampling frequency=].
+
+<div algorithm="get virtual sensor information">
     The [=remote end steps=] are:
-    1.  Let |type| be a [=url variable=], [=converted to an IDL value=] of type {{MockSensorType}}.
-        If this throws an exception, return an [=invalid argument=] [=error=].
-    1.  If the [=current browsing context=] is [=no longer open=], return a [=no such window=] [=error=].
-    1.  [=Handle any user prompts=], and return its value if it is an [=error=].
-    1.  If |type| does not match a [=mock sensor type=] amongst all associated [=mock sensors=] of the
-        [=current browsing context=], return a [=no such mock sensor=] [=error=].
-    1.  Return [=success=] with the [=serialized mock sensor=] as data.
+    1.  Let |type| be the value of the `type` [=url variable=].
+    1.  If [=per-type virtual sensor metadata=] does not [=map/contain=] |type|, return [=error=]
+        with [=WebDriver error code=] [=invalid argument=].
+    1.  Let |sensorType| be [=per-type virtual sensor metadata=][|type|]'s [=virtual sensor
+        metadata/virtual sensor type=].
+    1.  Let |topLevelVirtualSensorMapping| be the [=current browsing context=]'s
+        [=browsing context/top-level traversable=]'s [=virtual sensor mapping=].
+    1.  If |topLevelVirtualSensorMapping| does not [=map/contain=] |sensorType|, return [=error=] with
+        [=WebDriver error code=] [=invalid argument=].
+    1.  Let |virtualSensor| be |topLevelVirtualSensorMapping|[|sensorType|].
+    1.  Let |info| be a new {{Object}}.
+    1.  Invoke [=set a property=] on |info| with "`requestedSamplingFrequency`" and |virtualSensor|'s
+        [=virtual sensor/requested sampling frequency=].
+    1.  Return [=success=] with data |info|.
 </div>
 
-### Update mock sensor reading ### {#update-mock-sensor-reading-command}
+### Update virtual sensor reading ### {#update-virtual-sensor-reading-command}
 
-<table>
+<table class="def">
   <tbody>
     <tr>
       <th>HTTP Method</th>
@@ -1840,29 +1806,125 @@ Each [=mock sensor type=] has a [=mock sensor reading values=] dictionary:
   </tbody>
 </table>
 
-<div algorithm>
+This [=extension command=] makes a new [=sensor reading=] available to [=platform sensors=].
 
-    The <dfn>update mock sensor reading</dfn> [=extension command=] updates
-    a given type of [=mock sensor=]'s [=mock sensor reading|reading=].
+Note: A [=virtual sensor=] acts like a [=device sensor=], so the [=sensor reading=] produced here
+still has to be processed by a [=platform sensor=], which might discard it due to, for example, a
+[=sensor type=]'s [=threshold check algorithm=] or [=can expose sensor readings=]'s result.
 
+<table class="data">
+  <caption>Properties of the `parameters` argument used by this algorithm</caption>
+  <thead>
+    <tr>
+      <th>Parameter name</th>
+      <th>Value type</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>"`readings`"</td>
+      <td>{{Object}}</td>
+      <td>Yes</td>
+    </tr>
+  </tbody>
+</table>
+
+<div algorithm="update virtual sensor reading">
     The [=remote end steps=] are:
-    1.  Let |type| be a [=url variable=], [=converted to an IDL value=] of type {{MockSensorType}}.
-        If this throws an exception, return an [=invalid argument=] [=error=].
-    1.  If the [=current browsing context=] is [=no longer open=], return a [=no such window=] [=error=].
-    1.  [=Handle any user prompts=], and return its value if it is an [=error=].
-    1.  If |type| does not match a [=mock sensor type=] amongst all associated [=mock sensors=] of the
-        [=current browsing context=], return a [=no such mock sensor=] [=error=].
-    1.  Let |reading| be the |reading| argument, [=converted to an IDL value=] of the |type|'s
-        associated {{MockSensorReadingValues}}. If this throws an exception, return an
-        [=invalid argument=] [=error=].
-    1.  [=map/For each=] |key| → <var ignore>value</var> of |reading|.
-        1.  [=map/Set=] [=mock sensor reading=][|key|] to the corresponding value of |reading|.
+    1.  Let |reading| be the result of invoking [=get a property=] "`reading`" from <var
+        ignore="">parameters</var>.
+    1.  If |reading| is not an {{Object}}, return [=error=] with [=WebDriver error code=] [=invalid
+        argument=].
+    1.  Let |type| be the value of the `type` [=url variable=].
+    1.  If [=per-type virtual sensor metadata=] does not [=map/contain=] |type|, return [=error=]
+        with [=WebDriver error code=] [=invalid argument=].
+    1.  Let |metadata| be [=per-type virtual sensor metadata=][|type|].
+    1.  Let |sensorType| be |metadata|'s [=virtual sensor metadata/virtual sensor type=].
+    1.  Let |topLevelVirtualSensorMapping| be the [=current browsing context=]'s
+        [=browsing context/top-level traversable=]'s [=virtual sensor mapping=].
+    1.  If |topLevelVirtualSensorMapping| does not [=map/contain=] |sensorType|, return [=error=] with
+        [=WebDriver error code=] [=invalid argument=].
+    1.  Let |virtualSensor| be |topLevelVirtualSensorMapping|[|sensorType|].
+    1.  Let |parsedReading| be the result of invoking |metadata|'s [=virtual sensor metadata/reading
+        parsing algorithm=] with |reading|.
+    1.  If |parsedReading| is **undefined**, return [=error=] with [=WebDriver error code=]
+        [=invalid argument=].
+    1.  In an [=implementation-defined=] way, make |parsedReading| available so that it can be
+        obtained by [=platform sensors=] connected to |virtualSensor|.
     1.  Return [=success=] with data `null`.
 </div>
 
-### Delete mock sensor ### {#delete-mock-sensor-command}
+#### Algorithms for parsing readings #### {#algorithms-for-parsing-readings}
 
-<table>
+This specification defines some algorithms that [=extension specifications=] can use when defining
+a [=virtual sensor metadata=] for use in [=per-type virtual sensor metadata=].
+
+<h6 dfn export>Parse single-value number reading</h6>
+
+<div algorithm="parse single-value number reading">
+    : input
+    :: |parameters|, a JSON {{Object}}
+    :: |valueName|, a [=string=]
+    : output
+    :: A [=sensor reading=] or **undefined**
+
+    1. Let |value| be the result of invoking [=get a property=] from |parameters| with |valueName|.
+    1. If |value| is not a {{Number}}, or its value is **NaN**, +∞, or −∞, return **undefined**.
+    1. Let |reading| be a new [=sensor reading=].
+    1. [=map/Set=] |reading|[|valueName|] to |value|.
+    1. Return |reading|.
+</div>
+
+<h6 dfn export>Parse XYZ reading</h6>
+
+<div algorithm="parse xyz reading">
+    : input
+    :: |parameters|, a JSON {{Object}}
+    : output
+    :: A [=sensor reading=] or **undefined**
+
+    1. Let |x| be the result of invoking [=get a property=] from |parameters| with "`x`".
+    1. If |x| is not a {{Number}}, or its value is **NaN**, +∞, or −∞, return **undefined**.
+    1. Let |y| be the result of invoking [=get a property=] from |parameters| with "`y`".
+    1. If |y| is not a {{Number}}, or its value is **NaN**, +∞, or −∞, return **undefined**.
+    1. Let |z| be the result of invoking [=get a property=] from |parameters| with "`z`".
+    1. If |z| is not a {{Number}}, or its value is **NaN**, +∞, or −∞, return **undefined**.
+    1. Let |reading| be a new [=sensor reading=].
+    1. [=map/Set=] |reading|["`x`"] to |x|.
+    1. [=map/Set=] |reading|["`y`"] to |y|.
+    1. [=map/Set=] |reading|["`z`"] to |z|.
+    1. Return |reading|.
+</div>
+
+<h6 dfn export>Parse quaternion reading</h6>
+
+<div algorithm="parse quaternion reading">
+    : input
+    :: |parameters|, a JSON {{Object}}
+    : output
+    :: A [=sensor reading=] or **undefined**
+
+    1. Let |quaternionArray| be the result of invoking [=get a property=] from |parameters| with
+       "`quaternion`".
+    1. If |quaternionArray| is not an {{Array}}, or if its "`length`" property is not 4, return
+       **undefined**.
+    1. Let |x| be the result of invoking [=get a property=] from |quaternionArray| with 0.
+    1. If |x| is not a {{Number}}, or its value is **NaN**, +∞, or −∞, return **undefined**.
+    1. Let |y| be the result of invoking [=get a property=] from |quaternionArray| with 1.
+    1. If |y| is not a {{Number}}, or its value is **NaN**, +∞, or −∞, return **undefined**.
+    1. Let |z| be the result of invoking [=get a property=] from |quaternionArray| with 2.
+    1. If |z| is not a {{Number}}, or its value is **NaN**, +∞, or −∞, return **undefined**.
+    1. Let |w| be the result of invoking [=get a property=] from |quaternionArray| with 3.
+    1. If |w| is not a {{Number}}, or its value is **NaN**, +∞, or −∞, return **undefined**.
+    1. Let |reading| be a new [=sensor reading=].
+    1. [=map/Set=] |reading|["`quaternion`"] be the [=/list=] « |x|, |y|, |z|, |w| ».
+    1. Return |reading|.
+</div>
+
+### Delete virtual sensor ### {#delete-virtual-sensor-command}
+
+<table class="def">
   <tbody>
     <tr>
       <th>HTTP Method</th>
@@ -1875,51 +1937,27 @@ Each [=mock sensor type=] has a [=mock sensor reading values=] dictionary:
   </tbody>
 </table>
 
-<div algorithm>
+This [=extension command=] deletes a given type of [=virtual sensor=].
 
-    The <dfn>delete mock sensor</dfn> [=extension command=] deletes
-    a given type of [=mock sensor=].
-
+<div algorithm="delete virtual sensor">
     The [=remote end steps=] are:
-    1.  Let |type| be a [=url variable=].
-    1.  If {{MockSensorType}} [=set/contains|does not contain=] |type|, return an [=invalid argument=] [=error=].
-    1.  If the [=current browsing context=] is [=no longer open=], return a [=no such window=] [=error=].
-    1.  [=Handle any user prompts=], and return its value if it is an [=error=].
-    1.  If |type| does not match a [=mock sensor type=] amongst all associated [=mock sensors=] of the
-        [=current browsing context=], return a [=no such mock sensor=] [=error=].
-    1.  Delete |type| of [=mock sensor=] in [=current browsing context=].
+    1.  Let |type| be the value of the `type` [=url variable=].
+    1.  If [=per-type virtual sensor metadata=] does not [=map/contain=] |type|, return [=error=]
+        with [=WebDriver error code=] [=invalid argument=].
+    1.  Let |sensorType| be [=per-type virtual sensor metadata=][|type|]'s [=virtual sensor
+        metadata/virtual sensor type=].
+    1.  Let |topLevelVirtualSensorMapping| be the [=current browsing context=]'s
+        [=browsing context/top-level traversable=]'s [=virtual sensor mapping=].
+    1.  [=map/Remove=] |topLevelVirtualSensorMapping|[|sensorType|].
     1.  Return [=success=] with data `null`.
 </div>
 
-<h3 id="extension-handling-errors">Handling errors</h3>
-
-This section extends the [[WEBDRIVER2#errors]] section and defines extended [=WebDriver error codes=]
-specific for [=mock sensor=] in following table.
-
-<table id="mock-sensor-error-code" class="def">
-  <thead>
-    <tr>
-      <th>Error Code</th><th>HTTP Status</th><th>JSON Error Code</th><th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><dfn>no such mock sensor</dfn></td>
-      <td>404</td>
-      <td><code>no such mock sensor</code></td>
-      <td>no mock sensor matching the given type was found.</td>
-    </tr>
-    <tr>
-      <td><dfn>mock sensor already created</dfn></td>
-      <td>500</td>
-      <td><code>mock sensor already created</code></td>
-      <td>
-        A [[#section-extension-commands|command]] to create a [=mock sensor=] could not be
-        satisfied because the given type of [=mock sensor=] is already existed.
-      </td>
-    </tr>
-  </tbody>
-</table>
+Note: The behavior of [=platform sensors=] and {{Sensor}} instances when a [=device sensor=] in use
+stops being available (e.g. it has been physically disconnected, or stopped due to a factor
+unrelated to the User Agent) is not specified. Implementations may, among other things, keep
+existing {{Sensor}} instances unchaged (they simply will not report new readings), [=deactivate a
+sensor object=] or cause the [=platform sensor=] to report an error that will ultimately result in
+[=notify error=] being invoked.
 
 <h2 id="extensibility">Extensibility</h2>
 
@@ -2088,10 +2126,28 @@ for each [=sensor type=]:
 In order to enable user-agent automation and application testing,
 [=extension specifications=] are encouraged to:
 
-- Add new [=mock sensor type=] for each [=extension sensor interface=]
-  to the {{MockSensorType}} enum.
-- Define a [=mock sensor reading values=] dictionary.
+- Add one or more [=map/entries=] to [=per-type virtual sensor metadata=].
+- Consequently, define one or more [=virtual sensor metadata=] instances.
 
+<div class="example">
+    The [=extension specification=] for proximity sensors described in [[#example-webidl]] could
+    contain the following text:
+
+    <blockquote>
+        The **Proximity Sensor** is a [=sensor type=] with one associated [=extension sensor
+        interface=], `ProximitySensor`.
+
+        *[...]*
+
+        The **proximity reading parsing algorithm**, given a JSON {{Object}} *parameters*, must
+        invoke [=parse single-value number reading=] with *parameters* and "`distance`".
+
+        The [=per-type virtual sensor metadata=] [=map=] must have an entry whose key is "`proximity`"
+        and whose value is a [=virtual sensor metadata=] whose [=virtual sensor metadata/virtual sensor
+        type=] is the *Proximity Sensor* [=sensor type=] and with a [=virtual sensor metadata/reading
+        parsing algorithm=] of *proximity reading parsing algorithm*.
+    </blockquote>
+</div>
 
 <h3 id="permission-api">Extending the Permission API</h3>
 
