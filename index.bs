@@ -10,22 +10,18 @@ Editor: Rick Waldron 50572, Invited Expert&#44; formerly on behalf of Bocoup and
 Former Editor: Mikhail Pozdnyakov 78325, Intel Corporation, https://intel.com/
 Former Editor: Alexander Shalamov 78335, Intel Corporation, https://intel.com/
 Former Editor: Tobie Langel 60809, Codespeaks&#44; formerly on behalf of Intel Corporation, https://www.codespeaks.com/, tobie@codespeaks.com
-!Test Facilitator: Wanming Lin (Intel Corporation)
 Abstract:
   This specification defines a framework for exposing sensor data
   to the Open Web Platform in a consistent way.
   It does so by defining a blueprint for writing
   specifications of concrete sensors along with an abstract Sensor interface
   that can be extended to accommodate different sensor types.
-Issue Tracking: Generic Sensor API Issues Repository https://github.com/w3c/sensors/issues
 !Other: <a href="https://github.com/web-platform-tests/wpt/tree/master/generic-sensor">Test suite</a>, <a href="https://github.com/w3c/sensors/commits/main/index.bs">latest version history</a>, <a href="https://github.com/w3c/sensors/commits/gh-pages/index.bs">previous version history</a>
 Indent: 2
 Repository: w3c/sensors
 Markup Shorthands: markdown on
-Boilerplate: omit issues-index, omit conformance, omit feedback-header, repository-issue-tracking no
 Include MDN Panels: if possible
 Implementation Report: https://www.w3.org/wiki/DAS/Implementations
-Ignored Vars: activated_sensors
 Inline GitHub Issues: yes
 Default Biblio Status: current
 Status Text:
@@ -2263,60 +2259,6 @@ Erik Wilde,
 and
 Michael[tm] Smith
 for their editorial input.
-
-<h2 id="conformance" class="no-ref no-num">Conformance</h2>
-
-<h3 id="conventions" class="no-ref no-num">Document conventions</h3>
-
-    <p>Conformance requirements are expressed with a combination of
-    descriptive assertions and RFC 2119 terminology. The key words "MUST",
-    "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT",
-    "RECOMMENDED", "MAY", and "OPTIONAL" in the normative parts of this
-    document are to be interpreted as described in RFC 2119.
-    However, for readability, these words do not appear in all uppercase
-    letters in this specification.
-
-    <p>All of the text of this specification is normative except sections
-    explicitly marked as non-normative, examples, and notes. [[!RFC2119]]</p>
-
-    <p>Examples in this specification are introduced with the words "for example"
-    or are set apart from the normative text with <code>class="example"</code>,
-    like this:
-
-    <div class="example">
-        <p>This is an example of an informative example.</p>
-    </div>
-
-    <p>Because this document doesn't itself define APIs for specific [=sensor types=]--
-    that is the role of extensions to this specification--
-    all examples are inevitably (wishful) fabrications.
-    Although all of the [=device sensor|sensors=] used a examples
-    would be great candidates for building atop the Generic Sensor API,
-    their inclusion in this document does not imply that the relevant Working Groups
-    are planning to do so.
-
-    <p>Informative notes begin with the word "Note" and are set apart from the
-    normative text with <code>class="note"</code>, like this:
-
-    <p class="note">Note, this is an informative note.</p>
-
-<h3 id="conformant-algorithms" class="no-ref no-num">Conformant Algorithms</h3>
-
-    <p>Requirements phrased in the imperative as part of algorithms (such as
-    "strip any leading space characters" or "return false")
-    are to be interpreted with the meaning of the key word ("must",
-    "should", "may", etc) used in introducing the algorithm.</p>
-
-    <p>Conformance requirements phrased as algorithms or specific steps can be
-    implemented in any manner, so long as the end result is <dfn>equivalent</dfn>. In
-    particular, the algorithms defined in this specification are intended to
-    be easy to understand and are not intended to be performant. Implementers
-    are encouraged to optimize.</p>
-
-<h3 id="conformance-classes" class="no-ref no-num">Conformance Classes</h3>
-
-    <p>A <dfn>conformant user agent</dfn> must implement all the requirements
-    listed in this specification that are applicable to user agents.</p>
 
 <style>
     #toc .current,
