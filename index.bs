@@ -547,7 +547,7 @@ A [=device sensor=] measures a physical quantities
 and provides a corresponding <dfn export>sensor reading</dfn>
 which is a source of information about the environment.
 
-Each [=sensor reading=] is composed of the <dfn lt="reading value">values</dfn>
+Each [=sensor reading=] is composed of the values
 of the physical quantity measured by the [=device sensor=]
 at time <var ignore>t<sub>n</sub></var> which is called the <dfn>reading timestamp</dfn>.
 
@@ -558,8 +558,8 @@ a reference frame for the [=device sensor=]'s [=sensor readings=].
 A [=device sensor=] that provides such [=sensor readings=]
 is referred to as <dfn export>spatial sensor</dfn>.
 
-A [=spatial sensor=] can be <dfn>uniaxial</dfn>, <dfn>biaxial</dfn>,
-or <dfn>triaxial</dfn>, depending on the number of orthogonal axes in
+A [=spatial sensor=] can be uniaxial, biaxial,
+or triaxial, depending on the number of orthogonal axes in
 which it can perform simultaneous measurements.
 
 Scalar physical quantities (e.g. temperature) do not require
@@ -645,11 +645,11 @@ for the given [=sensor types=] they are targeting.
 through a process called <dfn>sensor fusion</dfn>.
 This process provides [=high-level|higher-level=] or
 more accurate data (often at the cost of increased latency).
-For example, the [=sensor readings|readings=] of a [=triaxial=] magnetometer
+For example, the [=sensor readings|readings=] of a triaxial magnetometer
 needs to be combined with the [=sensor readings|readings=] of an accelerometer
 to provide a correct bearing.
 
-<dfn>Smart sensors</dfn> and <dfn>sensor hubs</dfn>
+Smart sensors and sensor hubs
 have built-in compute resources which allow them
 to carry out [=calibration=] and [=sensor fusion=] at the hardware level,
 freeing up CPU resources and lowering battery consumption in the process.
@@ -1402,7 +1402,7 @@ to {{SensorErrorEventInit}}.
     1.  Let |type| be |sensor|'s associated [=sensor type=].
     1.  If |type|'s [=threshold check algorithm=] is defined, then:
         1.  Let |result| be the result of invoking |type|'s [=threshold check algorithm=]
-            with |reading| and |latest reading|.
+            with |reading| and |sensor|'s [=latest reading=].
         1.  If |result| is false, then abort these steps.
     1.  [=map/For each=] |key| → <var ignore>value</var> of [=latest reading=].
         1.  [=map/Set=] [=latest reading=][|key|] to the corresponding
