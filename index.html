@@ -5,9 +5,9 @@
   <title>Generic Sensor API</title>
   <meta content="ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
-  <meta content="Bikeshed version 5edf5e459, updated Thu Jun 22 11:28:01 2023 -0700" name="generator">
+  <meta content="Bikeshed version d29f71adb, updated Wed Jul 19 11:08:56 2023 -0700" name="generator">
   <link href="https://www.w3.org/TR/generic-sensor/" rel="canonical">
-  <meta content="0072c4d6cb65a468c42b2924782652b24eb1b092" name="document-revision">
+  <meta content="d3431b7c750fa8d2864bbc174dc64b3e4508a9b2" name="document-revision">
 <style>
     svg g.edge text {
         font-size: 8px;
@@ -911,7 +911,7 @@ var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-07-07">7 July 2023</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-07-25">25 July 2023</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -922,7 +922,7 @@ var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
       <dd><a href="https://www.w3.org/TR/generic-sensor/">https://www.w3.org/TR/generic-sensor/</a>
       <dt>Feedback:
       <dd><span><a href="mailto:public-device-apis@w3.org?subject=%5Bgeneric-sensor%5D%20YOUR%20TOPIC%20HERE">public-device-apis@w3.org</a> with subject line “<kbd>[generic-sensor] <i data-lt>… message topic …</i></kbd>” (<a href="https://lists.w3.org/Archives/Public/public-device-apis/" rel="discussion">archives</a>)</span>
-      <dd><a href="https://github.com/w3c/sensors/issues">Generic Sensor API Issues Repository</a>
+      <dd><a href="https://github.com/w3c/sensors/issues/">GitHub</a>
       <dt>Implementation Report:
       <dd><a href="https://www.w3.org/wiki/DAS/Implementations">https://www.w3.org/wiki/DAS/Implementations</a>
       <dt class="editor">Editor:
@@ -931,8 +931,6 @@ var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
       <dd class="editor p-author h-card vcard" data-editor-id="78325"><a class="p-name fn u-url url" href="https://intel.com/">Mikhail Pozdnyakov</a> (<span class="p-org org">Intel Corporation</span>)
       <dd class="editor p-author h-card vcard" data-editor-id="78335"><a class="p-name fn u-url url" href="https://intel.com/">Alexander Shalamov</a> (<span class="p-org org">Intel Corporation</span>)
       <dd class="editor p-author h-card vcard" data-editor-id="60809"><a class="p-name fn u-url url" href="https://www.codespeaks.com/">Tobie Langel</a> (<span class="p-org org">Codespeaks, formerly on behalf of Intel Corporation</span>) <a class="u-email email" href="mailto:tobie@codespeaks.com">tobie@codespeaks.com</a>
-      <dt>Test Facilitator:
-      <dd>Wanming Lin (Intel Corporation)
       <dt>Other:
       <dd><a href="https://github.com/web-platform-tests/wpt/tree/master/generic-sensor">Test suite</a>, <a href="https://github.com/w3c/sensors/commits/main/index.bs">latest version history</a>, <a href="https://github.com/w3c/sensors/commits/gh-pages/index.bs">previous version history</a>
      </dl>
@@ -969,7 +967,7 @@ var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
 	W3C maintains a <a href="https://www.w3.org/groups/wg/das/ipr" rel="disclosure">public list of any patent disclosures</a> made in connection with the deliverables of the group;
 	that page also includes instructions for disclosing a patent.
 	An individual who has actual knowledge of a patent which the individual believes contains <a href="https://www.w3.org/Consortium/Patent-Policy-20200915/#def-essential">Essential Claim(s)</a> must disclose the information in accordance with <a href="https://www.w3.org/Consortium/Patent-Policy-20200915/#sec-Disclosure">section 6 of the W3C Patent Policy</a>. </p>
-   <p> This document is governed by the <a href="https://www.w3.org/2021/Process-20211102/" id="w3c_process_revision">2 November 2021 W3C Process Document</a>. </p>
+   <p> This document is governed by the <a href="https://www.w3.org/2023/Process-20230612/" id="w3c_process_revision">12 June 2023 W3C Process Document</a>. </p>
    <p></p>
    <p>Further implementation experience is being gathered for the <a data-link-type="dfn" href="https://wicg.github.io/permissions-request/#permission-request-algorithm" id="ref-for-permission-request-algorithm">permission request algorithm</a> and specification clarifications
 informed by this experience are being discussed in <a href="https://github.com/w3c/sensors/issues/397">GitHub issue #397</a>.
@@ -1105,11 +1103,10 @@ This document is maintained and updated at any time. Some parts of this document
      </ol>
     <li><a href="#acknowledgements"><span class="secno">11</span> <span class="content">Acknowledgements</span></a>
     <li>
-     <a href="#conformance"><span class="secno"></span> <span class="content">Conformance</span></a>
+     <a href="#w3c-conformance"><span class="secno"></span> <span class="content">Conformance</span></a>
      <ol class="toc">
-      <li><a href="#conventions"><span class="secno"></span> <span class="content">Document conventions</span></a>
-      <li><a href="#conformant-algorithms"><span class="secno"></span> <span class="content">Conformant Algorithms</span></a>
-      <li><a href="#conformance-classes"><span class="secno"></span> <span class="content">Conformance Classes</span></a>
+      <li><a href="#w3c-conventions"><span class="secno"></span> <span class="content">Document conventions</span></a>
+      <li><a href="#w3c-conformant-algorithms"><span class="secno"></span> <span class="content">Conformant Algorithms</span></a>
      </ol>
     <li>
      <a href="#index"><span class="secno"></span> <span class="content">Index</span></a>
@@ -3010,45 +3007,6 @@ Erik Wilde,
 and
 Michael[tm] Smith
 for their editorial input.</p>
-   <h2 class="no-ref no-num heading settled" id="conformance"><span class="content">Conformance</span><a class="self-link" href="#conformance"></a></h2>
-   <h3 class="no-ref no-num heading settled" id="conventions"><span class="content">Document conventions</span><a class="self-link" href="#conventions"></a></h3>
-   <p>Conformance requirements are expressed with a combination of
-    descriptive assertions and RFC 2119 terminology. The key words "MUST",
-    "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT",
-    "RECOMMENDED", "MAY", and "OPTIONAL" in the normative parts of this
-    document are to be interpreted as described in RFC 2119.
-    However, for readability, these words do not appear in all uppercase
-    letters in this specification. </p>
-   <p>All of the text of this specification is normative except sections
-    explicitly marked as non-normative, examples, and notes. <a data-link-type="biblio" href="#biblio-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">[RFC2119]</a></p>
-   <p>Examples in this specification are introduced with the words "for example"
-    or are set apart from the normative text with <code>class="example"</code>,
-    like this: </p>
-   <div class="example" id="example-ae2b6bc0">
-    <a class="self-link" href="#example-ae2b6bc0"></a> 
-    <p>This is an example of an informative example.</p>
-   </div>
-   <p>Because this document doesn’t itself define APIs for specific <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type⑤③">sensor types</a>—<wbr>that is the role of extensions to this specification—<wbr>all examples are inevitably (wishful) fabrications.
-    Although all of the <a data-link-type="dfn" href="#concept-device-sensor" id="ref-for-concept-device-sensor③③">sensors</a> used a examples
-    would be great candidates for building atop the Generic Sensor API,
-    their inclusion in this document does not imply that the relevant Working Groups
-    are planning to do so. </p>
-   <p>Informative notes begin with the word "Note" and are set apart from the
-    normative text with <code>class="note"</code>, like this: </p>
-   <p class="note" role="note">Note, this is an informative note.</p>
-   <h3 class="no-ref no-num heading settled" id="conformant-algorithms"><span class="content">Conformant Algorithms</span><a class="self-link" href="#conformant-algorithms"></a></h3>
-   <p>Requirements phrased in the imperative as part of algorithms (such as
-    "strip any leading space characters" or "return false")
-    are to be interpreted with the meaning of the key word ("must",
-    "should", "may", etc) used in introducing the algorithm.</p>
-   <p>Conformance requirements phrased as algorithms or specific steps can be
-    implemented in any manner, so long as the end result is <dfn data-dfn-type="dfn" data-noexport id="equivalent">equivalent<a class="self-link" href="#equivalent"></a></dfn>. In
-    particular, the algorithms defined in this specification are intended to
-    be easy to understand and are not intended to be performant. Implementers
-    are encouraged to optimize.</p>
-   <h3 class="no-ref no-num heading settled" id="conformance-classes"><span class="content">Conformance Classes</span><a class="self-link" href="#conformance-classes"></a></h3>
-   <p>A <dfn data-dfn-type="dfn" data-noexport id="conformant-user-agent">conformant user agent<a class="self-link" href="#conformant-user-agent"></a></dfn> must implement all the requirements
-    listed in this specification that are applicable to user agents.</p>
 <script>
     // Scrollspy
     var createScrollSpy = (function() {
@@ -3181,6 +3139,49 @@ for their editorial input.</p>
     })();
 </script>
   </main>
+  <div data-fill-with="conformance">
+   <h2 class="no-ref no-num heading settled" id="w3c-conformance"><span class="content">Conformance</span><a class="self-link" href="#w3c-conformance"></a></h2>
+   <h3 class="no-ref no-num heading settled" id="w3c-conventions"><span class="content">Document conventions</span><a class="self-link" href="#w3c-conventions"></a></h3>
+   <p>Conformance requirements are expressed
+    with a combination of descriptive assertions
+    and RFC 2119 terminology.
+    The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL”
+    in the normative parts of this document
+    are to be interpreted as described in RFC 2119.
+    However, for readability,
+    these words do not appear in all uppercase letters in this specification. </p>
+   <p>All of the text of this specification is normative
+    except sections explicitly marked as non-normative, examples, and notes. <a data-link-type="biblio" href="#biblio-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">[RFC2119]</a> </p>
+   <p>Examples in this specification are introduced with the words “for example”
+    or are set apart from the normative text
+    with <code>class="example"</code>,
+    like this: </p>
+   <div class="example" id="w3c-example">
+    <a class="self-link" href="#w3c-example"></a> 
+    <p>This is an example of an informative example. </p>
+   </div>
+   <p>Informative notes begin with the word “Note”
+    and are set apart from the normative text
+    with <code>class="note"</code>,
+    like this: </p>
+   <p class="note" role="note">Note, this is an informative note.</p>
+   <section>
+    <h3 class="no-ref no-num heading settled" id="w3c-conformant-algorithms"><span class="content">Conformant Algorithms</span><a class="self-link" href="#w3c-conformant-algorithms"></a></h3>
+    <p>Requirements phrased in the imperative as part of algorithms
+    (such as "strip any leading space characters"
+    or "return false and abort these steps")
+    are to be interpreted with the meaning of the key word
+    ("must", "should", "may", etc)
+    used in introducing the algorithm. </p>
+    <p>Conformance requirements phrased as algorithms or specific steps
+    can be implemented in any manner,
+    so long as the end result is equivalent.
+    In particular, the algorithms defined in this specification
+    are intended to be easy to understand
+    and are not intended to be performant.
+    Implementers are encouraged to optimize. </p>
+   </section>
+  </div>
 <script src="https://www.w3.org/scripts/TR/2021/fixup.js"></script>
   <h2 class="no-num no-ref heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
   <h3 class="no-num no-ref heading settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
@@ -3196,7 +3197,6 @@ for their editorial input.</p>
    <li><a href="#calibration">calibration</a><span>, in § 5.1</span>
    <li><a href="#can-expose-sensor-readings">can expose sensor readings</a><span>, in § 5.5</span>
    <li><a href="#check-sensor-policy-controlled-features">Check sensor policy-controlled features</a><span>, in § 8.1</span>
-   <li><a href="#conformant-user-agent">conformant user agent</a><span>, in § Unnumbered section</span>
    <li><a href="#dom-mocksensorconfiguration-connected">connected</a><span>, in § 9.1.1</span>
    <li><a href="#connection-flag">connection flag</a><span>, in § 9.1.1</span>
    <li><a href="#connect-to-sensor">Connect to sensor</a><span>, in § 8.2</span>
@@ -3206,7 +3206,6 @@ for their editorial input.</p>
    <li><a href="#default-sensor">default sensor</a><span>, in § 5.3</span>
    <li><a href="#delete-mock-sensor">delete mock sensor</a><span>, in § 9.2.4</span>
    <li><a href="#concept-device-sensor">device sensor</a><span>, in § 5.1</span>
-   <li><a href="#equivalent">equivalent</a><span>, in § Unnumbered section</span>
    <li>
     error
     <ul>
