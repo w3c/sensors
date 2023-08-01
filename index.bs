@@ -1345,6 +1345,7 @@ to {{SensorErrorEventInit}}.
     :: None
 
     1. For each {{Sensor}} instance |sensor| in the [=current realm=]:
+       1. If |sensor|.{{[[state]]}} is "idle", then [=continue=].
        1. If |sensor|'s associated [=platform sensor=]'s [=sensor type=]'s [=sensor permission
           names=] [=set/contains=] |permissionName|:
           1. Invoke [=deactivate a sensor object=] with |sensor|.
