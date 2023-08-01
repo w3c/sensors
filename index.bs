@@ -778,7 +778,7 @@ A <dfn>sensor type</dfn> must have the following associated data:
   feature names=] referred to as <dfn export>sensor permission names</dfn>.
 
   Note: Multiple [=sensor types=] may share the same [=powerful feature/name=].
-- An [=set/is empty|nonempty=] [=ordered set=] of associated [=policy-controlled feature=] tokens
+- A [=set/is empty|non-empty=] [=ordered set=] of associated [=policy-controlled feature=] tokens
   referred to as <dfn export>sensor feature names</dfn>.
 - A [=permission revocation algorithm=].
 
