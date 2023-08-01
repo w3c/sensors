@@ -774,7 +774,7 @@ Note: In order to release hardware resources, the user agent can request underly
 
 A <dfn>sensor type</dfn> must have the following associated data:
 - One or more [=extension sensor interfaces=].
-- An [=set/is empty|nonempty=] [=ordered set=] of associated [=powerful feature/name|powerful
+- A [=set/is empty|non-empty=] [=ordered set=] of associated [=powerful feature/name|powerful
   feature names=] referred to as <dfn export>sensor permission names</dfn>.
 
   Note: Multiple [=sensor types=] may share the same [=powerful feature/name=].
