@@ -80,6 +80,9 @@ urlPrefix: https://w3c.github.io/geolocation-sensor/; spec: GEOLOCATION-SENSOR
 urlPrefix: https://w3c.github.io/proximity; spec: PROXIMITY
   type: dfn
     text: ProximitySensor; url: proximity-sensor-interface
+urlPrefix: https://tc39.github.io/ecma262/; spec: ECMAScript
+  type: dfn
+    text: current realm; url: current-realm
 </pre>
 <pre class=link-defaults>
 spec: dom; type:dfn; text:event
@@ -769,44 +772,23 @@ Note: In order to release hardware resources, the user agent can request underly
 
 <h3 id="model-sensor-type">Sensor Type</h3>
 
-A <dfn>sensor type</dfn> has one or more associated
-[=extension sensor interface|extension sensor interfaces=].
+A <dfn>sensor type</dfn> must have the following associated data:
+- One or more [=extension sensor interfaces=].
+- A [=set/is empty|non-empty=] [=ordered set=] of associated [=powerful feature/name|powerful
+  feature names=] referred to as <dfn export>sensor permission names</dfn>.
 
-A [=sensor type=] has a [=ordered set|set=] of <dfn export>associated sensors</dfn>.
+  Note: Multiple [=sensor types=] may share the same [=powerful feature/name=].
+- A [=set/is empty|non-empty=] [=ordered set=] of associated [=policy-controlled feature=] tokens
+  referred to as <dfn export>sensor feature names</dfn>.
+- A [=permission revocation algorithm=].
 
-A [=sensor type=] may have a [=default sensor=].
-
-A [=sensor type=] has a [=set/is empty|nonempty=] [=ordered set|set=] of associated
-[=powerful feature/names=] referred to as <dfn export>sensor permission names</dfn>.
-
-Note: Multiple [=sensor types=] may share the same [=powerful feature/name=].
-
-A [=sensor type=] has a [=permission revocation algorithm=].
-
-<div algorithm>
-
-    To invoke the <dfn local-lt="permission revocation algorithm" export>
-    generic sensor permission revocation algorithm</dfn>
-    with [=powerful feature/name=] |permission_name|, run the following steps:
-
-    1.  For each |sensor_type| whose [=sensor permission names|permission names=] [=set/contains=] |permission_name|:
-        1.  [=set/For each=] |sensor| in |sensor_type|'s [=ordered set|set=] of [=associated sensors=],
-            1.  Invoke [=revoke sensor permission=] with |sensor| as argument.
-</div>
-
-A [=sensor type=] has a [=permission request algorithm=].
-
-A [=sensor type=] has a [=set/is empty|nonempty=] [=ordered set|set=] of associated
-[=policy-controlled feature=] tokens referred to as <dfn export>sensor feature names</dfn>.
-
-A [=sensor type=] may have an associated <dfn export>threshold check
-algorithm</dfn>, which takes as arguments two separate [=sensor readings=] and
-determines if they differ enough to cause a [=platform sensor=]'s [=latest
-reading=] map to be updated.
-
-A [=sensor type=] may have an associated <dfn export>reading quantization
-algorithm</dfn>, which takes a [=sensor reading=] and returns a less accurate
-[=sensor reading=].
+A [=sensor type=] may have the following associated data:
+- A [=default sensor=].
+- A <dfn export>threshold check algorithm</dfn>, which takes as arguments two separate [=sensor
+  readings=] and determines if they differ enough to cause a [=platform sensor=]'s [=latest
+  reading=] map to be updated.
+- A <dfn export>reading quantization algorithm</dfn>, which takes a [=sensor reading=] and returns a
+  less accurate [=sensor reading=].
 
 <h3 id="model-sensor">Sensor</h3>
 
@@ -1353,21 +1335,23 @@ to {{SensorErrorEventInit}}.
         1.  Set |sensor_instance|.{{[[lastEventFiredAt]]}} to null.
 </div>
 
-<h3 dfn export>Revoke sensor permission</h3>
+<h3 dfn export>Generic Sensor permission revocation algorithm</h3>
 
-<div algorithm="revoke sensor permission">
+<div algorithm="generic sensor permission revocation algorithm">
 
     : input
-    :: |sensor|, a [=platform sensor=].
+    :: |permissionName|, a [=powerful feature/name|powerful feature name=]
     : output
     :: None
 
-    1.  Let |activated_sensors| be |sensor|'s associated [=ordered set|set=] of [=activated sensor objects=].
-    1.  [=set/For each=] |s| of |activated_sensors|,
-        1.  Invoke [=deactivate a sensor object=] with |s| as argument.
-        1.  Let |e| be the result of [=exception/create|creating=]
-            a "{{NotAllowedError!!exception}}" {{DOMException}}.
-        1.  Queue a task to run [=notify error=] with |s| and |e| as arguments.
+    1. For each {{Sensor}} instance |sensor| in the [=current realm=]:
+       1. If |sensor|.{{[[state]]}} is "idle", then [=continue=].
+       1. If |sensor|'s associated [=platform sensor=]'s [=sensor type=]'s [=sensor permission
+          names=] [=set/contains=] |permissionName|:
+          1. Invoke [=deactivate a sensor object=] with |sensor|.
+          1. Let |exception| be the result of [=exception/create|creating=]
+             a "{{NotAllowedError}}" {{DOMException}}.
+          1. Queue a task to run [=notify error=] with |sensor| and |exception|.
 </div>
 
 <h3 dfn export>Set sensor settings</h3>
@@ -2021,8 +2005,10 @@ accuracy or other settings defined in [=extension specifications=].
 
 <h3 id="definition-reqs">Definition Requirements</h3>
 
-The following definitions must be specified for
-each [=sensor type=] in [=extension specifications=]:
+[=Extension specifications=] must define all the associated data listed in [[#model-sensor-type]].
+
+This section provides more information about some of the associated data that [=extension
+specifications=] must specify.
 
 -   An <dfn export>extension sensor interface</dfn>, which is an [=interface=]
     whose [=inherited interfaces=] contains {{Sensor}}.
@@ -2044,20 +2030,18 @@ each [=sensor type=] in [=extension specifications=]:
     [=get value from latest reading=] with <strong>this</strong> and
     [=attribute=] [=identifier=] as arguments.
 
--   A [=powerful feature/name=], if the [=sensor type=] is not representing
-    [=sensor fusion=] (otherwise, [=powerful feature/names=]
-    associated with the fusion source [=sensor types=] must be used).
+-   If the [=sensor type=] is representing [=sensor fusion=], its [=sensor permission names=] must
+    be those associated with the fusion source [=sensor types=].
 
 An [=extension specification=] may specify the following definitions
-for each [=sensor types=]:
+for each [=sensor type=]:
 
 -   A [=dictionary=] whose [=inherited dictionaries=] contains {{SensorOptions}}.
--   A [=default sensor=]. Generally, devices are equipped with a single [=platform sensor=]
-    of each [=sensor types|type=],
-    so defining a [=default sensor=] should be straightforward.
-    For [=sensor types=] where multiple [=device sensor|sensors=] are common,
-    [=extension specifications=] may choose not to define a [=default sensor=],
-    especially when doing so would not make sense.
+-   A [=default sensor=]. Generally, devices are equipped with a single [=platform sensor=] of each
+    [=sensor types|type=], in which case defining a [=default sensor=] is straightforward. For
+    [=sensor types=] where multiple [=device sensor|sensors=] are common, [=extension
+    specifications=] may choose not to define a [=default sensor=], especially when doing so would
+    not make sense.
 
 <h3 id="extend-automation">Automation</h3>
 
