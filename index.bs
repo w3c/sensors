@@ -879,8 +879,7 @@ To <dfn>get a platform sensor's sampling bounds</dfn> given a [=platform sensor=
   1.  Let |minimumFrequency| be |platformSensor|'s [=sensor type=]'s [=sensor type/minimum sampling
       frequency=].
   1.  If |platformSensor|'s connected [=device sensor=] has a [=device sensor/minimum sampling
-      frequency=], set |minimumFrequency| to the maximum of |minimumFrequency| and the [=device
-      sensor/minimum sampling frequency=].
+      frequency=], set |minimumFrequency| to the maximum of |minimumFrequency| and this value.
   1.  Let |maximumFrequency| be |platformSensor|'s [=sensor type=]'s [=sensor type/maximum sampling
       frequency=].
   1.  If |platformSensor|'s connected [=device sensor=] has a [=device sensor/maximum sampling
