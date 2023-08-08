@@ -466,14 +466,15 @@ etc.
 
 <h4 id="limit-max-frequency" dfn>Limit maximum sampling frequency</h4>
 
-User agents may mitigate certain threats by
-limiting the maximum [=sampling frequency=].
+User agents and [=extension specifications=] may mitigate certain threats by defining a [=sensor
+type=]'s [=sensor type/maximum sampling frequency=].
+
 What upper limit to choose depends on the [=sensor type=],
 the kind of threats the user agent is trying to protect against,
 the expected resources of the attacker, etc.
 
-Limiting the maximum [=sampling frequency=] prevents use cases
-which rely on low latency or high data density.
+Limiting the [=sensor type/maximum sampling frequency=] prevents use cases which rely on low
+latency or high data density.
 
 
 <h4 id="stop-sensor" dfn>Stop the sensor altogether</h4>
@@ -489,9 +490,9 @@ or in a different application.
 
 An alternative to [=limit maximum sampling frequency|limiting the maximum sampling frequency=] is to
 limit the number of [=sensor readings=] delivered to Web application developer,
-regardless of what frequency the sensor is polled at.
+regardless of the [=sampling frequency=].
 This allows use cases which have low latency requirement
-to increase [=sampling frequency=]
+to increase the [=sampling frequency=]
 without increasing the amount of data provided.
 
 Discarding intermediary readings prevents certain use cases,
@@ -721,32 +722,56 @@ define ways to uniquely identify each one.
 
 ## Sampling Frequency and Reporting Frequency ## {#concepts-sampling-and-reporting-frequencies}
 
-For the purpose of this specification, <dfn>sampling frequency</dfn> for a [=platform sensor=] is
-defined as a frequency at which the user agent obtains [=sensor readings=] from the underlying
-platform.
+For the purpose of this specification, a [=platform sensor=]'s <dfn>sampling frequency</dfn> is
+defined as a frequency at which a [=platform sensor=] obtains [=sensor readings=] from the
+underlying [=device sensor=]. The way such [=sensor readings=] are obtained is
+[=implementation-defined=].
 
-The user agent can request the underlying platform to deliver [=sensor readings|readings=] at a certain
-rate which is called <dfn>requested sampling frequency</dfn>.
+The [=platform sensor=]'s [=sampling frequency=] may not correspond to the [=device sensor=]'s
+actual sampling rate, which, for the purpose of this specification, is opaque.
 
-The [=sampling frequency=] is equal to the [=requested sampling frequency=] if the underlying platform
-can support it.
+Note: System-level APIs for [=sensor readings=] and the underlying hardware interface to the sensors
+themselves may be built for polling or events. For a polling-based [=device sensor=], the [=platform
+sensor=]'s [=sampling frequency=] would be the rate at which a new reading is requested from the
+system or hardware. For an event-based [=device sensor=], a [=platform sensor=] provides a requested
+sampling frequency to the system or hardware, and events are generated at that frequency or below.
+Events may not be generated if the sensor reading has not changed.
 
-The [=sampling frequency=] differs from the [=requested sampling frequency=] in the following cases:
- - the [=requested sampling frequency=] exceeds upper or lower [=sampling frequency=] bounds
-   supported by the underlying platform.
- - the operating system and/or the [=device sensor=] automatically discard
-   readings that do not differ enough (in absolute or relative terms) from the
-   previously reported ones via a hardware or operating system filter.
- - the [=platform sensor=]'s associated [=sensor type=]'s [=threshold check
-   algorithm=] fails and the [=platform sensor=]'s [=latest readings=] are not
-   updated.
+A [=device sensor=] may provide bounds for the sampling frequency value it can accept from a
+[=platform sensor=] in the form of a <dfn for="device sensor">minimum sampling frequency</dfn> and a
+<dfn for= "device sensor">maximum sampling frequency</dfn>. A [=platform sensor=]'s [=sampling
+frequency=] must not be less than the [=device sensor=]'s [=device sensor/minimum sampling
+frequency=] or greater than its [=device sensor/maximum sampling frequency=].
+
+A [=platform sensor=]'s [=sampling frequency=] is determined based on the provided
+{{Sensor/[[frequency]]}} of the [=set/items=] in its [=ordered set|set=] of [=activated sensor
+objects=]. The calculation is [=implementation-defined=], but the outcome value must lie within the
+bounds set by the [=platform sensor=]'s [=sensor type=]'s [=sensor type/minimum sampling
+frequency|minimum=] and [=sensor type/maximum sampling frequency|maximum=] sampling frequencies and
+its [=device sensor=]'s [=device sensor/minimum sampling frequency|minimum=] and [=device
+sensor/maximum sampling frequency|maximum=] sampling frequencies.
+
+Note: For example, the user agent may estimate the [=sampling frequency=] as a Least Common
+Denominator (LCD) for a set of provided {{Sensor/[[frequency]]}} capped by [=sampling frequency=]
+bounds defined by the underlying platform.
 
 The <dfn>reporting frequency</dfn> for a concrete {{Sensor}} object is defined as a frequency at which
 the "reading" event is [=fire an event|fired=] at this object.
 
 A {{Sensor}} object cannot access new [=sensor readings|readings=] at a higher rate than the
 user agent obtains them from the underlying platform, therefore the [=reporting frequency=] can
-never exceed the [=sampling frequency=] for the given [=sensor type=].
+never exceed a [=platform sensor=]'s [=sampling frequency=], which in turn can never exceed a
+[=device sensor=]'s [=device sensor/maximum sampling frequency=] (when specified).
+
+The [=reporting frequency=] differs from the {{Sensor}}'s {{Sensor/[[frequency]]}} in cases such as:
+ - the requested {{Sensor/[[frequency]]}} lies outside the bounds returned by invoking [=get a
+   platform sensor's sampling bounds=] with {{Sensor}}'s associated [=platform sensor=].
+ - the operating system and/or the [=device sensor=] automatically discard
+   readings that do not differ enough (in absolute or relative terms) from the
+   previously reported ones via a hardware or operating system filter.
+ - the {{Sensor}} instance's associated [=sensor type=]'s [=threshold check
+   algorithm=] fails and the [=platform sensor=]'s [=latest readings=] are not
+   updated.
 
 ## Conditions to expose sensor readings ## {#concepts-can-expose-sensor-readings}
 
@@ -781,6 +806,15 @@ A <dfn>sensor type</dfn> must have the following associated data:
 - A [=set/is empty|non-empty=] [=ordered set=] of associated [=policy-controlled feature=] tokens
   referred to as <dfn export>sensor feature names</dfn>.
 - A [=permission revocation algorithm=].
+- A <dfn export for="sensor type">minimum sampling frequency</dfn>, a positive number. It is either
+  [=implementation-defined=] or defined by an [=extension specification=]. If both are set, the
+  largest value is used.
+- A <dfn export for="sensor type">maximum sampling frequency</dfn>, a positive number. It is either
+  [=implementation-defined=] or defined by an [=extension specification=]. If both are set, the
+  smallest value is used.
+
+The [=sensor type/minimum sampling frequency=] must not be greater than the [=sensor type/maximum
+sampling frequency=].
 
 A [=sensor type=] may have the following associated data:
 - A [=default sensor=].
@@ -839,17 +873,19 @@ Note: There are additional privacy concerns when using cached [=sensor readings|
 which predate either [=navigating=] to resources in the current [=origin=],
 or being granted permission to access the [=platform sensor=]. -->
 
-A [=platform sensor=] has an associated [=requested sampling frequency=] which is initially null.
-
-For a non-[=set/is empty|empty=] [=ordered set|set=] of [=activated sensor objects=] the
-[=requested sampling frequency=] is equal to the <dfn>optimal sampling frequency</dfn>, which is estimated
-by the user agent by taking into account the {{[[frequency]]|provided frequencies}}
-of [=activated sensor objects|activated=] {{Sensor|Sensors}} and the [=sampling frequency=] bounds
-defined by the underlying platform.
-
-Note: For example, the user agent may estimate [=optimal sampling frequency=] as a Least Common
-Denominator (LCD) for a set of {{[[frequency]]|provided frequencies}} capped
-by [=sampling frequency=] bounds defined by the underlying platform.
+<div algorithm>
+To <dfn>get a platform sensor's sampling bounds</dfn> given a [=platform sensor=]
+|platformSensor|:
+  1.  Let |minimumFrequency| be |platformSensor|'s [=sensor type=]'s [=sensor type/minimum sampling
+      frequency=].
+  1.  If |platformSensor|'s connected [=device sensor=] has a [=device sensor/minimum sampling
+      frequency=], set |minimumFrequency| to the maximum of |minimumFrequency| and this value.
+  1.  Let |maximumFrequency| be |platformSensor|'s [=sensor type=]'s [=sensor type/maximum sampling
+      frequency=].
+  1.  If |platformSensor|'s connected [=device sensor=] has a [=device sensor/maximum sampling
+      frequency=], set |maximumFrequency| to the minimum of |maximumFrequency| and this value.
+  1.  Return a [=tuple=] (|minimumFrequency|, |maximumFrequency|).
+</div>
 
 <div class=example>
 
@@ -866,7 +902,7 @@ The {{Sensor}} object in "idle" [[#sensor-lifecycle|state]] is not among the [=p
 In this example there is a [=platform sensor=] instance per [=browsing context=].
 
 The [=latest reading=] [=ordered map|map=] is shared between {{Sensor}} objects from the
-same [=browsing context|context=] and is updated at a rate equal to the [=requested sampling frequency=]
+same [=browsing context|context=] and is updated at a rate equal to the requested [=sampling frequency=]
 of the corresponding [=platform sensor=].
 
 </div>
@@ -1063,12 +1099,10 @@ with the internal slots described in the following table:
         <tr>
             <td><dfn attribute for=Sensor>\[[frequency]]</dfn></td>
             <td>A double representing frequency in Hz that is used to calculate
-                the [=requested sampling frequency=] for the associated [=platform sensor=]
+                the [=sampling frequency=] for the associated [=platform sensor=]
                 and to define the upper bound of the [=reporting frequency=] for this
-                {{Sensor}} object.
-
-                This slot holds the provided {{SensorOptions}}.{{frequency!!dict-member}} value.
-                It is initially unset.</td>
+                {{Sensor}} object. It is initially null.
+            </td>
         </tr>
         <tr>
             <td><dfn attribute for=Sensor>\[[lastEventFiredAt]]</dfn></td>
@@ -1256,8 +1290,8 @@ to {{SensorErrorEventInit}}.
         1.  Set |sensor_instance|.{{[[frequency]]}} to |options|["{{frequency!!dict-member}}"].
 
         Note: There is no guarantee that the requested |options|["{{frequency!!dict-member}}"]
-        can be respected. The actual [=sampling frequency=] can be calculated using
-        {{Sensor}} {{Sensor/timestamp!!attribute}} attributes.
+        can be respected. See [[#concepts-sampling-and-reporting-frequencies]] for constraints that
+        may be applied.
 </div>
 
 <h3 dfn export>Check sensor policy-controlled features</h3>
@@ -1283,24 +1317,30 @@ to {{SensorErrorEventInit}}.
 <div algorithm="connect to sensor">
 
     : input
-    :: |sensor_instance|, a {{Sensor}} object.
+    :: |sensor|, a {{Sensor}} object.
     : output
-    :: True if sensor instance was associated with a [=platform sensor=],
+    :: True if |sensor| was associated with a [=platform sensor=],
        false otherwise.
 
-    1.  Let |type| be the [=sensor type=] of |sensor_instance|.
+    1.  Let |platformSensor| be null.
+    1.  Let |type| be |sensor|'s associated [=sensor type=].
     1.  If the device has a single [=device sensor=] which can provide [=sensor readings|readings=]
         for |type|, then
-        1.  Associate |sensor_instance| with a [=platform sensor=] corresponding
+        1.  Set |platformSensor| to a [=platform sensor=] corresponding
             to this [=device sensor=].
-        1.  Return true.
     1.  If the device has multiple [=device sensors=] which can provide [=sensor readings|readings=]
         for |type|, then
         1.  If |type| has an associated [=default sensor=], then
-            1.  Associate |sensor_instance| with a [=platform sensor=] corresponding
-                to [=default sensor=].
-            1.  Return true.
-    1.  Return false.
+            1.  Set |platformSensor| to a [=platform sensor=] corresponding
+                to this [=default sensor|default device sensor=].
+    1.  If |platformSensor| is null, return false.
+    1.  Let |bounds| be the result of invoking [=get a platform sensor's sampling bounds=] with
+        |platformSensor|.
+    1.  If |sensor|.{{Sensor/[[frequency]]}} is null, set it to an [=implementation-defined=] value
+        dependent on |type|.
+    1.  If |sensor|.{{Sensor/[[frequency]]}} is less than |bounds|[0], set it to |bounds|[0].
+    1.  If |sensor|.{{Sensor/[[frequency]]}} is greater than |bounds|[1], set it to |bounds|[1].
+    1.  Return true.
 </div>
 
 <h3 dfn export>Activate a sensor object</h3>
@@ -1362,18 +1402,24 @@ to {{SensorErrorEventInit}}.
 <div algorithm="set sensor settings">
 
     : input
-    :: |sensor|, a [=platform sensor=].
+    :: |platformSensor|, a [=platform sensor=].
     : output
     :: None
 
-    1.  If |sensor|'s set of [=activated sensor objects=] [=set/is empty=],
-        1.  Set [=requested sampling frequency=] to null.
-        1.  [=map/For each=] |key| → <var ignore>value</var> of [=latest reading=].
-            1.  [=map/Set=] [=latest reading=][|key|] to null.
-        1.  Update the user-agent-specific way in which [=sensor readings=] are obtained from |sensor|
-            to no longer provide [=sensor readings|readings=].
+    1.  If |platformSensor|'s set of [=activated sensor objects=] [=set/is empty=],
+        1.  Set |platformSensor|'s [=sampling frequency=] to null.
+        1.  [=map/For each=] |key| → <var ignore>value</var> of |platformSensor|'s [=latest reading=].
+            1.  [=map/Set=] |platformSensor|'s [=latest reading=][|key|] to null.
+        1.  Update the [=implementation-defined=] way in which [=sensor readings=] are obtained
+            from |platformSensor| to no longer provide [=sensor readings|readings=].
         1.  Return.
-    1.  Set [=requested sampling frequency=] to [=optimal sampling frequency=].
+    1.  Set |platformSensor|'s [=sampling frequency=] to an [=implementation-defined=] value based
+        on the {{Sensor/[[frequency]]}} values of the items in its [=activated sensor objects=]
+        [=ordered set|set=].
+    1.  Let |bounds| be the result of invoking [=get a platform sensor's sampling bounds=] with
+        |platformSensor|.
+    1.  [=Assert=]: |platformSensor|'s [=sampling frequency=] is greater than or equal to
+        |bounds|[0] and less than or equal to |bounds|[1].
 </div>
 
 <h3 dfn export>Update latest reading</h3>
@@ -1401,25 +1447,6 @@ to {{SensorErrorEventInit}}.
             1.  Invoke [=report latest reading updated=] with |s| as an argument.
 </div>
 
-<h3 dfn export>Find the reporting frequency of a sensor object</h3>
-
-<div algorithm="find the reporting frequency of a sensor object">
-
-    : input
-    :: |sensor_instance|, a {{Sensor}} object.
-    : output
-    :: [=reporting frequency=] in Hz.
-
-    1.  Let |frequency| be null.
-    1.  Let |f| be |sensor_instance|.{{[[frequency]]}}.
-        1. if |f| is set,
-            1. set |frequency| to |f| capped by the upper and lower [=sampling frequency=]
-               bounds for the associated [=platform sensor=].
-        1.  Otherwise,
-            1. user agent can assign |frequency| to an appropriate value.
-    1. return |frequency|.
-</div>
-
 <h3 dfn export>Report latest reading updated</h3>
 
 <div algorithm="report latest reading updated">
@@ -1436,11 +1463,9 @@ to {{SensorErrorEventInit}}.
     1.  If |lastReportedTimestamp| is not set
         1.  Queue a task to run [=notify new reading=] with |sensor_instance| as an argument.
         1.  Return.
-    1.  Let |reportingFrequency| be result of invoking [=Find the reporting frequency of a sensor object=].
-    1.  If |reportingFrequency| is null
-        1.  Queue a task to run [=notify new reading=] with |sensor_instance| as an argument.
-        1.  Return.
-    1.  Let |reportingInterval| be the result of 1 / |reportingFrequency|.
+    1.  [=Assert=]: |sensor_instance|.{{Sensor/[[frequency]]}} is not null.
+    1.  [=Assert=]: |sensor_instance|.{{Sensor/[[frequency]]}} is greater than 0.
+    1.  Let |reportingInterval| be the result of 1 / |sensor_instance|.{{Sensor/[[frequency]]}}.
     1.  Let |timestampDelta| be the result of [=latest reading=]["timestamp"] - |lastReportedTimestamp|.
     1.  If  |timestampDelta| is greater than or equal to |reportingInterval|
         1.  Queue a task to run [=notify new reading=] with |sensor_instance| as an argument.
@@ -1567,13 +1592,10 @@ and whose initial [=map/values=] are implementation-dependent.
 
 Note: The user agent must provide the [=mock sensor reading=] that are initially exposed to the {{Sensor}} objects.
 
-A [=mock sensor=] has an associated [=requested sampling frequency=]. Its default value is implementation-dependent
-but must be set within a [=mock sensor=]'s associated [=sampling frequency=] bounds.
-
 A [=mock sensor=] has an associated [=sampling frequency=] with supported bounds. The default values of
 supported bounds are implementation-dependent.
 
-A [=mock sensor=] must report the [=mock sensor reading=] at the rate of its [=requested sampling frequency=]
+A [=mock sensor=] must report the [=mock sensor reading=] at the rate of its [=sampling frequency=]
 if the user agent [=can expose sensor readings=] to the [=current browsing context=]'s [=active document=].
 
 Note: The [=mock sensor=] defined in this specification is not intended be used by non-testing-related web content.
@@ -1625,7 +1647,7 @@ The {{MockSensor}} dictionary provides information about a [=mock sensor=].
 :: A double representing frequency in Hz that indicates the minimum supported [=sampling frequency=] of the associated [=mock sensor=].
 
 : {{MockSensor/requestedSamplingFrequency}} member
-:: A double representing frequency in Hz that indicates the [=requested sampling frequency=] of the associated [=mock sensor=].
+:: A double representing frequency in Hz that indicates the [=sampling frequency=] of the associated [=mock sensor=].
 
 A <dfn>serialized mock sensor</dfn> is a JSON [=Object=] where a [=mock sensor=]'s fields listed in the {{MockSensor}} dictionary are mapped
 using the <i>JSON Key</i> and the associated field's value from the available [=mock sensor=] in [=current browsing context=].
@@ -2003,7 +2025,7 @@ creating multiple instances of the same [=sensor type=] and using simple {{Senso
 handler.
 
 Conversely, multiple {{Sensor|Sensors}} of the same [=sensor type=] can be created when they
-are intended to be used with different settings, such as: [=requested sampling frequency=],
+are intended to be used with different settings, such as: {{SensorOptions/frequency}},
 accuracy or other settings defined in [=extension specifications=].
 
 <h3 id="definition-reqs">Definition Requirements</h3>
