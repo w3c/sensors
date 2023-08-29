@@ -1599,8 +1599,8 @@ A [=virtual sensor=] has the following associated data:
   frequency=].
 
 The <dfn export>per-type virtual sensor metadata</dfn> is an [=ordered map=] of [=strings=] to
-[=virtual sensor metadata=]. It is initially empty, and [=extension specifications=] are supposed to
-define one or more entries in the [=map=].
+[=virtual sensor metadata=]. It is initially empty, and [=extension specifications=] should
+define one or more entries in the [=map=] corresponding to the sensor types they define.
 
 A <dfn export>virtual sensor metadata</dfn> is a [=struct=] whose [=struct/items=] are:
   - : <dfn for="virtual sensor metadata" export>virtual sensor type</dfn>
@@ -1726,7 +1726,7 @@ to sensor=] is invoked again.
   }
   </pre>
   Be aware that only one [=virtual sensor=] of a given [=sensor type=] can be created in a
-  [=/navigable=], otherwise an [=invalid argument=] [=WebDriver error code=] will be returned.
+  [=/top-level traversable=], otherwise an [=invalid argument=] [=WebDriver error code=] will be returned.
 </div>
 
 ### Get virtual sensor information ### {#get-virtual-sensor-information-command}
@@ -1823,7 +1823,7 @@ still has to be processed by a [=platform sensor=], which might discard it due t
   </thead>
   <tbody>
     <tr>
-      <td>"`readings`"</td>
+      <td>"`reading`"</td>
       <td>{{Object}}</td>
       <td>Yes</td>
     </tr>
@@ -1955,7 +1955,7 @@ This [=extension command=] deletes a given type of [=virtual sensor=].
 Note: The behavior of [=platform sensors=] and {{Sensor}} instances when a [=device sensor=] in use
 stops being available (e.g. it has been physically disconnected, or stopped due to a factor
 unrelated to the User Agent) is not specified. Implementations may, among other things, keep
-existing {{Sensor}} instances unchaged (they simply will not report new readings), [=deactivate a
+existing {{Sensor}} instances unchanged (they simply will not report new readings), [=deactivate a
 sensor object=] or cause the [=platform sensor=] to report an error that will ultimately result in
 [=notify error=] being invoked.
 
