@@ -1435,7 +1435,7 @@ to {{SensorErrorEventInit}}.
     1.  Otherwise, [=map/set=] |reading|["timestamp"] to the [=unsafe shared current time=].
 
         Note: In neither case is an [=monotonic clock/unsafe current time=] ever exposed to script.
-        {{Sensor/timestamp|Sensor.timestamp}} always returns a [=moment/coarsened moment=] relative
+        {{Sensor/timestamp|Sensor.timestamp}} always returns a [=coarsened moment=] relative
         to a [=time origin=].
     1.  [=map/For each=] |key| → <var ignore>value</var> of [=latest reading=].
         1.  [=map/Set=] [=latest reading=][|key|] to the corresponding
