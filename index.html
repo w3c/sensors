@@ -7,7 +7,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
   <meta content="Bikeshed version 82ce88815, updated Thu Sep 7 16:33:55 2023 -0700" name="generator">
   <link href="https://www.w3.org/TR/generic-sensor/" rel="canonical">
-  <meta content="50ea8175a8118f268b61da0662164053f37e97e9" name="document-revision">
+  <meta content="0be37095b482527d4ef81e499e29ddeebf38ec03" name="document-revision">
 <style>
     svg g.edge text {
         font-size: 8px;
@@ -911,7 +911,7 @@ var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-10-06">6 October 2023</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-10-26">26 October 2023</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -2255,7 +2255,7 @@ to <code class="idl"><a data-link-type="idl" href="#dictdef-sensorerroreventinit
       </ol>
      <li data-md>
       <p>Otherwise, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set" id="ref-for-map-set①">set</a> <var>reading</var>["timestamp"] to the <a data-link-type="dfn" href="https://w3c.github.io/hr-time/#dfn-unsafe-shared-current-time" id="ref-for-dfn-unsafe-shared-current-time">unsafe shared current time</a>.</p>
-      <p class="note" role="note"><span class="marker">Note:</span> In neither case is an <a data-link-type="dfn" href="https://w3c.github.io/hr-time/#monotonic-clock-unsafe-current-time" id="ref-for-monotonic-clock-unsafe-current-time②">unsafe current time</a> ever exposed to script. <code class="idl"><a data-link-type="idl" href="#dom-sensor-timestamp" id="ref-for-dom-sensor-timestamp①">Sensor.timestamp</a></code> always returns a <a data-link-type="dfn">coarsened moment</a> relative
+      <p class="note" role="note"><span class="marker">Note:</span> In neither case is an <a data-link-type="dfn" href="https://w3c.github.io/hr-time/#monotonic-clock-unsafe-current-time" id="ref-for-monotonic-clock-unsafe-current-time②">unsafe current time</a> ever exposed to script. <code class="idl"><a data-link-type="idl" href="#dom-sensor-timestamp" id="ref-for-dom-sensor-timestamp①">Sensor.timestamp</a></code> always returns a <a data-link-type="dfn" href="https://w3c.github.io/hr-time/#dfn-moment" id="ref-for-dfn-moment">coarsened moment</a> relative
   to a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-time-origin" id="ref-for-concept-settings-object-time-origin②">time origin</a>.</p>
      <li data-md>
       <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-iterate" id="ref-for-map-iterate②">For each</a> <var>key</var> → <var>value</var> of <a data-link-type="dfn" href="#latest-reading" id="ref-for-latest-reading①③">latest reading</a>.</p>
@@ -3462,6 +3462,7 @@ for their editorial input.</p>
     <a data-link-type="biblio">[HR-TIME]</a> defines the following terms:
     <ul>
      <li><span class="dfn-paneled" id="0e9f636b">DOMHighResTimeStamp</span>
+     <li><span class="dfn-paneled" id="1d8f7431">coarsened moments</span>
      <li><span class="dfn-paneled" id="28716de1">monotonic clock</span>
      <li><span class="dfn-paneled" id="69ea869d">relative high resolution time</span>
      <li><span class="dfn-paneled" id="479aeb1d">unsafe current time</span>
@@ -4256,6 +4257,7 @@ window.dfnpanelData['a6e67972'] = {"dfnID": "a6e67972", "url": "https://tc39.es/
 window.dfnpanelData['9032aa9e'] = {"dfnID": "9032aa9e", "url": "https://tc39.es/ecma262/multipage/text-processing.html#sec-string-objects", "dfnText": "String", "refSections": [{"refs": [{"id": "ref-for-sec-string-objects"}, {"id": "ref-for-sec-string-objects\u2460"}], "title": "9.2.1. Create virtual sensor"}], "external": true};
 window.dfnpanelData['b107f911'] = {"dfnID": "b107f911", "url": "https://tc39.github.io/ecma262/#current-realm", "dfnText": "current realm", "refSections": [{"refs": [{"id": "ref-for-current-realm"}], "title": "8.6. Generic Sensor permission revocation algorithm"}], "external": true};
 window.dfnpanelData['0e9f636b'] = {"dfnID": "0e9f636b", "url": "https://w3c.github.io/hr-time/#dom-domhighrestimestamp", "dfnText": "DOMHighResTimeStamp", "refSections": [{"refs": [{"id": "ref-for-dom-domhighrestimestamp"}], "title": "7.1. The Sensor Interface"}], "external": true};
+window.dfnpanelData['1d8f7431'] = {"dfnID": "1d8f7431", "url": "https://w3c.github.io/hr-time/#dfn-moment", "dfnText": "coarsened moments", "refSections": [{"refs": [{"id": "ref-for-dfn-moment"}], "title": "8.8. Update latest reading"}], "external": true};
 window.dfnpanelData['28716de1'] = {"dfnID": "28716de1", "url": "https://w3c.github.io/hr-time/#dfn-monotonic-clock", "dfnText": "monotonic clock", "refSections": [{"refs": [{"id": "ref-for-dfn-monotonic-clock"}, {"id": "ref-for-dfn-monotonic-clock\u2460"}], "title": "8.8. Update latest reading"}], "external": true};
 window.dfnpanelData['69ea869d'] = {"dfnID": "69ea869d", "url": "https://w3c.github.io/hr-time/#dfn-relative-high-resolution-time", "dfnText": "relative high resolution time", "refSections": [{"refs": [{"id": "ref-for-dfn-relative-high-resolution-time"}], "title": "7.1.6. Sensor.timestamp"}], "external": true};
 window.dfnpanelData['479aeb1d'] = {"dfnID": "479aeb1d", "url": "https://w3c.github.io/hr-time/#monotonic-clock-unsafe-current-time", "dfnText": "unsafe current time", "refSections": [{"refs": [{"id": "ref-for-monotonic-clock-unsafe-current-time"}], "title": "6.2. Sensor"}, {"refs": [{"id": "ref-for-monotonic-clock-unsafe-current-time\u2460"}, {"id": "ref-for-monotonic-clock-unsafe-current-time\u2461"}], "title": "8.8. Update latest reading"}], "external": true};
