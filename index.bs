@@ -797,6 +797,7 @@ A [=sensor type=] may have the following associated data:
   reading=] map to be updated.
 - A <dfn export>reading quantization algorithm</dfn>, which takes a [=sensor reading=] and returns a
   less accurate [=sensor reading=].
+- A [=virtual sensor type=].
 
 <h3 id="model-sensor">Sensor</h3>
 
@@ -1299,10 +1300,11 @@ to {{SensorErrorEventInit}}.
 
     1.  Let |platformSensor| be null.
     1.  Let |type| be |sensor|'s associated [=sensor type=].
+    1.  Let |virtualSensorType| be |sensor|'s associated [=virtual sensor type=], or null if it is not set.
     1.  Let |topLevelTraversable| be |global|'s [=Window/navigable=]'s [=navigable/top-level
         traversable=].
-    1.  If |topLevelTraversable|'s [=virtual sensor mapping=] [=map/contains=] |type|:
-        1. Let |virtualSensor| be |topLevelTraversable|'s [=virtual sensor mapping=][|type|].
+    1.  If |virtualSensorType| is not null and |topLevelTraversable|'s [=virtual sensor mapping=] [=map/contains=] |virtualSensorType|:
+        1. Let |virtualSensor| be |topLevelTraversable|'s [=virtual sensor mapping=][|virtualSensorType|].
         1. If |virtualSensor|'s [=virtual sensor/can provide readings flag=] is true, set |platformSensor|
            to a [=platform sensor=] corresponding to |virtualSensor|.
 
@@ -1598,18 +1600,22 @@ A [=virtual sensor=] has the following associated data:
   [=device sensor=], so this corresponds to the [=device sensor=]'s [=device sensor/maximum sampling
   frequency=].
 
-The <dfn export>per-type virtual sensor metadata</dfn> is an [=ordered map=] of [=strings=] to
-[=virtual sensor metadata=]. It is initially empty, and [=extension specifications=] should
-define one or more entries in the [=map=] corresponding to the sensor types they define.
+A <dfn export>virtual sensor type</dfn> is a string that represents a sensor of a given type.
+
+The <dfn export>per-type virtual sensor metadata</dfn> is an [=ordered map=] of [=virtual sensor
+types=] to [=virtual sensor metadata=]. It is initially empty, and [=extension specifications=]
+should define one or more entries in the [=map=] corresponding to the sensor types they define.
 
 A <dfn export>virtual sensor metadata</dfn> is a [=struct=] whose [=struct/items=] are:
-  - : <dfn for="virtual sensor metadata" export>virtual sensor type</dfn>
-    :: A [=sensor type=].
   - : <dfn for="virtual sensor metadata" export>reading parsing algorithm</dfn>
     :: An algorithm that takes a JSON {{Object}} and returns a [=sensor reading=] or **undefined**.
 
 Each [=/top-level traversable=] has a <dfn>virtual sensor mapping</dfn>, which is an [=ordered map=]
-of [=sensor type=] to [=virtual sensor=].
+of [=virtual sensor types=] to [=virtual sensor=].
+
+Note: The [=virtual sensor mapping=] [=struct=] contains data that is common to
+all virtual sensors of a given type. A [=virtual sensor=] contains data that
+can vary on virtual sensor creation and utilization.
 
 Note: [=Virtual sensor mappings=] are tied to [=/top-level traversables=] rather than any
 [=/navigable=] because [=platform sensors=] with a given [=sensor type=] in all [=/navigables=] with
@@ -1684,24 +1690,22 @@ to sensor=] is invoked again.
 
 <div algorithm="create virtual sensor">
     The [=remote end steps=] are:
-    1.  Let |type| be the result of invoking [=get a property=] "`type`" from |parameters|.
-    1.  If |type| is not a {{String}}, return [=error=] with [=WebDriver error code=] [=invalid
+    1.  Let |virtualSensorType| be the result of invoking [=get a property=] "`type`" from |parameters|.
+    1.  If |virtualSensorType| is not a {{String}}, return [=error=] with [=WebDriver error code=] [=invalid
         argument=].
-    1.  If [=per-type virtual sensor metadata=] does not [=map/contain=] |type|, return [=error=]
+    1.  If [=per-type virtual sensor metadata=] does not [=map/contain=] |virtualSensorType|, return [=error=]
         with [=WebDriver error code=] [=invalid argument=].
-    1.  Let |sensorType| be [=per-type virtual sensor metadata=][|type|]'s [=virtual sensor
-        metadata/virtual sensor type=].
     1.  Let |topLevelVirtualSensorMapping| be the [=current browsing context=]'s
         [=browsing context/top-level traversable=]'s [=virtual sensor mapping=].
-    1.  If |topLevelVirtualSensorMapping| [=map/contains=] |sensorType|, return [=error=] with
+    1.  If |topLevelVirtualSensorMapping| [=map/contains=] |virtualSensorType|, return [=error=] with
         [=WebDriver error code=] [=invalid argument=].
     1.  Let |connected| be the result of invoking [=get a property with default=] with
         "`connected`" and true from |parameters|.
-    1.  Let |maxSamplingFrequency| be the result of [=get a property with default=] with
+    1.  Let |maxSamplingFrequency| be the result of invoking [=get a property with default=] with
         "`maxSamplingFrequency`" and an [=implementation-defined=] value from |parameters|.
     1.  If |maxSamplingFrequency| is not a {{Number}}, or its value is **NaN**, +∞, or −∞, return
         [=error=] with [=WebDriver error code=] [=invalid argument=].
-    1.  Let |minSamplingFrequency| be the result of [=get a property with default=] with
+    1.  Let |minSamplingFrequency| be the result of invoking [=get a property with default=] with
         "`minSamplingFrequency`" and an [=implementation-defined=] value from |parameters|.
     1.  If |minSamplingFrequency| is not a {{Number}}, or its value is **NaN**, +∞, or −∞, return
         [=error=] with [=WebDriver error code=] [=invalid argument=].
@@ -1711,7 +1715,7 @@ to sensor=] is invoked again.
     1.  Set |virtualSensor|'s [=virtual sensor/can provide readings flag=] to |connected|.
     1.  Set |virtualSensor|'s [=virtual sensor/minimum sampling frequency=] to |minSamplingFrequency|.
     1.  Set |virtualSensor|'s [=virtual sensor/maximum sampling frequency=] to |maxSamplingFrequency|.
-    1.  Set |topLevelVirtualSensorMapping|[|sensorType|] to |virtualSensor|.
+    1.  Set |topLevelVirtualSensorMapping|[|virtualSensorType|] to |virtualSensor|.
     1.  Return [=success=] with data `null`.
 </div>
 
@@ -1775,16 +1779,12 @@ sensor/minimum sampling frequency=] and [=virtual sensor/maximum sampling freque
 
 <div algorithm="get virtual sensor information">
     The [=remote end steps=] are:
-    1.  Let |type| be the value of the `type` [=url variable=].
-    1.  If [=per-type virtual sensor metadata=] does not [=map/contain=] |type|, return [=error=]
-        with [=WebDriver error code=] [=invalid argument=].
-    1.  Let |sensorType| be [=per-type virtual sensor metadata=][|type|]'s [=virtual sensor
-        metadata/virtual sensor type=].
+    1.  Let |virtualSensorType| be the value of the `type` [=url variable=].
     1.  Let |topLevelVirtualSensorMapping| be the [=current browsing context=]'s
         [=browsing context/top-level traversable=]'s [=virtual sensor mapping=].
-    1.  If |topLevelVirtualSensorMapping| does not [=map/contain=] |sensorType|, return [=error=] with
+    1.  If |topLevelVirtualSensorMapping| does not [=map/contain=] |virtualSensorType|, return [=error=] with
         [=WebDriver error code=] [=invalid argument=].
-    1.  Let |virtualSensor| be |topLevelVirtualSensorMapping|[|sensorType|].
+    1.  Let |virtualSensor| be |topLevelVirtualSensorMapping|[|virtualSensorType|].
     1.  Let |info| be a new {{Object}}.
     1.  Invoke [=set a property=] on |info| with "`requestedSamplingFrequency`" and |virtualSensor|'s
         [=virtual sensor/requested sampling frequency=].
@@ -1836,16 +1836,15 @@ still has to be processed by a [=platform sensor=], which might discard it due t
         ignore="">parameters</var>.
     1.  If |reading| is not an {{Object}}, return [=error=] with [=WebDriver error code=] [=invalid
         argument=].
-    1.  Let |type| be the value of the `type` [=url variable=].
-    1.  If [=per-type virtual sensor metadata=] does not [=map/contain=] |type|, return [=error=]
+    1.  Let |virtualSensorType| be the value of the `type` [=url variable=].
+    1.  If [=per-type virtual sensor metadata=] does not [=map/contain=] |virtualSensorType|, return [=error=]
         with [=WebDriver error code=] [=invalid argument=].
-    1.  Let |metadata| be [=per-type virtual sensor metadata=][|type|].
-    1.  Let |sensorType| be |metadata|'s [=virtual sensor metadata/virtual sensor type=].
+    1.  Let |metadata| be [=per-type virtual sensor metadata=][|virtualSensorType|].
     1.  Let |topLevelVirtualSensorMapping| be the [=current browsing context=]'s
         [=browsing context/top-level traversable=]'s [=virtual sensor mapping=].
-    1.  If |topLevelVirtualSensorMapping| does not [=map/contain=] |sensorType|, return [=error=] with
+    1.  If |topLevelVirtualSensorMapping| does not [=map/contain=] |virtualSensorType|, return [=error=] with
         [=WebDriver error code=] [=invalid argument=].
-    1.  Let |virtualSensor| be |topLevelVirtualSensorMapping|[|sensorType|].
+    1.  Let |virtualSensor| be |topLevelVirtualSensorMapping|[|virtualSensorType|].
     1.  Let |parsedReading| be the result of invoking |metadata|'s [=virtual sensor metadata/reading
         parsing algorithm=] with |reading|.
     1.  If |parsedReading| is **undefined**, return [=error=] with [=WebDriver error code=]
@@ -1941,14 +1940,12 @@ This [=extension command=] deletes a given type of [=virtual sensor=].
 
 <div algorithm="delete virtual sensor">
     The [=remote end steps=] are:
-    1.  Let |type| be the value of the `type` [=url variable=].
-    1.  If [=per-type virtual sensor metadata=] does not [=map/contain=] |type|, return [=error=]
+    1.  Let |virtualSensorType| be the value of the `type` [=url variable=].
+    1.  If [=per-type virtual sensor metadata=] does not [=map/contain=] |virtualSensorType|, return [=error=]
         with [=WebDriver error code=] [=invalid argument=].
-    1.  Let |sensorType| be [=per-type virtual sensor metadata=][|type|]'s [=virtual sensor
-        metadata/virtual sensor type=].
     1.  Let |topLevelVirtualSensorMapping| be the [=current browsing context=]'s
         [=browsing context/top-level traversable=]'s [=virtual sensor mapping=].
-    1.  [=map/Remove=] |topLevelVirtualSensorMapping|[|sensorType|].
+    1.  [=map/Remove=] |topLevelVirtualSensorMapping|[|virtualSensorType|].
     1.  Return [=success=] with data `null`.
 </div>
 
@@ -2128,6 +2125,7 @@ In order to enable user-agent automation and application testing,
 
 - Add one or more [=map/entries=] to [=per-type virtual sensor metadata=].
 - Consequently, define one or more [=virtual sensor metadata=] instances.
+- Specify a [=sensor type=]'s [=virtual sensor type=], which should match the key used in the corresponding [=per-type virtual sensor metadata=] entry.
 
 <div class="example">
     The [=extension specification=] for proximity sensors described in [[#example-webidl]] could
@@ -2135,7 +2133,7 @@ In order to enable user-agent automation and application testing,
 
     <blockquote>
         The **Proximity Sensor** is a [=sensor type=] with one associated [=extension sensor
-        interface=], `ProximitySensor`.
+        interface=], `ProximitySensor`. Its associated [=virtual sensor type=] is "`proximity`".
 
         *[...]*
 
@@ -2143,9 +2141,8 @@ In order to enable user-agent automation and application testing,
         invoke [=parse single-value number reading=] with *parameters* and "`distance`".
 
         The [=per-type virtual sensor metadata=] [=map=] must have an entry whose key is "`proximity`"
-        and whose value is a [=virtual sensor metadata=] whose [=virtual sensor metadata/virtual sensor
-        type=] is the *Proximity Sensor* [=sensor type=] and with a [=virtual sensor metadata/reading
-        parsing algorithm=] of *proximity reading parsing algorithm*.
+        and whose value is a [=virtual sensor metadata=] whose [=virtual sensor metadata/reading
+        parsing algorithm=] is *proximity reading parsing algorithm*.
     </blockquote>
 </div>
 
