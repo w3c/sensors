@@ -1896,31 +1896,6 @@ a [=virtual sensor metadata=] for use in [=per-type virtual sensor metadata=].
     1. Return |reading|.
 </div>
 
-<h6 dfn export>Parse quaternion reading</h6>
-
-<div algorithm="parse quaternion reading">
-    : input
-    :: |parameters|, a JSON {{Object}}
-    : output
-    :: A [=sensor reading=] or **undefined**
-
-    1. Let |quaternionArray| be the result of invoking [=get a property=] from |parameters| with
-       "`quaternion`".
-    1. If |quaternionArray| is not an {{Array}}, or if its "`length`" property is not 4, return
-       **undefined**.
-    1. Let |x| be the result of invoking [=get a property=] from |quaternionArray| with 0.
-    1. If |x| is not a {{Number}}, or its value is **NaN**, +∞, or −∞, return **undefined**.
-    1. Let |y| be the result of invoking [=get a property=] from |quaternionArray| with 1.
-    1. If |y| is not a {{Number}}, or its value is **NaN**, +∞, or −∞, return **undefined**.
-    1. Let |z| be the result of invoking [=get a property=] from |quaternionArray| with 2.
-    1. If |z| is not a {{Number}}, or its value is **NaN**, +∞, or −∞, return **undefined**.
-    1. Let |w| be the result of invoking [=get a property=] from |quaternionArray| with 3.
-    1. If |w| is not a {{Number}}, or its value is **NaN**, +∞, or −∞, return **undefined**.
-    1. Let |reading| be a new [=sensor reading=].
-    1. [=map/Set=] |reading|["`quaternion`"] be the [=/list=] « |x|, |y|, |z|, |w| ».
-    1. Return |reading|.
-</div>
-
 ### Delete virtual sensor ### {#delete-virtual-sensor-command}
 
 <table class="def">
