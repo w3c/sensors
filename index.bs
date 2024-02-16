@@ -40,8 +40,9 @@ urlPrefix: https://html.spec.whatwg.org/multipage/; spec: HTML
       text: task queue
       text: spin the event loop; url: spin-the-event-loop
     urlPrefix: interaction.html
+      text: DOM anchor; url: dom-anchor
       text: gains focus; url: gains-focus
-      text: currently focused area; url: currently-focused-area-of-a-top-level-browsing-context
+      text: currently focused area; url: currently-focused-area-of-a-top-level-traversable
 urlPrefix: https://w3ctag.github.io/security-questionnaire/; spec: SECURITY-PRIVACY-QUESTIONNAIRE
   type: dfn
     text: same-origin policy violations; url: sop-violations
@@ -405,12 +406,11 @@ the given [=sensor type=]. See [[PERMISSIONS-POLICY]] for more details.
 
 <h4 id="focused-area" oldids="losing-focus">Focused Area</h4>
 
-[=Sensor readings=] are only available for [=active documents=] whose
-origin is [=same origin-domain=] with the [=currently focused area=]
-document.
+[=Sensor readings=] are only available for an [=navigable/active document=] if
+the [=focus and origin check=] on it returns true.
 
 This is done in order to mitigate the risk of a skimming attack against the
-[=browsing context=] containing an element which has [=gains focus|gained focus=],
+[=/navigable=] containing an element which has [=gains focus|gained focus=],
 for example when the user carries out an in-game purchase using a third party
 payment service from within an iframe.
 
@@ -749,12 +749,11 @@ The [=reporting frequency=] differs from the {{Sensor}}'s {{Sensor/[[frequency]]
 
 ## Conditions to expose sensor readings ## {#concepts-can-expose-sensor-readings}
 
-The user agent <dfn>can expose sensor readings</dfn> to a given |document| if and only if
-all of the following are true:
+The user agent <dfn>can expose sensor readings</dfn> to a {{Document}}
+|document| if and only if all of the following are true:
  - |document|'s [=relevant settings object=] is a [=secure context=].
  - |document|'s [=visibility state=] is "visible".
- - The [=currently focused area=] belongs to a document whose origin is [=same
-   origin-domain=] with |document|'s origin.
+ - The [=focus and origin check=] on |document| returns true.
  - <dfn export>Specific conditions</dfn>: [=Extension specifications=] may add new
    conditions to this list to have stricter requirements for their sensor types.
 
@@ -814,7 +813,7 @@ the [=activated sensor objects=] [=ordered set|set=] between different
 are [=same origin-domain=].
 
 Any time a new [=sensor reading=] for a [=platform sensor=] is obtained and if the user agent
-[=can expose sensor readings=] to the current [=browsing context=]'s [=active document=],
+[=can expose sensor readings=] to the current [=/navigable=]'s [=navigable/active document=],
 the user agent invokes [=update latest reading=] with the [=platform sensor=] and
 the [=sensor reading=] as arguments.
 
@@ -1563,6 +1562,23 @@ to {{SensorErrorEventInit}}.
         1.  If |state| is "denied"
             1.  Return "denied".
     1.  Return "granted".
+</div>
+
+<h3 dfn export>Focus and origin check</h3>
+
+<div algorithm="focus and origin check">
+
+    : input
+    :: |document|, a {{Document}}.
+    : output
+    :: A boolean.
+
+    1.  Let |origin| be |document|'s [=relevant settings object=]'s [=environment settings object/origin=].
+    1.  Let |focusedDocument| be |document|'s [=node navigable=]'s [=navigable/top-level traversable=]'s
+        [=currently focused area=]'s [=DOM anchor=]'s [=node document=].
+    1.  Let |focusedOrigin| be |focusedDocument|'s [=relevant settings object=]'s [=environment settings
+        object/origin=].
+    1.  Return true if |origin| and |focusedOrigin| are [=same origin-domain=], and false otherwise.
 </div>
 
 <h2 id="automation">Automation</h2>
