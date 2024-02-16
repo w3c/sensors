@@ -808,11 +808,6 @@ The current [=browsing context=]'s [=platform sensor=] must have:
   latest available [=sensor readings=].
 - An associated [=sensor type=].
 
-Note: User agents can share the [=latest reading=] [=ordered map|map=] and
-the [=activated sensor objects=] [=ordered set|set=] between different
-[=browsing context|contexts=] only if the [=/origins=] of these contexts' [=active documents=]
-are [=same origin-domain=].
-
 Any time a new [=sensor reading=] for a [=platform sensor=] is obtained and if the user agent
 [=can expose sensor readings=] to the current [=browsing context=]'s [=active document=],
 the user agent invokes [=update latest reading=] with the [=platform sensor=] and
