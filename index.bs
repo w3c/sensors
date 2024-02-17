@@ -1556,9 +1556,8 @@ to {{SensorErrorEventInit}}.
     : output
     :: A [=permission state=].
 
-    1.  Let |sensor| be the [=platform sensor=] associated with |sensor_instance|.
-    1.  Let |sensor_permissions| be |sensor|'s associated [=ordered set|set=] of
-        [=sensor permission names|permission names=].
+    1.  Let |sensor_type| be |sensor_instance|'s associated [=sensor type=].
+    1.  Let |sensor_permissions| be |sensor_type|'s associated [=sensor permission names=].
     1.  [=set/For each=] |permission_name| in |sensor_permissions|,
         1.  Let |state| be the result of [=request permission to use|requesting permission to use=] |permission_name|.
         1.  If |state| is "denied"
