@@ -7,7 +7,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
   <meta content="Bikeshed version 82ce88815, updated Thu Sep 7 16:33:55 2023 -0700" name="generator">
   <link href="https://www.w3.org/TR/generic-sensor/" rel="canonical">
-  <meta content="1e4015653fcfac6b0f8e98dfc43a502cab35c3af" name="document-revision">
+  <meta content="0a4fd137aa8a2b4fed14c528d9e5d62470d927df" name="document-revision">
 <style>
     svg g.edge text {
         font-size: 8px;
@@ -911,7 +911,7 @@ var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Generic Sensor API</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-01-25">25 January 2024</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-02-17">17 February 2024</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -1869,7 +1869,9 @@ with the internal slots described in the following table:</p>
      <li data-md>
       <p>Let <var>unsafeTimestamp</var> be the result of invoking <a data-link-type="dfn" href="#get-value-from-latest-reading" id="ref-for-get-value-from-latest-reading②">get value from latest reading</a> with <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this③">this</a> and "timestamp" as arguments.</p>
      <li data-md>
-      <p>Return <a data-link-type="dfn" href="https://w3c.github.io/hr-time/#dfn-relative-high-resolution-time" id="ref-for-dfn-relative-high-resolution-time">relative high resolution time</a> with <var>unsafeTimestamp</var> and <var>global</var>.</p>
+      <p>If <var>unsafeTimestamp</var> is null, return null.</p>
+     <li data-md>
+      <p>Otherwise, return <a data-link-type="dfn" href="https://w3c.github.io/hr-time/#dfn-relative-high-resolution-time" id="ref-for-dfn-relative-high-resolution-time">relative high resolution time</a> with <var>unsafeTimestamp</var> and <var>global</var>.</p>
     </ol>
    </div>
    <h4 class="heading settled" data-level="7.1.7" id="sensor-start"><span class="secno">7.1.7. </span><span class="content">Sensor.start()</span><a class="self-link" href="#sensor-start"></a></h4>
@@ -3578,7 +3580,7 @@ for their editorial input.</p>
    <dt id="biblio-accelprint">[ACCELPRINT]
    <dd>Dey, Sanorita, et al.. <a href="http://synrg.csl.illinois.edu/papers/AccelPrint_NDSS14.pdf"><cite>AccelPrint: Imperfections of Accelerometers Make Smartphones Trackable</cite></a>. 2014. Informational. URL: <a href="http://synrg.csl.illinois.edu/papers/AccelPrint_NDSS14.pdf">http://synrg.csl.illinois.edu/papers/AccelPrint_NDSS14.pdf</a>
    <dt id="biblio-api-design-principles">[API-DESIGN-PRINCIPLES]
-   <dd>Sangwhan Moon. <a href="https://w3ctag.github.io/design-principles/"><cite>Web Platform Design Principles</cite></a>. URL: <a href="https://w3ctag.github.io/design-principles/">https://w3ctag.github.io/design-principles/</a>
+   <dd>Sangwhan Moon; Lea Verou. <a href="https://w3ctag.github.io/design-principles/"><cite>Web Platform Design Principles</cite></a>. URL: <a href="https://w3ctag.github.io/design-principles/">https://w3ctag.github.io/design-principles/</a>
    <dt id="biblio-coordinates-transformation">[COORDINATES-TRANSFORMATION]
    <dd>George W. Collins, II. <a href="http://ads.harvard.edu/books/1989fcm..book/Chapter2.pdf"><cite>The Foundations of Celestial Mechanics</cite></a>. 2004. Informational. URL: <a href="http://ads.harvard.edu/books/1989fcm..book/Chapter2.pdf">http://ads.harvard.edu/books/1989fcm..book/Chapter2.pdf</a>
    <dt id="biblio-extennnnsible">[EXTENNNNSIBLE]
