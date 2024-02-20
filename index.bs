@@ -1777,7 +1777,7 @@ properties:
     <tr>
       <td>"`requestedSamplingFrequency`"</td>
       <td>{{Number}}</td>
-      <td>The [=virtual sensor=]'s [=sampling frequency=]</td>
+      <td>The [=virtual sensor=]'s [=virtual sensor/requested sampling frequency=]</td>
     </tr>
   </tbody>
 </table>
