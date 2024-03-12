@@ -1322,6 +1322,7 @@ to {{SensorErrorEventInit}}.
         dependent on |type|.
     1.  If |sensor|.{{Sensor/[[frequency]]}} is less than |bounds|[0], set it to |bounds|[0].
     1.  If |sensor|.{{Sensor/[[frequency]]}} is greater than |bounds|[1], set it to |bounds|[1].
+    1.  Set |sensor|'s associated [=platform sensor=] to |platformSensor|.
     1.  Return true.
 </div>
 
