@@ -800,12 +800,12 @@ A [=sensor type=] may have the following associated data:
 
 <h3 id="model-sensor">Sensor</h3>
 
-The current [=browsing context=]'s [=platform sensor=] must have:
-- An associated [=ordered set|set=] of <dfn>activated sensor objects</dfn>,
-  which is initially [=set/is empty|empty=];
-- An associated <dfn>latest reading</dfn> [=ordered map|map=], which holds the
-  latest available [=sensor readings=].
-- An associated [=sensor type=].
+A [=platform sensor=] must have the following associated data:
+- A [=sampling frequency=] (a number), initially 0.
+- A [=device sensor=] to which it is connected or null, initially null.
+- A [=ordered set|set=] of <dfn>activated sensor objects</dfn>, which is initially empty.
+- A <dfn>latest reading</dfn> [=map=], which holds the latest available [=sensor readings=].
+- A [=sensor type=].
 
 Any time a new [=sensor reading=] for a [=platform sensor=] is obtained and if the user agent
 [=can expose sensor readings=] to the current [=/navigable=]'s [=navigable/active document=],
