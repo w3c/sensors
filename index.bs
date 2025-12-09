@@ -1200,8 +1200,10 @@ that must be supported as attributes by the objects implementing the {{Sensor}} 
 
 <table class="def">
   <thead>
+    <tr>
       <th>event handler</th>
       <th>event handler event type</th>
+    </tr>
   </thead>
   <tbody>
     <tr>
