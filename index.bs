@@ -800,12 +800,15 @@ A [=sensor type=] may have the following associated data:
 
 <h3 id="model-sensor">Sensor</h3>
 
-The current [=browsing context=]'s [=platform sensor=] must have:
-- An associated [=ordered set|set=] of <dfn>activated sensor objects</dfn>,
-  which is initially [=set/is empty|empty=];
-- An associated <dfn>latest reading</dfn> [=ordered map|map=], which holds the
-  latest available [=sensor readings=].
-- An associated [=sensor type=].
+A [=platform sensor=] must have the following associated data:
+- A [=sampling frequency=] (a number), initially 0.
+- A [=device sensor=] to which it is connected or null, initially null.
+- A [=ordered set|set=] of <dfn>activated sensor objects</dfn>, which is initially empty.
+- A <dfn>latest reading</dfn> [=map=], which holds the latest available [=sensor readings=].
+- A [=sensor type=].
+
+As used in this specification, a [=platform sensor=] is always bound to a {{Document}} (see
+[[#extensions-to-document-interface]]).
 
 Any time a new [=sensor reading=] for a [=platform sensor=] is obtained and if the user agent
 [=can expose sensor readings=] to the current [=/navigable=]'s [=navigable/active document=],
@@ -858,23 +861,37 @@ To <dfn>get a platform sensor's sampling bounds</dfn> given a [=platform sensor=
 This example illustrates a possible implementation of the described [[#model|Model]].
 
 In the diagram below several [=activated sensor objects|activated=] {{Sensor}} objects from two
-different [=browsing contexts=] interact with a single [=device sensor=].
+different [=documents=] interact with a single [=device sensor=].
 
 <img srcset="images/generic_sensor_model.svg" src="images/generic_sensor_model.png" alt="Generic Sensor Model">
 
 The {{Sensor}} object in "idle" [[#sensor-lifecycle|state]] is not among the [=platform sensor=]'s
 [=activated sensor objects=] and thus it does not interact with the [=device sensor=].
 
-In this example there is a [=platform sensor=] instance per [=browsing context=].
+There is one [=platform sensor=] per [=document=].
 
 The [=latest reading=] [=ordered map|map=] is shared between {{Sensor}} objects from the
-same [=browsing context|context=] and is updated at a rate equal to the requested [=sampling frequency=]
+same [=document=] and is updated at a rate equal to the requested [=sampling frequency=]
 of the corresponding [=platform sensor=].
 
 </div>
 
 <h2 id="api">API</h2>
 
+<h3 id="extensions-to-document-interface">Extensions to the Document interface</h3>
+
+The {{Document}} interface must have a <dfn attribute for="Document">\[[sensorMapping]]</dfn>
+internal slot, a [=map=] of [=sensor types=] to [=platform sensors=].
+
+<div algorithm="unloading document cleanup steps">
+This specification defines the following [=unloading document cleanup steps=] given a {{Document}}
+|document|:
+
+1. [=list/For each=] |platformSensor| of |document|.{{Document/[[sensorMapping]]}}'s [=map/values=]:
+   1. If |platformSensor|'s [=device sensor=] is not a [=virtual sensor=], [=continue=].
+   1. [=set/Remove=] |platformSensor| from |platformSensor|'s [=device sensor=]'s [=virtual sensor/connected platform sensors=].
+
+</div>
 
 <h3 id="the-sensor-interface">The Sensor Interface</h3>
 
@@ -1282,38 +1299,49 @@ to {{SensorErrorEventInit}}.
     :: |sensor|, a {{Sensor}} object.
     :: |global|, a [=/global object=].
     : output
-    :: True if |sensor| was associated with a [=platform sensor=],
+    :: True if a [=platform sensor=] was successfully connected to a [=device sensor=],
        false otherwise.
 
-    1.  Let |platformSensor| be null.
+    1.  Let |document| be |sensor|'s [=relevant global object=]'s [=associated document=].
     1.  Let |type| be |sensor|'s associated [=sensor type=].
-    1.  Let |virtualSensorType| be |sensor|'s associated [=virtual sensor type=], or null if it is not set.
-    1.  Let |topLevelTraversable| be |global|'s [=Window/navigable=]'s [=navigable/top-level
-        traversable=].
-    1.  If |virtualSensorType| is not null and |topLevelTraversable|'s [=virtual sensor mapping=] [=map/contains=] |virtualSensorType|:
-        1. Let |virtualSensor| be |topLevelTraversable|'s [=virtual sensor mapping=][|virtualSensorType|].
-        1. If |virtualSensor|'s [=virtual sensor/can provide readings flag=] is true, set |platformSensor|
-           to a [=platform sensor=] corresponding to |virtualSensor|.
-
-           Note: If the [=virtual sensor/can provide readings flag=] is false, |platformSensor| will
-           remain null and this algorithm will return false.
+    1.  Let |platformSensor| be null.
+    1.  If |document|.{{Document/[[sensorMapping]]}} [=map/contains=] |type|, set |platformSensor|
+        to |document|.{{Document/[[sensorMapping]]}}[|type|].
     1.  Otherwise:
-        1.  If the device has a single [=device sensor=] which can provide [=sensor
-            readings|readings=] for |type|, then
-            1.  Set |platformSensor| to a [=platform sensor=] corresponding
-                to this [=device sensor=].
-        1.  If the device has multiple [=device sensors=] which can provide [=sensor
-            readings|readings=] for |type|, then
-            1.  If |type| has an associated [=default sensor=], then
-                1.  Set |platformSensor| to a [=platform sensor=] corresponding to this [=default
-                    sensor|default device sensor=].
-    1.  If |platformSensor| is null, return false.
+        1.  Set |platformSensor| to a new [=platform sensor=] whose [=sensor type=] is |type|.
+        1.  Set |document|.{{Document/[[sensorMapping]]}}[|type|] to |platformSensor|.
+    1.  If |platformSensor|'s [=device sensor=] is null:
+        1.  Let |deviceSensor| be null.
+        1.  Let |virtualSensorType| be |type|'s associated [=virtual sensor type=], or null if it is not set.
+        1.  Let |topLevelTraversable| be |global|'s [=Window/navigable=]'s [=navigable/top-level
+            traversable=].
+        1.  If |virtualSensorType| is not null and |topLevelTraversable|'s [=virtual sensor mapping=] [=map/contains=] |virtualSensorType|:
+            1. Let |virtualSensor| be |topLevelTraversable|'s [=virtual sensor mapping=][|virtualSensorType|].
+            1. If |virtualSensor|'s [=virtual sensor/can provide readings flag=] is true, set |deviceSensor|
+               to |virtualSensor|.
+
+               Note: If the [=virtual sensor/can provide readings flag=] is false, |deviceSensor| will
+               remain null and this algorithm will return false.
+        1.  Otherwise:
+            1.  If the device has a single [=device sensor=] which can provide [=sensor
+                readings|readings=] for |type|, then
+                1.  Set |deviceSensor| to said [=device sensor=].
+            1.  If the device has multiple [=device sensors=] which can provide [=sensor
+                readings|readings=] for |type|, then
+                1.  If |type| has an associated [=default sensor=], then
+                    1.  Set |deviceSensor| to this [=default sensor|default device sensor=].
+        1.  If |deviceSensor| is null, return false.
+        1.  Set |platformSensor|'s [=device sensor=] to |deviceSensor|.
+        1.  If |deviceSensor| is a [=virtual sensor=], [=set/append=] |platformSensor| to
+            |deviceSensor|'s [=virtual sensor/connected platform sensors=].
+        1.  Run any [=implementation-defined=] steps to connect |platformSensor| to |deviceSensor|.
     1.  Let |bounds| be the result of invoking [=get a platform sensor's sampling bounds=] with
         |platformSensor|.
     1.  If |sensor|.{{Sensor/[[frequency]]}} is null, set it to an [=implementation-defined=] value
         dependent on |type|.
     1.  If |sensor|.{{Sensor/[[frequency]]}} is less than |bounds|[0], set it to |bounds|[0].
     1.  If |sensor|.{{Sensor/[[frequency]]}} is greater than |bounds|[1], set it to |bounds|[1].
+    1.  Set |sensor|'s associated [=platform sensor=] to |platformSensor|.
     1.  Return true.
 </div>
 
@@ -1381,19 +1409,28 @@ to {{SensorErrorEventInit}}.
     :: None
 
     1.  If |platformSensor|'s set of [=activated sensor objects=] [=set/is empty=],
-        1.  Set |platformSensor|'s [=sampling frequency=] to null.
+        1.  Set |platformSensor|'s [=sampling frequency=] to 0.
         1.  [=map/For each=] |key| → <var ignore>value</var> of |platformSensor|'s [=latest reading=].
             1.  [=map/Set=] |platformSensor|'s [=latest reading=][|key|] to null.
-        1.  Update the [=implementation-defined=] way in which [=sensor readings=] are obtained
-            from |platformSensor| to no longer provide [=sensor readings|readings=].
+        1.  If |platformSensor|'s [=device sensor=] is a [=virtual sensor=],
+            1.  [=set/Remove=] |platformSensor| from |platformSensor|'s [=device sensor=]'s [=virtual sensor/connected platform sensors=].
+        1.  Update the [=implementation-defined=] way in which |platformSensor| obtains [=sensor
+            readings=] from its [=device sensor=] so that it stops obtaining new readings.
         1.  Return.
-    1.  Set |platformSensor|'s [=sampling frequency=] to an [=implementation-defined=] value based
-        on the {{Sensor/[[frequency]]}} values of the items in its [=activated sensor objects=]
-        [=ordered set|set=].
+    1.  Let |previousFrequency| be |platformSensor|'s [=sampling frequency=].
     1.  Let |bounds| be the result of invoking [=get a platform sensor's sampling bounds=] with
         |platformSensor|.
-    1.  [=Assert=]: |platformSensor|'s [=sampling frequency=] is greater than or equal to
-        |bounds|[0] and less than or equal to |bounds|[1].
+    1.  Set |platformSensor|'s [=sampling frequency=] to an [=implementation-defined=] value based
+        on the {{Sensor/[[frequency]]}} values of the items in its [=activated sensor objects=]
+        [=ordered set|set=]. The value must be greater than or equal to |bounds|[0] and less than or
+        equal to |bounds|[1].
+    1.  If |previousFrequency| is 0,
+        1.  If |platformSensor|'s [=device sensor=] is a [=virtual sensor=],
+            1.  Let |virtualSensor| be |platformSensor|'s [=device sensor=].
+            1.  If |virtualSensor|'s [=virtual sensor/latest saved reading=] is not null:
+                1.  In an [=implementation-defined=] way, make |virtualSensor|'s [=virtual sensor/latest saved reading=] available to |platformSensor|.
+        1.  In an [=implementation-defined=] way, make |platformSensor| start obtaining readings
+            from its [=device sensor=].
 </div>
 
 <h3 dfn export>Update latest reading</h3>
@@ -1581,7 +1618,19 @@ entirely defined by users.
 <h3 id="virtual-sensors">Virtual Sensors</h3>
 
 A <dfn>virtual sensor</dfn> simulates the behavior of a [=device sensor=] in controlled ways. It
-reports [=sensor readings=] to zero or more [=platform sensors=] connected to it.
+reports [=sensor readings=] to zero or more [=platform sensor-likes=] connected to it.
+
+This section also defines the auxiliary concept of a <dfn export>platform sensor-like</dfn>, which
+is either:
+- A [=platform sensor=] as defined in this specification, or
+- Any type that has an associated [=sampling frequency=] (a number) and an associated [=device sensor=]
+  (a [=virtual sensor=]). The [=sampling frequency=] must be either 0 or a number within the closed
+  interval set by the [=device sensor=]'s [=virtual sensor/minimum sampling frequency=] and [=virtual
+  sensor/maximum sampling frequency=].
+
+Note: The only reason we use [=platform sensor-like=] in this section is compatibility with
+[[ORIENTATION-EVENT]], which does not use the [=sensor type=] and [=platform sensor=] definitions
+from this specification but whose Automation section needs to integrate with this one.
 
 A [=virtual sensor=] has the following associated data:
 - A <dfn for="virtual sensor">can provide readings flag</dfn> (a [=boolean=]).
@@ -1596,12 +1645,17 @@ A [=virtual sensor=] has the following associated data:
   whether connected [=platform sensors=] have requested a certain sampling frequency (which might
   differ per [=platform sensor=]), or whether they are polling the [=virtual sensor=], in which case
   no sampling frequency might have been requested at all.
+- <dfn for="virtual sensor">Connected platform sensors</dfn> (an [=ordered set=] of [=platform
+  sensor-likes=], initially empty).
+- <dfn for="virtual sensor">Latest saved reading</dfn> (an [=ordered map=]-or-null, initially null).
 - A <dfn for="virtual sensor">minimum sampling frequency</dfn> (a number). A [=virtual sensor=] is a
   [=device sensor=], so this corresponds to the [=device sensor=]'s [=device sensor/minimum sampling
   frequency=].
 - A <dfn for="virtual sensor">maximum sampling frequency</dfn> (a number). A [=virtual sensor=] is a
   [=device sensor=], so this corresponds to the [=device sensor=]'s [=device sensor/maximum sampling
   frequency=].
+
+### Auxiliary concepts ### {#virtual-sensor-auxiliary-concepts}
 
 A <dfn export>virtual sensor type</dfn> is a string that represents a sensor of a given type.
 
@@ -1809,11 +1863,11 @@ sensor/minimum sampling frequency=] and [=virtual sensor/maximum sampling freque
   </tbody>
 </table>
 
-This [=extension command=] makes a new [=sensor reading=] available to [=platform sensors=].
+This [=extension command=] makes a new [=sensor reading=] available to [=platform sensor-likes=].
 
 Note: A [=virtual sensor=] acts like a [=device sensor=], so the [=sensor reading=] produced here
-still has to be processed by a [=platform sensor=], which might discard it due to, for example, a
-[=sensor type=]'s [=threshold check algorithm=] or [=can expose sensor readings=]'s result.
+still has to be processed by a [=platform sensor-like=], which might discard it due to, for example,
+a [=sensor type=]'s [=threshold check algorithm=] or [=can expose sensor readings=]'s result.
 
 <table class="data">
   <caption>Properties of the `parameters` argument used by this algorithm</caption>
@@ -1852,8 +1906,12 @@ still has to be processed by a [=platform sensor=], which might discard it due t
         parsing algorithm=] with |reading|.
     1.  If |parsedReading| is **undefined**, return [=error=] with [=WebDriver error code=]
         [=invalid argument=].
-    1.  In an [=implementation-defined=] way, make |parsedReading| available so that it can be
-        obtained by [=platform sensors=] connected to |virtualSensor|.
+    1.  Set |parsedReading|["timestamp"] to the [=unsafe shared current time=].
+    1.  Set |virtualSensor|'s [=virtual sensor/latest saved reading=] to |parsedReading|.
+    1.  [=set/For each=] |platformSensor| of |virtualSensor|'s [=virtual sensor/connected platform
+        sensors=]:
+        1.  In an [=implementation-defined=] way, make |virtualSensor|'s [=virtual sensor/latest
+            saved reading=] available so that it can be obtained by |platformSensor|.
     1.  Return [=success=] with data `null`.
 </div>
 
@@ -1923,6 +1981,10 @@ This [=extension command=] deletes a given type of [=virtual sensor=].
         with [=WebDriver error code=] [=invalid argument=].
     1.  Let |topLevelVirtualSensorMapping| be the [=current browsing context=]'s
         [=browsing context/top-level traversable=]'s [=virtual sensor mapping=].
+    1.  Let |virtualSensor| be |topLevelVirtualSensorMapping|[|virtualSensorType|].
+    1.  [=set/For each=] |platformSensor| of |virtualSensor|'s [=virtual sensor/connected platform
+        sensors=]:
+        1.  Set |platformSensor|'s [=device sensor=] to null.
     1.  [=map/Remove=] |topLevelVirtualSensorMapping|[|virtualSensorType|].
     1.  Return [=success=] with data `null`.
 </div>
