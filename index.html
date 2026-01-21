@@ -5,9 +5,9 @@
   <title>Generic Sensor API</title>
   <meta content="ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
-  <meta content="Bikeshed version ac6b08744, updated Wed Dec 10 23:44:49 2025 +0000" name="generator">
+  <meta content="Bikeshed version 3c53a5b02, updated Thu Nov 27 17:03:30 2025 +0000" name="generator">
   <link href="https://www.w3.org/TR/generic-sensor/" rel="canonical">
-  <meta content="70139eaa07f3d4f41bf270279c1e31108a901e60" name="revision">
+  <meta content="063834896414e27f1ee8cd882c872279c64c55e1" name="revision">
   <meta content="dark light" name="color-scheme">
   <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
 <style>
@@ -19,17 +19,6 @@
         font-size: 10px;
     }
 </style>
-<style>
-        @media (prefers-color-scheme: dark) {
-            path,
-            polygon {
-                filter: invert(1);
-            }
-            text {
-                fill: #fff;
-            }
-        }
-    </style>
 <style>
     #toc .current,
     #toc .current-parent {
@@ -999,7 +988,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
 </p>
    <h1 class="no-ref p-name" id="title">Generic Sensor API</h1>
    <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>,
-    <time class="dt-updated" datetime="2025-12-11">11 December 2025</time></p>
+    <time class="dt-updated" datetime="2026-01-21">21 January 2026</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -1020,12 +1009,12 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
       <dd class="editor h-card p-author vcard" data-editor-id="78335"><a class="fn p-name u-url url" href="https://intel.com/">Alexander Shalamov</a> (<span class="org p-org">Intel Corporation</span>)
       <dd class="editor h-card p-author vcard" data-editor-id="60809"><a class="fn p-name u-url url" href="https://www.codespeaks.com/">Tobie Langel</a> (<span class="org p-org">Codespeaks, formerly on behalf of Intel Corporation</span>) <a class="email u-email" href="mailto:tobie@codespeaks.com">tobie@codespeaks.com</a>
       <dt>Other:
-      <dd><a href="https://github.com/web-platform-tests/wpt/tree/master/generic-sensor">Test suite</a>, <a href="https://github.com/w3c/sensors/commits/main/index.bs">latest version history</a>, <a href="https://github.com/w3c/sensors/commits/gh-pages/index.bs">previous version history</a>
+      <dd><a href="https://github.com/web-platform-tests/wpt/tree/master/generic-sensor">Test suite</a>, <a href="https://w3c.github.io/generic-sensor-demos/">demos</a>, <a href="https://github.com/w3c/sensors/commits/main/index.bs">latest version history</a>, <a href="https://github.com/w3c/sensors/commits/gh-pages/index.bs">previous version history</a>
      </dl>
     </div>
    </details>
    <div data-fill-with="warning"></div>
-   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/policies/#copyright">Copyright</a> © 2025 <a href="https://www.w3.org/">World Wide Web Consortium</a>. <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup> <a href="https://www.w3.org/policies/#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/policies/#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/copyright/software-license/" rel="license" title="W3C Software and Document License">permissive document license</a> rules apply.
+   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/policies/#copyright">Copyright</a> © 2026 <a href="https://www.w3.org/">World Wide Web Consortium</a>. <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup> <a href="https://www.w3.org/policies/#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/policies/#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/copyright/software-license/" rel="license" title="W3C Software and Document License">permissive document license</a> rules apply.
 </p>
    <hr title="Separator for header">
   </div>
@@ -1888,6 +1877,17 @@ that has their <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn
    </div>
    <h4 class="heading settled" data-level="7.1.1" id="sensor-lifecycle"><span class="secno">7.1.1. </span><span class="content">Sensor lifecycle</span><a class="self-link" href="#sensor-lifecycle"></a></h4>
    <svg height="79pt" viewBox="0.00 0.00 351.00 78.51" width="351pt" xmlns="http://www.w3.org/2000/svg">
+<style>
+        @media (prefers-color-scheme: dark) {
+            path,
+            polygon {
+                filter: invert(1);
+            }
+            text {
+                fill: #fff;
+            }
+        }
+    </style>
     <g class="graph" transform="scale(1 1) rotate(0) translate(4 74.5122)">
      <title>Sensor lifecycle</title>
      <g class="node">
@@ -1929,7 +1929,11 @@ that has their <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn
       <title>activated->idle</title>
       <path d="M262.74,-17.3829C244.593,-16.1731 226.997,-15 226.997,-15 226.997,-15 144.997,-15 144.997,-15 144.997,-15 132.341,-20.9199 118.465,-27.4103" fill="none" stroke="black"></path>
       <polygon fill="black" points="109.291,-31.7014 116.442,-23.3883 113.82,-29.5829 118.349,-27.4645 118.349,-27.4645 118.349,-27.4645 113.82,-29.5829 120.255,-31.5406 109.291,-31.7014 109.291,-31.7014" stroke="black"></polygon>
-      <text text-anchor="middle" transform="translate(0,-4)" x="200" y="5"><a href="#sensor-stop">stop()</a> / <a href="#sensor-onerror">onerror</a></text>
+      <text text-anchor="middle" transform="translate(0,-4)" x="200" y="5">
+       <a href="#sensor-stop">stop()</a>
+        / 
+       <a href="#sensor-onerror">onerror</a>
+      </text>
      </g>
      <g class="node">
       <title>start</title>
@@ -2830,10 +2834,8 @@ work and receive readings from it, and only receives readings from a <a data-lin
   <c- f>"minSamplingFrequency"</c-><c- p>:</c-> <c- mi>5</c->
 <c- p>}</c->
 </pre>
-    
-  Be aware that only one <a data-link-type="dfn" href="#virtual-sensor" id="ref-for-virtual-sensor①⑤">virtual sensor</a> of a given <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type③⑨">sensor type</a> can be created in a
-  <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#top-level-traversable" id="ref-for-top-level-traversable②">top-level traversable</a>, otherwise an <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-invalid-argument" id="ref-for-dfn-invalid-argument⑥">invalid argument</a> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-error-code" id="ref-for-dfn-error-code⑥">WebDriver error code</a> will be returned.
-
+    <p>Be aware that only one <a data-link-type="dfn" href="#virtual-sensor" id="ref-for-virtual-sensor①⑤">virtual sensor</a> of a given <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type③⑨">sensor type</a> can be created in a
+  <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#top-level-traversable" id="ref-for-top-level-traversable②">top-level traversable</a>, otherwise an <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-invalid-argument" id="ref-for-dfn-invalid-argument⑥">invalid argument</a> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-error-code" id="ref-for-dfn-error-code⑥">WebDriver error code</a> will be returned.</p>
    </div>
    <h4 class="heading settled" data-level="9.2.2" id="get-virtual-sensor-information-command"><span class="secno">9.2.2. </span><span class="content">Get virtual sensor information</span><a class="self-link" href="#get-virtual-sensor-information-command"></a></h4>
    <table class="def">
