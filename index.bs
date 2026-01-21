@@ -16,7 +16,7 @@ Abstract:
   It does so by defining a blueprint for writing
   specifications of concrete sensors along with an abstract Sensor interface
   that can be extended to accommodate different sensor types.
-!Other: <a href="https://github.com/web-platform-tests/wpt/tree/master/generic-sensor">Test suite</a>, <a href="https://github.com/w3c/sensors/commits/main/index.bs">latest version history</a>, <a href="https://github.com/w3c/sensors/commits/gh-pages/index.bs">previous version history</a>
+!Other: <a href="https://github.com/web-platform-tests/wpt/tree/master/generic-sensor">Test suite</a>, <a href="https://w3c.github.io/generic-sensor-demos/">demos</a>, <a href="https://github.com/w3c/sensors/commits/main/index.bs">latest version history</a>, <a href="https://github.com/w3c/sensors/commits/gh-pages/index.bs">previous version history</a>
 Indent: 2
 Repository: w3c/sensors
 Markup Shorthands: markdown on
