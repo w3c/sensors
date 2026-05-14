@@ -5,9 +5,9 @@
   <title>Generic Sensor API</title>
   <meta content="ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
-  <meta content="Bikeshed version 3c53a5b02, updated Thu Nov 27 17:03:30 2025 +0000" name="generator">
+  <meta content="Bikeshed version 0a3d88311, updated Mon May 4 18:07:03 2026 +0000" name="generator">
   <link href="https://www.w3.org/TR/generic-sensor/" rel="canonical">
-  <meta content="063834896414e27f1ee8cd882c872279c64c55e1" name="revision">
+  <meta content="a4614786ffe2afb8a4b18c9be47c277e0610437d" name="revision">
   <meta content="dark light" name="color-scheme">
   <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
 <style>
@@ -19,6 +19,17 @@
         font-size: 10px;
     }
 </style>
+<style>
+        @media (prefers-color-scheme: dark) {
+            path,
+            polygon {
+                filter: invert(1);
+            }
+            text {
+                fill: #fff;
+            }
+        }
+    </style>
 <style>
     #toc .current,
     #toc .current-parent {
@@ -325,7 +336,7 @@ pre .property::before, pre .property::after {
 </style>
 <style>/* Boilerplate: style-counters */
 body {
-    counter-reset: example figure issue;
+    counter-reset: example figure issue table;
 }
 .issue {
     counter-increment: issue;
@@ -350,6 +361,13 @@ figcaption {
 }
 figcaption:not(.no-marker)::before {
     content: "Figure " counter(figure) " ";
+}
+
+figure.table figcaption {
+    counter-increment: table;
+}
+figure.table figcaption:not(.no-marker)::before {
+    content: "Table " counter(table) " ";
 }
 </style>
 <style>/* Boilerplate: style-dfn-panel */
@@ -936,6 +954,30 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     c-[vm] { color: #cb4b16 } /* Name.Variable.Magic */
     c-[il] { color: #657b83 } /* Literal.Number.Integer.Long */
 }
+
+@media print {
+    /* Darken colors for print that would otherwise print too faintly */
+    c-[c]  { color: #555555 } /* Comment */
+    c-[d]  { color: #555555 } /* Comment.Multiline */
+    c-[cp] { color: #555555 } /* Comment.Preproc */
+    c-[c1] { color: #555555 } /* Comment.Single */
+    c-[cs] { color: #555555 } /* Comment.Special */
+    c-[o]  { color: #222222 } /* Operator */
+    c-[p]  { color: #222222 } /* Punctuation */
+    c-[ow] { color: #222222 } /* Operator.Word */
+    c-[s]  { color: #664400 } /* Literal.String */
+    c-[t]  { color: #664400 } /* Literal.String.Single */
+    c-[u]  { color: #664400 } /* Literal.String.Double */
+    c-[sb] { color: #664400 } /* Literal.String.Backtick */
+    c-[sc] { color: #664400 } /* Literal.String.Char */
+    c-[sd] { color: #664400 } /* Literal.String.Doc */
+    c-[se] { color: #664400 } /* Literal.String.Escape */
+    c-[sh] { color: #664400 } /* Literal.String.Heredoc */
+    c-[si] { color: #664400 } /* Literal.String.Interpol */
+    c-[sx] { color: #664400 } /* Literal.String.Other */
+    c-[sr] { color: #664400 } /* Literal.String.Regex */
+    c-[ss] { color: #664400 } /* Literal.String.Symbol */
+}
 </style>
 <style>/* Boilerplate: style-var-click-highlighting */
 /*
@@ -988,7 +1030,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
 </p>
    <h1 class="no-ref p-name" id="title">Generic Sensor API</h1>
    <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>,
-    <time class="dt-updated" datetime="2026-01-21">21 January 2026</time></p>
+    <time class="dt-updated" datetime="2026-05-14">14 May 2026</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -1062,6 +1104,7 @@ that can be extended to accommodate different sensor types.</p>
   This document is governed by the <a href="https://www.w3.org/policies/process/20250818/" id="w3c_process_revision">18 August 2025 W3C Process Document</a>.
 </p>
    <p></p>
+   <p class="advisement">Multiple browser engines have expressed concerns about this specification. It is implemented in Chromium-based browsers but is not expected to advance to W3C Recommendation in its current form without cross-engine interest.</p>
    <p>Further implementation experience is being gathered for the
 <a data-link-type="dfn" href="https://wicg.github.io/permissions-request/#permission-request-algorithm" id="ref-for-permission-request-algorithm">permission request algorithm</a> and specification clarifications
 informed by this experience are being discussed in
@@ -1216,7 +1259,7 @@ This document is maintained and updated at any time. Some parts of this document
      <a href="#references"><span class="secno"></span> <span class="content">References</span></a>
      <ol class="toc">
       <li><a href="#normative"><span class="secno"></span> <span class="content">Normative References</span></a>
-      <li><a href="#informative"><span class="secno"></span> <span class="content">Informative References</span></a>
+      <li><a href="#informative"><span class="secno"></span> <span class="content">Non-Normative References</span></a>
      </ol>
     <li><a href="#idl-index"><span class="secno"></span> <span class="content">IDL Index</span></a>
    </ol>
@@ -1826,7 +1869,7 @@ of the corresponding <a data-link-type="dfn" href="#concept-platform-sensor" id=
 <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="sensor"><code><c- g>Sensor</c-></code></dfn> : <a data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget" id="ref-for-eventtarget"><c- n>EventTarget</c-></a> {
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean" id="ref-for-idl-boolean"><c- b>boolean</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export data-readonly data-type="boolean" id="dom-sensor-activated"><code><c- g>activated</c-></code></dfn>;
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean" id="ref-for-idl-boolean①"><c- b>boolean</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export data-readonly data-type="boolean" id="dom-sensor-hasreading"><code><c- g>hasReading</c-></code></dfn>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="https://w3c.github.io/hr-time/#dom-domhighrestimestamp" id="ref-for-dom-domhighrestimestamp"><c- n>DOMHighResTimeStamp</c-></a>? <dfn class="dfn-paneled idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export data-readonly data-type="DOMHighResTimeStamp?" id="dom-sensor-timestamp"><code><c- g>timestamp</c-></code></dfn>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="https://w3c.github.io/hr-time/#typedefdef-domhighrestimestamp" id="ref-for-typedefdef-domhighrestimestamp"><c- n>DOMHighResTimeStamp</c-></a>? <dfn class="dfn-paneled idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export data-readonly data-type="DOMHighResTimeStamp?" id="dom-sensor-timestamp"><code><c- g>timestamp</c-></code></dfn>;
   <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined"><c- b>undefined</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="Sensor" data-dfn-type="method" data-export data-lt="start()" id="dom-sensor-start"><code><c- g>start</c-></code></dfn>();
   <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined①"><c- b>undefined</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="Sensor" data-dfn-type="method" data-export data-lt="stop()" id="dom-sensor-stop"><code><c- g>stop</c-></code></dfn>();
   <c- b>attribute</c-> <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler"><c- n>EventHandler</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="Sensor" data-dfn-type="attribute" data-export data-type="EventHandler" id="dom-sensor-onreading"><code><c- g>onreading</c-></code></dfn>;
@@ -1877,17 +1920,6 @@ that has their <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn
    </div>
    <h4 class="heading settled" data-level="7.1.1" id="sensor-lifecycle"><span class="secno">7.1.1. </span><span class="content">Sensor lifecycle</span><a class="self-link" href="#sensor-lifecycle"></a></h4>
    <svg height="79pt" viewBox="0.00 0.00 351.00 78.51" width="351pt" xmlns="http://www.w3.org/2000/svg">
-<style>
-        @media (prefers-color-scheme: dark) {
-            path,
-            polygon {
-                filter: invert(1);
-            }
-            text {
-                fill: #fff;
-            }
-        }
-    </style>
     <g class="graph" transform="scale(1 1) rotate(0) translate(4 74.5122)">
      <title>Sensor lifecycle</title>
      <g class="node">
@@ -1929,11 +1961,7 @@ that has their <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn
       <title>activated->idle</title>
       <path d="M262.74,-17.3829C244.593,-16.1731 226.997,-15 226.997,-15 226.997,-15 144.997,-15 144.997,-15 144.997,-15 132.341,-20.9199 118.465,-27.4103" fill="none" stroke="black"></path>
       <polygon fill="black" points="109.291,-31.7014 116.442,-23.3883 113.82,-29.5829 118.349,-27.4645 118.349,-27.4645 118.349,-27.4645 113.82,-29.5829 120.255,-31.5406 109.291,-31.7014 109.291,-31.7014" stroke="black"></polygon>
-      <text text-anchor="middle" transform="translate(0,-4)" x="200" y="5">
-       <a href="#sensor-stop">stop()</a>
-        / 
-       <a href="#sensor-onerror">onerror</a>
-      </text>
+      <text text-anchor="middle" transform="translate(0,-4)" x="200" y="5"><a href="#sensor-stop">stop()</a> / <a href="#sensor-onerror">onerror</a></text>
      </g>
      <g class="node">
       <title>start</title>
@@ -2825,7 +2853,7 @@ work and receive readings from it, and only receives readings from a <a data-lin
    </div>
    <div class="example" id="example-ee2fd565">
     <a class="self-link" href="#example-ee2fd565"></a>
-  To create an "ambient-light" virtual sensor in the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context①">current browsing context</a> of the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-sessions" id="ref-for-dfn-sessions">session</a> with ID 23,
+  To create an "ambient-light" virtual sensor in the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-current-browsing-context" id="ref-for-dfn-current-browsing-context①">current browsing context</a> of the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-webdriver-session" id="ref-for-dfn-webdriver-session">session</a> with ID 23,
   the <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-local-ends" id="ref-for-dfn-local-ends">local end</a> would POST to <code>/session/23/sensor</code> with the body:
   
 <pre class="highlight lang-json"><c- p>{</c->
@@ -2834,8 +2862,10 @@ work and receive readings from it, and only receives readings from a <a data-lin
   <c- f>"minSamplingFrequency"</c-><c- p>:</c-> <c- mi>5</c->
 <c- p>}</c->
 </pre>
-    <p>Be aware that only one <a data-link-type="dfn" href="#virtual-sensor" id="ref-for-virtual-sensor①⑤">virtual sensor</a> of a given <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type③⑨">sensor type</a> can be created in a
-  <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#top-level-traversable" id="ref-for-top-level-traversable②">top-level traversable</a>, otherwise an <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-invalid-argument" id="ref-for-dfn-invalid-argument⑥">invalid argument</a> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-error-code" id="ref-for-dfn-error-code⑥">WebDriver error code</a> will be returned.</p>
+    
+  Be aware that only one <a data-link-type="dfn" href="#virtual-sensor" id="ref-for-virtual-sensor①⑤">virtual sensor</a> of a given <a data-link-type="dfn" href="#sensor-type" id="ref-for-sensor-type③⑨">sensor type</a> can be created in a
+  <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#top-level-traversable" id="ref-for-top-level-traversable②">top-level traversable</a>, otherwise an <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-invalid-argument" id="ref-for-dfn-invalid-argument⑥">invalid argument</a> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-error-code" id="ref-for-dfn-error-code⑥">WebDriver error code</a> will be returned.
+
    </div>
    <h4 class="heading settled" data-level="9.2.2" id="get-virtual-sensor-information-command"><span class="secno">9.2.2. </span><span class="content">Get virtual sensor information</span><a class="self-link" href="#get-virtual-sensor-information-command"></a></h4>
    <table class="def">
@@ -3697,8 +3727,8 @@ for their editorial input.</p>
    <li>
     <a data-link-type="biblio">[HR-TIME]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="0e9f636b">DOMHighResTimeStamp</span>
-     <li><span class="dfn-paneled" id="1d8f7431">coarsened moments</span>
+     <li><span class="dfn-paneled" id="00c8c5e6">DOMHighResTimeStamp</span>
+     <li><span class="dfn-paneled" id="fe3c9dd4">coarsened moment</span>
      <li><span class="dfn-paneled" id="28716de1">monotonic clock</span>
      <li><span class="dfn-paneled" id="69ea869d">relative high resolution time</span>
      <li><span class="dfn-paneled" id="479aeb1d">unsafe current time</span>
@@ -3805,7 +3835,7 @@ for their editorial input.</p>
      <li><span class="dfn-paneled" id="8da4d1e3">invalid argument</span>
      <li><span class="dfn-paneled" id="9a707b42">local end</span>
      <li><span class="dfn-paneled" id="82c23298">remote end steps</span>
-     <li><span class="dfn-paneled" id="79d221ec">session</span>
+     <li><span class="dfn-paneled" id="ce597606">session</span>
      <li><span class="dfn-paneled" id="cb9acc83">set a property</span>
      <li><span class="dfn-paneled" id="87236d2b">url variable</span>
      <li><span class="dfn-paneled" id="7482107b">WebDriver error code</span>
@@ -3861,7 +3891,7 @@ for their editorial input.</p>
    <dt id="biblio-webidl">[WEBIDL]
    <dd>Edgar Chen; Timothy Gu. <a href="https://webidl.spec.whatwg.org/"><cite>Web IDL Standard</cite></a>. Living Standard. URL: <a href="https://webidl.spec.whatwg.org/">https://webidl.spec.whatwg.org/</a>
   </dl>
-  <h3 class="heading no-num no-ref settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
+  <h3 class="heading no-num no-ref settled" id="informative"><span class="content">Non-Normative References</span><a class="self-link" href="#informative"></a></h3>
   <dl>
    <dt id="biblio-accelprint">[ACCELPRINT]
    <dd>Dey, Sanorita, et al.. <a href="http://synrg.csl.illinois.edu/papers/AccelPrint_NDSS14.pdf"><cite>AccelPrint: Imperfections of Accelerometers Make Smartphones Trackable</cite></a>. 2014. Informational. URL: <a href="http://synrg.csl.illinois.edu/papers/AccelPrint_NDSS14.pdf">http://synrg.csl.illinois.edu/papers/AccelPrint_NDSS14.pdf</a>
@@ -3901,7 +3931,7 @@ for their editorial input.</p>
 <c- b>interface</c-> <a href="#sensor"><code><c- g>Sensor</c-></code></a> : <a data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget"><c- n>EventTarget</c-></a> {
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean"><c- b>boolean</c-></a> <a data-readonly data-type="boolean" href="#dom-sensor-activated"><code><c- g>activated</c-></code></a>;
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean"><c- b>boolean</c-></a> <a data-readonly data-type="boolean" href="#dom-sensor-hasreading"><code><c- g>hasReading</c-></code></a>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="https://w3c.github.io/hr-time/#dom-domhighrestimestamp"><c- n>DOMHighResTimeStamp</c-></a>? <a data-readonly data-type="DOMHighResTimeStamp?" href="#dom-sensor-timestamp"><code><c- g>timestamp</c-></code></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="https://w3c.github.io/hr-time/#typedefdef-domhighrestimestamp"><c- n>DOMHighResTimeStamp</c-></a>? <a data-readonly data-type="DOMHighResTimeStamp?" href="#dom-sensor-timestamp"><code><c- g>timestamp</c-></code></a>;
   <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined"><c- b>undefined</c-></a> <a href="#dom-sensor-start"><code><c- g>start</c-></code></a>();
   <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined"><c- b>undefined</c-></a> <a href="#dom-sensor-stop"><code><c- g>stop</c-></code></a>();
   <c- b>attribute</c-> <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler"><c- n>EventHandler</c-></a> <a data-type="EventHandler" href="#dom-sensor-onreading"><code><c- g>onreading</c-></code></a>;
@@ -4371,6 +4401,7 @@ function parseHTML(markup) {
 "use strict";
 {
 let dfnPanelData = {
+"00c8c5e6": {"dfnID":"00c8c5e6","dfnText":"DOMHighResTimeStamp","external":true,"refSections":[{"refs":[{"id":"ref-for-typedefdef-domhighrestimestamp"}],"title":"7.1. The Sensor Interface"}],"url":"https://w3c.github.io/hr-time/#typedefdef-domhighrestimestamp"},
 "024a1df2": {"dfnID":"024a1df2","dfnText":"current browsing context","external":true,"refSections":[{"refs":[{"id":"ref-for-dfn-current-browsing-context"},{"id":"ref-for-dfn-current-browsing-context\u2460"}],"title":"9.2.1. Create virtual sensor"},{"refs":[{"id":"ref-for-dfn-current-browsing-context\u2461"}],"title":"9.2.2. Get virtual sensor information"},{"refs":[{"id":"ref-for-dfn-current-browsing-context\u2462"}],"title":"9.2.3. Update virtual sensor reading"},{"refs":[{"id":"ref-for-dfn-current-browsing-context\u2463"}],"title":"9.2.4. Delete virtual sensor"}],"url":"https://w3c.github.io/webdriver/#dfn-current-browsing-context"},
 "0371e87a": {"dfnID":"0371e87a","dfnText":"spin the event loop","external":true,"refSections":[{"refs":[{"id":"ref-for-spin-the-event-loop"}],"title":"8.9. Report latest reading updated"}],"url":"https://html.spec.whatwg.org/multipage/webappapis.html#spin-the-event-loop"},
 "040c67fa": {"dfnID":"040c67fa","dfnText":"extension command URI Template","external":true,"refSections":[{"refs":[{"id":"ref-for-dfn-extension-command-uri-template"}],"title":"9.2.1. Create virtual sensor"},{"refs":[{"id":"ref-for-dfn-extension-command-uri-template\u2460"}],"title":"9.2.2. Get virtual sensor information"},{"refs":[{"id":"ref-for-dfn-extension-command-uri-template\u2461"}],"title":"9.2.3. Update virtual sensor reading"},{"refs":[{"id":"ref-for-dfn-extension-command-uri-template\u2462"}],"title":"9.2.4. Delete virtual sensor"}],"url":"https://w3c.github.io/webdriver/#dfn-extension-command-uri-template"},
@@ -4382,7 +4413,6 @@ let dfnPanelData = {
 "0d0390b4": {"dfnID":"0d0390b4","dfnText":"browsing context","external":true,"refSections":[{"refs":[{"id":"ref-for-browsing-context"},{"id":"ref-for-browsing-context\u2460"},{"id":"ref-for-browsing-context\u2461"},{"id":"ref-for-browsing-context\u2462"}],"title":"6.2. Sensor"}],"url":"https://html.spec.whatwg.org/multipage/document-sequences.html#browsing-context"},
 "0e6b2056": {"dfnID":"0e6b2056","dfnText":"set","external":true,"refSections":[{"refs":[{"id":"ref-for-map-set"}],"title":"8.7. Set sensor settings"},{"refs":[{"id":"ref-for-map-set\u2460"},{"id":"ref-for-map-set\u2461"}],"title":"8.8. Update latest reading"},{"refs":[{"id":"ref-for-map-set\u2462"}],"title":"9.2.3.1.1. Parse single-value number reading"},{"refs":[{"id":"ref-for-map-set\u2463"},{"id":"ref-for-map-set\u2464"},{"id":"ref-for-map-set\u2465"}],"title":"9.2.3.1.2. Parse XYZ reading"}],"url":"https://infra.spec.whatwg.org/#map-set"},
 "0e8de730": {"dfnID":"0e8de730","dfnText":"tuple","external":true,"refSections":[{"refs":[{"id":"ref-for-tuple"}],"title":"6.2. Sensor"}],"url":"https://infra.spec.whatwg.org/#tuple"},
-"0e9f636b": {"dfnID":"0e9f636b","dfnText":"DOMHighResTimeStamp","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-domhighrestimestamp"}],"title":"7.1. The Sensor Interface"}],"url":"https://w3c.github.io/hr-time/#dom-domhighrestimestamp"},
 "0ff9b6b9": {"dfnID":"0ff9b6b9","dfnText":"top-level traversable (for browsing context)","external":true,"refSections":[{"refs":[{"id":"ref-for-bc-traversable"}],"title":"9.2.1. Create virtual sensor"},{"refs":[{"id":"ref-for-bc-traversable\u2460"}],"title":"9.2.2. Get virtual sensor information"},{"refs":[{"id":"ref-for-bc-traversable\u2461"}],"title":"9.2.3. Update virtual sensor reading"},{"refs":[{"id":"ref-for-bc-traversable\u2462"}],"title":"9.2.4. Delete virtual sensor"}],"url":"https://html.spec.whatwg.org/multipage/document-sequences.html#bc-traversable"},
 "1243a891": {"dfnID":"1243a891","dfnText":"exist","external":true,"refSections":[{"refs":[{"id":"ref-for-map-exists"}],"title":"8.1. Initialize a sensor object"},{"refs":[{"id":"ref-for-map-exists\u2460"}],"title":"8.3. Connect to sensor"},{"refs":[{"id":"ref-for-map-exists\u2461"}],"title":"8.8. Update latest reading"},{"refs":[{"id":"ref-for-map-exists\u2462"},{"id":"ref-for-map-exists\u2463"}],"title":"9.2.1. Create virtual sensor"},{"refs":[{"id":"ref-for-map-exists\u2464"}],"title":"9.2.2. Get virtual sensor information"},{"refs":[{"id":"ref-for-map-exists\u2465"},{"id":"ref-for-map-exists\u2466"}],"title":"9.2.3. Update virtual sensor reading"},{"refs":[{"id":"ref-for-map-exists\u2467"}],"title":"9.2.4. Delete virtual sensor"}],"url":"https://infra.spec.whatwg.org/#map-exists"},
 "129bdae8": {"dfnID":"129bdae8","dfnText":"Event","external":true,"refSections":[{"refs":[{"id":"ref-for-event"},{"id":"ref-for-event\u2460"}],"title":"7.2. The SensorErrorEvent Interface"}],"url":"https://dom.spec.whatwg.org/#event"},
@@ -4390,7 +4420,6 @@ let dfnPanelData = {
 "1422ec4e": {"dfnID":"1422ec4e","dfnText":"interface","external":true,"refSections":[{"refs":[{"id":"ref-for-dfn-interface"}],"title":"7.1. The Sensor Interface"},{"refs":[{"id":"ref-for-dfn-interface\u2460"}],"title":"10.6. Definition Requirements"}],"url":"https://webidl.spec.whatwg.org/#dfn-interface"},
 "1570624a": {"dfnID":"1570624a","dfnText":"default allowlist","external":true,"refSections":[{"refs":[{"id":"ref-for-policy-controlled-feature-default-allowlist"},{"id":"ref-for-policy-controlled-feature-default-allowlist\u2460"}],"title":"10.9. Extending the Permissions Policy API"}],"url":"https://w3c.github.io/webappsec-permissions-policy/#policy-controlled-feature-default-allowlist"},
 "16d07e10": {"dfnID":"16d07e10","dfnText":"for each (for list)","external":true,"refSections":[{"refs":[{"id":"ref-for-list-iterate"}],"title":"8.2. Check sensor policy-controlled features"},{"refs":[{"id":"ref-for-list-iterate\u2460"}],"title":"8.8. Update latest reading"},{"refs":[{"id":"ref-for-list-iterate\u2461"}],"title":"8.14. Request sensor access"}],"url":"https://infra.spec.whatwg.org/#list-iterate"},
-"1d8f7431": {"dfnID":"1d8f7431","dfnText":"coarsened moments","external":true,"refSections":[{"refs":[{"id":"ref-for-dfn-moment"}],"title":"8.8. Update latest reading"}],"url":"https://w3c.github.io/hr-time/#dfn-moment"},
 "228be966": {"dfnID":"228be966","dfnText":"navigable (for Window)","external":true,"refSections":[{"refs":[{"id":"ref-for-window-navigable"}],"title":"8.3. Connect to sensor"}],"url":"https://html.spec.whatwg.org/multipage/nav-history-apis.html#window-navigable"},
 "26b82890": {"dfnID":"26b82890","dfnText":"event","external":true,"refSections":[{"refs":[{"id":"ref-for-concept-event"}],"title":"7.1. The Sensor Interface"}],"url":"https://dom.spec.whatwg.org/#concept-event"},
 "28716de1": {"dfnID":"28716de1","dfnText":"monotonic clock","external":true,"refSections":[{"refs":[{"id":"ref-for-dfn-monotonic-clock"},{"id":"ref-for-dfn-monotonic-clock\u2460"}],"title":"8.8. Update latest reading"}],"url":"https://w3c.github.io/hr-time/#dfn-monotonic-clock"},
@@ -4431,7 +4460,6 @@ let dfnPanelData = {
 "6d74ac8d": {"dfnID":"6d74ac8d","dfnText":"constructor","external":true,"refSections":[{"refs":[{"id":"ref-for-concept-event-constructor"}],"title":"7.2. The SensorErrorEvent Interface"}],"url":"https://dom.spec.whatwg.org/#concept-event-constructor"},
 "7482107b": {"dfnID":"7482107b","dfnText":"WebDriver error code","external":true,"refSections":[{"refs":[{"id":"ref-for-dfn-error-code"},{"id":"ref-for-dfn-error-code\u2460"},{"id":"ref-for-dfn-error-code\u2461"},{"id":"ref-for-dfn-error-code\u2462"},{"id":"ref-for-dfn-error-code\u2463"},{"id":"ref-for-dfn-error-code\u2464"},{"id":"ref-for-dfn-error-code\u2465"}],"title":"9.2.1. Create virtual sensor"},{"refs":[{"id":"ref-for-dfn-error-code\u2466"}],"title":"9.2.2. Get virtual sensor information"},{"refs":[{"id":"ref-for-dfn-error-code\u2467"},{"id":"ref-for-dfn-error-code\u2468"},{"id":"ref-for-dfn-error-code\u2460\u24ea"},{"id":"ref-for-dfn-error-code\u2460\u2460"}],"title":"9.2.3. Update virtual sensor reading"},{"refs":[{"id":"ref-for-dfn-error-code\u2460\u2461"}],"title":"9.2.4. Delete virtual sensor"}],"url":"https://w3c.github.io/webdriver/#dfn-error-code"},
 "77b4c09a": {"dfnID":"77b4c09a","dfnText":"assert","external":true,"refSections":[{"refs":[{"id":"ref-for-assert"}],"title":"8.7. Set sensor settings"},{"refs":[{"id":"ref-for-assert\u2460"},{"id":"ref-for-assert\u2461"}],"title":"8.9. Report latest reading updated"}],"url":"https://infra.spec.whatwg.org/#assert"},
-"79d221ec": {"dfnID":"79d221ec","dfnText":"session","external":true,"refSections":[{"refs":[{"id":"ref-for-dfn-sessions"}],"title":"9.2.1. Create virtual sensor"}],"url":"https://w3c.github.io/webdriver/#dfn-sessions"},
 "7d4424b2": {"dfnID":"7d4424b2","dfnText":"remove (for map)","external":true,"refSections":[{"refs":[{"id":"ref-for-map-remove"}],"title":"9.2.4. Delete virtual sensor"}],"url":"https://infra.spec.whatwg.org/#map-remove"},
 "802b0fdd": {"dfnID":"802b0fdd","dfnText":"value","external":true,"refSections":[{"refs":[{"id":"ref-for-map-value"},{"id":"ref-for-map-value\u2460"}],"title":"6.2. Sensor"}],"url":"https://infra.spec.whatwg.org/#map-value"},
 "82c23298": {"dfnID":"82c23298","dfnText":"remote end steps","external":true,"refSections":[{"refs":[{"id":"ref-for-dfn-remote-end-steps"}],"title":"9.2.1. Create virtual sensor"},{"refs":[{"id":"ref-for-dfn-remote-end-steps\u2460"}],"title":"9.2.2. Get virtual sensor information"},{"refs":[{"id":"ref-for-dfn-remote-end-steps\u2461"}],"title":"9.2.3. Update virtual sensor reading"},{"refs":[{"id":"ref-for-dfn-remote-end-steps\u2462"}],"title":"9.2.4. Delete virtual sensor"}],"url":"https://w3c.github.io/webdriver/#dfn-remote-end-steps"},
@@ -4478,6 +4506,7 @@ let dfnPanelData = {
 "can-expose-sensor-readings": {"dfnID":"can-expose-sensor-readings","dfnText":"can expose sensor readings","external":false,"refSections":[{"refs":[{"id":"ref-for-can-expose-sensor-readings"}],"title":"5.5. Conditions to expose sensor readings"},{"refs":[{"id":"ref-for-can-expose-sensor-readings\u2460"}],"title":"6.2. Sensor"},{"refs":[{"id":"ref-for-can-expose-sensor-readings\u2461"}],"title":"9.2.3. Update virtual sensor reading"}],"url":"#can-expose-sensor-readings"},
 "cb9acc83": {"dfnID":"cb9acc83","dfnText":"set a property","external":true,"refSections":[{"refs":[{"id":"ref-for-dfn-set-a-property"}],"title":"9.2.2. Get virtual sensor information"}],"url":"https://w3c.github.io/webdriver/#dfn-set-a-property"},
 "cc890cc1": {"dfnID":"cc890cc1","dfnText":"policy-controlled feature","external":true,"refSections":[{"refs":[{"id":"ref-for-policy-controlled-feature"}],"title":"4.2.2. Permissions Policy"},{"refs":[{"id":"ref-for-policy-controlled-feature\u2460"}],"title":"6.1. Sensor Type"},{"refs":[{"id":"ref-for-policy-controlled-feature\u2461"}],"title":"8.2. Check sensor policy-controlled features"},{"refs":[{"id":"ref-for-policy-controlled-feature\u2462"},{"id":"ref-for-policy-controlled-feature\u2463"},{"id":"ref-for-policy-controlled-feature\u2464"},{"id":"ref-for-policy-controlled-feature\u2465"},{"id":"ref-for-policy-controlled-feature\u2466"}],"title":"10.9. Extending the Permissions Policy API"}],"url":"https://w3c.github.io/webappsec-permissions-policy/#policy-controlled-feature"},
+"ce597606": {"dfnID":"ce597606","dfnText":"session","external":true,"refSections":[{"refs":[{"id":"ref-for-dfn-webdriver-session"}],"title":"9.2.1. Create virtual sensor"}],"url":"https://w3c.github.io/webdriver/#dfn-webdriver-session"},
 "check-sensor-policy-controlled-features": {"dfnID":"check-sensor-policy-controlled-features","dfnText":"8.2. Check sensor policy-controlled features","external":false,"refSections":[{"refs":[{"id":"ref-for-check-sensor-policy-controlled-features"}],"title":"5.5. Conditions to expose sensor readings"},{"refs":[{"id":"ref-for-check-sensor-policy-controlled-features"}],"title":"8.2. Check sensor policy-controlled features"}],"url":"#check-sensor-policy-controlled-features"},
 "concept-device-sensor": {"dfnID":"concept-device-sensor","dfnText":"device sensor","external":false,"refSections":[{"refs":[{"id":"ref-for-concept-device-sensor"}],"title":"2. Scope"},{"refs":[{"id":"ref-for-concept-device-sensor\u2460"},{"id":"ref-for-concept-device-sensor\u2461"},{"id":"ref-for-concept-device-sensor\u2462"},{"id":"ref-for-concept-device-sensor\u2463"}],"title":"4. Security and privacy considerations"},{"refs":[{"id":"ref-for-concept-device-sensor\u2464"}],"title":"4.3.4. Reduce accuracy"},{"refs":[{"id":"ref-for-concept-device-sensor\u2465"},{"id":"ref-for-concept-device-sensor\u2466"},{"id":"ref-for-concept-device-sensor\u2467"},{"id":"ref-for-concept-device-sensor\u2468"},{"id":"ref-for-concept-device-sensor\u2460\u24ea"},{"id":"ref-for-concept-device-sensor\u2460\u2460"},{"id":"ref-for-concept-device-sensor\u2460\u2461"},{"id":"ref-for-concept-device-sensor\u2460\u2462"},{"id":"ref-for-concept-device-sensor\u2460\u2463"},{"id":"ref-for-concept-device-sensor\u2460\u2464"},{"id":"ref-for-concept-device-sensor\u2460\u2465"}],"title":"5.1. Sensors"},{"refs":[{"id":"ref-for-concept-device-sensor\u2460\u2466"},{"id":"ref-for-concept-device-sensor\u2460\u2467"},{"id":"ref-for-concept-device-sensor\u2460\u2468"},{"id":"ref-for-concept-device-sensor\u2461\u24ea"},{"id":"ref-for-concept-device-sensor\u2461\u2460"},{"id":"ref-for-concept-device-sensor\u2461\u2461"},{"id":"ref-for-concept-device-sensor\u2461\u2462"}],"title":"5.3. Default sensor"},{"refs":[{"id":"ref-for-concept-device-sensor\u2461\u2463"},{"id":"ref-for-concept-device-sensor\u2461\u2464"},{"id":"ref-for-concept-device-sensor\u2461\u2465"},{"id":"ref-for-concept-device-sensor\u2461\u2466"},{"id":"ref-for-concept-device-sensor\u2461\u2467"},{"id":"ref-for-concept-device-sensor\u2461\u2468"},{"id":"ref-for-concept-device-sensor\u2462\u24ea"},{"id":"ref-for-concept-device-sensor\u2462\u2460"},{"id":"ref-for-concept-device-sensor\u2462\u2461"}],"title":"5.4. Sampling Frequency and Reporting Frequency"},{"refs":[{"id":"ref-for-concept-device-sensor\u2462\u2462"},{"id":"ref-for-concept-device-sensor\u2462\u2463"},{"id":"ref-for-concept-device-sensor\u2462\u2464"},{"id":"ref-for-concept-device-sensor\u2462\u2465"}],"title":"6.2. Sensor"},{"refs":[{"id":"ref-for-concept-device-sensor\u2462\u2466"}],"title":"7.1.1. Sensor lifecycle"},{"refs":[{"id":"ref-for-concept-device-sensor\u2462\u2467"},{"id":"ref-for-concept-device-sensor\u2462\u2468"},{"id":"ref-for-concept-device-sensor\u2463\u24ea"}],"title":"8.3. Connect to sensor"},{"refs":[{"id":"ref-for-concept-device-sensor\u2463\u2460"}],"title":"9. Automation"},{"refs":[{"id":"ref-for-concept-device-sensor\u2463\u2461"},{"id":"ref-for-concept-device-sensor\u2463\u2462"},{"id":"ref-for-concept-device-sensor\u2463\u2463"},{"id":"ref-for-concept-device-sensor\u2463\u2464"},{"id":"ref-for-concept-device-sensor\u2463\u2465"},{"id":"ref-for-concept-device-sensor\u2463\u2466"}],"title":"9.1. Virtual Sensors"},{"refs":[{"id":"ref-for-concept-device-sensor\u2463\u2467"},{"id":"ref-for-concept-device-sensor\u2463\u2468"}],"title":"9.2.1. Create virtual sensor"},{"refs":[{"id":"ref-for-concept-device-sensor\u2464\u24ea"}],"title":"9.2.3. Update virtual sensor reading"},{"refs":[{"id":"ref-for-concept-device-sensor\u2464\u2460"}],"title":"9.2.4. Delete virtual sensor"},{"refs":[{"id":"ref-for-concept-device-sensor\u2464\u2461"}],"title":"10.6. Definition Requirements"},{"refs":[{"id":"ref-for-concept-device-sensor\u2464\u2462"}],"title":"10.10. Example WebIDL"}],"url":"#concept-device-sensor"},
 "concept-platform-sensor": {"dfnID":"concept-platform-sensor","dfnText":"platform sensor","external":false,"refSections":[{"refs":[{"id":"ref-for-concept-platform-sensor"},{"id":"ref-for-concept-platform-sensor\u2460"},{"id":"ref-for-concept-platform-sensor\u2461"},{"id":"ref-for-concept-platform-sensor\u2462"},{"id":"ref-for-concept-platform-sensor\u2463"},{"id":"ref-for-concept-platform-sensor\u2464"}],"title":"5.1. Sensors"},{"refs":[{"id":"ref-for-concept-platform-sensor\u2465"},{"id":"ref-for-concept-platform-sensor\u2466"},{"id":"ref-for-concept-platform-sensor\u2467"},{"id":"ref-for-concept-platform-sensor\u2468"},{"id":"ref-for-concept-platform-sensor\u2460\u24ea"},{"id":"ref-for-concept-platform-sensor\u2460\u2460"},{"id":"ref-for-concept-platform-sensor\u2460\u2461"},{"id":"ref-for-concept-platform-sensor\u2460\u2462"},{"id":"ref-for-concept-platform-sensor\u2460\u2463"},{"id":"ref-for-concept-platform-sensor\u2460\u2464"},{"id":"ref-for-concept-platform-sensor\u2460\u2465"},{"id":"ref-for-concept-platform-sensor\u2460\u2466"}],"title":"5.4. Sampling Frequency and Reporting Frequency"},{"refs":[{"id":"ref-for-concept-platform-sensor\u2460\u2467"}],"title":"5.5. Conditions to expose sensor readings"},{"refs":[{"id":"ref-for-concept-platform-sensor\u2460\u2468"}],"title":"6.1. Sensor Type"},{"refs":[{"id":"ref-for-concept-platform-sensor\u2461\u24ea"},{"id":"ref-for-concept-platform-sensor\u2461\u2460"},{"id":"ref-for-concept-platform-sensor\u2461\u2461"},{"id":"ref-for-concept-platform-sensor\u2461\u2462"},{"id":"ref-for-concept-platform-sensor\u2461\u2463"},{"id":"ref-for-concept-platform-sensor\u2461\u2464"},{"id":"ref-for-concept-platform-sensor\u2461\u2465"},{"id":"ref-for-concept-platform-sensor\u2461\u2466"}],"title":"6.2. Sensor"},{"refs":[{"id":"ref-for-concept-platform-sensor\u2461\u2467"},{"id":"ref-for-concept-platform-sensor\u2461\u2468"},{"id":"ref-for-concept-platform-sensor\u2462\u24ea"}],"title":"7.1. The Sensor Interface"},{"refs":[{"id":"ref-for-concept-platform-sensor\u2462\u2460"}],"title":"7.1.1. Sensor lifecycle"},{"refs":[{"id":"ref-for-concept-platform-sensor\u2462\u2461"}],"title":"7.1.3. Sensor internal slots"},{"refs":[{"id":"ref-for-concept-platform-sensor\u2462\u2462"},{"id":"ref-for-concept-platform-sensor\u2462\u2463"},{"id":"ref-for-concept-platform-sensor\u2462\u2464"},{"id":"ref-for-concept-platform-sensor\u2462\u2465"}],"title":"8.3. Connect to sensor"},{"refs":[{"id":"ref-for-concept-platform-sensor\u2462\u2466"}],"title":"8.4. Activate a sensor object"},{"refs":[{"id":"ref-for-concept-platform-sensor\u2462\u2467"}],"title":"8.5. Deactivate a sensor object"},{"refs":[{"id":"ref-for-concept-platform-sensor\u2462\u2468"}],"title":"8.7. Set sensor settings"},{"refs":[{"id":"ref-for-concept-platform-sensor\u2463\u24ea"}],"title":"8.8. Update latest reading"},{"refs":[{"id":"ref-for-concept-platform-sensor\u2463\u2460"}],"title":"8.11. Notify activated state"},{"refs":[{"id":"ref-for-concept-platform-sensor\u2463\u2461"}],"title":"8.13. Get value from latest reading"},{"refs":[{"id":"ref-for-concept-platform-sensor\u2463\u2462"},{"id":"ref-for-concept-platform-sensor\u2463\u2463"},{"id":"ref-for-concept-platform-sensor\u2463\u2464"},{"id":"ref-for-concept-platform-sensor\u2463\u2465"},{"id":"ref-for-concept-platform-sensor\u2463\u2466"}],"title":"9.1. Virtual Sensors"},{"refs":[{"id":"ref-for-concept-platform-sensor\u2463\u2467"},{"id":"ref-for-concept-platform-sensor\u2463\u2468"},{"id":"ref-for-concept-platform-sensor\u2464\u24ea"}],"title":"9.2.3. Update virtual sensor reading"},{"refs":[{"id":"ref-for-concept-platform-sensor\u2464\u2460"},{"id":"ref-for-concept-platform-sensor\u2464\u2461"}],"title":"9.2.4. Delete virtual sensor"},{"refs":[{"id":"ref-for-concept-platform-sensor\u2464\u2462"},{"id":"ref-for-concept-platform-sensor\u2464\u2463"},{"id":"ref-for-concept-platform-sensor\u2464\u2464"}],"title":"10.2. Naming"},{"refs":[{"id":"ref-for-concept-platform-sensor\u2464\u2465"}],"title":"10.6. Definition Requirements"}],"url":"#concept-platform-sensor"},
@@ -4524,6 +4553,7 @@ let dfnPanelData = {
 "fa818daf": {"dfnID":"fa818daf","dfnText":"get a property","external":true,"refSections":[{"refs":[{"id":"ref-for-dfn-getting-properties"}],"title":"9.2.1. Create virtual sensor"},{"refs":[{"id":"ref-for-dfn-getting-properties\u2460"}],"title":"9.2.3. Update virtual sensor reading"},{"refs":[{"id":"ref-for-dfn-getting-properties\u2461"}],"title":"9.2.3.1.1. Parse single-value number reading"},{"refs":[{"id":"ref-for-dfn-getting-properties\u2462"},{"id":"ref-for-dfn-getting-properties\u2463"},{"id":"ref-for-dfn-getting-properties\u2464"}],"title":"9.2.3.1.2. Parse XYZ reading"}],"url":"https://w3c.github.io/webdriver/#dfn-getting-properties"},
 "faf75970": {"dfnID":"faf75970","dfnText":"gains focus","external":true,"refSections":[{"refs":[{"id":"ref-for-gains-focus"}],"title":"4.2.3. Focused Area"}],"url":"https://html.spec.whatwg.org/multipage/interaction.html#gains-focus"},
 "fc14fa8a": {"dfnID":"fc14fa8a","dfnText":"inherited interfaces","external":true,"refSections":[{"refs":[{"id":"ref-for-dfn-inherited-interfaces"}],"title":"10.6. Definition Requirements"}],"url":"https://webidl.spec.whatwg.org/#dfn-inherited-interfaces"},
+"fe3c9dd4": {"dfnID":"fe3c9dd4","dfnText":"coarsened moment","external":true,"refSections":[{"refs":[{"id":"ref-for-dfn-moment"}],"title":"8.8. Update latest reading"}],"url":"https://w3c.github.io/hr-time/#dfn-moment"},
 "focus-and-origin-check": {"dfnID":"focus-and-origin-check","dfnText":"8.15. Focus and origin check","external":false,"refSections":[{"refs":[{"id":"ref-for-focus-and-origin-check"}],"title":"4.2.3. Focused Area"},{"refs":[{"id":"ref-for-focus-and-origin-check\u2460"}],"title":"5.5. Conditions to expose sensor readings"},{"refs":[{"id":"ref-for-focus-and-origin-check"}],"title":"8.15. Focus and origin check"}],"url":"#focus-and-origin-check"},
 "generic-sensor-permission-revocation-algorithm": {"dfnID":"generic-sensor-permission-revocation-algorithm","dfnText":"8.6. Generic Sensor permission revocation algorithm","external":false,"refSections":[{"refs":[{"id":"ref-for-generic-sensor-permission-revocation-algorithm"}],"title":"8.6. Generic Sensor permission revocation algorithm"}],"url":"#generic-sensor-permission-revocation-algorithm"},
 "get-a-platform-sensors-sampling-bounds": {"dfnID":"get-a-platform-sensors-sampling-bounds","dfnText":"get a platform sensor\u2019s sampling bounds","external":false,"refSections":[{"refs":[{"id":"ref-for-get-a-platform-sensors-sampling-bounds"}],"title":"5.4. Sampling Frequency and Reporting Frequency"},{"refs":[{"id":"ref-for-get-a-platform-sensors-sampling-bounds\u2460"}],"title":"8.3. Connect to sensor"},{"refs":[{"id":"ref-for-get-a-platform-sensors-sampling-bounds\u2461"}],"title":"8.7. Set sensor settings"}],"url":"#get-a-platform-sensors-sampling-bounds"},
@@ -5161,12 +5191,12 @@ let refsData = {
 "https://tc39.es/ecma262/multipage/numbers-and-dates.html#sec-number-objects": {"displayText":"Number","export":true,"for_":[],"level":"1","normative":true,"shortname":"ecmascript","spec":"ecmascript","status":"current","text":"Number","type":"interface","url":"https://tc39.es/ecma262/multipage/numbers-and-dates.html#sec-number-objects"},
 "https://tc39.es/ecma262/multipage/text-processing.html#sec-string-objects": {"displayText":"String","export":true,"for_":[],"level":"1","normative":true,"shortname":"ecmascript","spec":"ecmascript","status":"current","text":"String","type":"interface","url":"https://tc39.es/ecma262/multipage/text-processing.html#sec-string-objects"},
 "https://tc39.github.io/ecma262/#current-realm": {"displayText":"current realm","export":true,"for_":[],"level":"","normative":true,"shortname":"ecmascript","spec":"ecmascript","status":"anchor-block","text":"current realm","type":"dfn","url":"https://tc39.github.io/ecma262/#current-realm"},
-"https://w3c.github.io/hr-time/#dfn-moment": {"displayText":"coarsened moments","export":true,"for_":[],"level":"3","normative":true,"shortname":"hr-time","spec":"hr-time-3","status":"current","text":"coarsened moments","type":"dfn","url":"https://w3c.github.io/hr-time/#dfn-moment"},
+"https://w3c.github.io/hr-time/#dfn-moment": {"displayText":"coarsened moment","export":true,"for_":[],"level":"3","normative":true,"shortname":"hr-time","spec":"hr-time-3","status":"current","text":"coarsened moment","type":"dfn","url":"https://w3c.github.io/hr-time/#dfn-moment"},
 "https://w3c.github.io/hr-time/#dfn-monotonic-clock": {"displayText":"monotonic clock","export":true,"for_":[],"level":"3","normative":true,"shortname":"hr-time","spec":"hr-time-3","status":"current","text":"monotonic clock","type":"dfn","url":"https://w3c.github.io/hr-time/#dfn-monotonic-clock"},
 "https://w3c.github.io/hr-time/#dfn-relative-high-resolution-time": {"displayText":"relative high resolution time","export":true,"for_":[],"level":"3","normative":true,"shortname":"hr-time","spec":"hr-time-3","status":"current","text":"relative high resolution time","type":"dfn","url":"https://w3c.github.io/hr-time/#dfn-relative-high-resolution-time"},
 "https://w3c.github.io/hr-time/#dfn-unsafe-shared-current-time": {"displayText":"unsafe shared current time","export":true,"for_":[],"level":"3","normative":true,"shortname":"hr-time","spec":"hr-time-3","status":"current","text":"unsafe shared current time","type":"dfn","url":"https://w3c.github.io/hr-time/#dfn-unsafe-shared-current-time"},
-"https://w3c.github.io/hr-time/#dom-domhighrestimestamp": {"displayText":"DOMHighResTimeStamp","export":true,"for_":[],"level":"3","normative":true,"shortname":"hr-time","spec":"hr-time-3","status":"current","text":"DOMHighResTimeStamp","type":"typedef","url":"https://w3c.github.io/hr-time/#dom-domhighrestimestamp"},
 "https://w3c.github.io/hr-time/#monotonic-clock-unsafe-current-time": {"displayText":"unsafe current time","export":true,"for_":["monotonic clock"],"level":"3","normative":true,"shortname":"hr-time","spec":"hr-time-3","status":"current","text":"unsafe current time","type":"dfn","url":"https://w3c.github.io/hr-time/#monotonic-clock-unsafe-current-time"},
+"https://w3c.github.io/hr-time/#typedefdef-domhighrestimestamp": {"displayText":"DOMHighResTimeStamp","export":true,"for_":[],"level":"3","normative":true,"shortname":"hr-time","spec":"hr-time-3","status":"current","text":"DOMHighResTimeStamp","type":"typedef","url":"https://w3c.github.io/hr-time/#typedefdef-domhighrestimestamp"},
 "https://w3c.github.io/permissions/#dfn-name": {"displayText":"name","export":true,"for_":["powerful feature"],"level":"1","normative":true,"shortname":"permissions","spec":"permissions","status":"current","text":"name","type":"dfn","url":"https://w3c.github.io/permissions/#dfn-name"},
 "https://w3c.github.io/permissions/#dfn-permission-revocation-algorithm": {"displayText":"permission revocation algorithm","export":true,"for_":["powerful feature"],"level":"1","normative":true,"shortname":"permissions","spec":"permissions","status":"current","text":"permission revocation algorithm","type":"dfn","url":"https://w3c.github.io/permissions/#dfn-permission-revocation-algorithm"},
 "https://w3c.github.io/permissions/#dfn-permission-state": {"displayText":"permission state","export":true,"for_":[],"level":"1","normative":true,"shortname":"permissions","spec":"permissions","status":"current","text":"permission state","type":"dfn","url":"https://w3c.github.io/permissions/#dfn-permission-state"},
@@ -5184,9 +5214,9 @@ let refsData = {
 "https://w3c.github.io/webdriver/#dfn-invalid-argument": {"displayText":"invalid argument","export":true,"for_":[],"level":"2","normative":true,"shortname":"webdriver","spec":"webdriver2","status":"current","text":"invalid argument","type":"dfn","url":"https://w3c.github.io/webdriver/#dfn-invalid-argument"},
 "https://w3c.github.io/webdriver/#dfn-local-ends": {"displayText":"local end","export":true,"for_":[],"level":"","normative":true,"shortname":"webdriver2","spec":"webdriver2","status":"anchor-block","text":"local end","type":"dfn","url":"https://w3c.github.io/webdriver/#dfn-local-ends"},
 "https://w3c.github.io/webdriver/#dfn-remote-end-steps": {"displayText":"remote end steps","export":true,"for_":[],"level":"2","normative":true,"shortname":"webdriver","spec":"webdriver2","status":"current","text":"remote end steps","type":"dfn","url":"https://w3c.github.io/webdriver/#dfn-remote-end-steps"},
-"https://w3c.github.io/webdriver/#dfn-sessions": {"displayText":"session","export":false,"for_":[],"level":"2","normative":true,"shortname":"webdriver","spec":"webdriver2","status":"current","text":"session","type":"dfn","url":"https://w3c.github.io/webdriver/#dfn-sessions"},
 "https://w3c.github.io/webdriver/#dfn-set-a-property": {"displayText":"set a property","export":true,"for_":[],"level":"","normative":true,"shortname":"webdriver2","spec":"webdriver2","status":"anchor-block","text":"set a property","type":"dfn","url":"https://w3c.github.io/webdriver/#dfn-set-a-property"},
 "https://w3c.github.io/webdriver/#dfn-url-variables": {"displayText":"url variable","export":true,"for_":[],"level":"","normative":true,"shortname":"webdriver2","spec":"webdriver2","status":"anchor-block","text":"url variable","type":"dfn","url":"https://w3c.github.io/webdriver/#dfn-url-variables"},
+"https://w3c.github.io/webdriver/#dfn-webdriver-session": {"displayText":"session","export":true,"for_":[],"level":"2","normative":true,"shortname":"webdriver","spec":"webdriver2","status":"current","text":"session","type":"dfn","url":"https://w3c.github.io/webdriver/#dfn-webdriver-session"},
 "https://w3ctag.github.io/security-questionnaire/#sop-violations": {"displayText":"same-origin policy violations","export":true,"for_":[],"level":"","normative":true,"shortname":"security-privacy-questionnaire","spec":"security-privacy-questionnaire","status":"anchor-block","text":"same-origin policy violations","type":"dfn","url":"https://w3ctag.github.io/security-questionnaire/#sop-violations"},
 "https://webidl.spec.whatwg.org/#Exposed": {"displayText":"Exposed","export":true,"for_":[],"level":"1","normative":true,"shortname":"webidl","spec":"webidl","status":"current","text":"Exposed","type":"extended-attribute","url":"https://webidl.spec.whatwg.org/#Exposed"},
 "https://webidl.spec.whatwg.org/#SecureContext": {"displayText":"SecureContext","export":true,"for_":[],"level":"1","normative":true,"shortname":"webidl","spec":"webidl","status":"current","text":"SecureContext","type":"extended-attribute","url":"https://webidl.spec.whatwg.org/#SecureContext"},
