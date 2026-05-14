@@ -25,6 +25,8 @@ Implementation Report: https://www.w3.org/wiki/DAS/Implementations
 Inline GitHub Issues: yes
 Default Biblio Status: current
 Status Text:
+  <p class="advisement">Multiple browser engines have expressed concerns about this specification. It is implemented in Chromium-based browsers but is not expected to advance to W3C Recommendation in its current form without cross-engine interest.</p>
+
   Further implementation experience is being gathered for the
   [=permission request algorithm=] and specification clarifications
   informed by this experience are being discussed in
