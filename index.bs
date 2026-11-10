@@ -1706,6 +1706,8 @@ to sensor=] is invoked again.
         [=WebDriver error code=] [=invalid argument=].
     1.  Let |connected| be the result of invoking [=get a property with default=] with
         "`connected`" and true from |parameters|.
+    1.  If |connected| is not a {{Boolean}}, return [=error=] with [=WebDriver error code=] [=invalid
+        argument=].
     1.  Let |maxSamplingFrequency| be the result of invoking [=get a property with default=] with
         "`maxSamplingFrequency`" and an [=implementation-defined=] value from |parameters|.
     1.  If |maxSamplingFrequency| is not a {{Number}}, or its value is **NaN**, +∞, or −∞, return
