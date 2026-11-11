@@ -1524,7 +1524,8 @@ to {{SensorErrorEventInit}}.
     :: A [=sensor reading=] value or null.
 
     1.  If |sensor_instance|.{{[[state]]}} is "activated",
-        1.  Let |readings| be the [=latest reading=] of |sensor_instance|'s related [=platform sensor=].
+        1.  Let |readings| be a [=map/clone=] of the [=latest reading=] of
+            |sensor_instance|'s related [=platform sensor=].
         1.  Let |type| be |sensor_instance|'s associated [=sensor type=].
         1.  If |type|'s [=reading quantization algorithm=] is defined, then:
             1.  Set |readings| to the result of invoking |type|'s [=reading quantization algorithm=] with |readings|.
